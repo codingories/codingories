@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="技术栈   Vue3.0 TypeScript Vue Router Vite   目录   使用 Vite 搭建官网 Switch 组件 Button 组件 Dialog 组件 Tabs 组件 官网细节完善 发布代码到 npm   用 Vite 构建官网,创建项目   进入自定义的项目目录  全局安装 create-vite-app  yarn global add &amp;#x63;&amp;#x72;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3造轮子flavour-ui组件库之00使用Vite搭建官网">
+<meta property="og:url" content="codingories.github.io/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="技术栈   Vue3.0 TypeScript Vue Router Vite   目录   使用 Vite 搭建官网 Switch 组件 Button 组件 Dialog 组件 Tabs 组件 官网细节完善 发布代码到 npm   用 Vite 构建官网,创建项目   进入自定义的项目目录  全局安装 create-vite-app  yarn global add &amp;#x63;&amp;#x72;&amp;">
+<meta property="og:image" content="https://i.loli.net/2020/09/21/fSwdn7leVuNEL4B.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/21/zbEpL7yfueWXicS.png">
+<meta property="article:published_time" content="2020-09-21T12:53:28.000Z">
+<meta property="article:modified_time" content="2020-09-21T15:04:58.641Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="Vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/21/fSwdn7leVuNEL4B.png">
+
+<link rel="canonical" href="codingories.github.io/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Vue3造轮子flavour-ui组件库之00使用Vite搭建官网 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue3造轮子flavour-ui组件库之00使用Vite搭建官网
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-21 20:53:28 / Modified: 23:04:58" itemprop="dateCreated datePublished" datetime="2020-09-21T20:53:28+08:00">2020-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%A0%E8%BD%AE%E5%AD%90/" itemprop="url" rel="index"><span itemprop="name">造轮子</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/" class="post-meta-item leancloud_visitors" data-flag-title="Vue3造轮子flavour-ui组件库之00使用Vite搭建官网" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li>技术栈</li>
+</ol>
+<ul>
+<li>Vue3.0</li>
+<li>TypeScript</li>
+<li>Vue Router</li>
+<li>Vite</li>
+</ul>
+<ol start="2">
+<li>目录</li>
+</ol>
+<ul>
+<li>使用 Vite 搭建官网</li>
+<li>Switch 组件</li>
+<li>Button 组件</li>
+<li>Dialog 组件</li>
+<li>Tabs 组件</li>
+<li>官网细节完善</li>
+<li>发布代码到 npm</li>
+</ul>
+<ol start="3">
+<li>用 Vite 构建官网,创建项目</li>
+</ol>
+<ul>
+<li><p>进入自定义的项目目录</p>
+</li>
+<li><p>全局安装 create-vite-app</p>
+<ul>
+<li>yarn global add <a href="mailto:&#x63;&#x72;&#101;&#x61;&#x74;&#101;&#x2d;&#x76;&#105;&#116;&#101;&#45;&#97;&#112;&#x70;&#64;&#x31;&#x2e;&#49;&#56;&#x2e;&#48;">&#x63;&#x72;&#101;&#x61;&#x74;&#101;&#x2d;&#x76;&#105;&#116;&#101;&#45;&#97;&#112;&#x70;&#64;&#x31;&#x2e;&#49;&#56;&#x2e;&#48;</a></li>
+<li>或者 npm i -g <a href="mailto:&#99;&#x72;&#x65;&#x61;&#x74;&#x65;&#45;&#118;&#105;&#x74;&#x65;&#45;&#x61;&#112;&#112;&#64;&#x31;&#46;&#49;&#56;&#46;&#48;">&#99;&#x72;&#x65;&#x61;&#x74;&#x65;&#45;&#118;&#105;&#x74;&#x65;&#45;&#x61;&#112;&#112;&#64;&#x31;&#46;&#49;&#56;&#46;&#48;</a></li>
+<li>创建项目目录,cva flavour-ui(这个是项目名可以自己修改)</li>
+<li>yarn</li>
+<li>yarn dev</li>
+</ul>
+</li>
+<li><p>小知识</p>
+<ul>
+<li>vite 文档给出的命令是<ul>
+<li>npm init vite-app <code>&lt;project-name&gt;</code></li>
+<li>yarn create vite-app <code>&lt;project-name&gt;</code></li>
+</ul>
+</li>
+<li>等价于<ul>
+<li>全局安装 create-vite-app 然后</li>
+<li><code>cva &lt;project-name&gt;</code></li>
+</ul>
+</li>
+<li>等价于<ul>
+<li>npx createa-vite-app <code>&lt;project-name&gt;</code></li>
+<li>即 npx 会帮你全局安装用到的包</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用 VSCode 或 WebStorm 打开目录</p>
+<ul>
+<li>将目录拖进即可</li>
+</ul>
+</li>
+<li><p>自己尝试去修改里面的文件，并尝试新建组件</p>
+<ul>
+<li>发现 Vue2 和 Vue3 的区别</li>
+<li>90%的写法完全一致:除了以下几点<ul>
+<li>Vue 3 的 Template 支持<font color="skyblue">多个根标签</font>，Vue 2 不支持</li>
+<li>Vue 3 有 <font color="skyblue">createApp()</font>，而 Vue 2 的是 new Vue()</li>
+<li>createApp(<font color="skyblue">组件</font>)，new Vue({template, render})</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>提交一下代码,git init</p>
+</li>
+</ul>
+<ol start="4">
+<li>引入 Vue Router 4</li>
+</ol>
+<ul>
+<li>路由器，用于页面切换</li>
+<li>使用命令行查看 vue-router 所有版本号<ul>
+<li>npm info vue-router versions</li>
+</ul>
+</li>
+<li>安装 vue-router<ul>
+<li>yarn add <a href="mailto:&#118;&#x75;&#x65;&#45;&#x72;&#111;&#x75;&#x74;&#101;&#x72;&#64;&#x34;&#46;&#48;&#x2e;&#x30;&#45;&#x62;&#x65;&#116;&#97;&#x2e;&#51;">&#118;&#x75;&#x65;&#45;&#x72;&#111;&#x75;&#x74;&#101;&#x72;&#64;&#x34;&#46;&#48;&#x2e;&#x30;&#45;&#x62;&#x65;&#116;&#97;&#x2e;&#51;</a></li>
+</ul>
+</li>
+<li>初始化 vue-router<ul>
+<li>新建 history 对象</li>
+<li>新建 router 对象</li>
+<li>引入 TypeScript</li>
+<li>app.use(router)</li>
+<li>添加 <code>&lt;router-view&gt;</code></li>
+<li>添加 <code>&lt;router-link&gt;</code></li>
+</ul>
+</li>
+<li>把 main.js 改成 main.ts 出现问题，找不到模块 xxx.vue<ul>
+<li>出现原因，TypeScript 只能理解 .ts 文件，无法理解 .vue 文件</li>
+<li>解决办法，Google 搜索 Vue 3 can not find module<ul>
+<li>创建 xxx.d.ts，告诉 TS 如何理解 .vue 文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; shims-vue.d.ts</span><br><span class="line">declare module &#39;*.vue&#39; &#123;</span><br><span class="line">  import &#123; ComponentOptions &#125; from &#39;vue&#39;</span><br><span class="line">  const ComponentOptions: ComponentOptions;</span><br><span class="line">  export default ComponentOptions</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>开始创建官网,创建首页和文档页</li>
+</ol>
+<ul>
+<li>新建 views 文件夹<ul>
+<li>Home.vue<ul>
+<li>Topnav：左边是 logo，右边是 menu</li>
+<li>Banner：文字介绍 + 开始按钮</li>
+</ul>
+</li>
+<li>Doc.vue<ul>
+<li>Topnav：同上</li>
+<li>Content：左边是 aside，右边是 main</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>封装 topNav 组件</li>
+</ol>
+<ul>
+<li>home 页面和 doc 页面都用到了 topNav 组件，需要进行封装</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"topnav"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"logo"</span>&gt;LOGO&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;ul class="menu"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;li&gt;菜单1&lt;/</span>li&gt;</span><br><span class="line">      &lt;li&gt;菜单<span class="number">2</span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;style lang="scss" scoped&gt;</span></span><br><span class="line"><span class="regexp">.topnav &#123;</span></span><br><span class="line"><span class="regexp">  background: pink;</span></span><br><span class="line"><span class="regexp">  display: flex;</span></span><br><span class="line"><span class="regexp">  padding: 16px;</span></span><br><span class="line"><span class="regexp">  &gt; .logo &#123;</span></span><br><span class="line"><span class="regexp">    max-width: 6em;</span></span><br><span class="line"><span class="regexp">    margin-right: auto;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  &gt; .menu &#123;</span></span><br><span class="line"><span class="regexp">    display: flex;</span></span><br><span class="line"><span class="regexp">    white-space: nowrap;</span></span><br><span class="line"><span class="regexp">    flex-wrap: nowrap;</span></span><br><span class="line"><span class="regexp">    &gt; li &#123;</span></span><br><span class="line"><span class="regexp">      margin: 0 1em;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>完善 home 页面样式</li>
+</ol>
+<ul>
+<li>写一大堆样式</li>
+</ul>
+<ol start="8">
+<li>完善 Doc 样式</li>
+</ol>
+<ul>
+<li>边栏+主内容，参考 vue 文档样式</li>
+<li>定好目标，需要实现手机和 pc 端样式</li>
+<li>先实现手机，因为手机用户群大</li>
+</ul>
+<ol start="9">
+<li>在 aside 里添加 router-link</li>
+</ol>
+<ul>
+<li>方便用户切换组件文档，即传说中的嵌套路由</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Topnav&gt;&lt;<span class="regexp">/Topnav&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;aside&gt;边栏&lt;/</span>aside&gt;</span><br><span class="line">      &lt;aside&gt;</span><br><span class="line">        &lt;h2&gt;组件列表&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">        &lt;ol&gt;</span></span><br><span class="line"><span class="regexp">          &lt;li&gt;</span></span><br><span class="line"><span class="regexp">            &lt;router-link to="/</span>doc/swich<span class="string">"&gt;Switch 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;router-link to="</span>/doc/button<span class="string">"&gt;Button 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;router-link to="</span>/doc/dialog<span class="string">"&gt;Dialog 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;router-link to="</span>/doc/tabs<span class="string">"&gt;Tabs 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;/ol&gt;</span></span><br><span class="line"><span class="string">      &lt;/aside&gt;</span></span><br><span class="line"><span class="string">      &lt;main&gt;主内容&lt;/main&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>调节 topnav 和 aside 样式</li>
+</ol>
+<ul>
+<li>写一大堆的 css</li>
+</ul>
+<ol start="11">
+<li>实现切换 aside</li>
+</ol>
+<ul>
+<li>点击一次显示，再点击一次隐藏,实现这个功能需要使用到 vue 的 provide/inject</li>
+<li>将 menuVisible 变量放到 APP，通过 provide 告诉子组件可以访问到，具体见下图
+<img src="https://i.loli.net/2020/09/21/fSwdn7leVuNEL4B.png" alt="menuVisible位置.png"><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.vue</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref, provide &#125; <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"App"</span>,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> menuVisible = ref(<span class="literal">false</span>); <span class="comment">//  ref理解成盒子,里面有个值false</span></span><br><span class="line">    provide(<span class="string">"menuVisible"</span>, menuVisible); <span class="comment">// set,标记为所有子组件都可以用</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// topnav.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"topnav"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"logo"</span> @click=<span class="string">"toggleMenu"</span>&gt;LOGO&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;ul class="menu"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;li&gt;菜单1&lt;/</span>li&gt;</span><br><span class="line">      &lt;li&gt;菜单<span class="number">2</span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> &#123; inject, Ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    setup()&#123;</span><br><span class="line">      <span class="keyword">const</span> menuVisible =  inject&lt;Ref&lt;boolean&gt;&gt;(<span class="string">'menuVisible'</span>); <span class="comment">// get, 获取xxx</span></span><br><span class="line">      <span class="keyword">const</span> toggleMenu = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        menuVisible.value = !menuVisible.value</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> &#123;toggleMenu&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// doc.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Topnav&gt;&lt;<span class="regexp">/Topnav&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;aside v-if="menuVisible"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h2&gt;组件列表&lt;/</span>h2&gt;</span><br><span class="line">        &lt;ol&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/switch"</span>&gt;Switch 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/button"</span>&gt;Button 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/dialog"</span>&gt;Dialog 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/tabs"</span>&gt;Tabs 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">        &lt;<span class="regexp">/ol&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>aside&gt;</span><br><span class="line">      &lt;main&gt;主内容&lt;<span class="regexp">/main&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> Topnav <span class="keyword">from</span> <span class="string">'../components/Topnav.vue'</span></span><br><span class="line">  <span class="keyword">import</span> &#123; inject, Ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    components: &#123; Topnav &#125;,</span><br><span class="line">    setup()&#123;</span><br><span class="line">      <span class="keyword">const</span> menuVisible =  inject&lt;Ref&lt;boolean&gt;&gt;(<span class="string">'menuVisible'</span>); <span class="comment">// get</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'topnav 获取的 menu Visible 为: '</span> + menuVisible.value)</span><br><span class="line">      <span class="keyword">return</span> &#123;menuVisible&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>改造 topnav，添加一个切换按钮</li>
+</ol>
+<ul>
+<li>通过媒体查询完成，写一大堆 css</li>
+</ul>
+<ol start="13">
+<li>完善 aside 逻辑</li>
+</ol>
+<ul>
+<li>需要根据屏幕宽度动态判断是否显示按钮</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"App"</span>,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> width = <span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">    <span class="keyword">const</span> menuVisible = ref(width &lt;= <span class="number">800</span> ? <span class="literal">false</span> : <span class="literal">true</span>);</span><br><span class="line">    provide(<span class="string">"menuVisible"</span>, menuVisible); <span class="comment">// set</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>点击组件，显示响应文档</li>
+</ol>
+<ul>
+<li>知识点，嵌套路由</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line">router.afterEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"路由切换了"</span>); <span class="comment">// 每次点击路由会执行</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先把 router 封装成单独的 route.ts</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createWebHashHistory, createRouter &#125; <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span><br><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">"./views/Home.vue"</span>;</span><br><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> Doc <span class="keyword">from</span> <span class="string">"./views/Doc.vue"</span>;</span><br><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> SwitchDemo <span class="keyword">from</span> <span class="string">"./components/SwitchDemo.vue"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> history = createWebHashHistory();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">  history: history,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">"/"</span>, <span class="attr">component</span>: Home &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">"/doc"</span>,</span><br><span class="line">      component: Doc,</span><br><span class="line">      children: [&#123; <span class="attr">path</span>: <span class="string">"switch"</span>, <span class="attr">component</span>: SwitchDemo &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"路由切换了"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 app 里面引 router</li>
+<li>在 app.vue 里将 menuVisible.value 变 false,如果是 pc 就不要隐藏</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;router-view/&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script lang="ts"&gt;</span></span><br><span class="line"><span class="regexp">import &#123;ref, provide&#125; from 'vue'</span></span><br><span class="line"><span class="regexp">import &#123;router&#125; from "./</span>router<span class="string">"</span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  name: 'App',</span></span><br><span class="line"><span class="string">  setup()&#123;</span></span><br><span class="line"><span class="string">    const width = document.documentElement.clientWidth;</span></span><br><span class="line"><span class="string">    const menuVisible = ref(width &lt;= 800 ? false : true);</span></span><br><span class="line"><span class="string">    provide("</span>menuVisible<span class="string">", menuVisible); // set</span></span><br><span class="line"><span class="string">    router.afterEach(() =&gt; &#123;</span></span><br><span class="line"><span class="string">      if(width &lt;= 800)&#123;</span></span><br><span class="line"><span class="string">        menuVisible.value = false</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完善路由，添加二级默认路由</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const history &#x3D; createWebHashHistory();</span><br><span class="line">export const router &#x3D; createRouter(&#123;</span><br><span class="line">  history:history,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;path:&#39;&#x2F;&#39;, component: Home&#125;,</span><br><span class="line">    &#123;path:&#39;&#x2F;doc&#39;, component: Doc,children: [</span><br><span class="line">      &#123; path: &quot;&quot;, component: DocDemo &#125;, &#x2F;&#x2F; 二级组件的根路由</span><br><span class="line">      &#123; path: &quot;switch&quot;, component: SwitchDemo &#125;,</span><br><span class="line">      &#123; path: &quot;button&quot;, component: ButtonDemo &#125;,</span><br><span class="line">      &#123; path: &quot;dialog&quot;, component: DialogDemo &#125;,</span><br><span class="line">      &#123; path: &quot;tabs&quot;, component: TabsDemo &#125;</span><br><span class="line">    ],</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>最终效果
+<img src="https://i.loli.net/2020/09/21/zbEpL7yfueWXicS.png" alt="最终效果.png"></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue3/" rel="tag"># Vue3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/15/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9040js%E4%B8%93%E7%B2%BE08%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E7%BB%84%E5%90%88/" rel="prev" title="高级前端养成40js专精08之继承和组合">
+      <i class="fa fa-chevron-left"></i> 高级前端养成40js专精08之继承和组合
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/" rel="next" title="React全解之00React起手式">
+      React全解之00React起手式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

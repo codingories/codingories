@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一. 如何引入 React 新手用 create-react-app,和 VueCli 一个级别的东西,老手 webpack&#x2F;rollup  1234create-react-app react-demo&#x2F;&#x2F; 等待好安装即可cd react-demoyarn start  二. 用 React 实现按钮+1,都是 JS 基础知识1234567891011121314151617">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React全解之00React起手式">
+<meta property="og:url" content="codingories.github.io/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="一. 如何引入 React 新手用 create-react-app,和 VueCli 一个级别的东西,老手 webpack&#x2F;rollup  1234create-react-app react-demo&#x2F;&#x2F; 等待好安装即可cd react-demoyarn start  二. 用 React 实现按钮+1,都是 JS 基础知识1234567891011121314151617">
+<meta property="article:published_time" content="2020-09-22T15:44:05.000Z">
+<meta property="article:modified_time" content="2020-09-22T15:46:50.266Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="React学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>React全解之00React起手式 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React全解之00React起手式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-22 23:44:05 / Modified: 23:46:50" itemprop="dateCreated datePublished" datetime="2020-09-22T23:44:05+08:00">2020-09-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="React全解之00React起手式" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B00React%E8%B5%B7%E6%89%8B%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="一-如何引入-React"><a href="#一-如何引入-React" class="headerlink" title="一. 如何引入 React"></a>一. 如何引入 React</h4><ul>
+<li>新手用 create-react-app,和 VueCli 一个级别的东西,老手 webpack/rollup</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create-react-app react-demo</span><br><span class="line">&#x2F;&#x2F; 等待好安装即可</span><br><span class="line">cd react-demo</span><br><span class="line">yarn start</span><br></pre></td></tr></table></figure>
+
+<h4 id="二-用-React-实现按钮-1-都是-JS-基础知识"><a href="#二-用-React-实现按钮-1-都是-JS-基础知识" class="headerlink" title="二. 用 React 实现按钮+1,都是 JS 基础知识"></a>二. 用 React 实现按钮+1,都是 JS 基础知识</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span></span><br><span class="line">  React.createElement(<span class="string">"div"</span>, &#123; <span class="attr">className</span>: <span class="string">"red"</span> &#125;, [</span><br><span class="line">    n,</span><br><span class="line">    React.createElement(</span><br><span class="line">      <span class="string">"button"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        onClick: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          n += <span class="number">1</span>;</span><br><span class="line">          ReactDOM.render(App(), <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>));</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"+1"</span></span><br><span class="line">    ),</span><br><span class="line">  ]);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(App(), <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="三-从经典面试题打印-6-个-6-理解函数"><a href="#三-从经典面试题打印-6-个-6-理解函数" class="headerlink" title="三. 从经典面试题打印 6 个 6 理解函数"></a>三. 从经典面试题打印 6 个 6 理解函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i), <span class="number">1000</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1秒后打印6个六</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>理由如下图</li>
+<li>如何打印 1,2,3,4,5,6，见下图，<ul>
+<li>for(let i)是一个语法糖，每次其实都会把值赋值给 i’,打印 i’</li>
+<li>还可以用立即执行函数解决</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">  !(<span class="function"><span class="keyword">function</span> (<span class="params">j</span>) </span>&#123;</span><br><span class="line">    () =&gt; <span class="built_in">console</span>.log(j), <span class="number">1000</span>;</span><br><span class="line">  &#125;)(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果要绕可以把j也写成i</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">  !(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span><br><span class="line">    () =&gt; <span class="built_in">console</span>.log(i), <span class="number">1000</span>;</span><br><span class="line">  &#125;)(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="四-函数与延迟执行"><a href="#四-函数与延迟执行" class="headerlink" title="四. 函数与延迟执行"></a>四. 函数与延迟执行</h4><ul>
+<li>对比普通代码与函数<ul>
+<li>普通代码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span> + a;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数(不讨论参数)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">1</span> + a;</span><br><span class="line"><span class="keyword">let</span> b = f();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>结论</p>
+<ul>
+<li>普通函数<font color="skyblue">立即求值</font>,读取 a 的<font color="skyblue">当前</font>值</li>
+<li>函数会等调用时再去求值，即<font color="skyblue">延迟求值</font>。且求值时才会读取 a 的<font color="skyblue">最新</font>值。</li>
+</ul>
+</li>
+<li><p>对比 React 元素和函数组件</p>
+<ul>
+<li>对比</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">App1 = React.createElement(<span class="string">'div'</span>, <span class="literal">null</span>, n)</span><br><span class="line">App1 是一个 React 元素</span><br><span class="line">App2 = <span class="function"><span class="params">()</span>=&gt;</span> React.createElement(<span class="string">'div'</span>,<span class="literal">null</span>,n)</span><br><span class="line">App2 是一个 React 函数组件</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启示<ul>
+<li>函数 App2 是<font color="skyblue">延迟执行</font>的代码,会在<font color="skyblue">被调用的时候</font>执行。</li>
+<li>注意是<font color="skyblue">代码的执行时机</font>，没有在说同步和异步</li>
+<li>同步和异步关注的是得到结果的时机</li>
+</ul>
+</li>
+</ul>
+<h4 id="五-小结"><a href="#五-小结" class="headerlink" title="五. 小结"></a>五. 小结</h4><ul>
+<li><font color="skyblue">React 元素</font><ul>
+<li>createElement 的返回值 element 可以代表一个 div</li>
+<li>但 element 并不是真正的 div(DOM 对象)</li>
+<li>所以我们一般称之为<font color="skyblue">虚拟 DOM</font>对象</li>
+</ul>
+</li>
+<li><font color="skyblue">()=&gt; React 元素</font><ul>
+<li>返回 element 的函数，也可以代表一个 div</li>
+<li>这个函数可以<font color="skyblue">多次执行</font>，每次得到最新的 div</li>
+<li>React 会对比两个虚拟 div,<font color="orange">找出不同</font>，局部更新视图</li>
+<li><font color="skyblue">找不同</font>的算法叫做 <font color="orange">DOM Diff</font> 算法</li>
+</ul>
+</li>
+</ul>
+<h4 id="六-JSX"><a href="#六-JSX" class="headerlink" title="六. JSX"></a>六. JSX</h4><ul>
+<li><p>Vue 有 vue-loader,.vue 文件通过 vue-loader 变成构造选项</p>
+</li>
+<li><p>而 React 有 jsx,但是名字并不是叫 jsx-loader,而是 babel-loader,通过 babel-loader 进行编译</p>
+</li>
+<li><p>webpack 把 babel-loader 内置了</p>
+</li>
+<li><p>jsx 语法总结起来就是,所有的标签用标签形式写，如果需要插入 js 变量或者函数，就把这个东西用花括号包起来</p>
+</li>
+<li><p>写 JSX 的注意事项</p>
+<ul>
+<li><font color="red">注意 className</font></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">"red"</span>&gt;n&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上述代码会被转译为</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React.createElement(<span class="string">"div"</span>, &#123; <span class="attr">className</span>: <span class="string">"red"</span> &#125;, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><font color="red">插入变量</font></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 标签里面的所有 JS 代码都要用&#123;&#125;包起来</span><br><span class="line">- 如果需要变量 n,那么就用&#123;&#125;把 n 包起来</span><br><span class="line">- 如果需要对象，那么就要用&#123;&#125;把对象包起来，如&#123;&#123;name:&#39;frank&#39;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><font color="red">习惯 return 后面加()</font></li>
+</ul>
+<h4 id="七-条件判断与循环控制"><a href="#七-条件判断与循环控制" class="headerlink" title="七. 条件判断与循环控制"></a>七. 条件判断与循环控制</h4><ul>
+<li><p>条件判断</p>
+<ul>
+<li>在 Vue 里</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">if</span>=<span class="string">"n%2===0"</span>&gt;n是偶数&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;span v-else&gt;n是奇数&lt;/</span>span&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 React 里</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Component = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 注意要加 &#123;&#125;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;n % 2 === 0 ? <span class="tag">&lt;<span class="name">div</span>&gt;</span>n是偶数<span class="tag">&lt;/<span class="name">div</span>&gt;</span> : <span class="tag">&lt;<span class="name">span</span>&gt;</span>n是奇数<span class="tag">&lt;/<span class="name">span</span>&gt;</span>&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>还可以这样写</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Component = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> content = (</span><br><span class="line">    &lt;div&gt;&#123;n % <span class="number">2</span> === <span class="number">0</span> ? <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>n是偶数<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> : <span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>n是奇数<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">  return content;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>还可以这样写</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Component = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> inner = n % <span class="number">2</span> === <span class="number">0</span> ? <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>n是偶数<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> : <span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>n是奇数<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>;</span><br><span class="line">  <span class="keyword">const</span> content = <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;inner&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  <span class="keyword">return</span> content;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>循环语句</p>
+<ul>
+<li>在 Vue 里面可以遍历数组和对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">for</span>=<span class="string">"(n, index)"</span> <span class="keyword">in</span> numbers:key=<span class="string">"index"</span>&gt;</span><br><span class="line">      下标 &#123;&#123; index &#125;&#125;, 值为&#123;&#123; n &#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 React 里,也需要+key</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Component = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> props.numbers.map(<span class="function">(<span class="params">n, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        下标&#123;index&#125;值为&#123;n&#125;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 如果需要在外面的div,可以写成</span></span><br><span class="line"><span class="regexp">const Component = (props) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;</span></span><br><span class="line"><span class="regexp">      &#123;props.numbers.map((n, index) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">        return (</span></span><br><span class="line"><span class="regexp">          &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            下标&#123;index&#125;值为&#123;n&#125;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>div&gt;</span><br><span class="line">        );</span><br><span class="line">      &#125;)&#125;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结论<ul>
+<li>在 Vue 里，只能通过 Vue 提供的语法条件写判断</li>
+<li>在 React 里，想怎么写就怎么写，就是在写 js</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React%E5%AD%A6%E4%B9%A0/" rel="tag"># React学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/" rel="prev" title="Vue3造轮子flavour-ui组件库之00使用Vite搭建官网">
+      <i class="fa fa-chevron-left"></i> Vue3造轮子flavour-ui组件库之00使用Vite搭建官网
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-如何引入-React"><span class="nav-number">1.</span> <span class="nav-text">一. 如何引入 React</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-用-React-实现按钮-1-都是-JS-基础知识"><span class="nav-number">2.</span> <span class="nav-text">二. 用 React 实现按钮+1,都是 JS 基础知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-从经典面试题打印-6-个-6-理解函数"><span class="nav-number">3.</span> <span class="nav-text">三. 从经典面试题打印 6 个 6 理解函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-函数与延迟执行"><span class="nav-number">4.</span> <span class="nav-text">四. 函数与延迟执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-小结"><span class="nav-number">5.</span> <span class="nav-text">五. 小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-JSX"><span class="nav-number">6.</span> <span class="nav-text">六. JSX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七-条件判断与循环控制"><span class="nav-number">7.</span> <span class="nav-text">七. 条件判断与循环控制</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

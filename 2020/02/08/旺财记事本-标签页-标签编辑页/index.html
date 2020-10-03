@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一. 知识点总览 iconfont 小技巧，编辑 SVG custom.d.ts 怎么用 Vue Router 怎么用 props 怎么用  二. 利用 MVC 思想对现有代码进行封装 TS 如何使用 js，  12345678910111213&#x2F;&#x2F; 万不得以才用, Money.vueconst model &#x3D; require(&#39;@&#x2F;model.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旺财记事本(标签页 + 标签编辑页)">
+<meta property="og:url" content="codingories.github.io/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="一. 知识点总览 iconfont 小技巧，编辑 SVG custom.d.ts 怎么用 Vue Router 怎么用 props 怎么用  二. 利用 MVC 思想对现有代码进行封装 TS 如何使用 js，  12345678910111213&#x2F;&#x2F; 万不得以才用, Money.vueconst model &#x3D; require(&#39;@&#x2F;model.js">
+<meta property="og:image" content="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg">
+<meta property="article:published_time" content="2020-02-08T08:13:57.000Z">
+<meta property="article:modified_time" content="2020-02-09T12:58:28.070Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="前端学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg">
+
+<link rel="canonical" href="codingories.github.io/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>旺财记事本(标签页 + 标签编辑页) | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          旺财记事本(标签页 + 标签编辑页)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-08 16:13:57" itemprop="dateCreated datePublished" datetime="2020-02-08T16:13:57+08:00">2020-02-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 20:58:28" itemprop="dateModified" datetime="2020-02-09T20:58:28+08:00">2020-02-09</time>
+              </span>
+
+          
+            <span id="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记事本(标签页 + 标签编辑页)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="一-知识点总览"><a href="#一-知识点总览" class="headerlink" title="一. 知识点总览"></a>一. 知识点总览</h4><ol>
+<li>iconfont 小技巧，编辑 SVG</li>
+<li>custom.d.ts 怎么用</li>
+<li>Vue Router 怎么用</li>
+<li>props 怎么用</li>
+</ol>
+<h4 id="二-利用-MVC-思想对现有代码进行封装"><a href="#二-利用-MVC-思想对现有代码进行封装" class="headerlink" title="二. 利用 MVC 思想对现有代码进行封装"></a>二. 利用 MVC 思想对现有代码进行封装</h4><ul>
+<li>TS 如何使用 js，</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 万不得以才用, Money.vue</span><br><span class="line">const model &#x3D; require(&#39;@&#x2F;model.js&#39;).model</span><br><span class="line">&#x2F;&#x2F; model.js</span><br><span class="line">const localStorageKeyName &#x3D; &#39;recordList&#39;</span><br><span class="line">const model &#x3D; &#123;</span><br><span class="line">  fetch()&#123;</span><br><span class="line">    return JSON.parse(window.localStorage.getItem(localStorageKeyName) || &quot;[]&quot;)</span><br><span class="line">  &#125;,</span><br><span class="line">  save(data)&#123;</span><br><span class="line">    window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.recordList))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export &#123;model&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如何将 model.js 改写成 model.ts<ol>
+<li>Record 是本身就有的类型，改成 RecordItem</li>
+<li>在根目录新建一个 custom.d.ts, 全局声明文件</li>
+<li>在里面添加类型</li>
+</ol>
+</li>
+</ul>
+<h4 id="三-在最开始的地方定义好类型"><a href="#三-在最开始的地方定义好类型" class="headerlink" title="三. 在最开始的地方定义好类型"></a>三. 在最开始的地方定义好类型</h4><ul>
+<li>之后就不需要再写了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return JSON.parse(window.localStorage.getItem(localStorageKeyName) || &#39;[]&#39;) as RecordItem[]</span><br></pre></td></tr></table></figure>
+
+<h4 id="四-开始做-Labels-vue"><a href="#四-开始做-Labels-vue" class="headerlink" title="四. 开始做 Labels.vue"></a>四. 开始做 Labels.vue</h4><ol>
+<li>写 html 结构,在 icon 同行的文字上包一个 span,这个是经验</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;</span><br><span class="line">  &lt;span&gt;衣&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;Icon name&#x3D;&quot;right&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>写 scss 样式</li>
+</ol>
+<ul>
+<li>能写 padding 就尽量写 padding, margin 会有合并的问题</li>
+</ul>
+<h4 id="五-开始做-Labels-vue-的新增标签功能"><a href="#五-开始做-Labels-vue-的新增标签功能" class="headerlink" title="五. 开始做 Labels.vue 的新增标签功能"></a>五. 开始做 Labels.vue 的新增标签功能</h4><ul>
+<li>tags 的数据是 labels 不管的, 所有数据操作都有 m 自己去控制</li>
+<li>创建新的 tags，会调用 model 去创建</li>
+</ul>
+<h4 id="六-创建时的错误处理问题"><a href="#六-创建时的错误处理问题" class="headerlink" title="六. 创建时的错误处理问题"></a>六. 创建时的错误处理问题</h4><ul>
+<li>一开始想返回 boolean,但是发现错误有很多种</li>
+<li>于是想通过返回数字，来表示错误</li>
+<li>最后，数字没有字符串好</li>
+</ul>
+<h4 id="七-返回的字符串只有固定几个值的写法"><a href="#七-返回的字符串只有固定几个值的写法" class="headerlink" title="七. 返回的字符串只有固定几个值的写法"></a>七. 返回的字符串只有固定几个值的写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 联合类型</span><br><span class="line">create:(name: string) &#x3D;&gt; &#39;success&#39; | &#39;duplicated&#39;</span><br></pre></td></tr></table></figure>
+
+<h4 id="八-开始做编辑标签"><a href="#八-开始做编辑标签" class="headerlink" title="八. 开始做编辑标签"></a>八. 开始做编辑标签</h4><ul>
+<li>首先新建路由</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: &#39;&#x2F;labels&#x2F;edit&#39;,</span><br><span class="line">  component: EditLabel</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改储存数据 tag 的类型,将数据的 name 做为 id,为以后做服务器端做准备</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type Tag &#x3D; &#123;</span><br><span class="line">  id: string;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type TagListModel &#x3D; &#123;</span><br><span class="line">  data: Tag[]</span><br><span class="line">  fetch: () &#x3D;&gt; Tag[]</span><br><span class="line">  create:(name: string) &#x3D;&gt; &#39;success&#39; | &#39;duplicated&#39;</span><br><span class="line">  save:()&#x3D;&gt;void</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>改写路由为后面加一个字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: &#39;&#x2F;labels&#x2F;edit&#x2F;:id&#39;, &#x2F;&#x2F; 这个id表示为一个名字</span><br><span class="line">  component: EditLabel</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>route 和 router 的区别</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route是路由，储存了路由的信息。</span><br><span class="line">router是路由器，用于跳转等等。</span><br></pre></td></tr></table></figure>
+
+<h4 id="九-如何封装通用组件"><a href="#九-如何封装通用组件" class="headerlink" title="九. 如何封装通用组件"></a>九. 如何封装通用组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; notes.vue</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;value&quot; :placeholder&#x3D;&quot;this.placeholder&quot;&gt;</span><br><span class="line"></span><br><span class="line">@Prop(&#123;required:true&#125;) fieldName!: string;</span><br><span class="line">@Prop() placeholder?: string;</span><br></pre></td></tr></table></figure>
+
+<h4 id="十-解决组件没有事件的问题"><a href="#十-解决组件没有事件的问题" class="headerlink" title="十. 解决组件没有事件的问题"></a>十. 解决组件没有事件的问题</h4><ol>
+<li>方式一,建议用方式一,因为别人不一定知道 native 的方式</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Button.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;Button&quot; @click&#x3D;&quot;$emit(&#39;click&#39;, $event)&quot;&gt;</span><br><span class="line">    &lt;slot&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>方式二</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;createTag&quot; @click.native&#x3D;&quot;createTag&quot;&gt;新建标签&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="十一-为-EditLabel-vue-写-css"><a href="#十一-为-EditLabel-vue-写-css" class="headerlink" title="十一. 为 EditLabel.vue 写 css"></a>十一. 为 EditLabel.vue 写 css</h4><ul>
+<li>改了通用组件的高度，相关用到的地方就会影响，在外面加 wrapper 解决</li>
+</ul>
+<h4 id="十二-开始实现-EditLabel-vue-的功能"><a href="#十二-开始实现-EditLabel-vue-的功能" class="headerlink" title="十二. 开始实现 EditLabel.vue 的功能"></a>十二. 开始实现 EditLabel.vue 的功能</h4><ul>
+<li>解决 FromItem 的 bug<ul>
+<li>能不用 v-model 就不要用，因为 v-model 会造成理解上的困难<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;text&quot; :value&#x3D;&quot;value&quot; @input&#x3D;&quot;onValueChanged($event.target.value)&quot;</span><br><span class="line">:placeholder&#x3D;&quot;this.placeholder&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>展示 tag 的 name</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export default class EditLabel extends Vue &#123;</span><br><span class="line">    tag?: &#123; id: string, name: string &#125;&#x3D; undefined</span><br><span class="line">    created()&#123;</span><br><span class="line">      const id &#x3D; this.$route.params.id;</span><br><span class="line">      &#x2F;&#x2F; 通过url获取tag,把tag放到data</span><br><span class="line">      tagListModel.fetch();</span><br><span class="line">      const tags &#x3D; tagListModel.data;</span><br><span class="line">      const tag &#x3D; tags.filter(t &#x3D;&gt; t.id &#x3D;&#x3D;&#x3D; id)[0];</span><br><span class="line">      if(tag)&#123;</span><br><span class="line">        this.tag &#x3D; tag;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.$router.replace(&#39;&#x2F;404&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" rel="tag"># 前端学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%95%B0%E6%8D%AE%E4%BF%9D%E5%AD%98%E8%87%B3LocalStorage/" rel="prev" title="旺财记事本(数据保存至LocalStorage)">
+      <i class="fa fa-chevron-left"></i> 旺财记事本(数据保存至LocalStorage)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" rel="next" title="番茄闹钟一(React-Antd-Typescript 框架搭建)">
+      番茄闹钟一(React-Antd-Typescript 框架搭建) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-知识点总览"><span class="nav-number">1.</span> <span class="nav-text">一. 知识点总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-利用-MVC-思想对现有代码进行封装"><span class="nav-number">2.</span> <span class="nav-text">二. 利用 MVC 思想对现有代码进行封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-在最开始的地方定义好类型"><span class="nav-number">3.</span> <span class="nav-text">三. 在最开始的地方定义好类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-开始做-Labels-vue"><span class="nav-number">4.</span> <span class="nav-text">四. 开始做 Labels.vue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-开始做-Labels-vue-的新增标签功能"><span class="nav-number">5.</span> <span class="nav-text">五. 开始做 Labels.vue 的新增标签功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-创建时的错误处理问题"><span class="nav-number">6.</span> <span class="nav-text">六. 创建时的错误处理问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七-返回的字符串只有固定几个值的写法"><span class="nav-number">7.</span> <span class="nav-text">七. 返回的字符串只有固定几个值的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八-开始做编辑标签"><span class="nav-number">8.</span> <span class="nav-text">八. 开始做编辑标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#九-如何封装通用组件"><span class="nav-number">9.</span> <span class="nav-text">九. 如何封装通用组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十-解决组件没有事件的问题"><span class="nav-number">10.</span> <span class="nav-text">十. 解决组件没有事件的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十一-为-EditLabel-vue-写-css"><span class="nav-number">11.</span> <span class="nav-text">十一. 为 EditLabel.vue 写 css</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十二-开始实现-EditLabel-vue-的功能"><span class="nav-number">12.</span> <span class="nav-text">十二. 开始实现 EditLabel.vue 的功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后-个人微信-欢迎交流！"><span class="nav-number">13.</span> <span class="nav-text">最后,个人微信,欢迎交流！</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

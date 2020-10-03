@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Cypress 介绍   v1.0.0 - 2017 年 10 月，基于 Electron (Chromium + Node.js), 多平台支持，但不支持 IE v2.0.0 - 2018 年 2 月，升级至 Chromium 59 v3.0.0 - 2018 年 5 月，支持 Node 任务，可以用来连接数据库，读文件等 v4.0.0 - 2020 年 2 月，支持 Firefox 和基于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级前端养成14nodeJS框架04之Cypress-自动化测试">
+<meta property="og:url" content="codingories.github.io/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="Cypress 介绍   v1.0.0 - 2017 年 10 月，基于 Electron (Chromium + Node.js), 多平台支持，但不支持 IE v2.0.0 - 2018 年 2 月，升级至 Chromium 59 v3.0.0 - 2018 年 5 月，支持 Node 任务，可以用来连接数据库，读文件等 v4.0.0 - 2020 年 2 月，支持 Firefox 和基于">
+<meta property="article:published_time" content="2020-07-10T09:46:27.000Z">
+<meta property="article:modified_time" content="2020-07-10T09:47:59.990Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="高级前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>高级前端养成14nodeJS框架04之Cypress-自动化测试 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级前端养成14nodeJS框架04之Cypress-自动化测试
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-10 17:46:27 / Modified: 17:47:59" itemprop="dateCreated datePublished" datetime="2020-07-10T17:46:27+08:00">2020-07-10</time>
+            </span>
+
+          
+            <span id="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成14nodeJS框架04之Cypress-自动化测试" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li>Cypress 介绍</li>
+</ol>
+<ul>
+<li>v1.0.0 - 2017 年 10 月，基于 Electron (Chromium + Node.js), 多平台支持，但不支持 IE</li>
+<li>v2.0.0 - 2018 年 2 月，升级至 Chromium 59</li>
+<li>v3.0.0 - 2018 年 5 月，支持 Node 任务，可以用来连接数据库，读文件等</li>
+<li>v4.0.0 - 2020 年 2 月，支持 Firefox 和基于 Chromium 的 Edge 浏览器</li>
+</ul>
+<ol start="2">
+<li>Cypress 优点</li>
+</ol>
+<ul>
+<li>界面美观友好</li>
+<li>支持模拟手机</li>
+<li>每一步操作截图</li>
+<li>全程录屏</li>
+<li>支持 debug,随时暂停</li>
+<li>自动等待 UI 更新，减少异步代码</li>
+</ul>
+<ol start="3">
+<li>使用 Cypress</li>
+</ol>
+<ul>
+<li><p>步骤</p>
+<ul>
+<li>创建目录 cypress-demo-1</li>
+<li>使用 VSCode 或 WS 打开目录</li>
+<li>局部安装 cypress，方法请看安装方法 2</li>
+<li>输入./node_modules/.bin/cypress open</li>
+<li>如果你是局部安装，就输入./node_modules/.bin/cypress open</li>
+<li>然后你就看到了 Cypress 界面</li>
+<li>同时 Cypress 会提示你是否要安装案例，选择是</li>
+<li>示例文件可随时删除，不用心疼</li>
+<li>同时 Cypress 会创建</li>
+</ul>
+</li>
+<li><p>安装方式一</p>
+<ul>
+<li>可以用浏览器<a href="https://www.cypress.io/" target="_blank" rel="noopener">下载</a>，解压，然后双击 exe 运行</li>
+<li>最好解压的时候就选好安装目录，否则移动目录很耗时</li>
+<li>但是这个解压过程比较考验 cpu 硬盘性能，且耗时长</li>
+<li>这种方式不支持局部安装，只能把目录拖到界面里使用</li>
+</ul>
+</li>
+<li><p>安装方式二</p>
+<ul>
+<li>用 npm 或 yarn 安装</li>
+<li>安装命令: yarn add –dev cypress 或 npm i -D cypress</li>
+<li>但这样也不安装成功，因为有墙</li>
+<li>破墙办法 1，使用神奇教程,将*.cypress.io 加入白名单，然后运行安装命令</li>
+<li>破墙办法 2，下载 cypress.zip,然后在安装命令前面加上 CYPRESS_INSTALL_BINARY=/绝对路径/cypress.zip</li>
+<li>比如我的命令就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CYPRESS_INSTALL_BINARY&#x3D;&#x2F;Users&#x2F;ories&#x2F;Desktop&#x2F;cypress.zip yarn add --dev cypress</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>运行 example</li>
+</ol>
+<ul>
+<li>界面<ul>
+<li>直接在 GUI 界面单机 acions.spec.js</li>
+<li>然后你就会看到自动化测试过程</li>
+</ul>
+</li>
+<li>命令<ul>
+<li>cypress run –spec “cypress/integration/examples/actions.spec.js”</li>
+<li>在上面命令后面加上 –headed 有惊喜</li>
+</ul>
+</li>
+<li>用 WebStorm 更惊喜<ul>
+<li>先安装 cypress 插件(装完后会提示你安装 reporter)</li>
+<li>然后打开 cypress-demo-1,找到 actions.spec.js,按照视频操作</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>不运行 examples</li>
+</ol>
+<ul>
+<li>方法一<ul>
+<li>直接删掉 examples 目录</li>
+</ul>
+</li>
+<li>方法二<ul>
+<li>将 example/从 integration/目录移走即可</li>
+</ul>
+</li>
+<li>方法三<ul>
+<li>在 cypress.json 里面加上”ignoreTestFiles”:[“<em>.hot-update.js”,”*<em>/examples/</em>.</em>“]</li>
+</ul>
+</li>
+<li>这样就不会运行 examples 里<ul>
+<li>./node_modules/.bin/cypress run</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>开始写自己的测试</li>
+</ol>
+<ul>
+<li>./node_modules/.bin/cypress open</li>
+<li>如果 open 比较麻烦可以./node_modules/.bin/cypress run</li>
+</ul>
+<ol start="7">
+<li>只测试重要的页面</li>
+</ol>
+<ul>
+<li>比如登录，加入购物车，下单</li>
+<li>不要测样式，只测功能</li>
+</ul>
+<ol start="8">
+<li>如何写测试api</li>
+</ol>
+<ul>
+<li>webstorm 自动提示和看文档</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF/" rel="tag"># 高级前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" rel="prev" title="高级前端养成13nodeJS框架03之Koa全解">
+      <i class="fa fa-chevron-left"></i> 高级前端养成13nodeJS框架03之Koa全解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" rel="next" title="高级前端养成15数据可视化之01Echarts使用指北">
+      高级前端养成15数据可视化之01Echarts使用指北 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

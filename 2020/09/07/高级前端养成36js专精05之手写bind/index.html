@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="确定 API   特殊性 bind 位于 Function.prototype 上 需要做 polyfill   API fn.bind(asThis) fn.bind(asThis, param1, param2) fn.bind(asThis)() fn.bind(asThis, param1, param2)() fn.bind(asThis)(param1) fn.bind(asThis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级前端养成36js专精05之手写bind">
+<meta property="og:url" content="codingories.github.io/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="确定 API   特殊性 bind 位于 Function.prototype 上 需要做 polyfill   API fn.bind(asThis) fn.bind(asThis, param1, param2) fn.bind(asThis)() fn.bind(asThis, param1, param2)() fn.bind(asThis)(param1) fn.bind(asThis">
+<meta property="article:published_time" content="2020-09-06T16:14:47.000Z">
+<meta property="article:modified_time" content="2020-09-06T16:15:18.978Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="高级前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>高级前端养成36js专精05之手写bind | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级前端养成36js专精05之手写bind
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-07 00:14:47 / Modified: 00:15:18" itemprop="dateCreated datePublished" datetime="2020-09-07T00:14:47+08:00">2020-09-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成36js专精05之手写bind" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li>确定 API</li>
+</ol>
+<ul>
+<li>特殊性<ul>
+<li>bind 位于 Function.prototype 上</li>
+<li>需要做 polyfill</li>
+</ul>
+</li>
+<li>API<ul>
+<li>fn.bind(asThis)</li>
+<li>fn.bind(asThis, param1, param2)</li>
+<li>fn.bind(asThis)()</li>
+<li>fn.bind(asThis, param1, param2)()</li>
+<li>fn.bind(asThis)(param1)</li>
+<li>fn.bind(asThis, param1,param2)(p3,p4)</li>
+</ul>
+</li>
+<li>打印 function.prototype.bind<ul>
+<li>发现 native code 说明是 c++写的</li>
+</ul>
+</li>
+<li>什么是 polyfill<ul>
+<li>把不平的东西找东西垫起来,把坑填平的东西</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写bind的polyfill起手</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>开始写测试起手</li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis, p1, p2</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> bind;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = bind;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test/index.ts</span></span><br><span class="line"><span class="keyword">import</span> bind <span class="keyword">from</span> <span class="string">"../src/index"</span>;</span><br><span class="line"></span><br><span class="line">(<span class="built_in">Function</span>.prototype <span class="keyword">as</span> <span class="built_in">any</span>).bind2 = bind;</span><br><span class="line"><span class="built_in">console</span>.assert((<span class="built_in">Function</span>.prototype <span class="keyword">as</span> <span class="built_in">any</span>).bind2 !== <span class="literal">undefined</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>发现 ts 不太好写，转写 js</li>
+</ol>
+<ul>
+<li>src/index.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(asThis);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = bind;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = bind;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>test/index.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bind = <span class="built_in">require</span>(<span class="string">"../src/index"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line"><span class="built_in">console</span>.assert(<span class="built_in">Function</span>.prototype.bind2 !== <span class="literal">undefined</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newFn1 = fn1.bind2(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;); <span class="comment">// 函数上绑定this</span></span><br><span class="line"><span class="built_in">console</span>.assert(newFn1().name === <span class="string">"ories"</span>); <span class="comment">// 调用新的函数得出的对象一定是ories,原封不懂返回</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>第一个测试用例详细解释</li>
+</ol>
+<ul>
+<li><p>测试用例，声明一个函数，函数绑定一个 this，调用这个函数，得到我们绑定的对象，断言绑定的对象就是 frank</p>
+</li>
+<li><p>src/index.js,bind 接受一个 this,bind 里面的 this,就是 fn1，取了一个变量 fn，return 一个新的函数，这个函数会调用之前那个函数也就是 fn1,调用的时候会把传入的 asThis,作为 call 的第一个参数传过去</p>
+</li>
+<li><p>理解了第一个测试用例后，之后就很好写，开始做 fn.bind(asThis, param1, param2)</p>
+</li>
+<li><p>测试用例</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn2 = <span class="function"><span class="keyword">function</span> (<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="keyword">this</span>, p1, p2];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newFn2 = fn1.bind2(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;, <span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(newFn2()[<span class="number">0</span>].name === <span class="string">"ories"</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(newFn2()[<span class="number">1</span>] === <span class="number">123</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(newFn2()[<span class="number">2</span>] === <span class="number">456</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>补充代码</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>; <span class="comment">//fn1</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(asThis, ...args); <span class="comment">// fn1.call(&#123; name: 'ories' &#125;)</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>第三个测试用例 fn.bind(asThis)(param1),传了之后再传参数</li>
+</ol>
+<ul>
+<li>直接写测试用例</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> anotherFn2 = fn2.bind(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;);</span><br><span class="line"><span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>, <span class="number">33</span>)[<span class="number">0</span>].name === <span class="string">"ories"</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>, <span class="number">33</span>)[<span class="number">1</span>] === <span class="number">22</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>, <span class="number">33</span>)[<span class="number">2</span>] === <span class="number">33</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先绑定 this 和参数，再传参数的测试用例,fn.bind(asThis, param1,param2)(p3,p4)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> anotherFn2 = fn2.bind2(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;, <span class="number">123</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>)[<span class="number">0</span>].name === <span class="string">"ories"</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>)[<span class="number">1</span>] === <span class="number">123</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>)[<span class="number">2</span>] === <span class="number">22</span>); <span class="comment">// 先绑定this和参数，再传参数的测试用例,//fn.bind(asThis, param1,param2)(p3,p4)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改源代码，加入绑定参数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>; <span class="comment">//fn1</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">...args2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(asThis, ...args, ...args2); <span class="comment">// fn1.call(&#123; name: 'ories' &#125;)</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以上即最简单的 bind 实现</li>
+</ul>
+<ol start="6">
+<li>对比 mdn 答案，优化我们的代码</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Does not work with `new (funcA.bind(thisArg, args))`</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind)</span><br><span class="line">  (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">    <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> thatFunc = <span class="keyword">this</span>,</span><br><span class="line">        thatArg = <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> thatFunc !== <span class="string">"function"</span>) &#123;</span><br><span class="line">        <span class="comment">// closest thing possible to the ECMAScript 5</span></span><br><span class="line">        <span class="comment">// internal IsCallable function</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(</span><br><span class="line">          <span class="string">"Function.prototype.bind - "</span> +</span><br><span class="line">            <span class="string">"what is trying to be bound is not callable"</span></span><br><span class="line">        );</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> funcArgs = args.concat(slice.call(<span class="built_in">arguments</span>));</span><br><span class="line">        <span class="keyword">return</span> thatFunc.apply(thatArg, funcArgs);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;)();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>借鉴 mdn 之后我们去掉新的语法,用 es3 语法实现</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">var</span> fn = <span class="keyword">this</span>; <span class="comment">//fn1</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"bind 必须调用在函数身上"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> args2 = slice.call(<span class="built_in">arguments</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> fn.apply(asThis, args.concat(args2)); <span class="comment">// fn1.call(&#123; name: 'ories' &#125;)</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = bind;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = bind;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>升级解决 new 的问题</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">new</span> fn(<span class="string">"x"</span>); <span class="comment">// 结果:&#123;a:"x"&#125; 写这句话的时候实际上执行了以下四句</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> temp = &#123;&#125;; <span class="comment">// 生成临时对象</span></span><br><span class="line">temp.__proto__ = fn.prototype; <span class="comment">// 改变临时对象的原型链</span></span><br><span class="line">fn.call(temp, <span class="string">"x"</span>); <span class="comment">// 最重要的一步，把临时对象temp作为this，调用fn</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>; <span class="comment">// 把fn的this,作为返回值return 出来,即上面的临时对象temp进行处理过的结果,处理过的结果是指&#123;&#125;.a = "x"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原版的bind,支持new</span></span><br><span class="line"><span class="keyword">var</span> fn2 = fn.bind(<span class="literal">undefined</span>, <span class="string">"y"</span>);</span><br><span class="line"><span class="keyword">new</span> fn2(); <span class="comment">// 得到&#123;a: "y"&#125;,因为我们new fn2()的时候会调用fn,并把y传递给fn</span></span><br><span class="line"><span class="comment">// 以上是原版的bind用法，支持new</span></span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>将之前的测试用例进行封装</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bind = <span class="built_in">require</span>(<span class="string">"../src/index"</span>);</span><br><span class="line"></span><br><span class="line">test1(<span class="string">"fn.bind 能用"</span>);</span><br><span class="line">test2(<span class="string">"this 绑定成功"</span>);</span><br><span class="line">test3(<span class="string">"this,p1,p2绑定成功"</span>);</span><br><span class="line">test4(<span class="string">"this, p1 绑定成功，后传 p2 调用成功"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="built_in">console</span>.assert(<span class="built_in">Function</span>.prototype.bind2 !== <span class="literal">undefined</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="keyword">const</span> fn1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> newFn1 = fn1.bind2(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;);</span><br><span class="line">  <span class="built_in">console</span>.assert(newFn1().name === <span class="string">"ories"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="keyword">const</span> fn2 = <span class="function"><span class="keyword">function</span> (<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">this</span>, p1, p2];</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> newFn2 = fn2.bind2(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;, <span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(newFn2()[<span class="number">0</span>].name === <span class="string">"ories"</span>, <span class="string">"this传对了"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(newFn2()[<span class="number">1</span>] === <span class="number">123</span>, <span class="string">"p1"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(newFn2()[<span class="number">2</span>] === <span class="number">456</span>, <span class="string">"p2"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test4</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="keyword">const</span> fn2 = <span class="function"><span class="keyword">function</span> (<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">this</span>, p1, p2];</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// const anotherFn2 = fn2.bind(&#123; name:"ories" &#125;); // fn.bind(asThis)(param1)</span></span><br><span class="line">  <span class="comment">// console.assert(anotherFn2(22,33)[0].name === "ories")</span></span><br><span class="line">  <span class="comment">// console.assert(anotherFn2(22,33)[1] === 22)</span></span><br><span class="line">  <span class="comment">// console.assert(anotherFn2(22,33)[2] === 33)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> anotherFn2 = fn2.bind2(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;, <span class="number">123</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>)[<span class="number">0</span>].name === <span class="string">"ories"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>)[<span class="number">1</span>] === <span class="number">123</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(anotherFn2(<span class="number">22</span>)[<span class="number">2</span>] === <span class="number">22</span>); <span class="comment">// 先绑定this和参数，再传参数的测试用例,//fn.bind(asThis, param1,param2)(p3,p4)</span></span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>写测试用例 5,new 的时候绑定 P1，p2</li>
+</ol>
+<ul>
+<li>原版的 bind 可以实现，但是 bind2,object 为空</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test5</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.p1 = p1;</span><br><span class="line">    <span class="keyword">this</span>.p2 = p2;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> fn2 = fn.bind(<span class="literal">undefined</span>, <span class="string">"x"</span>, <span class="string">"y"</span>); <span class="comment">// 在fn上把p1,p2绑定成x,y,后面再new的时候就不用传这个参数了</span></span><br><span class="line">  <span class="keyword">const</span> object = <span class="keyword">new</span> fn2();</span><br><span class="line">  <span class="built_in">console</span>.assert(object.p1 === <span class="string">"x"</span>, <span class="string">"x"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(object.p2 === <span class="string">"y"</span>, <span class="string">"y"</span>);</span><br><span class="line">&#125;</span><br><span class="line">test5(<span class="string">"new 的时候绑定P1，p2"</span>); <span class="comment">// 结果成功</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分析源代码</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_bind</span>(<span class="params">asThis, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>; <span class="comment">//fn1</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resultFn</span>(<span class="params">...args2</span>)  // 假想在这里加一个<span class="title">new</span>， <span class="title">new</span>就会传递一个临时对象<span class="title">temp</span>，作为<span class="title">this</span></span></span><br><span class="line"><span class="function">  // 这里有一个<span class="title">new</span>的<span class="title">this</span>， <span class="title">this</span>会执行，<span class="title">this</span>.<span class="title">p1</span> = '<span class="title">x</span>'， <span class="title">this</span>.<span class="title">p2</span> ='<span class="title">y</span>'</span></span><br><span class="line"><span class="function">  // <span class="title">new</span> 默认会把<span class="title">this</span>作为返回值，<span class="title">return</span> <span class="title">this</span>, 但是这里自己写了<span class="title">return</span>，<span class="title">return</span> <span class="title">this</span>这句话就没有了</span></span><br><span class="line"><span class="function">  // 导致最后会有这么一句话， 调用<span class="title">fn</span>，<span class="title">fn</span>有<span class="title">this</span>,<span class="title">fn</span>的<span class="title">this</span>都作用到<span class="title">asThis</span>上了，我们之前没有传<span class="title">this</span>,所以<span class="title">p1</span>,<span class="title">p2</span>就传递到了<span class="title">window</span>上去</span></span><br><span class="line"><span class="function">  // 在测试用例中，打印<span class="title">global</span>.<span class="title">p1</span> 发现推理正确</span></span><br><span class="line"><span class="function">    <span class="title">return</span> <span class="title">fn</span>.<span class="title">call</span>(<span class="params">asThis,...args,...args2</span>);</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">  <span class="title">resultFn</span>.<span class="title">prototype</span> = <span class="title">fn</span>.<span class="title">prototype</span>;</span></span><br><span class="line"><span class="function">  <span class="title">return</span> <span class="title">resultFn</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>分析总结:new 会对 this,进行重新实现，bind 就没有用了，传不传无所谓，所以我们要用 new 的 this,那么最终问题在于 return fn.apply(asThis, args.concat(args2)) ，什么时候用 asThis,什么时候用 new 的 this</p>
+</li>
+<li><p>衍生出子问题:怎么知道函数调用的时候用了 new 还是没有用 new</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有用new的情况下</span></span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line">fn(); <span class="comment">// window对象</span></span><br><span class="line">fn.call(&#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;);</span><br><span class="line">fn(); <span class="comment">// &#123;name:'ories'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写new的情况</span></span><br><span class="line"><span class="keyword">new</span> fn(); <span class="comment">// fn&#123;&#125;是一个对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 回顾写new的时候发生的四件事</span></span><br><span class="line"><span class="keyword">var</span> temp = &#123;&#125;;</span><br><span class="line">temp.__proto__ = fn.prototype; <span class="comment">// 这句话是关键</span></span><br><span class="line">fn.call(temp); <span class="comment">// temp作为this</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们如何知道这个函数是new的还是直接call的，即通过temp.__proto__ = fn.prototype;去解决</span></span><br><span class="line"><span class="comment">// 重新写fn</span></span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.__proto__ === fn.prototype); <span class="comment">// 通过这句话来解决是否new</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>知道结果后改写现有代码</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>; <span class="comment">//fn1</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">...args2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(</span><br><span class="line">      <span class="keyword">this</span>.__proto__ === resultFn.prototype?<span class="keyword">this</span>:asThis</span><br><span class="line">      asThis, ...args,...args2); <span class="comment">// fn1.call(&#123; name: 'ories' &#125;)</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这样之后还有 bug,发现绑定原型会有问题</li>
+</ul>
+<ol start="10">
+<li>加上绑定原型</li>
+</ol>
+<ul>
+<li>测试用例 test6</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test6</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.p1 = p1;</span><br><span class="line">    <span class="keyword">this</span>.p2 = p2;</span><br><span class="line">  &#125;;</span><br><span class="line">  fn.prototype.sayHi = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"hi"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> fn2 = fn.bind2(<span class="literal">undefined</span>, <span class="string">"x"</span>, <span class="string">"y"</span>);</span><br><span class="line">  <span class="keyword">const</span> object = <span class="keyword">new</span> fn2();</span><br><span class="line">  <span class="built_in">console</span>.assert(object.p1 === <span class="string">"x"</span>, <span class="string">"x"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(object.p2 === <span class="string">"y"</span>, <span class="string">"y"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(object.__proto__ === fn.prototype);</span><br><span class="line">  <span class="built_in">console</span>.assert(<span class="keyword">typeof</span> object.sayHi === <span class="string">"function"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test6(<span class="string">"new 的时候绑定P1，p2, 并且有prototype.sayHi"</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方法,进一步优化代码</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_bind</span>(<span class="params">asThis, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resultFn</span>(<span class="params">...args2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(</span><br><span class="line">      <span class="keyword">this</span>.__proto__ === resultFn.prototype ? <span class="keyword">this</span> : asThis,</span><br><span class="line">      ...args,</span><br><span class="line">      ...args2</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  resultFn.prototype = fn.prototype; <span class="comment">// 加上这一句话,解决原型绑定,保证this,原型都对</span></span><br><span class="line">  <span class="keyword">return</span> resultFn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li><code>this.__proto__ === resultFn.prototype ? this : asThis,</code>的问题，有没有可能没有用 new,依然满足这个现象</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试用例中</span></span><br><span class="line"><span class="comment">// const fn2 = fn.bind2(undefined, "x", "y"),对这句进行改写</span></span><br><span class="line"><span class="keyword">const</span> fn2 = fn.bind2(<span class="keyword">new</span> fn(), <span class="string">"x"</span>, <span class="string">"y"</span>); <span class="comment">// 就会出错</span></span><br><span class="line"><span class="keyword">const</span> object = fn2(); <span class="comment">// 从代码上没有用new,但是根据源代码中是用了new</span></span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>编写测试用例 7, 这里测试用例虽然通过，但是我们需要知道<code>this.__proto__ === resultFn.prototype</code>有可能会误判</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test7</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind2 = bind;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.p1 = p1;</span><br><span class="line">    <span class="keyword">this</span>.p2 = p2;</span><br><span class="line">  &#125;;</span><br><span class="line">  fn.prototype.sayHi = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"hi"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> object1 = <span class="keyword">new</span> fn(<span class="string">"a"</span>, <span class="string">"b"</span>);</span><br><span class="line">  <span class="keyword">const</span> fn2 = fn.bind2(object1, <span class="string">"x"</span>, <span class="string">"y"</span>);</span><br><span class="line">  <span class="keyword">const</span> object = fn2(); <span class="comment">// 没有new</span></span><br><span class="line">  <span class="built_in">console</span>.assert(object === <span class="literal">undefined</span>, <span class="string">"object 为空"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(object1.p1 === <span class="string">"x"</span>, <span class="string">"x"</span>);</span><br><span class="line">  <span class="built_in">console</span>.assert(object1.p2 === <span class="string">"y"</span>, <span class="string">"y"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test7(<span class="string">"测试用例7"</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>第二个问题:<code>__proto__</code>并非标准属性，es6 里有提到官方不承认，改写</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_bind</span>(<span class="params">asThis, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">const</span> fn = <span class="keyword">this</span>;</span><br><span class="line">  <span class="comment">// this.constructor === resultFn ，这样写的问题是间接继承</span></span><br><span class="line">  <span class="comment">// this instanceof resultFn , 这句话最靠谱,new产生的临时对象就是这个函数构造出来的</span></span><br><span class="line">  <span class="comment">// resultFn.protoType.isPrototypeOf(this) // 这句话也可以</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resultFn</span>(<span class="params">...args2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(</span><br><span class="line">      <span class="comment">// this.__proto__ === resultFn.prototype ? this : asThis,</span></span><br><span class="line">      <span class="keyword">this</span> <span class="keyword">instanceof</span> resultFn ? <span class="keyword">this</span> : asThis,</span><br><span class="line">      ...args,</span><br><span class="line">      ...args2</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  resultFn.prototype = fn.prototype; <span class="comment">// 加上这一句话,解决原型绑定,保证this,原型都对</span></span><br><span class="line">  <span class="keyword">return</span> resultFn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>第三个问题,对比 mdn 的 bind 实现</li>
+</ol>
+<ul>
+<li>mdn 会多一层，<code>__proto__</code>,其实是有问题的</li>
+</ul>
+<ol start="15">
+<li>把测试用例里面的<code>__proto__</code>改写</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// console.assert(object.__proto__ === fn.prototype)</span></span><br><span class="line"><span class="built_in">console</span>.assert(fn.prototype.isPrototypeOf(object));</span><br></pre></td></tr></table></figure>
+
+<ol start="16">
+<li>完善兼容性</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">asThis</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this 就是函数</span></span><br><span class="line">  <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">var</span> fn = <span class="keyword">this</span>; <span class="comment">//fn1</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"bind 必须调用在函数身上"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">resultFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> args2 = slice.call(<span class="built_in">arguments</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> fn.apply(</span><br><span class="line">      resultFn.prototype.isPrototypeOf(<span class="keyword">this</span>) ? <span class="keyword">this</span> : asThis,</span><br><span class="line">      args.concat(args2)</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">  resultFn.prototype = fn.prototype;</span><br><span class="line">  <span class="keyword">return</span> resultFn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="17">
+<li>总结:测试驱动开发,TDD,要对 new 和 prototype 很熟悉</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF/" rel="tag"># 高级前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/03/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8Basync-await%E5%85%A8%E8%A7%A3-%E4%B8%8B/" rel="prev" title="高级前端养成35js专精04之async/await全解(下)">
+      <i class="fa fa-chevron-left"></i> 高级前端养成35js专精04之async/await全解(下)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" rel="next" title="高级前端养成37js专精06之手写promise(上)">
+      高级前端养成37js专精06之手写promise(上) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

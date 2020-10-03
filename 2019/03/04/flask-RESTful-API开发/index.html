@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="flask 简单开始  1234567891011详细见app.pyfrom flask import Flask, requestapp &#x3D; Flask(__name__)@app.route(&#39;&#x2F;index&#x2F;&lt;user&gt;&#39;, methods&#x3D;[&#39;POST&#39;])def hello_world(user):">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask_RESTful_API开发">
+<meta property="og:url" content="codingories.github.io/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="flask 简单开始  1234567891011详细见app.pyfrom flask import Flask, requestapp &#x3D; Flask(__name__)@app.route(&#39;&#x2F;index&#x2F;&lt;user&gt;&#39;, methods&#x3D;[&#39;POST&#39;])def hello_world(user):">
+<meta property="article:published_time" content="2019-03-04T06:13:18.000Z">
+<meta property="article:modified_time" content="2019-03-07T01:46:08.200Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="python 后端 flask">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>flask_RESTful_API开发 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          flask_RESTful_API开发
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-04 14:13:18" itemprop="dateCreated datePublished" datetime="2019-03-04T14:13:18+08:00">2019-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-03-07 09:46:08" itemprop="dateModified" datetime="2019-03-07T09:46:08+08:00">2019-03-07</time>
+              </span>
+
+          
+            <span id="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/" class="post-meta-item leancloud_visitors" data-flag-title="flask_RESTful_API开发" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>flask 简单开始</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">详细见app.py</span><br><span class="line">from flask import Flask, request</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;index&#x2F;&lt;user&gt;&#39;, methods&#x3D;[&#39;POST&#39;])</span><br><span class="line">def hello_world(user):</span><br><span class="line">    print(request.headers)</span><br><span class="line">    return &#39;hello %s&#39; % user</span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)  # debug模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">详细见requests_t.py 简单测试下</span><br><span class="line">import requests</span><br><span class="line">headers &#x3D; &#123;&quot;User-Agent&quot;:&quot;Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;72.0.3626.119 Safari&#x2F;537.36&quot;&#125;</span><br><span class="line">r &#x3D; requests.post(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;index&#x2F;432&#39;,headers &#x3D; headers)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>tocken登陆验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">import random</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">from flask import Flask, request</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">users &#x3D; &#123;</span><br><span class="line">    &quot;magigo&quot;: [&quot;123456&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def gen_token(uid):</span><br><span class="line">    temp &#x3D; &#39;:&#39;.join([str(uid), str(random.random()), str(time.time() + 7200)])</span><br><span class="line">    token &#x3D; base64.b64encode(bytes(temp, encoding&#x3D;&quot;utf-8&quot;))  # 放在用户真正密码的后面,现在是二进制的</span><br><span class="line">    token &#x3D; str(token, encoding&#x3D;&quot;utf-8&quot;)  # 将二进制转成字符串</span><br><span class="line">    users[uid].append(token)</span><br><span class="line">    return token</span><br><span class="line"></span><br><span class="line">def verify_token(token):</span><br><span class="line">    temp &#x3D; bytes(token, encoding&#x3D;&quot;utf-8&quot;)  # 先把token 转成二进制</span><br><span class="line">    _token &#x3D; base64.b64decode(temp)  # 将传进来的token 进行64解密,返回一个字节类型</span><br><span class="line">    _token &#x3D; str(_token, encoding&#x3D;&quot;utf-8&quot;)  # 将字节类型转成字符串</span><br><span class="line">    print(&quot;users.get(_token.split(&#39;:&#39;)[0])[-1]&quot;, users.get(_token.split(&#39;:&#39;)[0])[-1])</span><br><span class="line">    print(&quot;token&quot;, token)</span><br><span class="line"></span><br><span class="line">    if not users.get(_token.split(&#39;:&#39;)[0])[-1] &#x3D;&#x3D; token:  # 验证时间是否过期</span><br><span class="line">        return -1</span><br><span class="line">    if float(_token.split(&#39;:&#39;)[-1]) &gt;&#x3D; time.time():</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;index&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def hello_world(user):</span><br><span class="line">    print(request.headers)</span><br><span class="line">    return &#39;hello&#39;</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;login&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def login():</span><br><span class="line">    temp &#x3D; base64.b64decode(request.headers[&#39;Authorization&#39;].split(&#39; &#39;)[-1])  # 将传进来的解密</span><br><span class="line">    uid, pw &#x3D; str(temp, encoding&#x3D;&#39;utf-8&#39;).split(&#39;:&#39;)  # 将解密出来的并赋值</span><br><span class="line">    if users.get(uid)[0] &#x3D;&#x3D; pw:  # 判断密码是否符合后台存的账号密码,如果是则生成token</span><br><span class="line">        return gen_token(uid)</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;test&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def test():</span><br><span class="line">    token &#x3D; request.args.get(&#39;token&#39;)</span><br><span class="line">    if verify_token(token) &#x3D;&#x3D; 1:</span><br><span class="line">        return &#39;data&#39;</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)  # debug模式</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试上面写的token登陆</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"># headers &#x3D; &#123;&quot;User-Agent&quot;:&quot;Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;72.0.3626.119 Safari&#x2F;537.36&quot;&#125;</span><br><span class="line"></span><br><span class="line"># r &#x3D; requests.get(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;login&#39;, auth&#x3D;(&#39;magigo&#39;, &#39;123456&#39;))</span><br><span class="line"># print(r.text)</span><br><span class="line"></span><br><span class="line"># print(r.text)</span><br><span class="line">token &#x3D; &quot;bWFnaWdvOjAuNjQyNjk3NTMzNjI5MzAyODoxNTUxNjg1NzQzLjA1Njg3NA&#x3D;&#x3D;&quot;</span><br><span class="line">r &#x3D; requests.post(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;test&#39;, params&#x3D;&#123;&#39;token&#39;: token&#125;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>OAuth 2.0的原理介绍-OAuth概述</p>
+</li>
+<li><p>OAuth授权模式
+授权码模式Authorization code</p>
+</li>
+</ul>
+<p>特点是通过第三方服务器和认证服务器互动，获得Token和验证Token，不通过用户的浏览器。是最安全的一种模式。</p>
+<p>简化模式implicit</p>
+<p>特点是没有OAuth流程中的C和D步骤，而是用户浏览器通过资源服务器发送的代码提取Token，并直接发送给第三方服务器。</p>
+<p>密码模式resource owner password credentials</p>
+<p>特点是用户提供用户名和密码给第三方服务器，但是第三方服务器不能存储用户名和密码。通常只有在用户对第三方服务器高度信任的情况下采用。</p>
+<p>客户端模式client credentials</p>
+<p>特点是需要用户在第三方服务器上注册，第三方服务器以自己的名义请求“服务提供商”进行认证。</p>
+<ul>
+<li>OAuth 2.0介绍和实现上<ul>
+<li>清楚OAuth 2.0协议的内容</li>
+<li>掌握Flask的重定向操作</li>
+<li>掌握OAuth 2.0协议中的授权模式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"># 服务端代码</span><br><span class="line">import base64</span><br><span class="line">import random</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">from flask import Flask, request, redirect</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">users &#x3D; &#123;</span><br><span class="line">    &quot;magigo&quot;: [&quot;123456&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">redirect_uri &#x3D; &#39;http:&#x2F;&#x2F;localhost:5000&#x2F;client&#x2F;passport&#39;</span><br><span class="line">client_id &#x3D; &#39;123456&#39;</span><br><span class="line">users[client_id] &#x3D; []</span><br><span class="line">auth_code &#x3D; &#123;&#125;</span><br><span class="line">oauth_redirect_uri &#x3D; []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def gen_token(uid):</span><br><span class="line">    temp &#x3D; &#39;:&#39;.join([str(uid), str(random.random()), str(time.time() + 7200)])</span><br><span class="line">    token &#x3D; base64.b64encode(bytes(temp, encoding&#x3D;&quot;utf-8&quot;))  # 放在用户真正密码的后面,现在是二进制的</span><br><span class="line">    token &#x3D; str(token, encoding&#x3D;&quot;utf-8&quot;)  # 将二进制转成字符串</span><br><span class="line">    users[uid].append(token)</span><br><span class="line">    return token</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def verify_token(token):</span><br><span class="line">    temp &#x3D; bytes(token, encoding&#x3D;&quot;utf-8&quot;)  # 先把token 转成二进制</span><br><span class="line">    _token &#x3D; base64.b64decode(temp)  # 将传进来的token 进行64解密,返回一个字节类型</span><br><span class="line">    _token &#x3D; str(_token, encoding&#x3D;&quot;utf-8&quot;)  # 将字节类型转成字符串</span><br><span class="line">    print(&quot;users.get(_token.split(&#39;:&#39;)[0])[-1]&quot;, users.get(_token.split(&#39;:&#39;)[0])[-1])</span><br><span class="line">    print(&quot;token&quot;, token)</span><br><span class="line"></span><br><span class="line">    if not users.get(_token.split(&#39;:&#39;)[0])[-1] &#x3D;&#x3D; token:  # 验证时间是否过期</span><br><span class="line">        return -1</span><br><span class="line">    if float(_token.split(&#39;:&#39;)[-1]) &gt;&#x3D; time.time():</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;index&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def hello_world(user):</span><br><span class="line">    print(request.headers)</span><br><span class="line">    return &#39;hello&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;login&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def login():</span><br><span class="line">    temp &#x3D; base64.b64decode(request.headers[&#39;Authorization&#39;].split(&#39; &#39;)[-1])  # 将传进来的解密</span><br><span class="line">    uid, pw &#x3D; str(temp, encoding&#x3D;&#39;utf-8&#39;).split(&#39;:&#39;)  # 将解密出来的并赋值</span><br><span class="line">    if users.get(uid)[0] &#x3D;&#x3D; pw:  # 判断密码是否符合后台存的账号密码,如果是则生成token</span><br><span class="line">        return gen_token(uid)</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;test&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def test():</span><br><span class="line">    token &#x3D; request.args.get(&#39;token&#39;)</span><br><span class="line">    if verify_token(token) &#x3D;&#x3D; 1:</span><br><span class="line">        return &#39;data&#39;</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 授权服务器要求客户给予授权</span><br><span class="line">@app.route(&#39;&#x2F;oauth&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def oauth():</span><br><span class="line">    if request.args.get(&#39;user&#39;):</span><br><span class="line">        if users.get(request.args.get(&#39;user&#39;))[0] &#x3D;&#x3D; request.args.get(&#39;pw&#39;) and oauth_redirect_uri:</span><br><span class="line">            # 用户将提供用户名和密码的方式提供授权,步骤B,授权服务器在获得用户授权之后，将用户重定向至</span><br><span class="line">            # 客户端提供的uri并附上授权码</span><br><span class="line">            uri &#x3D; oauth_redirect_uri[0] + &#39;?code&#x3D;%s&#39; % gen_auth_code(oauth_redirect_uri[0])</span><br><span class="line">            return redirect(uri)</span><br><span class="line">    if request.args.get(&#39;code&#39;):  # 先验证请求中是否携带了授权码</span><br><span class="line">        # 步骤D验证授权码以及重定向uri的正确性,如果验证成功将为客户端发放token</span><br><span class="line">        if auth_code.get(int(request.args.get(&#39;code&#39;))) &#x3D;&#x3D; request.args.get(&#39;redirect_uri&#39;):</span><br><span class="line">            # 将在生成授权码时将保存进来的授权码以及uri和请求的uri进行比对,如果正确则响应token,为客户端发放一个token</span><br><span class="line">            return gen_token(request.args.get(&#39;client_id&#39;))</span><br><span class="line">    if request.args.get(&#39;redirect_uri&#39;):</span><br><span class="line">        oauth_redirect_uri.append(request.args.get(&#39;redirect_uri&#39;))</span><br><span class="line">    return &#39;please login&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 由于客户端需要使用授权码,像授权服务器请求token,所以让我们为客户端添加passport路径</span><br><span class="line">@app.route(&#39;&#x2F;client&#x2F;passport&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line"># 步骤C客户端passport路径使用授权码,以及之前所提供的重定向uri向授权服务器请求token</span><br><span class="line">def client_passport():</span><br><span class="line">    code &#x3D; request.args.get(&#39;code&#39;)</span><br><span class="line">    uri &#x3D; &#39;http:&#x2F;&#x2F;localhost:5000&#x2F;oauth?grant_type&#x3D;authorization_code&amp;code&#x3D;%s&amp;redirect_uri&#x3D;%s&amp;client_id&#x3D;%s&#39; % (</span><br><span class="line">        code, redirect_uri, client_id)</span><br><span class="line">    return redirect(uri)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 步骤A 用户访问客户端的login路由</span><br><span class="line">@app.route(&#39;&#x2F;client&#x2F;login&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def client_Login():</span><br><span class="line">    uri &#x3D; &#39;http:&#x2F;&#x2F;localhost:5000&#x2F;oauth?response_type&#x3D;code&amp;client_id&#x3D;%s&amp;redirect_uri&#x3D;%s&#39; % (client_id, redirect_uri)</span><br><span class="line">    return redirect(uri)  # 客户端将客户重定向至授权服务器oauth路径,并附上客户端代码以及重定向uri</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 授权码生成器</span><br><span class="line">def gen_auth_code(uri):</span><br><span class="line">    code &#x3D; random.randint(0, 10000)</span><br><span class="line">    auth_code[code] &#x3D; uri</span><br><span class="line">    return code</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)  # debug模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#requests 验证代码</span><br><span class="line">import requests</span><br><span class="line">r &#x3D; requests.get(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;client&#x2F;login&#39;)</span><br><span class="line">print(r.text)  # 获得授权服务器发来的please login</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">print(r.history)  # 查看重定向的情况</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">print(r.url)  # 我们需要将授权码发送到服务器,因此我们通过url的属性取得授权服务器的地址</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">uri_login &#x3D; r.url.split(&#39;?&#39;)[0] + &#39;?user&#x3D;magigo&amp;pw&#x3D;123456&#39;  # 并且将用户名密码发送到授权服务器</span><br><span class="line"># 授权服务器会在授权成功后，将客户重定向至服务端,并附上授权码</span><br><span class="line">r2 &#x3D; requests.get(uri_login)</span><br><span class="line">print(r2.text)</span><br><span class="line">print(r2.history)</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">r &#x3D; requests.post(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;test&#39;, params&#x3D;&#123;&#39;token&#39;: r2.text&#125;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>OAuth 2.0介绍和实现（下）</p>
+<ul>
+<li><p>Flask渲染页面及Cookies
+  Flask中的表单
+            提交表单时，使用POST方法</p>
+<pre><code>  http://dormousehole.readthedocs.org/en/latest/quickstart.html#sessions</code></pre>
+</li>
+<li><p>Flask响应对象
+        ResponseHeaders – 浏览器的响应头
+            <a href="http://dormousehole.readthedocs.org/en/latest/quickstart.html#about-responses" target="_blank" rel="noopener">http://dormousehole.readthedocs.org/en/latest/quickstart.html#about-responses</a></p>
+</li>
+<li><p>Cookies简介 – 小型文本文件
+  1）分类：Cookies总是存在客户端中，按在客户端中的存储位置，可分为内存Cookies和硬盘Cookies
+    2）用途：Cookies可以用于购物车，以及免登陆
+    3）缺陷：Cookies增加了网络流量，造成安全问题，无法存储大量数据
+    <a href="http://dormousehole.readthedocs.org/en/latest/quickstart.html#id11" target="_blank" rel="noopener">http://dormousehole.readthedocs.org/en/latest/quickstart.html#id11</a></p>
+</li>
+<li><p>Token的设计以及加密方法
+  知识点：
+      1.无需核对用户名密码的token验证机制 – 无法被伪造的token
+      2.hmac（哈希运算消息认证码）简介
+  Token的基本设计原则：</p>
+<pre><code>  Token不携带用户敏感信息
+  无需查询数据库，Token可以进行自我验证</code></pre>
+</li>
+<li><p>hmac简介:
+  作用：验证消息是否被篡改</p>
+<pre><code>  公式：
+  使用Python的hmac模块直接计算：hmac.new(‘secret123’,value).digest()
+  缺陷：无法抵御重放攻击</code></pre>
+</li>
+<li><p>验证token的有效性：真的，没过期，合法请求
+        验证验证码是否一致
+        验证是否过期 – 生存期10分钟左右
+        验证这个token是否属于被请求数据的用户</p>
+</li>
+</ul>
+</li>
+<li><p>最终的编码
+  总结：
+    掌握Flask渲染页面和处理响应对象
+    了解hmac加密验证的内容
+  安全建议：使用HTTPS传输，使用请求头而不是参数传递Token
+  实战：制作一个基于OAuth 2.0的验证登录服务
+  在Chrome开发者工具中，resources-&gt; Cookies-&gt;localhost中，可以看到用户名和密码</p>
+</li>
+</ul>
+<ul>
+<li>Flask-RESTful插件介绍及应用<ul>
+<li>5-1 Flask-RESTful插件介绍</li>
+<li>Flask-RESTful概述
+  Flask-RESTful 是一个Flask扩展，它添加了快速构建REST APIs的支持。它当然也是一个能够跟你现有的ORM/库协同工作的轻量级的扩展。Flask-RESTful鼓励以最小设置的最佳实践。如果你熟悉 Flask 的话，Flask-RESTful 应该很容易上手。
+  安装：&gt;pip install flask-restful</li>
+<li>资源路由
+  Flask-restful不在使用装饰器作为路由，处理请求的部分是类，而不是flask的函数</li>
+<li>可插拔视图：
+  <a href="http://dormousehole.readthedocs.org/en/latest/views.html" target="_blank" rel="noopener">http://dormousehole.readthedocs.org/en/latest/views.html</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">import flask_restful as flask</span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line">api &#x3D; flask.Api(app)</span><br><span class="line"></span><br><span class="line">class HelloWorld(flask.Resource):</span><br><span class="line">    def get(self):</span><br><span class="line">        return &#123;&#39;hello&#39;: &#39;world&#39;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">api.add_resource(HelloWorld, &#39;&#x2F;&#39;)</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关于Flask插件FLask_RESTful的使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask_restful import reqparse, Api, Resource, fields, marshal_with</span><br><span class="line"></span><br><span class="line"># 1. 关于参数解析的部分</span><br><span class="line"># 制造一组虚拟的数据</span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line">api &#x3D; Api(app)</span><br><span class="line"></span><br><span class="line">TODOS &#x3D; &#123;</span><br><span class="line">    &#39;todo1&#39;: &#123;&#39;task&#39;: 1&#125;,</span><br><span class="line">    &#39;todo2&#39;: &#123;&#39;task&#39;: 2&#125;,</span><br><span class="line">    &#39;todo3&#39;: &#123;&#39;task&#39;: 3&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 定义允许的参数为task，类型为int，以及错误时的提示</span><br><span class="line">parser &#x3D; reqparse.RequestParser()  # 实例化一个参数解析器</span><br><span class="line">parser.add_argument(&#39;task&#39;, type&#x3D;int, help&#x3D;&#39;Please set a int task content!&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 指定参数的类型,设定task为必选参数，类型为int型,最后给一个帮助，当使用者出现问题时给予提示</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 真正处理请求的地方</span><br><span class="line">class TodoList(Resource):</span><br><span class="line">    def get(self):</span><br><span class="line">        return TODOS, 200, &#123;&#39;Etag&#39;: &#39;some-opaque-string&#39;&#125;</span><br><span class="line"></span><br><span class="line">    def post(self):</span><br><span class="line">        args &#x3D; parser.parse_args()  # 获取post的参数</span><br><span class="line">        todo_id &#x3D; int(max(TODOS.keys()).lstrip(&#39;todo&#39;)) + 1  # 获取最大的todo个数</span><br><span class="line">        todo_id &#x3D; &#39;todo%i&#39; % todo_id  # 格式化作为键,todo4</span><br><span class="line">        TODOS[todo_id] &#x3D; &#123;&#39;task&#39;: args[&#39;task&#39;]&#125;</span><br><span class="line">        return TODOS[todo_id], 201</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 2. 关于响应域的部分</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ORM的数据模型</span><br><span class="line">class TodoDao(object):</span><br><span class="line">    def __init__(self, todo_id, task):</span><br><span class="line">        self.todo_id &#x3D; todo_id</span><br><span class="line">        self.task &#x3D; task</span><br><span class="line"></span><br><span class="line">        # 这个域不会被返回</span><br><span class="line">        self.status &#x3D; &#39;active&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># marshal-蒙版</span><br><span class="line">resource_fields &#x3D; &#123;</span><br><span class="line">    &#39;task&#39;:     fields.String,</span><br><span class="line">    &#39;uri&#39;:      fields.Url(&#39;todo_ep&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 真正处理请求的地方</span><br><span class="line">class Todo(Resource):</span><br><span class="line">    # 蒙版</span><br><span class="line">    @marshal_with(resource_fields)</span><br><span class="line">    def get(self, todo_id):</span><br><span class="line">        return TodoDao(todo_id&#x3D;todo_id, task&#x3D;&#39;Remember the milk&#39;), 200</span><br><span class="line"># 用marshal_with装饰器修饰get方法,一点来一个请求，我们就将前面来的数据类型定义一个实例</span><br><span class="line"></span><br><span class="line"># 实际定义路由的地方</span><br><span class="line">api.add_resource(Todo, &#39;&#x2F;todos&#x2F;&lt;todo_id&gt;&#39;, endpoint&#x3D;&#39;todo_ep&#39;)</span><br><span class="line"></span><br><span class="line"># 实际定义路由的地方</span><br><span class="line">api.add_resource(TodoList, &#39;&#x2F;todos&#39;, &#39;&#x2F;all_tasks&#39;)</span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python-%E5%90%8E%E7%AB%AF-flask/" rel="tag"># python 后端 flask</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/03/%E6%97%A5%E8%AF%ADn3%E8%93%9D%E5%AE%9D%E4%B9%A6p6/" rel="prev" title="日语n3蓝宝书p6">
+      <i class="fa fa-chevron-left"></i> 日语n3蓝宝书p6
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/08/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day1/" rel="next" title="n2词汇打卡day1">
+      n2词汇打卡day1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

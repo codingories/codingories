@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="** 运动基础 123456789101112131415161718192021222324252627282930313233343536373839404142一.运动基础,详情见运动基础.html&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js动画学习分享一">
+<meta property="og:url" content="codingories.github.io/2019/02/20/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="** 运动基础 123456789101112131415161718192021222324252627282930313233343536373839404142一.运动基础,详情见运动基础.html&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&amp;q">
+<meta property="article:published_time" content="2019-02-20T01:26:21.000Z">
+<meta property="article:modified_time" content="2019-02-21T02:51:17.450Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="js动画 运动">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2019/02/20/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>js动画学习分享一 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/02/20/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js动画学习分享一
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-20 09:26:21" itemprop="dateCreated datePublished" datetime="2019-02-20T09:26:21+08:00">2019-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-02-21 10:51:17" itemprop="dateModified" datetime="2019-02-21T10:51:17+08:00">2019-02-21</time>
+              </span>
+
+          
+            <span id="/2019/02/20/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-meta-item leancloud_visitors" data-flag-title="js动画学习分享一" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/02/20/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/02/20/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>** 运动基础</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">一.运动基础,详情见运动基础.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute; left: 0px; top: 30px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 在js中，如何让一个页面元素动起来</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 1.清楚定时器，保证运动过程中只有一个定时器在执行</span><br><span class="line">        &#x2F;&#x2F; 2.开始定时器</span><br><span class="line">        &#x2F;&#x2F; 3.开始运动(同时在运动加入判断，以便在需要的时候或者是满足某个要求停止运动)</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oBtn &#x3D; document.getElementById(&#39;btn&#39;);</span><br><span class="line">            var oDiv &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line">            &#x2F;&#x2F; 点击按钮,让div1横向向右运动</span><br><span class="line">            &#x2F;&#x2F; 定时器就像发动机一样的每三十秒转一下</span><br><span class="line">            oBtn.onclick &#x3D; function () &#123;</span><br><span class="line">                clearInterval(iTimer); &#x2F;&#x2F; 关掉一个发动机，再开</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    &#x2F;&#x2F; oDiv.style.left &#x3D; oDiv.offsetLeft + 10 +&#39;px&#39;;</span><br><span class="line">                    if (oDiv.offsetLeft &#x3D;&#x3D;&#x3D; 500)&#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        oDiv.style.left &#x3D; oDiv.offsetLeft + 10 + &#39;px&#39;;</span><br><span class="line">                        &#x2F;&#x2F; 匀速运动，运动距离必须整除速度</span><br><span class="line">                        &#x2F;&#x2F; 定时器累加速度加快，每次</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;动起来&quot; id&#x3D;&quot;btn&quot;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 简单运动的封装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">详情见简单运动的封装.html</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute; left: 0px; top: 30px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oBtn &#x3D; document.getElementById(&#39;btn&#39;);</span><br><span class="line">            var oDiv &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line">            &#x2F;&#x2F; 点击按钮,让div1横向向右运动</span><br><span class="line">            &#x2F;&#x2F; 定时器就像发动机一样的每三十秒转一下</span><br><span class="line">            oBtn.onclick &#x3D; function () &#123;</span><br><span class="line">                function startMove() &#123;</span><br><span class="line">                    clearInterval(iTimer);</span><br><span class="line">                    iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                        &#x2F;&#x2F; oDiv.style.left &#x3D; oDiv.offsetLeft + 10 +&#39;px&#39;;</span><br><span class="line">                        if (oDiv.offsetLeft &#x3D;&#x3D;&#x3D; 500)&#123;</span><br><span class="line">                            clearInterval(iTimer);</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            oDiv.style.left &#x3D; oDiv.offsetLeft + 10 + &#39;px&#39;;</span><br><span class="line">                            &#x2F;&#x2F; 匀速运动，运动距离必须整除速度</span><br><span class="line">                            &#x2F;&#x2F; 定时器累加速度加快，每次</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;, 30);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;动起来&quot; id&#x3D;&quot;btn&quot;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 运动的分享到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">详情见3.运动的分享到 案例</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 200px; background:red; position:absolute; left: -100px; top: 100px;&#125;</span><br><span class="line">        #div2 &#123;width:30px; height: 60px; background:black; position:absolute; right: -30px;</span><br><span class="line">            top: 70px; color: white; text-align: center;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var oDiv2 &#x3D; document.getElementById(&#39;div2&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line"></span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                &#x2F;&#x2F;this.style.left &#x3D; &#39;0px&#39;;</span><br><span class="line">                startMove1();</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                &#x2F;&#x2F;this.style.left &#x3D; &#39;-100px&#39;;</span><br><span class="line">                startMove2();</span><br><span class="line"></span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            function startMove1() &#123;</span><br><span class="line">                clearInterval(iTimer);</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    &#x2F;&#x2F; oDiv.style.left &#x3D; oDiv.offsetLeft + 10 +&#39;px&#39;;</span><br><span class="line">                    if (oDiv1.offsetLeft &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        oDiv1.style.left &#x3D; oDiv1.offsetLeft + 10 + &#39;px&#39;;</span><br><span class="line">                        &#x2F;&#x2F; 匀速运动，运动距离必须整除速度</span><br><span class="line">                        &#x2F;&#x2F; 定时器累加速度加快，每次</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function startMove2() &#123;</span><br><span class="line">                clearInterval(iTimer);</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    &#x2F;&#x2F; oDiv.style.left &#x3D; oDiv.offsetLeft + 10 +&#39;px&#39;;</span><br><span class="line">                    if (oDiv1.offsetLeft &#x3D;&#x3D;&#x3D; -100)&#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        oDiv1.style.left &#x3D; oDiv1.offsetLeft - 10 + &#39;px&#39;;</span><br><span class="line">                        &#x2F;&#x2F; 匀速运动，运动距离必须整除速度</span><br><span class="line">                        &#x2F;&#x2F; 定时器累加速度加快，每次</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;div1&quot;&gt;</span><br><span class="line">        &lt;div id&#x3D;&quot;div2&quot;&gt;分享到&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>**运动的分享到合并</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">详细见4.运动的分享到合并 案例</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 200px; background:red; position:absolute; left: -100px; top: 100px;&#125;</span><br><span class="line">        #div2 &#123;width:30px; height: 60px; background:black; position:absolute; right: -30px;</span><br><span class="line">            top: 70px; color: white; text-align: center;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var oDiv2 &#x3D; document.getElementById(&#39;div2&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line"></span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(0, 10);</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(-100, -10);</span><br><span class="line"></span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove(iTarget, iSpeed) &#123;</span><br><span class="line">                clearInterval(iTimer);</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    if (oDiv1.offsetLeft &#x3D;&#x3D;&#x3D; iTarget)&#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        oDiv1.style.left &#x3D; oDiv1.offsetLeft + iSpeed + &#39;px&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;div2&quot;&gt;分享到&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 淡入淡出效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">详细见淡入淡出的图片.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 200px; background:red; position:absolute; left: -100px; top: 100px;&#125;</span><br><span class="line">        #div2 &#123;width:30px; height: 60px; background:black; position:absolute; right: -30px;</span><br><span class="line">            top: 70px; color: white; text-align: center;&#125;</span><br><span class="line">        #img1 &#123; opacity: 0.3;</span><br><span class="line">            filter: alpha(opacity&#x3D;30);</span><br><span class="line">            margin-left: 200px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var oDiv2 &#x3D; document.getElementById(&#39;div2&#39;);</span><br><span class="line">            var oImg &#x3D; document.getElementById(&#39;img1&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove2(this, 0, 10);</span><br><span class="line">            &#125;;</span><br><span class="line">            oImg.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove2(this, 100, 10);</span><br><span class="line">            &#125;;</span><br><span class="line">            oImg.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove2(this, 30 ,-10);</span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove2(obj, iTarget, iSpeed) &#123;</span><br><span class="line">                clearInterval(iTimer);</span><br><span class="line">                var iCur &#x3D; 0;</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100;) &#x2F;&#x2F;  30</span><br><span class="line">                    if (iCur &#x3D;&#x3D;&#x3D; iTarget) &#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        obj.style.opacity &#x3D; ( iCur + iSpeed ) &#x2F; 100;</span><br><span class="line">                        obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;)&#39; + (iCur + iSpeed) + &#39;)&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">            function css(obj, attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr]; &#x2F;&#x2F; ie</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return getComputedStyle(obj, false)[attr]; &#x2F;&#x2F; 其它</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;div2&quot;&gt;分享到&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;1.jpg&quot; id&#x3D;&quot;img1&quot;&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 多物体的运动 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">详情见7.多物体的运动 注意:不能共用一个timer 所以要写成obj</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 200px; background:red; position:absolute; left: -100px; top: 100px;&#125;</span><br><span class="line">        #div2 &#123;width:30px; height: 60px; background:black; position:absolute; right: -30px;</span><br><span class="line">            top: 70px; color: white; text-align: center;&#125;</span><br><span class="line">        #img1 &#123; opacity: 0.3;</span><br><span class="line">            filter: alpha(opacity&#x3D;30);</span><br><span class="line">            margin-left: 200px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var oDiv2 &#x3D; document.getElementById(&#39;div2&#39;);</span><br><span class="line">            var oImg &#x3D; document.getElementById(&#39;img1&#39;);</span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;left&#39;, 0, 10);</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;left&#39;, -100, -10);</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            oImg.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;opacity&#39;, 100, 10);</span><br><span class="line">            &#125;;</span><br><span class="line">            oImg.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;opacity&#39; , 30 , -10);</span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove(obj, attr, iTarget, iSpeed)&#123;</span><br><span class="line">                clearInterval(obj.iTimer);</span><br><span class="line">                var iCur &#x3D; 0;</span><br><span class="line">                obj.iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100); &#x2F;&#x2F;  30</span><br><span class="line"></span><br><span class="line">                    if (attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39;) &#123;</span><br><span class="line">                        iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100 );</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        iCur &#x3D; parseInt(css(obj, attr));</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (iCur &#x3D;&#x3D;&#x3D; iTarget) &#123;</span><br><span class="line">                        clearInterval(obj.iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        if ( attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                            obj.style.opacity &#x3D; (iCur + iSpeed) &#x2F; 100;</span><br><span class="line">                            obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;)&#39; + (iCur + iSpeed) + &#39;)&#39;;</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            obj.style[attr] &#x3D; iCur + iSpeed + &#39;px&#39;;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">            function css(obj, attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr]; &#x2F;&#x2F; ie</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return getComputedStyle(obj, false)[attr]; &#x2F;&#x2F; 其它</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;div2&quot;&gt;分享到&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;1.jpg&quot; id&#x3D;&quot;img1&quot;&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 多值同时运动 第一版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">详情见8.多值同时运动.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute;  top: 30px; left:400px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(this,&#123;</span><br><span class="line">                    width : 200,</span><br><span class="line">                    height : 200</span><br><span class="line">                &#125;,10);</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;left&#39;, -100, -10);</span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove(obj, json, iSpeed)&#123;</span><br><span class="line">                clearInterval(obj.iTimer);</span><br><span class="line">                var iCur &#x3D; 0;</span><br><span class="line">                obj.iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    &#x2F;&#x2F; 定时器每走一下，都要把要运动的属性都推进一次</span><br><span class="line">                    for ( var attr in json)&#123;</span><br><span class="line"></span><br><span class="line">                        var iTarget &#x3D; json[attr];</span><br><span class="line"></span><br><span class="line">                        if (attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39;) &#123;</span><br><span class="line">                            iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100 );</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            iCur &#x3D; parseInt(css(obj, attr));</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        if (iCur &#x3D;&#x3D;&#x3D; iTarget) &#123;</span><br><span class="line">                            clearInterval(obj.iTimer);</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            if ( attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                                obj.style.opacity &#x3D; (iCur + iSpeed) &#x2F; 100;</span><br><span class="line">                                obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;)&#39; + (iCur + iSpeed) + &#39;)&#39;;</span><br><span class="line">                            &#125; else &#123;</span><br><span class="line">                                obj.style[attr] &#x3D; iCur + iSpeed + &#39;px&#39;;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">            function css(obj, attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr]; &#x2F;&#x2F; ie</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return getComputedStyle(obj, false)[attr]; &#x2F;&#x2F; 其它</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 多值同时运动第二版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础版本2&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute;  top: 30px; left:400px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(this,&#123;</span><br><span class="line">                    width : 200,</span><br><span class="line">                    height : 300</span><br><span class="line">                &#125;,10);</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;left&#39;, -100, -10);</span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove(obj, json, iSpeed)&#123;</span><br><span class="line">                clearInterval(obj.iTimer);</span><br><span class="line">                var iCur &#x3D; 0;</span><br><span class="line">                obj.iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    var iBtn &#x3D; true;</span><br><span class="line">                    for ( var attr in json)&#123;</span><br><span class="line">                        &#x2F;&#x2F; 什么时候停止定时器?所有属性都运动到了目标点时候 停定时器</span><br><span class="line">                        var iTarget &#x3D; json[attr];</span><br><span class="line">                        if (attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39;) &#123;</span><br><span class="line">                            iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100 );</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            iCur &#x3D; parseInt(css(obj, attr));</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        if (iCur !&#x3D; iTarget) &#123;</span><br><span class="line">                            var iBtn &#x3D; false;</span><br><span class="line">                            if ( attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                                obj.style.opacity &#x3D; (iCur + iSpeed) &#x2F; 100;</span><br><span class="line">                                obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;)&#39; + (iCur + iSpeed) + &#39;)&#39;;</span><br><span class="line">                            &#125; else &#123;</span><br><span class="line">                                obj.style[attr] &#x3D; iCur + iSpeed + &#39;px&#39;;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    &#x2F;&#x2F; 在这里来看下，所有属性是不是都到了目标点</span><br><span class="line">                    if (iBtn)&#123;</span><br><span class="line">                    &#125;;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">            function css(obj, attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr]; &#x2F;&#x2F; ie</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return getComputedStyle(obj, false)[attr]; &#x2F;&#x2F; 其它</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>** 运动基础版本2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">链式运动</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础版本2&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute;  top: 30px; left:400px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(this,&#123;</span><br><span class="line">                    width : 200,</span><br><span class="line">                &#125;,10, function()&#123;</span><br><span class="line">                    startMove(this,&#123;</span><br><span class="line">                        height : 200</span><br><span class="line">                    &#125;,10);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;left&#39;, -100, -10);</span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove(obj, json, iSpeed,fn)&#123;</span><br><span class="line">                clearInterval(obj.iTimer);</span><br><span class="line">                var iCur &#x3D; 0;</span><br><span class="line">                obj.iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    var iBtn &#x3D; true;</span><br><span class="line">                    for ( var attr in json)&#123;</span><br><span class="line">                        &#x2F;&#x2F; 什么时候停止定时器?所有属性都运动到了目标点时候 停定时器</span><br><span class="line">                        var iTarget &#x3D; json[attr];</span><br><span class="line">                        if (attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39;) &#123;</span><br><span class="line">                            iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100 );</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            iCur &#x3D; parseInt(css(obj, attr));</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        if (iCur !&#x3D; iTarget) &#123;</span><br><span class="line">                            var iBtn &#x3D; false;</span><br><span class="line">                            if ( attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                                obj.style.opacity &#x3D; (iCur + iSpeed) &#x2F; 100;</span><br><span class="line">                                obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;)&#39; + (iCur + iSpeed) + &#39;)&#39;;</span><br><span class="line">                            &#125; else &#123;</span><br><span class="line">                                obj.style[attr] &#x3D; iCur + iSpeed + &#39;px&#39;;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if(iBtn)&#123;</span><br><span class="line">                        clearInterval(obj.iTimer);</span><br><span class="line">                        fn &amp;&amp; fn.call(obj);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">            function css(obj, attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr]; &#x2F;&#x2F; ie</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return getComputedStyle(obj, false)[attr]; &#x2F;&#x2F; 其它</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 摩擦运动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">详细见11.摩擦运动.html 这种方式不好 不好控制目标点</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute; left: 0px; top: 30px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 摩擦，减速 : 在运动过程中,速度越来越慢</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oBtn &#x3D; document.getElementById(&#39;btn&#39;);</span><br><span class="line">            var oDiv &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line">            var iSpeed &#x3D; 50; &#x2F;&#x2F; 定一个初使数值</span><br><span class="line">            &#x2F;&#x2F; 点击按钮,让div1横向向右运动</span><br><span class="line">            &#x2F;&#x2F; 定时器就像发动机一样的每三十秒转一下</span><br><span class="line">            oBtn.onclick &#x3D; function () &#123;</span><br><span class="line">                clearInterval(iTimer); &#x2F;&#x2F; 关掉一个发动机，再开</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    iSpeed *&#x3D; 0.92;</span><br><span class="line">                    &#x2F;&#x2F; oDiv.style.left &#x3D; oDiv.offsetLeft + 10 +&#39;px&#39;;</span><br><span class="line">                    if (oDiv.offsetLeft &#x3D;&#x3D; 500)&#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        oDiv.style.left &#x3D; oDiv.offsetLeft + iSpeed + &#39;px&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;动起来&quot; id&#x3D;&quot;btn&quot;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 缓冲运动
+与摩擦运动的区别：
+1.可以精确的停到指定目标点
+2.距离越远速度越大
+    - 速度由距离决定
+    - 速度=(目标值-当前值)/缩放系数
+    - Bug: 速度取整
+    - 值取整,注意正负号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">详细见12.缓冲运动</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute; left: 800px; top: 30px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 摩擦，减速 : 在运动过程中,速度越来越慢</span><br><span class="line">        &#x2F;&#x2F; 越接近目标点，速度就越小</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oBtn &#x3D; document.getElementById(&#39;btn&#39;);</span><br><span class="line">            var oDiv &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            var iTimer &#x3D; null;</span><br><span class="line">            var iSpeed &#x3D; 50; &#x2F;&#x2F; 定一个初使数值</span><br><span class="line">            &#x2F;&#x2F; 点击按钮,让div1横向向右运动</span><br><span class="line">            &#x2F;&#x2F; 定时器就像发动机一样的每三十秒转一下</span><br><span class="line">            oBtn.onclick &#x3D; function () &#123;</span><br><span class="line">                clearInterval(iTimer); &#x2F;&#x2F; 关掉一个发动机，再开</span><br><span class="line">                iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    iSpeed &#x3D; (500 - oDiv.offsetLeft) &#x2F; 8;</span><br><span class="line">                    iSpeed &#x3D; iSpeed &gt; 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed) &#x2F;&#x2F; 向上取整</span><br><span class="line">                    console.log( oDiv.offsetLeft + &#39; : &#39; + iSpeed );</span><br><span class="line"></span><br><span class="line">                    if (oDiv.offsetLeft &#x3D;&#x3D; 500)&#123;</span><br><span class="line">                        clearInterval(iTimer);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        oDiv.style.left &#x3D; oDiv.offsetLeft + iSpeed + &#39;px&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;动起来&quot; id&#x3D;&quot;btn&quot;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 运动框架加入缓冲
+运动效果和速度有关，不一样的速度算法产生不一样的运动动画。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">详细14.运动框架加入缓冲.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;运动基础版本2&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;width:100px; height: 100px; background:red; position:absolute;  top: 30px; left:400px;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv1 &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            oDiv1.onmouseover &#x3D; function()&#123;</span><br><span class="line">                startMove(this,&#123;</span><br><span class="line">                    width : 200,</span><br><span class="line">                    height: 200</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv1.onmouseout &#x3D; function()&#123;</span><br><span class="line">                startMove(this, &#39;left&#39;, -100, -10);</span><br><span class="line">            &#125;;</span><br><span class="line">            function startMove(obj, json, fn)&#123;</span><br><span class="line">                clearInterval(obj.iTimer);</span><br><span class="line">                var iCur &#x3D; 0;</span><br><span class="line">                var iSpeed &#x3D; 0;</span><br><span class="line">                obj.iTimer &#x3D; setInterval(function()&#123;</span><br><span class="line">                    var iBtn &#x3D; true;</span><br><span class="line">                    for ( var attr in json)&#123;</span><br><span class="line">                        &#x2F;&#x2F; 什么时候停止定时器?所有属性都运动到了目标点时候 停定时器</span><br><span class="line">                        var iTarget &#x3D; json[attr];</span><br><span class="line">                        if (attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39;) &#123;</span><br><span class="line">                            iCur &#x3D; Math.round(css( obj, &#39;opacity&#39; ) * 100 );</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            iCur &#x3D; parseInt(css(obj, attr));</span><br><span class="line">                        &#125;</span><br><span class="line">                        iSpeed &#x3D; ( iTarget - iCur ) &#x2F; 8;</span><br><span class="line">                        iSpeed &#x3D; iSpeed &gt; 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);</span><br><span class="line">                        if (iCur !&#x3D; iTarget) &#123;</span><br><span class="line">                            var iBtn &#x3D; false;</span><br><span class="line">                            if ( attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                                obj.style.opacity &#x3D; (iCur + iSpeed) &#x2F; 100;</span><br><span class="line">                                obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;)&#39; + (iCur + iSpeed) + &#39;)&#39;;</span><br><span class="line">                            &#125; else &#123;</span><br><span class="line">                                obj.style[attr] &#x3D; iCur + iSpeed + &#39;px&#39;;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if(iBtn)&#123;</span><br><span class="line">                        clearInterval(obj.iTimer);</span><br><span class="line">                        fn &amp;&amp; fn.call(obj);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 30);</span><br><span class="line">            &#125;</span><br><span class="line">            function css(obj, attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr]; &#x2F;&#x2F; ie</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return getComputedStyle(obj, false)[attr]; &#x2F;&#x2F; 其它</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js%E5%8A%A8%E7%94%BB-%E8%BF%90%E5%8A%A8/" rel="tag"># js动画 运动</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/02/19/%E6%95%99%E5%A5%B3%E7%94%9F%E5%AD%A6%E7%BC%96%E7%A8%8B/" rel="prev" title="教女生学编程一">
+      <i class="fa fa-chevron-left"></i> 教女生学编程一
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/02/21/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%8C/" rel="next" title="js动画学习分享二">
+      js动画学习分享二 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

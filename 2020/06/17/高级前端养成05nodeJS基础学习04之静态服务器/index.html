@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一些有用的工具  node-dev  当文件更新时自动重启的 node 避免每次改完代码都要重新运行的麻烦 不宜在生产环境使用   ts-node  让 node 支持直接运行 TypeScript 代码 不宜在生产环境使用   ts-node-dev  这个工具结合了上面两个工具 可以用 TypeScript 开发 Node.js 程序，且会 自动重启 不宜在生产环境使用，但非常适合用来学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级前端养成05nodeJS基础学习04之静态服务器">
+<meta property="og:url" content="codingories.github.io/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="一些有用的工具  node-dev  当文件更新时自动重启的 node 避免每次改完代码都要重新运行的麻烦 不宜在生产环境使用   ts-node  让 node 支持直接运行 TypeScript 代码 不宜在生产环境使用   ts-node-dev  这个工具结合了上面两个工具 可以用 TypeScript 开发 Node.js 程序，且会 自动重启 不宜在生产环境使用，但非常适合用来学习">
+<meta property="article:published_time" content="2020-06-17T11:52:52.000Z">
+<meta property="article:modified_time" content="2020-06-22T01:54:59.520Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="高级前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>高级前端养成05nodeJS基础学习04之静态服务器 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级前端养成05nodeJS基础学习04之静态服务器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-17 19:52:52" itemprop="dateCreated datePublished" datetime="2020-06-17T19:52:52+08:00">2020-06-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-22 09:54:59" itemprop="dateModified" datetime="2020-06-22T09:54:59+08:00">2020-06-22</time>
+              </span>
+
+          
+            <span id="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成05nodeJS基础学习04之静态服务器" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li><p>一些有用的工具</p>
+<ol>
+<li><p>node-dev</p>
+<ul>
+<li>当文件更新时自动重启的 node</li>
+<li>避免每次改完代码都要重新运行的麻烦</li>
+<li>不宜在生产环境使用</li>
+</ul>
+</li>
+<li><p>ts-node</p>
+<ul>
+<li>让 node 支持直接运行 TypeScript 代码</li>
+<li>不宜在生产环境使用</li>
+</ul>
+</li>
+<li><p>ts-node-dev</p>
+<ul>
+<li>这个工具结合了上面两个工具</li>
+<li>可以用 TypeScript 开发 Node.js 程序，且会 自动重启</li>
+<li>不宜在生产环境使用，但非常适合用来学习</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add ts-node-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>WebStorm 自动格式化</p>
+<ul>
+<li>Reformat Code 设置为 Ctrl + L 或者其它键位,默认为 alt+command+L</li>
+<li>可以快速帮你格式化 TS/JS 代码</li>
+</ul>
+</li>
+<li><p>WebStorm 自动写代码</p>
+<ul>
+<li>Complete Current Statement 设置为 Ctrl+Enter,完全完成当前语句</li>
+<li>Typescript 会自动匹配最精确,按 alt+enter 之后再按 enter 可以实现补全代码，自动声明变量</li>
+<li>Show Context Actions 设为 Alt+Enter,</li>
+<li>把冲突的键位改成其它快捷键</li>
+<li>当然你可以设为其它键位，这只是我的习惯</li>
+</ul>
+</li>
+<li><p>VSCode 配置</p>
+<ul>
+<li>开启自动保存，开启保存时自动格式化（有些人不喜欢）</li>
+<li>当然也可以 Shift+alt+F 手动格式化</li>
+<li>Quick Fix 默认快捷键 Ctrl+句号（功能稍弱）</li>
+</ul>
+</li>
+<li><p>WebStorm Git 配置</p>
+<ul>
+<li>把 WebStorm 的 git 路径设置为 cmder 里的</li>
+<li>例子:/usr/local/bin/git</li>
+<li>好处是统一管理统一配置</li>
+</ul>
+</li>
+<li><p>VSCode Git 配置</p>
+<ul>
+<li>在 settings.json 里添加</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;git.enabled&quot;: true,</span><br><span class="line">&quot;git.path&quot;: &quot;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;git&quot;,</span><br><span class="line">&quot;terminal.integrated.shell.osx&quot;: &quot;&#x2F;bin&#x2F;bash&quot;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>目的是让 VSCode 使用 cmder 里的 git 和 bash</li>
+<li>如果没有 cmder 就自行修改为其他路径</li>
+</ul>
+</li>
+<li><p>curl</p>
+<ul>
+<li>GET 请求: curl -v url</li>
+<li>POST 请求: curl -v -d “name=ories” url</li>
+<li>设置请求头: -H ‘Content-Type: application/json’</li>
+<li>设置动词: -X PUT</li>
+<li>JSON 请求: curl -d ‘{“name”:”bob”}’ -H ‘Content-Type:application/json’ url</li>
+<li>后面会用到 curl 来构造请求</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>创建项目</p>
+<ol>
+<li><p>步骤</p>
+<ul>
+<li>yarn init -y</li>
+<li>新建 index.ts</li>
+<li>使用命令行或者 WebStorm 启动</li>
+<li>yarn add –dev @types/node 安装 node 声明文件</li>
+<li>引入 http 模块(WebStorm 自动导入)</li>
+<li>用 http 创建 server(WebStorm 自动命名)</li>
+<li>监听 server 的 request 事件(可以简写)</li>
+<li>server.listen(8888)开始监听 8888 端口</li>
+<li>使用 curl -v <a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888</a> 发请求</li>
+<li>实现最简单的 node.js 服务器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#39;request&#39;, (request, response) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;有人请求了&#39;)</span><br><span class="line">  response.end(&#39;hi&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后，ts-node-dev index.ts</li>
+<li>然后在控制台 curl <a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888</a>, 看到反应</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>request 对象</p>
+<ol>
+<li><p>server 是个什么东西</p>
+<ol>
+<li>http.Server 类的实例</li>
+<li>根据文档知道 http.createServer 的返回值的类型</li>
+<li>所以 server 是 http.Server 的实例</li>
+<li>因此 server 拥有几个事件和方法</li>
+<li>其中也就 request 事件和 listen()方法目前用的上</li>
+</ol>
+</li>
+<li><p>继承 net.Server 类</p>
+<ol>
+<li>根据文档知道 http.Server 继承了 net.Server</li>
+<li>因此 server 有用了几个事件和方法</li>
+<li>其中也就 error 事件和 address()方法目前能用上,address 看监听的对象是什么</li>
+</ol>
+</li>
+<li><p>看文档的方法，看有哪些事件，属性，方法</p>
+<ul>
+<li>有用的事件, request 有人请求了怎么办, listen 开始监听</li>
+<li>curl + -v 可以打印出请求的内容</li>
+<li>处理 post 请求无法发现，请求体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">curl -v -d &quot;name&#x3D;ories&quot; http:&#x2F;&#x2F;localhost:8888&#x2F;aaa</span><br><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">  console.log(&#39;有人请求了&#39;)</span><br><span class="line">  &#x2F;&#x2F; console.log(request)</span><br><span class="line">  &#x2F;&#x2F; console.log(request.constructor) &#x2F;&#x2F; 看类</span><br><span class="line">  &#x2F;&#x2F; console.log(IncomingMessage) &#x2F;&#x2F; 直接打出哪些类</span><br><span class="line">  &#x2F;&#x2F; console.log(request.httpVersion) &#x2F;&#x2F; 打出http的协议版本</span><br><span class="line">  &#x2F;&#x2F; console.log(request.url) &#x2F;&#x2F; 打出路径</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; console.log(response.constructor) &#x2F;&#x2F; 看response的构造函数</span><br><span class="line">  console.log(&#39;request.method&#39;);</span><br><span class="line">  console.log(request.method);</span><br><span class="line">  console.log(&#39;request.url&#39;)</span><br><span class="line">  console.log(request.url)</span><br><span class="line">  console.log(&#39;request.headers&#39;)</span><br><span class="line">  console.log(request.headers) &#x2F;&#x2F;</span><br><span class="line">  response.end(&#39;hi&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>如何得到请求消息体</p>
+</li>
+<li><p>用 Node.js 获取请求内容</p>
+<ul>
+<li>request.method 获取请求动词</li>
+<li>request.url 获取请求路径（含查询参数）</li>
+<li>request.header 获取请求头</li>
+<li>get 请求一般没有消息体/请求体</li>
+</ul>
+</li>
+<li><p>post 请求</p>
+<ul>
+<li>curl -v -d “name=ories” <a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888</a></li>
+<li>request.on(‘data’,fn)获取消息体</li>
+<li>request.on(‘end’,fn)拼接消息体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; curl  -v -d &quot;name&#x3D;ories&quot; http:&#x2F;&#x2F;localhost:8888&#x2F;aaa</span><br><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">  console.log(&#39;有人请求了&#39;)</span><br><span class="line">  const array &#x3D; []</span><br><span class="line">  request.on(&#39;data&#39;,(chunk)&#x3D;&gt;&#123; &#x2F;&#x2F; 每上传一点内容就会触发这个事件,每次上传的报文的大小是固定几k</span><br><span class="line">    array.push(chunk); &#x2F;&#x2F; 只要服务器内存够内存够，上传1g也行</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  request.on(&#39;end&#39;,()&#x3D;&gt;&#123; &#x2F;&#x2F; 传输结束触发</span><br><span class="line">    const body &#x3D; Buffer.concat(array).toString();</span><br><span class="line">    console.log(&#39;body&#39;)</span><br><span class="line">    console.log(body)</span><br><span class="line">    response.end(&#39;hi&#39;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(request, response)是啥</p>
+<ol>
+<li><p>找类</p>
+<ul>
+<li>根据文档， request 是 http.IncomingMessage 的实例</li>
+<li>根据文档, response 是 http.ServerResponse 的实例</li>
+</ul>
+</li>
+<li><p>Request</p>
+<ul>
+<li>拥有 headers,method,url 等属性</li>
+<li>从 stream.Readable 类继承了 data/end/error 事件</li>
+<li>为什么不能直接拿到请求的消息体，跟 TCP 有关</li>
+</ul>
+</li>
+<li><p>Response</p>
+<ul>
+<li>拥有 getHeader/setHeader/end/write 等方法</li>
+<li>拥有 statusCode 属性，可读可写</li>
+<li>继承了 Stream,目前用不上</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">console.log(&#39;有人请求了&#39;)</span><br><span class="line">const array &#x3D; []</span><br><span class="line">request.on(&#39;data&#39;,(chunk: Buffer)&#x3D;&gt;&#123; &#x2F;&#x2F; 每上传一点内容就会触发这个事件,每次上传的报文的大小是固定几k</span><br><span class="line">   array.push(chunk); &#x2F;&#x2F; 只要服务器内存够内存够，上传1g也行</span><br><span class="line">&#125;)</span><br><span class="line">request.on(&#39;end&#39;,()&#x3D;&gt;&#123; &#x2F;&#x2F; 传输结束触发</span><br><span class="line">   const body &#x3D; Buffer.concat(array).toString();</span><br><span class="line">   console.log(&#39;body&#39;)</span><br><span class="line">   console.log(body)</span><br><span class="line">   response.statusCode &#x3D; 404</span><br><span class="line">   response.setHeader(&#39;x-ories&#39;,&#96;I&#39;am ories&#96;) &#x2F;&#x2F; 这里设置响应头</span><br><span class="line">   response.write(&#39;1\n&#39;) &#x2F;&#x2F; 用write去修改响应体</span><br><span class="line">   response.write(&#39;2\n&#39;) &#x2F;&#x2F; 也可以在write脸写二进制的图片，但是 需要设置contentType</span><br><span class="line">   response.write(&#39;3\n&#39;)</span><br><span class="line">   response.write(&#39;4\n&#39;)</span><br><span class="line">   response.end() &#x2F;&#x2F; 这里设置响应体,整个响应都是nodejs控制,</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>设置目标并完成</p>
+<ol>
+<li>任务一完成根据 Url 返回不同的文件完成</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; index.ts</span><br><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line">import * as fs from &#39;fs&#39;</span><br><span class="line">import * as p from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line">const publicDir &#x3D; p.resolve(__dirname,&#39;public&#39;) &#x2F;&#x2F; public所在的绝对路径</span><br><span class="line">&#x2F;&#x2F; 任务一,根据url返回不同的文件</span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">const &#123;method, url, headers&#125; &#x3D; request</span><br><span class="line">console.log(url)</span><br><span class="line">switch(url)&#123;</span><br><span class="line">   case &#39;&#x2F;index.html&#39;:</span><br><span class="line">      response.setHeader(&#39;Content-Type&#39;,&#39;text&#x2F;html; charset&#x3D;utf-8&#39;) &#x2F;&#x2F; 要告诉浏览器内容的类型，否则都是HTML</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;index.html&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">      if(error) throw error;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">      &#125;)</span><br><span class="line">      break;</span><br><span class="line">   case &#39;&#x2F;style.css&#39;:</span><br><span class="line">      response.setHeader(&#39;Content-Type&#39;,&#39;text&#x2F;css; charset&#x3D;utf-8&#39;) &#x2F;&#x2F; 要告诉浏览器内容的类型，否则都是HTML</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;style.css&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">      if(error) throw error;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">      &#125;)</span><br><span class="line">      break;</span><br><span class="line">   case &#39;&#x2F;main.js&#39;:</span><br><span class="line">      response.setHeader(&#39;Content-Type&#39;,&#39;text&#x2F;javascript; charset&#x3D;utf-8&#39;) &#x2F;&#x2F; 要告诉浏览器内容的类型，否则都是HTML</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;main.js&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">      if(error) throw error;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">      &#125;)</span><br><span class="line">      break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>利用 url.parse 解决传递参数访问的问题</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line">import * as fs from &#39;fs&#39;</span><br><span class="line">import * as p from &#39;path&#39;</span><br><span class="line">import * as url from &#39;url&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line"></span><br><span class="line">const publicDir &#x3D; p.resolve(__dirname,&#39;public&#39;) &#x2F;&#x2F; public所在的绝对路径</span><br><span class="line">&#x2F;&#x2F; 任务一,根据url返回不同的文件</span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">const &#123;method, url:path, headers&#125; &#x3D; request &#x2F;&#x2F; 从request中读取url，并且重新命名为path</span><br><span class="line">console.log(path)</span><br><span class="line">const &#123;pathname, search&#125; &#x3D; url.parse(path)</span><br><span class="line">switch(pathname)&#123;</span><br><span class="line">   case &#39;&#x2F;index.html&#39;:</span><br><span class="line">      response.setHeader(&#39;Content-Type&#39;,&#39;text&#x2F;html; charset&#x3D;utf-8&#39;) &#x2F;&#x2F; 要告诉浏览器内容的类型，否则都是HTML</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;index.html&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">      if(error) throw error;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">      &#125;)</span><br><span class="line">      break;</span><br><span class="line">   case &#39;&#x2F;style.css&#39;:</span><br><span class="line">      response.setHeader(&#39;Content-Type&#39;,&#39;text&#x2F;css; charset&#x3D;utf-8&#39;) &#x2F;&#x2F; 要告诉浏览器内容的类型，否则都是HTML</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;style.css&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">      if(error) throw error;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">      &#125;)</span><br><span class="line">      break;</span><br><span class="line">   case &#39;&#x2F;main.js&#39;:</span><br><span class="line">      response.setHeader(&#39;Content-Type&#39;,&#39;text&#x2F;javascript; charset&#x3D;utf-8&#39;) &#x2F;&#x2F; 要告诉浏览器内容的类型，否则都是HTML</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;main.js&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">      if(error) throw error;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">      &#125;)</span><br><span class="line">      break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>任务三匹配任意文件，开始任务四处理不存在的文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line">import * as fs from &#39;fs&#39;</span><br><span class="line">import * as p from &#39;path&#39;</span><br><span class="line">import * as url from &#39;url&#39;</span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line">const publicDir &#x3D; p.resolve(__dirname,&#39;public&#39;) &#x2F;&#x2F; public所在的绝对路径</span><br><span class="line">&#x2F;&#x2F; 任务一,根据url返回不同的文件</span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">const &#123;method, url:path, headers&#125; &#x3D; request &#x2F;&#x2F; 从request中读取url，并且重新命名为path</span><br><span class="line">console.log(path)</span><br><span class="line">const &#123;pathname, search&#125; &#x3D; url.parse(path)</span><br><span class="line">const filename &#x3D; pathname.substr(1);</span><br><span class="line">fs.readFile(p.resolve(publicDir, filename), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">   if(error) &#123;</span><br><span class="line">      response.statusCode &#x3D; 404;</span><br><span class="line">      response.end(&#39;你要的文件不存在&#39;);</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      response.end(data.toString()) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>任务四处理不存在的文件，返回一个 404 页面，通过 webstorm 设置图片路径为绝对路径</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line">import * as fs from &#39;fs&#39;</span><br><span class="line">import * as p from &#39;path&#39;</span><br><span class="line">import * as url from &#39;url&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line">const publicDir &#x3D; p.resolve(__dirname,&#39;public&#39;) &#x2F;&#x2F; public所在的绝对路径</span><br><span class="line">&#x2F;&#x2F; 任务一,根据url返回不同的文件</span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">const &#123;method, url:path, headers&#125; &#x3D; request &#x2F;&#x2F; 从request中读取url，并且重新命名为path</span><br><span class="line"></span><br><span class="line">let filename &#x3D; pathname.substr(1);</span><br><span class="line">if(filename &#x3D;&#x3D;&#x3D; &#39;&#39;)&#123;</span><br><span class="line">   filename &#x3D; &#39;index.html&#39;</span><br><span class="line">&#125;</span><br><span class="line">fs.readFile(p.resolve(publicDir, filename), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">   if(error) &#123;</span><br><span class="line">      console.log(error)</span><br><span class="line">      if(error.errno &#x3D;&#x3D;&#x3D; -2)&#123;</span><br><span class="line">      response.statusCode &#x3D; 404;</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;404.html&#39;), (error, data)&#x3D;&gt;&#123;</span><br><span class="line">         response.end(data)</span><br><span class="line">      &#125;)</span><br><span class="line">      &#125;else if(error.errno &#x3D;&#x3D;&#x3D; -21)&#123;</span><br><span class="line">      response.statusCode &#x3D; 403; &#x2F;&#x2F; 403没全县</span><br><span class="line">      response.end(&#39;no authority&#39;);</span><br><span class="line">      &#125; else&#123;</span><br><span class="line">      response.statusCode &#x3D; 500; &#x2F;&#x2F; 5开头服务器问题</span><br><span class="line">      response.end(&#39;server is busy&#39;);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      response.end(data) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>任务五处理非 get 请求完成</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line">import * as fs from &#39;fs&#39;</span><br><span class="line">import * as p from &#39;path&#39;</span><br><span class="line">import * as url from &#39;url&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line">const publicDir &#x3D; p.resolve(__dirname, &#39;public&#39;) &#x2F;&#x2F; public所在的绝对路径</span><br><span class="line">&#x2F;&#x2F; 任务一,根据url返回不同的文件</span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">const &#123;method, url: path, headers&#125; &#x3D; request &#x2F;&#x2F; 从request中读取url，并且重新命名为path</span><br><span class="line">const &#123;pathname, search&#125; &#x3D; url.parse(path)</span><br><span class="line"></span><br><span class="line">if (method !&#x3D;&#x3D; &#39;GET&#39;) &#123;</span><br><span class="line">   &#x2F;&#x2F; response.statusCode &#x3D; 405;</span><br><span class="line">   &#x2F;&#x2F; response.end()</span><br><span class="line">   response.statusCode &#x3D; 200</span><br><span class="line">   response.end(&#39;this is a fake response&#39;)</span><br><span class="line">   return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let filename &#x3D; pathname.substr(1)</span><br><span class="line">if (filename &#x3D;&#x3D;&#x3D; &#39;&#39;) &#123;</span><br><span class="line">   filename &#x3D; &#39;index.html&#39;</span><br><span class="line">&#125;</span><br><span class="line">fs.readFile(p.resolve(publicDir, filename), (error, data) &#x3D;&gt; &#123;</span><br><span class="line">   if (error) &#123;</span><br><span class="line">      console.log(error)</span><br><span class="line">      if (error.errno &#x3D;&#x3D;&#x3D; -2) &#123;</span><br><span class="line">      response.statusCode &#x3D; 404</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;404.html&#39;), (error, data) &#x3D;&gt; &#123;</span><br><span class="line">         response.end(data)</span><br><span class="line">      &#125;)</span><br><span class="line">      &#125; else if (error.errno &#x3D;&#x3D;&#x3D; -21) &#123;</span><br><span class="line">      response.statusCode &#x3D; 403 &#x2F;&#x2F; 403没全县</span><br><span class="line">      response.end(&#39;no authority&#39;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">      response.statusCode &#x3D; 500 &#x2F;&#x2F; 5开头服务器问题</span><br><span class="line">      response.end(&#39;server is busy&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      response.end(data) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>完成任务 6,完成缓存选项，通过添加 cache-control 使得除了 Index 页其它页面的内容都进行缓存</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">import * as http from &#39;http&#39;</span><br><span class="line">import &#123;IncomingMessage, ServerResponse&#125; from &#39;http&#39;</span><br><span class="line">import * as fs from &#39;fs&#39;</span><br><span class="line">import * as p from &#39;path&#39;</span><br><span class="line">import * as url from &#39;url&#39;</span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line">const publicDir &#x3D; p.resolve(__dirname, &#39;public&#39;) &#x2F;&#x2F; public所在的绝对路径</span><br><span class="line">let cacheAge &#x3D; 3600 * 24 * 265</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 任务一,根据url返回不同的文件</span><br><span class="line">server.on(&#39;request&#39;, (request: IncomingMessage, response: ServerResponse) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过添加request的实际类型，来使得我们不需要看文档，因为一些历史原因使得我们的提示不够智能</span><br><span class="line">const &#123;method, url: path, headers&#125; &#x3D; request &#x2F;&#x2F; 从request中读取url，并且重新命名为path</span><br><span class="line">const &#123;pathname, search&#125; &#x3D; url.parse(path)</span><br><span class="line"></span><br><span class="line">if (method !&#x3D;&#x3D; &#39;GET&#39;) &#123;</span><br><span class="line">   &#x2F;&#x2F; response.statusCode &#x3D; 405;</span><br><span class="line">   &#x2F;&#x2F; response.end()</span><br><span class="line">   response.statusCode &#x3D; 200</span><br><span class="line">   response.end(&#39;this is a fake response&#39;)</span><br><span class="line">   return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let filename &#x3D; pathname.substr(1)</span><br><span class="line">if (filename &#x3D;&#x3D;&#x3D; &#39;&#39;) &#123;</span><br><span class="line">   filename &#x3D; &#39;index.html&#39;</span><br><span class="line">&#125;</span><br><span class="line">fs.readFile(p.resolve(publicDir, filename), (error, data) &#x3D;&gt; &#123;</span><br><span class="line">   if (error) &#123;</span><br><span class="line">      console.log(error)</span><br><span class="line">      if (error.errno &#x3D;&#x3D;&#x3D; -2) &#123;</span><br><span class="line">      response.statusCode &#x3D; 404</span><br><span class="line">      fs.readFile(p.resolve(publicDir, &#39;404.html&#39;), (error, data) &#x3D;&gt; &#123;</span><br><span class="line">         response.end(data)</span><br><span class="line">      &#125;)</span><br><span class="line">      &#125; else if (error.errno &#x3D;&#x3D;&#x3D; -21) &#123;</span><br><span class="line">      response.statusCode &#x3D; 403 &#x2F;&#x2F; 403没全县</span><br><span class="line">      response.end(&#39;no authority&#39;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">      response.statusCode &#x3D; 500 &#x2F;&#x2F; 5开头服务器问题</span><br><span class="line">      response.end(&#39;server is busy&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F;返回文件内容</span><br><span class="line">      response.setHeader(&#39;Cache-Control&#39;,&#96;public, max-age&#x3D;$&#123;cacheAge&#125;&#96;)</span><br><span class="line">      response.end(data) &#x2F;&#x2F; data是一个buffer</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF/" rel="tag"># 高级前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" rel="prev" title="高级前端养成 04nodeJS 基础学习 03 之调试 Node.js 程序">
+      <i class="fa fa-chevron-left"></i> 高级前端养成 04nodeJS 基础学习 03 之调试 Node.js 程序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="next" title="高级前端养成03nodeJS基础学习02之单元测试之文件模块">
+      高级前端养成03nodeJS基础学习02之单元测试之文件模块 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

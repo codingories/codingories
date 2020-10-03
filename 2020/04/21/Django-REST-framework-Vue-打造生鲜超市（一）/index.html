@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 掌握的技术 Vue + Django Rest Framework 前后端分离技术 彻底玩转 restful api 开发流程 Django Rest Framework 的功能实现和核心源码分析 Sentry 完成线上系统的错误日志的监控和告警 第三方登录和支付宝支付的集成 本地调试远程服务器代码的技巧  2. 系统构成 vue 前端项目  django rest framework 系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django REST framework+Vue 打造生鲜超市（一）">
+<meta property="og:url" content="codingories.github.io/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="1. 掌握的技术 Vue + Django Rest Framework 前后端分离技术 彻底玩转 restful api 开发流程 Django Rest Framework 的功能实现和核心源码分析 Sentry 完成线上系统的错误日志的监控和告警 第三方登录和支付宝支付的集成 本地调试远程服务器代码的技巧  2. 系统构成 vue 前端项目  django rest framework 系统">
+<meta property="article:published_time" content="2020-04-21T01:13:10.000Z">
+<meta property="article:modified_time" content="2020-04-21T01:46:16.950Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="Django REST framework">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Django REST framework+Vue 打造生鲜超市（一） | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django REST framework+Vue 打造生鲜超市（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-21 09:13:10 / Modified: 09:46:16" itemprop="dateCreated datePublished" datetime="2020-04-21T09:13:10+08:00">2020-04-21</time>
+            </span>
+
+          
+            <span id="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="Django REST framework+Vue 打造生鲜超市（一）" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="1-掌握的技术"><a href="#1-掌握的技术" class="headerlink" title="1. 掌握的技术"></a>1. 掌握的技术</h4><ol>
+<li>Vue + Django Rest Framework 前后端分离技术</li>
+<li>彻底玩转 restful api 开发流程</li>
+<li>Django Rest Framework 的功能实现和核心源码分析</li>
+<li>Sentry 完成线上系统的错误日志的监控和告警</li>
+<li>第三方登录和支付宝支付的集成</li>
+<li>本地调试远程服务器代码的技巧</li>
+</ol>
+<h4 id="2-系统构成"><a href="#2-系统构成" class="headerlink" title="2. 系统构成"></a>2. 系统构成</h4><ol>
+<li><p>vue 前端项目</p>
+</li>
+<li><p>django rest framework 系统实现前台功能</p>
+</li>
+<li><p>xadmin 后台管理系统</p>
+</li>
+<li><p>vue 部分:</p>
+<ul>
+<li>API 接口</li>
+<li>Vue 组件 与 api 的交互</li>
+<li>vue 的项目组织结构分析</li>
+</ul>
+</li>
+<li><p>Django Rest Framework 技能</p>
+<ul>
+<li>通用 view 实现 rest api 接口<ul>
+<li>Apiview 方式实现 api</li>
+<li>genericView 方式实现 api 接口</li>
+<li>Viewset 和 router 方式实现 api 接口和 url 配置</li>
+<li>Django_filter searchFilter - OrderFilter 分页</li>
+<li>通用 mixin</li>
+</ul>
+</li>
+<li>权限和认证；<ul>
+<li>Authentication 用户认证设置</li>
+<li>动态设置 permission、authentication</li>
+<li>Validators 实现字段验证</li>
+</ul>
+</li>
+<li>序列化和表单验证<ul>
+<li>Serializer</li>
+<li>ModelSerializer</li>
+<li>动态设置 Serializer</li>
+</ul>
+</li>
+<li>支付登录注册<ul>
+<li>json web token 实现登录</li>
+<li>手机注册</li>
+<li>支付宝支付</li>
+<li>第三方登录</li>
+</ul>
+</li>
+<li>进阶开发<ul>
+<li>Django rest framework 部分核心源码解读</li>
+<li>文档自动化管理</li>
+<li>django rest framework 的缓存</li>
+<li>throttling 对用户和 ip 进行限速</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-开发中常见的问题"><a href="#3-开发中常见的问题" class="headerlink" title="3. 开发中常见的问题"></a>3. 开发中常见的问题</h4><ol>
+<li>本地系统不能重现的 bug</li>
+<li>api 接口出错不能及时的发现或难以找到错误栈</li>
+<li>api 文档管理问题，html markdown</li>
+<li>大量的 url 配置造成 url 配置越来越多难以维护</li>
+<li>接口不及时去更新文档，对方不知道如何去测试接口，但写文档会花费大量的时间去维护.</li>
+<li>为了防止爬虫，我们需要针对 api 的访问频率进行限制，比如一分钟，一小时，或者一天用户的访问频率限制问题。</li>
+<li>某些页面将数据放入缓存，加速某些 api 的访问速度</li>
+</ol>
+<h4 id="4-开发中常见问题解决方案"><a href="#4-开发中常见问题解决方案" class="headerlink" title="4. 开发中常见问题解决方案"></a>4. 开发中常见问题解决方案</h4><ol>
+<li>通过介绍 pycharm 的远程服务器代码调试技巧让大家不仅可以调试支付，第三方登录，还可以远程服务器代码来重现服务器上的 bug</li>
+<li>通过 docker 搭建 sentry 来体验错误日志监控系统，让我们不仅可以得到线上的错误栈还能及时在发生系统错误时收到邮件通知。</li>
+<li>通过 drf 的文档自动化管理以及 url 的注册管理功能会让我们省去写文档的时间</li>
+<li>django rest framework 的文档管理功能不仅可以让我们省去写文档的时间，还能直接在文档里面测试接口，自动生成 js 接口代码，shell 测试代码和 python 测试代码</li>
+<li>django rest framework 提供的 throttle 对于 api 进行访问频率的限制</li>
+<li>引入第三方框架来设置某些 api 的缓存</li>
+</ol>
+<h4 id="5-django-进阶知识点"><a href="#5-django-进阶知识点" class="headerlink" title="5. django 进阶知识点"></a>5. django 进阶知识点</h4><ol>
+<li>django mirgrations 原理</li>
+<li>django 信号量</li>
+<li>django 从请求到响应的完整过程</li>
+<li>独立使用 django 的 model</li>
+</ol>
+<h4 id="6-vue-知识点"><a href="#6-vue-知识点" class="headerlink" title="6.vue 知识点"></a>6.vue 知识点</h4><ol>
+<li>vue 技术选型分析</li>
+<li>API 后端数据填充到 Vue 组件模板</li>
+<li>Vue 代码结构分析</li>
+</ol>
+<h4 id="7-章节安排"><a href="#7-章节安排" class="headerlink" title="7.章节安排"></a>7.章节安排</h4><ol>
+<li>项目介绍以及开发环境的搭建</li>
+<li>设计数据库以及导入原始数据</li>
+<li>restful api 基础以及 vue 项目结构介绍</li>
+<li>商品列表页功能</li>
+<li>商品类别功能</li>
+<li>手机注册和用户登录</li>
+<li>商品详情页和收藏功能</li>
+<li>个人中心功能</li>
+<li>购物车、订单和支付宝支付功能</li>
+<li>首页，商品相关数量，缓存，访问限速功能</li>
+<li>第三方登录(微博 qq 微信)</li>
+<li>sentry 系统错误日志监控</li>
+</ol>
+<h4 id="8-技术储备要求"><a href="#8-技术储备要求" class="headerlink" title="8.技术储备要求"></a>8.技术储备要求</h4><ol>
+<li>django 基础知识</li>
+<li>熟练掌握 python 语法</li>
+<li>了解 vue &amp; mysql 基础</li>
+</ol>
+<h4 id="9-系统功能"><a href="#9-系统功能" class="headerlink" title="9.系统功能"></a>9.系统功能</h4><ol>
+<li>分类 - 子分类 搜索 热搜词 购物车简要展示</li>
+<li>新品 分类展示， 大类的推荐商品。</li>
+<li>账户密码登录(json web token)。微博登录，输入账户跳转回首页。</li>
+<li>注册，手机号码注册，错误提示。倒计时功能，服务器端手机号码发送频次限制。</li>
+<li>商品大类，导航栏。筛选，排序。富文本。</li>
+<li>商品 收藏 加入购物车 结算，移出购物车</li>
+<li>留言 支付宝支付，扫码支付。跳回商户页面。</li>
+<li>订单详情，收货地址</li>
+<li>个人信息，收藏商品，我的收藏。</li>
+<li>留言，上传文件。提交，删除留言</li>
+<li>快速浏览。页面的缓存</li>
+<li>访问速度限制 &amp; 接口文档 测试交互</li>
+<li>出错处理: sentry 基于 drf。打印错误栈，当前请求用户。邮件通知</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Django-REST-framework/" rel="tag"># Django REST framework</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/02/django3%E5%AD%A6%E4%B9%A0/" rel="prev" title="django3学习">
+      <i class="fa fa-chevron-left"></i> django3学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/22/React%E5%85%A8%E8%A7%A3%E4%B9%8B04Hooks%E5%90%84%E4%B8%AA%E5%87%BB%E7%A0%B4/" rel="next" title="React全解之04Hooks各个击破">
+      React全解之04Hooks各个击破 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-掌握的技术"><span class="nav-number">1.</span> <span class="nav-text">1. 掌握的技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-系统构成"><span class="nav-number">2.</span> <span class="nav-text">2. 系统构成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-开发中常见的问题"><span class="nav-number">3.</span> <span class="nav-text">3. 开发中常见的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-开发中常见问题解决方案"><span class="nav-number">4.</span> <span class="nav-text">4. 开发中常见问题解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-django-进阶知识点"><span class="nav-number">5.</span> <span class="nav-text">5. django 进阶知识点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-vue-知识点"><span class="nav-number">6.</span> <span class="nav-text">6.vue 知识点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-章节安排"><span class="nav-number">7.</span> <span class="nav-text">7.章节安排</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-技术储备要求"><span class="nav-number">8.</span> <span class="nav-text">8.技术储备要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-系统功能"><span class="nav-number">9.</span> <span class="nav-text">9.系统功能</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

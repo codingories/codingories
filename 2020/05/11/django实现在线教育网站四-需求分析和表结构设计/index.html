@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Django app 数据库设计  users-用户相关 courses 课程相关 organization 机构相关 operation 用户操作相关   进入tools manage.py task 123456    startapp users    startapp courses    startapp operation    startapp organizations  &amp;#9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django实现在线教育网站四(需求分析和表结构设计)">
+<meta property="og:url" content="codingories.github.io/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="Django app 数据库设计  users-用户相关 courses 课程相关 organization 机构相关 operation 用户操作相关   进入tools manage.py task 123456    startapp users    startapp courses    startapp operation    startapp organizations  &amp;#9">
+<meta property="article:published_time" content="2020-05-11T01:23:29.000Z">
+<meta property="article:modified_time" content="2020-05-23T12:58:27.150Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>django实现在线教育网站四(需求分析和表结构设计) | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          django实现在线教育网站四(需求分析和表结构设计)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-11 09:23:29" itemprop="dateCreated datePublished" datetime="2020-05-11T09:23:29+08:00">2020-05-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-23 20:58:27" itemprop="dateModified" datetime="2020-05-23T20:58:27+08:00">2020-05-23</time>
+              </span>
+
+          
+            <span id="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="django实现在线教育网站四(需求分析和表结构设计)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li><p>Django app 数据库设计</p>
+<ul>
+<li>users-用户相关</li>
+<li>courses 课程相关</li>
+<li>organization 机构相关</li>
+<li>operation 用户操作相关</li>
+</ul>
+</li>
+<li><p>进入tools manage.py task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    startapp users</span><br><span class="line">    startapp courses</span><br><span class="line">    startapp operation</span><br><span class="line">    startapp organizations</span><br><span class="line">  &#96;&#96;&#96; </span><br><span class="line">3. 在settings.py进行配置</span><br></pre></td></tr></table></figure>
+<p>解决settings报错LookupError: No installed app with label ‘admin’。的问题，<a href="https://www.jianshu.com/p/58b7dde0c267" target="_blank" rel="noopener">https://www.jianshu.com/p/58b7dde0c267</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 解决第一张表users用户表的设计</span><br></pre></td></tr></table></figure>
+<p>django自带了用户表auth_user,对于大多数系统都是可用的
+分析需求发现默认的没有
+我们通过重载user.models 添加字段
+需要注意昵称可以为空
+第一种处理方式</p>
+</li>
+</ol>
+<p>from django.db import models
+from django.contrib.auth.models import AbstractUser</p>
+<p>class UserProfile(AbstractUser):
+    nick_name = models.CharField(max_length=50, verbose_name=”昵称”, null=True, blank=True) # 可以为空，默认为空,
+    # 例如地址字段，没有设置null=True, blank=True 就是必填选项,那么必须设置一个默认值可以设置为””</p>
+<p>第二种处理方式
+给一个default值
+class UserProfile(AbstractUser):
+    nick_name = models.CharField(max_length=50, verbose_name=”昵称”, default=””)</p>
+<p>依次写下下面字段
+class UserProfile(AbstractUser):
+    nick_name = models.CharField(max_length=50, verbose_name=”昵称”, default=””)
+    birthday = models.DateField(verbose_name=”生日”, null=True, blank=True)
+    gender = models.CharField(verbose_name=”姓名”, choices=GENDER_CHOICES, max_length=6)
+    address = models.CharField(max_length=100, verbose_name=”地址”, default=””)
+    mobile = models.CharField(max_length=11, unique=True, verbose_name=”手机号码”)
+    image = models.ImageField(upload_to=”head_image/%Y/%m”, default=”default.jpg”)</p>
+<pre><code>class Meta:
+    verbose_name = &quot;用户信息&quot;
+    verbose_name_plural = verbose_name
+
+def __str__(self):
+    if self.nick_name:
+        return self.nick_name
+    else:
+        return self.username  # 重载 打印UserProfile之后的方法</code></pre>
+<p>之后要在django settings设置一下，指明
+AUTH_USER_MODEL = “users.UserProfile”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5. models 设计的一些坑</span><br><span class="line">  1. 循环引用</span><br></pre></td></tr></table></figure>
+<pre><code>  a 文件引用b 文件，b文件又引用a文件，
+  避免循环引用的方案，分层设计
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    ![循环引用.png](https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;15&#x2F;wRA4mPYHdjKa9n8.png)</span><br><span class="line">    - 上一层可以引用下一层，下一层是不能引用上一层的</span><br><span class="line">    - ![分层设计.png](https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;15&#x2F;wRA4mPYHdjKa9n8.png)</span><br><span class="line">6. 定义课程相关的表结构</span><br><span class="line">  - 需求分析</span><br></pre></td></tr></table></figure>
+课程标题，课程描述，课程难度...一个课程有多个用户，为一对多的关系，放到operation，这里主要定义课程本身内容，根本在于一对多，多对一</code></pre>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  - 表设计需要注意的点</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">课程 章节 视频 课程资源</span><br><span class="line">一个实体对应一张表</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">  - ![courses model.png](https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;15&#x2F;r5mhMnuDefPKiBq.png)</span><br><span class="line"></span><br><span class="line">7. pep8的引入规范</span><br></pre></td></tr></table></figure>
+<pre><code>最上是本身的包
+然后是第三方包
+最后是自己的包</code></pre>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8. 将一些公用的类放到users</span><br></pre></td></tr></table></figure>
+<p>  from datetime import datetime</p>
+<p>  class BaseModel(models.Model):
+    add_time = models.DateTimeField(default=datetime.now, verbose_name=”添加时间”)</p>
+<pre><code>class Meta:
+    abstract = True</code></pre>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">9. 设计课程机构的models</span><br></pre></td></tr></table></figure>
+<p>from django.db import models</p>
+<p>from apps.users.models import BaseModel</p>
+<p>class City(BaseModel):
+    name = models.CharField(max_length=20, verbose_name=u”城市”)
+    desc = models.CharField(max_length=200, verbose_name=u”描述”)</p>
+<pre><code>class Meta:
+    verbose_name = &quot;城市&quot;
+    verbose_name_plural = verbose_name</code></pre>
+<p>class CourseOrg(BaseModel):
+    name = models.CharField(verbose_name=u”机构名称”, max_length=50)
+    desc = models.TextField(verbose_name=”描述”)
+    tag = models.CharField(default=”全国知名”, max_length=10, verbose_name=”机构标签”)
+    category = models.CharField(default=”pxjg”, verbose_name=”机构类别”, max_length=4,
+                                choices=((“pxjg”, “培训机构”), (“gr”, “个人”), (“gx”, “高校”)))
+    click_nums = models.IntegerField(default=0, verbose_name=u”点击数”)  # 点击数,对于很多页面做统计的时候有用
+    fav_numbs = models.IntegerField(default=0, verbose_name=”收藏数”)</p>
+<pre><code>image = models.ImageField(upload_to=&quot;org/%Y/%m&quot;, verbose_name=u&quot;logo&quot;, max_length=100)  # 表示logo
+address = models.CharField(max_length=150, verbose_name=&quot;机构地址&quot;)
+students = models.IntegerField(default=0, verbose_name=&quot;学习人数&quot;)
+course_nums = models.IntegerField(default=0, verbose_name=&quot;课程数&quot;)
+city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name=&quot;所在城市&quot;)
+
+# 所在地区最好设计外键,方便后期管理
+
+class Meta:
+    verbose_name = &quot;课程机构&quot;
+    verbose_name_plural = verbose_name</code></pre>
+<p>class Teacher(BaseModel):
+    org = models.ForeignKey(CourseOrg, on_delete=models.CASCADE, verbose_name=”所属机构”)
+    name = models.CharField(‘教师名’, max_length=50)
+    work_years = models.IntegerField(‘工作年限’, default=0)
+    work_company = models.CharField(‘就职公司’, max_length=50)
+    work_position = models.CharField(‘公司职位’, max_length=50)
+    points = models.CharField(‘教学特点’, max_length=50)
+    click_nums = models.IntegerField(‘点击数’, default=0)
+    fav_nums = models.IntegerField(‘收藏数’, default=0)
+    age = models.IntegerField(default=18, verbose_name=”年龄”)
+    image = models.ImageField(upload_to=”teacher/%Y/%m”, verbose_name=”头像”, max_length=100)</p>
+<pre><code>class Meta:
+    verbose_name = &quot;讲师&quot;
+    verbose_name_plural = verbose_name</code></pre>
+<p>```</p>
+<ol start="10">
+<li>开始设计用户操作相关的表结构 </li>
+<li>通过view - tool - structure 可以快速的对表进行浏览</li>
+<li>通过tools run manage task 查看表结构设计的有没有问题</li>
+<li>django_migrations表会记录对表的操作，migrate之后才会记录</li>
+<li>回顾知识点。<ul>
+<li>1.设计实体和关系。</li>
+<li>2.设计字段，有些看不到,比如click,是否必填很重要，CharField设置最大长度。</li>
+<li>3.外键删除，需要根据业务情况来看不一定都是及联</li>
+<li>4.获得django的User Model不直接import 而是通过get_user_model得到</li>
+<li>5.分层设计，解决循环引用的问题</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Django/" rel="tag"># Django</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/09/%E8%A7%A3%E5%86%B3babel-polyfill%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/" rel="prev" title="解决babel-polyfill重复问题">
+      <i class="fa fa-chevron-left"></i> 解决babel-polyfill重复问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" rel="next" title="旺财记账本react实现六">
+      旺财记账本react实现六 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

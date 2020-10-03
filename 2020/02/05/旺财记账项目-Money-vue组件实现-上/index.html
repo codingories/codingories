@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 小技巧:快速包裹每一行 选中，按两下 shift，输入 surround ,选择 surround with emit,输入 li*,意思就是 n 个 li 包住行数  2. input,label 的写法 新手  12&lt;label for&#x3D;&quot;xxx&quot;&gt;&lt;&#x2F;label&gt;&lt;input id &#x3D; &#39;xxx&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旺财记账项目-Money.vue组件实现(上)">
+<meta property="og:url" content="codingories.github.io/2020/02/05/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8A/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="1. 小技巧:快速包裹每一行 选中，按两下 shift，输入 surround ,选择 surround with emit,输入 li*,意思就是 n 个 li 包住行数  2. input,label 的写法 新手  12&lt;label for&#x3D;&quot;xxx&quot;&gt;&lt;&#x2F;label&gt;&lt;input id &#x3D; &#39;xxx&amp;#">
+<meta property="article:published_time" content="2020-02-05T03:51:41.000Z">
+<meta property="article:modified_time" content="2020-02-06T11:20:28.760Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="前端学习 Vue">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/02/05/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>旺财记账项目-Money.vue组件实现(上) | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/05/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          旺财记账项目-Money.vue组件实现(上)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-05 11:51:41" itemprop="dateCreated datePublished" datetime="2020-02-05T11:51:41+08:00">2020-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-06 19:20:28" itemprop="dateModified" datetime="2020-02-06T19:20:28+08:00">2020-02-06</time>
+              </span>
+
+          
+            <span id="/2020/02/05/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账项目-Money.vue组件实现(上)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/05/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/05/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="1-小技巧-快速包裹每一行"><a href="#1-小技巧-快速包裹每一行" class="headerlink" title="1. 小技巧:快速包裹每一行"></a>1. 小技巧:快速包裹每一行</h4><ul>
+<li>选中，按两下 shift，输入 surround ,选择 surround with emit,输入 li*,意思就是 n 个 li 包住行数</li>
+</ul>
+<h4 id="2-input-label-的写法"><a href="#2-input-label-的写法" class="headerlink" title="2. input,label 的写法"></a>2. input,label 的写法</h4><ul>
+<li>新手</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;label for&#x3D;&quot;xxx&quot;&gt;&lt;&#x2F;label&gt;</span><br><span class="line">&lt;input id &#x3D; &#39;xxx&#39; type&#x3D;&quot;text&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>老手</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;</span><br><span class="line">  &lt;span&gt;备注&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;input type&#x3D;&quot;text&quot;&gt;</span><br><span class="line">&lt;&#x2F;label&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-文件行数规则"><a href="#3-文件行数规则" class="headerlink" title="3. 文件行数规则"></a>3. 文件行数规则</h4><ul>
+<li>一个文件超过 150 行，一般拆成多个文件。</li>
+</ul>
+<h4 id="4-开始写-CSS"><a href="#4-开始写-CSS" class="headerlink" title="4. 开始写 CSS"></a>4. 开始写 CSS</h4><ul>
+<li><h5 id="1-css-重置-抽成另外一个文件-reset-scss，然后在-app-vue-中引入"><a href="#1-css-重置-抽成另外一个文件-reset-scss，然后在-app-vue-中引入" class="headerlink" title="1. css 重置,抽成另外一个文件 reset.scss，然后在 app.vue 中引入"></a>1. css 重置,抽成另外一个文件 reset.scss，然后在 app.vue 中引入</h5></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; reset.scss</span><br><span class="line">* &#123;</span><br><span class="line">  margin: 0; padding: 0;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a&#123;</span><br><span class="line">  text-decoration: none;</span><br><span class="line">  color:inherit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; app.vue</span><br><span class="line">@import &quot;~@&#x2F;assets&#x2F;style&#x2F;reset.scss&quot;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="2-处理字体-需要用到-fonts-css"><a href="#2-处理字体-需要用到-fonts-css" class="headerlink" title="2. 处理字体,需要用到 fonts.css"></a>2. 处理字体,需要用到 fonts.css</h5><ul>
+<li>在 google 搜索 “fonts.css” 中文</li>
+<li>找到 font-family 的地方，在 helper.scss 中声明 font,然后在 app.vue 中使用</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; helper.scss</span><br><span class="line">$font-hei:  -apple-system, &quot;Noto Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, &quot;Nimbus Sans L&quot;, Arial, &quot;Liberation Sans&quot;, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Noto Sans CJK SC&quot;, &quot;Source Han Sans SC&quot;, &quot;Source Han Sans CN&quot;, &quot;Microsoft YaHei&quot;, &quot;Wenquanyi Micro Hei&quot;, &quot;WenQuanYi Zen Hei&quot;, &quot;ST Heiti&quot;, SimHei, &quot;WenQuanYi Zen Hei Sharp&quot;, sans-serif;</span><br><span class="line">&#x2F;&#x2F; app.vue</span><br><span class="line">body&#123;</span><br><span class="line">  line-height: 1.5;</span><br><span class="line">  font-family: $font-hei;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="3-把变量都放到-helper-css-里面。"><a href="#3-把变量都放到-helper-css-里面。" class="headerlink" title="3. 把变量都放到 helper.css 里面。"></a>3. 把变量都放到 helper.css 里面。</h5><ul>
+<li>command+shift+f 进行全局搜索</li>
+<li>helper.css 这个文件只能放变量，函数和 mixin,最终会消失的东西</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-写css推荐顺序"><a href="#4-写css推荐顺序" class="headerlink" title="4. 写css推荐顺序"></a>4. 写css推荐顺序</h4><ul>
+<li>一般而言无所谓，如果比较复杂，推荐从里到外，因为里面最简单</li>
+</ul>
+<h4 id="5-scss的用法"><a href="#5-scss的用法" class="headerlink" title="5. scss的用法"></a>5. scss的用法</h4><ul>
+<li>选择器里面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.tags &#123;</span><br><span class="line">  &gt; .current &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选择器本身<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.tags &#123;</span><br><span class="line">  &amp;.current &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-按钮字体样式不会继承"><a href="#6-按钮字体样式不会继承" class="headerlink" title="6. 按钮字体样式不会继承"></a>6. 按钮字体样式不会继承</h4></li>
+<li>在reset.scss中加入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button, input&#123;</span><br><span class="line">  font: inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-字体居中解决"><a href="#7-字体居中解决" class="headerlink" title="7. 字体居中解决"></a>7. 字体居中解决</h4><ul>
+<li>第一种方式，lineheight和高度一样，这种情况用于只有一行字</li>
+<li>第二种方式，用flex</li>
+</ul>
+<h4 id="8-字的下划线比字长"><a href="#8-字的下划线比字长" class="headerlink" title="8. 字的下划线比字长"></a>8. 字的下划线比字长</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">border-bottom: 1px solid;</span><br><span class="line">padding: 0 4px;</span><br></pre></td></tr></table></figure>
+<h4 id="9-selected下划线的做法"><a href="#9-selected下划线的做法" class="headerlink" title="9. selected下划线的做法"></a>9. selected下划线的做法</h4><ul>
+<li>避免用border-bottom来做，这种做法当class消失会有抖动，要用以下做法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&amp;.selected::after &#123;</span><br><span class="line">  content: &#39;&#39;;</span><br><span class="line">  position: absolute;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 4px;</span><br><span class="line">  background: #333;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="10-处理没有的字体，在其后面加上一类字体。"><a href="#10-处理没有的字体，在其后面加上一类字体。" class="headerlink" title="10. 处理没有的字体，在其后面加上一类字体。"></a>10. 处理没有的字体，在其后面加上一类字体。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; monospace就是等宽的编程字体类</span><br><span class="line">font-family: Consolas, monospace;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="11-如果用了float"><a href="#11-如果用了float" class="headerlink" title="11. 如果用了float"></a>11. 如果用了float</h4><ul>
+<li>父元素一定要用clearfix<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::after&#123;</span><br><span class="line">  content:&#39;&#39;;</span><br><span class="line">  display: block;</span><br><span class="line">  clear:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>用scss的%,placeholder功能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; helper.scss</span><br><span class="line">&#x2F;&#x2F; placeholder</span><br><span class="line">%x&#123;</span><br><span class="line">  &amp;::after&#123;</span><br><span class="line">    content: &#39;&#39;;</span><br><span class="line">    clear: both;</span><br><span class="line">    display: block;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 如何用</span><br><span class="line">&#x2F;&#x2F; money.vue</span><br><span class="line">.buttons &#123;</span><br><span class="line">  @extend %x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="12-两层内阴影的写法"><a href="#12-两层内阴影的写法" class="headerlink" title="12. 两层内阴影的写法"></a>12. 两层内阴影的写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: inset 0 -5px 5px -5px fade_out(black, 0.5),</span><br><span class="line">inset 0 5px 5px -5px fade_out(black, 0.5);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="13-多个地方统一替换"><a href="#13-多个地方统一替换" class="headerlink" title="13. 多个地方统一替换"></a>13. 多个地方统一替换</h4><ul>
+<li>选中之后按command+r</li>
+</ul>
+<h4 id="14-用前缀控制组件内css样式"><a href="#14-用前缀控制组件内css样式" class="headerlink" title="14. 用前缀控制组件内css样式"></a>14. 用前缀控制组件内css样式</h4><p>// 这样写会有bug,要写deep</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Money.vue</span><br><span class="line">&lt;Layout class-prefix&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">&lt;&#x2F;Layout&gt;</span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">  .layout-content&#123;</span><br><span class="line">    border: 3px solid red;</span><br><span class="line">  &#125;</span><br><span class="line">  .layout-wrapper&#123;</span><br><span class="line">    border: 3px solid blue;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Layout.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout-wrapper&quot; :class&#x3D;&quot;classPrefix &amp;&amp; &#96;$&#123;classPrefix&#125;-wrapper&#96;&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;content&quot; :class&#x3D;&quot;classPrefix &amp;&amp; &#96;$&#123;classPrefix&#125;-content&#96;&quot;&gt;</span><br><span class="line">      &lt;slot &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;Nav&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    props: [&#39;classPrefix&#39;],</span><br><span class="line">    name: &quot;Layout&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="15-如何模块化"><a href="#15-如何模块化" class="headerlink" title="15. 如何模块化"></a>15. 如何模块化</h4><ul>
+<li>坚持一个文件查过150行就执行模块化</li>
+<li>把html scss剪切的单独.vue文件，引入的时候写&lt;name 会总动引入</li>
+<li>最后把相关文件放到一个文件夹</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0-Vue/" rel="tag"># 前端学习 Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" rel="prev" title="svg的两个坑">
+      <i class="fa fa-chevron-left"></i> svg的两个坑
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/06/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Money-vue%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0-%E4%B8%8B/" rel="next" title="旺财记账项目-Money.vue组件实现(下)">
+      旺财记账项目-Money.vue组件实现(下) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-小技巧-快速包裹每一行"><span class="nav-number">1.</span> <span class="nav-text">1. 小技巧:快速包裹每一行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-input-label-的写法"><span class="nav-number">2.</span> <span class="nav-text">2. input,label 的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-文件行数规则"><span class="nav-number">3.</span> <span class="nav-text">3. 文件行数规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-开始写-CSS"><span class="nav-number">4.</span> <span class="nav-text">4. 开始写 CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-css-重置-抽成另外一个文件-reset-scss，然后在-app-vue-中引入"><span class="nav-number">4.1.</span> <span class="nav-text">1. css 重置,抽成另外一个文件 reset.scss，然后在 app.vue 中引入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-处理字体-需要用到-fonts-css"><span class="nav-number">4.2.</span> <span class="nav-text">2. 处理字体,需要用到 fonts.css</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-把变量都放到-helper-css-里面。"><span class="nav-number">4.3.</span> <span class="nav-text">3. 把变量都放到 helper.css 里面。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-写css推荐顺序"><span class="nav-number">5.</span> <span class="nav-text">4. 写css推荐顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-scss的用法"><span class="nav-number">6.</span> <span class="nav-text">5. scss的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-按钮字体样式不会继承"><span class="nav-number">7.</span> <span class="nav-text">6. 按钮字体样式不会继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-字体居中解决"><span class="nav-number">8.</span> <span class="nav-text">7. 字体居中解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-字的下划线比字长"><span class="nav-number">9.</span> <span class="nav-text">8. 字的下划线比字长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-selected下划线的做法"><span class="nav-number">10.</span> <span class="nav-text">9. selected下划线的做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-处理没有的字体，在其后面加上一类字体。"><span class="nav-number">11.</span> <span class="nav-text">10. 处理没有的字体，在其后面加上一类字体。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-如果用了float"><span class="nav-number">12.</span> <span class="nav-text">11. 如果用了float</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-两层内阴影的写法"><span class="nav-number">13.</span> <span class="nav-text">12. 两层内阴影的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-多个地方统一替换"><span class="nav-number">14.</span> <span class="nav-text">13. 多个地方统一替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-用前缀控制组件内css样式"><span class="nav-number">15.</span> <span class="nav-text">14. 用前缀控制组件内css样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-如何模块化"><span class="nav-number">16.</span> <span class="nav-text">15. 如何模块化</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

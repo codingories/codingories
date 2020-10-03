@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一. 启用 TypeScript  创建 tsconfig.json tsc –init 运行后得到 tsconfig.json 将 jsconfig.json 里面的配置合并到 tsconfig.json 删除 jsconfig.json   重启 yarn –dev yarn add –dev typescript @types&#x2F;react @types&#x2F;node @types&#x2F;react-d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级前端养成17nodeJS框架之06Nextjs全解下">
+<meta property="og:url" content="codingories.github.io/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="一. 启用 TypeScript  创建 tsconfig.json tsc –init 运行后得到 tsconfig.json 将 jsconfig.json 里面的配置合并到 tsconfig.json 删除 jsconfig.json   重启 yarn –dev yarn add –dev typescript @types&#x2F;react @types&#x2F;node @types&#x2F;react-d">
+<meta property="og:image" content="https://i.loli.net/2020/07/14/Y5zNXAMDJxo7VHT.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/18/lCF7LJGZEMAmxXv.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/18/zRc7QeYbJ1hNGkf.png">
+<meta property="article:published_time" content="2020-07-12T10:48:38.000Z">
+<meta property="article:modified_time" content="2020-07-18T06:57:51.647Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="高级前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/07/14/Y5zNXAMDJxo7VHT.png">
+
+<link rel="canonical" href="codingories.github.io/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>高级前端养成17nodeJS框架之06Nextjs全解下 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级前端养成17nodeJS框架之06Nextjs全解下
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-12 18:48:38" itemprop="dateCreated datePublished" datetime="2020-07-12T18:48:38+08:00">2020-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-18 14:57:51" itemprop="dateModified" datetime="2020-07-18T14:57:51+08:00">2020-07-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Next-js/" itemprop="url" rel="index"><span itemprop="name">Next.js</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成17nodeJS框架之06Nextjs全解下" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一. 启用 TypeScript</p>
+<ol>
+<li>创建 tsconfig.json<ul>
+<li>tsc –init 运行后得到 tsconfig.json</li>
+<li>将 jsconfig.json 里面的配置合并到 tsconfig.json</li>
+<li>删除 jsconfig.json</li>
+</ul>
+</li>
+<li>重启 yarn –dev<ul>
+<li>yarn add –dev typescript @types/react @types/node @types/react-dom</li>
+<li>yarn dev</li>
+</ul>
+</li>
+<li>改后缀<ul>
+<li>将文件名由.js 改为.tsx</li>
+<li>不需要一次将所有文件全部改完</li>
+</ul>
+</li>
+<li>tsconfig 加强<ul>
+<li>在 tsconfig 里添加”noImplicitAny”: true</li>
+<li>禁用隐式的 any</li>
+</ul>
+</li>
+</ol>
+<p>二. Next.js Api</p>
+<ul>
+<li>目前的页面<ul>
+<li>index 和 posts/first-post 都是 HTML</li>
+<li>但实际开发中我们需要请求/user /shops 等 API</li>
+<li>返回的内容是 JSON 格式的字符串</li>
+</ul>
+</li>
+<li>使用 Next.js API<ul>
+<li>路径为/api/v1/posts 以便与/posts 区分开来</li>
+<li>默认导出的函数类型为 NextApiHandler</li>
+<li>该代码只运行在 Node.js 里，不运行在浏览器中</li>
+</ul>
+</li>
+</ul>
+<p>三. API 小结</p>
+<ul>
+<li>/api/里面的文件是 API<ul>
+<li>一般返回 JSON 格式的字符串</li>
+<li>但也不是不能返回 HTML, 比如<code>res.end(&#39;&lt;h1&gt;...&#39;)</code></li>
+</ul>
+</li>
+<li>API 文件默认导出 NextApiHandler<ul>
+<li>这是一个函数类型</li>
+<li>第一个参数是请求</li>
+<li>第二个参数是对象</li>
+<li>Next.js 基于 Express,所以支持 Express 的中间件。详细见<a href="https://nextjs.org/docs/api-routes/api-middlewares" target="_blank" rel="noopener">文档</a></li>
+</ul>
+</li>
+</ul>
+<p>四. Next.js 三种渲染</p>
+<ul>
+<li>客户端渲染<ul>
+<li>只在浏览器上执行的渲染</li>
+</ul>
+</li>
+<li>静态页面生成(SSG)<ul>
+<li>Static Site Generation,解决白屏问题，SEO 问题</li>
+<li>无法生成用户相关内容(所有用户请求的结果都一样)</li>
+<li>什么是动态内容静态化<ul>
+<li>其实每个人看到的文章列表都是一样的</li>
+<li>为什么还需要在每个人的浏览器上渲染一次</li>
+<li>为什么不在后端渲染好，然后发给每个人</li>
+<li>N 次渲染变成了一次渲染</li>
+<li>N 次客户端渲染变成了一次静态页面生成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>服务端渲染(SSR)<ul>
+<li>解决白屏问题，SEO 问题</li>
+<li>可以生成用户相关内容(不同用户结果不同)</li>
+</ul>
+</li>
+<li>注意: SSR 和 SSG 都属于预渲染 Pre-rendering</li>
+</ul>
+<p>五. 旧瓶装新酒</p>
+<ul>
+<li>三种渲染方式分别对应<ul>
+<li>客户端渲染–用 JS，Vue，React 创建 HTML</li>
+<li>SSG–页面静态话，把 PHP 提前渲染成 HTML</li>
+<li>SSR–PHP,Python,Ruby,Java 后台的基本功能</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>Next.js 的预渲染可以与前端 React 无缝对接</li>
+</ul>
+</li>
+</ul>
+<p>六. 客户端渲染</p>
+<ul>
+<li><p>用浏览器 JS 创建 HTML</p>
+<ul>
+<li>实现加载 posts</li>
+</ul>
+</li>
+<li><p>要点</p>
+<ul>
+<li>如何封装 usePosts</li>
+</ul>
+</li>
+<li><p>文件列表</p>
+<ul>
+<li>pages/posts/index.tsx</li>
+<li>lib/hooks/usePosts.tsx</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li>文章列表是完全由前端渲染的，我们称之为客户端渲染</li>
+</ul>
+</li>
+</ul>
+<p>七. 客户端渲染的缺点</p>
+<ul>
+<li>白屏<ul>
+<li>在 AJAX 得到响应之前，页面中之后 Loading</li>
+</ul>
+</li>
+<li>SEO 不友好<ul>
+<li>搜索引擎访问页面，看不到 posts 数据</li>
+<li>因为搜索引擎默认不会执行 JS, 只能看到 HTML</li>
+</ul>
+</li>
+</ul>
+<p>八. 静态内容 v.s.动态内容</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/14/Y5zNXAMDJxo7VHT.png" alt="静态动态.png"></li>
+<li>一般来说，静态内容是写在代码里的，动态内容是来自数据库的，我们将尝试用文件系统代替数据库</li>
+</ul>
+<p>九. 思考</p>
+<ul>
+<li>上图中的静态内容<ul>
+<li>是服务端渲染的，还是客户端渲染的</li>
+<li>渲染了几次，一次还是两次</li>
+</ul>
+</li>
+<li>参考 React SSR 的官方文档<ul>
+<li>推荐在后端 renderToString()在前端 hydrate()</li>
+<li>hydrate()混合，会保留 HTML 并附上事件监听</li>
+<li>也就是说后端渲染 HTML,前端添加监听</li>
+<li>前端也会渲染一次，用以确保前后端渲染结果一致</li>
+</ul>
+</li>
+<li>推论<ul>
+<li>所有页面至少有一个标签是静态内容，由服务器渲染</li>
+</ul>
+</li>
+</ul>
+<p>十. getStaticProps 获取 posts</p>
+<ul>
+<li>声明位置<ul>
+<li>每个 page 不是默认导出一个函数么？</li>
+<li>把 getStaticProps 声明在这个函数旁边即可</li>
+<li>必须加 export</li>
+</ul>
+</li>
+<li>写法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export const getStaticProps &#x3D; async () &#x3D;&gt; &#123;</span><br><span class="line">  const posts &#x3D; await getPosts()</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      posts: posts</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>十一. getStaticProps</p>
+<ul>
+<li>如何使用 props</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default function PostsIndex &#x3D; (props)</span><br><span class="line">  &#x3D;&gt; &#123;...&#125;</span><br><span class="line">默认导出的函数的第一个参数就是props</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如何给 props 添加类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const PostsIndex: NextPage&lt;&#123; posts: Post[] &#125;&gt;</span><br><span class="line">  &#x3D; (props) &#x3D;&gt; &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>- 把 function 改成const + 箭头函数
+- 类型声明为NextPage
+- 用范型给NextPage传个参数```&lt;XProps&gt;```
+- Props 就是 props 的类型</code></pre>
+<p>十二. 同构</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/18/lCF7LJGZEMAmxXv.png" alt="同构.png"></li>
+<li>有没有发现<ul>
+<li>前端不用 AJAX 也能拿到 posts 了</li>
+<li>这就是同构 SSR 的好处: 后端数据可以直接传给前端</li>
+<li>前端 JSON.parse 一下就能得到了 posts（帮你做了）</li>
+</ul>
+</li>
+<li>难道 PHP/Java/Python 就不做不到么<ul>
+<li>其实也可以做到，思路一样</li>
+<li>但是它们不支持 JSX，很难与 React 无缝对接</li>
+<li>而且它们的对象不能直接提供给 JS 用，需要类型转换</li>
+</ul>
+</li>
+</ul>
+<p>十三. 静态化的时机</p>
+<ul>
+<li>环境<ul>
+<li>在开发环境，每次请求都会运行一次 getStaticProps</li>
+<li>这是为了方便你修改代码重新运行</li>
+<li>在生产环境，getStaticProps 只在 build 时运行一次</li>
+<li>这样可以提供一份 HTML 给所有用户下载</li>
+</ul>
+</li>
+<li>如何体验生产环境<ul>
+<li>关掉 yarn dev</li>
+<li>yarn build</li>
+<li>yarn start</li>
+</ul>
+</li>
+</ul>
+<p>十四. 生产环境</p>
+<ul>
+<li>解读<ul>
+<li>λ（Server）SSR 不能自动创建 HTML</li>
+<li>○(Static)自动创建 HTML(发现没用到 props)</li>
+<li>●(SSG)自动创建 HTML JS JSON(发现用到了 props)</li>
+</ul>
+</li>
+<li>三种文件类型<ul>
+<li>posts.html 含有静态内容，用于用户直接访问</li>
+<li>posts.js 也含有静态内容，用于快速导航（与 HTML 对应）</li>
+<li>posts.json 含有数据，跟 posts.js 结合得到界面</li>
+</ul>
+</li>
+<li>为了让 posts.js 接收不同的数据所以不直接把数据放入 posts.js</li>
+<li>目前只能接收来自 getStaticProps 的一个数据</li>
+</ul>
+<p>十五. 小结</p>
+<ul>
+<li><strong>动态内容静态化</strong><ul>
+<li>如果动态内容与用户无关，那么可以提前静态化</li>
+<li>通过 getStaticProps 可以获取数据</li>
+<li><strong>静态内容</strong> + <strong>数据(本地获取)</strong> 就可以得到了完整页面</li>
+<li>代替了之前的<strong>静态内容+动态内容(AJAX 获取)</strong></li>
+</ul>
+</li>
+<li>时机<ul>
+<li>静态化是在 yarn build 的时候实现的</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>生产环境中直接给出完整页面</li>
+<li>首屏不会白屏</li>
+<li>搜索引擎能看到页面内容，方便 SEO</li>
+</ul>
+</li>
+</ul>
+<p>十六. 如果页面跟用户相关呢？</p>
+<ul>
+<li>比如根据用户的 user id 显示不同的信息流</li>
+<li>用户相关动态内容<ul>
+<li><label style="color:red">较难提前静态化</label><ul>
+<li>需要在<label style="color:red">用户请求时</label>，获取用户信息，然后<label style="color:red">通过用户信息去数据库</label>拿数据</li>
+<li><label style="color:gray">如果硬要做，就要给每个用户创建一个页面</label></li>
+<li>有时候这些数据<label style="color:red">更新极快</label>，无法提前静态化</li>
+<li>比如微博首页的信息流</li>
+</ul>
+</li>
+<li><label style="color:red">那怎么办？</label><ul>
+<li>要么客户端渲染，下拉更新</li>
+<li>要么服务端渲染，下拉更新</li>
+<li>但这次的服务端渲染不能用 getStaticProps</li>
+<li>因为 getStaticProps 是在 build 时执行的</li>
+<li>可用 getServerSideProps(context: NextPageContext)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>十七. getServerSideProps</p>
+<ul>
+<li>运行时机<ul>
+<li>无论是开发还是生产环境</li>
+<li>都是在<label style="color:red">请求到来之后运行</label>getServerSideProps</li>
+</ul>
+</li>
+<li>回顾一下 getStaticProps<ul>
+<li>开发环境，每次请求到来后运行，方便开发</li>
+<li>生产环境,<label style="color:red">build 时运行一次</label></li>
+</ul>
+</li>
+<li>参数<ul>
+<li>context,类型为 NextPageContext</li>
+<li>context.req/context.res 可以获取请求和响应</li>
+<li>一般只需要用到 context.req</li>
+</ul>
+</li>
+</ul>
+<p>十八. 示例展示用户浏览器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const index:NextPage&lt;Props&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;browser&#125; &#x3D; props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">     &lt;h1&gt;你的浏览器是:&#123;browser.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line">export default index;</span><br><span class="line"></span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D; async (context)&#x3D;&gt; &#123;</span><br><span class="line">  const ua &#x3D; context.req.headers[&#39;user-agent&#39;];</span><br><span class="line">  const result &#x3D; new UAParser(ua).getResult();</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      browser: result.browser</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>十九. 总结</p>
+<ol>
+<li>静态内容<ul>
+<li>直接输出 HTML,没有术语</li>
+</ul>
+</li>
+<li>动态内容<ul>
+<li>术语: 客户端渲染，通过 AJAX 请求，渲染成 HTML</li>
+</ul>
+</li>
+<li>动态内容静态化<ul>
+<li>术语: SSG, 通过 getStaticProps 获取用户无关内容</li>
+</ul>
+</li>
+<li>用户相关动态内容静态化<ul>
+<li>术语: SSR, 通过 getServerSideProps 获取请求</li>
+<li>缺点: 无法获取客户端信息，如浏览器窗口大小</li>
+</ul>
+</li>
+</ol>
+<p>二十. 流程图</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/18/zRc7QeYbJ1hNGkf.png" alt="流程图.png"></li>
+<li>有动态内容吗？没有什么都不用做，自动渲染为 HTML</li>
+<li>动态内容跟客户端相关吗？相关就只能用客户端渲染(BSR)</li>
+<li>动态内容跟用户的请求/用户相关吗？相关就只能用服务端渲染(SSR)或 BSR</li>
+<li>其他情况可以用 SSG 或 SSR 或 BSR</li>
+</ul>
+<p>二十一. 还差一个功能</p>
+<ul>
+<li>点击 posts 列表查看文章<ul>
+<li>简单，不就是加个 Link&gt;a 标签吗</li>
+<li>href = <code>&#39;/posts/${id}&#39;</code></li>
+</ul>
+</li>
+<li>新建的文件名应该叫做什么<ul>
+<li><code>pages/posts/[id].tsx</code></li>
+<li>文件名就是<code>[id].tsx</code></li>
+</ul>
+</li>
+<li><code>/pages/posts/[id].tsx的作用</code><ul>
+<li>既声明了路由/posts/:id</li>
+<li>又是/posts/:id 的页面实现程序</li>
+</ul>
+</li>
+</ul>
+<p>二十二. 如何写<code>[id].tsx</code></p>
+<ul>
+<li>步骤<ul>
+<li>实现 PostsShow, 从 props 接收 post 数据</li>
+<li>实现 getStaticProps, 从第一个参数接收 params.id</li>
+<li>实现 getStaticPaths,返回 id 列表</li>
+</ul>
+</li>
+<li>优化<ul>
+<li>使用 marked 得到 markdown 的 HTML 内容</li>
+</ul>
+</li>
+<li>build<ul>
+<li>中断 yarn dev</li>
+<li>yarn build 然后看一下.next/server 目录</li>
+<li>yarn start</li>
+</ul>
+</li>
+</ul>
+<p>二十三. 填坑</p>
+<ul>
+<li>接收不同的 json 数据</li>
+<li>fallback:false 的作用<ul>
+<li>是否自动兜底</li>
+<li>false 表示如果请求的 id 不在 getStaticPaths 的结果里，直接返回 404 页面</li>
+<li>true 表示自动兜底，id 找不到依然渲染页面</li>
+<li>注意 id 不再结果里不代表 id 不存在，比如大型项目无法将所有产品页面都静态化，只静态化部分 id 对应的页面</li>
+</ul>
+</li>
+</ul>
+<p>二十四. 最后总结</p>
+<ul>
+<li>制作 API<ul>
+<li>放在/pages/api/目录里,一般加一个 v1</li>
+</ul>
+</li>
+<li>三种渲染方式<ul>
+<li>BSR/SSG/SSR</li>
+<li>流程图</li>
+</ul>
+</li>
+<li>三个 API<ul>
+<li>getStaticProps(SSG)</li>
+<li>getStaticPaths(SSG)</li>
+<li>getServerSideProps(SSR)</li>
+</ul>
+</li>
+<li>概念<ul>
+<li>白屏</li>
+<li>BSR 为什么不适合 SEO</li>
+<li>静态化是什么</li>
+<li>同构是什么</li>
+<li><a href="https://github.com/codingories/16nextjs-blog-1" target="_blank" rel="noopener">相关代码</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF/" rel="tag"># 高级前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9016nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8BNext-js%E5%85%A8%E8%A7%A3%E4%B8%8A/" rel="prev" title="高级前端养成16nodeJS框架之Next.js全解上">
+      <i class="fa fa-chevron-left"></i> 高级前端养成16nodeJS框架之Next.js全解上
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/" rel="next" title="高级前端养成18nodeJS框架之07TypeORM数据库实践">
+      高级前端养成18nodeJS框架之07TypeORM数据库实践 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

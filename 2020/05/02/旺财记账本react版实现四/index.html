@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一. 将 Styled Component 改造为 Function Component 12345678910111213141516const TagsSection: React.FC &#x3D; () &#x3D;&gt; &amp;#123;  return (    &lt;_TagsSection&gt;      &lt;ol&gt;        &lt;li&gt;衣&lt;&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旺财记账本react版实现四">
+<meta property="og:url" content="codingories.github.io/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="一. 将 Styled Component 改造为 Function Component 12345678910111213141516const TagsSection: React.FC &#x3D; () &#x3D;&gt; &amp;#123;  return (    &lt;_TagsSection&gt;      &lt;ol&gt;        &lt;li&gt;衣&lt;&amp;#x2">
+<meta property="article:published_time" content="2020-05-02T11:34:43.000Z">
+<meta property="article:modified_time" content="2020-05-03T10:23:10.130Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>旺财记账本react版实现四 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          旺财记账本react版实现四
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-02 19:34:43" itemprop="dateCreated datePublished" datetime="2020-05-02T19:34:43+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-03 18:23:10" itemprop="dateModified" datetime="2020-05-03T18:23:10+08:00">2020-05-03</time>
+              </span>
+
+          
+            <span id="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现四" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一. 将 Styled Component 改造为 Function Component</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const TagsSection: React.FC &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;_TagsSection&gt;</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;li&gt;衣&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;食&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;住&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;行&lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ol&gt;</span><br><span class="line">      &lt;button&gt;新增标签&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;_TagsSection&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export &#123;TagsSection&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>二.为 TagsSection 添加功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">const TagsSection: React.FC &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const [tags, setTags] &#x3D; useState&lt;string[]&gt;([&#39;衣&#39;,&#39;食&#39;,&#39;住&#39;,&#39;行&#39;]);</span><br><span class="line">  const [selectedTags, setSelectedTags] &#x3D; useState&lt;string[]&gt;([])</span><br><span class="line">  const onAddTag &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    const tagName &#x3D; window.prompt(&#39;新标签的名称为&#39;);</span><br><span class="line">    if(tagName!&#x3D;&#x3D;null)&#123;</span><br><span class="line">      setTags([...tags,tagName])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  const onToggleTag &#x3D; (tag: string)&#x3D;&gt;&#123;</span><br><span class="line">    console.log(tag)</span><br><span class="line">    console.log(selectedTags)</span><br><span class="line">    const index &#x3D; selectedTags.indexOf(tag);</span><br><span class="line">    if (index &gt;&#x3D; 0)&#123;</span><br><span class="line">      console.log(index,selectedTags.filter(t &#x3D;&gt; t !&#x3D;&#x3D; tag))</span><br><span class="line">      &#x2F;&#x2F; 如果 tag 已被选中， 就复制所有没有被选中的 tag, 作为新的 selectedTag</span><br><span class="line">      setSelectedTags(selectedTags.filter(t &#x3D;&gt; t !&#x3D;&#x3D; tag))</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      console.log(index,[...selectedTags, tag])</span><br><span class="line">      setSelectedTags([...selectedTags, tag])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  const getClass &#x3D; (tag:string) &#x3D;&gt; selectedTags.indexOf(tag)&gt;&#x3D;0 ? &#39;selected&#39; : &#39;&#39;;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &#123;tags.map(tag &#x3D;&gt;</span><br><span class="line">          &lt;li key&#x3D;&#123;tag&#125; onClick&#x3D;&#123;()&#x3D;&gt;onToggleTag(tag)&#125;</span><br><span class="line">            className&#x3D;&#123;getClass(tag)&#125;</span><br><span class="line">          &gt;</span><br><span class="line">            &#123;tag&#125;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      &lt;&#x2F;ol&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;onAddTag&#125;&gt;新增标签&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三. 制作备注 NoteSection 功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 写成受控组件</span><br><span class="line">const NoteSection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [note, setNote] &#x3D; useState(&#39;&#39;)</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;label&gt;</span><br><span class="line">        &lt;span&gt;备注&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;在这里添加备注&quot;</span><br><span class="line">               value&#x3D;&#123;note&#125;</span><br><span class="line">               onChange&#x3D;&#123;(e) &#x3D;&gt; setNote(e.target.value)&#125;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;label&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 写成非受控组件，焦点移除获取值.有点像vue的.lazy</span><br><span class="line">const NoteSection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [note, setNote] &#x3D; useState(&#39;&#39;)</span><br><span class="line">  const refInput &#x3D; useRef&lt;HTMLInputElement&gt;(null);</span><br><span class="line">  const x &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    if(refInput.current !&#x3D;&#x3D; null)&#123;</span><br><span class="line">      console.log(refInput.current.value)</span><br><span class="line">      setNote(refInput.current.value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;label&gt;</span><br><span class="line">        &lt;span&gt;备注&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;在这里添加备注&quot;</span><br><span class="line">               ref&#x3D;&#123;refInput&#125;</span><br><span class="line">               defaultValue&#x3D;&#123;note&#125;</span><br><span class="line">               onBlur&#x3D;&#123;x&#125;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;label&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">export &#123;NoteSection&#125;</span><br></pre></td></tr></table></figure>
+
+<p>四. React onChange 和 HTML onChange 是不一样的</p>
+<ul>
+<li>HTML 里面是鼠标一走发生的事件,早于 onBlur。React 是会在输入一个字就会触发。
+五. 把 categorySection 变成函数组件</li>
+</ul>
+<p>五. 把 CategorySection 封装成一个函数组件</p>
+<ul>
+<li><p>制作 category 的切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const CategorySection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const categoryMap &#x3D; &#123;&#39;-&#39;:&#39;支出&#39;,&#39;+&#39;:&#39;收入&#39;&#125;</span><br><span class="line">  &#x2F;&#x2F; type X &#x3D; typeof categoryMap;</span><br><span class="line">  &#x2F;&#x2F; type Y &#x3D; keyof X</span><br><span class="line">  &#x2F;&#x2F; type Keys &#x3D; keyof typeof categoryMap &#x2F;&#x2F; 这样写就少生命一个类型但是需要更多ts知识</span><br><span class="line">  &#x2F;&#x2F; const [categoryList] &#x3D; useState&lt; Keys[]&gt;([&#39;-&#39;,&#39;+&#39;])</span><br><span class="line"></span><br><span class="line">  const [categoryList] &#x3D; useState&lt; (&#39;-&#39;|&#39;+&#39;)[]&gt;([&#39;-&#39;,&#39;+&#39;])</span><br><span class="line">  const [category, setCategory] &#x3D; useState(&#39;-&#39;)</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &#123;categoryList.map(c &#x3D;&gt;</span><br><span class="line">          &lt;li className&#x3D;&#123;category &#x3D;&#x3D;&#x3D; c ? &#39;selected&#39; : &#39;&#39;&#125; onClick&#x3D;&#123;()&#x3D;&gt;&#123;setCategory(c)&#125;&#125;</span><br><span class="line">        &gt;&#123;categoryMap[c]&#125;</span><br><span class="line">        &lt;&#x2F;li&gt;)&#125;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123;CategorySection&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>六. 开始制作数字面板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">const NumberPadSection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [output, _setOutput] &#x3D; useState(&#39;0&#39;)</span><br><span class="line">  const setOutput &#x3D; (output: string) &#x3D;&gt; &#123;</span><br><span class="line">    if(output.length &gt; 16)&#123;</span><br><span class="line">      output &#x3D; output.slice(0, 16)</span><br><span class="line">    &#125;else if(output.length &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">      output &#x3D; &#39;0&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    _setOutput(output);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const onClickButtonWrapper &#x3D; (e: React.MouseEvent) &#x3D;&gt; &#123;</span><br><span class="line">    const text &#x3D; (e.target as HTMLButtonElement).textContent;</span><br><span class="line">    if(text &#x3D;&#x3D;&#x3D; null)&#123;return;&#125;</span><br><span class="line">    switch(text)&#123;</span><br><span class="line">      case &#39;0&#39;:</span><br><span class="line">      case &#39;1&#39;:</span><br><span class="line">      case &#39;2&#39;:</span><br><span class="line">      case &#39;3&#39;:</span><br><span class="line">      case &#39;4&#39;:</span><br><span class="line">      case &#39;5&#39;:</span><br><span class="line">      case &#39;6&#39;:</span><br><span class="line">      case &#39;7&#39;:</span><br><span class="line">      case &#39;8&#39;:</span><br><span class="line">      case &#39;9&#39;:</span><br><span class="line">        if(output &#x3D;&#x3D;&#x3D; &#39;0&#39;)&#123;</span><br><span class="line">          setOutput(text);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          setOutput(output + text   )</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">      case &#39;.&#39;:</span><br><span class="line">        if (output.indexOf(&#39;.&#39;) &gt;&#x3D; 0) &#123;return;&#125;</span><br><span class="line">        setOutput(output + &#39;.&#39;)</span><br><span class="line">        break;</span><br><span class="line">      case &#39;删除&#39;:</span><br><span class="line">        if(output.length&#x3D;&#x3D;&#x3D;1)&#123;</span><br><span class="line">          setOutput(&#39;&#39;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          setOutput(output.slice(0,-1))</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">      case &#39;清空&#39;:</span><br><span class="line">        setOutput(&#39;&#39;)</span><br><span class="line">        break;</span><br><span class="line">      case &#39;OK&#39;:</span><br><span class="line">        console.log(&#39;确认&#39;)</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;div className&#x3D;&quot;output&quot;&gt;</span><br><span class="line">        &#123;output&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div className&#x3D;&quot;pad clearfix&quot; onClick&#x3D;&#123;onClickButtonWrapper&#125;&gt;</span><br><span class="line">        &lt;button&gt;1&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;2&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;3&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;删除&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;4&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;5&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;6&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;清空&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;7&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;8&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;9&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button className&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button className&#x3D;&quot;zero&quot;&gt;0&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button className&#x3D;&quot;dot&quot;&gt;.&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123;NumberPadSection&#125;</span><br></pre></td></tr></table></figure>
+
+<p>七. 优化数字面板功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把样式和计算的过程封装成文件</span><br></pre></td></tr></table></figure>
+
+<p>八. 通过 money 传递数据</p>
+<ul>
+<li>通过 typeof 获取值的类型</li>
+<li>通过 Partial 获得部分类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> const onChange &#x3D; (obj: Partial&lt;typeof selected&gt;)&#x3D;&gt;&#123;</span><br><span class="line">  setSelected(&#123;...selected, ...obj&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/" rel="prev" title="旺财记账本react版实现三">
+      <i class="fa fa-chevron-left"></i> 旺财记账本react版实现三
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/03/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%94/" rel="next" title="旺财记账本react版实现五">
+      旺财记账本react版实现五 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

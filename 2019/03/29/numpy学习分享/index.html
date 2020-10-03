@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="12345import numpyworld_alcohol &#x3D; numpy.genfromtxt(&quot;world_alcohol.txt&quot;,delimiter&#x3D;&quot;,&quot;,dtype&#x3D;str)print(type(world_alcohol))print(world_alcohol)print(help(numpy.genfromtxt))  &lt;class &#39;numpy.ndarray&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy学习分享">
+<meta property="og:url" content="codingories.github.io/2019/03/29/numpy%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="12345import numpyworld_alcohol &#x3D; numpy.genfromtxt(&quot;world_alcohol.txt&quot;,delimiter&#x3D;&quot;,&quot;,dtype&#x3D;str)print(type(world_alcohol))print(world_alcohol)print(help(numpy.genfromtxt))  &lt;class &#39;numpy.ndarray&amp;">
+<meta property="article:published_time" content="2019-03-29T01:32:49.000Z">
+<meta property="article:modified_time" content="2019-03-29T01:40:31.310Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="numpy 数据分析">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2019/03/29/numpy%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>numpy学习分享 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/29/numpy%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          numpy学习分享
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-03-29 09:32:49 / Modified: 09:40:31" itemprop="dateCreated datePublished" datetime="2019-03-29T09:32:49+08:00">2019-03-29</time>
+            </span>
+
+          
+            <span id="/2019/03/29/numpy%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="post-meta-item leancloud_visitors" data-flag-title="numpy学习分享" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/03/29/numpy%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/29/numpy%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">world_alcohol = numpy.genfromtxt(<span class="string">"world_alcohol.txt"</span>,delimiter=<span class="string">","</span>,dtype=str)</span><br><span class="line">print(type(world_alcohol))</span><br><span class="line">print(world_alcohol)</span><br><span class="line">print(help(numpy.genfromtxt))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;numpy.ndarray&#39;&gt;
+[[&#39;Year&#39; &#39;WHO region&#39; &#39;Country&#39; &#39;Beverage Types&#39; &#39;Display Value&#39;]
+ [&#39;1986&#39; &#39;Western Pacific&#39; &#39;Viet Nam&#39; &#39;Wine&#39; &#39;0&#39;]
+ [&#39;1986&#39; &#39;Americas&#39; &#39;Uruguay&#39; &#39;Other&#39; &#39;0.5&#39;]
+ ...
+ [&#39;1987&#39; &#39;Africa&#39; &#39;Malawi&#39; &#39;Other&#39; &#39;0.75&#39;]
+ [&#39;1989&#39; &#39;Americas&#39; &#39;Bahamas&#39; &#39;Wine&#39; &#39;1.5&#39;]
+ [&#39;1985&#39; &#39;Africa&#39; &#39;Malawi&#39; &#39;Spirits&#39; &#39;0.31&#39;]]
+Help on function genfromtxt in module numpy:
+
+genfromtxt(fname, dtype=&lt;class &#39;float&#39;&gt;, comments=&#39;#&#39;, delimiter=None, skip_header=0, skip_footer=0, converters=None, missing_values=None, filling_values=None, usecols=None, names=None, excludelist=None, deletechars=None, replace_space=&#39;_&#39;, autostrip=False, case_sensitive=True, defaultfmt=&#39;f%i&#39;, unpack=None, usemask=False, loose=True, invalid_raise=True, max_rows=None, encoding=&#39;bytes&#39;)
+    Load data from a text file, with missing values handled as specified.
+
+    Each line past the first `skip_header` lines is split at the `delimiter`
+    character, and characters following the `comments` character are discarded.
+
+    Parameters
+    ----------
+    fname : file, str, pathlib.Path, list of str, generator
+        File, filename, list, or generator to read.  If the filename
+        extension is `.gz` or `.bz2`, the file is first decompressed. Note
+        that generators must return byte strings in Python 3k.  The strings
+        in a list or produced by a generator are treated as lines.
+    dtype : dtype, optional
+        Data type of the resulting array.
+        If None, the dtypes will be determined by the contents of each
+        column, individually.
+    comments : str, optional
+        The character used to indicate the start of a comment.
+        All the characters occurring on a line after a comment are discarded
+    delimiter : str, int, or sequence, optional
+        The string used to separate values.  By default, any consecutive
+        whitespaces act as delimiter.  An integer or sequence of integers
+        can also be provided as width(s) of each field.
+    skiprows : int, optional
+        `skiprows` was removed in numpy 1.10. Please use `skip_header` instead.
+    skip_header : int, optional
+        The number of lines to skip at the beginning of the file.
+    skip_footer : int, optional
+        The number of lines to skip at the end of the file.
+    converters : variable, optional
+        The set of functions that convert the data of a column to a value.
+        The converters can also be used to provide a default value
+        for missing data: ``converters = {3: lambda s: float(s or 0)}``.
+    missing : variable, optional
+        `missing` was removed in numpy 1.10. Please use `missing_values`
+        instead.
+    missing_values : variable, optional
+        The set of strings corresponding to missing data.
+    filling_values : variable, optional
+        The set of values to be used as default when the data are missing.
+    usecols : sequence, optional
+        Which columns to read, with 0 being the first.  For example,
+        ``usecols = (1, 4, 5)`` will extract the 2nd, 5th and 6th columns.
+    names : {None, True, str, sequence}, optional
+        If `names` is True, the field names are read from the first line after
+        the first `skip_header` lines.  This line can optionally be proceeded
+        by a comment delimiter. If `names` is a sequence or a single-string of
+        comma-separated names, the names will be used to define the field names
+        in a structured dtype. If `names` is None, the names of the dtype
+        fields will be used, if any.
+    excludelist : sequence, optional
+        A list of names to exclude. This list is appended to the default list
+        [&#39;return&#39;,&#39;file&#39;,&#39;print&#39;]. Excluded names are appended an underscore:
+        for example, `file` would become `file_`.
+    deletechars : str, optional
+        A string combining invalid characters that must be deleted from the
+        names.
+    defaultfmt : str, optional
+        A format used to define default field names, such as &quot;f%i&quot; or &quot;f_%02i&quot;.
+    autostrip : bool, optional
+        Whether to automatically strip white spaces from the variables.
+    replace_space : char, optional
+        Character(s) used in replacement of white spaces in the variables
+        names. By default, use a &#39;_&#39;.
+    case_sensitive : {True, False, &#39;upper&#39;, &#39;lower&#39;}, optional
+        If True, field names are case sensitive.
+        If False or &#39;upper&#39;, field names are converted to upper case.
+        If &#39;lower&#39;, field names are converted to lower case.
+    unpack : bool, optional
+        If True, the returned array is transposed, so that arguments may be
+        unpacked using ``x, y, z = loadtxt(...)``
+    usemask : bool, optional
+        If True, return a masked array.
+        If False, return a regular array.
+    loose : bool, optional
+        If True, do not raise errors for invalid values.
+    invalid_raise : bool, optional
+        If True, an exception is raised if an inconsistency is detected in the
+        number of columns.
+        If False, a warning is emitted and the offending lines are skipped.
+    max_rows : int,  optional
+        The maximum number of rows to read. Must not be used with skip_footer
+        at the same time.  If given, the value must be at least 1. Default is
+        to read the entire file.
+
+        .. versionadded:: 1.10.0
+    encoding : str, optional
+        Encoding used to decode the inputfile. Does not apply when `fname` is
+        a file object.  The special value &#39;bytes&#39; enables backward compatibility
+        workarounds that ensure that you receive byte arrays when possible
+        and passes latin1 encoded strings to converters. Override this value to
+        receive unicode arrays and pass strings as input to converters.  If set
+        to None the system default is used. The default value is &#39;bytes&#39;.
+
+        .. versionadded:: 1.14.0
+
+    Returns
+    -------
+    out : ndarray
+        Data read from the text file. If `usemask` is True, this is a
+        masked array.
+
+    See Also
+    --------
+    numpy.loadtxt : equivalent function when no data is missing.
+
+    Notes
+    -----
+    * When spaces are used as delimiters, or when no delimiter has been given
+      as input, there should not be any missing data between two fields.
+    * When the variables are named (either by a flexible dtype or with `names`,
+      there must not be any header in the file (else a ValueError
+      exception is raised).
+    * Individual values are not stripped of spaces by default.
+      When using a custom converter, make sure the function does remove spaces.
+
+    References
+    ----------
+    .. [1] NumPy User Guide, section `I/O with NumPy
+           &lt;https://docs.scipy.org/doc/numpy/user/basics.io.genfromtxt.html&gt;`_.
+
+    Examples
+    ---------
+    &gt;&gt;&gt; from io import StringIO
+    &gt;&gt;&gt; import numpy as np
+
+    Comma delimited file with mixed dtype
+
+    &gt;&gt;&gt; s = StringIO(u&quot;1,1.3,abcde&quot;)
+    &gt;&gt;&gt; data = np.genfromtxt(s, dtype=[(&#39;myint&#39;,&#39;i8&#39;),(&#39;myfloat&#39;,&#39;f8&#39;),
+    ... (&#39;mystring&#39;,&#39;S5&#39;)], delimiter=&quot;,&quot;)
+    &gt;&gt;&gt; data
+    array((1, 1.3, &#39;abcde&#39;),
+          dtype=[(&#39;myint&#39;, &#39;&lt;i8&#39;), (&#39;myfloat&#39;, &#39;&lt;f8&#39;), (&#39;mystring&#39;, &#39;|S5&#39;)])
+
+    Using dtype = None
+
+    &gt;&gt;&gt; s.seek(0) # needed for StringIO example only
+    &gt;&gt;&gt; data = np.genfromtxt(s, dtype=None,
+    ... names = [&#39;myint&#39;,&#39;myfloat&#39;,&#39;mystring&#39;], delimiter=&quot;,&quot;)
+    &gt;&gt;&gt; data
+    array((1, 1.3, &#39;abcde&#39;),
+          dtype=[(&#39;myint&#39;, &#39;&lt;i8&#39;), (&#39;myfloat&#39;, &#39;&lt;f8&#39;), (&#39;mystring&#39;, &#39;|S5&#39;)])
+
+    Specifying dtype and names
+
+    &gt;&gt;&gt; s.seek(0)
+    &gt;&gt;&gt; data = np.genfromtxt(s, dtype=&quot;i8,f8,S5&quot;,
+    ... names=[&#39;myint&#39;,&#39;myfloat&#39;,&#39;mystring&#39;], delimiter=&quot;,&quot;)
+    &gt;&gt;&gt; data
+    array((1, 1.3, &#39;abcde&#39;),
+          dtype=[(&#39;myint&#39;, &#39;&lt;i8&#39;), (&#39;myfloat&#39;, &#39;&lt;f8&#39;), (&#39;mystring&#39;, &#39;|S5&#39;)])
+
+    An example with fixed-width columns
+
+    &gt;&gt;&gt; s = StringIO(u&quot;11.3abcde&quot;)
+    &gt;&gt;&gt; data = np.genfromtxt(s, dtype=None, names=[&#39;intvar&#39;,&#39;fltvar&#39;,&#39;strvar&#39;],
+    ...     delimiter=[1,3,5])
+    &gt;&gt;&gt; data
+    array((1, 1.3, &#39;abcde&#39;),
+          dtype=[(&#39;intvar&#39;, &#39;&lt;i8&#39;), (&#39;fltvar&#39;, &#39;&lt;f8&#39;), (&#39;strvar&#39;, &#39;|S5&#39;)])
+
+None</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">matrix = numpy.array([[<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],[<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],[<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]])</span><br><span class="line">print(vector)</span><br><span class="line">print(matrix)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ 5 10 15 20]
+[[ 5 10 15]
+ [20 25 30]
+ [35 40 45]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">print(vector.shape)</span><br><span class="line">matrix = numpy.array([[<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],[<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>]])</span><br><span class="line">print(matrix.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(4,)
+(2, 3)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">numbers = numpy.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="string">"4"</span>])</span><br><span class="line">print(numbers)</span><br><span class="line">numbers.dtype</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;1&#39; &#39;2&#39; &#39;3&#39; &#39;4&#39;]
+
+
+
+
+
+dtype(&#39;&lt;U21&#39;)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">world_alcohol = numpy.genfromtxt(<span class="string">"world_alcohol.txt"</span>,delimiter=<span class="string">","</span>,dtype=str,skip_header=<span class="number">1</span>)</span><br><span class="line">print(world_alcohol)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[&#39;1986&#39; &#39;Western Pacific&#39; &#39;Viet Nam&#39; &#39;Wine&#39; &#39;0&#39;]
+ [&#39;1986&#39; &#39;Americas&#39; &#39;Uruguay&#39; &#39;Other&#39; &#39;0.5&#39;]
+ [&#39;1985&#39; &#39;Africa&#39; &quot;Cte d&#39;Ivoire&quot; &#39;Wine&#39; &#39;1.62&#39;]
+ ...
+ [&#39;1987&#39; &#39;Africa&#39; &#39;Malawi&#39; &#39;Other&#39; &#39;0.75&#39;]
+ [&#39;1989&#39; &#39;Americas&#39; &#39;Bahamas&#39; &#39;Wine&#39; &#39;1.5&#39;]
+ [&#39;1985&#39; &#39;Africa&#39; &#39;Malawi&#39; &#39;Spirits&#39; &#39;0.31&#39;]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uruguay_other_1986 = world_alcohol[<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line">third_country = world_alcohol[<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line">print(uruguay_other_1986)</span><br><span class="line">print(third_country)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.5
+Cte d&#39;Ivoire</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">print(vector[<span class="number">0</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ 5 10 15]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">print(matrix[:,<span class="number">1</span>]) <span class="comment">#: 代表所有行，1代表第一列</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[10 25 40]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">print(matrix[:,<span class="number">0</span>:<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[ 5 10]
+ [20 25]
+ [35 40]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">vector == <span class="number">10</span> <span class="comment"># 对于numpy.array里每一个都做运算</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([False,  True, False, False])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">matrix == <span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[False, False, False],
+       [False,  True, False],
+       [False, False, False]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">equal_to_ten = (vector == <span class="number">10</span>)</span><br><span class="line">print(equal_to_ten)</span><br><span class="line">print(vector[equal_to_ten]) <span class="comment"># 值等于true会进行返回</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[False  True False False]
+[10]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">second_column_25 = (matrix[:,<span class="number">1</span>] == <span class="number">25</span>)</span><br><span class="line">print(second_column_25)</span><br><span class="line">print(matrix[second_column_25,:])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[False  True False]
+[[20 25 30]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">equal_to_ten_and_five = (vector == <span class="number">10</span>) &amp; (vector == <span class="number">5</span>)</span><br><span class="line">print(equal_to_ten_and_five)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[False False False False]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">equal_to_ten_and_five = (vector == <span class="number">10</span>) | (vector == <span class="number">5</span>)</span><br><span class="line">print(equal_to_ten_and_five)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ True  True False False]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">equal_to_ten_and_five = (vector == <span class="number">10</span>) | (vector == <span class="number">5</span>)</span><br><span class="line">vector[equal_to_ten_and_five] = <span class="number">50</span></span><br><span class="line">print(equal_to_ten_and_five)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ True  True False False]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">second_column_25 = matrix[:,<span class="number">1</span>] == <span class="number">25</span></span><br><span class="line">print(second_column_25)</span><br><span class="line">matrix[second_column_25,<span class="number">1</span>] = <span class="number">10</span></span><br><span class="line">print(matrix)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[False  True False]
+[[ 5 10 15]
+ [20 10 30]
+ [35 40 45]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>])</span><br><span class="line">print(vector.dtype)</span><br><span class="line">print(vector)</span><br><span class="line">vector = vector.astype(float)</span><br><span class="line">print(vector.dtype)</span><br><span class="line">print(vector)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;U1
+[&#39;1&#39; &#39;2&#39; &#39;3&#39;]
+float64
+[1. 2. 3.]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector = numpy.array([<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>])</span><br><span class="line">vector.min() <span class="comment"># 求array最小值</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>5</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">matrix.sum(axis=<span class="number">1</span>) <span class="comment"># 每行相加</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 30,  75, 120])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix = numpy.array([</span><br><span class="line">    [<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>],</span><br><span class="line">    [<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>],</span><br><span class="line">    [<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>]</span><br><span class="line">])</span><br><span class="line">matrix.sum(axis=<span class="number">0</span>) <span class="comment"># 每列相加</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([60, 75, 90])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">B = np.arange(<span class="number">3</span>)</span><br><span class="line">print(B)</span><br><span class="line">print(np.exp(B)) <span class="comment">#对E求几次方</span></span><br><span class="line">print(np.sqrt(B)) <span class="comment"># 对B求平方根</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[0 1 2]
+[1.         2.71828183 7.3890561 ]
+[0.         1.         1.41421356]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = np.floor(<span class="number">10</span>*np.random.random((<span class="number">3</span>,<span class="number">4</span>))) <span class="comment"># 随机，乘10，向下取整</span></span><br><span class="line">print(a)</span><br><span class="line">print(<span class="string">'--------'</span>)</span><br><span class="line">print(a.ravel()) <span class="comment"># 把矩阵拉成一个向量</span></span><br><span class="line">print(<span class="string">'--------'</span>)</span><br><span class="line">a.shape=(<span class="number">6</span>,<span class="number">2</span>)</span><br><span class="line">print(a)</span><br><span class="line">print(<span class="string">'--------'</span>)</span><br><span class="line">print(a.T) <span class="comment">#求转置</span></span><br><span class="line"><span class="comment"># a.reshape(3,-1) 只要指定一个另一个填写-1即可</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[[0. 4. 0. 9.]
+ [7. 8. 6. 7.]
+ [7. 3. 0. 6.]]
+--------
+[0. 4. 0. 9. 7. 8. 6. 7. 7. 3. 0. 6.]
+--------
+[[0. 4.]
+ [0. 9.]
+ [7. 8.]
+ [6. 7.]
+ [7. 3.]
+ [0. 6.]]
+--------
+[[0. 0. 7. 6. 7. 0.]
+ [4. 9. 8. 7. 3. 6.]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.floor(<span class="number">10</span>*np.random.random((<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">b = np.floor(<span class="number">10</span>*np.random.random((<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">print(a)</span><br><span class="line">print(<span class="string">'---'</span>)</span><br><span class="line">print(b)</span><br><span class="line">print(<span class="string">'---'</span>)</span><br><span class="line">print(np.vstack((a,b))) <span class="comment"># 横着拼hstack,竖着拼vstack</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[[3. 6.]
+ [1. 5.]]
+---
+[[8. 1.]
+ [0. 4.]]
+---
+[[3. 6.]
+ [1. 5.]
+ [8. 1.]
+ [0. 4.]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = np.floor(<span class="number">10</span>*np.random.random((<span class="number">2</span>,<span class="number">12</span>)))</span><br><span class="line">print(a)</span><br><span class="line">print(<span class="string">'---'</span>)</span><br><span class="line">print(np.hsplit(a,<span class="number">3</span>)) <span class="comment">#按照行进行切分</span></span><br><span class="line">print(<span class="string">'---'</span>)</span><br><span class="line">print(np.hsplit(a,(<span class="number">3</span>,<span class="number">4</span>))) <span class="comment"># 按照指定位置切分</span></span><br><span class="line">a = np.floor(<span class="number">10</span>*np.random.random((<span class="number">12</span>,<span class="number">2</span>)))</span><br><span class="line">print(<span class="string">'---'</span>)</span><br><span class="line">print(a)</span><br><span class="line">np.vsplit(a,<span class="number">3</span>) <span class="comment"># 竖着切3分</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[[1. 5. 6. 5. 3. 9. 7. 8. 7. 4. 5. 3.]
+ [6. 6. 8. 5. 9. 1. 6. 9. 1. 1. 3. 9.]]
+---
+[array([[1., 5., 6., 5.],
+       [6., 6., 8., 5.]]), array([[3., 9., 7., 8.],
+       [9., 1., 6., 9.]]), array([[7., 4., 5., 3.],
+       [1., 1., 3., 9.]])]
+---
+[array([[1., 5., 6.],
+       [6., 6., 8.]]), array([[5.],
+       [5.]]), array([[3., 9., 7., 8., 7., 4., 5., 3.],
+       [9., 1., 6., 9., 1., 1., 3., 9.]])]
+---
+[[9. 3.]
+ [1. 7.]
+ [4. 7.]
+ [6. 0.]
+ [1. 8.]
+ [6. 9.]
+ [6. 3.]
+ [4. 4.]
+ [0. 4.]
+ [6. 0.]
+ [2. 1.]
+ [5. 3.]]
+
+
+
+
+
+[array([[9., 3.],
+        [1., 7.],
+        [4., 7.],
+        [6., 0.]]), array([[1., 8.],
+        [6., 9.],
+        [6., 3.],
+        [4., 4.]]), array([[0., 4.],
+        [6., 0.],
+        [2., 1.],
+        [5., 3.]])]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">12</span>)</span><br><span class="line">b = a</span><br><span class="line">print(b <span class="keyword">is</span> a)</span><br><span class="line">b.shape = <span class="number">3</span>,<span class="number">4</span></span><br><span class="line">print(a.shape)</span><br><span class="line">print(id(a))</span><br><span class="line">print(id(b))</span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+(3, 4)
+4550854896
+4550854896</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = a.view() <span class="comment">#浅复制，指向的东西不同，但是公用一套值</span></span><br><span class="line">print(c <span class="keyword">is</span> a)</span><br><span class="line">c.shape = <span class="number">2</span>,<span class="number">6</span></span><br><span class="line">print(a.shape)</span><br><span class="line">c[<span class="number">0</span>,<span class="number">4</span>] = <span class="number">1234</span></span><br><span class="line">print(a)</span><br><span class="line">print(id(a))</span><br><span class="line">print(id(c))</span><br></pre></td></tr></table></figure>
+
+<pre><code>False
+(3, 4)
+[[   0    1    2    3]
+ [1234    5    6    7]
+ [   8    9   10   11]]
+4550854896
+4551803888</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = a.copy() <span class="comment"># 深复制</span></span><br><span class="line">d <span class="keyword">is</span> a</span><br><span class="line">d[<span class="number">0</span>,<span class="number">0</span>] = <span class="number">9999</span></span><br><span class="line">print(d)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[9999    1    2    3]
+ [1234    5    6    7]
+ [   8    9   10   11]]
+[[   0    1    2    3]
+ [1234    5    6    7]
+ [   8    9   10   11]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = np.sin(np.arange(<span class="number">20</span>)).reshape(<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line">print(data)</span><br><span class="line">ind = data.argmax(axis=<span class="number">0</span>) <span class="comment"># 哪个列最大值的索引</span></span><br><span class="line">print(ind)</span><br><span class="line">data_max = data[ind,range(data.shape[<span class="number">1</span>])]</span><br><span class="line">print(data_max)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[ 0.          0.84147098  0.90929743  0.14112001]
+ [-0.7568025  -0.95892427 -0.2794155   0.6569866 ]
+ [ 0.98935825  0.41211849 -0.54402111 -0.99999021]
+ [-0.53657292  0.42016704  0.99060736  0.65028784]
+ [-0.28790332 -0.96139749 -0.75098725  0.14987721]]
+[2 0 3 1]
+[0.98935825 0.84147098 0.99060736 0.6569866 ]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">0</span>,<span class="number">40</span>,<span class="number">10</span>)</span><br><span class="line">print(a)</span><br><span class="line">b = np.tile(a,(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment"># 行变成2倍，列变成3倍</span></span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ 0 10 20 30]
+[[ 0 10 20 30  0 10 20 30  0 10 20 30]
+ [ 0 10 20 30  0 10 20 30  0 10 20 30]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]])</span><br><span class="line">print(a)</span><br><span class="line">print(<span class="string">'--------'</span>)</span><br><span class="line">b = np.sort(a,axis = <span class="number">1</span>) <span class="comment">#默认从小到大</span></span><br><span class="line">print(b)</span><br><span class="line">a.sort(axis=<span class="number">1</span>)</span><br><span class="line">print(<span class="string">'-------'</span>)</span><br><span class="line">print(a)</span><br><span class="line">a = np.array([<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">j = np.argsort(a) <span class="comment"># 从小到大的索引</span></span><br><span class="line">print(<span class="string">'-------'</span>)</span><br><span class="line">print(j)</span><br><span class="line">print(<span class="string">'--------'</span>)</span><br><span class="line">print(a[j]) <span class="comment">#把索引传进去之后，变成从小到大</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[[4 3 5]
+ [1 2 1]]
+--------
+[[3 4 5]
+ [1 1 2]]
+-------
+[[3 4 5]
+ [1 1 2]]
+-------
+[2 3 1 0]
+--------
+[1 2 3 4]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">print(np.arange(<span class="number">15</span>)) <span class="comment"># np.array里有15个元素</span></span><br><span class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14]
+
+
+
+
+
+array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.shape <span class="comment"># 查看矩阵几行几列</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(3, 5)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.ndim <span class="comment"># 查看矩阵纬度</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>2</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.dtype.name <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#39;int64&#39;</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.size <span class="comment"># 查看元素个数</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>15</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.zeros((<span class="number">3</span>,<span class="number">4</span>)) <span class="comment">#初始化一个矩阵值为0或者1</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0., 0., 0., 0.],
+       [0., 0., 0., 0.],
+       [0., 0., 0., 0.]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>),dtype=np.int32)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[[1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]],
+
+       [[1, 1, 1, 1],
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]]], dtype=int32)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">10</span>,<span class="number">30</span>,<span class="number">5</span>) <span class="comment"># 起始值为10，终点小于30，步长为5</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([10, 15, 20, 25])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">0</span>,<span class="number">2</span>,<span class="number">0.3</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0. , 0.3, 0.6, 0.9, 1.2, 1.5, 1.8])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">12</span>).reshape(<span class="number">4</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 0,  1,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.random.random((<span class="number">2</span>,<span class="number">3</span>)) <span class="comment"># 随机一个2行3列的矩阵</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0.67769535, 0.79704372, 0.22814963],
+       [0.71555664, 0.0661415 , 0.73118302]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> pi</span><br><span class="line">np.linspace(<span class="number">0</span>,<span class="number">2</span>*pi,<span class="number">100</span>) <span class="comment"># 指定一个区间，平均去取值</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0.        , 0.06346652, 0.12693304, 0.19039955, 0.25386607,
+       0.31733259, 0.38079911, 0.44426563, 0.50773215, 0.57119866,
+       0.63466518, 0.6981317 , 0.76159822, 0.82506474, 0.88853126,
+       0.95199777, 1.01546429, 1.07893081, 1.14239733, 1.20586385,
+       1.26933037, 1.33279688, 1.3962634 , 1.45972992, 1.52319644,
+       1.58666296, 1.65012947, 1.71359599, 1.77706251, 1.84052903,
+       1.90399555, 1.96746207, 2.03092858, 2.0943951 , 2.15786162,
+       2.22132814, 2.28479466, 2.34826118, 2.41172769, 2.47519421,
+       2.53866073, 2.60212725, 2.66559377, 2.72906028, 2.7925268 ,
+       2.85599332, 2.91945984, 2.98292636, 3.04639288, 3.10985939,
+       3.17332591, 3.23679243, 3.30025895, 3.36372547, 3.42719199,
+       3.4906585 , 3.55412502, 3.61759154, 3.68105806, 3.74452458,
+       3.8079911 , 3.87145761, 3.93492413, 3.99839065, 4.06185717,
+       4.12532369, 4.1887902 , 4.25225672, 4.31572324, 4.37918976,
+       4.44265628, 4.5061228 , 4.56958931, 4.63305583, 4.69652235,
+       4.75998887, 4.82345539, 4.88692191, 4.95038842, 5.01385494,
+       5.07732146, 5.14078798, 5.2042545 , 5.26772102, 5.33118753,
+       5.39465405, 5.45812057, 5.52158709, 5.58505361, 5.64852012,
+       5.71198664, 5.77545316, 5.83891968, 5.9023862 , 5.96585272,
+       6.02931923, 6.09278575, 6.15625227, 6.21971879, 6.28318531])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.sin(np.linspace(<span class="number">0</span>,<span class="number">2</span>*pi,<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 0.00000000e+00,  6.34239197e-02,  1.26592454e-01,  1.89251244e-01,
+        2.51147987e-01,  3.12033446e-01,  3.71662456e-01,  4.29794912e-01,
+        4.86196736e-01,  5.40640817e-01,  5.92907929e-01,  6.42787610e-01,
+        6.90079011e-01,  7.34591709e-01,  7.76146464e-01,  8.14575952e-01,
+        8.49725430e-01,  8.81453363e-01,  9.09631995e-01,  9.34147860e-01,
+        9.54902241e-01,  9.71811568e-01,  9.84807753e-01,  9.93838464e-01,
+        9.98867339e-01,  9.99874128e-01,  9.96854776e-01,  9.89821442e-01,
+        9.78802446e-01,  9.63842159e-01,  9.45000819e-01,  9.22354294e-01,
+        8.95993774e-01,  8.66025404e-01,  8.32569855e-01,  7.95761841e-01,
+        7.55749574e-01,  7.12694171e-01,  6.66769001e-01,  6.18158986e-01,
+        5.67059864e-01,  5.13677392e-01,  4.58226522e-01,  4.00930535e-01,
+        3.42020143e-01,  2.81732557e-01,  2.20310533e-01,  1.58001396e-01,
+        9.50560433e-02,  3.17279335e-02, -3.17279335e-02, -9.50560433e-02,
+       -1.58001396e-01, -2.20310533e-01, -2.81732557e-01, -3.42020143e-01,
+       -4.00930535e-01, -4.58226522e-01, -5.13677392e-01, -5.67059864e-01,
+       -6.18158986e-01, -6.66769001e-01, -7.12694171e-01, -7.55749574e-01,
+       -7.95761841e-01, -8.32569855e-01, -8.66025404e-01, -8.95993774e-01,
+       -9.22354294e-01, -9.45000819e-01, -9.63842159e-01, -9.78802446e-01,
+       -9.89821442e-01, -9.96854776e-01, -9.99874128e-01, -9.98867339e-01,
+       -9.93838464e-01, -9.84807753e-01, -9.71811568e-01, -9.54902241e-01,
+       -9.34147860e-01, -9.09631995e-01, -8.81453363e-01, -8.49725430e-01,
+       -8.14575952e-01, -7.76146464e-01, -7.34591709e-01, -6.90079011e-01,
+       -6.42787610e-01, -5.92907929e-01, -5.40640817e-01, -4.86196736e-01,
+       -4.29794912e-01, -3.71662456e-01, -3.12033446e-01, -2.51147987e-01,
+       -1.89251244e-01, -1.26592454e-01, -6.34239197e-02, -2.44929360e-16])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>])</span><br><span class="line">b = np.arange(<span class="number">4</span>)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">c = a - b</span><br><span class="line">print(c)</span><br><span class="line">c = c - <span class="number">1</span></span><br><span class="line">print(c)</span><br><span class="line">b**<span class="number">2</span></span><br><span class="line">print(b**<span class="number">2</span>)</span><br><span class="line">print(a&lt;<span class="number">35</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[20 30 40 50]
+[0 1 2 3]
+[20 29 38 47]
+[19 28 37 46]
+[0 1 4 9]
+[ True  True False False]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">B = np.array([[<span class="number">2</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">4</span>]])</span><br><span class="line">print(A)</span><br><span class="line">print(<span class="string">'---------'</span>)</span><br><span class="line">print(B)</span><br><span class="line">print(<span class="string">'----------'</span>)</span><br><span class="line">print(A*B)</span><br><span class="line">print(<span class="string">'----------'</span>)</span><br><span class="line">print(A.dot(B))</span><br><span class="line">print(<span class="string">'-----------'</span>)</span><br><span class="line">print(np.dot(A,B))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[1 1]
+ [0 1]]
+---------
+[[2 0]
+ [3 4]]
+----------
+[[2 0]
+ [0 4]]
+----------
+[[5 4]
+ [3 4]]
+-----------
+[[5 4]
+ [3 4]]</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/numpy-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"># numpy 数据分析</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/14/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day7/" rel="prev" title="n2词汇打卡day7">
+      <i class="fa fa-chevron-left"></i> n2词汇打卡day7
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/02/pandas%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" rel="next" title="pandas学习分享一">
+      pandas学习分享一 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
