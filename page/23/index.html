@@ -158,6 +158,158 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/24/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/24/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%8C/" class="post-title-link" itemprop="url">ReactNative学习分享二</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-12-24 08:46:08 / Modified: 08:48:53" itemprop="dateCreated datePublished" datetime="2018-12-24T08:46:08+08:00">2018-12-24</time>
+            </span>
+
+          
+            <span id="/2018/12/24/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="ReactNative学习分享二" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/24/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%8C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/24/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%8C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>TextInput学习
+一、前言
+    文本输入框，相当于OC中的UITextField，在用法和属性方面，两者都有很大的借鉴之处：通过键盘将文本输入到应用程序的一个基本的组件；</p>
+<p>二、常用的属性</p>
+<ul>
+<li><p>value 字符串型 文本输入的默认值</p>
+</li>
+<li><p>keyboardType  键盘类型决定打开哪种键盘，例如，数字键盘。</p>
+<figure class="highlight plain"><figcaption><span>"ascii-capable", 'numbers-and-punctuation', 'url', 'number-pad', 'phone-pad', 'name-phone-pad', 'email-address', 'decimal-pad', 'twitter', 'web-search', "numeric")</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line"></span><br><span class="line">- multiline 布尔型如果值为真，文本输入可以输入多行。默认值为假。</span><br><span class="line"></span><br><span class="line">- password 布尔型</span><br><span class="line">如果值为真，文本输入框就成为一个密码区域。默认值为假。</span><br><span class="line"></span><br><span class="line">-placeholder 字符串型</span><br><span class="line">在文本输入之前字符串将被呈现出来，通常被称为占位文字</span><br><span class="line"></span><br><span class="line">- &#96;&#96;&#96;var &#123;width,height&#125; &#x3D; Dimensions.get(&#39;window&#39;) 自动从Dimensions.get(&#39;window&#39;)寻找值并赋值</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>坑总结:
+— TextInput不出现键盘，原来是模拟器设置问题，通过 <a href="https://www.jianshu.com/p/6e34f0bf544c" target="_blank" rel="noopener">https://www.jianshu.com/p/6e34f0bf544c</a> 解决。
+— 可能api改过了,password不能让输入变为密码，改成 
+<code>secureTextEntry={true}</code>
+搞定</p>
+<p>三.qq登陆界面案例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">export default class AImageDemo extends Component&lt;Props&gt; &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">                &#123;&#x2F;*头像*&#x2F;&#125;</span><br><span class="line">                &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;img&#x2F;icon.png&#39;)&#125; style&#x3D;&#123;styles.iconStyle&#125;&#x2F;&gt;</span><br><span class="line">                &#123;&#x2F;*账号密码*&#x2F;&#125;</span><br><span class="line">                &#123;&#x2F;*&lt;TextInput placeholder&#x3D;&#123;&#39;请输入用户名&#39;&#125; style&#x3D;&#123;styles.textInputStyle&#125;&#x2F;&gt;*&#x2F;&#125;</span><br><span class="line">                &#123;&#x2F;*&lt;TextInput placeholder&#x3D;&#123;&#39;请输入密码&#39;&#125; password&#x3D;&#123;true&#125; style&#x3D;&#123;styles.textInputStyle&#125;&#x2F;&gt;*&#x2F;&#125;</span><br><span class="line">                &lt;TextInput placeholder&#x3D;&#123;&#39;请输入用户名&#39;&#125; style&#x3D;&#123;styles.textInputStyle&#125; &#x2F;&gt;</span><br><span class="line">                &lt;TextInput placeholder&#x3D;&#123;&#39;请输入密码&#39;&#125;  password&#x3D;&#123;true&#125;  style&#x3D;&#123;styles.textInputStyle&#125; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">                &#123;&#x2F;*登陆*&#x2F;&#125;</span><br><span class="line">                &lt;View style&#x3D;&#123;styles.loginBtnStyle&#125;&gt;</span><br><span class="line">                    &lt;Text style&#x3D;&#123;&#123;color:&#39;white&#39;&#125;&#125;&gt;登录&lt;&#x2F;Text&gt;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">                &#123;&#x2F;*设置*&#x2F;&#125;</span><br><span class="line">                &lt;View style&#x3D;&#123;styles.settingStyle&#125;&gt;</span><br><span class="line">                    &lt;Text&gt;无法登录&lt;&#x2F;Text&gt;</span><br><span class="line">                    &lt;Text&gt;新用户&lt;&#x2F;Text&gt;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">                &#123;&#x2F;*其它的登陆方式*&#x2F;&#125;</span><br><span class="line">                &lt;View style&#x3D;&#123;styles.otherLoginStyle&#125;&gt;</span><br><span class="line">                    &lt;Text&gt;其它登陆方式:&lt;&#x2F;Text&gt;</span><br><span class="line">                    &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;img&#x2F;icon3.png&#39;)&#125; style&#x3D;&#123;styles.otherImageStyle&#125; &#x2F;&gt;</span><br><span class="line">                    &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;img&#x2F;icon7.png&#39;)&#125; style&#x3D;&#123;styles.otherImageStyle&#125; &#x2F;&gt;</span><br><span class="line">                    &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;img&#x2F;icon8.png&#39;)&#125; style&#x3D;&#123;styles.otherImageStyle&#125; &#x2F;&gt;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">            &lt;&#x2F;View&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let MainWidth &#x3D; Dimensions.get(&#39;window&#39;).width;</span><br><span class="line"></span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">    container: &#123;</span><br><span class="line">        &#x2F;&#x2F; 占满屏幕</span><br><span class="line">        flex:1,</span><br><span class="line">        backgroundColor:&#39;#dddddd&#39;,</span><br><span class="line">        &#x2F;&#x2F; 设置测轴的对齐方式</span><br><span class="line">        alignItems:&#39;center&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    iconStyle: &#123;</span><br><span class="line">        marginTop:50,</span><br><span class="line">        marginBottom:30,</span><br><span class="line">        width:80,</span><br><span class="line">        height:80,</span><br><span class="line">        borderRadius:40,</span><br><span class="line">        borderWidth:2,</span><br><span class="line">        borderColor:&#39;white&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    textInputStyle: &#123;</span><br><span class="line">        height:38,</span><br><span class="line">        backgroundColor:&#39;white&#39;,</span><br><span class="line">        marginBottom:1,</span><br><span class="line">        &#x2F;&#x2F; 内容居中</span><br><span class="line">        textAlign:&#39;center&#39;,</span><br><span class="line">        width: MainWidth</span><br><span class="line">    &#125;,</span><br><span class="line">    loginBtnStyle: &#123;</span><br><span class="line">        height:35,</span><br><span class="line">        width:350,</span><br><span class="line">        backgroundColor:&#39;blue&#39;,</span><br><span class="line">        marginTop:30,</span><br><span class="line">        marginBottom:20,</span><br><span class="line">        justifyContent:&#39;center&#39;,</span><br><span class="line">        alignItems: &#39;center&#39;,</span><br><span class="line">        borderRadius:8,</span><br><span class="line">    &#125;,</span><br><span class="line">    settingStyle:&#123;</span><br><span class="line">        flexDirection:&#39;row&#39;,</span><br><span class="line">        &#x2F;&#x2F; backgroundColor:&#39;yellow&#39;,</span><br><span class="line">        justifyContent: &#39;space-between&#39;,</span><br><span class="line">        width:350</span><br><span class="line">    &#125;,</span><br><span class="line">    otherLoginStyle:&#123;</span><br><span class="line">        &#x2F;&#x2F; backgroundColor:&#39;red&#39;,</span><br><span class="line">        flexDirection: &#39;row&#39;,</span><br><span class="line">        alignItems:&#39;center&#39;,</span><br><span class="line">        &#x2F;&#x2F; 绝对定位</span><br><span class="line">        position:&#39;absolute&#39;,</span><br><span class="line">        bottom:10,</span><br><span class="line">        left:20</span><br><span class="line">    &#125;,</span><br><span class="line">    otherImageStyle:&#123;</span><br><span class="line">        width:50,</span><br><span class="line">        height:50,</span><br><span class="line">        borderRadius:25,</span><br><span class="line">        marginLeft: 8</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2018/12/21/FrjaUe.png" alt="case" title="qq界面案例"></p>
+<p>四.Touchable系列组件
+-常用:
+    a.不透明触摸  TouchableOpacity
+        该组件封装了响应触摸事件；当点击按下的时候，该组件的透明度会降低。
+        常用属性：activeOpacity ={number} number是从0-1的数<br>        设置当用户触摸的时候，组件的透明度
+    事例代码:
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;TouchableOpacity activeOpacity&#x3D;&#123;0.5&#125;&gt;</span><br><span class="line">        &lt;View style&#x3D;&#123;styles.innerViewStyle&#125;&gt;</span><br><span class="line">            &lt;Text&gt;我是文本,但可以点击&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    &lt;&#x2F;TouchableOpacity&gt;</span><br><span class="line">&lt;&#x2F;View&gt;</span><br></pre></td></tr></table></figure>
+五.常见的触摸事件</p>
+<ul>
+<li><p>第一种触发方式:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;View style&#x3D;&#123;styles.container&#125; onPress&#x3D;&#123;this.renderPress()&#125;&gt;</span><br><span class="line">            &lt;TouchableOpacity activeOpacity&#x3D;&#123;0.5&#125;&gt;</span><br><span class="line">                &lt;View style&#x3D;&#123;styles.innerViewStyle&#125;&gt;</span><br><span class="line">                    &lt;Text&gt;我是文本,但可以点击&lt;&#x2F;Text&gt;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">            &lt;&#x2F;TouchableOpacity&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 当按下鼠标</span><br><span class="line">renderPress()&#123;</span><br><span class="line">    console.log(&quot;按下鼠标&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种触发方式，由于教程讲的是ES5语法但是最新的ReactNative不支持所以改写成了ES6语法。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">export default class DTouchabelDemo extends Component&lt;Props&gt; &#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            title:&#39;不透明触摸&#39;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">                &lt;TouchableOpacity</span><br><span class="line">                    activeOpacity&#x3D;&#123;0.5&#125;</span><br><span class="line">                    onPress&#x3D;&#123;()&#x3D;&gt;this.activeEvent(&#39;点击&#39;)&#125;</span><br><span class="line">                    onPressIn&#x3D;&#123;()&#x3D;&gt;this.activeEvent(&#39;按下&#39;)&#125;</span><br><span class="line">                    onPressOut&#x3D;&#123;()&#x3D;&gt;this.activeEvent(&#39;抬起&#39;)&#125;</span><br><span class="line">                    onLongPress&#x3D;&#123;()&#x3D;&gt;this.activeEvent(&#39;长按&#39;)&#125;</span><br><span class="line">                &gt;</span><br><span class="line">                    &lt;View style&#x3D;&#123;styles.innerViewStyle&#125;&gt;</span><br><span class="line">                        &lt;Text&gt;常用的事件&lt;&#x2F;Text&gt;</span><br><span class="line">                    &lt;&#x2F;View&gt;</span><br><span class="line">                &lt;&#x2F;TouchableOpacity&gt;</span><br><span class="line">                &lt;View&gt;</span><br><span class="line">                    &lt;Text&gt;&#123; this.state.title &#125;&lt;&#x2F;Text&gt;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">            &lt;&#x2F;View&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    activeEvent(event)&#123;</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            title:event</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">    container: &#123;</span><br><span class="line">        flex: 1,</span><br><span class="line">        justifyContent: &#39;center&#39;,</span><br><span class="line">        alignItems: &#39;center&#39;,</span><br><span class="line">        backgroundColor: &#39;#F5FCFF&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    innerViewStyle:&#123;</span><br><span class="line">        backgroundColor:&#39;red&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>React Native组件声明周期</p>
+</li>
+</ul>
+<p>参考以下文章以及es5和es6语法的区别
+<a href="https://mp.weixin.qq.com/s?__biz=MzIxNjEzNjUzOQ==&amp;mid=402039662&amp;idx=1&amp;sn=f3ea81d2777d657a1f39351b2893e405&amp;scene=19#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIxNjEzNjUzOQ==&amp;mid=402039662&amp;idx=1&amp;sn=f3ea81d2777d657a1f39351b2893e405&amp;scene=19#wechat_redirect</a></p>
+<p>六.ScrollView </p>
+<p>常用属性</p>
+<ul>
+<li>horizontal bool 
+当此属性为true的时候，所有的的子视图会在水平方向上排成一行，而不是默认的在垂直方向上排成一列。默认值为false。</li>
+<li>showsHorizontalScrollIndicator bool 
+当此属性为true的时候，显示一个水平方向的滚动条。</li>
+<li>pagingEnabled bool 
+当值为true时，滚动条会停在滚动视图的尺寸的整数倍位置。这个可以用在水平分页上。默认值为false。</li>
+<li>scrollEnabled bool 
+当值为false的时候，内容不能滚动，默认值为true。</li>
+<li>OnMomentumScrollEnd  function
+当一帧滚动完毕的时候调用，e.nativeEvent.contentOffset。</li>
+<li>onScrollBeginDrag  fuction
+当开始手动拖拽的时候调用。</li>
+<li>onScrollEndDrag  fuction
+当结束手动拖拽的时候调用。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*--------------第九个示例程序,EScrillViewDemo----------------*&#x2F;</span><br><span class="line">export default class DTouchabelDemo extends Component&lt;Props&gt; &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;ScrollView</span><br><span class="line">                horizontal &#x3D; &#123;true&#125;</span><br><span class="line">                showsHorizontalScrollIndicator &#x3D; &#123;false&#125;</span><br><span class="line">                pagingEnabled &#x3D; &#123;true&#125;</span><br><span class="line">                scrollEnabled &#x3D; &#123;false&#125;</span><br><span class="line">                &gt;</span><br><span class="line">                &#123;this.renderChildView()&#125;</span><br><span class="line">            &lt;&#x2F;ScrollView&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    renderChildView()&#123;</span><br><span class="line">        var allChild &#x3D; [];</span><br><span class="line">        var colors &#x3D; [&#39;red&#39;,&#39;green&#39;,&#39;blue&#39;,&#39;yellow&#39;,&#39;purple&#39;];</span><br><span class="line">        &#x2F;&#x2F; 遍历</span><br><span class="line">        for(var i &#x3D; 0; i&lt;5; i++)&#123;</span><br><span class="line">            allChild.push(</span><br><span class="line">                &lt;View key&#x3D;&#123;i&#125; style&#x3D;&#123;&#123;backgroundColor:colors[i],width:375,height:120&#125;&#125;&gt;</span><br><span class="line">                    &lt;Text&gt;&#123;i&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        return allChild;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">    container: &#123;</span><br><span class="line">        marginTop:20,</span><br><span class="line">        backgroundColor:&#39;purple&#39;,</span><br><span class="line">        flexDirection: &#39;row&#39;,</span><br><span class="line">        justifyContent: &#39;space-around&#39;,</span><br><span class="line">        alignItems: &#39;flex-end&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>轮播图滚动案例的静态页面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const Dimensions &#x3D; require(&#39;Dimensions&#39;);</span><br><span class="line">const ImageData &#x3D; require(&#39;.&#x2F;ImageData&#39;);</span><br><span class="line"></span><br><span class="line">let &#123;width&#125; &#x3D; Dimensions.get(&#39;window&#39;);</span><br><span class="line">export default class FScrollViewDemo1 extends Component&lt;Props&gt; &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">                &lt;ScrollView&gt;</span><br><span class="line">                    &#123;this.renderAllImage()&#125;</span><br><span class="line">                &lt;&#x2F;ScrollView&gt;</span><br><span class="line">                &lt;Text&gt;123&lt;&#x2F;Text&gt;</span><br><span class="line">            &lt;&#x2F;View&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    renderAllImage() &#123;</span><br><span class="line">        &#x2F;&#x2F; 数组</span><br><span class="line">        let allImage &#x3D; [];</span><br><span class="line">        let imgsArr &#x3D; ImageData.data;</span><br><span class="line">        for (let i &#x3D; 0; i &lt; imgsArr.length; i++) &#123;</span><br><span class="line">            let imgItem &#x3D; imgsArr[i];</span><br><span class="line">            allImage.push(</span><br><span class="line">                &lt;Image key&#x3D;&#123;i&#125; source&#x3D;&#123;&#123;uri: imgItem.img&#125;&#125; style&#x3D;&#123;&#123;width: width, height: 120&#125;&#125;&#x2F;&gt;</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        return allImage</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">    container:&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结合定时器轮播案例完整版本代码,期间遇到的坑:最新版本的RN一定要尽量用ES6的特性比如,()=&gt;{}</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line">const Dimensions &#x3D; require(&#39;Dimensions&#39;);</span><br><span class="line">const ImageData &#x3D; require(&#39;.&#x2F;ImageData&#39;);</span><br><span class="line">let &#123;width&#125; &#x3D; Dimensions.get(&#39;window&#39;);</span><br><span class="line">export default class FScrollViewDemo1 extends Component&lt;Props&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 设置固定值</span><br><span class="line">    static defaultProps &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 每隔多少时间</span><br><span class="line">        duration:　3000</span><br><span class="line">    &#125;;</span><br><span class="line">    &#x2F;&#x2F; 设置可变的和初始值</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            &#x2F;&#x2F; 当前页码</span><br><span class="line">            currentPage:0</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">                &lt;ScrollView</span><br><span class="line">                    ref&#x3D;&quot;scrollView&quot;</span><br><span class="line">                    horizontal&#x3D;&#123;true&#125;</span><br><span class="line">                    &#x2F;&#x2F; 隐藏水平滚动条</span><br><span class="line">                    showsHorizontalScrollIndicator&#x3D;&#123;false&#125;</span><br><span class="line">                    &#x2F;&#x2F; 自动分页</span><br><span class="line">                    pagingEnabled &#x3D; &#123;true&#125;</span><br><span class="line">                    onMomentumScrollEnd&#x3D;&#123;(e)&#x3D;&gt;this.onAnimationEnd(e)&#125;</span><br><span class="line">                    &#x2F;&#x2F; 开始拖拽</span><br><span class="line">                    onScrollBeginDrag&#x3D;&#123;this.onScrollBeginDrag&#125;</span><br><span class="line">                    &#x2F;&#x2F; 停止拖拽</span><br><span class="line">                    onScrollEndDrag&#x3D;&#123;this.onScrollEndDrag&#125;</span><br><span class="line">                &gt;</span><br><span class="line">                    &#123;this.renderAllImage()&#125;</span><br><span class="line">                &#123;&#x2F;*返回指示器    *&#x2F;&#125;</span><br><span class="line">                &lt;&#x2F;ScrollView&gt;</span><br><span class="line">                &lt;View style&#x3D;&#123;styles.pageViewStyle&#125;&gt;</span><br><span class="line">                    &#123;&#x2F;*返回五个圆点*&#x2F;&#125;</span><br><span class="line">                    &#123;this.renderPageCircle()&#125;</span><br><span class="line">                &lt;&#x2F;View&gt;</span><br><span class="line">            &lt;&#x2F;View&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 返回所有的图片</span><br><span class="line">    renderAllImage() &#123;</span><br><span class="line">        &#x2F;&#x2F; 数组</span><br><span class="line">        let allImage &#x3D; [];</span><br><span class="line">        &#x2F;&#x2F; 拿到图像数组</span><br><span class="line">        let imgsArr &#x3D; ImageData.data;</span><br><span class="line">        &#x2F;&#x2F; 遍历</span><br><span class="line">        for (let i &#x3D; 0; i &lt; imgsArr.length; i++) &#123;</span><br><span class="line">            &#x2F;&#x2F; 取出单独的每一个对象</span><br><span class="line">            let imgItem &#x3D; imgsArr[i];</span><br><span class="line">            &#x2F;&#x2F; 创建组件装入数组</span><br><span class="line">            allImage.push(</span><br><span class="line">                &lt;Image key&#x3D;&#123;i&#125; source&#x3D;&#123;&#123;uri: imgItem.img&#125;&#125; style&#x3D;&#123;&#123;width: width, height: 120&#125;&#125;&#x2F;&gt;</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        return allImage</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 返回所有的圆点</span><br><span class="line">    renderPageCircle()&#123;</span><br><span class="line">        &#x2F;&#x2F; 定义一个数组放置所有的圆点</span><br><span class="line">        var indicatorArr &#x3D; [];</span><br><span class="line">        &#x2F;&#x2F; 拿到图像数组</span><br><span class="line">        let imgsArr &#x3D; ImageData.data;</span><br><span class="line">        &#x2F;&#x2F; 遍历</span><br><span class="line">        for(var i&#x3D;0; i&lt;imgsArr.length;i++)&#123;</span><br><span class="line">            &#x2F;&#x2F; 判断</span><br><span class="line">            var style &#x3D; (i &#x3D;&#x3D;&#x3D; this.state.currentPage) ? &#123;color:&#39;orange&#39;&#125;:&#123;color:&#39;#ffffff&#39;&#125;</span><br><span class="line">            &#x2F;&#x2F; 把圆点装入数组</span><br><span class="line">            indicatorArr.push(</span><br><span class="line">                &lt;Text key&#x3D;&#123;i&#125; style&#x3D;&#123;[&#123;fontSize:25&#125;,style]&#125;&gt;&amp;bull;&lt;&#x2F;Text&gt;</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 返回</span><br><span class="line">        return indicatorArr;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 当一帧滚动结束的时候调用</span><br><span class="line">    onAnimationEnd(e)&#123;</span><br><span class="line">        e.persist();</span><br><span class="line">        &#x2F;&#x2F; 1. 求出水平方向的偏移量</span><br><span class="line">        let offSet &#x3D; e.nativeEvent.contentOffset.x;</span><br><span class="line">        &#x2F;&#x2F; 2.求出当前的页数</span><br><span class="line">        let currentPage &#x3D; Math.floor(offSet &#x2F; width);</span><br><span class="line">        &#x2F;&#x2F; console.log(currentPage)</span><br><span class="line">        &#x2F;&#x2F; 3.更新状态机,重新绘制UI</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            &#x2F;&#x2F; 当前的页码</span><br><span class="line">            currentPage: currentPage</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 实现一些复杂的操作</span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        &#x2F;&#x2F; 开启定时器</span><br><span class="line">        this.startTimer();</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 这种写法无法识别this.startTimer</span><br><span class="line">    &#x2F;&#x2F; onScrollBeginDrag()&#123;</span><br><span class="line">    &#x2F;&#x2F;     console.log(1111);</span><br><span class="line">    &#x2F;&#x2F;     console.log(this.startTimer);</span><br><span class="line">    &#x2F;&#x2F;     &#x2F;&#x2F; clearInterval(this.timer);</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">    &#x2F;&#x2F; 这种写法也无法识别this.startTimer</span><br><span class="line">    &#x2F;&#x2F; onScrollBeginDrag &#x3D; function()&#123;</span><br><span class="line">    &#x2F;&#x2F;     console.log(1111);</span><br><span class="line">    &#x2F;&#x2F;     console.log(this.startTimer);</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">    &#x2F;&#x2F; 这种写法正确，能识别this.startTimer，必须是ES6的语法</span><br><span class="line">    onScrollBeginDrag &#x3D; ()&#x3D;&gt; &#123;</span><br><span class="line">        clearInterval(this.timer);</span><br><span class="line">    &#125;;</span><br><span class="line">    &#x2F;&#x2F;停止拖拽</span><br><span class="line">    onScrollEndDrag &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F;开启定时器</span><br><span class="line">        this.startTimer();</span><br><span class="line">    &#125;;</span><br><span class="line">    startTimer()&#123;</span><br><span class="line">        &#x2F;&#x2F; 1. 拿到scrollView</span><br><span class="line">        let scrollView &#x3D; this.refs.scrollView;</span><br><span class="line">        let imgCount &#x3D; ImageData.data.length;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2. 添加定时器,可看作一个隐式全局变量</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">            &#x2F;&#x2F; 2.1 设置圆点,其实可以不写</span><br><span class="line">            let activePage &#x3D; 0;</span><br><span class="line">            &#x2F;&#x2F; 2.2 判断</span><br><span class="line">            if((this.state.currentPage+1) &gt;&#x3D; imgCount)&#123; &#x2F;&#x2F; 越界</span><br><span class="line">                activePage &#x3D; 0;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                activePage&#x3D;this.state.currentPage+1;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 2.3 更新状态机</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                currentPage: activePage</span><br><span class="line">            &#125;);</span><br><span class="line">            &#x2F;&#x2F; 2.4 让ScrollView滚动起来</span><br><span class="line">            let offsetX &#x3D; activePage * width;</span><br><span class="line">            scrollView.scrollResponderScrollTo(&#123;x:offsetX,y:0,animated:true&#125;);</span><br><span class="line">        &#125;, this.props.duration);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">    container:&#123;</span><br><span class="line">        marginTop:25</span><br><span class="line">    &#125;,</span><br><span class="line">    pageViewStyle:&#123;</span><br><span class="line">        width:width,</span><br><span class="line">        height:25,</span><br><span class="line">        backgroundColor:&#39;rgba(0,0,0,0.4)&#39;,</span><br><span class="line">        &#x2F;&#x2F; 定位</span><br><span class="line">        position:&#39;absolute&#39;,</span><br><span class="line">        bottom:0,</span><br><span class="line">        &#x2F;&#x2F; 设置主轴的方向</span><br><span class="line">        flexDirection: &#39;row&#39;,</span><br><span class="line">        &#x2F;&#x2F; 设置测轴方式的对齐方式</span><br><span class="line">        alignItems: &#39;center&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/18/ReactNative%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91%E5%88%86%E4%BA%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1162,89 +1314,6 @@ npm cache [clean|ls] 清除缓存
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/11/28/12%E5%B9%B4%E8%80%81%E5%8F%8B%E8%81%9A%E4%BC%9A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/28/12%E5%B9%B4%E8%80%81%E5%8F%8B%E8%81%9A%E4%BC%9A/" class="post-title-link" itemprop="url">12年老友聚会</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-11-28 20:12:05 / Modified: 20:24:06" itemprop="dateCreated datePublished" datetime="2018-11-28T20:12:05+08:00">2018-11-28</time>
-            </span>
-
-          
-            <span id="/2018/11/28/12%E5%B9%B4%E8%80%81%E5%8F%8B%E8%81%9A%E4%BC%9A/" class="post-meta-item leancloud_visitors" data-flag-title="12年老友聚会" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/11/28/12%E5%B9%B4%E8%80%81%E5%8F%8B%E8%81%9A%E4%BC%9A/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/12%E5%B9%B4%E8%80%81%E5%8F%8B%E8%81%9A%E4%BC%9A/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>十二年未见面的初中同学聚会，四个人谈天说地，两个人结婚，一个人当爸爸。生活让人变化的好大，但是总有些东西不会变的，总觉得以前都很熟悉，像一场梦一样。当人开始听老歌，总是回忆以前的事情的时候，说明人确实是老了。感觉几个人奔三的人都活的很丧，每天上班下班两点一线。听朋友聊到跟了两年的工程项目因为种种原因拿不到奖金的时候，唏嘘不已。
-听说有同学去了美国拿了绿卡，觉得脑子聪明加上自己的毅力才能达成目标。自己的话还是要好好加强编程的技术，觉得做程序员还是挺有意思的相比他们的工作的话，虽然他们也有他们的好处，当然这是我自己的选择。
-总之，自己的生活的话还是希望能练练吉他，然后把日语学学好，作为自己的一条后备之路，毕竟混合型人才才是王道。一点深入加多点开花，这个算是给自己的人生规划吧。
-生活往往需要一些惊喜，当我们畅快聊天的时候，一切仿佛又回到了初中的岁月。每个人的境遇和每个人的性格，背景等等又有着紧密关系，非常有意思，希望下次再聚，能一起喝点酒。写的有点乱，就这样吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1316,7 +1385,7 @@ npm cache [clean|ls] 清除缓存
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,245 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9025%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B07%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9025%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B07%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" class="post-title-link" itemprop="url">高级前端养成25博客系统之07部署到阿里云</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-11 20:06:27" itemprop="dateCreated datePublished" datetime="2020-08-11T20:06:27+08:00">2020-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-20 20:32:08" itemprop="dateModified" datetime="2020-08-20T20:32:08+08:00">2020-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4%E9%83%A8%E7%BD%B2-%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">运维部署 博客系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9025%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B07%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成25博客系统之07部署到阿里云" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9025%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B07%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9025%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B07%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>过程导览</p>
+<ol>
+<li>Docker 化我们的应用</li>
+<li>买一个按使用量收费的服务器(100 元起步)</li>
+<li>上传 ssh pub key</li>
+<li>创建一个用户 blog，分配目录/home/blog</li>
+<li>创建 app 目录，app 里包含 current 和 releases 两个子目录
+a) 其中 releases 用来容纳每一次发布
+b) 其中 current 用来 link 到最新的发布</li>
+</ol>
+</li>
+<li><p>确定在 docker 化之前代码是可以用的，解决 post 类型问题</p>
+</li>
+</ol>
+<ul>
+<li>由于之前 ext-env.d.ts 有了 import 所以不是全局的了</li>
+<li>解决方法:最外层新建 custom.d.ts 把类型放入</li>
+</ul>
+<ol start="3">
+<li>docker 化 node 应用</li>
+</ol>
+<ul>
+<li>google 搜索 docker nodejs,找到<a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/" target="_blank" rel="noopener">文档</a></li>
+<li><code>docker build -t fang/node-web-app .</code>,创建操作系统镜像</li>
+<li><code>docker run -p 3000:3000 -d fang/node-web-app</code> ,使用操作系统镜像,左边为操作系统端口，右边镜像端口</li>
+<li>docker logs b45</li>
+<li>出现问题.env.secret 不能给别人看，修改 .dockerignore</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*.local</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用 ssh 登录服务器</li>
+</ol>
+<ul>
+<li>刚开始需要输入密码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh root@39.103.166.176</span><br><span class="line">Jirengu2020</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>copy 本机 ssh 到服务器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id root@39.103.166.176</span><br><span class="line">Jirengu2020</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>此时 ssh <a href="mailto:&#114;&#111;&#111;&#116;&#64;&#x33;&#57;&#46;&#x31;&#48;&#51;&#46;&#x31;&#54;&#54;&#46;&#x31;&#55;&#x36;">&#114;&#111;&#111;&#116;&#64;&#x33;&#57;&#46;&#x31;&#48;&#51;&#46;&#x31;&#54;&#54;&#46;&#x31;&#55;&#x36;</a> 就不需要密码了</li>
+<li>linux 密码设置 <code>passwd root</code></li>
+<li>别人想要服务器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br><span class="line">cat authorized_keys</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如何让其它人也能登录机器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">新开一个 把其他人机器的~&#x2F;.ssh&#x2F;id_rsa.pub</span><br><span class="line">复制到到root的authorized_keys下面</span><br><span class="line">vi authorized_keys</span><br><span class="line">按o粘贴别人机器的key</span><br><span class="line">按q退出，不会vi，就用vimtutor学一下</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>为应用单独创建 user</p>
+<ul>
+<li>root 权限太大了，不要用 root</li>
+<li>每次输入 ip 太麻烦，编辑 host 把公网 ip 放进去,39.103.166.176 dev1</li>
+<li>然后就可以 root@dev1 进入</li>
+<li>然后新建 user,<code>adduser blog</code>,输入密码创建成功</li>
+<li>如何登入 blog 方法一 su - blog</li>
+<li>方法二 登录 blog ssh blog@dev1，输入密码成功登录</li>
+<li>但是这样子每次输入密码很烦，同样 ssh-copy-id 上传上去，输入密码就不需要输入密码了</li>
+<li>同样改密码,passwd blog</li>
+</ul>
+</li>
+<li><p>为 root 安装 docker</p>
+<ul>
+<li>google 搜索 ubuntu 10 install docker，找到<a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener">官方链接</a>,跟着做就可以</li>
+<li>sudo apt-get install docker-ce=5:19.03.12<del>3-0</del>ubuntu-bionic docker-ce-cli=5:19.03.12<del>3-0</del>ubuntu-bionic containerd.io=1.2.13-2</li>
+</ul>
+</li>
+<li><p>将 blog 用户加到 docker 分组</p>
+<ul>
+<li>google 搜索 linux list all groups</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;etc&#x2F;group</span><br><span class="line">搜索linux add user to group</span><br><span class="line">切到root</span><br><span class="line">usermod -a -G docker blog</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li><p>实现思路</p>
+<ul>
+<li>把代码拉到 blog 目录</li>
+<li>根据代码再去创建 docker 镜像,然后运行 docker 镜像</li>
+<li>好处是省去了上传 docker 镜像这一步</li>
+</ul>
+</li>
+<li><p>开始下载代码</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 切到blog</span><br><span class="line">su - blog</span><br><span class="line">git --version</span><br><span class="line">pwd</span><br><span class="line">mkdir app</span><br><span class="line">cd app</span><br><span class="line">&#x2F;&#x2F; 需要添加earth&#x2F;dev1到github</span><br><span class="line">&#x2F;&#x2F; cat ~&#x2F;.ssh&#x2F;id 发现没有</span><br><span class="line">&#x2F;&#x2F; 搜索generate ssh key</span><br><span class="line">ssh-keygen -t rsa -b 4096 -C tellt@126.com</span><br><span class="line">&#x2F;&#x2F; cat ~&#x2F;.ssh&#x2F;id_rsa 然后复制到github</span><br><span class="line">git clone git@github.com:codingories&#x2F;23createBlogs.git</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>在阿里云上 build 应用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir blog-data</span><br><span class="line">cd app&#x2F;</span><br><span class="line">cd</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行 readme</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -v &#x2F;home&#x2F;blog&#x2F;blog-data&#x2F;:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data -p 5432:5432 -e POSTGRES_USER&#x3D;blog -e POSTGRES_HOST_AUTH_METHOD&#x3D;trust -d postgres:12.2</span><br><span class="line">&#x2F;&#x2F; 构建镜像</span><br><span class="line">docker build -t fang&#x2F;node-web-app .</span><br><span class="line">&#x2F;&#x2F; 运行镜</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>在 ubuntu 上安装 node,yarn，<a href="https://github.com/nodesource/distributions/blob/master/README.md" target="_blank" rel="noopener">相关文档</a></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ubuntu install nodejs12</span><br><span class="line">curl -sL https:&#x2F;&#x2F;deb.nodesource.com&#x2F;setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line">sudo apt-get install gcc g++ make</span><br><span class="line">curl -sL https:&#x2F;&#x2F;dl.yarnpkg.com&#x2F;debian&#x2F;pubkey.gpg | sudo apt-key add -</span><br><span class="line">echo &quot;deb https:&#x2F;&#x2F;dl.yarnpkg.com&#x2F;debian&#x2F; stable main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;yarn.list</span><br><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install yarn</span><br><span class="line">&#x2F;&#x2F; cd 到 app&#x2F;项目目录</span><br><span class="line">yarn install</span><br><span class="line">yarn build</span><br><span class="line">&#x2F;&#x2F; 构建镜像</span><br><span class="line">docker build -t fang&#x2F;node-web-app .</span><br><span class="line">&#x2F;&#x2F; 运行镜像</span><br><span class="line">docker run -p 3000:3000 -d fang&#x2F;node-web-app</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>发现报错，因为.env.local 文件没上传</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">touch .env.local</span><br><span class="line">vi .env.local</span><br><span class="line">&#x2F;&#x2F; 按 a，把内容复制进去</span><br><span class="line">esc,:wq</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>总结过程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建数据库</span><br><span class="line">docker run -v &quot;\$PWD&#x2F;blog-data&quot;:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data -p 5432:5432 -e POSTGRES_USER&#x3D;blog -e POSTGRES_HOST_AUTH_METHOD&#x3D;trust -d postgres:12.2</span><br><span class="line">git clone xxxx</span><br><span class="line">cd xxx</span><br><span class="line">&#x2F;&#x2F; 获取最新代码</span><br><span class="line">git pull</span><br><span class="line">&#x2F;&#x2F; 获取最新依赖</span><br><span class="line">yarn install</span><br><span class="line">&#x2F;&#x2F; 得到可以执行代码</span><br><span class="line">yarn build</span><br><span class="line">&#x2F;&#x2F; touch .env,secret 然后用 docker 创建镜像，解决 build 报错</span><br><span class="line">docker build -t fang&#x2F;node-web-app .</span><br><span class="line">docker run</span><br><span class="line">curl localhost:3000</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>解决报错</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker kill</span><br><span class="line">docker rm &#x2F;&#x2F; 所有服务</span><br><span class="line">&#x2F;&#x2F; 重新运行 postgress</span><br><span class="line">&#x2F;&#x2F; 小技巧</span><br><span class="line">history | grep docker run</span><br><span class="line">docker run --network&#x3D;host -v &#x2F;home&#x2F;blog&#x2F;blog-data&#x2F;:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data -p 5432:5432 -e POSTGRES_USER&#x3D;blog -e POSTGRES_HOST_AUTH_METHOD&#x3D;trust -d postgres:12.2</span><br><span class="line">docker run --network&#x3D;host -p 3000:3000 -d fang&#x2F;node-web-app</span><br><span class="line">curl -L http:&#x2F;&#x2F;localhost:3000</span><br><span class="line">docker logs 0ee</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>在阿里云上创建数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 245 bash</span><br><span class="line">psql -U blog</span><br><span class="line">CREATE DATABASE blog_development ENCODING &#39;UTF8&#39; LC_COLLATE &#39;en_US.utf8&#39; LC_CTYPE &#39;en_US.utf8&#39;;</span><br><span class="line">whoami</span><br><span class="line">history | grep &#39;docker run&#39;</span><br><span class="line">docker run --network&#x3D;host -p 3000:3000 -d fang&#x2F;node-web-app</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>在阿里云上创建数据表</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vi ~&#x2F;.bashrc</span><br><span class="line">&#x2F;&#x2F;第一行</span><br><span class="line">export NODE_ENV&#x3D;production</span><br><span class="line">&#x2F;&#x2F; 改写</span><br><span class="line">database: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39; ? &#39;blog_production&#39; : &#39;blog_development&#39;,</span><br><span class="line">yarn dev</span><br><span class="line">yarn m:run</span><br><span class="line">发现 json 做配置文件有问题，当前配置文件只是用来开发，最好用 js 做配置文件</span><br><span class="line">cp ormconfig.json ormconfig_production.json</span><br><span class="line">编辑 ormconfig.json 文件</span><br><span class="line">注释 src&#x2F;entity&#x2F;User.ts 中引入 getDatabaseConnection 的地方</span><br><span class="line">esc,shift+8 搜索下一个</span><br><span class="line">注释 5 行</span><br><span class="line">再 yarn m:run，就可以了</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>添加阿里云安全策略</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">更多</span><br><span class="line">网络安全组</span><br><span class="line">网络安全组配置</span><br><span class="line">手动添加</span><br><span class="line">0.0.0.0&#x2F;0</span><br><span class="line">3000</span><br></pre></td></tr></table></figure>
+
+<ol start="16">
+<li>别忘了关机</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">实例</span><br><span class="line">停机-&gt;停机不收费</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9024%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B06%E5%90%8E%E7%AB%AF%E5%88%86%E9%A1%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2186,495 +2425,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/" class="post-title-link" itemprop="url">高级前端养成17nodeJS框架之06Nextjs全解下</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-12 18:48:38" itemprop="dateCreated datePublished" datetime="2020-07-12T18:48:38+08:00">2020-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-18 14:57:51" itemprop="dateModified" datetime="2020-07-18T14:57:51+08:00">2020-07-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Next-js/" itemprop="url" rel="index"><span itemprop="name">Next.js</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成17nodeJS框架之06Nextjs全解下" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一. 启用 TypeScript</p>
-<ol>
-<li>创建 tsconfig.json<ul>
-<li>tsc –init 运行后得到 tsconfig.json</li>
-<li>将 jsconfig.json 里面的配置合并到 tsconfig.json</li>
-<li>删除 jsconfig.json</li>
-</ul>
-</li>
-<li>重启 yarn –dev<ul>
-<li>yarn add –dev typescript @types/react @types/node @types/react-dom</li>
-<li>yarn dev</li>
-</ul>
-</li>
-<li>改后缀<ul>
-<li>将文件名由.js 改为.tsx</li>
-<li>不需要一次将所有文件全部改完</li>
-</ul>
-</li>
-<li>tsconfig 加强<ul>
-<li>在 tsconfig 里添加”noImplicitAny”: true</li>
-<li>禁用隐式的 any</li>
-</ul>
-</li>
-</ol>
-<p>二. Next.js Api</p>
-<ul>
-<li>目前的页面<ul>
-<li>index 和 posts/first-post 都是 HTML</li>
-<li>但实际开发中我们需要请求/user /shops 等 API</li>
-<li>返回的内容是 JSON 格式的字符串</li>
-</ul>
-</li>
-<li>使用 Next.js API<ul>
-<li>路径为/api/v1/posts 以便与/posts 区分开来</li>
-<li>默认导出的函数类型为 NextApiHandler</li>
-<li>该代码只运行在 Node.js 里，不运行在浏览器中</li>
-</ul>
-</li>
-</ul>
-<p>三. API 小结</p>
-<ul>
-<li>/api/里面的文件是 API<ul>
-<li>一般返回 JSON 格式的字符串</li>
-<li>但也不是不能返回 HTML, 比如<code>res.end(&#39;&lt;h1&gt;...&#39;)</code></li>
-</ul>
-</li>
-<li>API 文件默认导出 NextApiHandler<ul>
-<li>这是一个函数类型</li>
-<li>第一个参数是请求</li>
-<li>第二个参数是对象</li>
-<li>Next.js 基于 Express,所以支持 Express 的中间件。详细见<a href="https://nextjs.org/docs/api-routes/api-middlewares" target="_blank" rel="noopener">文档</a></li>
-</ul>
-</li>
-</ul>
-<p>四. Next.js 三种渲染</p>
-<ul>
-<li>客户端渲染<ul>
-<li>只在浏览器上执行的渲染</li>
-</ul>
-</li>
-<li>静态页面生成(SSG)<ul>
-<li>Static Site Generation,解决白屏问题，SEO 问题</li>
-<li>无法生成用户相关内容(所有用户请求的结果都一样)</li>
-<li>什么是动态内容静态化<ul>
-<li>其实每个人看到的文章列表都是一样的</li>
-<li>为什么还需要在每个人的浏览器上渲染一次</li>
-<li>为什么不在后端渲染好，然后发给每个人</li>
-<li>N 次渲染变成了一次渲染</li>
-<li>N 次客户端渲染变成了一次静态页面生成</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>服务端渲染(SSR)<ul>
-<li>解决白屏问题，SEO 问题</li>
-<li>可以生成用户相关内容(不同用户结果不同)</li>
-</ul>
-</li>
-<li>注意: SSR 和 SSG 都属于预渲染 Pre-rendering</li>
-</ul>
-<p>五. 旧瓶装新酒</p>
-<ul>
-<li>三种渲染方式分别对应<ul>
-<li>客户端渲染–用 JS，Vue，React 创建 HTML</li>
-<li>SSG–页面静态话，把 PHP 提前渲染成 HTML</li>
-<li>SSR–PHP,Python,Ruby,Java 后台的基本功能</li>
-</ul>
-</li>
-<li>不同点<ul>
-<li>Next.js 的预渲染可以与前端 React 无缝对接</li>
-</ul>
-</li>
-</ul>
-<p>六. 客户端渲染</p>
-<ul>
-<li><p>用浏览器 JS 创建 HTML</p>
-<ul>
-<li>实现加载 posts</li>
-</ul>
-</li>
-<li><p>要点</p>
-<ul>
-<li>如何封装 usePosts</li>
-</ul>
-</li>
-<li><p>文件列表</p>
-<ul>
-<li>pages/posts/index.tsx</li>
-<li>lib/hooks/usePosts.tsx</li>
-</ul>
-</li>
-<li><p>总结</p>
-<ul>
-<li>文章列表是完全由前端渲染的，我们称之为客户端渲染</li>
-</ul>
-</li>
-</ul>
-<p>七. 客户端渲染的缺点</p>
-<ul>
-<li>白屏<ul>
-<li>在 AJAX 得到响应之前，页面中之后 Loading</li>
-</ul>
-</li>
-<li>SEO 不友好<ul>
-<li>搜索引擎访问页面，看不到 posts 数据</li>
-<li>因为搜索引擎默认不会执行 JS, 只能看到 HTML</li>
-</ul>
-</li>
-</ul>
-<p>八. 静态内容 v.s.动态内容</p>
-<ul>
-<li><img src="https://i.loli.net/2020/07/14/Y5zNXAMDJxo7VHT.png" alt="静态动态.png"></li>
-<li>一般来说，静态内容是写在代码里的，动态内容是来自数据库的，我们将尝试用文件系统代替数据库</li>
-</ul>
-<p>九. 思考</p>
-<ul>
-<li>上图中的静态内容<ul>
-<li>是服务端渲染的，还是客户端渲染的</li>
-<li>渲染了几次，一次还是两次</li>
-</ul>
-</li>
-<li>参考 React SSR 的官方文档<ul>
-<li>推荐在后端 renderToString()在前端 hydrate()</li>
-<li>hydrate()混合，会保留 HTML 并附上事件监听</li>
-<li>也就是说后端渲染 HTML,前端添加监听</li>
-<li>前端也会渲染一次，用以确保前后端渲染结果一致</li>
-</ul>
-</li>
-<li>推论<ul>
-<li>所有页面至少有一个标签是静态内容，由服务器渲染</li>
-</ul>
-</li>
-</ul>
-<p>十. getStaticProps 获取 posts</p>
-<ul>
-<li>声明位置<ul>
-<li>每个 page 不是默认导出一个函数么？</li>
-<li>把 getStaticProps 声明在这个函数旁边即可</li>
-<li>必须加 export</li>
-</ul>
-</li>
-<li>写法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export const getStaticProps &#x3D; async () &#x3D;&gt; &#123;</span><br><span class="line">  const posts &#x3D; await getPosts()</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      posts: posts</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>十一. getStaticProps</p>
-<ul>
-<li>如何使用 props</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default function PostsIndex &#x3D; (props)</span><br><span class="line">  &#x3D;&gt; &#123;...&#125;</span><br><span class="line">默认导出的函数的第一个参数就是props</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如何给 props 添加类型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const PostsIndex: NextPage&lt;&#123; posts: Post[] &#125;&gt;</span><br><span class="line">  &#x3D; (props) &#x3D;&gt; &#123;...&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>- 把 function 改成const + 箭头函数
-- 类型声明为NextPage
-- 用范型给NextPage传个参数```&lt;XProps&gt;```
-- Props 就是 props 的类型</code></pre>
-<p>十二. 同构</p>
-<ul>
-<li><img src="https://i.loli.net/2020/07/18/lCF7LJGZEMAmxXv.png" alt="同构.png"></li>
-<li>有没有发现<ul>
-<li>前端不用 AJAX 也能拿到 posts 了</li>
-<li>这就是同构 SSR 的好处: 后端数据可以直接传给前端</li>
-<li>前端 JSON.parse 一下就能得到了 posts（帮你做了）</li>
-</ul>
-</li>
-<li>难道 PHP/Java/Python 就不做不到么<ul>
-<li>其实也可以做到，思路一样</li>
-<li>但是它们不支持 JSX，很难与 React 无缝对接</li>
-<li>而且它们的对象不能直接提供给 JS 用，需要类型转换</li>
-</ul>
-</li>
-</ul>
-<p>十三. 静态化的时机</p>
-<ul>
-<li>环境<ul>
-<li>在开发环境，每次请求都会运行一次 getStaticProps</li>
-<li>这是为了方便你修改代码重新运行</li>
-<li>在生产环境，getStaticProps 只在 build 时运行一次</li>
-<li>这样可以提供一份 HTML 给所有用户下载</li>
-</ul>
-</li>
-<li>如何体验生产环境<ul>
-<li>关掉 yarn dev</li>
-<li>yarn build</li>
-<li>yarn start</li>
-</ul>
-</li>
-</ul>
-<p>十四. 生产环境</p>
-<ul>
-<li>解读<ul>
-<li>λ（Server）SSR 不能自动创建 HTML</li>
-<li>○(Static)自动创建 HTML(发现没用到 props)</li>
-<li>●(SSG)自动创建 HTML JS JSON(发现用到了 props)</li>
-</ul>
-</li>
-<li>三种文件类型<ul>
-<li>posts.html 含有静态内容，用于用户直接访问</li>
-<li>posts.js 也含有静态内容，用于快速导航（与 HTML 对应）</li>
-<li>posts.json 含有数据，跟 posts.js 结合得到界面</li>
-</ul>
-</li>
-<li>为了让 posts.js 接收不同的数据所以不直接把数据放入 posts.js</li>
-<li>目前只能接收来自 getStaticProps 的一个数据</li>
-</ul>
-<p>十五. 小结</p>
-<ul>
-<li><strong>动态内容静态化</strong><ul>
-<li>如果动态内容与用户无关，那么可以提前静态化</li>
-<li>通过 getStaticProps 可以获取数据</li>
-<li><strong>静态内容</strong> + <strong>数据(本地获取)</strong> 就可以得到了完整页面</li>
-<li>代替了之前的<strong>静态内容+动态内容(AJAX 获取)</strong></li>
-</ul>
-</li>
-<li>时机<ul>
-<li>静态化是在 yarn build 的时候实现的</li>
-</ul>
-</li>
-<li>优点<ul>
-<li>生产环境中直接给出完整页面</li>
-<li>首屏不会白屏</li>
-<li>搜索引擎能看到页面内容，方便 SEO</li>
-</ul>
-</li>
-</ul>
-<p>十六. 如果页面跟用户相关呢？</p>
-<ul>
-<li>比如根据用户的 user id 显示不同的信息流</li>
-<li>用户相关动态内容<ul>
-<li><label style="color:red">较难提前静态化</label><ul>
-<li>需要在<label style="color:red">用户请求时</label>，获取用户信息，然后<label style="color:red">通过用户信息去数据库</label>拿数据</li>
-<li><label style="color:gray">如果硬要做，就要给每个用户创建一个页面</label></li>
-<li>有时候这些数据<label style="color:red">更新极快</label>，无法提前静态化</li>
-<li>比如微博首页的信息流</li>
-</ul>
-</li>
-<li><label style="color:red">那怎么办？</label><ul>
-<li>要么客户端渲染，下拉更新</li>
-<li>要么服务端渲染，下拉更新</li>
-<li>但这次的服务端渲染不能用 getStaticProps</li>
-<li>因为 getStaticProps 是在 build 时执行的</li>
-<li>可用 getServerSideProps(context: NextPageContext)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>十七. getServerSideProps</p>
-<ul>
-<li>运行时机<ul>
-<li>无论是开发还是生产环境</li>
-<li>都是在<label style="color:red">请求到来之后运行</label>getServerSideProps</li>
-</ul>
-</li>
-<li>回顾一下 getStaticProps<ul>
-<li>开发环境，每次请求到来后运行，方便开发</li>
-<li>生产环境,<label style="color:red">build 时运行一次</label></li>
-</ul>
-</li>
-<li>参数<ul>
-<li>context,类型为 NextPageContext</li>
-<li>context.req/context.res 可以获取请求和响应</li>
-<li>一般只需要用到 context.req</li>
-</ul>
-</li>
-</ul>
-<p>十八. 示例展示用户浏览器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const index:NextPage&lt;Props&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;browser&#125; &#x3D; props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">     &lt;h1&gt;你的浏览器是:&#123;browser.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line">export default index;</span><br><span class="line"></span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D; async (context)&#x3D;&gt; &#123;</span><br><span class="line">  const ua &#x3D; context.req.headers[&#39;user-agent&#39;];</span><br><span class="line">  const result &#x3D; new UAParser(ua).getResult();</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      browser: result.browser</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>十九. 总结</p>
-<ol>
-<li>静态内容<ul>
-<li>直接输出 HTML,没有术语</li>
-</ul>
-</li>
-<li>动态内容<ul>
-<li>术语: 客户端渲染，通过 AJAX 请求，渲染成 HTML</li>
-</ul>
-</li>
-<li>动态内容静态化<ul>
-<li>术语: SSG, 通过 getStaticProps 获取用户无关内容</li>
-</ul>
-</li>
-<li>用户相关动态内容静态化<ul>
-<li>术语: SSR, 通过 getServerSideProps 获取请求</li>
-<li>缺点: 无法获取客户端信息，如浏览器窗口大小</li>
-</ul>
-</li>
-</ol>
-<p>二十. 流程图</p>
-<ul>
-<li><img src="https://i.loli.net/2020/07/18/zRc7QeYbJ1hNGkf.png" alt="流程图.png"></li>
-<li>有动态内容吗？没有什么都不用做，自动渲染为 HTML</li>
-<li>动态内容跟客户端相关吗？相关就只能用客户端渲染(BSR)</li>
-<li>动态内容跟用户的请求/用户相关吗？相关就只能用服务端渲染(SSR)或 BSR</li>
-<li>其他情况可以用 SSG 或 SSR 或 BSR</li>
-</ul>
-<p>二十一. 还差一个功能</p>
-<ul>
-<li>点击 posts 列表查看文章<ul>
-<li>简单，不就是加个 Link&gt;a 标签吗</li>
-<li>href = <code>&#39;/posts/${id}&#39;</code></li>
-</ul>
-</li>
-<li>新建的文件名应该叫做什么<ul>
-<li><code>pages/posts/[id].tsx</code></li>
-<li>文件名就是<code>[id].tsx</code></li>
-</ul>
-</li>
-<li><code>/pages/posts/[id].tsx的作用</code><ul>
-<li>既声明了路由/posts/:id</li>
-<li>又是/posts/:id 的页面实现程序</li>
-</ul>
-</li>
-</ul>
-<p>二十二. 如何写<code>[id].tsx</code></p>
-<ul>
-<li>步骤<ul>
-<li>实现 PostsShow, 从 props 接收 post 数据</li>
-<li>实现 getStaticProps, 从第一个参数接收 params.id</li>
-<li>实现 getStaticPaths,返回 id 列表</li>
-</ul>
-</li>
-<li>优化<ul>
-<li>使用 marked 得到 markdown 的 HTML 内容</li>
-</ul>
-</li>
-<li>build<ul>
-<li>中断 yarn dev</li>
-<li>yarn build 然后看一下.next/server 目录</li>
-<li>yarn start</li>
-</ul>
-</li>
-</ul>
-<p>二十三. 填坑</p>
-<ul>
-<li>接收不同的 json 数据</li>
-<li>fallback:false 的作用<ul>
-<li>是否自动兜底</li>
-<li>false 表示如果请求的 id 不在 getStaticPaths 的结果里，直接返回 404 页面</li>
-<li>true 表示自动兜底，id 找不到依然渲染页面</li>
-<li>注意 id 不再结果里不代表 id 不存在，比如大型项目无法将所有产品页面都静态化，只静态化部分 id 对应的页面</li>
-</ul>
-</li>
-</ul>
-<p>二十四. 最后总结</p>
-<ul>
-<li>制作 API<ul>
-<li>放在/pages/api/目录里,一般加一个 v1</li>
-</ul>
-</li>
-<li>三种渲染方式<ul>
-<li>BSR/SSG/SSR</li>
-<li>流程图</li>
-</ul>
-</li>
-<li>三个 API<ul>
-<li>getStaticProps(SSG)</li>
-<li>getStaticPaths(SSG)</li>
-<li>getServerSideProps(SSR)</li>
-</ul>
-</li>
-<li>概念<ul>
-<li>白屏</li>
-<li>BSR 为什么不适合 SEO</li>
-<li>静态化是什么</li>
-<li>同构是什么</li>
-<li><a href="https://github.com/codingories/16nextjs-blog-1" target="_blank" rel="noopener">相关代码</a></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2746,7 +2496,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

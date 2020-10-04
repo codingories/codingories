@@ -158,6 +158,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/13/learnAlgorithm-Easy-1-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/13/learnAlgorithm-Easy-1-5/" class="post-title-link" itemprop="url">learnAlgorithm_Easy_1_5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-08-13 17:13:27 / Modified: 17:14:47" itemprop="dateCreated datePublished" datetime="2019-08-13T17:13:27+08:00">2019-08-13</time>
+            </span>
+
+          
+            <span id="/2019/08/13/learnAlgorithm-Easy-1-5/" class="post-meta-item leancloud_visitors" data-flag-title="learnAlgorithm_Easy_1_5" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/08/13/learnAlgorithm-Easy-1-5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/13/learnAlgorithm-Easy-1-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Easy_1-5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">一.两数之和</span><br><span class="line"># 暴力法python</span><br><span class="line">class Solution:</span><br><span class="line">    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:</span><br><span class="line">        for i in nums:</span><br><span class="line">            print(&quot;i&quot;,i)</span><br><span class="line">            j &#x3D; target - i</span><br><span class="line">            start_index &#x3D; nums.index(i)</span><br><span class="line">            next_index&#x3D; start_index+1</span><br><span class="line">            temp_list &#x3D; nums[next_index:]</span><br><span class="line">            if j in temp_list:</span><br><span class="line">                return [start_index,next_index+temp_list.index(j)]</span><br><span class="line"></span><br><span class="line"># 暴力法java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        int length &#x3D; nums.length;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; length;  i++)</span><br><span class="line">            for (int j &#x3D; i + 1; j &lt; length;  j++)</span><br><span class="line">                if (nums[i] + nums[j] &#x3D;&#x3D; target)</span><br><span class="line">                    return new int[]&#123;i,j&#125;;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 暴力法js</span><br><span class="line">    &#x2F;**</span><br><span class="line"> * @param &#123;number[]&#125; nums</span><br><span class="line"> * @param &#123;number&#125; target</span><br><span class="line"> * @return &#123;number[]&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var twoSum &#x3D; function(nums, target) &#123;</span><br><span class="line">    let i;</span><br><span class="line">    let j;</span><br><span class="line">    for(i&#x3D;0;i&lt;nums.length;++i)&#123;</span><br><span class="line">        for(j&#x3D;i+1;j&lt;nums.length;++j)&#123;</span><br><span class="line">            if (nums[i] + nums[j] &#x3D;&#x3D; target)&#123;</span><br><span class="line">                return[i,j]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">二.整数反转</span><br><span class="line">&#x2F;&#x2F; js版</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param &#123;number&#125; x</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var reverse &#x3D; function(x) &#123;</span><br><span class="line">    let num &#x3D; 0</span><br><span class="line">    let a &#x3D; Math.abs(x)</span><br><span class="line">    while (a !&#x3D; 0)&#123;</span><br><span class="line">        &#x2F;&#x2F; 先对10取余,取到各位数</span><br><span class="line">        temp &#x3D; Math.floor(a % 10)</span><br><span class="line">        &#x2F;&#x2F; 将余数和num*10的和赋值给num</span><br><span class="line">        num &#x3D; num * 10 + temp</span><br><span class="line">        a &#x3D; Math.floor(a &#x2F; 10)</span><br><span class="line">    &#125;</span><br><span class="line">    if (x &gt; 0 &amp; num &lt; 2147483647)&#123;</span><br><span class="line">        return num</span><br><span class="line">    &#125;else if(x &lt; 0 &amp; num &lt;&#x3D; 2147483647)&#123;</span><br><span class="line">        return -num</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return 0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; java版解法</span><br><span class="line">&#x2F;&#x2F; 解法一</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int reverse(int x) &#123;</span><br><span class="line">        long num &#x3D; 0;</span><br><span class="line">        long a &#x3D; Math.abs(x);</span><br><span class="line">        </span><br><span class="line">        if(x&gt;&#x3D;Integer.MAX_VALUE||x&lt;&#x3D;Integer.MIN_VALUE)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        while(a!&#x3D;0)&#123;</span><br><span class="line">            long temp &#x3D; a % 10;</span><br><span class="line">            num &#x3D; num*10 + temp;</span><br><span class="line">            a &#x3D; a&#x2F;10;</span><br><span class="line">            if (num &gt; Integer.MAX_VALUE || num &lt; Integer.MIN_VALUE)&#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (x&gt;0 &amp;&amp; num&lt;Integer.MAX_VALUE)&#123;</span><br><span class="line">            return (int)num;</span><br><span class="line">        &#125;else if(x&lt;0 &amp;&amp; num&gt;&#x3D;Integer.MIN_VALUE)&#123;</span><br><span class="line">            return -(int)num;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 解法二,参考学习网上其它人的写法</span><br><span class="line">&#x2F;&#x2F; class Solution &#123;</span><br><span class="line">&#x2F;&#x2F;     public int reverse(int x) &#123;</span><br><span class="line">&#x2F;&#x2F;         long result &#x3D; 0;</span><br><span class="line">&#x2F;&#x2F;         while (x !&#x3D; 0)&#123;</span><br><span class="line">&#x2F;&#x2F;             result &#x3D; result * 10 + x % 10;</span><br><span class="line">&#x2F;&#x2F;             x &#x3D; x &#x2F; 10;</span><br><span class="line">&#x2F;&#x2F;         &#125;</span><br><span class="line">&#x2F;&#x2F;         if (result &gt; Integer.MAX_VALUE || result &lt; Integer.MIN_VALUE)&#123;</span><br><span class="line">&#x2F;&#x2F;             return 0;</span><br><span class="line">&#x2F;&#x2F;         &#125;</span><br><span class="line">&#x2F;&#x2F;         return (int)result;</span><br><span class="line">&#x2F;&#x2F;     &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 优化后的解法,需要注意1.java负数取余，2.java数据类型问题,python js中不会遇到</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int reverse(int x) &#123;</span><br><span class="line">        long num &#x3D; 0;</span><br><span class="line">        long a &#x3D; x;</span><br><span class="line">        </span><br><span class="line">        if(x&gt;&#x3D;Integer.MAX_VALUE||x&lt;&#x3D;Integer.MIN_VALUE)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        while(a!&#x3D;0)&#123;</span><br><span class="line">            long temp &#x3D; a % 10;</span><br><span class="line">            num &#x3D; num*10 + temp;</span><br><span class="line">            a &#x3D; a&#x2F;10;</span><br><span class="line">            if (num &gt; Integer.MAX_VALUE || num &lt; Integer.MIN_VALUE)&#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return (int)num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">解法三 python</span><br><span class="line">class Solution:</span><br><span class="line">    def reverse(self, x: int) -&gt; int:</span><br><span class="line">        num &#x3D; 0</span><br><span class="line">        a &#x3D; abs(x)</span><br><span class="line">        while a !&#x3D; 0:</span><br><span class="line">            temp &#x3D; a % 10</span><br><span class="line">            num &#x3D; num * 10 + temp</span><br><span class="line">            a &#x3D; a&#x2F;&#x2F;10</span><br><span class="line">        </span><br><span class="line">        if num &lt;&#x3D;  2147483648-1 and x &gt; 0:</span><br><span class="line">            return num</span><br><span class="line">        elif num &lt;&#x3D; 2147483648 and x &lt; 0 :</span><br><span class="line">            return -num</span><br><span class="line">        else:</span><br><span class="line">            return 0</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">3.python版回文数</span><br><span class="line">class Solution:</span><br><span class="line">    def isPalindrome(self, x: int) -&gt; bool:</span><br><span class="line">        # 123   12     1            0跳出</span><br><span class="line">        # 1.对这个整数的取10的余数</span><br><span class="line">        # 12余3 1余2    0余1</span><br><span class="line">        # 2.第一个取出来的就是个位的值，将各位的值*10开始做累加</span><br><span class="line">        # 0+3  3*10+2    32*10+1    </span><br><span class="line">        # 3.重复上述两部</span><br><span class="line">        a &#x3D; x</span><br><span class="line">        if x &lt; 0:</span><br><span class="line">            return False</span><br><span class="line">        else:</span><br><span class="line">            num &#x3D; 0</span><br><span class="line">            while a !&#x3D; 0:</span><br><span class="line">                y &#x3D; a%10</span><br><span class="line">                a &#x3D; a&#x2F;&#x2F;10</span><br><span class="line">                num &#x3D; num*10+y</span><br><span class="line">            if num &#x3D;&#x3D; x:</span><br><span class="line">                return True</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">js版本,需要注意js取整的api</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param &#123;number&#125; x</span><br><span class="line"> * @return &#123;boolean&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var isPalindrome &#x3D; function(x) &#123;</span><br><span class="line">    if(x&lt;0)&#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">    let a &#x3D; x</span><br><span class="line">    let num &#x3D; 0</span><br><span class="line">    while(a!&#x3D;0)&#123;</span><br><span class="line">        y &#x3D; a % 10</span><br><span class="line">        num &#x3D; num * 10 + y</span><br><span class="line">        a &#x3D; Math.floor(a&#x2F;10)   </span><br><span class="line">    &#125;</span><br><span class="line">    if(num&#x3D;&#x3D;x)&#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">java版</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isPalindrome(int x) &#123;</span><br><span class="line">        int num &#x3D; 0;</span><br><span class="line">        int a &#x3D; x;</span><br><span class="line">        int y;</span><br><span class="line">        if(x&lt;0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;    </span><br><span class="line">        while(a!&#x3D;0)&#123;</span><br><span class="line">            y &#x3D; a % 10;</span><br><span class="line">            num &#x3D; num*10 + y;</span><br><span class="line">            a&#x3D;a&#x2F;10;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num &#x3D;&#x3D; x)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">罗马数字转整数</span><br><span class="line">python解法</span><br><span class="line">class Solution:</span><br><span class="line">    def romanToInt(self, s: str) -&gt; int:</span><br><span class="line">        numeral_map &#x3D; &#123;&quot;I&quot;:1,&quot;V&quot;:5,&quot;X&quot;:10,&quot;L&quot;:50,&quot;C&quot;:100,&quot;D&quot;:500,&quot;M&quot;:1000&#125;</span><br><span class="line">        result &#x3D; 0</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            # 如果右边的比左边的值大，那么则将左边的值减去,考虑边界问题，i最多到倒数第二个值,所以是len(s)-1</span><br><span class="line">            if i &lt; len(s)-1 and numeral_map[s[i+1]]&gt;numeral_map[s[i]]:</span><br><span class="line">                result-&#x3D;numeral_map[s[i]]</span><br><span class="line">            # 否则则相加</span><br><span class="line">            else:</span><br><span class="line">                result+&#x3D;numeral_map[s[i]]</span><br><span class="line">        return result</span><br><span class="line"></span><br><span class="line">javascript解法</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param &#123;string&#125; s</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var romanToInt &#x3D; function(s) &#123;</span><br><span class="line">    let numeral_map &#x3D; &#123;&quot;I&quot;:1,&quot;V&quot;:5,&quot;X&quot;:10,&quot;L&quot;:50,&quot;C&quot;:100,&quot;D&quot;:500,&quot;M&quot;:1000&#125;</span><br><span class="line">    let result &#x3D; 0</span><br><span class="line">    for(let i&#x3D;0;i&lt;s.length;i++)&#123;</span><br><span class="line">        if((numeral_map[s[i]]&lt;numeral_map[s[i+1]]) &amp;&amp; (i &lt;&#x3D; s.length-2) )&#123;</span><br><span class="line">            result-&#x3D;numeral_map[s[i]]</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            result+&#x3D;numeral_map[s[i]]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;;</span><br><span class="line">java解法</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int romanToInt(String s) &#123;</span><br><span class="line">        Map&lt;Character,Integer&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&#39;I&#39;,1);</span><br><span class="line">        map.put(&#39;V&#39;,5);</span><br><span class="line">        map.put(&#39;X&#39;,10);</span><br><span class="line">        map.put(&#39;L&#39;,50);</span><br><span class="line">        map.put(&#39;C&#39;,100);</span><br><span class="line">        map.put(&#39;D&#39;,500);</span><br><span class="line">        map.put(&#39;M&#39;,1000);</span><br><span class="line">        int num &#x3D; 0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;s.length();i++)&#123;</span><br><span class="line">            if((i&lt;s.length()-1)&amp;&amp;map.get(s.charAt(i))&lt;map.get(s.charAt(i+1)))&#123;</span><br><span class="line">                num -&#x3D; map.get(s.charAt(i));</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                num +&#x3D; map.get(s.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line">14最长公共前缀,不是很好的做法，最好是找到最短的那个</span><br><span class="line">class Solution:</span><br><span class="line">    def longestCommonPrefix(self, strs: List[str]) -&gt; str:</span><br><span class="line">        # 1.取任意一个单词作为基准，这里以第一个</span><br><span class="line">        # 2.将列表中的单词依次取出，每个单词与基准的位置进行比较</span><br><span class="line">        # 3.如果都相同则保存这个字符到common中，如果有不等于或者异常则return</span><br><span class="line">        l &#x3D; len(strs)</span><br><span class="line">        temp &#x3D; 0</span><br><span class="line">        common &#x3D; &quot;&quot;</span><br><span class="line">        if len(strs) &#x3D;&#x3D; 0 or len(strs[0]) &#x3D;&#x3D;0:</span><br><span class="line">            return &quot;&quot;</span><br><span class="line">        </span><br><span class="line">        try:</span><br><span class="line">            for i in range(len(strs[0])):</span><br><span class="line">                print(&quot;进入循环i&quot;)</span><br><span class="line">                temp &#x3D; 0</span><br><span class="line">                for j in strs:</span><br><span class="line">                    print(&quot;进入循环j&quot;)</span><br><span class="line">                    temp+&#x3D;1</span><br><span class="line">                    if strs[0][i] !&#x3D; j[i]:</span><br><span class="line">                        return common</span><br><span class="line">                    if temp &#x3D;&#x3D; l:</span><br><span class="line">                        common+&#x3D;strs[0][i]</span><br><span class="line">                        print(common)</span><br><span class="line">        except e:</span><br><span class="line">            return </span><br><span class="line">        finally:</span><br><span class="line">            return common</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 进行优化第二版</span><br><span class="line">class Solution:</span><br><span class="line">    def longestCommonPrefix(self, strs: List[str]) -&gt; str:</span><br><span class="line">        # 1.由于考虑到循环时候的边界问题，取最短一个单词作为基准，作为第二版</span><br><span class="line">        # 2.将列表中的单词依次取出，每个单词与基准的位置进行比较</span><br><span class="line">        # 3.如果都相同则保存这个字符到common中，如果有不等于或者异常则return</span><br><span class="line">        </span><br><span class="line">        if len(strs)&#x3D;&#x3D;0:</span><br><span class="line">            return &quot;&quot;</span><br><span class="line">        </span><br><span class="line">        temp_length &#x3D; len(strs[0]) </span><br><span class="line">        temp_str &#x3D; strs[0]</span><br><span class="line">        for i in strs:</span><br><span class="line">            if len(i)&lt;temp_length:</span><br><span class="line">                temp_str &#x3D; i</span><br><span class="line">                temp_length &#x3D; len(i)</span><br><span class="line">                        </span><br><span class="line">        l &#x3D; len(strs)</span><br><span class="line">        temp &#x3D; 0</span><br><span class="line">        common &#x3D; &quot;&quot;</span><br><span class="line">        if len(temp_str) &#x3D;&#x3D;0:</span><br><span class="line">            return &quot;&quot;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        for i in range(len(temp_str)):</span><br><span class="line">            temp &#x3D; 0</span><br><span class="line">            for j in strs:</span><br><span class="line">                temp+&#x3D;1</span><br><span class="line">                if strs[0][i] !&#x3D; j[i]:</span><br><span class="line">                    return common</span><br><span class="line">                if temp &#x3D;&#x3D; l:</span><br><span class="line">                    common+&#x3D;temp_str[i]</span><br><span class="line">        return common</span><br><span class="line"></span><br><span class="line">js版本</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param &#123;string[]&#125; strs</span><br><span class="line"> * @return &#123;string&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var longestCommonPrefix &#x3D; function(strs) &#123;</span><br><span class="line">    &#x2F;&#x2F; 如果数组长度为0，则返回&quot;&quot;</span><br><span class="line">    if(strs.length &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">        return &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 找到strs里长度最短的单词</span><br><span class="line">    let temp&#x3D;strs[0].length</span><br><span class="line">    let shorttest_word &#x3D; strs[0]</span><br><span class="line">    let common &#x3D; &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    for(let i&#x3D;0;i&lt;strs.length;i++)&#123;</span><br><span class="line">        if(strs[i].length &lt; strs[0].length)&#123;</span><br><span class="line">            temp&#x3D;strs[i].length</span><br><span class="line">            shorttest_word &#x3D; strs[i]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(&quot;shorttest_word&quot;,shorttest_word)</span><br><span class="line">    for(let i&#x3D;0;i&lt;shorttest_word.length;i++)&#123;</span><br><span class="line">        for(let j&#x3D;0;j&lt;strs.length;j++)&#123;</span><br><span class="line">            if(shorttest_word[i] !&#x3D;&#x3D; strs[j][i])&#123;</span><br><span class="line">                return common</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        common+&#x3D;shorttest_word[i]</span><br><span class="line">    &#125;</span><br><span class="line">    return common</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">java代码参考别人省略版:</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">        if(strs.length &#x3D;&#x3D; 0)&#123; return &quot;&quot;; &#125;</span><br><span class="line">        if(strs.length &#x3D;&#x3D; 1)&#123; return strs[0]; &#125;</span><br><span class="line">        String min &#x3D; strs[0];</span><br><span class="line">        for(int i&#x3D;0;i&lt;strs.length;i++)&#123;</span><br><span class="line">            if(strs[i].isEmpty())&#123;</span><br><span class="line">                return &quot;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            if(strs[0].charAt(0)!&#x3D;strs[i].charAt(0))&#123;</span><br><span class="line">                return &quot;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            if(strs[i].length()&lt;min.length())&#123;</span><br><span class="line">                min &#x3D; strs[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        for(int i&#x3D;0;i&lt;min.length();i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;strs.length;j++)&#123;</span><br><span class="line">                if (min.charAt(i) !&#x3D; strs[j].charAt(i))&#123;</span><br><span class="line">                    return min.substring(0,i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">java代码，比较详细，别人写的1ms</span><br><span class="line">class Solution &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 找出minString</span><br><span class="line">    &#x2F;&#x2F; 2. 排除特殊情况：</span><br><span class="line">    &#x2F;&#x2F; 1、字符串数组为空，返回 null</span><br><span class="line">    &#x2F;&#x2F; 2、字符串数组长度为1，直接返回 strs[0]</span><br><span class="line">    &#x2F;&#x2F; 3、字符串数组中存在空字符串 返回 null</span><br><span class="line">    &#x2F;&#x2F; 4、数组中存在一个单词的首字母与其他单词的首字母不同，返回 null</span><br><span class="line">    &#x2F;&#x2F; 3. 双层for循环找出 最长公共前缀</span><br><span class="line">    &#x2F;&#x2F; 4. 注意，在内层for循环比较之前，可以再排除一种情况：如果strs[i] 与 minString 值相同，则不执行内层循环。以减少代码运行时间。</span><br><span class="line">    </span><br><span class="line">    if (strs.length &#x3D;&#x3D; 0) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (strs.length &#x3D;&#x3D; 1) &#123;</span><br><span class="line">            return strs[0];</span><br><span class="line">        &#125;</span><br><span class="line">        String min &#x3D; strs[0] ;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">            if (strs[i].isEmpty()) &#123;</span><br><span class="line">                return &quot;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            if (strs[0].charAt(0) !&#x3D; strs[i].charAt(0)) &#123;</span><br><span class="line">                return &quot;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            if (strs[i].length() &lt;&#x3D; min.length()) &#123;</span><br><span class="line">                min &#x3D; strs[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">            if (min.equals(strs[i])) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int j &#x3D; min.length()-1; j &gt; 0 ; j--) &#123;</span><br><span class="line">                if (min.charAt(j) !&#x3D; strs[i].charAt(j)) &#123;</span><br><span class="line">                    min &#x3D; min.substring(0, j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/07/02/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1749,450 +1843,6 @@ Output: [1,2,2,3,5,6]</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">P53_下采样策略</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-15 12:09:04 / Modified: 12:09:52" itemprop="dateCreated datePublished" datetime="2019-06-15T12:09:04+08:00">2019-06-15</time>
-            </span>
-
-          
-            <span id="/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/" class="post-meta-item leancloud_visitors" data-flag-title="P53_下采样策略" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(<span class="string">"creditcard.csv"</span>)</span><br><span class="line">data.head() <span class="comment"># 0为正常数据作为y</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre>
-<p></style><p></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Time</th>
-      <th>V1</th>
-      <th>V2</th>
-      <th>V3</th>
-      <th>V4</th>
-      <th>V5</th>
-      <th>V6</th>
-      <th>V7</th>
-      <th>V8</th>
-      <th>V9</th>
-      <th>...</th>
-      <th>V21</th>
-      <th>V22</th>
-      <th>V23</th>
-      <th>V24</th>
-      <th>V25</th>
-      <th>V26</th>
-      <th>V27</th>
-      <th>V28</th>
-      <th>Amount</th>
-      <th>Class</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>-1.359807</td>
-      <td>-0.072781</td>
-      <td>2.536347</td>
-      <td>1.378155</td>
-      <td>-0.338321</td>
-      <td>0.462388</td>
-      <td>0.239599</td>
-      <td>0.098698</td>
-      <td>0.363787</td>
-      <td>...</td>
-      <td>-0.018307</td>
-      <td>0.277838</td>
-      <td>-0.110474</td>
-      <td>0.066928</td>
-      <td>0.128539</td>
-      <td>-0.189115</td>
-      <td>0.133558</td>
-      <td>-0.021053</td>
-      <td>149.62</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>1.191857</td>
-      <td>0.266151</td>
-      <td>0.166480</td>
-      <td>0.448154</td>
-      <td>0.060018</td>
-      <td>-0.082361</td>
-      <td>-0.078803</td>
-      <td>0.085102</td>
-      <td>-0.255425</td>
-      <td>...</td>
-      <td>-0.225775</td>
-      <td>-0.638672</td>
-      <td>0.101288</td>
-      <td>-0.339846</td>
-      <td>0.167170</td>
-      <td>0.125895</td>
-      <td>-0.008983</td>
-      <td>0.014724</td>
-      <td>2.69</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>-1.358354</td>
-      <td>-1.340163</td>
-      <td>1.773209</td>
-      <td>0.379780</td>
-      <td>-0.503198</td>
-      <td>1.800499</td>
-      <td>0.791461</td>
-      <td>0.247676</td>
-      <td>-1.514654</td>
-      <td>...</td>
-      <td>0.247998</td>
-      <td>0.771679</td>
-      <td>0.909412</td>
-      <td>-0.689281</td>
-      <td>-0.327642</td>
-      <td>-0.139097</td>
-      <td>-0.055353</td>
-      <td>-0.059752</td>
-      <td>378.66</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>-0.966272</td>
-      <td>-0.185226</td>
-      <td>1.792993</td>
-      <td>-0.863291</td>
-      <td>-0.010309</td>
-      <td>1.247203</td>
-      <td>0.237609</td>
-      <td>0.377436</td>
-      <td>-1.387024</td>
-      <td>...</td>
-      <td>-0.108300</td>
-      <td>0.005274</td>
-      <td>-0.190321</td>
-      <td>-1.175575</td>
-      <td>0.647376</td>
-      <td>-0.221929</td>
-      <td>0.062723</td>
-      <td>0.061458</td>
-      <td>123.50</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2.0</td>
-      <td>-1.158233</td>
-      <td>0.877737</td>
-      <td>1.548718</td>
-      <td>0.403034</td>
-      <td>-0.407193</td>
-      <td>0.095921</td>
-      <td>0.592941</td>
-      <td>-0.270533</td>
-      <td>0.817739</td>
-      <td>...</td>
-      <td>-0.009431</td>
-      <td>0.798278</td>
-      <td>-0.137458</td>
-      <td>0.141267</td>
-      <td>-0.206010</td>
-      <td>0.502292</td>
-      <td>0.219422</td>
-      <td>0.215153</td>
-      <td>69.99</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 31 columns</p>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">count_classes = pd.value_counts(data[<span class="string">'Class'</span>], sort = <span class="literal">True</span>).sort_index() <span class="comment"># 算一下当前数据的某一列有哪几个不同的属性只</span></span><br><span class="line">count_classes.plot(kind = <span class="string">'bar'</span>) </span><br><span class="line">plt.title(<span class="string">"Fraud class histogram"</span>)</span><br><span class="line">plt.xlabel(<span class="string">"Class"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"Frequency"</span>)</span><br><span class="line"><span class="comment"># 画条形图</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Text(0, 0.5, &#39;Frequency&#39;)</code></pre>
-<p><img src="/.io/2019/06//output_2_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下采样，过采样</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler <span class="comment"># 标准化模块</span></span><br><span class="line"></span><br><span class="line">data[<span class="string">'normAmount'</span>] = StandardScaler().fit_transform(data[<span class="string">'Amount'</span>].values.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line"><span class="comment">#fit_transform对数据进行变换到[-1，1]列向量,成为新的一列[normAmount] .reshape要改成.values.reshape</span></span><br><span class="line">data = data.drop([<span class="string">'Time'</span>,<span class="string">'Amount'</span>],axis=<span class="number">1</span>)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre>
-<p></style><p></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>V1</th>
-      <th>V2</th>
-      <th>V3</th>
-      <th>V4</th>
-      <th>V5</th>
-      <th>V6</th>
-      <th>V7</th>
-      <th>V8</th>
-      <th>V9</th>
-      <th>V10</th>
-      <th>...</th>
-      <th>V21</th>
-      <th>V22</th>
-      <th>V23</th>
-      <th>V24</th>
-      <th>V25</th>
-      <th>V26</th>
-      <th>V27</th>
-      <th>V28</th>
-      <th>Class</th>
-      <th>normAmount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-1.359807</td>
-      <td>-0.072781</td>
-      <td>2.536347</td>
-      <td>1.378155</td>
-      <td>-0.338321</td>
-      <td>0.462388</td>
-      <td>0.239599</td>
-      <td>0.098698</td>
-      <td>0.363787</td>
-      <td>0.090794</td>
-      <td>...</td>
-      <td>-0.018307</td>
-      <td>0.277838</td>
-      <td>-0.110474</td>
-      <td>0.066928</td>
-      <td>0.128539</td>
-      <td>-0.189115</td>
-      <td>0.133558</td>
-      <td>-0.021053</td>
-      <td>0</td>
-      <td>0.244964</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.191857</td>
-      <td>0.266151</td>
-      <td>0.166480</td>
-      <td>0.448154</td>
-      <td>0.060018</td>
-      <td>-0.082361</td>
-      <td>-0.078803</td>
-      <td>0.085102</td>
-      <td>-0.255425</td>
-      <td>-0.166974</td>
-      <td>...</td>
-      <td>-0.225775</td>
-      <td>-0.638672</td>
-      <td>0.101288</td>
-      <td>-0.339846</td>
-      <td>0.167170</td>
-      <td>0.125895</td>
-      <td>-0.008983</td>
-      <td>0.014724</td>
-      <td>0</td>
-      <td>-0.342475</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>-1.358354</td>
-      <td>-1.340163</td>
-      <td>1.773209</td>
-      <td>0.379780</td>
-      <td>-0.503198</td>
-      <td>1.800499</td>
-      <td>0.791461</td>
-      <td>0.247676</td>
-      <td>-1.514654</td>
-      <td>0.207643</td>
-      <td>...</td>
-      <td>0.247998</td>
-      <td>0.771679</td>
-      <td>0.909412</td>
-      <td>-0.689281</td>
-      <td>-0.327642</td>
-      <td>-0.139097</td>
-      <td>-0.055353</td>
-      <td>-0.059752</td>
-      <td>0</td>
-      <td>1.160686</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-0.966272</td>
-      <td>-0.185226</td>
-      <td>1.792993</td>
-      <td>-0.863291</td>
-      <td>-0.010309</td>
-      <td>1.247203</td>
-      <td>0.237609</td>
-      <td>0.377436</td>
-      <td>-1.387024</td>
-      <td>-0.054952</td>
-      <td>...</td>
-      <td>-0.108300</td>
-      <td>0.005274</td>
-      <td>-0.190321</td>
-      <td>-1.175575</td>
-      <td>0.647376</td>
-      <td>-0.221929</td>
-      <td>0.062723</td>
-      <td>0.061458</td>
-      <td>0</td>
-      <td>0.140534</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-1.158233</td>
-      <td>0.877737</td>
-      <td>1.548718</td>
-      <td>0.403034</td>
-      <td>-0.407193</td>
-      <td>0.095921</td>
-      <td>0.592941</td>
-      <td>-0.270533</td>
-      <td>0.817739</td>
-      <td>0.753074</td>
-      <td>...</td>
-      <td>-0.009431</td>
-      <td>0.798278</td>
-      <td>-0.137458</td>
-      <td>0.141267</td>
-      <td>-0.206010</td>
-      <td>0.502292</td>
-      <td>0.219422</td>
-      <td>0.215153</td>
-      <td>0</td>
-      <td>-0.073403</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 30 columns</p>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下采样</span></span><br><span class="line">X = data.loc[:, data.columns != <span class="string">'Class'</span>] <span class="comment"># 列的属性不包含class</span></span><br><span class="line">y = data.loc[:, data.columns == <span class="string">'Class'</span>] </span><br><span class="line"></span><br><span class="line"><span class="comment"># Number of data points in the minority class</span></span><br><span class="line">number_records_fraud = len(data[data.Class == <span class="number">1</span>]) <span class="comment"># 等于1的样本数量</span></span><br><span class="line">fraud_indices = np.array(data[data.Class == <span class="number">1</span>].index)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Picking the indices of the normal classes</span></span><br><span class="line">normal_indices = data[data.Class == <span class="number">0</span>].index <span class="comment"># 把等于0的索引索引出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Out of the indices we picked, randomly select "x" number (number_records_fraud)</span></span><br><span class="line">random_normal_indices = np.random.choice(normal_indices, number_records_fraud, replace = <span class="literal">False</span>) <span class="comment">#进行随机选择</span></span><br><span class="line">random_normal_indices = np.array(random_normal_indices)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Appending the 2 indices</span></span><br><span class="line">under_sample_indices = np.concatenate([fraud_indices,random_normal_indices])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Under sample dataset</span></span><br><span class="line">under_sample_data = data.iloc[under_sample_indices,:] <span class="comment">#经过下采样之后拿到手后的数据</span></span><br><span class="line"> </span><br><span class="line">X_undersample = under_sample_data.loc[:, under_sample_data.columns != <span class="string">'Class'</span>]</span><br><span class="line">y_undersample = under_sample_data.loc[:, under_sample_data.columns == <span class="string">'Class'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Showing ratio</span></span><br><span class="line">print(<span class="string">"Percentage of normal transactions: "</span>, len(under_sample_data[under_sample_data.Class == <span class="number">0</span>])/len(under_sample_data))</span><br><span class="line">print(<span class="string">"Percentage of fraud transactions: "</span>, len(under_sample_data[under_sample_data.Class == <span class="number">1</span>])/len(under_sample_data))</span><br><span class="line">print(<span class="string">"Total number of transactions in resampled data: "</span>, len(under_sample_data))</span><br></pre></td></tr></table></figure>
-
-<pre><code>Percentage of normal transactions:  0.5
-Percentage of fraud transactions:  0.5
-Total number of transactions in resampled data:  984</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2264,7 +1914,7 @@ Total number of transactions in resampled data:  984</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
