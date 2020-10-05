@@ -158,6 +158,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/31/day5-Easy-14-Longest-Common-Prefix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/31/day5-Easy-14-Longest-Common-Prefix/" class="post-title-link" itemprop="url">day5_Easy_014_Longest_Common_Prefix</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-05-31 13:15:35 / Modified: 16:31:07" itemprop="dateCreated datePublished" datetime="2019-05-31T13:15:35+08:00">2019-05-31</time>
+            </span>
+
+          
+            <span id="/2019/05/31/day5-Easy-14-Longest-Common-Prefix/" class="post-meta-item leancloud_visitors" data-flag-title="day5_Easy_014_Longest_Common_Prefix" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/05/31/day5-Easy-14-Longest-Common-Prefix/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/31/day5-Easy-14-Longest-Common-Prefix/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string “”.
+Example 1:
+Input: [“flower”,”flow”,”flight”]
+Output: “fl”
+Example 2:
+Input: [“dog”,”racecar”,”car”]
+Output: “”
+Explanation: There is no common prefix among the input strings.
+Note:
+All given inputs are in lowercase letters a-z.</p>
+<p>方法一:
+一.先找出最短的那个单词
+假定第一个是最小的，如果第二个比第一个小，则把第二个替换成最小的
+二.以最短的单词长度的那个单词为基准:
+    1.先比较每一个单词的第一个字母，和最短的单词长度的那个单词是否相同，如果不一样则跳出循环
+    2.如果一样，则比较每一个单词的第二个,如果有不一样则跳出循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def longestCommonPrefix(self, strs: List[str]) -&gt; str:</span><br><span class="line">        if strs:</span><br><span class="line">            str_shortest &#x3D; len(strs[0])</span><br><span class="line">            temp &#x3D; strs[0]</span><br><span class="line">            for i in range(0,len(strs)):</span><br><span class="line">                if len(strs[i]) &lt;&#x3D; str_shortest:</span><br><span class="line">                    str_shortest &#x3D; len(strs[i])</span><br><span class="line">                    temp &#x3D; strs[i]</span><br><span class="line">            same_prefix &#x3D;&quot;&quot;</span><br><span class="line">            temp_clock &#x3D; 0</span><br><span class="line">            for i in range(0,len(temp)):</span><br><span class="line">                temp_i &#x3D; temp[i]</span><br><span class="line">                temp_clock &#x3D; 0</span><br><span class="line">                for j in range(0,len(strs)):</span><br><span class="line">                    if strs[j][i] &#x3D;&#x3D; temp_i:</span><br><span class="line">                        temp_clock +&#x3D; 1</span><br><span class="line">                        if temp_clock &#x3D;&#x3D; len(strs):</span><br><span class="line">                            same_prefix +&#x3D; temp[i]</span><br><span class="line">                            temp_clock &#x3D; 0</span><br><span class="line">                    else:</span><br><span class="line">                        return same_prefix</span><br><span class="line">            return same_prefix </span><br><span class="line">        else:</span><br><span class="line">            return &quot;&quot;</span><br><span class="line"></span><br><span class="line">方法二：</span><br><span class="line">class Solution:</span><br><span class="line">    def longestCommonPrefix(self, strs: List[str]) -&gt; str:</span><br><span class="line">        if not strs:</span><br><span class="line">            return &quot;&quot;</span><br><span class="line">        for i in range(len(strs[0])):</span><br><span class="line">            for string in strs[1:]:</span><br><span class="line">                if i &gt;&#x3D; len(string) or string[i] !&#x3D; strs[0][i]:</span><br><span class="line">                    return strs[0][:i]</span><br><span class="line">        return strs[0]</span><br><span class="line"></span><br><span class="line">方法三:用了set数据类型</span><br><span class="line">class Solution:</span><br><span class="line">    def longestCommonPrefix(self, strs: List[str]) -&gt; str:</span><br><span class="line">        result &#x3D; &quot;&quot;</span><br><span class="line">        i &#x3D; 0</span><br><span class="line">        while True:</span><br><span class="line">            try:</span><br><span class="line">                sets &#x3D; set(string[i] for string in strs)</span><br><span class="line">                print(&#39;sets&#39;,sets)</span><br><span class="line">                if len(sets) &#x3D;&#x3D; 1:</span><br><span class="line">                    result +&#x3D; sets.pop()</span><br><span class="line">                    i +&#x3D; 1</span><br><span class="line">                else: break</span><br><span class="line">            except Exception as e:</span><br><span class="line">                break</span><br><span class="line">        return result</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/31/P38-%E8%AF%AF%E5%B7%AE%E9%A1%B9%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1321,164 +1418,6 @@ return [0, 1].</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/" class="post-title-link" itemprop="url">P33_分类属性绘图</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-05-26 08:21:13 / Modified: 09:05:13" itemprop="dateCreated datePublished" datetime="2019-05-26T08:21:13+08:00">2019-05-26</time>
-            </span>
-
-          
-            <span id="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/" class="post-meta-item leancloud_visitors" data-flag-title="P33_分类属性绘图" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment"># 导入相关包</span></span><br><span class="line">sns.set(style=<span class="string">"whitegrid"</span>, color_codes=<span class="literal">True</span>)</span><br><span class="line">titanic = sns.load_dataset(<span class="string">"titanic"</span>)</span><br><span class="line">tips = sns.load_dataset(<span class="string">"tips"</span>)</span><br><span class="line">iris = sns.load_dataset(<span class="string">"iris"</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.violinplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,data=tips,inner=<span class="literal">None</span>)</span><br><span class="line">sns.swarmplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,data=tips,color=<span class="string">"w"</span>,alpha=<span class="number">.5</span>) <span class="comment"># violinplot 和 swarmplot进行组合</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fb70a58&gt;</code></pre>
-<p><img src="/.io/2019/05//output_1_1.png" alt="png"></p>
-<p>显示值的集中趋势可以用条形图</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.barplot(x=<span class="string">"sex"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"class"</span>,data=titanic); </span><br><span class="line"><span class="comment"># class 在titanic数据集中，一个人登船之后住的船舱等级的，不同性别的获救率</span></span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
-<p>点图可以更好的描述变化差异</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.pointplot(x=<span class="string">"sex"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"class"</span>,data=titanic); </span><br><span class="line"><span class="comment"># 看 First Second Third各自的变化，男的女的获救比率的差异性</span></span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/05//output_5_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.pointplot(x=<span class="string">"class"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"sex"</span>,data=titanic,</span><br><span class="line">              palette=&#123;<span class="string">"male"</span>:<span class="string">"g"</span>,<span class="string">"female"</span>:<span class="string">"m"</span>&#125;,</span><br><span class="line">              markers=[<span class="string">"^"</span>,<span class="string">"o"</span>],linestyles=[<span class="string">"-"</span>,<span class="string">"--"</span>]) <span class="comment"># markers 指定样子，linestyles指定线形</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fe79550&gt;</code></pre>
-<p><img src="/.io/2019/05//output_6_1.png" alt="png"></p>
-<p>宽形数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(data=iris,orient=<span class="string">"h"</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11ff456a0&gt;</code></pre>
-<p><img src="/.io/2019/05//output_8_1.png" alt="png"></p>
-<p>多层面板分类图</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,data=tips)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120469080&gt;</code></pre>
-<p><img src="/.io/2019/05//output_10_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,data=tips,kind=<span class="string">"bar"</span>)</span><br><span class="line"><span class="comment">#factorplot 能画很多种图，需要指定kind</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120742cf8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_11_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,col=<span class="string">"time"</span>,data=tips,kind=<span class="string">"swarm"</span>)</span><br><span class="line"><span class="comment"># 指定col="time",kind="swarm"</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120cfa780&gt;</code></pre>
-<p><img src="/.io/2019/05//output_12_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"time"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,col=<span class="string">"day"</span>,data=tips,kind=<span class="string">"box"</span>,height=<span class="number">4</span>,aspect=<span class="number">.5</span>)</span><br><span class="line"><span class="comment"># aspect 是长宽比，height 和 aspect 需要自己慢慢调</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1213d1cf8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_13_1.png" alt="png"></p>
-<p>seaborn.factorplot函数的所有参数说明，方便参考：</p>
-<p>seaborn.factorplot(x=None, y=None, hue=None, data=None, row=None, col=None, col_wrap=None, estimator=<function mean>, ci=95, n_boot=1000, units=None, order=None, hue_order=None, row_order=None, col_order=None, kind=’point’, size=4, aspect=1, orient=None, color=None, palette=None, legend=True, legend_out=True, sharex=True, sharey=True, margin_titles=False, facet_kws=None, **kwargs)</function></p>
-<h1 id="Parameters："><a href="#Parameters：" class="headerlink" title="Parameters："></a>Parameters：</h1><ul>
-<li>x,y,hue 数据集变量 变量名</li>
-<li>date 数据集 数据集名</li>
-<li>row,col 更多分类变量进行平铺显示 变量名</li>
-<li>col_wrap 每行的最高平铺数 整数</li>
-<li>estimator 在每个分类中进行矢量到标量的映射 矢量</li>
-<li>ci 置信区间 浮点数或None</li>
-<li>n_boot 计算置信区间时使用的引导迭代次数 整数</li>
-<li>units 采样单元的标识符，用于执行多级引导和重复测量设计 数据变量或向量数据</li>
-<li>order, hue_order 对应排序列表 字符串列表</li>
-<li>row_order, col_order 对应排序列表 字符串列表</li>
-<li>kind : 可选：point 默认, bar 柱形图, count 频次, box 箱体, violin 提琴, strip 散点，swarm 分散点 size 每个面的高度（英寸） 标量  aspect 纵横比 标量 orient 方向 “v”/“h” color 颜色 matplotlib颜色 palette 调色板 seaborn颜色色板或字典 legend hue的信息面板 True/False legend_out 是否扩展图形，并将信息框绘制在中心右边 True/False share{x,y} 共享轴线 True/False </li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1550,7 +1489,7 @@ return [0, 1].</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

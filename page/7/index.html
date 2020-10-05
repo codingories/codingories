@@ -158,6 +158,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/29/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/29/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%8C/" class="post-title-link" itemprop="url">旺财记账本react版实现二</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-29 10:52:56" itemprop="dateCreated datePublished" datetime="2020-04-29T10:52:56+08:00">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-01 10:53:57" itemprop="dateModified" datetime="2020-05-01T10:53:57+08:00">2020-05-01</time>
+              </span>
+
+          
+            <span id="/2020/04/29/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现二" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/04/29/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%8C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/29/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%8C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一. 使用 svg symble 方式实现图表 icon</p>
+<ul>
+<li><p>使用 svg-sprite-loader,利用 yarn eject 添加 eject 文件,然后改 webpack 中的 config。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev svg-sprite-loader -D</span><br><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.svg$&#x2F;,</span><br><span class="line">  use: [</span><br><span class="line">    &#123; loader: &#39;svg-sprite-loader&#39;, options: &#123; &#125; &#125;,</span><br><span class="line">    &#39;svgo-loader&#39;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">yarn add --dev svgo-loader</span><br><span class="line">yarn add --dev svg-sprite-loader</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import x from &#39;icons&#x2F;money.svg&#39; &#x2F;&#x2F; svgo-loader &#x3D;&gt; svg-sprite-loader,svg-sprite-loader会生成一个svg放最前面，会把你所有引用的svg变成大的svg，把大的svg放到booy里面，</span><br><span class="line">import y from &#39;icons&#x2F;tag.svg&#39;</span><br><span class="line"></span><br><span class="line">console.log(x,y)  &#x2F;&#x2F; 这里由于TreeShaking的关系，</span><br><span class="line">&#x2F;&#x2F; TreeShaking的意思是如果没有用到一个东西就从依赖树上摇下来</span><br><span class="line">&lt;li&gt;</span><br><span class="line">    &lt;svg fill&#x3D;&quot;red&quot; className&#x3D;&quot;icon&quot;&gt;</span><br><span class="line">      &lt;use xlinkHref&#x3D;&quot;#money&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;svg&gt;</span><br><span class="line">    &lt;Link to&#x3D;&quot;&#x2F;tags&quot;&gt;标签页&lt;&#x2F;Link&gt;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">  &#x2F;&#x2F; 利用fuck调试法,command+alt+f搜索验证代码消失</span><br><span class="line">  这里import要写成</span><br><span class="line">  require(&#39;icons&#x2F;money.svg&#39;)</span><br><span class="line">  require(&#39;icons&#x2F;tags.svg&#39;)</span><br><span class="line">  为了防止treeShaking把已经死掉的叶子抖下去要用require</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>封装 svg 组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">const Nav &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;NavWrapper&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;svg fill&#x3D;&quot;red&quot; className&#x3D;&quot;icon&quot;&gt;</span><br><span class="line">            &lt;use xlinkHref&#x3D;&quot;#money&quot;&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;svg&gt;</span><br><span class="line">          &lt;Link to&#x3D;&quot;&#x2F;tags&quot;&gt;标签页&lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;svg fill&#x3D;&quot;red&quot; className&#x3D;&quot;icon&quot;&gt;</span><br><span class="line">            &lt;use xlinkHref&#x3D;&quot;#tags&quot;&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;svg&gt;</span><br><span class="line">          &lt;Link to&#x3D;&quot;&#x2F;money&quot;&gt;记账页&lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;svg fill&#x3D;&quot;red&quot; className&#x3D;&quot;icon&quot;&gt;</span><br><span class="line">            &lt;use xlinkHref&#x3D;&quot;#chart&quot;&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;svg&gt;</span><br><span class="line">          &lt;Link to&#x3D;&quot;&#x2F;statistics&quot;&gt;统计页&lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;&#x2F;NavWrapper&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 优化代码，以上代码过于重复，需要自己去封装成一个组件</span><br><span class="line">&#x2F;&#x2F; 封装的过程中涉及到如何通过web引入整个icon 文件夹</span><br><span class="line">let importAll &#x3D; (requireContext: __WebpackModuleApi.RequireContext) &#x3D;&gt; requireContext.keys().forEach(requireContext);</span><br><span class="line">try &#123;importAll(require.context(&#39;icons&#39;, true, &#x2F;\.svg$&#x2F;));&#125; catch (error) &#123;console.log(error);&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>封装 layout 组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import Nav from &#39;.&#x2F;Nav&#39;</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import styled from &#39;styled-components&#39;</span><br><span class="line"></span><br><span class="line">const Wrapper &#x3D; styled.div&#96;</span><br><span class="line">  min-height: 100vh;</span><br><span class="line">  display:flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">&#96;</span><br><span class="line">const Main &#x3D; styled.div&#96;</span><br><span class="line">  flex-grow: 1;</span><br><span class="line">  overflow: auto;</span><br><span class="line">&#96;;</span><br><span class="line"></span><br><span class="line">const Layout &#x3D; (props: any) &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;Main&gt;</span><br><span class="line">        &#123;props.children&#125;</span><br><span class="line">      &lt;&#x2F;Main&gt;</span><br><span class="line">      &lt;Nav &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Layout;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分三个 views 文件</p>
+</li>
+</ul>
+<p>二. 总结</p>
+<ul>
+<li>使用 router</li>
+<li>制作 icon 用最新的 svg symbols,<ul>
+<li>难点在 webpack 配置,yarn ejct</li>
+<li>以及配置 svg-sprite-loader</li>
+</ul>
+</li>
+<li>自动把 svg 所有引入, treeShaking</li>
+<li>封装 Nav,Icon Layout 组件</li>
+<li>中文字体最佳实践 fonts.css</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1571,778 +1685,6 @@ route 是一个匹配 URL 的准则（类似正则表达式）。当 Django 响�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/03/23/EmotionsEnglish%E6%96%87%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/23/EmotionsEnglish%E6%96%87%E6%9C%AC/" class="post-title-link" itemprop="url">EmotionsEnglish文本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-23 08:38:42" itemprop="dateCreated datePublished" datetime="2020-03-23T08:38:42+08:00">2020-03-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-14 16:34:13" itemprop="dateModified" datetime="2020-04-14T16:34:13+08:00">2020-04-14</time>
-              </span>
-
-          
-            <span id="/2020/03/23/EmotionsEnglish%E6%96%87%E6%9C%AC/" class="post-meta-item leancloud_visitors" data-flag-title="EmotionsEnglish文本" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/03/23/EmotionsEnglish%E6%96%87%E6%9C%AC/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/23/EmotionsEnglish%E6%96%87%E6%9C%AC/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="part-1-虚拟情感的力量！"><a href="#part-1-虚拟情感的力量！" class="headerlink" title="part-1 虚拟情感的力量！"></a>part-1 虚拟情感的力量！</h2><h4 id="season-1-假设-“过去可以重来，现在可以逆转，将来可以预见”"><a href="#season-1-假设-“过去可以重来，现在可以逆转，将来可以预见”" class="headerlink" title="season-1 假设 “过去可以重来，现在可以逆转，将来可以预见”"></a>season-1 假设 “过去可以重来，现在可以逆转，将来可以预见”</h4><blockquote>
-<p>人类的最高级思维能力之一就是虚拟想象，对发生过的，现在的状态，未来的状态进行想象。</p>
-</blockquote>
-<h5 id="S1-1-过去假设-Gossip-Girl《绯闻女孩》"><a href="#S1-1-过去假设-Gossip-Girl《绯闻女孩》" class="headerlink" title="S1-1 过去假设 - Gossip Girl《绯闻女孩》"></a>S1-1 过去假设 - Gossip Girl《绯闻女孩》</h5><ul>
-<li>I would have(never) done…, if I had done…
-如果我当时……, 我是(绝不)会……的。
-【情】 事后对某事的解释和澄清，对过去的虚拟
-【例】 I would never have broken up with her, if you had told me this story earlier。
-如果你早一点告诉我这个故事，我是绝对不会和她分手的。</li>
-<li>A: So, so you got the spot?(那被录取的是你?)
-B: I would have never applied If I had known they were only taking one transfer from N.Y.U。（如果我知道他们只从纽约大学招一名转学生，我当时是绝不会申请的。）
-A: You got in. Wow, wow! Well, I mean, congratulations. No, seriously, seriously.If it wasn’t gonna be me, I’m glad it was you.
-(你被录取了，哇，哇，我的意思是，那恭喜了，真的，我很认真，如果我不会被录取，我很高兴录取的是你)
-B: You are?(是吗?)
-A: Yeah,sure,you know, and they also ‘wish me success in my future endeavors. So it’s not a total loss.(是的，当然，他们还”祝愿我未来事业成功”呢。所以我也不是一败涂地。)
-【注】endeavor=n.奋力 v.尽力</li>
-</ul>
-<h5 id="S1-2-过去假设-Desperate-Housewives《绝望的主妇》"><a href="#S1-2-过去假设-Desperate-Housewives《绝望的主妇》" class="headerlink" title="S1-2 过去假设 - Desperate Housewives《绝望的主妇》"></a>S1-2 过去假设 - Desperate Housewives《绝望的主妇》</h5><ul>
-<li>If sb. had done …, sb./sth. would be…
-如果某人做了……, 某人/某事物现在会……
-【情】对过去做的事情做不同的假设， 可能会对现在(或者过去)造成的不同影响。
-【例】If I had tried harder in high school, I would be in Harvard University now.
-如果我在高中再努力一点，我现在就在哈佛大学了。
-【引】If Sb. had done…, sb.(sth.) would have done…
-如果某人做了……,某人或某事当时估计会……
-【例】 If you had walked a little further, you would have found the treasure.
-如果你再往前走一点，你当时就会发现宝藏。
-have the upper hand 占优势
-【近】have advantage over… 比…有优势</li>
-<li>A: What were you thinking? (你当时在想什么?)
-B: First tell me if it worked, then I’ll tell you what I was thinking.(先告诉我我的方法有没有起作用，然后我再告诉你我在想什么。)
-A: Don’t be glib. Did you hire someone to attack Orson? (别油嘴滑舌。你是不是雇了人袭击奥森?)
-B: Yes. (是的。)
-A: Are you insane? Your thug tried to strangle him. (你疯了吗? 那个恶棍差点勒死他。)
-B: If he had tried to strangle him, he’d be dead.Look, Orson <strong>had the upper hand</strong> in this divorce. We needed to regain it. (他如果真耍掐死他，他早死了。现在奥森在这起离婚诉讼中占上风，我们要夺回主动权。)
-A: Not by resorting to physical violence.I Would never have given my permission for that.(不要借助武力，要是这样我当时根本本不可能同意的。)
-【注】 glib=a.油嘴滑舌的,圆滑的; thug=n.暴徒，恶棍; strangle=v.勒死;resort=v.诉诸,求助;physical violence=肢体暴力</li>
-</ul>
-<h5 id="S1-3-现在假设-《反恐-24-小时》"><a href="#S1-3-现在假设-《反恐-24-小时》" class="headerlink" title="S1-3 现在假设 - 《反恐 24 小时》"></a>S1-3 现在假设 - 《反恐 24 小时》</h5><ul>
-<li>If there were…, sb./sth. would…, but there isn’t.
-如果有……，某人/某物会……，但是没有。
-【情】虚拟没有的事物，然后可以用 but 引导对现状的某种无奈
-【近】If there were a hero who could save me from here, I would do anything for him, but there isn’t.
-如果有一个英雄可以把我从这里救出去，我会为他做一切事情，但事实上没有。</li>
-</ul>
-<ul>
-<li><p>A: This peace treaty is in the interests of the United States and of the world.
-That makes it a good in itself, and certainly more important than your desire for revenge.(这项和平协议关乎美国和世界的利益,这本身便是一项举，当然远比你复仇的欲望更重要)</p>
-<p>B: Madam President,I don’t want revenge, I want justice.(总统阁下,我
-不想要复仇,我只想要正义。)</p>
-<p>A: And I want peace.If there were another way, I would take it, but there’s not. That′s my decision. Do you understand? Do you understand,Jack? (而我想要和平,如果另有他法我会遵从,但是没有。这是我的决定，明白了吗? 明白了吗,杰克?)</p>
-<p>B: Yes,ma’am. (是的,阁下。)
-【注】 treaty=n.条约 revenge=n.复仇</p>
-</li>
-</ul>
-<h5 id="S1-4-现在假设-Desperate-Housewives《绝望的主妇》"><a href="#S1-4-现在假设-Desperate-Housewives《绝望的主妇》" class="headerlink" title="S1-4 现在假设 - Desperate Housewives《绝望的主妇》"></a>S1-4 现在假设 - Desperate Housewives《绝望的主妇》</h5><ul>
-<li><p>If I were in your shoes，I would…
-如果我处在你的位置上,我会…
-【情】 表达换位思考的同理心情。
-【近】 If I were you,I would… 如果我是你，我会……
-【例】 If I were you,I would make the same decision. 如果我是你，我会做同样的决定。
-If I wanted…,I would have done…
-如果我想……，我早就……了？
-【情】 不屑地回应别人的质疑。
-【例】 If I wanted your money, I would have left after I got the check.
-如果我是为了你的钱，拿到支票以后我早就走了。</p>
-</li>
-<li><p>A: Look,I know that you don’t like me, but I am here to do you a favor anyway. I was out to dinner last night and I saw your husband with another woman.(我知道你不喜欢我，不过，我此次来是帮你忙的，昨晚我在外面吃饭碰至你老公和别的女人在一起。）
-B: Really? （真的? ）
-A: I feel bad saying it, but if I were in our shoes, I would want to know. You′re welcome.(这话确实很难启齿，但如果我是你，我会想知道。不用谢。)
-B: Oh,I get it.So you feel I judged you, and for revenge,you′re trying
-to make me insecure about my marriage. (哦，我明白了。你觉得我对你说三道四,作为报复，你就试图摧垮我对婚姻的安全感。)
-A: If I wanted revenge, I Would have joined them and had a threesome.(我要是想报复.我就干脆加人他们俩来个三人行)
-【注】 revenge=n. 报仇 threesome=n.三人一组</p>
-</li>
-</ul>
-<h5 id="S1-5-将来假设-Life-After-People-人类消失后的世界"><a href="#S1-5-将来假设-Life-After-People-人类消失后的世界" class="headerlink" title="S1-5 将来假设 - Life After People (人类消失后的世界)"></a>S1-5 将来假设 - Life After People (人类消失后的世界)</h5><ul>
-<li><p>If (sb./sth.) were to do…,sb./sth. would do
-如果某人/某物将……，某人/某物会……
-【情】虚拟表达如果将来发生某事，以及会产生的相应结果。
-【例】If you were to become Superman, I would ask you to fly me to the sky.
-要是你将要变成超人，我会让你带我飞上天。</p>
-</li>
-<li><p>A:There‘s water in the reservoir keeps supplying the water to the hydro turbine generators.These generators are operating automatically, and that would continue as long as all of the systems are functioning normally.If I and my staff were to leave tonight and not come back to Hoover Dam, say just in the condition of the plant is in right now, this would continue operating without us here.(水库里流动的水带动涡轮大电机不停地转动。这些发动机自动工作，只要系统不出问题他们就能够一直工作下去，如果我和我的同事今晚就离开胡佛水坝不再回来，车间仍然保持现在这个状态，它们仍然会正常地工作)
-【注】hydro turbine generator n. 水力涡轮发电机</p>
-</li>
-</ul>
-<h4 id="Season-2-用-wish-表达对现在和过去的奢望"><a href="#Season-2-用-wish-表达对现在和过去的奢望" class="headerlink" title="Season-2 用 wish 表达对现在和过去的奢望"></a>Season-2 用 wish 表达对现在和过去的奢望</h4><blockquote>
-<p>“Make a wish!”许个愿吧!即便我们每天都在向上帝、佛祖、流星、水池等等许愿，但是我们内心深处很多时候知道这个”wish”只是个奢望罢了。我们来看看如何用 wish 表达对现在和过去的奢望。</p>
-</blockquote>
-<h5 id="S2-1-Wish-过去-Heroes《超能英雄》"><a href="#S2-1-Wish-过去-Heroes《超能英雄》" class="headerlink" title="S2-1 Wish 过去 - Heroes《超能英雄》"></a>S2-1 Wish 过去 - Heroes《超能英雄》</h5><ul>
-<li><p>I wish I had done… 我真希望那时我已经……啊
-【情】 对过去的遗憾发表感慨。
-【例】 I wish I had finished my homework before summer camp. 我真希
-望当时夏令营开始之前我的作业就已经写完了。</p>
-</li>
-<li><p>A: I wanna help you. （我想帮你。）
-B: I was almost your age when I came here. I was 16. Every other
-thought was about boys and the prom I was so naive.I Wish I had had
-half ot your strength.You have courage and self confidence. You’ve
-overcome all those nagging self-doubts. (我来这儿的时候和你差不多大,那
-时我 16 岁。脑子里就想着男孩和舞会。我那时太天真了，我要是有你一半的坚强就好了。你有勇气和自信，你克服了那些烦人的自我怀疑。
-【注】 prom=n. (美国高中的)正式舞会;naive=a.天真的; overcome=vt.战胜,克服;nagging=a.恼人的</p>
-</li>
-</ul>
-<h5 id="S2-2-Wish-过去-Extract-《压榨》"><a href="#S2-2-Wish-过去-Extract-《压榨》" class="headerlink" title="S2-2 Wish 过去 - Extract 《压榨》"></a>S2-2 Wish 过去 - Extract 《压榨》</h5><ul>
-<li><p>I wish you would have told me…before…
-我真希望在……之前你就能告诉我……
-【情】 面对毫无贮备的或者迟来的消息时， 表达不满或者遗憾
-【例】 I wish you would have told me about your preference before I
-picked the color for you. 我真希望在我帮你挑选颜色之前，你就能告诉我你的偏好。</p>
-</li>
-<li><p>I (really) wish sb. had been + 形容词比较级.
-我(真)希望某人当时能再……点
-【情】 对过去某人做的事情表达一种不满或抱怨的情绪。
-【例】 I wish you had been nicer to your dad. 我真希望你当时对你爸爸的态度可以更好一点。</p>
-</li>
-<li><p>A: Hey.Did you get a chance to write that check?（嘿，那张支票你开了吗?）
-B: Nathan, Joel and I are not going to that dinner.Okay? (内森，我和乔尔不会参加那场宴会的, 好吗?)</p>
-<p>A: Gee, I wish you would have told me that before I went and bought those tickets.
-(哎呀， 我真希望你在我去买那几张票之前就通知我。)</p>
-<p>B: Joel never agreed to it, and neither did I.(乔尔绝对没有答应，我也没有)
-A: Well, it sure sounded like you guys were coming. I mean Leslie was
-going to talk to you about it, but you don′t return our calls. I mean, I
-already bought those tickets, and they′re non-refundable. I really wish you guys
-had been a little more clear with me. （嗯，但你们的话的确听起来像是要参加的样子。我是说，莱斯莉本来要打电话跟你谈这事儿，但你们没回过电话。我已经买票了，都不能退的，我真希望你俩当时能跟我讲得更清楚一点)
-【注】 non-refundable=a.不可退款的</p>
-</li>
-</ul>
-<h5 id="S2-3-Wish-现在-Futurama-Into-the-Wild-Green-Yonder《飞出个未来-绿色狂想》"><a href="#S2-3-Wish-现在-Futurama-Into-the-Wild-Green-Yonder《飞出个未来-绿色狂想》" class="headerlink" title="S2-3 Wish 现在 - Futurama:Into the Wild Green Yonder《飞出个未来.绿色狂想》"></a>S2-3 Wish 现在 - Futurama:Into the Wild Green Yonder《飞出个未来.绿色狂想》</h5><ul>
-<li><p>I (just) wish sb. didn’t have to… 我真希望某人现在不用……
-【情】表达对当下不可改变现实的不满。
-【例】I just wish we didn’t do our homework.我真希望我们现在在不用做作业。</p>
-</li>
-<li><p>A: It is very nice.I just wish Amy and I didn’t have to wear these sexist badges on our melons.(这很好啊，我只是不想跟艾米一起在胸前带着这个性别歧视的牌子。）
-B: We’re lucky even to play as guests, Leela. Dad′s club has a very strict
-“No girls allowed” policy. (我们能受邀来打球就不错了，莉拉。爸爸的俱乐部从来不让女人加入。）</p>
-</li>
-</ul>
-<h4 id="Season-3-过去可能性的推测"><a href="#Season-3-过去可能性的推测" class="headerlink" title="Season-3 过去可能性的推测"></a>Season-3 过去可能性的推测</h4><blockquote>
-<p>看到地上有一片未干的血迹， 我们可以基本推测出这里不久前发生过打斗或者事故。 再看到旁边被撞烂的单车， 和汽车紧急制动时在地上留下的轮胎痕迹，我们可以推测这里不久前很有可能发生了交通事故。这种对某事过去可能发生过的推理，如何用英语流利表达呢?</p>
-</blockquote>
-<h5 id="S3-1-可能性-99-的过去推测-24《反恐-24-小时》"><a href="#S3-1-可能性-99-的过去推测-24《反恐-24-小时》" class="headerlink" title="S3-1 可能性 99%的过去推测 - 24《反恐 24 小时》"></a>S3-1 可能性 99%的过去推测 - 24《反恐 24 小时》</h5><ul>
-<li><p>Sb. must have done sth 某人过去一定做了某事。</p>
-<p>【情】在一些相对确凿的证据面前，对过去发生的事情做出几乎 99%的肯定推断。
-【例】My brother must have eaten the whole cake, because all I can find is an empty case.我弟弟一定吃光了整个蛋糕，因为我只能找到一个空盒子。
-【引】It must have been sb./sth. that… 一定是某人/某事……
-【例】It must have been my brother that (who) told mom my secret.
-一定是弟弟把我的秘密告诉了妈妈。</p>
-</li>
-<li><p>A: Hello, Jack’s phone. (喂，找杰克吗?)
-B: Renne, it′s Chole.I need to talk to Jack.(勒妮，我是克洛伊。我找杰克。)
-A: What′s wrong? (怎么了?)
-B: Samir Mehran is dead. I think he was assassinated. (萨米尔.迈赫兰死了。我认为他是被人暗杀了)
-A: What do you mean, assassinated? (什么意思，暗杀?)
-B: I ran a preliminary toxicology report. It showed traces of an unidentified toxin in his bloodstream.Someone must have injected him with it, probably at the scene.
-(我做了份初步毒性报告。显示他血液里有不明毒素，一定是有人给他注射的，可能就在现场)
-【注】 assassinate=Vt.暗杀;preliminary=a.预备的;toxicology=n.毒药学;toxin=n.毒素;bloodstream=n. 血流</p>
-</li>
-</ul>
-<h5 id="S3-2-可能性-99-的过去推测-Spy-Kids《小鬼大间谍》"><a href="#S3-2-可能性-99-的过去推测-Spy-Kids《小鬼大间谍》" class="headerlink" title="S3-2   可能性 99%的过去推测 - Spy Kids《小鬼大间谍》"></a>S3-2   可能性 99%的过去推测 - Spy Kids《小鬼大间谍》</h5><ul>
-<li><p>This must have been where. 这个地方曾经一定是……的地方。
-【情】看到某个地方的现状，几乎能够断定曾经的状态。
-【例】Look at the dent in the walIt may have bl, this place must have been where the crime was committed. 看看墙上的凹痕，这里一定是曾经的作案现场 It may have b。</p>
-</li>
-<li><p>A: Skeletons. Dead skeletons.(骨架，死人的骨架。)
-B: Is there any other kind?(还有别的吗?)
-A: This must have been where the pirate prisoners and treasure were kept.(这里肯定曾经是海盗的囚房和藏宝处。)</p>
-</li>
-</ul>
-<h5 id="S3-3-可能性-75-的过去推测-Knight-Rider《霹雳游侠》"><a href="#S3-3-可能性-75-的过去推测-Knight-Rider《霹雳游侠》" class="headerlink" title="S3-3 可能性 75%的过去推测 - Knight Rider《霹雳游侠》"></a>S3-3 可能性 75%的过去推测 - Knight Rider《霹雳游侠》</h5><ul>
-<li><p>Sb. may/might (not) have done sth…
-某人很有(没有)可能做了某事。
-【情】通过种种迹象对过去发生的事情做出 75%左右 (或加 not 表示 25%左右)的可能性推测，might 的可能性较 may 更低一些。
-【例】My brother may have eaten the whole cake because he sounded weak when I asked him about it.我弟弟很有可能吃掉了整个蛋糕，因为我问他蛋糕的时候他听起来语气很弱。
-【引】It may have been sb./sth. that
-【例】It may have been my brother that (who) left the TV on last night.
-很有可能是我弟弟昨晚没关电视。</p>
-</li>
-<li><p>A: What Would I have to do? （我应该做什么?）
-B：The reports suggest Sergeant Burber may have died from secobarbital poisoning.
-Look at the sergeant’s lips. Do they appear redder than normal? (报告说博柏利军士是由于镇静剂中毒而死，看看他的嘴唇是不是比较红? )
-A:Yeah.He’s got a pretty nasty bruise on his jaw.(是啊,他的下巴有严重瘀伤。)
-B: The sheriff’s report also suggests that Sergeant Burber′s body was bruised during transportation from the roadside where he Was found.
-This, however is a problem.(治安官的报告中还说，博柏利军士的尸体青肿是在现场运输过程中造成的。 问题就出在这儿。）
-A: Why? (什么问题? )
-B: Bodies do not bruise after death. (户体是不会青肿的。)
-【注】 secobarbital=n.速可眠(一种镇静药);bruise=v.使受瘀伤 n.青肿</p>
-</li>
-</ul>
-<h5 id="S3-4-可能性-65-的过去推测-一-How-Bruce-Lee-Changed-the-World-《李小龙如何改变了世界》"><a href="#S3-4-可能性-65-的过去推测-一-How-Bruce-Lee-Changed-the-World-《李小龙如何改变了世界》" class="headerlink" title="S3-4 可能性 65%的过去推测 一 How Bruce Lee Changed the World 《李小龙如何改变了世界》"></a>S3-4 可能性 65%的过去推测 一 How Bruce Lee Changed the World 《李小龙如何改变了世界》</h5><ul>
-<li><p>Without sb./sth.，it might have been + 时间 + that（before）
-如果没有某人/某物，当时可能还要……的时间才……
-【情】 强调表达某人/某物曾经的出现意义重大。</p>
-<p>【例】 Without Steve Jobs, It might have been years before smart phones got popular.
-要是没有史蒂夫.乔布斯出现，估计智能手机的流行要推迟很多年。
-【例】 Without your help, it might have been hours before I found the right way.
-如果不是有你的帮助， 我可能要几个小时才会找到正确的方向。</p>
-</li>
-<li><p>N: Soon everybody Was Kungfu fighting across the globe, and pop stars
-from Donnie Osmond to the king of rock and roll himself were showing
-off their Kungfu kicks.(很快，全球的人都在练习功夫，从唐尼.奥斯蒙德到猫王，
-明星们都开始秀功夫。)</p>
-<p>A: Without Bruce Lee and Enter the Dragon, it might have been years
-and years and years and maybe not at all that martial arts as a genre
-Would have become available.(没有李小龙和《龙争虎斗》的话，功夫片成为
-独立流派可能还需要很多很多年，或者根本不会有这一流派。)
-【注】 genre=n. (文学、艺术等的)类型，流派</p>
-</li>
-</ul>
-<h5 id="S3-5-可能性-1-的过去推测-Aladdin-《阿拉丁》"><a href="#S3-5-可能性-1-的过去推测-Aladdin-《阿拉丁》" class="headerlink" title="S3-5 可能性 1%的过去推测-Aladdin 《阿拉丁》"></a>S3-5 可能性 1%的过去推测-Aladdin 《阿拉丁》</h5><ul>
-<li><p>It couldn′t have been sb./sth..不可能是某人/某事。
-【情】对过去发生的事情做出 1%可能性的推测
-【例】It couldn’t have been your brother who finished up cake, he
-was with me for the whole day. 你弟弟不可能吃光了蛋糕，他昨
-天一整天都和我在一起。
-【引】 Sb. couldn’t have done sth… 某人不可能做了某事。
-【例】 My brother couldn’t have been with you yesterday.I know you
-just got back from a trip today. 我弟弟不可能昨天一整天和你呆
-在一起。我知道你今天刚旅行回来。</p>
-</li>
-<li><p>A: Wait, wait. Do I know you? (等等，我以前见过你吗?)
-B: Uh, no, no. (呃， 没有， 没有。)
-A: You remind me of someone I met in the marketplace.(你让我想起来
-曾在市场上遇到过的一个人。)
-B: The marketplace? I have servants who go to the marketplace for me.
-Why, I even have servants who go to the marketplace for my servants,
-so it couldn’t have been me you met.(市场?我有许多随从为我到市场买东西，
-至于为什么，我甚至有随从为我的随从去市场上买东西，你遇到的人肯定不会是我。)
-A: No, I guess not. (是啊，我想也不会是你。)
-【注】servant=n. 仆人</p>
-</li>
-</ul>
-<h4 id="Season-4-本来可以的"><a href="#Season-4-本来可以的" class="headerlink" title="Season-4 本来可以的"></a>Season-4 本来可以的</h4><blockquote>
-<p>事情发生了， 我们总喜欢找个 “原因” 来解释，或者来归罪。</p>
-</blockquote>
-<ul>
-<li><p>S4-1 Would have done - Desperate Housewives
-《绝望的主妇》</p>
-<p>sb. (probably) would have done sth., but…
-某人本来(很有可能)会做某事的，但是……
-【情】事后，表达一种”本来会的”心情。
-【例】I would have tried a few more times to start the car,but there
-was no gas left. 我本来会多试几次把车启动的，但是没有汽油了。</p>
-</li>
-<li><p>A: You want to explain this? (你能解释一下么? )
-B: Oh, dear, I was hoping to spare your feelings, but since you
-know, I wasn’t comfortable having my recipe made With substandard inngredients.
-(哦，亲爱的，我不想让你难堪的。不过既然你知道了，我不喜欢用劣等食材做我的菜)
-A: We use that parmesan all the time. You can’t go changing things
-without asking me. (我们一直都用那种干酪。你不能不问我就擅自做改变。)</p>
-<p>B: Hey, you made me partner, I can change 15%, and I chose the
-parmesan. And I don’t know if you’ve heard, but people are raving
-about my pizza. (嘿， 是你让我当你的合伙人的， 我能改变 15%，我选了干酪。
-不知道你听见了没有，人们都在对我的比萨赞不绝口。)</p>
-<p>A: Well, they probably would have loved my pizza, too. But we’ll never
-know because my partner threw it in the garbage. What a waste! (他们
-也许也会喜欢我的比萨, 但我们永远不会知道了，因为我的合伙人把它扔进了垃圾
-桶。 真是浪费啊!)
-B: Fine. I’ll reimburse you, if that’ll make things right.(好吧，我赔你，这
-样行吗? ）
-【注】spare one’s feelings = 不伤害某人感情，给某人留面子; substandard=a.
-不合规格的; ingredient=n.配料; parmesan=n. 干酪; rave=v.咆哮，热烈赞扬;
-reimburse=vt.偿还，返还</p>
-</li>
-</ul>
-<h5 id="S4-1-Would-have-done-附加-Astro-Boy-《阿童木》"><a href="#S4-1-Would-have-done-附加-Astro-Boy-《阿童木》" class="headerlink" title="S4-1 Would have done 附加 * - Astro Boy 《阿童木》"></a>S4-1 Would have done 附加 * - Astro Boy 《阿童木》</h5><ul>
-<li><p>A: Back So Soon? Did you guys find anything good for me today? I don’t
-know,kids. A lot of dead batteries. A lot of elbows here. The knee joint
-of a toilet-cleaning robot? I told you, I need heads. (回来的真早，今天找
-到什么好东西了吗? 我不知道怎么说，孩子们。很多废电池和机器人肘部，还有打
-扫厕所机器人的膝盖? 我告诉过你们， 我要的是头部。)</p>
-<p>B: We would’ve gotten better stuff, but this… (我们本来会得到更好的东西,
-但是……)</p>
-</li>
-</ul>
-<h5 id="S4-2-Never-would-have-done-Yes-Man-《好好先生》"><a href="#S4-2-Never-would-have-done-Yes-Man-《好好先生》" class="headerlink" title="S4-2 Never would have done - Yes Man 《好好先生》"></a>S4-2 Never would have done - Yes Man 《好好先生》</h5><ul>
-<li>I never would have done.sth., because…
-我是不可能会做某事的，因为……
-【情】 与预期有差别的时候，表达意外的心情;或者面对质疑的时候，
-澄清过去的事。
-【例】I never would have thought you could help me,because you
-always seemed so cold.我当时根本没有想过你能帮我，因为你看
-起来总是很冷漠。
-【例】I never would have lied to you, because I loved you so much.我
-当时是不可能对你撤谎的，因为我是那么的爱你。</li>
-</ul>
-<ul>
-<li><p>A: I’m more of a four-wheel kind of guy. (我还是比较适合四个轮子的车子)</p>
-<p>B: Really? I never would’ve guessed that. You seemed so at ease on
-two. Can I have my helmet back now? (真的? 我可从来没有看出来过，你在
-两个轮子上貌似也很自在。能把头盔还给我吗?)</p>
-<p>A: I’m still wearing it, aren’t I? (我还带看头盔呢，对吗?)
-B: Yeah.(是的。)
-A: Thanks.(谢谢)
-【注】 at ease=舒适，自在</p>
-</li>
-</ul>
-<h5 id="S4-3-Could-have-done-Desperate-Housewives-《绝望的主妇》"><a href="#S4-3-Could-have-done-Desperate-Housewives-《绝望的主妇》" class="headerlink" title="S4-3 Could have done - Desperate Housewives 《绝望的主妇》"></a>S4-3 Could have done - Desperate Housewives 《绝望的主妇》</h5><ul>
-<li>sb. could have done sth., but…(you didn’t).
-你本可以做某事，但是你没有。
-【情】 对别人过去做的事情表达一种种可行方案，含有淡淡的不赞成感。
-【例】 You could have done better, but you didn’t. 你本来可以做得更好，
-但是你没有。
-【例】 I could have passed the math test, but I forgot to bring my
-calculator. 我本来可以通过数学考试的，但是我忘了拿计算器。</li>
-</ul>
-<ul>
-<li><p>A: Hey, Katherine said you wanted to talk to me. (嘿，凯瑟琳说你想跟我
-谈谈。)</p>
-<p>B: Yeah. Come on in. (是的，进来吧。)</p>
-<p>A: You know, You could have just called. You don’t have to use her as
-an intermediary. (你知道，你直接给我打个电话就可以的，你不用拿她当传话筒。)
-B: Really? I thought we were using Katherine for all sorts of things-
-sending message, raising our kid. (是么? 我以为我们事事都得靠凯瑟琳呢，
-传个话， 抚养孩子。）</p>
-<p>A: I don’t see what the big deal is. I have to work, and she has some
-free time. It’s better for everybody. (我不知道这有什么大不了。 我得工作，
-她又有时间。这样对所有人都好。)</p>
-<p>【注】 intermediary=n. 中间人</p>
-</li>
-</ul>
-<h5 id="S4-4-Could-have-done-Arrow-《绿箭侠》"><a href="#S4-4-Could-have-done-Arrow-《绿箭侠》" class="headerlink" title="S4-4 Could have done - Arrow 《绿箭侠》"></a>S4-4 Could have done - Arrow 《绿箭侠》</h5><ul>
-<li>Sb. could have done sth… 某人可能会做某事。
-【情】 事后，表达当时可能会产生的不同可能性。常表达 “好险” 或 “还
-可以更好” 的心情。
-【例】 You lied in court, the lawyer could have found out about lt.
-你在法庭上撤谎了，律师当时很有可能发现的。
-【引】 sb./sth. could have been done (by…). 某人/某事可能会被……
-【情】 这个句式是核心句式的被动形式。
-【例】 You went to the forest alone? You could have been eaten by a
-tiger. You could have been shot by a wild man. Don’t do it again.
-你独自去了森林? 你可能会被老虎吃掉, 你可能会被野人射死。不要再这样了。
-Cut me some slack!
-别管我那么严!放我一马!
-【情】 这个橘子表达一种”求饶”的心情。经常用 cut sb. some slack/cut sb. slack 的固定形式。slack 名词的意思指: 富余的部分。生意中的”淡季”常说”slack season”
-【例】 My teacher cut me some slack, I passed the quiz.我的老师放了我一马，我的小测过关了。
-A: He didn′t need to call you. (他没有必要给你打电话。〉
-B: No. But you’re lucky he did. You Could have lost your job. You could have lost your life and you could have killed somebody. (是的。但是幸亏
-他打了。 你可能会丢掉工作，可能会丧命，还可能会撞死人。)
-A: I had a few too many glasses of wine at dinner. It was an accident(晚
-饭的时候我稍微多喝了几杯酒。这是个意外。)
-B: An accident, Well, I guess those happen.(一个意外, 那些意外就这么发
-生的。)
-A: Was I not supposed to notice that tone? (我不应该听到这种语气的，是不是?)
-B: The two of us… You got a lot from me,Laurel. Maybe you got this,
-too.
-（我们两人……你很多地方随我,劳雷尔。也许喝酒这事也随了我。)
-A: You can hardly compare my one mistake to your drinking problem. (你
-不能把我这点小问题和你的酗酒相提并论。)
-B: As long as it it only one mistake.(除非这真是仅有的小意外。)
-A: I don’t know if you’ve noticed…but I’ve had a little bit of a hard
-time lately. I was kidnapped, nearly murdered by a psychopath and my
-boyfriend died. So, I don’t know, maybe cut me some slack.
-(我不知道你注意到没有…我最近过的不太好。我被绑架了，差点被一个变态杀人狂给杀了。
-我的男朋友也死了。所以，也许你不用管我那么紧。)
-B: You know, when I started having a hard time, I wish people had not cut me slack.
-Leave your car here, I’m driving you home.(你知道吗，当我不好过的时候，我希望人们管我紧一点。
-把你的车停在这儿，我开车送你回家。)
-A: No, I’ll take a cab. (不了， 我打车。）
-B: Laurel…Laurel (劳雷尔， 劳雷尔! )
-【文】 B 是 A 的父亲， A 因为酒驾被警察发现， B 来接 A 回家。
-【注】 kidnap=v. 绑架 ; psychopath=n. 变态杀人狂; take a cab = 打车</li>
-</ul>
-<h4 id="Season-5-后悔的心情"><a href="#Season-5-后悔的心情" class="headerlink" title="Season-5 后悔的心情"></a>Season-5 后悔的心情</h4><blockquote>
-<p>做了决定, 结果却不如预期, 往往有一种极其不舒服的感觉,叫”后悔当初”。这是生活的常态, 学会表达后悔，才算学会表达生活。</p>
-</blockquote>
-<h5 id="S5-1-“我本应该”-Deviouse-Maids《蛇蝎女佣》"><a href="#S5-1-“我本应该”-Deviouse-Maids《蛇蝎女佣》" class="headerlink" title="S5-1 “我本应该” - Deviouse Maids《蛇蝎女佣》"></a>S5-1 “我本应该” - Deviouse Maids《蛇蝎女佣》</h5><ul>
-<li>I should have been…(but) I wasn’t.
-我本应该是…… 可是我没有。 ‘
-【情】 对过去自己的某种错误状态感到后悔。
-【例】 I should have been more patient with that customer, but I wasn’t.
-so I lost my job. 我真应该对那个客户更耐心点，但是我没有。所
-以我丢掉了那份工作。
-【引】 I shouldn’t have been/done… 我当时真不应该……
-【例】 I am sorry I broke your car. I shouldn’t have driven so recklessly
-that day. 弄坏你的车我感到很抱歉，我那天开车真不应该太鲁莽。
-A: Did you know that Evelyn and I had a Son? (你知适伊芙琳和我曾有过一
-个儿子吗? )
-B: No. (不知道。)
-A: He died when he was six. (他六岁就死了 )
-B: Oh my god. (我的天呐.)
-A: I gave him a bike for his birthday. Evelyn took him out riding. She
-turned her back for just a second. He rode into the street, and this car
-came. Whoever was driving didn′t even stop. They just kept going. (他
-生日的时候我送了他一辆自行车。 伊芙琳带他出去骑车。她转过身不到一秒钟， 他
-就骑到了路上， 有一辆车开过来。 开车的人根本没有刹车。 他们继续往前开。)
-B: I’m so sorry. (很遗憾。)
-A: I should have been there to protect him, I wasn’t. And now he’s
-gone. Evelyn is all I have left. And no one is going to take her from
-me. (我真应该在那里保护他， 可是我没有。现在，他已经不在了。伊芙琳是我的
-所有，没有人可以把她从我身边带走。)</li>
-</ul>
-<h5 id="S5-2-“我本应该”-Post-Grad-《毕业生存指南》"><a href="#S5-2-“我本应该”-Post-Grad-《毕业生存指南》" class="headerlink" title="S5-2 “我本应该” - Post Grad 《毕业生存指南》"></a>S5-2 “我本应该” - Post Grad 《毕业生存指南》</h5><ul>
-<li>I should have done sth. 我当时真应该做某事。
-【情】 过去没有做某事， 事后表达一种后悔心情。
-【例】 I should have studied harder in high school.I hate this university.
-我在高中的时候真应该再努力一些。我讨厌这个大学。
-A: Hey. Life sucks without you. I miss you. Of course I miss you. I knew
-that I would, but it’s not like a “hey, we had some great times…you
-know keep in touch” kind of thing. It’s… It was more like “I can’t eat…
-I can’t sleep… I forget what it feels like to laugh” kind of thing. And I
-really think that when you lett…you took my heart with you.I probably should’ve called first.
-(嘿， 生活没有你很糟糕，我想你， 当然想你， 我当时就
-知道我会想你。 但这不像”嘿，我们在一起有过很多美好时光……保持联系”什么的，
-这更像是 “我吃不下， 我睡不着……”我忘记大笑是什么滋味了”， 当你离开， 你把
-我的心也带走了…… 我或许应该先来个电话的。）
-B: Oh, whoa. Whoa. No, no, no. hold…Ryden! Whoa! Where are you
-going? Ryden! (哦， 峨， 不， 不! 等等， 雷登! 喂! 你要去哪? 雷登! )
-【文】 A 干里迢迢来向 B 表白， 表白完之后忽然发现 B 的房间里有别的女生， 她感到尴尬万分， 并对自己刚才的表白行为感到很后悔。</li>
-</ul>
-<h5 id="S5-3-“我本不该”-Yes-Man-《好好先生》"><a href="#S5-3-“我本不该”-Yes-Man-《好好先生》" class="headerlink" title="S5-3 “我本不该” - Yes Man 《好好先生》"></a>S5-3 “我本不该” - Yes Man 《好好先生》</h5><ul>
-<li>I shouldn’t have done sth.. 我真不应该做某事。
-【情】 过去做了某事， 事后表达一种后悔心情。
-【例】 I shouldn’t have told Tom my secret. Now everybody knows.
-我真不应该把我的秘密告诉汤姆的， 现在每个人都知道了。
-A: I’ve been thinking and I know it’s crazy, especially for me, but maybe
-when we get back, we should move in together. (我一直在想，我知道这个
-想法有点疯狂，特别是对我而言, 不过, 也许我们回来之后应该搬到一起住。)
-B: Wow, really? You’ve been thinking that? (哦， 真的吗? 你一直在想这件
-事? ）
-A: What do you think?(你觉得呢?)
-B: What do I think? Uh…Yeah. (我怎么看? 呃…… 好的。)
-A: Oh, God. You paused. (哦，上帝啊! 你犹豫了。)
-B: No, I didn’t pause. (没有，我没有犹豫。我们的关系进了一大步。)
-A: You paused. (你犹豫了。)
-B: No, no, I didn’t pause. It was just a big step. (没有，我没有犹豫，我们的关
-系进了一大步。)
-A: It was a stupid idea. I shouldn’t have said anything…(这是个患蠢的主
-意，我应该什么话都不说的……)
-B: No, no, stop! Come on, what are you talking about? Here, ask me
-again. (别这祥, 你在说什么? 这样吧, 你再问我一次。)
-A: Do you wanna move? (你要不要搬? )
-B: Yes. Did I pause there? I could probably knock a couple milliseconds
-off that… (好，我犹豫了吗? 我可以再缩短几个毫秒。)</li>
-</ul>
-<h4 id="Season-6-指责别人的心情"><a href="#Season-6-指责别人的心情" class="headerlink" title="Season-6 指责别人的心情"></a>Season-6 指责别人的心情</h4><blockquote>
-<p>别人做了决定， 产生了不好的结果， 作为旁观者总愿意去点评，指责。这是我们人性中固有的一种思维习惯。</p>
-</blockquote>
-<h5 id="S6-1-“你本应该”-The-Lake-House-《触不到的恋人》"><a href="#S6-1-“你本应该”-The-Lake-House-《触不到的恋人》" class="headerlink" title="S6-1 “你本应该” - The Lake House 《触不到的恋人》"></a>S6-1 “你本应该” - The Lake House 《触不到的恋人》</h5><ul>
-<li>You should have done sth.. 你当时真应该做某事的。
-【情】 对方过去没有做某事， 事后表达指责， 抱怨或评论。
-【例】 You Should have spent more time on your studies last year. Look
-at your terrible grades!你去年应该多花点时间在学习上的。看看
-你糟糕的成绩!
-A: It was you. Why didn’t you say anything? (那是你。 你怎么不说出来? )
-B: You would’ve thought I was crazy or drunk. Or both. (但你会认为我疯
-了或者喝醉了, 或二者兼有。)
-A: Yeah, but I liked you. You should have said somethinG. (是的, 但是我
-喜欢你, 你应该说些什么。)
-B: How? You were with your boyfriend. (怎么说? 你和你男朋友
-在一起。)
-A: You know what? Excuses, excuses. You are a coward. (你知道吗? 这
-是借口，借口，你是胆小鬼。)
-B: I’m not a coward. (我不是胆小鬼。)</li>
-</ul>
-<h5 id="S6-2-“你本不该”-Baby-Mama-《代孕妈妈》"><a href="#S6-2-“你本不该”-Baby-Mama-《代孕妈妈》" class="headerlink" title="S6-2 “你本不该” - Baby Mama 《代孕妈妈》"></a>S6-2 “你本不该” - Baby Mama 《代孕妈妈》</h5><ul>
-<li>You shouldn′t have done sth.. 你真不应该做某事。
-【情】 对方过去做过某事，事后表达指责、 抱怨或评论。
-【例】 You shuuldn’t have stolen the car. I guess you’ll probably have to
-spend a few years in jail. 你真不应该偷那辆车，我估计你要在监
-狱里住几年了。
-A: You shouldn’t have forged that pregnancy test, Carl.(你不应该伪造那个
-产检，卡尔。)
-B: Maybe you should’ve actually gotten pregnant like you were supposed to.
-You did a dumb thing, moving in with that lady. Real
-dumb. We were supposed to forge the test, send her the ultrasound
-picture in the mall, and then cash the checks. One, two, three. (也许你
-跟预期的一样真的怀孕。 你做了件蠢事， 搬去跟那女人一起住，真的很蠢。 我
-们原本可以伪造产检。 把 B 超照片寄给她， 然后能兑现支票，一， 二， 三。)
-A: The ultrasound looked like a squirrel by the way. (顺便说一句, 那 B
-超照片像松鼠。)
-B: Cause it was a squirrel. That’s all I could find on the Internet. Look,
-katie’s gonna notice. You’re not getting bigger. When you go to the
-doctor’s office, and you take the test, she’s gonna know. Sweetie, you’re
-not smart enough to pull this off.
-(因为那就是松鼠，我在网上只能找到那个。
-听着，凯蒂会发现的，你的肚子都没变大。你去医生办公室做检查的时候，她就会
-知道了。亲爱的，要搞定这些事情你还不够聪明。)
-【情】 forge=v.伪造; dumb=a.愚蠢的(俚语);cause 或者 cuz 都是口语中
-because 的缩读形式;pull sb. off= 胜利完成</li>
-</ul>
-<h4 id="Season-7-淡淡的坦白"><a href="#Season-7-淡淡的坦白" class="headerlink" title="Season-7 淡淡的坦白"></a>Season-7 淡淡的坦白</h4><blockquote>
-<p>对于曾经做过的错事，我们常常试图找个相对合理的理由来辩解。</p>
-</blockquote>
-<h5 id="S7-1-May-have-done-Gossip-Girl《绯闻少女》"><a href="#S7-1-May-have-done-Gossip-Girl《绯闻少女》" class="headerlink" title="S7-1 May have done - Gossip Girl《绯闻少女》"></a>S7-1 May have done - Gossip Girl《绯闻少女》</h5><ul>
-<li>I may have done sth., but not anymore.
-我可能曾经做过某事，但是以后不会了。
-【情】淡淡地承认自己过去的某种行为，然后转折表决心。
-【例】 I may have taken a few of your cigarettes without asking last
-month, but not any more. 我可能上个月没有问你就拿过你几根香
-烟，但是以后不会了。
-A: I love you. And my concern is for our family. (我爱你，我的担忧都是为
-了家里好。)
-B: Bart, I’m not ashamed of who I am. I may have concealed things in
-the past, but not anymore.I want my children to know their mother. (巴
-特, 我对自己并不感到羞愧，也许我曾经隐瞒了过去的一些事情，但是再也不会了。
-我希望孩子们能够了解他们的母亲。)<h5 id="S7-2-May-have-done-Desperate-Housewives《绝望的主妇》"><a href="#S7-2-May-have-done-Desperate-Housewives《绝望的主妇》" class="headerlink" title="S7-2 May have done - Desperate Housewives《绝望的主妇》"></a>S7-2 May have done - Desperate Housewives《绝望的主妇》</h5></li>
-<li>I may have done sth., but… 我以前可能做过某事，但是……
-【情】 淡淡地承认自己过去的某种行为，然后解释其行为。
-【例】 Son, I may have hidden some of your comic books, but I did it
-for your own good. 儿子，我可能是藏过你的几本浸画书，但是我
-这么做都是为了你好。
-【引】 She/He/They/You may have done sth., but… (某人以前可能做过某事,但是…)
-【情】 表达帮他人开脱， 解释其行为。
-【例】 They may have made some mistakes, but they did it with good
-intentions at least. 他们可能犯了一些错误，但是至少他们的意图
-是好的。
-A: Katherine! Fantastic news. “What’s cooking fairview” is sending out a
-camera crew tomorrow to do a piece on me and the book. (凯瑟琳，惊天
-好消息,”美景妙厨”明天会派摄制组来, 拍摄一集关于我还有这本书的节目。)
-B: Oh, Which I just finished this morning. (哦，我刚好今天早晨拜读完毕)
-A: You read it already? (你己经读完了)
-B: Yes, I couldn’t put it down. But I have to tell you at least a dozen
-recipes are missing a pretty crucial ingredient. (是啊，我根本停不下来，
-但我得告诉你，至少有一打食谱缺少关键成分。)
-A: Really?What?(真的?缺什么？)
-B: My name. (我的名字。)
-A: Excuse me? (你说什么?)
-B: Bree, your book is filled with recipes that we developed together
-and… and some of them are flat-out mine. (布里, 你的书里都是咱们一起研
-制的食谱, 有些就是赤裸裸地照搬我的创意。)
-A: Oh, don’t be silly.I may have based a few on your recipes, but I
-always changed something.
-(哦，别傻了，我或许参考了一点你的配方，但我总是会改变些材料。)
-B: Like what? The font? (比如? 字体?)
-【注】 crucial=a. 至关重耍的，决定性的; ingredient=n. 原料, 成分;
-flat-out=a.彻底的, 完全的;font=n.字体<h4 id="Season-8-后果很严重"><a href="#Season-8-后果很严重" class="headerlink" title="Season-8 后果很严重"></a>Season-8 后果很严重</h4><blockquote>
-<p>成功之后， 我们往往会有 “后怕” 的感觉。 失败之后, 我们往往
-把原因归咎于某个东西的存在。</p>
-</blockquote>
-<h5 id="S8-1-Weren’t-for-When-We-Left-Earth-The-NASA-Missions《从地球出发》"><a href="#S8-1-Weren’t-for-When-We-Left-Earth-The-NASA-Missions《从地球出发》" class="headerlink" title="S8-1 Weren’t for - When We Left Earth: The NASA Missions《从地球出发》"></a>S8-1 Weren’t for - When We Left Earth: The NASA Missions《从地球出发》</h5></li>
-<li>If it weren’t for sb./sth., …would (be/do)… 如果不
-是因为某人/某物，……会……
-【情】 表达 “如果当下没有某人或某物， 后果很严重” 的感情。
-【例】If it weren’t for your guidance, I would still be confused about
-my future.如果不是因为有你的指导，我现在还在为前途迷茫呢。
-N: Hubble can now begin to gaze deep into the universe in a perfect
-focus. (现在, 哈勃望远镜就能通过完美的定焦观测到宇宙深处了。)
-A: We’ve done our part. Now it’s gonna be up to the astronomers and
-scientists to do their part. I could say unequivocally that if it weren’t for
-the human space program, Hubble would be a piece of orbiting space junk.
-(我们已经完成了我们的任务，下一步要由天文学家和科学家来完成他们的工
-作了。可以肯定地说，如果不是因为人类的太空计划，哈勃望远镜就会变成一个太空垃圾。)
-【注】 gaze=v./n. 注视, 凝视; unequivocally=ad. 亳无疑问地<h5 id="S8-2-Weren’t-for-附加-Aladdin-《阿拉丁》"><a href="#S8-2-Weren’t-for-附加-Aladdin-《阿拉丁》" class="headerlink" title="S8-2 Weren’t for 附加* - Aladdin 《阿拉丁》"></a>S8-2 Weren’t for 附加* - Aladdin 《阿拉丁》</h5>A: Jaffa, this is an outrage. If it Weren’t for all your years of loyal
-service, but from now on, you are to discuss sentencing of prisoners
-with me before they are beheaded. (贾法尔, 这是一桩暴行。如果不是看在
-你多年来忠诚的份上，但从现在起，罪犯的审判必须与我讨论，然后才能杀头。)
-B: I assure you. Your Highness, it won’t happen again. (我向您保证，陛丁
-这事儿不会再发生了。)
-【文】A 是国王，正在对 B 的不当行为表达愤怒。
-【注】outrage=n. 暴行，愤怒; behead=v. 斩首<h4 id="Season-9-If-only-要是……就好了"><a href="#Season-9-If-only-要是……就好了" class="headerlink" title="Season-9 If only 要是……就好了"></a>Season-9 If only 要是……就好了</h4><blockquote>
-<p>我们常常喜欢触景生情，发出感慨。</p>
-</blockquote>
-<h5 id="S9-1-If-only-Superhero-Movie《超级英雄》"><a href="#S9-1-If-only-Superhero-Movie《超级英雄》" class="headerlink" title="S9-1 If only - Superhero Movie《超级英雄》"></a>S9-1 If only - Superhero Movie《超级英雄》</h5></li>
-<li>If only sb./sth. (were/did)…! (现在) 要是某人/某物 ……
-就好了!
-【情】 表达与当下现实相反的感慨。
-【例】 If only I were a bird! 我要是一只鸟就好了!
-【引】 if only sb./sth. had done/been… 要是当时某人/某物……就好了。
-【情】 表达与过去发生的事情相反的感慨。
-【例】 If only Tom had been a little more careful on that exam. 汤姆在
-那场考试中要是再仔细一点就好了。
-be cut out to be… (天生)适合做……
-【近】 cut out for (doing)…
-【例】 Tom is not cut to be a teacher. He has no patience at all.
-汤姆天生不适合做老师，他一点耐心也没有。
-be meant to… 命中注定要……/应该是……
-【例】 We lost three games in a row. Maybe we were meant be lost.我们连输三场比赛，也许命中注定我们会失败。
-A: Gotcha. (抓住了。)
-B: Rick? (里克?)
-A: You didn’t think I’d let anything happen to the girl I love, did you? (你
-知道我不会让我喜欢的女孩出事，对吧? )
-B: Well we’re still faliing. (不过我们还在往下掉啊。)
-A: Damn it! If only I could fly. May be I wasn’t cut out to be a hero. You
-know, maybe I was meant to have a normal job…an accountant, a gym
-teacher. This is a really tall building. (该死! 我要是能飞就好了。也许我天生
-就不是个英雄。就应该去从事一份普通的工作……会计师、体育老师。这楼真高!)
-B: Rick! I don’t care what happens anymore. If I die, I die happlly in
-your arms. You are my hero, Rick Ricker and I love you. (里克! 我什么都
-不管了。就算死, 也要幸福地死在你怀里。 你就是我的英雄里克.瑞克，我爱你。)
-【注】 accountant=n. 会计; in one’s arms=在某人怀抱里</li>
-</ul>
-<h5 id="S9-2-If-only-Desperate-Housewives《绝望的主妇》"><a href="#S9-2-If-only-Desperate-Housewives《绝望的主妇》" class="headerlink" title="S9-2 If only - Desperate Housewives《绝望的主妇》"></a>S9-2 If only - Desperate Housewives《绝望的主妇》</h5><ul>
-<li>If only there was/were…! 要是现在有……就好了!
-【情】 表达对不存在的东西的渴望
-【例】 If only there was someone who could totally understand me. 要是
-现在有个能够完全理解我的人就好了。
-【引】 If only there had been… 要是当时有……就好了（强调过去)。
-【例】 If only there had been a doctor on that plane, Lucy could have
-been saved from that heart attack. 要是当时飞机上有医生就好了，
-那样露西就有可能从心脏病发作中获救。
-A: What are you doing? (你干嘛呢?)
-B: Okay, where are they? It’s 30 mintues past curfew.(他们哪去了? 超过
-宵禁时间 30 分钟了。)
-A: Actually, it’s 32. (其实是 32 分钟。)
-B: If there is a single scratch on that car, I mean, after all the time that
-I spent restoring that thing… (要是车上有一丝划痕，我是说，我花了那么多
-心血修复的。)
-A: Yeah. Remember when you spend the entire day on the Internet
-trying to find a new gearshift knob? Worst anniversary ever.(是啊，记得
-那次你花一整天上网买挡把套吗? 那是最禧糕的结婚纪念日。)
-B: I cannot believe that you did this to me. (真不敢相信你怎么这样说我。)
-A: I know. That cat is your baby. If only there was something I felt that
-intensely about.Oh, wait!There is, my actual bables. (我知道，那辆车是
-你的宝贝。要是我也有这么上心的东西就好了。 对了, 有啊, 我的孩子们。)
-B: You think I don’t care about our boys? (你以为我不关心儿子们? )
-A: I know you love them, but sometimes you find them so cool and
-entertaining, you forget to parent them. (我知道你爱他们, 但有时你看他们
-这么酷这么有趣, 就忘记怎么为人父了。)
-【注】 curfew=n. 宵禁; scratch=n. 划痕; restore=v. 修复; gearshift knob=
-变速拍档把手</li>
-</ul>
-<p>句尾儿化音特征</p>
-<p>[əː][ɑː][ɔː]<a href="%E5%9C%A8%E8%AF%8D%E5%B0%BE">ə</a>[iə][uə][ɔː]等元音在单词中多被儿化。
-[ɑː] far, bar, mark
-[əː] bird, sir, nerd, fur
-[ə] doctor, worker (在词尾, 并多以 or, er 结尾词)
-[eə] fair, air, pair
-[iə] ear, tear, near
-[uə] sure, tour, lure
-[ɔː] or, bored, horse, north (talk 没儿化)</p>
-<p>\n 易错儿化音
-\n1) [ə] 在词”中间”出现一般不带儿化
-\ncampus, delicious, purpose, because
-\n2) 不以 or, er 结尾的词一般[ə]在词尾不带儿化
-\nChina, idea, media, wanna, gonna, via[ˈvaɪə], aroma, coma, formula</p>
-<p>特征:美音特殊发音变化
-\n[ɔ] 发 [ʌ] hot, pot, cops
-\n[ʌ] 发 [æ] fast, class, afternoon, basketball
-\n[ju:] 发 [u:] supermarket, introduce</p>
-<p>\n[t] 出现在两个元音之间， 且不再重读位置时， 被浊化成近乎[d]的音
-\nforty，party，daughter; I got it. [gɔdit]; I don’t know what it is.[wɔdidiz]</p>
-<p>\n 特征: 美语口语中高频简读现象
-\nwant to = wanna <a href="%E6%83%B3%E8%A6%81">‘wɔnə</a>
-\n 例: I wanna do this.</p>
-<p>\ngoing to = gonna <a href="%E5%B0%86%E8%A6%81">‘ɡɔnə</a>
-\n 例: I am gonna leave this place.
-\ngot to = gotta <a href="%E5%BF%85%E9%A1%BB">‘gɔte</a></p>
-<p>\n 例: You gotta go home.</p>
-<p>\nbecause = cuz [‘kəz]
-\nhim = 在句中连读时常被读成[im]
-\n 例 = take him [teikim]
-\nand=在句中常被读成[n]
-\n 例: Let’s share, you and me [juː n miː]</p>
-<p>\n3k 链音法
-\n(Linking of Sound)
-\n 链音也就是连读， 大家一定不陌生。 这是阻碍我们听力的最大障碍之一。
-\n 什么是链音? 顾名思义，把音像链子一样连起来读
-\n 怎么连? 怎么读呢？</p>
-<p>元音: 承载整个词声音的核心部分。
-辅音: 辅助修饰元音的音。</p>
-<p>元音: [iː][i] [e][æ] [ɑː][ʌ] [ɔː][uː] [u][əː]
-[ə][ei] [ai][oi] [ɔi][au] [iə][eə] [uə]</p>
-<p>辅音: [p][b] [t][d] [k][g] [f][v] [s][z] [θ][ð]
-[ʃ][ʒ] [tʃ][dʒ] [tr][dr] [dz][m] [n][ŋ] [h][l] [r][w] [j]</p>
-<p>k-9 连读:(元音 + 辅音)</p>
-<p>\n 这是最普遍的连读现象。连读后，连起来的部分听起来像以个词。
-\n 例 1: All of them love it.
-\n[ɔːlɔv][lɔvit]</p>
-<p>\n 例 2: Take off your coat and pass it up here, so I can fix it for you.
-\n[teikɔv][pɑːsidʌp] [fiksit]</p>
-<p>K-10 连读:(辅音 + 辅音)
-失去爆破现象
-\n6 个爆破音: [p][b][t][d][k][g]
-\n 当爆破音与爆破音相连时， 或爆破音与某些辅音相连时, 前一个
-音失去爆破， 做嘴型而不发声。 也叫不完全爆破。</p>
-<p>\n1) 爆破音+爆破音
-\n 例: I need a black pen.
-\n2) 爆破音+擦音
-\n[s][z][θ][ð][ʃ][ʒ] [tʃ][dʒ]
-\n 例: Please take the weapon to protect your dream.
-\n3) 爆破音+鼻音 ([m][n][n])
-\n 例: Take Nick away.</p>
-<p>\n4) 爆破音+舌音 （[|]）
-\n 例：Let love take over the world.</p>
-<p>K-11 连读: (必备变音规律)</p>
-<p>1)[t]+[j]=[tʃ]
-\n 例: I will let you go now for your stealing; Wouldn’t you feel sad aboutit? [letʃu]</p>
-<p>\n2） [d]+[j]=[dʒ]
-\n 例: Would you please tell me your name? Did you hear my question, sir?
-\n[wudʒu][didʒu]</p>
-<p>\n3) [s]+[j]=[ʃ]
-\n 例: I miss you.
-\n[miʃu]
-\nThis hat makes you look old.
-\n[meikʃu]</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2414,7 +1756,7 @@ entertaining, you forget to parent them. (我知道你爱他们, 但有时你看
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

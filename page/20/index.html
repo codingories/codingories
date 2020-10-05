@@ -158,6 +158,164 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/" class="post-title-link" itemprop="url">P33_分类属性绘图</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-05-26 08:21:13 / Modified: 09:05:13" itemprop="dateCreated datePublished" datetime="2019-05-26T08:21:13+08:00">2019-05-26</time>
+            </span>
+
+          
+            <span id="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/" class="post-meta-item leancloud_visitors" data-flag-title="P33_分类属性绘图" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment"># 导入相关包</span></span><br><span class="line">sns.set(style=<span class="string">"whitegrid"</span>, color_codes=<span class="literal">True</span>)</span><br><span class="line">titanic = sns.load_dataset(<span class="string">"titanic"</span>)</span><br><span class="line">tips = sns.load_dataset(<span class="string">"tips"</span>)</span><br><span class="line">iris = sns.load_dataset(<span class="string">"iris"</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.violinplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,data=tips,inner=<span class="literal">None</span>)</span><br><span class="line">sns.swarmplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,data=tips,color=<span class="string">"w"</span>,alpha=<span class="number">.5</span>) <span class="comment"># violinplot 和 swarmplot进行组合</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fb70a58&gt;</code></pre>
+<p><img src="/.io/2019/05//output_1_1.png" alt="png"></p>
+<p>显示值的集中趋势可以用条形图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.barplot(x=<span class="string">"sex"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"class"</span>,data=titanic); </span><br><span class="line"><span class="comment"># class 在titanic数据集中，一个人登船之后住的船舱等级的，不同性别的获救率</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
+<p>点图可以更好的描述变化差异</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.pointplot(x=<span class="string">"sex"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"class"</span>,data=titanic); </span><br><span class="line"><span class="comment"># 看 First Second Third各自的变化，男的女的获救比率的差异性</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/05//output_5_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.pointplot(x=<span class="string">"class"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"sex"</span>,data=titanic,</span><br><span class="line">              palette=&#123;<span class="string">"male"</span>:<span class="string">"g"</span>,<span class="string">"female"</span>:<span class="string">"m"</span>&#125;,</span><br><span class="line">              markers=[<span class="string">"^"</span>,<span class="string">"o"</span>],linestyles=[<span class="string">"-"</span>,<span class="string">"--"</span>]) <span class="comment"># markers 指定样子，linestyles指定线形</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fe79550&gt;</code></pre>
+<p><img src="/.io/2019/05//output_6_1.png" alt="png"></p>
+<p>宽形数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(data=iris,orient=<span class="string">"h"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11ff456a0&gt;</code></pre>
+<p><img src="/.io/2019/05//output_8_1.png" alt="png"></p>
+<p>多层面板分类图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,data=tips)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120469080&gt;</code></pre>
+<p><img src="/.io/2019/05//output_10_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,data=tips,kind=<span class="string">"bar"</span>)</span><br><span class="line"><span class="comment">#factorplot 能画很多种图，需要指定kind</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120742cf8&gt;</code></pre>
+<p><img src="/.io/2019/05//output_11_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,col=<span class="string">"time"</span>,data=tips,kind=<span class="string">"swarm"</span>)</span><br><span class="line"><span class="comment"># 指定col="time",kind="swarm"</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120cfa780&gt;</code></pre>
+<p><img src="/.io/2019/05//output_12_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"time"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,col=<span class="string">"day"</span>,data=tips,kind=<span class="string">"box"</span>,height=<span class="number">4</span>,aspect=<span class="number">.5</span>)</span><br><span class="line"><span class="comment"># aspect 是长宽比，height 和 aspect 需要自己慢慢调</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1213d1cf8&gt;</code></pre>
+<p><img src="/.io/2019/05//output_13_1.png" alt="png"></p>
+<p>seaborn.factorplot函数的所有参数说明，方便参考：</p>
+<p>seaborn.factorplot(x=None, y=None, hue=None, data=None, row=None, col=None, col_wrap=None, estimator=<function mean>, ci=95, n_boot=1000, units=None, order=None, hue_order=None, row_order=None, col_order=None, kind=’point’, size=4, aspect=1, orient=None, color=None, palette=None, legend=True, legend_out=True, sharex=True, sharey=True, margin_titles=False, facet_kws=None, **kwargs)</function></p>
+<h1 id="Parameters："><a href="#Parameters：" class="headerlink" title="Parameters："></a>Parameters：</h1><ul>
+<li>x,y,hue 数据集变量 变量名</li>
+<li>date 数据集 数据集名</li>
+<li>row,col 更多分类变量进行平铺显示 变量名</li>
+<li>col_wrap 每行的最高平铺数 整数</li>
+<li>estimator 在每个分类中进行矢量到标量的映射 矢量</li>
+<li>ci 置信区间 浮点数或None</li>
+<li>n_boot 计算置信区间时使用的引导迭代次数 整数</li>
+<li>units 采样单元的标识符，用于执行多级引导和重复测量设计 数据变量或向量数据</li>
+<li>order, hue_order 对应排序列表 字符串列表</li>
+<li>row_order, col_order 对应排序列表 字符串列表</li>
+<li>kind : 可选：point 默认, bar 柱形图, count 频次, box 箱体, violin 提琴, strip 散点，swarm 分散点 size 每个面的高度（英寸） 标量  aspect 纵横比 标量 orient 方向 “v”/“h” color 颜色 matplotlib颜色 palette 调色板 seaborn颜色色板或字典 legend hue的信息面板 True/False legend_out 是否扩展图形，并将信息框绘制在中心右边 True/False share{x,y} 共享轴线 True/False </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -5187,126 +5345,6 @@ array([[ 0,  1,  2,  3,  4],
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/13/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/13/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day6/" class="post-title-link" itemprop="url">n2词汇打卡day6</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-03-13 20:59:07 / Modified: 21:00:54" itemprop="dateCreated datePublished" datetime="2019-03-13T20:59:07+08:00">2019-03-13</time>
-            </span>
-
-          
-            <span id="/2019/03/13/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day6/" class="post-meta-item leancloud_visitors" data-flag-title="n2词汇打卡day6" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/03/13/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/13/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>n2词汇打卡day6</p>
-<p>发誓
-誓う　ちかう</p>
-<p>在大家面前为爱宣誓
-みんなの前で愛を誓った</p>
-<p>小小的，微不足道的
-些細　ささい</p>
-<p>我因为一点鸡毛蒜破的事情和女朋友吵架了
-ささいなことが原因で、彼女とけんかになった</p>
-<p>避开，避免
-避ける</p>
-<p>私は彼のようなタイプが苦手で、つい避けてしまう
-我不太擅长和他这种人打交道，所以一见到他就避开</p>
-<p>きっぱり「と」
-断然，干脆</p>
-<p>彼に食事に誘われたが、きっぱり断った。
-他请我吃饭，但我断然拒绝了</p>
-<p>令人不愉快的
-嫌味　いやみ　</p>
-<p>他说话的方式令人很不愉快
-彼の言い方はいやみに聞こえる</p>
-<p>责备
-責める</p>
-<p>一味地责备别人不好
-一方的に人を責めるのはよくない</p>
-<p>贬低，诽谤
-貶す　けなす　</p>
-<p>她不表扬别人，总是贬低别人。
-彼は人をほぼす、いつもけなしている</p>
-<p>怒目而视
-睨む　にらむ</p>
-<p>彼女は怖い顔で、じっと彼をにらんだ。
-她表情可怕，一直瞪他。</p>
-<p>背叛
-裏切る</p>
-<p>被一只相信的人背叛了。
-信じていた人に裏切られてしまった。</p>
-<p>欺骗
-騙す</p>
-<p>被认识的人欺骗，借了钱给他。
-知り合いに騙されて、お金を貸してしまった。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -5378,7 +5416,7 @@ array([[ 0,  1,  2,  3,  4],
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
