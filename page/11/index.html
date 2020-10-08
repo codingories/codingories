@@ -158,6 +158,179 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8B/" class="post-title-link" itemprop="url">Vue造轮子-Tabs测试(下)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-28 20:23:57 / Modified: 21:45:47" itemprop="dateCreated datePublished" datetime="2020-01-28T20:23:57+08:00">2020-01-28</time>
+            </span>
+
+          
+            <span id="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-Tabs测试(下)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-如果g-tabs里面不是g-tabs-head，g-tabs-body期望会报错。"><a href="#1-如果g-tabs里面不是g-tabs-head，g-tabs-body期望会报错。" class="headerlink" title="1. 如果g-tabs里面不是g-tabs-head，g-tabs-body期望会报错。"></a>1. 如果g-tabs里面不是g-tabs-head，g-tabs-body期望会报错。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 目前没有报错，所以先改</span><br><span class="line">&#x2F;&#x2F; tabs.vue</span><br><span class="line"> if(this.$children.length&#x3D;&#x3D;&#x3D;0)&#123;</span><br><span class="line">      &#x2F;&#x2F; 这个$children是看子组件，不是子元素</span><br><span class="line">      throw new Error(&#39;tabs的子组件应该是tabs-head和tabs-pane,但你没有写子组件&#39;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>test里面也应该期待一个报错，通过google搜索chai expect error得到写法,但是又碰到报错是异步的问题,接下来我们又搜索 chai aysnc error 去解决,发现也没有办法解决，决定退而求其次把error改成warn <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs.vue中改成</span><br><span class="line">mounted()&#123;</span><br><span class="line">if(this.$children.length&#x3D;&#x3D;&#x3D;0)&#123;</span><br><span class="line">    &#x2F;&#x2F; 这个$children是看子组件，不是子元素</span><br><span class="line">    console &amp;&amp; console.warn &amp;&amp; console.warn(&#39;tabs的子组件应该是tabs-head和tabs-pane,但你没有写子组件&#39;)</span><br><span class="line">    &#x2F;&#x2F; 这是浏览器兼容性的写法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>测试就直接放弃了</li>
+</ul>
+<h4 id="2-下面开始测tabs的属性"><a href="#2-下面开始测tabs的属性" class="headerlink" title="2. 下面开始测tabs的属性"></a>2. 下面开始测tabs的属性</h4><ul>
+<li>先测selected属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs-items.vue加上:data-name&#x3D;&quot;name&quot;变得更好测试点</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;tabs-item&quot; @click&#x3D;&quot;onClick&quot; :class&#x3D;&quot;classes&quot; :data-name&#x3D;&quot;name&quot;&gt;</span><br><span class="line">        &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&#x2F;&#x2F; tabs.test.js 异步代码测试比较麻烦</span><br><span class="line">vm.$nextTick(()&#x3D;&gt;&#123;</span><br><span class="line">  let x &#x3D; vm.$el.querySelector(&#39;.tabs-item[data-name]&#x3D;&quot;$&#123;finance&#125;&quot;&#39;)</span><br><span class="line">  expect(x.classList.contains(&#39;active&#39;)).to.be.true</span><br><span class="line">  done()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="3-测试tabs-item组件"><a href="#3-测试tabs-item组件" class="headerlink" title="3. 测试tabs-item组件"></a>3. 测试tabs-item组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">describe(&#39;TabsItem&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">  it(&#39;存在.&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">    expect(TabsItem).to.exist</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  it(&#39;子组件接收 name 属性&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">    const Constructor &#x3D; Vue.extend(TabsItem)</span><br><span class="line">    const vm &#x3D; new Constructor(&#123;</span><br><span class="line">      propsData: &#123;</span><br><span class="line">        name: &#39;xxx&#39;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).$mount()</span><br><span class="line">    expect(vm.$el.getAttribute(&#39;data-name&#39;)).to.eq(&#39;xxx&#39;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  it(&#39;子组件接收 disabled 属性&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">    const Constructor &#x3D; Vue.extend(TabsItem)</span><br><span class="line">    const vm &#x3D; new Constructor(&#123;</span><br><span class="line">      propsData: &#123;</span><br><span class="line">        disabled: true,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).$mount()</span><br><span class="line">    &#x2F;&#x2F; expect(vm.$el.classList.contains(&#39;disabled&#39;)).to.be.true</span><br><span class="line">    const callback &#x3D; sinon.fake();</span><br><span class="line">    vm.$on(&#39;click&#39;, callback)</span><br><span class="line">    vm.$el.click()</span><br><span class="line">    expect(callback).to.have.not.been.called</span><br><span class="line">    &#x2F;&#x2F; 测试覆盖率,目前是坑之后再填</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="最后，欢迎交流"><a href="#最后，欢迎交流" class="headerlink" title="最后，欢迎交流!"></a>最后，欢迎交流!</h4><img src="https://i.loli.net/2020/01/27/gS4ZwP6zfAvULYT.jpg" alt="微信" width="400" height="400" align="bottom"></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8A/" class="post-title-link" itemprop="url">Vue造轮子-Tabs测试(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-28 18:19:10 / Modified: 19:55:16" itemprop="dateCreated datePublished" datetime="2020-01-28T18:19:10+08:00">2020-01-28</time>
+            </span>
+
+          
+            <span id="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-Tabs测试(上)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-点击出现下划线的问题"><a href="#1-点击出现下划线的问题" class="headerlink" title="1. 点击出现下划线的问题"></a>1. 点击出现下划线的问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs-item.vue</span><br><span class="line">methods: &#123;</span><br><span class="line">  xxx() &#123;</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;, this.name, this) </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; tabs.vue</span><br><span class="line">mounted()&#123;</span><br><span class="line">  this.eventBus.$emit(&#39;update:selected&#39;, this.selected) </span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; tabs-head</span><br><span class="line">created()&#123;</span><br><span class="line">  this.eventBus.$on(&#39;update:selected&#39;, (item, vm) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(item)</span><br><span class="line">    console.log(vm) &#x2F;&#x2F; 初始化的时候打印出的值为undefined </span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 为了解决初始化打印出为undefined的问题</span><br><span class="line">&#x2F;&#x2F; tabs.vue 通过两层循环解决找到item</span><br><span class="line">mounted()&#123;</span><br><span class="line">  this.$children.forEach((vm)&#x3D;&gt;&#123;</span><br><span class="line">    if(vm.$options.name &#x3D;&#x3D;&#x3D; &#39;GuluTabsHead&#39;)&#123; &#x2F;&#x2F; 找儿子</span><br><span class="line">      vm.$children.forEach((childVm)&#x3D;&gt;&#123; &#x2F;&#x2F; 找孙子</span><br><span class="line">        if(childVm.$options.name &#x3D;&#x3D;&#x3D; &#39;GuluTabsItem&#39; &amp;&amp; childVm.name &#x3D;&#x3D;&#x3D; this.selected)&#123;</span><br><span class="line">          this.eventBus.$emit(&#39;update:selected&#39;, this.selected,childVm)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-找到item之后开始做动画"><a href="#2-找到item之后开始做动画" class="headerlink" title="2. 找到item之后开始做动画"></a>2. 找到item之后开始做动画</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">     this.eventBus.$on(&#39;update:selected&#39;, (item, vm) &#x3D;&gt; &#123;</span><br><span class="line">       let &#123;width, height, top, left&#125; &#x3D; vm.$el.getBoundingClientRect()</span><br><span class="line">       this.$refs.line.style.width &#x3D; &#96;$&#123;width&#125;px&#96; &#x2F;&#x2F; 宽度就会跟着我们点的元素的宽度变,</span><br><span class="line">       &#x2F;&#x2F; this.$refs.line.style.left &#x3D; &#96;$&#123;left&#125;px&#96; &#x2F;&#x2F; 宽度变了我们再修改位置</span><br><span class="line">       this.$refs.line.style.transform &#x3D; &#96;translateX($&#123;left&#125;px)&#96; </span><br><span class="line">       &#x2F;&#x2F; 可以这样优化写来实现硬件3d加速</span><br><span class="line">       &#x2F;&#x2F; 但是这样写有个bug一开始会从左往右滑</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-尝试解决一开始从走往右滑动的bug"><a href="#3-尝试解决一开始从走往右滑动的bug" class="headerlink" title="3. 尝试解决一开始从走往右滑动的bug"></a>3. 尝试解决一开始从走往右滑动的bug</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs-head.vue</span><br><span class="line">  &lt;template&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;tabs-head&quot;&gt;</span><br><span class="line">          &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">              &lt;div class&#x3D;&quot;line&quot; ref&#x3D;&quot;line&quot; v-if&#x3D;&quot;x&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      x: false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    this.eventBus.$on(&#39;update:selected&#39;, (item, vm) &#x3D;&gt; &#123;</span><br><span class="line">      this.x &#x3D; true</span><br><span class="line">      &#x2F;&#x2F; 新增一个[更新UI任务]到任务队列里面,</span><br><span class="line">      &#x2F;&#x2F; 会先把下面js执行完了再更新，所以 this.$refs.line.style.width会报错</span><br><span class="line">      &#x2F;&#x2F; 我们只要把代码放到[更新UI任务]的后面就能解决</span><br><span class="line">      this.$nextTick(()&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F; 新增一个函数，放到任务队列里面，由于[更新UI任务]是先放进去那么就会先执行</span><br><span class="line">        &#x2F;&#x2F; 但是这样做还是没解决从左往右滑的bug,所以还是改回left</span><br><span class="line">        let &#123;width, height, top, left&#125; &#x3D; vm.$el.getBoundingClientRect()</span><br><span class="line">        this.$refs.line.style.width &#x3D; &#96;$&#123;width&#125;px&#96;</span><br><span class="line">        this.$refs.line.style.transform &#x3D; &#96;translateX($&#123;left&#125;px)&#96;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-增加禁用功能和禁用样式"><a href="#4-增加禁用功能和禁用样式" class="headerlink" title="4.增加禁用功能和禁用样式"></a>4.增加禁用功能和禁用样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 增加disabled样式</span><br><span class="line">computed: &#123;</span><br><span class="line">  classes() &#123; &#x2F;&#x2F; classes是一个计算属性</span><br><span class="line">    return &#123;</span><br><span class="line">      active: this.active,</span><br><span class="line">      disabled: this.disabled,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F; 增加disabled行为</span><br><span class="line">methods: &#123;</span><br><span class="line">  onClick() &#123;</span><br><span class="line">    if (this.disabled) &#123;</span><br><span class="line">      return</span><br><span class="line">    &#125;</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;, this.name, this)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="最后，欢迎交流"><a href="#最后，欢迎交流" class="headerlink" title="最后，欢迎交流!"></a>最后，欢迎交流!</h4><img src="https://i.loli.net/2020/01/27/gS4ZwP6zfAvULYT.jpg" alt="微信" width="400" height="400" align="bottom">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -745,7 +918,7 @@
           <ol start="0">
 <li><p>Vue的常用修饰符</p>
 <ul>
-<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#x31;&#x2e;&#x40;&#x63;&#108;&#105;&#x63;&#107;&#x2e;&#115;&#x74;&#x6f;&#112;">&#x31;&#x2e;&#x40;&#x63;&#108;&#105;&#x63;&#107;&#x2e;&#115;&#x74;&#x6f;&#112;</a>=”xxx”<a href="mailto:&#50;&#46;&#64;&#99;&#108;&#x69;&#99;&#x6b;&#46;&#x70;&#114;&#x65;&#x76;&#101;&#110;&#x74;">&#50;&#46;&#64;&#99;&#108;&#x69;&#99;&#x6b;&#46;&#x70;&#114;&#x65;&#x76;&#101;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#x2e;&#x40;&#107;&#x65;&#x79;&#112;&#x72;&#101;&#x73;&#115;&#46;&#101;&#x6e;&#116;&#101;&#x72;">&#51;&#x2e;&#x40;&#107;&#x65;&#x79;&#112;&#x72;&#101;&#x73;&#115;&#46;&#101;&#x6e;&#116;&#101;&#x72;</a>=”xxx”4.:money.sync=”total”</li>
+<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#46;&#x40;&#x63;&#108;&#105;&#99;&#107;&#46;&#115;&#116;&#111;&#x70;">&#49;&#46;&#x40;&#x63;&#108;&#105;&#99;&#107;&#46;&#115;&#116;&#111;&#x70;</a>=”xxx”<a href="mailto:&#50;&#46;&#64;&#99;&#x6c;&#105;&#99;&#x6b;&#46;&#112;&#x72;&#x65;&#118;&#101;&#110;&#x74;">&#50;&#46;&#64;&#99;&#x6c;&#105;&#99;&#x6b;&#46;&#112;&#x72;&#x65;&#118;&#101;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#x2e;&#x40;&#107;&#101;&#121;&#112;&#x72;&#101;&#x73;&#115;&#46;&#101;&#x6e;&#116;&#x65;&#114;">&#51;&#x2e;&#x40;&#107;&#101;&#121;&#112;&#x72;&#101;&#x73;&#115;&#46;&#101;&#x6e;&#116;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
 </ul>
 </li>
 <li><p>@click.stop=”xxx”</p>
@@ -970,201 +1143,6 @@ new Vue({<figure class="highlight plain"><table><tr><td class="gutter"><pre><spa
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/07/MVC%E6%B5%85%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" class="post-title-link" itemprop="url">MVC浅析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-07 10:20:32 / Modified: 10:48:54" itemprop="dateCreated datePublished" datetime="2019-12-07T10:20:32+08:00">2019-12-07</time>
-            </span>
-
-          
-            <span id="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="MVC浅析" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/12/07/MVC%E6%B5%85%E6%9E%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>MVC 三个对象分别做什么，给出伪代码示例</p>
-<ul>
-<li><p>M 是 Model 的意思，指的所有数据放一块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const m &#x3D; &#123;</span><br><span class="line">    data : &#123;</span><br><span class="line">        n : parseInt(localStorage.getItem(&quot;n&quot;))||100</span><br><span class="line">    &#125;,</span><br><span class="line">    create()&#123;&#125;,</span><br><span class="line">    delete()&#123;&#125;,</span><br><span class="line">    update(data)&#123;</span><br><span class="line">        Object.assign(m.data,data) &#x2F;&#x2F; 把data的所有属性赋值给m.data</span><br><span class="line">        &#x2F;&#x2F; m更新了就会触发，我更新了这句话</span><br><span class="line">        eventBus.trigger(&#39;m:updated&#39;)</span><br><span class="line">        localStorage.setItem(&#39;n&#39;,m.data.n)</span><br><span class="line">    &#125;,</span><br><span class="line">    get()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>V 是 View 的意思，是指所有的看的见的视图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">   const view &#x3D; &#123;</span><br><span class="line">   el:null,</span><br><span class="line">   html : &#96;</span><br><span class="line">   &lt;div&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;output&quot;&gt;</span><br><span class="line">       &lt;span id&#x3D;&quot;number&quot;&gt;&#123;&#123;n&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;actions&quot;&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;add1&quot;&gt;+1&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;minus1&quot;&gt;-1&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;mul2&quot;&gt;*2&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;divide2&quot;&gt;÷2&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&#96;,</span><br><span class="line">   init(container)&#123;</span><br><span class="line">       view.el &#x3D; $(container)</span><br><span class="line">       view.render(m.data.n) &#x2F;&#x2F; view &#x3D; render(data)</span><br><span class="line">       view.autoBindEvents()</span><br><span class="line">       eventBus.on(&#39;m:updated&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">           view.render(m.data.n)</span><br><span class="line">       &#125;)</span><br><span class="line">   &#125;,</span><br><span class="line">   render(n)&#123;</span><br><span class="line">       if (view.el.children.length !&#x3D;&#x3D; 0) view.el.empty();</span><br><span class="line">       $(view.html.replace(&#39;&#123;&#123;n&#125;&#125;&#39;,n)).appendTo(view.el)</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- C 是Controller 的意思，是其他剩余的部分。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>EventBus 有哪些 API，是做什么用的，给出伪代码示例</p>
-<ul>
-<li><p>当一个事件执行，eventBus 触发 m:updated
-<code>eventBus.trigger(&#39;m:updated&#39;)</code></p>
-</li>
-<li><p>eventBus 监听 m:updated，当 m:updated 触发时，执行一些内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eventBus.on(&#39;m:updated&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">     v.render(m.data.n)</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>表驱动编程是做什么的</p>
-<ul>
-<li>表驱动法是一种编程模式,可以简化复杂的 if,else,也可以将复杂的赋值操作进行简化，比如:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">c &#x3D; &#123;</span><br><span class="line">     events:&#123;</span><br><span class="line">     &#39;click #add1&#39;:&#39;add&#39;,</span><br><span class="line">         &#39;click #minus1&#39;:&#39;minus&#39;,</span><br><span class="line">         &#39;click #mul2&#39;:&#39;mul&#39;,</span><br><span class="line">         &#39;click #divide2&#39;:&#39;div&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     autoBindEvents()&#123;</span><br><span class="line">         for(let key in c.events)&#123;</span><br><span class="line">             const value &#x3D; c[c.events[key]]</span><br><span class="line">             const spaceIndex &#x3D; key.indexOf(&#39; &#39;)</span><br><span class="line">             const part1 &#x3D; key.slice(0, spaceIndex)</span><br><span class="line">             const part2 &#x3D; key.slice(spaceIndex + 1)</span><br><span class="line">             v.el.on(part1,part2,value)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>我是如何理解模块化的</p>
-<ul>
-<li>简单理解就是：模块化就是将功能相似的代码分为一个个模块，有序的组织起来，能够使得代码的耦合度降低，更好的管理代码。</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" class="post-title-link" itemprop="url">用reduce进行数组去重</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-11-21 08:08:50 / Modified: 09:06:12" itemprop="dateCreated datePublished" datetime="2019-11-21T08:08:50+08:00">2019-11-21</time>
-            </span>
-
-          
-            <span id="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" class="post-meta-item leancloud_visitors" data-flag-title="用reduce进行数组去重" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="用reduce方法封装数组去重"><a href="#用reduce方法封装数组去重" class="headerlink" title="用reduce方法封装数组去重"></a>用reduce方法封装数组去重</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">以下是直接使用 reduce</span><br><span class="line">let a &#x3D; [</span><br><span class="line">  &#123; ID: &quot;1&quot;, name: &quot;Mike&quot;, sex: &quot;男&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;20&quot;, name: &quot;Tom&quot;, sex: &quot;男&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;1&quot;, name: &quot;小张&quot;, sex: &quot;女&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;40&quot;, name: &quot;中村&quot;, sex: &quot;男&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;300&quot;, name: &quot;Ories&quot;, sex: &quot;女&quot; &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">let temp &#x3D; &#123;&#125;;</span><br><span class="line">tempList &#x3D; a.reduce((curv, next) &#x3D;&gt; &#123;</span><br><span class="line">  if (temp[next.ID]) &#123;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    temp[next.ID] &#x3D; true;</span><br><span class="line">    curv.push(next);</span><br><span class="line">  &#125;</span><br><span class="line">  return curv;</span><br><span class="line">&#125;, []);</span><br><span class="line"></span><br><span class="line">console.log(tempList);</span><br></pre></td></tr></table></figure>
-<h1 id="以下是对reduce的去重"><a href="#以下是对reduce的去重" class="headerlink" title="以下是对reduce的去重"></a>以下是对reduce的去重</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 进行简单的封装第一个参数传递数组,第二个参数传递属性进行去重</span><br><span class="line">let unique &#x3D; (list, attr) &#x3D;&gt; &#123;</span><br><span class="line">  let temp &#x3D; &#123;&#125;;</span><br><span class="line">  return list.reduce((curv, next) &#x3D;&gt; &#123;</span><br><span class="line">    if (temp[next[attr]]) &#123;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      temp[next[attr]] &#x3D; true;</span><br><span class="line">      curv.push(next);</span><br><span class="line">    &#125;</span><br><span class="line">    return curv;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let b &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;01&quot;,</span><br><span class="line">    value: &quot;乐乐&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;02&quot;,</span><br><span class="line">    value: &quot;博博&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;03&quot;,</span><br><span class="line">    value: &quot;淘淘&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;04&quot;,</span><br><span class="line">    value: &quot;乐乐&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;01&quot;,</span><br><span class="line">    value: &quot;轻轻&quot;</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line">console.log(unique(b, &quot;key&quot;));</span><br><span class="line">console.log(unique(b, &quot;value&quot;));</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1236,7 +1214,7 @@ new Vue({<figure class="highlight plain"><table><tr><td class="gutter"><pre><spa
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

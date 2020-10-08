@@ -158,6 +158,277 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/02/27/restful%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/27/restful%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">restful架构学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-27 09:29:18" itemprop="dateCreated datePublished" datetime="2019-02-27T09:29:18+08:00">2019-02-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-03-01 16:02:26" itemprop="dateModified" datetime="2019-03-01T16:02:26+08:00">2019-03-01</time>
+              </span>
+
+          
+            <span id="/2019/02/27/restful%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" class="post-meta-item leancloud_visitors" data-flag-title="restful架构学习" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/02/27/restful%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/02/27/restful%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.铺垫
+** 传统的应用模式 : 重服务端
+** 现代化 : 第一次请求(HTML+CSS+JS),相当于下载一个应用程序</p>
+<p>二.restful概要</p>
+<p>愿景：让前端开发人员与后端开发人员的开发工作相互独立，互不干扰，减少耗时</p>
+<p>思路：时间是前端开发人员浪费在等待后端接口上，能不能不等待接口。</p>
+<p>实践： </p>
+<ol>
+<li>事先先约定好接口的标准（契约精神） </li>
+<li>后端开始开发接口 </li>
+<li>前端通过假数据的方式模拟一个后端接口 
+这就是——Mock</li>
+</ol>
+<p>Mock在开发者的眼中，泛指所有的客户端伪造数据的手段 </p>
+<ul>
+<li>JSON文件的方式就是最简单的mock行为（缺点很明显）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">sudo cnpm i http-server -g 安装静态http服务器作为测试</span><br><span class="line">然后输入hs -0 开启服务器进行测试</span><br><span class="line">详情见 index.html ,缺点很明显,数据只能获取，不能保存,属于最笨最原始的方法</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;unpkg.com&#x2F;jquery&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">        &#x2F;&#x2F; 请求后端的一个数据接口拿到我们想要的数据</span><br><span class="line">        &#x2F;&#x2F; 真实的接口是 &#x2F;users 但是还没开发完成</span><br><span class="line">        &#x2F;&#x2F; 用假的数据接口替换</span><br><span class="line">        $.get(&#39;&#x2F;users.json&#39;,function (res) &#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自己写一个简单的API接口（不一定会写） </li>
+<li>第三方的工具： 
+Mock.js（无法持久化数据）
+使用方法:</li>
+</ul>
+<p>1.引入mock.js文件
+2.引入过后全局对象上会多一个Mock对象
+3.Mock对象中最常用的就是mock方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Mock的使用方法</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;unpkg.com&#x2F;mockjs&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;unpkg.com&#x2F;jquery&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">        &#x2F;&#x2F; 请求后端的一个数据接口拿到我们想要的数据</span><br><span class="line">        &#x2F;&#x2F; 真实的接口是 &#x2F;users 但是还没开发完成</span><br><span class="line">        &#x2F;&#x2F; 用假的数据接口替换</span><br><span class="line">        &#x2F;&#x2F; 拦截请求，返回假数据</span><br><span class="line">        Mock.mock(&#39;&#x2F;users&#39;, &#39;get&#39;,&#123;</span><br><span class="line">            hello:&#39;mock.js&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        $.get(&#39;&#x2F;users&#39;,function (res) &#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Json-server：提供一种零编码的方式在30秒之内完成一个REST API（讲真） </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;github.com&#x2F;typicode&#x2F;json-server </span><br><span class="line">http:&#x2F;&#x2F;jsonplaceholder.typicode.com&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>三.RESTful API 表征状态转移风格 Representational State Transfer</p>
+<ul>
+<li>面向资源编程</li>
+<li>资源指的就是一类数据</li>
+<li>产品表 -&gt; 就是产品资源</li>
+<li>最重要的是如何表示一个资源 </li>
+<li>地址即资源 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;api.demo.com&#x2F;users           -&gt; 应该是 所有的用户数据</span><br><span class="line">http:&#x2F;&#x2F;api.demo.com&#x2F;products        -&gt; 应该是所有的产品数据</span><br><span class="line">http:&#x2F;&#x2F;api.demo.com&#x2F;products&#x2F;iphone -&gt; 特指 iPhone 这个商品</span><br><span class="line">http:&#x2F;&#x2F;api.demo.com&#x2F;users&#x2F;1&#x2F;         -&gt; 应该是 所有的用户数据</span><br><span class="line">http:&#x2F;&#x2F;api.demo.com&#x2F;users&#x2F;1&#x2F;articles -&gt; 用户1的所有的文章</span><br><span class="line">http:&#x2F;&#x2F;api.demo.com&#x2F;categories </span><br><span class="line">http:&#x2F;&#x2F;api.demo.com</span><br></pre></td></tr></table></figure>
+
+<p>对于资源我们的代码中可能的操作只有增删改查
+在HTTP协议中对每一个请求URL都会有不同的谓词GET/POST/PUT/PATCH/DELETE
+JSON server基本特性</p>
+<p>endpoint 接入点</p>
+<p>标准的RESTful API
+支持过滤 _filter
+支持分页 
+支持排序 
+支持全文检索 _q
+支持关系 
+支持数据分割
+支持操作符（大于小于）
+支持JSONP
+支持CORS
+……
+最关键的是不需要写代码</p>
+<p>JSON Server 中json 文件中每一个属性就是一个资源，最终会被JSON Server管理
+测试过程可以使用postman测试</p>
+<ul>
+<li>noBackend概念</li>
+<li>serverless 
+filebase 野狗实施云 
+leancloud.cn</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/02/27/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/27/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-title-link" itemprop="url">js动画学习分享四</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-27 09:17:14" itemprop="dateCreated datePublished" datetime="2019-02-27T09:17:14+08:00">2019-02-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-03-01 16:02:30" itemprop="dateModified" datetime="2019-03-01T16:02:30+08:00">2019-03-01</time>
+              </span>
+
+          
+            <span id="/2019/02/27/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-meta-item leancloud_visitors" data-flag-title="js动画学习分享四" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/02/27/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/02/27/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>** jquery animate复习</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">详细见1复习JQ的animate.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.0.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 1.属性和目标点的集合,&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F; 2.时间 默认 : 400</span><br><span class="line">        &#x2F;&#x2F; 3.运动形式:swing(慢快慢) linear(匀速)</span><br><span class="line">        &#x2F;&#x2F; 4.回调函数</span><br><span class="line">        $(function () &#123;</span><br><span class="line">            $(&#39;#div1&#39;).click(function () &#123;</span><br><span class="line">                $(this).animate(&#123;width:300,height:300&#125;,4000,&#39;linear&#39;,function () &#123;</span><br><span class="line">                    alert(123);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;</span><br><span class="line">            width:100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 2从中间放大图片_速度版 ,有缺点，距离不同速度相同，导致抖动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">详情见 2从中间放大图片_速度版</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.0.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 1.属性和目标点的集合,&#123;&#125;</span><br><span class="line">        &#x2F;&#x2F; 2.时间 默认 : 400</span><br><span class="line">        &#x2F;&#x2F; 3.运动形式:swing(慢快慢) linear(匀速)</span><br><span class="line">        &#x2F;&#x2F; 4.回调函数</span><br><span class="line">        $(function () &#123;</span><br><span class="line">            $(&#39;#div1&#39;).click(function () &#123;</span><br><span class="line">                $(this).animate(&#123;width:300,height:300&#125;,4000,&#39;linear&#39;,function () &#123;</span><br><span class="line">                    alert(123);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123;</span><br><span class="line">            width:100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** 3从中间放大图片_时间版，没有抖动的缺点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123; width: 100px; height: 100px; position: absolute; left: 200px; top:200px;</span><br><span class="line">            background-color: red;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.0.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 速度版</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            oDiv.onmouseover &#x3D; function () &#123;</span><br><span class="line">                &#x2F;&#x2F; startMove( this, &#123; width:200, height:200 ,left : 150 ,top:150 &#125; );</span><br><span class="line">                $(this).animate(&#123; width:200, height:200, left : 150, top:150 &#125;,2000)</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv.onmouseout &#x3D; function () &#123;</span><br><span class="line">                $(this).animate(&#123; width:100, height:100, left : 200, top:200 &#125;,2000)</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>** Tween介绍 一个来自flash的运动算法。JQ中也使用Tween算法。
+Tween公式 4个参数</p>
+<ul>
+<li>t : current time( 当前时间 )</li>
+<li>b : beginning value( 初始值 )</li>
+<li>c : change in value( 变化量 )</li>
+<li>d : duration( 持续时间 )</li>
+<li>return ( 目标点 )
+知道怎么回事就行，具体算的话要靠数学家来完成。</li>
+</ul>
+<p>如何获取当前时间</p>
+<ul>
+<li>(new Date()).getTime();</li>
+</ul>
+<p>** 3原声实现时间版运动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">详细见 3原声实现时间版运动</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #div1 &#123; width: 100px; height: 100px; position: absolute; left: 200px; top:200px;</span><br><span class="line">            background-color: red;&#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; 速度版</span><br><span class="line">        window.onload &#x3D; function () &#123;</span><br><span class="line">            var oDiv &#x3D; document.getElementById(&#39;div1&#39;);</span><br><span class="line">            oDiv.onmouseover &#x3D; function () &#123;</span><br><span class="line">                startMove( this, &#123; width:200, height:200 ,left : 150 ,top:150 &#125; ,2000 ,&#39;linear&#39;,function () &#123;</span><br><span class="line"></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;;</span><br><span class="line">            oDiv.onmouseout &#x3D; function () &#123;</span><br><span class="line">                startMove( this, &#123; width:100, height:100, left : 200, top:200 &#125; ,2000,&#39;linear&#39;);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        function startMove(obj,json,times,fx,fn) &#123;</span><br><span class="line">            console.log(&quot;obj:&quot;,obj)</span><br><span class="line">            var iCur &#x3D; &#123;&#125;;</span><br><span class="line">            for(var attr in json)&#123;</span><br><span class="line">                iCur[attr] &#x3D; 0;</span><br><span class="line">                if( attr &#x3D;&#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                    iCur[attr] &#x3D; Math.round(getStyle(obj,attr) * 100)</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    iCur[attr] &#x3D; parseInt(getStyle(obj,attr));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            var startTime &#x3D; now();</span><br><span class="line">            clearInterval(obj.timer);</span><br><span class="line">            obj.timer &#x3D; setInterval(function () &#123;</span><br><span class="line">                var changeTime &#x3D; now();</span><br><span class="line">                var t &#x3D; times - Math.max(0,startTime - changeTime + times); &#x2F;&#x2F; 2000越来越小,2000-0,0-2000</span><br><span class="line">                for(var attr in json)&#123;</span><br><span class="line">                    var value &#x3D; Tween[fx](t,iCur[attr],json[attr]-iCur[attr],times);</span><br><span class="line">                    if( attr &#x3D;&#x3D; &#39;opacity&#39; )&#123;</span><br><span class="line">                        obj.style.opacity &#x3D; value&#x2F;100;</span><br><span class="line">                        obj.style.filter &#x3D; &#39;alpha(opacity&#x3D;&#39;+value+&#39;)&#39;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                        obj.style[attr] &#x3D; value + &#39;px&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if(t &#x3D;&#x3D; times)&#123;</span><br><span class="line">                    clearInterval(obj.timer);</span><br><span class="line">                    if(fn)&#123;</span><br><span class="line">                        fn.call(obj)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,13);</span><br><span class="line">            function getStyle(obj,attr)&#123;</span><br><span class="line">                if(obj.currentStyle)&#123;</span><br><span class="line">                    return obj.currentStyle[attr];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    return getComputedStyle(obj,false)[attr];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        var Tween &#x3D; &#123;</span><br><span class="line">            linear: function (t,b,c,d) &#123; &#x2F;&#x2F; 匀速</span><br><span class="line">                return c*t&#x2F;d + b;</span><br><span class="line">            &#125;,</span><br><span class="line">            easeIn: function(t,b,c,d)&#123; &#x2F;&#x2F; 加速曲线</span><br><span class="line">                return c*(t&#x2F;&#x3D;d)*t + b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        function now() &#123;</span><br><span class="line">            return ( new Date() ).getTime();</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;div1&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.onfocus &#x3D; function()&#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">    timer &#x3D; setInterval(toRun,2000);</span><br><span class="line">&#125;;</span><br><span class="line">window.onblur &#x3D; function()&#123;</span><br><span class="line">    console.log(2);</span><br><span class="line">    clearInterval(timer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>jq运动的扩展</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/02/25/js%E5%8A%A8%E7%94%BB%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1310,7 +1581,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="ES6中模块"><a href="#ES6中模块" class="headerlink" title="ES6中模块"></a>ES6中模块</h4><p>一.坑的地方，教程里面的webpack版本是<a href="mailto:&#119;&#x65;&#98;&#x70;&#97;&#x63;&#107;&#x40;&#x33;&#x2e;&#52;&#x2e;&#x31;">&#119;&#x65;&#98;&#x70;&#97;&#x63;&#107;&#x40;&#x33;&#x2e;&#52;&#x2e;&#x31;</a>,而最新版本已经到了<a href="mailto:&#x77;&#x65;&#98;&#x70;&#97;&#x63;&#107;&#x40;&#52;&#46;&#50;&#x37;&#46;&#x31;">&#x77;&#x65;&#98;&#x70;&#97;&#x63;&#107;&#x40;&#52;&#46;&#50;&#x37;&#46;&#x31;</a>,新版本不想下兼容老版本，各种错误需要谷歌解决，主要是版本问题。因为版本问题，所以决定重新来过。最终参考了文章解决:</p>
+<h4 id="ES6中模块"><a href="#ES6中模块" class="headerlink" title="ES6中模块"></a>ES6中模块</h4><p>一.坑的地方，教程里面的webpack版本是<a href="mailto:&#119;&#101;&#x62;&#112;&#97;&#99;&#107;&#64;&#x33;&#x2e;&#x34;&#x2e;&#x31;">&#119;&#101;&#x62;&#112;&#97;&#99;&#107;&#64;&#x33;&#x2e;&#x34;&#x2e;&#x31;</a>,而最新版本已经到了<a href="mailto:&#119;&#101;&#98;&#x70;&#97;&#99;&#x6b;&#x40;&#x34;&#x2e;&#50;&#55;&#x2e;&#x31;">&#119;&#101;&#98;&#x70;&#97;&#99;&#x6b;&#x40;&#x34;&#x2e;&#50;&#55;&#x2e;&#x31;</a>,新版本不想下兼容老版本，各种错误需要谷歌解决，主要是版本问题。因为版本问题，所以决定重新来过。最终参考了文章解决:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5ad1ef5d518825556534f137#heading-20</span><br></pre></td></tr></table></figure>
 
 <p>二.ES6两种不一样的导出模块的方式</p>
@@ -1618,231 +1889,6 @@ npm –production 只有 dependencies</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-title-link" itemprop="url">reactNative学习分享四</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-02 17:16:36" itemprop="dateCreated datePublished" datetime="2019-01-02T17:16:36+08:00">2019-01-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-01-21 09:40:49" itemprop="dateModified" datetime="2019-01-21T09:40:49+08:00">2019-01-21</time>
-              </span>
-
-          
-            <span id="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-meta-item leancloud_visitors" data-flag-title="reactNative学习分享四" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一 初始化操作
-    1. 改app 的图标和载入页面 点Xcode 标题 然后在App Icons and Launch Images中进行修改。特别要注意Source里面填了之后，launch Screen File 不需要填写，否则无法看到载入图片。
-    2. 改app的名称，在info.plist里面改，Bundle display name小码电商
-    3.把二级目录里面的Main导出，并且把Text的内容改成,以此其它模块修改类名，导出组件名，和Text中内容
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 输出组件类</span><br><span class="line">module.exports &#x3D; Main;</span><br></pre></td></tr></table></figure>
-    4. 在app.js中删除不要的内容，引入Main
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let Main &#x3D; require(&#39;.&#x2F;Component&#x2F;Main&#x2F;XMGMain&#39;);</span><br><span class="line">export default class App extends Component&lt;Props&gt; &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">      return (</span><br><span class="line">          &lt;Main &#x2F;&gt;</span><br><span class="line">      );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-二 设置主要框架,底部图标选定切换
-    1. 在控制台输入命令安装，react-native-tab-navigator 适用于安卓和ios的tabbar。propTypes规定了属性的类型。
-    <figure class="highlight plain"><figcaption><span>i react-native-tab-navigator --save```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. 引入底部图片的时候注意:这里有个坑，因为需要安卓和ios同时能够找到图片，需要把图片位置放到外面。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;renderIcon&#x3D;&#123;() &#x3D;&gt; &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;imgicon_tabbar_merchant_normal.png&#39;)&#125;style&#x3D;&#123;styles.iconstyle&#125;&#x2F;&gt;&#125; &#x2F;&#x2F; 图标</span><br></pre></td></tr></table></figure></p>
-<p>三 包装Navigator
-    1. 把组件导入到main中</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let Home &#x3D; require(&#39;..&#x2F;home&#x2F;XMGhome&#39;);</span><br><span class="line">let Shop &#x3D; require(&#39;..&#x2F;shop&#x2F;XMGShop&#39;);</span><br><span class="line">let Mine &#x3D; require(&#39;..&#x2F;mine&#x2F;XMGMine&#39;);</span><br><span class="line">let More &#x3D; require(&#39;..&#x2F;more&#x2F;XMGMore&#39;);</span><br></pre></td></tr></table></figure>
-
-2. 初始化变量设置,用到constructor,类似python init
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Main extends Component &#123;</span><br><span class="line">&#x2F;&#x2F; 初始化函数(变量是可以改变的，充当状态机的角色)</span><br><span class="line">constructor()&#123;</span><br><span class="line">    super();</span><br><span class="line">    this.state &#x3D; &#123;</span><br><span class="line">        selectedTab: &#39;home&#39; &#x2F;&#x2F; 默认是第一个</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-3. 在不同的平台 图标的大小显示不同 用到Platform 实现
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;Platform &#x2F;&#x2F; 判断当前运行的系统</span><br><span class="line">, StyleSheet, Text, View,Image&#125; from &#39;react-native&#39;;</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">iconStyle:&#123;</span><br><span class="line">    width: Platform.OS &#x3D;&#x3D;&#x3D; &#39;30&#39; ? 30 : 25,</span><br><span class="line">    height: Platform.OS &#x3D;&#x3D;&#x3D; &#39;30&#39; ? 30 : 25,</span><br><span class="line">    backgroundColor:&#39;yellow&#39;</span><br><span class="line">&#125;&#125;);</span><br></pre></td></tr></table></figure>
-
-4. navigator的两个核心要素
-    navigator : 一个用来管理所有界面对象的栈，人称之 “路由栈”, 学名 “导航”。
-    route : 路由栈里的每一个对象，称之为“路由”，用来存储每一个页面组件以及一些需要传递给对应界面的props参数。
-
-5. 用navigator替换之前的&lt;Home /&gt;,这里有个坑,导入Navigator的时候:
-第一.由于组件被移除了所以必须先npm
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-native-deprecated-custom-components --save</span><br></pre></td></tr></table></figure>
-第二.导入的时候，需要加花括号
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;Navigator&#125; from &#39;react-native-deprecated-custom-components&#39;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Navigator</span><br><span class="line">initialRoute&#x3D;&#123;&#123;</span><br><span class="line">    name: &#39;首页&#39;, &#x2F;&#x2F; 可选</span><br><span class="line">    component: Home</span><br><span class="line">&#125;&#125;</span><br><span class="line">configureScene&#x3D;&#123;() &#x3D;&gt; &#123;</span><br><span class="line">    return Navigator.SceneConfigs.PushFromRight;</span><br><span class="line">&#125;&#125;</span><br><span class="line">renderScene &#x3D;&#123;(route, navigator) &#x3D;&gt; &#123;</span><br><span class="line">    let Component &#x3D; route.component;</span><br><span class="line">    return &lt;Component &#123;...route.passProps&#125; navigator&#x3D;&#123;navigator&#125;&#x2F;&gt;</span><br><span class="line">&#125;&#125;&#x2F;&gt;</span><br></pre></td></tr></table></figure></code></pre>
-<p>四 设置头部样式
-    1. 修改ios顶部状态栏的样式，在AppDelegate.m中修改
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">      NSURL *jsCodeLocation;</span><br><span class="line">        &#x2F;&#x2F; 设置状态栏</span><br><span class="line">      [[UIApplication sharedApplication] setStatusBarStyle:</span><br><span class="line">       UIStatusBarStyleLightContent];</span><br><span class="line">    &#96;&#96;&#96;  </span><br><span class="line">五 设置安卓中的启动图片</span><br><span class="line">    1. 利用Dimensions模块找到设备尺寸，导入图片，设置大小合适的图片</span><br><span class="line"></span><br><span class="line">    &#96;&#96;&#96;let &#123;width, height&#125; &#x3D; Dimensions.get(&#39;window&#39;);</span><br><span class="line">        return (</span><br><span class="line">            &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;img&#x2F;launchimage.png&#39;)&#125; style&#x3D;&#123;styles.launchImageStyle&#125;&#x2F;&gt;</span><br><span class="line">        );</span><br><span class="line">        const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">            launchImageStyle:&#123;</span><br><span class="line">                flex:1,</span><br><span class="line">                width:width</span><br><span class="line">            &#125;&#125;);</span><br></pre></td></tr></table></figure></p>
-<pre><code>2. 让图片自动跳转到页面
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 复杂的一些操作:定时器\网络请求</span><br><span class="line">componentDidMount()&#123;</span><br><span class="line">    &#x2F;&#x2F; 定时: 隔2s切换到Main</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F; 页面的切换</span><br><span class="line">        this.props.navigator.replace(&#123;</span><br><span class="line">            component: Main, &#x2F;&#x2F; 具体路由的板块</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,2000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
-<p>六 &lt;更多&gt;页面开发
-    1. 莫名其妙爆了一个require unknown module “610”的错误，重新写了代码之后好了。</p>
-<p>七 &lt;我的&gt;页面开发
-    1. 从前面传递参数的时候需要注意
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyCell</span><br><span class="line">    leftIconName&#x3D;&#123;require(&#39;..&#x2F;img&#x2F;draft.png&#39;)&#125;</span><br><span class="line">    leftTitle&#x3D;&#39;小码哥钱包&#39;</span><br><span class="line">    rightTitle&#x3D;&#39;账号余额:¥100&#39;</span><br><span class="line">    &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-    后面这么写取到的时候这么写
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class MyCell extends Component&lt;Props&gt; &#123;</span><br><span class="line">static defaultProps &#x3D; &#123;</span><br><span class="line">    leftIconName:&#39;&#39;,</span><br><span class="line">    leftTitle:&#39;&#39;,</span><br><span class="line">    rightIconName: &#39;&#39;,</span><br><span class="line">    rightTitle:&#39;&#39;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;Image source&#x3D;&#123;this.props.leftIconName&#125; style&#x3D;&#123;styles.leftImgStyle&#125;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-    2.scrollView背景设置问题
-这样写的话背景只有单行.</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">return (</span><br><span class="line">    &lt;ScrollView</span><br><span class="line">        contentContainerStyle&#x3D;&#123;styles.scrollViewStyle&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style&#x3D;&#123;&#123;marginTop:20&#125;&#125;&gt;</span><br><span class="line">            &lt;MyCell</span><br><span class="line">                leftIconName&#x3D;&#123;require(&#39;..&#x2F;img&#x2F;draft.png&#39;)&#125;</span><br><span class="line">                leftTitle&#x3D;&#39;小码哥钱包&#39;</span><br><span class="line">                rightTitle&#x3D;&#39;账号余额:¥100&#39;</span><br><span class="line">            &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    &lt;&#x2F;ScrollView&gt;</span><br><span class="line">);</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">scrollViewStyle:&#123;</span><br><span class="line">    backgroundColor:&#39;#e8e8e8&#39;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></code></pre>
-<p>要改成，就整个都会变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ScrollView</span><br><span class="line">    style&#x3D;&#123;styles.scrollViewStyle&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-
-<pre><code>3. json 数据里面如果包含require 图片 ，要放到内部，不能抽到外面否则会报错。</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let MiddleData &#x3D; [</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order1.png&#39;),title:&quot;待付款&quot;&#125;,</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order2.png&#39;),title:&quot;待使用&quot;&#125;,</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order3.png&#39;),title:&quot;待评价&quot;&#125;,</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order4.png&#39;),title:&quot;退款&#x2F;售后&quot;&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/24/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%9B%AE%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/24/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%9B%AE%E5%BD%95/" class="post-title-link" itemprop="url">实验室目录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-12-24 16:40:56 / Modified: 16:56:34" itemprop="dateCreated datePublished" datetime="2018-12-24T16:40:56+08:00">2018-12-24</time>
-            </span>
-
-          
-            <span id="/2018/12/24/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%9B%AE%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="实验室目录" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/12/24/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%9B%AE%E5%BD%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/24/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%9B%AE%E5%BD%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://mp.weixin.qq.com/s/wBNeyQSRmnIZcbumBoVuyA" target="_blank" rel="noopener">001 用水流量大小与压力变化关系(基础实验)</a>
-<a href="https://mp.weixin.qq.com/s/qnbyowZcqOIvGa6Zf95jPQ" target="_blank" rel="noopener">002 压力下降幅度与漏损率变化的关系</a>
-<a href="https://mp.weixin.qq.com/s/wGP7Hjv2UFMkJBsctmNfDQ" target="_blank" rel="noopener">003 罐式供水与前端压力实验</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1914,7 +1960,7 @@ npm –production 只有 dependencies</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

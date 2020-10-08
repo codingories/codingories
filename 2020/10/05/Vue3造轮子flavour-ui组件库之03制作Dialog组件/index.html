@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0. 最终效果 1. 第一步：需求分析 参考一下别人的对话框 可以参考 AntD, Bulma、Element、iView、Vuetify 等   需求 点击后弹出 有遮罩层 overlay 有 close 按钮 有标题 有内容 有 yes &#x2F; no 按钮    2. 第二步：API 设计 Dialog 组件怎么用  1&lt;Dialog visible title&#x3D;&quot;标题&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3造轮子flavour-ui组件库之03制作Dialog组件">
+<meta property="og:url" content="codingories.github.io/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="0. 最终效果 1. 第一步：需求分析 参考一下别人的对话框 可以参考 AntD, Bulma、Element、iView、Vuetify 等   需求 点击后弹出 有遮罩层 overlay 有 close 按钮 有标题 有内容 有 yes &#x2F; no 按钮    2. 第二步：API 设计 Dialog 组件怎么用  1&lt;Dialog visible title&#x3D;&quot;标题&amp;">
+<meta property="og:image" content="https://i.loli.net/2020/10/06/C6cUzXuSVgmwoq9.gif">
+<meta property="article:published_time" content="2020-10-05T09:16:51.000Z">
+<meta property="article:modified_time" content="2020-10-06T13:34:45.000Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="Vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/06/C6cUzXuSVgmwoq9.gif">
+
+<link rel="canonical" href="codingories.github.io/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Vue3造轮子flavour-ui组件库之03制作Dialog组件 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue3造轮子flavour-ui组件库之03制作Dialog组件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-05 17:16:51" itemprop="dateCreated datePublished" datetime="2020-10-05T17:16:51+08:00">2020-10-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-06 21:34:45" itemprop="dateModified" datetime="2020-10-06T21:34:45+08:00">2020-10-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%A0%E8%BD%AE%E5%AD%90/" itemprop="url" rel="index"><span itemprop="name">造轮子</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Vue3造轮子flavour-ui组件库之03制作Dialog组件" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="0-最终效果"><a href="#0-最终效果" class="headerlink" title="0. 最终效果"></a>0. 最终效果</h3><p><img src="https://i.loli.net/2020/10/06/C6cUzXuSVgmwoq9.gif" alt="Dialog.gif"></p>
+<h3 id="1-第一步：需求分析"><a href="#1-第一步：需求分析" class="headerlink" title="1. 第一步：需求分析"></a>1. 第一步：需求分析</h3><ul>
+<li>参考一下别人的对话框<ul>
+<li>可以参考 AntD, Bulma、Element、iView、Vuetify 等</li>
+</ul>
+</li>
+<li>需求<ul>
+<li>点击后弹出</li>
+<li>有遮罩层 overlay</li>
+<li>有 close 按钮</li>
+<li>有标题</li>
+<li>有内容</li>
+<li>有 yes / no 按钮</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-第二步：API-设计"><a href="#2-第二步：API-设计" class="headerlink" title="2. 第二步：API 设计"></a>2. 第二步：API 设计</h3><ul>
+<li>Dialog 组件怎么用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog visible title&#x3D;&quot;标题&quot; @yes&#x3D;&quot;fn1&quot; @no&#x3D;&quot;fn2&quot;&gt;&lt;&#x2F;Dialog&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-第三步：写代码"><a href="#3-第三步：写代码" class="headerlink" title="3. 第三步：写代码"></a>3. 第三步：写代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">步骤</span><br><span class="line">写 HTML</span><br><span class="line">写 CSS</span><br><span class="line">写 JS</span><br><span class="line">测试</span><br><span class="line">改写代码</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-创建-Dialog-组件"><a href="#4-创建-Dialog-组件" class="headerlink" title="4. 创建 Dialog 组件"></a>4. 创建 Dialog 组件</h3><ul>
+<li>lib/Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;dialog-overlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;dialog-wrapper&quot;&gt;</span><br><span class="line">    &lt;header&gt;标题&lt;&#x2F;header&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;main&gt;</span><br><span class="line">    &lt;footer&gt;</span><br><span class="line">      &lt;Button&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">      &lt;Button&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;&#x2F;footer&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123; Button &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Dialog&gt;&lt;&#x2F;Dialog&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-完善-Dialog-vue-的-css"><a href="#5-完善-Dialog-vue-的-css" class="headerlink" title="5. 完善 Dialog.vue 的 css"></a>5. 完善 Dialog.vue 的 css</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">      &lt;header&gt;标题 &lt;span class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;header&gt;</span><br><span class="line">      &lt;main&gt;</span><br><span class="line">        &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;main&gt;</span><br><span class="line">      &lt;footer&gt;</span><br><span class="line">        &lt;Button level&#x3D;&quot;main&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;Button&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">      &lt;&#x2F;footer&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">$radius: 4px;</span><br><span class="line">$border-color: #d9d9d9;</span><br><span class="line">.gulu-dialog &#123;</span><br><span class="line">  background: white;</span><br><span class="line">  border-radius: $radius;</span><br><span class="line">  box-shadow: 0 0 3px fade_out(black, 0.5);</span><br><span class="line">  min-width: 15em;</span><br><span class="line">  max-width: 90%;</span><br><span class="line">  &amp;-overlay &#123;</span><br><span class="line">    position: fixed;</span><br><span class="line">    top: 0;</span><br><span class="line">    left: 0;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: fade_out(black, 0.5);</span><br><span class="line">    z-index: 10;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-wrapper &#123;</span><br><span class="line">    position: fixed;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    transform: translate(-50%, -50%);</span><br><span class="line">    z-index: 11;</span><br><span class="line">  &#125;</span><br><span class="line">  &gt; header &#123;</span><br><span class="line">    padding: 12px 16px;</span><br><span class="line">    border-bottom: 1px solid $border-color;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center;</span><br><span class="line">    justify-content: space-between;</span><br><span class="line">    font-size: 20px;</span><br><span class="line">  &#125;</span><br><span class="line">  &gt; main &#123;</span><br><span class="line">    padding: 12px 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  &gt; footer &#123;</span><br><span class="line">    border-top: 1px solid $border-color;</span><br><span class="line">    padding: 12px 16px;</span><br><span class="line">    text-align: right;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-close &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    width: 16px;</span><br><span class="line">    height: 16px;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    &amp;::before,</span><br><span class="line">    &amp;::after &#123;</span><br><span class="line">      content: &quot;&quot;;</span><br><span class="line">      position: absolute;</span><br><span class="line">      height: 1px;</span><br><span class="line">      background: black;</span><br><span class="line">      width: 100%;</span><br><span class="line">      top: 50%;</span><br><span class="line">      left: 50%;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;::before &#123;</span><br><span class="line">      transform: translate(-50%, -50%) rotate(-45deg);</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;::after &#123;</span><br><span class="line">      transform: translate(-50%, -50%) rotate(45deg);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-让-Dialog-支持-visible-属性"><a href="#6-让-Dialog-支持-visible-属性" class="headerlink" title="6. 让 Dialog 支持 visible 属性"></a>6. 让 Dialog 支持 visible 属性</h3><ul>
+<li>不要用 show 表示是否可见</li>
+<li>实现点击按钮打开对话框</li>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;toggle&quot;&gt;toggle&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;Dialog :visible&#x3D;&quot;x&quot;&gt;&lt;&#x2F;Dialog&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">import Button from &quot;..&#x2F;lib&#x2F;Button.vue&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const x &#x3D; ref(false);</span><br><span class="line">    const toggle &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      x.value &#x3D; !x.value;</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123; x, toggle &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;标题 &lt;span class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">          &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-让-Dialog-可以点击关闭"><a href="#7-让-Dialog-可以点击关闭" class="headerlink" title="7. 让 Dialog 可以点击关闭"></a>7. 让 Dialog 可以点击关闭</h3><ul>
+<li>注意不能修改 props</li>
+<li>DialogDemo</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;toggle&quot;&gt;toggle&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;Dialog</span><br><span class="line">      v-model:visible&#x3D;&quot;x&quot;</span><br><span class="line">      :closeOnClickOverlay&#x3D;&quot;false&quot;</span><br><span class="line">      :ok&#x3D;&quot;f1&quot;</span><br><span class="line">      :cancel&#x3D;&quot;f2&quot;</span><br><span class="line">    &gt;&lt;&#x2F;Dialog&gt;</span><br><span class="line">    &lt;!--    v-model简写了: @update:visible&#x3D;&quot;x &#x3D; $event&quot;--&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">import Button from &quot;..&#x2F;lib&#x2F;Button.vue&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const x &#x3D; ref(false);</span><br><span class="line">    const toggle &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      x.value &#x3D; !x.value;</span><br><span class="line">    &#125;;</span><br><span class="line">    const f1 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      return false;</span><br><span class="line">      &#x2F;&#x2F; return false 就让ok关不掉</span><br><span class="line">    &#125;;</span><br><span class="line">    const f2 &#x3D; () &#x3D;&gt; &#123;&#125;;</span><br><span class="line">    return &#123; x, toggle, f1, f2 &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;!--    遮罩层的关闭--&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;</span><br><span class="line">          标题 &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">          &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false,</span><br><span class="line">    &#125;,</span><br><span class="line">    closeOnClickOverlay: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 点击遮罩层关闭是否开启</span><br><span class="line">    ok: &#123;</span><br><span class="line">      type: Function,</span><br><span class="line">    &#125;,</span><br><span class="line">    cancel: &#123;</span><br><span class="line">      type: Function,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    const close &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;update:visible&quot;, false);</span><br><span class="line">    &#125;;</span><br><span class="line">    const onClickOverlay &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      console.log(&quot;props.closeOnClickOverlay&quot;, props.closeOnClickOverlay);</span><br><span class="line">      if (props.closeOnClickOverlay) &#123;</span><br><span class="line">        &#x2F;&#x2F; 开启才可以点外面关闭</span><br><span class="line">        close();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    const ok &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; context.emit(&#39;ok&#39;)</span><br><span class="line">      if (props.ok?.() !&#x3D;&#x3D; false) &#123;</span><br><span class="line">        close();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    const cancel &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;cancel&quot;);</span><br><span class="line">      close();</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">      close,</span><br><span class="line">      onClickOverlay,</span><br><span class="line">      ok,</span><br><span class="line">      cancel,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">import Button from &quot;..&#x2F;lib&#x2F;Button.vue&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const x &#x3D; ref(false);</span><br><span class="line">    const toggle &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      x.value &#x3D; !x.value;</span><br><span class="line">    &#125;;</span><br><span class="line">    const f1 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      return false;</span><br><span class="line">      &#x2F;&#x2F; return false 就让ok关不掉</span><br><span class="line">    &#125;;</span><br><span class="line">    const f2 &#x3D; () &#x3D;&gt; &#123;&#125;;</span><br><span class="line">    return &#123; x, toggle, f1, f2 &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-让-Dialog-支持自定义内容"><a href="#8-让-Dialog-支持自定义内容" class="headerlink" title="8. 让 Dialog 支持自定义内容"></a>8. 让 Dialog 支持自定义内容</h3><ul>
+<li>使用插槽 slot,实现 title 和内容都是自定义的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;</span><br><span class="line">          &#123;&#123; title &#125;&#125; &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;slot &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &quot;提示&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; ...省略代码</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用具名插槽，解决 title 也可以加样式的问题</li>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;toggle&quot;&gt;toggle&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;Dialog</span><br><span class="line">      v-model:visible&#x3D;&quot;x&quot;</span><br><span class="line">      :closeOnClickOverlay&#x3D;&quot;false&quot;</span><br><span class="line">      :ok&#x3D;&quot;f1&quot;</span><br><span class="line">      :cancel&#x3D;&quot;f2&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &lt;template v-slot:content&gt;</span><br><span class="line">        &lt;div&gt;你好&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div&gt;hi&lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">      &lt;template v-slot:title&gt;</span><br><span class="line">        &lt;strong&gt;加粗的标题&lt;&#x2F;strong&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;Dialog&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;</span><br><span class="line">          &lt;slot name&#x3D;&quot;title&quot; &#x2F;&gt;</span><br><span class="line">          &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;slot name&#x3D;&quot;content&quot; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>总结:具名插槽的用法</p>
+<ul>
+<li>首先在外面写上 v-slot:名字,里面写上 slot name=</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-使用新组件：Teleport，把-Dialog-移到-body-下"><a href="#9-使用新组件：Teleport，把-Dialog-移到-body-下" class="headerlink" title="9. 使用新组件：Teleport，把 Dialog 移到 body 下"></a>9. 使用新组件：Teleport，把 Dialog 移到 body 下</h3><ul>
+<li>防止 Dialog 被遮挡，遮挡原因是因为 z-index 层叠上下文的关系，z-index:1 里面的 z-index:10,会被 z-index:2 盖掉，也就是说比别人大还是小要看所在的环境,举例:清华里面的最后一名比三本的第一名要大</li>
+<li>解决办法就是把 Dialog 移到外面,直接出现在 body 下面</li>
+<li>简单理解 Teleport 就是传送门，把 Dialog 传送到 Body 下面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;Teleport to&#x3D;&quot;body&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">          &lt;header&gt;</span><br><span class="line">            &lt;slot name&#x3D;&quot;title&quot; &#x2F;&gt;</span><br><span class="line">            &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;header&gt;</span><br><span class="line">          &lt;main&gt;</span><br><span class="line">            &lt;slot name&#x3D;&quot;content&quot; &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;main&gt;</span><br><span class="line">          &lt;footer&gt;</span><br><span class="line">            &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;&#x2F;footer&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;Teleport&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-一句话打开-Dialog"><a href="#10-一句话打开-Dialog" class="headerlink" title="10. 一句话打开 Dialog"></a>10. 一句话打开 Dialog</h3><ul>
+<li>场景:不想声明 visible 变量，然后改变它的值</li>
+<li>技术点：动态挂载组件</li>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;showDialog&quot;&gt;show Dialog&lt;&#x2F;Button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import &#123; openDialog &#125; from &quot;..&#x2F;lib&#x2F;openDialog&quot;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>lib/openDialog.ts</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> Dialog <span class="keyword">from</span> <span class="string">"./Dialog.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createApp, h &#125; <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> openDialog = <span class="function">(<span class="params">options</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; title, content, ok, cancel &#125; = options;</span><br><span class="line">  <span class="keyword">const</span> div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(div);</span><br><span class="line">  <span class="keyword">const</span> close = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    app.unmount(div);</span><br><span class="line">    div.remove();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> app = createApp(&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> h(</span><br><span class="line">        Dialog,</span><br><span class="line">        &#123;</span><br><span class="line">          visible: <span class="literal">true</span>,</span><br><span class="line">          <span class="string">"onUpdate:visible"</span>: <span class="function">(<span class="params">newVisible</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(newVisible);</span><br><span class="line">            <span class="keyword">if</span> (newVisible === <span class="literal">false</span>) &#123;</span><br><span class="line">              <span class="comment">// @ts-ignore</span></span><br><span class="line">              close();</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          ok,</span><br><span class="line">          cancel,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          title,</span><br><span class="line">          content,</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  app.mount(div);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue3/" rel="tag"># Vue3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/04/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B02%E5%88%B6%E4%BD%9CButton%E7%BB%84%E4%BB%B6/" rel="prev" title="Vue3造轮子flavour-ui组件库之02制作Button组件">
+      <i class="fa fa-chevron-left"></i> Vue3造轮子flavour-ui组件库之02制作Button组件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/06/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B04%E5%88%B6%E4%BD%9CTabs%E7%BB%84%E4%BB%B6/" rel="next" title="Vue3造轮子flavour-ui组件库之04制作Tabs组件">
+      Vue3造轮子flavour-ui组件库之04制作Tabs组件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-最终效果"><span class="nav-number">1.</span> <span class="nav-text">0. 最终效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-第一步：需求分析"><span class="nav-number">2.</span> <span class="nav-text">1. 第一步：需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-第二步：API-设计"><span class="nav-number">3.</span> <span class="nav-text">2. 第二步：API 设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-第三步：写代码"><span class="nav-number">4.</span> <span class="nav-text">3. 第三步：写代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-创建-Dialog-组件"><span class="nav-number">5.</span> <span class="nav-text">4. 创建 Dialog 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-完善-Dialog-vue-的-css"><span class="nav-number">6.</span> <span class="nav-text">5. 完善 Dialog.vue 的 css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-让-Dialog-支持-visible-属性"><span class="nav-number">7.</span> <span class="nav-text">6. 让 Dialog 支持 visible 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-让-Dialog-可以点击关闭"><span class="nav-number">8.</span> <span class="nav-text">7. 让 Dialog 可以点击关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-让-Dialog-支持自定义内容"><span class="nav-number">9.</span> <span class="nav-text">8. 让 Dialog 支持自定义内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-使用新组件：Teleport，把-Dialog-移到-body-下"><span class="nav-number">10.</span> <span class="nav-text">9. 使用新组件：Teleport，把 Dialog 移到 body 下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-一句话打开-Dialog"><span class="nav-number">11.</span> <span class="nav-text">10. 一句话打开 Dialog</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

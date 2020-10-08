@@ -158,6 +158,450 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/06/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B04%E5%88%B6%E4%BD%9CTabs%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/06/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B04%E5%88%B6%E4%BD%9CTabs%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">Vue3造轮子flavour-ui组件库之04制作Tabs组件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-06 21:29:41" itemprop="dateCreated datePublished" datetime="2020-10-06T21:29:41+08:00">2020-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-08 20:17:50" itemprop="dateModified" datetime="2020-10-08T20:17:50+08:00">2020-10-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%A0%E8%BD%AE%E5%AD%90/" itemprop="url" rel="index"><span itemprop="name">造轮子</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/10/06/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B04%E5%88%B6%E4%BD%9CTabs%E7%BB%84%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Vue3造轮子flavour-ui组件库之04制作Tabs组件" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/06/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B04%E5%88%B6%E4%BD%9CTabs%E7%BB%84%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/06/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B04%E5%88%B6%E4%BD%9CTabs%E7%BB%84%E4%BB%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="0-最终效果"><a href="#0-最终效果" class="headerlink" title="0. 最终效果"></a>0. 最终效果</h3><p><img src="https://i.loli.net/2020/10/08/IZAjqQXJz8r9Dpf.gif" alt="tabs.gif"></p>
+<h3 id="1-第一步：需求分析"><a href="#1-第一步：需求分析" class="headerlink" title="1. 第一步：需求分析"></a>1. 第一步：需求分析</h3><ul>
+<li>参考一下别人的对话框<ul>
+<li>AntD、AntD Vue</li>
+<li>参考 Bulma、Element、iView、Vuetify 等</li>
+</ul>
+</li>
+<li>需求<ul>
+<li>点击 Tab 切换内容</li>
+<li>有一条横线在动</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-第二步：API-设计"><a href="#2-第二步：API-设计" class="headerlink" title="2. 第二步：API 设计"></a>2. 第二步：API 设计</h3><ul>
+<li>Tabs 组件怎么用</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 实现上面一种 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Tabs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Tab</span> <span class="attr">title</span>=<span class="string">"导航1"</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">Tab</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Tab</span> <span class="attr">title</span>=<span class="string">"导航2"</span>&gt;</span><span class="tag">&lt;<span class="name">Component1</span> /&gt;</span><span class="tag">&lt;/<span class="name">Tab</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Tab</span> <span class="attr">title</span>=<span class="string">"导航3"</span>&gt;</span><span class="tag">&lt;<span class="name">Component1</span> <span class="attr">x</span>=<span class="string">"hi"</span> /&gt;</span><span class="tag">&lt;/<span class="name">Tab</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Tabs</span>&gt;</span></span><br><span class="line">或</span><br><span class="line"><span class="tag">&lt;<span class="name">Tabs</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"[</span></span></span><br><span class="line"><span class="tag"><span class="string">    &#123; title: '导航1', content: '内容1' &#125;,</span></span></span><br><span class="line"><span class="tag"><span class="string">    &#123; title: '导航2', content: Component1 &#125;,</span></span></span><br><span class="line"><span class="tag"><span class="string">    &#123; title: '导航3', content: h(Component1, &#123; x: 'hi' &#125;) &#125;,</span></span></span><br><span class="line"><span class="tag"><span class="string">  ]"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-第三步：写代码"><a href="#3-第三步：写代码" class="headerlink" title="3. 第三步：写代码"></a>3. 第三步：写代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">步骤</span><br><span class="line">写 HTML</span><br><span class="line">写 CSS</span><br><span class="line">写 JS</span><br><span class="line">测试</span><br><span class="line">改写代码</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-如何在运行时确认子组件的类型"><a href="#4-如何在运行时确认子组件的类型" class="headerlink" title="4. 如何在运行时确认子组件的类型"></a>4. 如何在运行时确认子组件的类型</h3><ul>
+<li>检查 context.slots.default() 数组</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    Tabs组件</span><br><span class="line">    &lt;component :is&#x3D;&quot;defaults[0]&quot; &#x2F;&gt;</span><br><span class="line">    &lt;component :is&#x3D;&quot;defaults[1]&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Tab from &quot;.&#x2F;Tab.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    &#x2F;&#x2F; 每一个.vue文件就是一个对象</span><br><span class="line">    const defaults &#x3D; context.slots.default();</span><br><span class="line">    defaults.forEach((tag) &#x3D;&gt; &#123;</span><br><span class="line">      if (tag.type !&#x3D;&#x3D; Tab) &#123;</span><br><span class="line">        throw new Error(&quot;Tabs 子标签必须是 Tab&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(defaults[0].type &#x3D;&#x3D;&#x3D; Tab);</span><br><span class="line">    return &#123;</span><br><span class="line">      defaults,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要注意 Chrome 似乎没有抛出异常，但是 FireFox 浏览器可以抛出</li>
+</ul>
+<h3 id="5-如何渲染嵌套的组件"><a href="#5-如何渲染嵌套的组件" class="headerlink" title="5. 如何渲染嵌套的组件"></a>5. 如何渲染嵌套的组件</h3><ul>
+<li>嵌套插槽初步完成</li>
+<li>Tabs.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    Tabs组件</span><br><span class="line">    &lt;component v-for&#x3D;&quot;c in defaults&quot; :is&#x3D;&quot;c&quot; &#x2F;&gt;</span><br><span class="line">    &lt;!--    用component实现的插槽--&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tab.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;slot &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-初步实现"><a href="#6-初步实现" class="headerlink" title="6. 初步实现"></a>6. 初步实现</h3><ul>
+<li>使用 Tabs 来获取 title,渲染 tabs 内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    Tabs组件</span><br><span class="line">    &lt;div v-for&#x3D;&quot;(t, index) in titles&quot; :key&#x3D;&quot;index&quot;&gt;&#123;&#123; t &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;component v-for&#x3D;&quot;(c, index) in defaults&quot; :is&#x3D;&quot;c&quot; :key&#x3D;&quot;index&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Tab from &quot;.&#x2F;Tab.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    &#x2F;&#x2F; 省略代码</span><br><span class="line">    const titles &#x3D; defaults.map((tag) &#x3D;&gt; &#123;</span><br><span class="line">      return tag.props.title;</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(defaults[0].type &#x3D;&#x3D;&#x3D; Tab);</span><br><span class="line">    return &#123;</span><br><span class="line">      defaults,</span><br><span class="line">      titles,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为 tabs.vue 加上样式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-tabs&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-nav&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-tabs-nav-item&quot; v-for&#x3D;&quot;(t, index) in titles&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">        &#123;&#123; t &#125;&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-content&quot;&gt;</span><br><span class="line">      &lt;component</span><br><span class="line">        class&#x3D;&quot;gulu-tabs-content-item&quot;</span><br><span class="line">        v-for&#x3D;&quot;(c, index) in defaults&quot;</span><br><span class="line">        :is&#x3D;&quot;c&quot;</span><br><span class="line">        :key&#x3D;&quot;index&quot;</span><br><span class="line">      &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">&#x2F;&#x2F; 省略代码</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">$blue: #40a9ff;</span><br><span class="line">$color: #333;</span><br><span class="line">$border-color: #d9d9d9;</span><br><span class="line">.gulu-tabs &#123;</span><br><span class="line">  &amp;-nav &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    color: $color;</span><br><span class="line">    border-bottom: 1px solid $border-color;</span><br><span class="line">    &amp;-item &#123;</span><br><span class="line">      padding: 8px 0;</span><br><span class="line">      margin: 0 16px;</span><br><span class="line">      cursor: pointer;</span><br><span class="line">      &amp;:first-child &#123;</span><br><span class="line">        margin-left: 0;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;.selected &#123;</span><br><span class="line">        color: $blue;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-content &#123;</span><br><span class="line">    padding: 8px 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>切换标签页，制作点击导航如何切换内容 1 和内容 2</p>
+<ul>
+<li>用 selected 标记被选中的标签页</li>
+<li>selected 用 index 表示，不推荐</li>
+<li>selected 用 name 表示，不方便</li>
+<li>selected 用 title 表示，有漏洞，如果两个 title 是一样的</li>
+<li>设计就是妥协的艺术，这里采用 title</li>
+</ul>
+</li>
+<li><p>制作标题被 selected 的样式</p>
+</li>
+<li><p>TabsDemo.vue</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Tabs selected&#x3D;&quot;导航1&quot;&gt;</span><br><span class="line">  &lt;Tab title&#x3D;&quot;导航1&quot; selected&gt;内容1&lt;&#x2F;Tab&gt;</span><br><span class="line">  &lt;Tab title&#x3D;&quot;导航2&quot;&gt;内容2&lt;&#x2F;Tab&gt;</span><br><span class="line">&lt;&#x2F;Tabs&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tabs.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-tabs&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-nav&quot;&gt;</span><br><span class="line">      &lt;div</span><br><span class="line">        class&#x3D;&quot;gulu-tabs-nav-item&quot;</span><br><span class="line">        :class&#x3D;&quot;&#123; selected: t &#x3D;&#x3D;&#x3D; selected &#125;&quot;</span><br><span class="line">        v-for&#x3D;&quot;(t, index) in titles&quot;</span><br><span class="line">        :key&#x3D;&quot;index&quot;</span><br><span class="line">      &gt;</span><br><span class="line">        &#123;&#123; t &#125;&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &#x2F;&#x2F; 省略代码</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Tab from &quot;.&#x2F;Tab.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 省略代码</span><br><span class="line">  props: &#123;</span><br><span class="line">    selected: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>制作内容的切换，遇到问题</li>
+<li>Tabs.vue 中一开始这么写,发现内容没有变化，理论上会变</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;gulu-tabs-content&quot;&gt;</span><br><span class="line">    &lt;component class&#x3D;&quot;gulu-tabs-content-item&quot;  :is&#x3D;&quot;current&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>经过查询 github 上的 issue 发现有人有人已经提出过<a href="https://github.com/vuejs/vue-next/issues/2013" target="_blank" rel="noopener">类似问题</a>，并得到尤玉溪，加上 key 可以解决问题，改写成</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;gulu-tabs-content&quot;&gt;</span><br><span class="line">    &lt;component class&#x3D;&quot;gulu-tabs-content-item&quot;  :is&#x3D;&quot;current&quot; :key&#x3D;&quot;current.props.title&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-制作会动的横线"><a href="#7-制作会动的横线" class="headerlink" title="7. 制作会动的横线"></a>7. 制作会动的横线</h3><ul>
+<li>一个 div 即可搞定,先加上 css</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 省略代码 */</span></span><br><span class="line">&amp;<span class="selector-tag">-nav</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">color</span>: $color;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid $border-color;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="comment">/* 省略代码 */</span></span><br><span class="line">  &amp;-indicator &#123;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 3<span class="selector-tag">px</span>;</span><br><span class="line">    background: $blue;</span><br><span class="line">    <span class="selector-tag">left</span>: 0;</span><br><span class="line">    <span class="selector-tag">bottom</span>: <span class="selector-tag">-1px</span>;</span><br><span class="line">    <span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决下划线宽度的问题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-tabs&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-nav&quot;&gt;</span><br><span class="line">      &lt;div</span><br><span class="line">        class&#x3D;&quot;gulu-tabs-nav-item&quot;</span><br><span class="line">        :class&#x3D;&quot;&#123; selected: t &#x3D;&#x3D;&#x3D; selected &#125;&quot;</span><br><span class="line">        v-for&#x3D;&quot;(t, index) in titles&quot;</span><br><span class="line">        :ref&#x3D;&quot;</span><br><span class="line">          (el) &#x3D;&gt; &#123;</span><br><span class="line">            if (el) navItems[index] &#x3D; el;</span><br><span class="line">          &#125;</span><br><span class="line">        &quot;</span><br><span class="line">        :key&#x3D;&quot;index&quot;</span><br><span class="line">        @click&#x3D;&quot;select(t)&quot;</span><br><span class="line">      &gt;</span><br><span class="line">        &lt;!-- :ref&#x3D;&quot;el &#x3D;&gt; &#123; if (el) navItems [index] &#x3D; el&#125;&quot; ,</span><br><span class="line">这句话的意思是如果当前元素存在就让navItems的第index个&#x3D;el--&gt;</span><br><span class="line">        &#123;&#123; t &#125;&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-tabs-nav-indicator&quot; ref&#x3D;&quot;indicator&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Tab from &quot;.&#x2F;Tab.vue&quot;;</span><br><span class="line">import &#123; computed, ref, onMounted &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    selected: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    const navItems &#x3D; ref&lt;HTMLDivElement&gt;([]);</span><br><span class="line">    const indicator &#x3D; ref&lt;HTMLDivElement&gt;(null);</span><br><span class="line">    onMounted(() &#x3D;&gt; &#123;</span><br><span class="line">      const divs: any &#x3D; navItems.value;</span><br><span class="line">      const result &#x3D; divs.filter((div) &#x3D;&gt;</span><br><span class="line">        div.classList.contains(&quot;selected&quot;)</span><br><span class="line">      )[0];</span><br><span class="line">      const &#123; width &#125; &#x3D; result.getBoundingClientRect();</span><br><span class="line">      indicator.value.style.width &#x3D; width + &quot;px&quot;;</span><br><span class="line">    &#125;);</span><br><span class="line">    &#x2F;&#x2F; 省略代码</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>还需要解决点了之后，下划线不移动，和一开始选择第二个下划线不跳过去的问题</li>
+<li>见图
+<img src="https://i.loli.net/2020/10/08/JaSeRh3ADgbvtCf.png" alt="下划线移动原理.png"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-tabs&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-nav&quot; ref&#x3D;&quot;container&quot;&gt;</span><br><span class="line">      &lt;div</span><br><span class="line">        class&#x3D;&quot;gulu-tabs-nav-item&quot;</span><br><span class="line">        :class&#x3D;&quot;&#123; selected: t &#x3D;&#x3D;&#x3D; selected &#125;&quot;</span><br><span class="line">        v-for&#x3D;&quot;(t, index) in titles&quot;</span><br><span class="line">        :ref&#x3D;&quot;</span><br><span class="line">          (el) &#x3D;&gt; &#123;</span><br><span class="line">            if (el) navItems[index] &#x3D; el;</span><br><span class="line">          &#125;</span><br><span class="line">        &quot;</span><br><span class="line">        :key&#x3D;&quot;index&quot;</span><br><span class="line">        @click&#x3D;&quot;select(t)&quot;</span><br><span class="line">      &gt;</span><br><span class="line">        &#123;&#123; t &#125;&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;!--      :ref&#x3D;&quot;el &#x3D;&gt; &#123; if (el) navItems [index] &#x3D; el&#125;&quot; ,这句话的意思是如果当前元素存在就让navItems的第index个&#x3D;el--&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-tabs-nav-indicator&quot; ref&#x3D;&quot;indicator&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-content&quot;&gt;</span><br><span class="line">      &lt;component</span><br><span class="line">        class&#x3D;&quot;gulu-tabs-content-item&quot;</span><br><span class="line">        :is&#x3D;&quot;current&quot;</span><br><span class="line">        :key&#x3D;&quot;current.props.title&quot;</span><br><span class="line">      &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Tab from &quot;.&#x2F;Tab.vue&quot;;</span><br><span class="line">import &#123; computed, ref, onMounted, onUpdated &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    selected: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    const navItems &#x3D; ref&lt;HTMLDivElement&gt;([]);</span><br><span class="line">    const indicator &#x3D; ref&lt;HTMLDivElement&gt;(null);</span><br><span class="line">    const container &#x3D; ref&lt;HTMLDivElement&gt;(null);</span><br><span class="line">    const x &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      const divs: any &#x3D; navItems.value;</span><br><span class="line">      const result &#x3D; divs.filter((div) &#x3D;&gt;</span><br><span class="line">        div.classList.contains(&quot;selected&quot;)</span><br><span class="line">      )[0];</span><br><span class="line">      const &#123; width &#125; &#x3D; result.getBoundingClientRect();</span><br><span class="line">      indicator.value.style.width &#x3D; width + &quot;px&quot;;</span><br><span class="line">      const &#123; left: left1 &#125; &#x3D; container.value.getBoundingClientRect();</span><br><span class="line">      const &#123; left: left2 &#125; &#x3D; result.getBoundingClientRect();</span><br><span class="line">      const left &#x3D; left2 - left1;</span><br><span class="line">      indicator.value.style.left &#x3D; left + &quot;px&quot;;</span><br><span class="line">    &#125;;</span><br><span class="line">    onMounted(x);</span><br><span class="line">    onUpdated(x);</span><br><span class="line">    const defaults &#x3D; context.slots.default();</span><br><span class="line">    defaults.forEach((tag) &#x3D;&gt; &#123;</span><br><span class="line">      if (tag.type !&#x3D;&#x3D; Tab) &#123;</span><br><span class="line">        throw new Error(&quot;Tabs 子标签必须是 Tab&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    const current &#x3D; computed(() &#x3D;&gt; &#123;</span><br><span class="line">      return defaults.filter((tag) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&quot;props.selected&quot;, props.selected);</span><br><span class="line">        return tag.props.title &#x3D;&#x3D;&#x3D; props.selected;</span><br><span class="line">      &#125;)[0];</span><br><span class="line">    &#125;);</span><br><span class="line">    const titles &#x3D; defaults.map((tag) &#x3D;&gt; &#123;</span><br><span class="line">      return tag.props.title;</span><br><span class="line">    &#125;);</span><br><span class="line">    const select &#x3D; (title: string) &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;update:selected&quot;, title);</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">      defaults,</span><br><span class="line">      select,</span><br><span class="line">      current,</span><br><span class="line">      titles,</span><br><span class="line">      navItems,</span><br><span class="line">      indicator,</span><br><span class="line">      container,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">$blue: #40a9ff;</span><br><span class="line">$color: #333;</span><br><span class="line">$border-color: #d9d9d9;</span><br><span class="line">.gulu-tabs &#123;</span><br><span class="line">  &amp;-nav &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    color: $color;</span><br><span class="line">    border-bottom: 1px solid $border-color;</span><br><span class="line">    position: relative;</span><br><span class="line">    &amp;-item &#123;</span><br><span class="line">      padding: 8px 0;</span><br><span class="line">      margin: 0 16px;</span><br><span class="line">      cursor: pointer;</span><br><span class="line">      &amp;:first-child &#123;</span><br><span class="line">        margin-left: 0;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;.selected &#123;</span><br><span class="line">        color: $blue;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;-indicator &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      height: 3px;</span><br><span class="line">      background: $blue;</span><br><span class="line">      left: 0;</span><br><span class="line">      bottom: -1px;</span><br><span class="line">      width: 100px;</span><br><span class="line">      transition: all 250ms;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-content &#123;</span><br><span class="line">    padding: 8px 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>优化代码</li>
+</ol>
+<ul>
+<li>第一步：找出烂代码</li>
+<li>第二步：把它写得好一点，一点就够了</li>
+<li>优化 1，干掉 navItems ref，直接写 selectedItem</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &#x2F;&#x2F; 省略代码</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-tabs-nav&quot; ref&#x3D;&quot;container&quot;&gt;</span><br><span class="line">    &lt;div</span><br><span class="line">      class&#x3D;&quot;gulu-tabs-nav-item&quot;</span><br><span class="line">      :class&#x3D;&quot;&#123; selected: t &#x3D;&#x3D;&#x3D; selected &#125;&quot;</span><br><span class="line">      v-for&#x3D;&quot;(t, index) in titles&quot;</span><br><span class="line">      :ref&#x3D;&quot;</span><br><span class="line">        (el) &#x3D;&gt; &#123;</span><br><span class="line">          if (t &#x3D;&#x3D;&#x3D; selected) selectedItem &#x3D; el;</span><br><span class="line">        &#125;</span><br><span class="line">      &quot;</span><br><span class="line">      :key&#x3D;&quot;index&quot;</span><br><span class="line">      @click&#x3D;&quot;select(t)&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &#123;&#123; t &#125;&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-tabs-nav-indicator&quot; ref&#x3D;&quot;indicator&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &#x2F;&#x2F; 省略代码</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 省略代码</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    const selectedItem &#x3D; ref&lt;HTMLDivElement&gt;(null);</span><br><span class="line">    const indicator &#x3D; ref&lt;HTMLDivElement&gt;(null);</span><br><span class="line">    const container &#x3D; ref&lt;HTMLDivElement&gt;(null);</span><br><span class="line">    const x &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      const &#123; width &#125; &#x3D; selectedItem.value.getBoundingClientRect();</span><br><span class="line">      indicator.value.style.width &#x3D; width + &quot;px&quot;;</span><br><span class="line">      const &#123; left: left1 &#125; &#x3D; container.value.getBoundingClientRect();</span><br><span class="line">      const &#123; left: left2 &#125; &#x3D; selectedItem.value.getBoundingClientRect();</span><br><span class="line">      const left &#x3D; left2 - left1;</span><br><span class="line">      indicator.value.style.left &#x3D; left + &quot;px&quot;;</span><br><span class="line">    &#125;;</span><br><span class="line">    &#x2F;&#x2F; 省略代码</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优化 2，干掉 onMounted 和 onUpdated,用 watchEffect 代替</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    setup(props, context) &#123;</span><br><span class="line">    &#x2F;&#x2F;  省略代码</span><br><span class="line">      onMounted(() &#x3D;&gt; &#123;</span><br><span class="line">        watchEffect(() &#x3D;&gt; &#123;</span><br><span class="line">          const &#123;</span><br><span class="line">            width</span><br><span class="line">          &#125; &#x3D; selectedItem.value.getBoundingClientRect()</span><br><span class="line">          indicator.value.style.width &#x3D; width + &#39;px&#39;</span><br><span class="line">          const &#123;</span><br><span class="line">            left: left1</span><br><span class="line">          &#125; &#x3D; container.value.getBoundingClientRect()</span><br><span class="line">          const &#123;</span><br><span class="line">            left: left2</span><br><span class="line">          &#125; &#x3D; selectedItem.value.getBoundingClientRect()</span><br><span class="line">          const left &#x3D; left2 - left1</span><br><span class="line">          indicator.value.style.left &#x3D; left + &#39;px&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">      &#x2F;&#x2F; 省略代码</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优化 3，删掉不需要的代码</li>
+</ul>
+<h3 id="9-总结"><a href="#9-总结" class="headerlink" title="9. 总结"></a>9. 总结</h3><ul>
+<li><p>用 JS 获取插槽内容</p>
+<ul>
+<li>const defaults = context.slots.default()</li>
+</ul>
+</li>
+<li><p>使用 Vue 3 遇到 bug</p>
+<ul>
+<li>确定不是自己代码的问题</li>
+<li>用一个例子复现 bug</li>
+<li>把例子链接和 bug 的复现步骤提交给 Vue 团队</li>
+</ul>
+</li>
+<li><p>钩子</p>
+<ul>
+<li>onMounted / onUpdated / watchEffect</li>
+</ul>
+</li>
+<li><p>TypeScript 泛型</p>
+<ul>
+<li><code>const indicator = ref &lt;HTMLDivElement&gt; (null)</code></li>
+</ul>
+</li>
+<li><p>获取宽高和位置</p>
+<ul>
+<li>const { width, left } = el.getBoundingClientRect()</li>
+</ul>
+</li>
+<li><p>ES 6 析构赋值的重命名语法</p>
+<ul>
+<li>const { left: left1 } = x. getBoundingClientRect()</li>
+<li>const { left: left2 } = y. getBoundingClientRect()</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">Vue3造轮子flavour-ui组件库之03制作Dialog组件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-05 17:16:51" itemprop="dateCreated datePublished" datetime="2020-10-05T17:16:51+08:00">2020-10-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-06 21:34:45" itemprop="dateModified" datetime="2020-10-06T21:34:45+08:00">2020-10-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%A0%E8%BD%AE%E5%AD%90/" itemprop="url" rel="index"><span itemprop="name">造轮子</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Vue3造轮子flavour-ui组件库之03制作Dialog组件" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/05/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B03%E5%88%B6%E4%BD%9CDialog%E7%BB%84%E4%BB%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="0-最终效果"><a href="#0-最终效果" class="headerlink" title="0. 最终效果"></a>0. 最终效果</h3><p><img src="https://i.loli.net/2020/10/06/C6cUzXuSVgmwoq9.gif" alt="Dialog.gif"></p>
+<h3 id="1-第一步：需求分析"><a href="#1-第一步：需求分析" class="headerlink" title="1. 第一步：需求分析"></a>1. 第一步：需求分析</h3><ul>
+<li>参考一下别人的对话框<ul>
+<li>可以参考 AntD, Bulma、Element、iView、Vuetify 等</li>
+</ul>
+</li>
+<li>需求<ul>
+<li>点击后弹出</li>
+<li>有遮罩层 overlay</li>
+<li>有 close 按钮</li>
+<li>有标题</li>
+<li>有内容</li>
+<li>有 yes / no 按钮</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-第二步：API-设计"><a href="#2-第二步：API-设计" class="headerlink" title="2. 第二步：API 设计"></a>2. 第二步：API 设计</h3><ul>
+<li>Dialog 组件怎么用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Dialog visible title&#x3D;&quot;标题&quot; @yes&#x3D;&quot;fn1&quot; @no&#x3D;&quot;fn2&quot;&gt;&lt;&#x2F;Dialog&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-第三步：写代码"><a href="#3-第三步：写代码" class="headerlink" title="3. 第三步：写代码"></a>3. 第三步：写代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">步骤</span><br><span class="line">写 HTML</span><br><span class="line">写 CSS</span><br><span class="line">写 JS</span><br><span class="line">测试</span><br><span class="line">改写代码</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">再测试</span><br><span class="line">再改写</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-创建-Dialog-组件"><a href="#4-创建-Dialog-组件" class="headerlink" title="4. 创建 Dialog 组件"></a>4. 创建 Dialog 组件</h3><ul>
+<li>lib/Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;dialog-overlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;dialog-wrapper&quot;&gt;</span><br><span class="line">    &lt;header&gt;标题&lt;&#x2F;header&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;main&gt;</span><br><span class="line">    &lt;footer&gt;</span><br><span class="line">      &lt;Button&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">      &lt;Button&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;&#x2F;footer&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123; Button &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Dialog&gt;&lt;&#x2F;Dialog&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-完善-Dialog-vue-的-css"><a href="#5-完善-Dialog-vue-的-css" class="headerlink" title="5. 完善 Dialog.vue 的 css"></a>5. 完善 Dialog.vue 的 css</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">      &lt;header&gt;标题 &lt;span class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;header&gt;</span><br><span class="line">      &lt;main&gt;</span><br><span class="line">        &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;main&gt;</span><br><span class="line">      &lt;footer&gt;</span><br><span class="line">        &lt;Button level&#x3D;&quot;main&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;Button&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">      &lt;&#x2F;footer&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">$radius: 4px;</span><br><span class="line">$border-color: #d9d9d9;</span><br><span class="line">.gulu-dialog &#123;</span><br><span class="line">  background: white;</span><br><span class="line">  border-radius: $radius;</span><br><span class="line">  box-shadow: 0 0 3px fade_out(black, 0.5);</span><br><span class="line">  min-width: 15em;</span><br><span class="line">  max-width: 90%;</span><br><span class="line">  &amp;-overlay &#123;</span><br><span class="line">    position: fixed;</span><br><span class="line">    top: 0;</span><br><span class="line">    left: 0;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">    background: fade_out(black, 0.5);</span><br><span class="line">    z-index: 10;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-wrapper &#123;</span><br><span class="line">    position: fixed;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    transform: translate(-50%, -50%);</span><br><span class="line">    z-index: 11;</span><br><span class="line">  &#125;</span><br><span class="line">  &gt; header &#123;</span><br><span class="line">    padding: 12px 16px;</span><br><span class="line">    border-bottom: 1px solid $border-color;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center;</span><br><span class="line">    justify-content: space-between;</span><br><span class="line">    font-size: 20px;</span><br><span class="line">  &#125;</span><br><span class="line">  &gt; main &#123;</span><br><span class="line">    padding: 12px 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  &gt; footer &#123;</span><br><span class="line">    border-top: 1px solid $border-color;</span><br><span class="line">    padding: 12px 16px;</span><br><span class="line">    text-align: right;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-close &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    width: 16px;</span><br><span class="line">    height: 16px;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    &amp;::before,</span><br><span class="line">    &amp;::after &#123;</span><br><span class="line">      content: &quot;&quot;;</span><br><span class="line">      position: absolute;</span><br><span class="line">      height: 1px;</span><br><span class="line">      background: black;</span><br><span class="line">      width: 100%;</span><br><span class="line">      top: 50%;</span><br><span class="line">      left: 50%;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;::before &#123;</span><br><span class="line">      transform: translate(-50%, -50%) rotate(-45deg);</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;::after &#123;</span><br><span class="line">      transform: translate(-50%, -50%) rotate(45deg);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-让-Dialog-支持-visible-属性"><a href="#6-让-Dialog-支持-visible-属性" class="headerlink" title="6. 让 Dialog 支持 visible 属性"></a>6. 让 Dialog 支持 visible 属性</h3><ul>
+<li>不要用 show 表示是否可见</li>
+<li>实现点击按钮打开对话框</li>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;toggle&quot;&gt;toggle&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;Dialog :visible&#x3D;&quot;x&quot;&gt;&lt;&#x2F;Dialog&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">import Button from &quot;..&#x2F;lib&#x2F;Button.vue&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const x &#x3D; ref(false);</span><br><span class="line">    const toggle &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      x.value &#x3D; !x.value;</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123; x, toggle &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;标题 &lt;span class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">          &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-让-Dialog-可以点击关闭"><a href="#7-让-Dialog-可以点击关闭" class="headerlink" title="7. 让 Dialog 可以点击关闭"></a>7. 让 Dialog 可以点击关闭</h3><ul>
+<li>注意不能修改 props</li>
+<li>DialogDemo</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;toggle&quot;&gt;toggle&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;Dialog</span><br><span class="line">      v-model:visible&#x3D;&quot;x&quot;</span><br><span class="line">      :closeOnClickOverlay&#x3D;&quot;false&quot;</span><br><span class="line">      :ok&#x3D;&quot;f1&quot;</span><br><span class="line">      :cancel&#x3D;&quot;f2&quot;</span><br><span class="line">    &gt;&lt;&#x2F;Dialog&gt;</span><br><span class="line">    &lt;!--    v-model简写了: @update:visible&#x3D;&quot;x &#x3D; $event&quot;--&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">import Button from &quot;..&#x2F;lib&#x2F;Button.vue&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const x &#x3D; ref(false);</span><br><span class="line">    const toggle &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      x.value &#x3D; !x.value;</span><br><span class="line">    &#125;;</span><br><span class="line">    const f1 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      return false;</span><br><span class="line">      &#x2F;&#x2F; return false 就让ok关不掉</span><br><span class="line">    &#125;;</span><br><span class="line">    const f2 &#x3D; () &#x3D;&gt; &#123;&#125;;</span><br><span class="line">    return &#123; x, toggle, f1, f2 &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;!--    遮罩层的关闭--&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;</span><br><span class="line">          标题 &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;p&gt;第一行字&lt;&#x2F;p&gt;</span><br><span class="line">          &lt;p&gt;第二行字&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false,</span><br><span class="line">    &#125;,</span><br><span class="line">    closeOnClickOverlay: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; 点击遮罩层关闭是否开启</span><br><span class="line">    ok: &#123;</span><br><span class="line">      type: Function,</span><br><span class="line">    &#125;,</span><br><span class="line">    cancel: &#123;</span><br><span class="line">      type: Function,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">    const close &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;update:visible&quot;, false);</span><br><span class="line">    &#125;;</span><br><span class="line">    const onClickOverlay &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      console.log(&quot;props.closeOnClickOverlay&quot;, props.closeOnClickOverlay);</span><br><span class="line">      if (props.closeOnClickOverlay) &#123;</span><br><span class="line">        &#x2F;&#x2F; 开启才可以点外面关闭</span><br><span class="line">        close();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    const ok &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; context.emit(&#39;ok&#39;)</span><br><span class="line">      if (props.ok?.() !&#x3D;&#x3D; false) &#123;</span><br><span class="line">        close();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    const cancel &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      context.emit(&quot;cancel&quot;);</span><br><span class="line">      close();</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">      close,</span><br><span class="line">      onClickOverlay,</span><br><span class="line">      ok,</span><br><span class="line">      cancel,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Dialog from &quot;..&#x2F;lib&#x2F;Dialog.vue&quot;;</span><br><span class="line">import Button from &quot;..&#x2F;lib&#x2F;Button.vue&quot;;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Dialog,</span><br><span class="line">    Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const x &#x3D; ref(false);</span><br><span class="line">    const toggle &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      x.value &#x3D; !x.value;</span><br><span class="line">    &#125;;</span><br><span class="line">    const f1 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      return false;</span><br><span class="line">      &#x2F;&#x2F; return false 就让ok关不掉</span><br><span class="line">    &#125;;</span><br><span class="line">    const f2 &#x3D; () &#x3D;&gt; &#123;&#125;;</span><br><span class="line">    return &#123; x, toggle, f1, f2 &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-让-Dialog-支持自定义内容"><a href="#8-让-Dialog-支持自定义内容" class="headerlink" title="8. 让 Dialog 支持自定义内容"></a>8. 让 Dialog 支持自定义内容</h3><ul>
+<li>使用插槽 slot,实现 title 和内容都是自定义的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;</span><br><span class="line">          &#123;&#123; title &#125;&#125; &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;slot &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Button from &quot;.&#x2F;Button.vue&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &quot;提示&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; ...省略代码</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用具名插槽，解决 title 也可以加样式的问题</li>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;Dialog 示例&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;h1&gt;示例1&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;toggle&quot;&gt;toggle&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;Dialog</span><br><span class="line">      v-model:visible&#x3D;&quot;x&quot;</span><br><span class="line">      :closeOnClickOverlay&#x3D;&quot;false&quot;</span><br><span class="line">      :ok&#x3D;&quot;f1&quot;</span><br><span class="line">      :cancel&#x3D;&quot;f2&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &lt;template v-slot:content&gt;</span><br><span class="line">        &lt;div&gt;你好&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div&gt;hi&lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">      &lt;template v-slot:title&gt;</span><br><span class="line">        &lt;strong&gt;加粗的标题&lt;&#x2F;strong&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;Dialog&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dialog.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">        &lt;header&gt;</span><br><span class="line">          &lt;slot name&#x3D;&quot;title&quot; &#x2F;&gt;</span><br><span class="line">          &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;header&gt;</span><br><span class="line">        &lt;main&gt;</span><br><span class="line">          &lt;slot name&#x3D;&quot;content&quot; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;main&gt;</span><br><span class="line">        &lt;footer&gt;</span><br><span class="line">          &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">        &lt;&#x2F;footer&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>总结:具名插槽的用法</p>
+<ul>
+<li>首先在外面写上 v-slot:名字,里面写上 slot name=</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-使用新组件：Teleport，把-Dialog-移到-body-下"><a href="#9-使用新组件：Teleport，把-Dialog-移到-body-下" class="headerlink" title="9. 使用新组件：Teleport，把 Dialog 移到 body 下"></a>9. 使用新组件：Teleport，把 Dialog 移到 body 下</h3><ul>
+<li>防止 Dialog 被遮挡，遮挡原因是因为 z-index 层叠上下文的关系，z-index:1 里面的 z-index:10,会被 z-index:2 盖掉，也就是说比别人大还是小要看所在的环境,举例:清华里面的最后一名比三本的第一名要大</li>
+<li>解决办法就是把 Dialog 移到外面,直接出现在 body 下面</li>
+<li>简单理解 Teleport 就是传送门，把 Dialog 传送到 Body 下面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;template v-if&#x3D;&quot;visible&quot;&gt;</span><br><span class="line">    &lt;Teleport to&#x3D;&quot;body&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog-overlay&quot; @click&#x3D;&quot;onClickOverlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;gulu-dialog-wrapper&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;gulu-dialog&quot;&gt;</span><br><span class="line">          &lt;header&gt;</span><br><span class="line">            &lt;slot name&#x3D;&quot;title&quot; &#x2F;&gt;</span><br><span class="line">            &lt;span @click&#x3D;&quot;close&quot; class&#x3D;&quot;gulu-dialog-close&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;header&gt;</span><br><span class="line">          &lt;main&gt;</span><br><span class="line">            &lt;slot name&#x3D;&quot;content&quot; &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;main&gt;</span><br><span class="line">          &lt;footer&gt;</span><br><span class="line">            &lt;Button level&#x3D;&quot;main&quot; @click&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;Button&gt;</span><br><span class="line">            &lt;Button @click&#x3D;&quot;cancel&quot;&gt;Cancel&lt;&#x2F;Button&gt;</span><br><span class="line">          &lt;&#x2F;footer&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;Teleport&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-一句话打开-Dialog"><a href="#10-一句话打开-Dialog" class="headerlink" title="10. 一句话打开 Dialog"></a>10. 一句话打开 Dialog</h3><ul>
+<li>场景:不想声明 visible 变量，然后改变它的值</li>
+<li>技术点：动态挂载组件</li>
+<li>DialogDemo.vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Button @click&#x3D;&quot;showDialog&quot;&gt;show Dialog&lt;&#x2F;Button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import &#123; openDialog &#125; from &quot;..&#x2F;lib&#x2F;openDialog&quot;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>lib/openDialog.ts</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> Dialog <span class="keyword">from</span> <span class="string">"./Dialog.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createApp, h &#125; <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> openDialog = <span class="function">(<span class="params">options</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; title, content, ok, cancel &#125; = options;</span><br><span class="line">  <span class="keyword">const</span> div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(div);</span><br><span class="line">  <span class="keyword">const</span> close = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    app.unmount(div);</span><br><span class="line">    div.remove();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> app = createApp(&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> h(</span><br><span class="line">        Dialog,</span><br><span class="line">        &#123;</span><br><span class="line">          visible: <span class="literal">true</span>,</span><br><span class="line">          <span class="string">"onUpdate:visible"</span>: <span class="function">(<span class="params">newVisible</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(newVisible);</span><br><span class="line">            <span class="keyword">if</span> (newVisible === <span class="literal">false</span>) &#123;</span><br><span class="line">              <span class="comment">// @ts-ignore</span></span><br><span class="line">              close();</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          ok,</span><br><span class="line">          cancel,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          title,</span><br><span class="line">          content,</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  app.mount(div);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/04/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B02%E5%88%B6%E4%BD%9CButton%E7%BB%84%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -933,8 +1377,8 @@
 </li>
 <li><p>全局安装 create-vite-app</p>
 <ul>
-<li>yarn global add <a href="mailto:&#99;&#x72;&#x65;&#x61;&#x74;&#101;&#x2d;&#118;&#x69;&#x74;&#x65;&#45;&#x61;&#112;&#x70;&#64;&#49;&#46;&#x31;&#56;&#x2e;&#x30;">&#99;&#x72;&#x65;&#x61;&#x74;&#101;&#x2d;&#118;&#x69;&#x74;&#x65;&#45;&#x61;&#112;&#x70;&#64;&#49;&#46;&#x31;&#56;&#x2e;&#x30;</a></li>
-<li>或者 npm i -g <a href="mailto:&#99;&#x72;&#101;&#x61;&#x74;&#101;&#45;&#x76;&#105;&#116;&#x65;&#45;&#97;&#x70;&#x70;&#64;&#49;&#46;&#x31;&#x38;&#x2e;&#x30;">&#99;&#x72;&#101;&#x61;&#x74;&#101;&#45;&#x76;&#105;&#116;&#x65;&#45;&#97;&#x70;&#x70;&#64;&#49;&#46;&#x31;&#x38;&#x2e;&#x30;</a></li>
+<li>yarn global add <a href="mailto:&#99;&#114;&#x65;&#97;&#x74;&#101;&#45;&#x76;&#105;&#116;&#101;&#x2d;&#x61;&#x70;&#x70;&#64;&#x31;&#x2e;&#x31;&#x38;&#x2e;&#x30;">&#99;&#114;&#x65;&#97;&#x74;&#101;&#45;&#x76;&#105;&#116;&#101;&#x2d;&#x61;&#x70;&#x70;&#64;&#x31;&#x2e;&#x31;&#x38;&#x2e;&#x30;</a></li>
+<li>或者 npm i -g <a href="mailto:&#x63;&#x72;&#x65;&#x61;&#116;&#x65;&#x2d;&#x76;&#x69;&#116;&#x65;&#x2d;&#x61;&#112;&#x70;&#64;&#x31;&#46;&#49;&#56;&#46;&#48;">&#x63;&#x72;&#x65;&#x61;&#116;&#x65;&#x2d;&#x76;&#x69;&#116;&#x65;&#x2d;&#x61;&#112;&#x70;&#64;&#x31;&#46;&#49;&#56;&#46;&#48;</a></li>
 <li>创建项目目录,cva flavour-ui(这个是项目名可以自己修改)</li>
 <li>yarn</li>
 <li>yarn dev</li>
@@ -988,7 +1432,7 @@
 </ul>
 </li>
 <li>安装 vue-router<ul>
-<li>yarn add <a href="mailto:&#118;&#117;&#101;&#45;&#x72;&#x6f;&#x75;&#x74;&#101;&#114;&#64;&#52;&#46;&#48;&#46;&#48;&#x2d;&#98;&#101;&#x74;&#97;&#x2e;&#51;">&#118;&#117;&#101;&#45;&#x72;&#x6f;&#x75;&#x74;&#101;&#114;&#64;&#52;&#46;&#48;&#46;&#48;&#x2d;&#98;&#101;&#x74;&#97;&#x2e;&#51;</a></li>
+<li>yarn add <a href="mailto:&#x76;&#117;&#101;&#x2d;&#114;&#x6f;&#x75;&#x74;&#101;&#x72;&#64;&#x34;&#x2e;&#x30;&#x2e;&#48;&#x2d;&#x62;&#101;&#116;&#x61;&#x2e;&#51;">&#x76;&#117;&#101;&#x2d;&#114;&#x6f;&#x75;&#x74;&#101;&#x72;&#64;&#x34;&#x2e;&#x30;&#x2e;&#48;&#x2d;&#x62;&#101;&#116;&#x61;&#x2e;&#51;</a></li>
 </ul>
 </li>
 <li>初始化 vue-router<ul>
@@ -1753,7 +2197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-01 12:24:36" itemprop="dateModified" datetime="2020-10-01T12:24:36+08:00">2020-10-01</time>
+                <time title="Modified: 2020-10-06 21:02:32" itemprop="dateModified" datetime="2020-10-06T21:02:32+08:00">2020-10-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2335,6 +2779,163 @@
 <ul>
 <li>确保嘴巴不是静止的状态,前面是双原因</li>
 </ul>
+<ol start="76">
+<li>come</li>
+</ol>
+<ul>
+<li>重读单词 [kʌm]</li>
+</ul>
+<ol start="77">
+<li>its</li>
+</ol>
+<ul>
+<li>[Its] , It’s in its usual place.</li>
+<li>It’s gone. [ts] ，这种情况可能发生，但是不常见</li>
+</ul>
+<ol start="78">
+<li>over</li>
+</ol>
+<ul>
+<li>[‘oʊvər], 很快的 v-中性元音[ə],r 音</li>
+</ul>
+<ol start="79">
+<li>think</li>
+</ol>
+<ul>
+<li>[θiŋk],对比 thin[θin],think[θiŋk]</li>
+</ul>
+<ol start="80">
+<li>Also</li>
+</ol>
+<ul>
+<li>[‘ɔlsoʊ],单词以双元音结尾，嘴巴不需要张太开，嘴唇呈现形状不需要太圆</li>
+</ul>
+<ol start="81">
+<li>Back</li>
+</ol>
+<ul>
+<li>[bæk],注意元音 æ,舌根向上伸展，[æ]，张开嘴巴</li>
+</ul>
+<ol start="82">
+<li>After</li>
+</ol>
+<ul>
+<li>after[‘æftər]，可以重读，也可以不重读,不改变或消掉单词的音，在重读版本中，重读音节更长，重读音节先升后降的形式更加明显</li>
+</ul>
+<ol start="83">
+<li>Use</li>
+</ol>
+<ul>
+<li>noun,[jus],verb,[juz]</li>
+<li>house, noun: [s],verb:[z]</li>
+</ul>
+<ol start="84">
+<li>two</li>
+</ol>
+<ul>
+<li>[tu],轻松的开始然后发音</li>
+</ul>
+<ol start="85">
+<li>How[haʊ]</li>
+</ol>
+<ul>
+<li>40,what,46,who,48,which,51,when</li>
+<li>重读 how,发音更长，更清晰，先升后降</li>
+<li>注意 h 音不要过重，也不要消音，发一个轻的 h 音，张开嘴，舌根抬起，双唇呈圆形</li>
+</ul>
+<ol start="86">
+<li>Our</li>
+</ol>
+<ul>
+<li>[aʊə],虚词，需要弱读</li>
+<li>What time is our meeting? [ar],[ər]</li>
+</ul>
+<ol start="87">
+<li>work</li>
+</ol>
+<ul>
+<li>[wɜrk],work 是动词，也是实词，在句子中需要重读</li>
+<li>这里的 r 要发音</li>
+</ul>
+<ol start="88">
+<li>First</li>
+</ol>
+<ul>
+<li>[fɜrst],t 会根据后面的词进行盖印变化</li>
+</ul>
+<ol start="89">
+<li>Well</li>
+</ol>
+<ul>
+<li>[wel],重读，也可以弱读</li>
+</ul>
+<ol start="90">
+<li>way</li>
+</ol>
+<ul>
+<li>[wei],重读，先升后降</li>
+</ul>
+<ol start="91">
+<li>Even</li>
+</ol>
+<ul>
+<li>[‘ivən], 通常是重读，通常是先升后降</li>
+<li>如果是修饰动词的副词，或者修饰另一个形容的形容词就可以轻读</li>
+</ul>
+<ol start="92">
+<li>New</li>
+</ol>
+<ul>
+<li>[nu]就发这个音,重读的先升后降形式,句子中发音比较清除的单词</li>
+</ul>
+<ol start="93">
+<li>Want</li>
+</ol>
+<ul>
+<li>58,him 的时候提到过,通常重读, [want] ,[wɔnt], [wʌnt],wanna 弱读</li>
+</ul>
+<ol start="94">
+<li>Because</li>
+</ol>
+<ul>
+<li>和 want 一样三种，[bi’kaz],[bi’kɔz],[bi’kʌz]，通常弱读,[bi’kəz],口语也可以读成 cuz[kəz]</li>
+</ul>
+<ol start="95">
+<li>Any</li>
+</ol>
+<ul>
+<li>[‘eni],音调较平</li>
+</ul>
+<ol start="96">
+<li>these</li>
+</ol>
+<ul>
+<li>[ðiz]</li>
+</ul>
+<ol start="97">
+<li>give</li>
+</ol>
+<ul>
+<li>[giv],重读且非弱读,有时候会去掉最后的 v 音</li>
+</ul>
+<ol start="98">
+<li>Day</li>
+</ol>
+<ul>
+<li>重读，从来不轻读</li>
+</ul>
+<ol start="99">
+<li>Most</li>
+</ol>
+<ul>
+<li>[moʊst],重读,参考 88， 57</li>
+</ul>
+<ol start="100">
+<li>us</li>
+</ol>
+<ul>
+<li>通常轻读[ʌs],读轻调平，国际英标中有[əs]的标法</li>
+</ul>
 
       
     </div>
@@ -2526,504 +3127,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/09/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/09/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%AD/" class="post-title-link" itemprop="url">高级前端养成37js专精06之手写promise-中</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-09 21:40:25" itemprop="dateCreated datePublished" datetime="2020-09-09T21:40:25+08:00">2020-09-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-10 22:49:37" itemprop="dateModified" datetime="2020-09-10T22:49:37+08:00">2020-09-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/09/09/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%AD/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成37js专精06之手写promise-中" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/09/09/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%AD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/09/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%AD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>测试用例 8，PromiseA+2.2.1,onFulfilled 和 onRejected 都是可选的,不是函数则忽略。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test</span></span><br><span class="line">it(<span class="string">"2.2.2"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(<span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line">  assert(<span class="number">1</span> === <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line">resolve = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.succeed === <span class="string">'function'</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.succeed()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,<span class="number">0</span>)</span><br><span class="line">  &#125;;</span><br><span class="line">  reject = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.fail === <span class="string">'function'</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.fail()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,<span class="number">0</span>)</span><br><span class="line">  &#125;;</span><br><span class="line">then(succeed?, fail?)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> succeed === <span class="string">'function'</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>.succeed = succeed;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> fail === <span class="string">'function'</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>.fail = fail;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>测试用例 9,2.2.2.1 此函数必须在 promise 完成(fulfilled)后被调用,并把 promise 的值作为它的第一个参数</li>
-</ol>
-<ul>
-<li>这样写会有坑</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.2"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> succeed = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 因为这里的函数是立即执行的</span></span><br><span class="line">    assert(promise.state === <span class="string">"pending"</span>);</span><br><span class="line">    <span class="comment">// 调用这个函数的时候还没有把对象传给promise, 这个时候去取promise就是undefined</span></span><br><span class="line">    <span class="comment">// 先把assert(promise.state === "pending")去除，不测</span></span><br><span class="line">    assert.isFalse(succeed.called);</span><br><span class="line">    resolve(<span class="number">233</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert(promise.state === <span class="string">"fulfilled"</span>);</span><br><span class="line">      assert.isTrue(succeed.called);</span><br><span class="line">      assert(succeed.calledWith(<span class="number">233</span>));</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(succeed);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>正确的测试用例</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.2.1 此函数必须在 promise 完成(fulfilled)后被调用,并把 promise 的值作为它的第一个参数"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> succeed = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    assert.isFalse(succeed.called);</span><br><span class="line">    resolve(<span class="number">233</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert(promise.state === <span class="string">"fulfilled"</span>);</span><br><span class="line">      assert.isTrue(succeed.called);</span><br><span class="line">      assert(succeed.calledWith(<span class="number">233</span>));</span><br><span class="line">      done();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(succeed);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>完善 src/promise.ts</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">resolve = <span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"fulfilled"</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.succeed === <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.succeed(result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br><span class="line">reject = <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"rejected"</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.fail === <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.fail(reason);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>测试用例 10,文档 2.2.2</li>
-</ol>
-<ul>
-<li>test/index.ts</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.2"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> succeed = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    assert.isFalse(succeed.called);</span><br><span class="line">    resolve(<span class="number">233</span>);</span><br><span class="line">    resolve(<span class="number">2333</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert(promise.state === <span class="string">"fulfilled"</span>);</span><br><span class="line">      assert.isTrue(succeed.calledOnce);</span><br><span class="line">      assert(succeed.calledWith(<span class="number">233</span>));</span><br><span class="line">      done();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(succeed);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>src/promise.ts</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">resolve = <span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state !== <span class="string">"pending"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"fulfilled"</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.succeed === <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.succeed(result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br><span class="line">reject = <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state !== <span class="string">"pending"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"rejected"</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.fail === <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.fail(reason);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>测试用例 11,文档 2.3.3, 测试用例对应上面写，promise 代码已经完成</li>
-</ol>
-<ul>
-<li>javascript</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.3"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fail = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    assert.isFalse(fail.called);</span><br><span class="line">    reject(<span class="number">233</span>);</span><br><span class="line">    reject(<span class="number">2333</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert(promise.state === <span class="string">"rejected"</span>);</span><br><span class="line">      assert.isTrue(fail.calledOnce);</span><br><span class="line">      assert(fail.calledWith(<span class="number">233</span>));</span><br><span class="line">      done();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(<span class="literal">null</span>, fail);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>测试用例 12, 2.2.4 在执行上下文堆栈（execution context）仅包含平台代码之前，不得调用 onFulfilled 和 onRejected 的解释</li>
-</ol>
-<ul>
-<li>就是写代码的环境，仅包含平台代码的意思是不包含自己写的代码,即当写的代码还没有执行完毕之前，不得调用 then 之前的两个函数</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.4 在我的代码块执行完毕之前，不得调用 then 后面的两函数"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> succeed = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(succeed);</span><br><span class="line">  assert.isFalse(succeed.called); <span class="comment">// 这句话还没有执行完，不得调用succeed</span></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    assert.isTrue(succeed.called);</span><br><span class="line">    done();</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>测试用例 13,2.2.4 失败回调</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.4 失败回调"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fn = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    reject();</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(<span class="literal">null</span>, fn);</span><br><span class="line">  assert.isFalse(fn.called); <span class="comment">// 这句话还没有执行完，不得调用succeed</span></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    assert.isTrue(fn.called);</span><br><span class="line">    done();</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>测试用例 14,this 是 undefined</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.5"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>; <span class="comment">// 避免没有指定this，this是window的问题</span></span><br><span class="line">    assert(<span class="keyword">this</span> === <span class="literal">undefined</span>);</span><br><span class="line">    done();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">resolve = <span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state !== <span class="string">"pending"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"fulfilled"</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.succeed === <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.succeed.call(<span class="literal">undefined</span>, result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>测试用例 15，2.2.6 then 可以在同一个 promise 里被多次调用</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"2.2.6 then可以在同一个promise里被多次调用"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> callbacks = [sinon.fake(), sinon.fake(), sinon.fake()];</span><br><span class="line">  promise.then(callbacks[<span class="number">0</span>]);</span><br><span class="line">  promise.then(callbacks[<span class="number">1</span>]);</span><br><span class="line">  promise.then(callbacks[<span class="number">2</span>]);</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    assert(callbacks[<span class="number">0</span>].called);</span><br><span class="line">    assert(callbacks[<span class="number">1</span>].called);</span><br><span class="line">    assert(callbacks[<span class="number">2</span>].called);</span><br><span class="line">    assert(callbacks[<span class="number">1</span>].calledAfter(callbacks[<span class="number">0</span>]));</span><br><span class="line">    assert(callbacks[<span class="number">2</span>].calledAfter(callbacks[<span class="number">1</span>]));</span><br><span class="line">    done();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  state = <span class="string">"pending"</span>;</span><br><span class="line">  callbacks = [];</span><br><span class="line">  resolve = <span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state !== <span class="string">"pending"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"fulfilled"</span>;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 遍历 callbacks,调用所有的handle[0]</span></span><br><span class="line">      <span class="keyword">this</span>.callbacks.forEach(<span class="function">(<span class="params">handle</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> handle[<span class="number">0</span>] === <span class="string">"function"</span>) &#123;</span><br><span class="line">          handle[<span class="number">0</span>].call(<span class="literal">undefined</span>, result);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  reject = <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state !== <span class="string">"pending"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"rejected"</span>;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.callbacks.forEach(<span class="function">(<span class="params">handle</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 遍历 callbacks,调用所有的handle[1]</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> handle[<span class="number">1</span>] === <span class="string">"function"</span>) &#123;</span><br><span class="line">          handle[<span class="number">1</span>].call(<span class="literal">undefined</span>, reason);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(<span class="keyword">this</span>.resolve.bind(<span class="keyword">this</span>), <span class="keyword">this</span>.reject.bind(<span class="keyword">this</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed?, fail?) &#123;</span><br><span class="line">    <span class="keyword">const</span> handle = [succeed, fail];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> succeed === <span class="string">"function"</span>) &#123;</span><br><span class="line">      handle[<span class="number">0</span>] = succeed;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fail === <span class="string">"function"</span>) &#123;</span><br><span class="line">      handle[<span class="number">1</span>] = fail;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.callbacks.push(handle);</span><br><span class="line">    <span class="comment">// 把函数推到callbacks</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>如何 pull request 提交代码</li>
-</ol>
-<ul>
-<li>先 folk，把别人的代码拷贝的自己的名下</li>
-<li>改代码，本地测试</li>
-<li>点击自己的项目的 new pull request</li>
-<li>点击 create pull request,等待 ci 检查完毕</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" class="post-title-link" itemprop="url">高级前端养成37js专精06之手写promise(上)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-07 20:59:47" itemprop="dateCreated datePublished" datetime="2020-09-07T20:59:47+08:00">2020-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-08 22:59:24" itemprop="dateModified" datetime="2020-09-08T22:59:24+08:00">2020-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成37js专精06之手写promise(上)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>面试答题万金油方法论顺序(高级前端面试套路)</li>
-</ol>
-<ul>
-<li>该技术要解决什么问题-why</li>
-<li>该技术是怎么解决它的-how</li>
-<li>该技术有什么优点(对比其他技术) - pros</li>
-<li>该技术有什么缺点-cons</li>
-<li>如何解决这些缺点-more</li>
-</ul>
-<ol start="2">
-<li>promise 要解决什么问题</li>
-</ol>
-<ul>
-<li><p>要解决回调地狱</p>
-</li>
-<li><p>那么问题来了，回调地狱真的是个问题么？</p>
-</li>
-<li><p>有没有可能是这个程序员水平不行</p>
-<ul>
-<li>回调地狱案例</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://imgkr2.cn-bj.ufileos.com/a398cab9-2bd7-41ac-80ac-7ea97382337c.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=x%252Fh8X7V54ZokIxLzN50tjC94Ae8%253D&Expires=1599572460" alt="回调地狱"></p>
-<ul>
-<li>改写成回调不地狱</li>
-</ul>
-<p><img src="https://imgkr2.cn-bj.ufileos.com/5d6a2eed-1294-4cab-b032-8bbcd616711a.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=DKVJql3uxHuKX2lps9%252FNKF8al34%253D&Expires=1599572469" alt="回调不地狱"></p>
-<ol start="3">
-<li>现状水平差的人就是多</li>
-</ol>
-<ul>
-<li>即 Promise 解决了回调地狱的问题</li>
-</ul>
-<ol start="4">
-<li>Promise 有什么优点</li>
-</ol>
-<ul>
-<li>有两个主要的优点<ul>
-<li><ol>
-<li>减少缩进</li>
-</ol>
-<ul>
-<li>把【函数里的函数】编程【then 下面的 then】(链式)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://imgkr2.cn-bj.ufileos.com/7e165f7f-c614-4500-b6d5-902db8643467.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=6Z6%252BXPCOrlTKKGP3l5A4XcljNT8%253D&Expires=1599572569" alt="减少缩进1/2"></p>
-<p><img src="https://imgkr2.cn-bj.ufileos.com/e6ff2c2d-737e-4a82-8238-7732795b6d11.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=KpTlu3tVIHfpOPJKW0MrN44vjXY%253D&Expires=1599572586" alt="减少缩进2/2"></p>
-<ul>
-<li><ol start="2">
-<li>消灭 if(err)</li>
-</ol>
-<ul>
-<li>错误处理单独放到一个函数里</li>
-<li>如果不处理，就一直等到往后抛</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://imgkr2.cn-bj.ufileos.com/79ae35dc-b9bd-4016-b4b5-c425a37da9af.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=77Te7RFwyTpGv0YDyQJ7vd7uRyk%253D&Expires=1599572614" alt="消灭if err"></p>
-<ol start="5">
-<li>用户怎么用 Promise</li>
-</ol>
-<ul>
-<li><p>用回调的方式摇骰子
-<img src="https://imgkr2.cn-bj.ufileos.com/6696991f-a26e-452b-aded-e27be20982c1.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=iO6h2Z5AebisoKBDOL4XgMeWMzU%253D&Expires=1599572684" alt="摇骰子回调"></p>
-</li>
-<li><p>用 Promise 的方式摇骰子
-<img src="https://imgkr2.cn-bj.ufileos.com/de05b106-a2f0-4de1-abee-a2aff51c71fc.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=5BB8Dx7zeb4Vy3rx9vYdrthvWnQ%253D&Expires=1599572675" alt="摇骰子promise"></p>
-</li>
-</ul>
-<ol start="6">
-<li>Promise 的完整 API 是什么？</li>
-</ol>
-<ul>
-<li>Promise 是一个类<ul>
-<li>JS 里类是特殊的函数</li>
-<li>类属性: length(可忽略)</li>
-<li>类方法: all/allSettled/race/reject/resolve</li>
-<li>对象属性: <strong>then</strong>(重要)/finally/catch</li>
-<li>对象内部属性: <strong>state</strong>=pending/fulfilled/reject</li>
-</ul>
-</li>
-</ul>
-<ol start="7">
-<li>API 的规则是什么</li>
-</ol>
-<ul>
-<li>Promise/A+规格文档<ul>
-<li>JS 的 Promise 的<a href="https://promisesaplus.com/" target="_blank" rel="noopener">公开标准</a></li>
-<li>有<a href="https://juejin.im/post/6844903649852784647" target="_blank" rel="noopener">中文翻译</a>，但是不保证其准确性</li>
-</ul>
-</li>
-<li>开始写代码<ul>
-<li>按照文档写测试用例</li>
-<li>先让用例失败</li>
-<li>然后让用例通过</li>
-<li>直到把文档的所有情况都考虑清楚</li>
-</ul>
-</li>
-</ul>
-<ol start="8">
-<li>使用 chai</li>
-</ol>
-<ul>
-<li>更牛 X 的测试方案<ul>
-<li>之前的手写用例太原始了，不利于定位错误</li>
-</ul>
-</li>
-<li>步骤<ul>
-<li>yarn global add ts-node mocha 全局安装</li>
-<li>创建目录 promise-demo(名字随意)</li>
-<li>yarn init -y 或者 npm init -y</li>
-<li>yarn add chai mocha –dev</li>
-<li>yarn add @types/chai @types/mocha –dev</li>
-<li>创建 test/index.ts</li>
-<li>mocha -r ts-node/register test/index.ts 运行测试</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试起手代码</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> chai <span class="keyword">from</span> <span class="string">"chai"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> assert = chai.assert;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">""</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">""</span>, () =&gt; &#123;&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>describe,it 的意思见下图</li>
-<li>确认 mocha 可以成功使用</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Promise"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"可以测试相等"</span>, () =&gt; &#123;</span><br><span class="line">    assert(<span class="number">1</span> === <span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后输入<code>mocha -r ts-node/register test/index.ts</code> 运行测试</li>
-<li>mocha 的作用就是提供 describe,it 和漂亮的输出的一个库</li>
-<li>chai 就是提供 assert 的使用</li>
-<li>在 package.json 中配置,就不需要这么长命令了</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"mocha -r ts-node/register test/**/*.ts"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>yarn test 发现报错,因为 yarn 在本地找依赖，而 typescript 和 ts-node 是全局的，所以进行本地安装,基本脚手架就搭建完成了</li>
-</ul>
-<ol start="9">
-<li>新建 src/promise.ts，开始写代码,并完成第一个测试用例</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Promise"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"是一个类"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// assert(typeof Promise === 'function'); // 检测是不是函数</span></span><br><span class="line">    <span class="comment">// assert(typeof Promise.prototype === "object"); // 检测是不是对象</span></span><br><span class="line">    assert.isFunction(<span class="built_in">Promise</span>); <span class="comment">// chai.assert 可以对以上两句的简写</span></span><br><span class="line">    assert.isObject(<span class="built_in">Promise</span>.prototype);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="10">
-<li>测试用例 2，new Promise() 必须接收一个函数,不是一个函数就报错</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试用例</span></span><br><span class="line">describe(<span class="string">"Promise"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"是一个类"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// assert(typeof Promise === 'function'); // 检测是不是函数</span></span><br><span class="line">    <span class="comment">// assert(typeof Promise.prototype === "object"); // 检测是不是对象</span></span><br><span class="line">    assert.isFunction(<span class="built_in">Promise</span>); <span class="comment">// chai.assert 可以对以上两句的简写</span></span><br><span class="line">    assert.isObject(<span class="built_in">Promise</span>.prototype);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(<span class="string">"new Promise() 必须接收一个函数,不是一个函数就报错"</span>, () =&gt; &#123;</span><br><span class="line">    assert.throw(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// assert.throw预测某个东西会报错，接收一个函数</span></span><br><span class="line">      <span class="comment">// @ts-ignore</span></span><br><span class="line">      <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="number">1</span>); <span class="comment">// 函数体里就是要报错的东西,这里的意思是预测new Promise会报错</span></span><br><span class="line">    &#125;);</span><br><span class="line">    assert.throw(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// assert.throw预测某个东西会报错，接收一个函数</span></span><br><span class="line">      <span class="comment">// @ts-ignore</span></span><br><span class="line">      <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="literal">false</span>); <span class="comment">// 函数体里就是要报错的东西,这里的意思是预测new Promise会报错</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="11">
-<li>实现测试用例 3,new Promise(fn)会生成一个对象，对象有 then 方法</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn)会生成一个对象，对象有then方法"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;);</span><br><span class="line">  assert.isFunction(promise.then);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  then() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Promise2;</span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li>实现测试用例 4,new Promise(fn) 中的 fn 立即执行</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn) 中的 fn 立即执行"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  assert(called === <span class="literal">true</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn();</span><br><span class="line">  &#125;</span><br><span class="line">  then() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="13">
-<li>实现测试用例 5,new Promise(fn)中的 fn 执行的时候接收 resolve 和 reject 两个函数</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn)中的fn执行的时候接收 resolve 和 reject 两个函数"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">    assert.isFunction(resolve);</span><br><span class="line">    assert.isFunction(reject);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  assert(called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(</span><br><span class="line">      () =&gt; &#123;&#125;,</span><br><span class="line">      () =&gt; &#123;&#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  then() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>测试用例 6,测试 promise.then(success)中的 success 会在 resolve 被调用的时候，执行。这里会涉及执行时机的问题,resolve 立即执行所引发的问题,resolve 执行的时候 then 还没有绑定到 promise 上去</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"promise.then(success)中的success 会在 resolve被调用的时候，执行"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// done 表示等待的执行</span></span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 该函数没有执行</span></span><br><span class="line">    assert(called === <span class="literal">false</span>); <span class="comment">// 之前不是true</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"resolve"</span>);</span><br><span class="line">    resolve();</span><br><span class="line">    assert(called === <span class="literal">true</span>); <span class="comment">//  resolve 之后是true，证明resolve()调用了succeed</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"代码执行了"</span>);</span><br><span class="line">    <span class="comment">// 该函数执行了</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  promise.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  succeed = <span class="literal">null</span>; <span class="comment">// 对象的属性, 类的属性要加static</span></span><br><span class="line">  fail = <span class="literal">null</span>;</span><br><span class="line">  resolve = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed();</span><br><span class="line">  &#125;;</span><br><span class="line">  reject = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.fail();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(<span class="keyword">this</span>.resolve.bind(<span class="keyword">this</span>), <span class="keyword">this</span>.reject.bind(<span class="keyword">this</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed, fail) &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="15">
-<li>通过增加 setTimeout 让 resolve 等一会,并且不能立即去测试 assert 为 true,但是这样做需要在测试用例上加上 done,因为有等待执行的代码,done 的意思告诉 mocha 测试完了,可以检查测试结果了。最终实现 promise.then(success)中的 success 会在 resolve 被调用的时候执行。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn)中的fn执行的时候接收 resolve 和 reject 两个函数"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">    assert.isFunction(resolve);</span><br><span class="line">    assert.isFunction(reject);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  assert(called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  succeed = <span class="literal">null</span>; <span class="comment">// 对象的属性, 类的属性要加static</span></span><br><span class="line">  fail = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.succeed();</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.fail();</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed, fail) &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>优化代码</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  succeed = <span class="literal">null</span>; <span class="comment">// 对象的属性, 类的属性要加static</span></span><br><span class="line">  fail = <span class="literal">null</span>;</span><br><span class="line">  resolve = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.succeed();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  reject = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.fail();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(<span class="keyword">this</span>.resolve, <span class="keyword">this</span>.reject);</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed, fail) &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="16">
-<li>使用 sinon 测试函数,sinon-chai 是让 sinon 和 chai 合作</li>
-</ol>
-<ul>
-<li>安装<ul>
-<li>yarn add sinon sinon-chai –dev</li>
-<li>yarn add @types/sinon @types/sinon-chai –dev</li>
-</ul>
-</li>
-<li>引入并使用 sinon-chai</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> sinon <span class="keyword">from</span> <span class="string">"sinon"</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> sinonChai <span class="keyword">from</span> <span class="string">"sinon-chai"</span>;</span><br><span class="line">chai.use(sinonChai);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>改写之前的原始版代码</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn) 中的 fn 立即执行"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> fn = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(fn);</span><br><span class="line">  assert(fn.called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>改写测试代码，把之前各种变量改写成 sinon.fake</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn) 中的 fn 立即执行"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> fn = sinon.fake();</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(fn);</span><br><span class="line">  assert(fn.called);</span><br><span class="line">&#125;);</span><br><span class="line">it(<span class="string">"new Promise(fn)中的fn执行的时候接收 resolve 和 reject 两个函数"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    assert.isFunction(resolve);</span><br><span class="line">    assert.isFunction(reject);</span><br><span class="line">    done();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">it(<span class="string">"promise.then(success)中的success 会在 resolve被调用的时候，执行"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// done 表示等待的执行</span></span><br><span class="line">  <span class="keyword">const</span> success = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 该函数没有执行</span></span><br><span class="line">    <span class="comment">// assert(called === false); // 之前不是ture</span></span><br><span class="line">    assert.isFalse(success.called);</span><br><span class="line">    resolve();</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert.isTrue(success.called);</span><br><span class="line">      done();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 该函数执行了</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  promise.then(success);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="17">
-<li>测试用例 7,测试 fail,和测试用例 6 对应</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"promise.then(null, fail)中的fail 会在 reject被调用的时候，执行"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// done 表示等待的执行</span></span><br><span class="line">  <span class="keyword">const</span> fail = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 该函数没有执行</span></span><br><span class="line">    <span class="comment">// assert(called === false); // 之前不是ture</span></span><br><span class="line">    assert.isFalse(fail.called);</span><br><span class="line">    reject();</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert.isTrue(fail.called);</span><br><span class="line">      done();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 该函数执行了</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  promise.then(<span class="literal">null</span>, fail);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="18">
-<li>接下来照着 PromiseA+规范做</li>
-</ol>
-<ul>
-<li><strong>欲知后事如何，且听下回分解</strong></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3095,7 +3198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

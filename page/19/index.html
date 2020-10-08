@@ -158,6 +158,199 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/01/day6-Easy-20-Valid-Parentheses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/01/day6-Easy-20-Valid-Parentheses/" class="post-title-link" itemprop="url">day6_Easy_020_Valid_Parentheses</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-01 18:35:22 / Modified: 18:36:10" itemprop="dateCreated datePublished" datetime="2019-06-01T18:35:22+08:00">2019-06-01</time>
+            </span>
+
+          
+            <span id="/2019/06/01/day6-Easy-20-Valid-Parentheses/" class="post-meta-item leancloud_visitors" data-flag-title="day6_Easy_020_Valid_Parentheses" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/01/day6-Easy-20-Valid-Parentheses/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/01/day6-Easy-20-Valid-Parentheses/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.
+An input string is valid if:</p>
+<ol>
+<li>Open brackets must be closed by the same type of brackets.</li>
+<li>Open brackets must be closed in the correct order.
+Note that an empty string is also considered valid.
+Example 1:
+Input: “()”
+Output: true
+Example 2:
+Input: “()[]{}”
+Output: true
+Example 3:
+Input: “(]”
+Output: false
+Example 4:
+Input: “([)]”
+Output: false
+Example 5:
+Input: “{[]}”
+Output: true</li>
+</ol>
+<p>总结:利用栈的数据结构实现，思路比较巧妙</p>
+<p>‘’’
+class Solution:
+    def isValid(self, s: str) -&gt; bool:
+        stack = []
+        lookup = {“(“:”)”,”{“:”}”,”[“:”]”}<br>        for parenthese in s:
+            if parenthese in lookup:
+                stack.append(parenthese)
+            elif len(stack) == 0 or lookup[stack.pop()] != parenthese:
+                return False</p>
+<pre><code>    return len(stack) == 0</code></pre>
+<p>‘’’</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/01/P39-%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E6%B1%82%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/01/P39-%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E6%B1%82%E8%A7%A3/" class="post-title-link" itemprop="url">P39_似然函数求解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-01 14:50:46 / Modified: 15:03:42" itemprop="dateCreated datePublished" datetime="2019-06-01T14:50:46+08:00">2019-06-01</time>
+            </span>
+
+          
+            <span id="/2019/06/01/P39-%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E6%B1%82%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="P39_似然函数求解" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/01/P39-%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E6%B1%82%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/01/P39-%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E6%B1%82%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最大似然函数：什么样的概率使得结果越大越好</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/31/day5-Easy-14-Longest-Common-Prefix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1122,302 +1315,6 @@ class Solution:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/27/day1-Easy-01-Two-Sum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/day1-Easy-01-Two-Sum/" class="post-title-link" itemprop="url">day1_Easy_01_Two_Sum</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-05-27 10:40:43 / Modified: 11:20:13" itemprop="dateCreated datePublished" datetime="2019-05-27T10:40:43+08:00">2019-05-27</time>
-            </span>
-
-          
-            <span id="/2019/05/27/day1-Easy-01-Two-Sum/" class="post-meta-item leancloud_visitors" data-flag-title="day1_Easy_01_Two_Sum" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/05/27/day1-Easy-01-Two-Sum/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/day1-Easy-01-Two-Sum/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-Example:
-Given nums = [2, 7, 11, 15], target = 9,</p>
-<p>Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 暴力法</span><br><span class="line">class Solution:</span><br><span class="line">    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:</span><br><span class="line">        for i in nums: # 遍历每一个i</span><br><span class="line">            j &#x3D; target - i # 找到i对应的j</span><br><span class="line">            start_index &#x3D; nums.index(i) # 开始的索引为nums.index(i)</span><br><span class="line">            next_index &#x3D; start_index + 1 # 下一个索引从i的下一个开始</span><br><span class="line">            temp_nums &#x3D; nums[next_index:] </span><br><span class="line">            # 将next_index的位置组成一个新的临时数组，temp_nums</span><br><span class="line">            if j in temp_nums: </span><br><span class="line">            # 如果j 在 这个临时数组里面,如果没有进入下一轮循环</span><br><span class="line">                return(nums.index(i),next_index + temp_nums.index(j))</span><br><span class="line">                # 返回nums.index(i)的位置，和temp_nums.index(j)的位置</span><br><span class="line"></span><br><span class="line">#字典哈希法，效率更高</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:</span><br><span class="line">        dict &#x3D; &#123;&#125;</span><br><span class="line">        for i in range(len(nums)): # 没有找到对应数的值用字典进行储存</span><br><span class="line">            if target - nums[i] not in dict: # 一直遍历到找到能符合目标条件的数</span><br><span class="line">                dict[nums[i]] &#x3D; i  </span><br><span class="line">            else:</span><br><span class="line">                return [dict[target-nums[i]],i] # 返回字典中储存的位置值，和当前的位置</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">P34_Facetgrid使用方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-05-27 09:36:46 / Modified: 09:38:13" itemprop="dateCreated datePublished" datetime="2019-05-27T09:36:46+08:00">2019-05-27</time>
-            </span>
-
-          
-            <span id="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="P34_Facetgrid使用方法" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment"># 导入相关包</span></span><br><span class="line">sns.set(style=<span class="string">"whitegrid"</span>, color_codes=<span class="literal">True</span>)</span><br><span class="line">titanic = sns.load_dataset(<span class="string">"titanic"</span>)</span><br><span class="line">tips = sns.load_dataset(<span class="string">"tips"</span>)</span><br><span class="line">iris = sns.load_dataset(<span class="string">"iris"</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tips = sns.load_dataset(<span class="string">"tips"</span>)</span><br><span class="line">tips.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}</code></pre>
-<p></style><p></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>total_bill</th>
-      <th>tip</th>
-      <th>sex</th>
-      <th>smoker</th>
-      <th>day</th>
-      <th>time</th>
-      <th>size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>16.99</td>
-      <td>1.01</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>Sun</td>
-      <td>Dinner</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>10.34</td>
-      <td>1.66</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>Sun</td>
-      <td>Dinner</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>21.01</td>
-      <td>3.50</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>Sun</td>
-      <td>Dinner</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>23.68</td>
-      <td>3.31</td>
-      <td>Male</td>
-      <td>No</td>
-      <td>Sun</td>
-      <td>Dinner</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>24.59</td>
-      <td>3.61</td>
-      <td>Female</td>
-      <td>No</td>
-      <td>Sun</td>
-      <td>Dinner</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"time"</span>) </span><br><span class="line"><span class="comment"># 先指定区域图中要画哪些信息，确认当前数据集展示哪些信息，这里要显示time</span></span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/05//output_2_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"time"</span>) </span><br><span class="line">g.map(plt.hist,<span class="string">"tip"</span>); <span class="comment"># plt.hist 表示条形图</span></span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"sex"</span>,hue=<span class="string">"smoker"</span>) <span class="comment"># 指定列，抽烟的和不抽烟的</span></span><br><span class="line">g.map(plt.scatter,<span class="string">"total_bill"</span>,<span class="string">"tip"</span>,alpha=<span class="number">.5</span>) </span><br><span class="line">g.add_legend() <span class="comment"># smoker增加说明项指标</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x11ea74320&gt;</code></pre>
-<p><img src="/.io/2019/05//output_4_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,row=<span class="string">"smoker"</span>,col=<span class="string">"time"</span>,margin_titles=<span class="literal">True</span>)</span><br><span class="line">g.map(sns.regplot,<span class="string">"size"</span>,<span class="string">"total_bill"</span>,color=<span class="string">".1"</span>,fit_reg=<span class="literal">False</span>,x_jitter=<span class="number">.1</span>) <span class="comment"># color颜色从深到浅</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x11e3e2278&gt;</code></pre>
-<p><img src="/.io/2019/05//output_5_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"day"</span>,height=<span class="number">4</span>,aspect=<span class="number">.5</span>)</span><br><span class="line">g.map(sns.barplot,<span class="string">"sex"</span>,<span class="string">"total_bill"</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1200e87b8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_6_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Categorical</span><br><span class="line">ordered_days = tips.day.value_counts().index</span><br><span class="line"><span class="comment"># print(ordered_days)</span></span><br><span class="line">ordered_days = Categorical([<span class="string">'Thur'</span>,<span class="string">'Fri'</span>,<span class="string">'Sat'</span>,<span class="string">'Sun'</span>]) <span class="comment"># 指定顺序,尽量用pandas中的格式,这里用Categorical</span></span><br><span class="line">g = sns.FacetGrid(tips, row=<span class="string">"day"</span>, row_order=ordered_days,size=<span class="number">1.7</span>,aspect=<span class="number">4</span>,)</span><br><span class="line">g.map(sns.boxplot,<span class="string">"total_bill"</span>)</span><br></pre></td></tr></table></figure>
-
-<pre><code>CategoricalIndex([&#39;Sat&#39;, &#39;Sun&#39;, &#39;Thur&#39;, &#39;Fri&#39;], categories=[&#39;Thur&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;], ordered=False, dtype=&#39;category&#39;)
-
-
-
-
-
-&lt;seaborn.axisgrid.FacetGrid at 0x1201027f0&gt;</code></pre>
-<p><img src="/.io/2019/05//output_7_2.png" alt="png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1489,7 +1386,7 @@ return [0, 1].</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

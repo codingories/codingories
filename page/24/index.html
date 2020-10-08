@@ -158,6 +158,175 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">Django Channels的坑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-12-05 14:04:53 / Modified: 15:03:59" itemprop="dateCreated datePublished" datetime="2018-12-05T14:04:53+08:00">2018-12-05</time>
+            </span>
+
+          
+            <span id="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/" class="post-meta-item leancloud_visitors" data-flag-title="Django Channels的坑" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近老板希望实现一个功能，用浏览器打开同一页面，在一个页面上操作另一个页面收到响应，研究发现需要使用到websocket的技术。
+参考的是<a href="https://segmentfault.com/q/1010000008105826%EF%BC%8C" target="_blank" rel="noopener">https://segmentfault.com/q/1010000008105826，</a> 最后实现是通过django的channels。实现过程中碰到的坑是报’_UnixSelectorEventLoop’ object has no attribute ‘create future’的错误，最后通过查github发现不是channels的问题，说是python本身的问题。
+于是，把3.5.1改成3.6.4的虚拟环境，实现通过channels实现websocket，完成老板的需求。
+总结:如果遇到莫名其妙的错误，什么方法都试过没办法解决，那么很有可能是环境的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/02/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/02/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">本周总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-12-02 21:01:45 / Modified: 21:13:45" itemprop="dateCreated datePublished" datetime="2018-12-02T21:01:45+08:00">2018-12-02</time>
+            </span>
+
+          
+            <span id="/2018/12/02/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="本周总结" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/02/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/02/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>回顾本周，主要发生以下几件事情:
+-和初中同学聚会，非常愉快。
+-星哥离职，少了个好伙伴。
+-趁着苹果换了个手机电池，好久没去城里了，挺开心。
+工作上总体还算顺利，白皮书的模板基本已经制作好了。生活上平平淡淡，发现吉他app麋鹿音乐不错，可以帮我好好练习吉他。
+技术上，对于开始学习node.js，angular暂缓，感觉优先级没有react.js和vue.js高，日语还是要慢慢来，先要提高编程技术。
+希望下周也能顺顺利利。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/11/29/%E9%80%81%E5%88%AB%E6%98%9F%E5%93%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -646,7 +815,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

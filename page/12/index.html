@@ -158,6 +158,201 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/07/MVC%E6%B5%85%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" class="post-title-link" itemprop="url">MVC浅析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-07 10:20:32 / Modified: 10:48:54" itemprop="dateCreated datePublished" datetime="2019-12-07T10:20:32+08:00">2019-12-07</time>
+            </span>
+
+          
+            <span id="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="MVC浅析" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/07/MVC%E6%B5%85%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>MVC 三个对象分别做什么，给出伪代码示例</p>
+<ul>
+<li><p>M 是 Model 的意思，指的所有数据放一块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const m &#x3D; &#123;</span><br><span class="line">    data : &#123;</span><br><span class="line">        n : parseInt(localStorage.getItem(&quot;n&quot;))||100</span><br><span class="line">    &#125;,</span><br><span class="line">    create()&#123;&#125;,</span><br><span class="line">    delete()&#123;&#125;,</span><br><span class="line">    update(data)&#123;</span><br><span class="line">        Object.assign(m.data,data) &#x2F;&#x2F; 把data的所有属性赋值给m.data</span><br><span class="line">        &#x2F;&#x2F; m更新了就会触发，我更新了这句话</span><br><span class="line">        eventBus.trigger(&#39;m:updated&#39;)</span><br><span class="line">        localStorage.setItem(&#39;n&#39;,m.data.n)</span><br><span class="line">    &#125;,</span><br><span class="line">    get()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>V 是 View 的意思，是指所有的看的见的视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">   const view &#x3D; &#123;</span><br><span class="line">   el:null,</span><br><span class="line">   html : &#96;</span><br><span class="line">   &lt;div&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;output&quot;&gt;</span><br><span class="line">       &lt;span id&#x3D;&quot;number&quot;&gt;&#123;&#123;n&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;actions&quot;&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;add1&quot;&gt;+1&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;minus1&quot;&gt;-1&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;mul2&quot;&gt;*2&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;divide2&quot;&gt;÷2&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&#96;,</span><br><span class="line">   init(container)&#123;</span><br><span class="line">       view.el &#x3D; $(container)</span><br><span class="line">       view.render(m.data.n) &#x2F;&#x2F; view &#x3D; render(data)</span><br><span class="line">       view.autoBindEvents()</span><br><span class="line">       eventBus.on(&#39;m:updated&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">           view.render(m.data.n)</span><br><span class="line">       &#125;)</span><br><span class="line">   &#125;,</span><br><span class="line">   render(n)&#123;</span><br><span class="line">       if (view.el.children.length !&#x3D;&#x3D; 0) view.el.empty();</span><br><span class="line">       $(view.html.replace(&#39;&#123;&#123;n&#125;&#125;&#39;,n)).appendTo(view.el)</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- C 是Controller 的意思，是其他剩余的部分。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EventBus 有哪些 API，是做什么用的，给出伪代码示例</p>
+<ul>
+<li><p>当一个事件执行，eventBus 触发 m:updated
+<code>eventBus.trigger(&#39;m:updated&#39;)</code></p>
+</li>
+<li><p>eventBus 监听 m:updated，当 m:updated 触发时，执行一些内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eventBus.on(&#39;m:updated&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">     v.render(m.data.n)</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>表驱动编程是做什么的</p>
+<ul>
+<li>表驱动法是一种编程模式,可以简化复杂的 if,else,也可以将复杂的赋值操作进行简化，比如:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">c &#x3D; &#123;</span><br><span class="line">     events:&#123;</span><br><span class="line">     &#39;click #add1&#39;:&#39;add&#39;,</span><br><span class="line">         &#39;click #minus1&#39;:&#39;minus&#39;,</span><br><span class="line">         &#39;click #mul2&#39;:&#39;mul&#39;,</span><br><span class="line">         &#39;click #divide2&#39;:&#39;div&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     autoBindEvents()&#123;</span><br><span class="line">         for(let key in c.events)&#123;</span><br><span class="line">             const value &#x3D; c[c.events[key]]</span><br><span class="line">             const spaceIndex &#x3D; key.indexOf(&#39; &#39;)</span><br><span class="line">             const part1 &#x3D; key.slice(0, spaceIndex)</span><br><span class="line">             const part2 &#x3D; key.slice(spaceIndex + 1)</span><br><span class="line">             v.el.on(part1,part2,value)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>我是如何理解模块化的</p>
+<ul>
+<li>简单理解就是：模块化就是将功能相似的代码分为一个个模块，有序的组织起来，能够使得代码的耦合度降低，更好的管理代码。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" class="post-title-link" itemprop="url">用reduce进行数组去重</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-21 08:08:50 / Modified: 09:06:12" itemprop="dateCreated datePublished" datetime="2019-11-21T08:08:50+08:00">2019-11-21</time>
+            </span>
+
+          
+            <span id="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" class="post-meta-item leancloud_visitors" data-flag-title="用reduce进行数组去重" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="用reduce方法封装数组去重"><a href="#用reduce方法封装数组去重" class="headerlink" title="用reduce方法封装数组去重"></a>用reduce方法封装数组去重</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">以下是直接使用 reduce</span><br><span class="line">let a &#x3D; [</span><br><span class="line">  &#123; ID: &quot;1&quot;, name: &quot;Mike&quot;, sex: &quot;男&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;20&quot;, name: &quot;Tom&quot;, sex: &quot;男&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;1&quot;, name: &quot;小张&quot;, sex: &quot;女&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;40&quot;, name: &quot;中村&quot;, sex: &quot;男&quot; &#125;,</span><br><span class="line">  &#123; ID: &quot;300&quot;, name: &quot;Ories&quot;, sex: &quot;女&quot; &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">let temp &#x3D; &#123;&#125;;</span><br><span class="line">tempList &#x3D; a.reduce((curv, next) &#x3D;&gt; &#123;</span><br><span class="line">  if (temp[next.ID]) &#123;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    temp[next.ID] &#x3D; true;</span><br><span class="line">    curv.push(next);</span><br><span class="line">  &#125;</span><br><span class="line">  return curv;</span><br><span class="line">&#125;, []);</span><br><span class="line"></span><br><span class="line">console.log(tempList);</span><br></pre></td></tr></table></figure>
+<h1 id="以下是对reduce的去重"><a href="#以下是对reduce的去重" class="headerlink" title="以下是对reduce的去重"></a>以下是对reduce的去重</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 进行简单的封装第一个参数传递数组,第二个参数传递属性进行去重</span><br><span class="line">let unique &#x3D; (list, attr) &#x3D;&gt; &#123;</span><br><span class="line">  let temp &#x3D; &#123;&#125;;</span><br><span class="line">  return list.reduce((curv, next) &#x3D;&gt; &#123;</span><br><span class="line">    if (temp[next[attr]]) &#123;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      temp[next[attr]] &#x3D; true;</span><br><span class="line">      curv.push(next);</span><br><span class="line">    &#125;</span><br><span class="line">    return curv;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let b &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;01&quot;,</span><br><span class="line">    value: &quot;乐乐&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;02&quot;,</span><br><span class="line">    value: &quot;博博&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;03&quot;,</span><br><span class="line">    value: &quot;淘淘&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;04&quot;,</span><br><span class="line">    value: &quot;乐乐&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: &quot;01&quot;,</span><br><span class="line">    value: &quot;轻轻&quot;</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line">console.log(unique(b, &quot;key&quot;));</span><br><span class="line">console.log(unique(b, &quot;value&quot;));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/11/07/learn-jQuery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -997,217 +1192,6 @@ command+shift+p,Emmet Wrap,然后div*</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">HTML常用标签</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-08-28 13:55:54 / Modified: 16:18:14" itemprop="dateCreated datePublished" datetime="2019-08-28T13:55:54+08:00">2019-08-28</time>
-            </span>
-
-          
-            <span id="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="post-meta-item leancloud_visitors" data-flag-title="HTML常用标签" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>#a标签的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&quot; target&#x3D;&quot;&quot;&gt;&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
-<p>一.href后面可以加
-    1.网址 //google.com
-    2.路径 /a/b/c
-    3.伪协议 如tel:手机号</p>
-<p>二.target 有以下四个属性,target指向iframe的name,window的name
-    1._blank 新页面
-    2._top 最顶层
-    3._parent 当前链接所在上一层打开
-    4._self 当前页</p>
-<p>三.table标签的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">      &lt;thead&gt; </span><br><span class="line">        &lt;tr&gt; &#x2F;&#x2F; 一行</span><br><span class="line">          &lt;th&gt;日期&lt;&#x2F;th&gt;  &#x2F;&#x2F; 表头</span><br><span class="line">          &lt;td&gt;周一&lt;&#x2F;td&gt;  &#x2F;&#x2F; 表数据</span><br><span class="line">        &lt;&#x2F;tr&gt;</span><br><span class="line">      &lt;&#x2F;thead&gt;</span><br><span class="line">      &lt;tbody&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;th&gt;类型&lt;&#x2F;th&gt;</span><br><span class="line">          &lt;td&gt;金属&lt;&#x2F;td&gt;</span><br><span class="line">        &lt;&#x2F;tr&gt;</span><br><span class="line">      &lt;&#x2F;tbody&gt;</span><br><span class="line">      &lt;tfoot&gt;&lt;&#x2F;tfoot&gt;</span><br><span class="line">&lt;&#x2F;table&gt;</span><br></pre></td></tr></table></figure>
-<p>其它:
-image的图片，img标签加上max-width:100%,可以使图片在手机上自适应</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/28/HTML%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/28/HTML%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" class="post-title-link" itemprop="url">HTML入门笔记1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-08-28 10:30:03 / Modified: 10:41:14" itemprop="dateCreated datePublished" datetime="2019-08-28T10:30:03+08:00">2019-08-28</time>
-            </span>
-
-          
-            <span id="/2019/08/28/HTML%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" class="post-meta-item leancloud_visitors" data-flag-title="HTML入门笔记1" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/08/28/HTML%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/28/HTML%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="HTML发明人"><a href="#HTML发明人" class="headerlink" title="HTML发明人"></a>HTML发明人</h1><ul>
-<li>李爵士</li>
-</ul>
-<h1 id="HTML起手应该写什么"><a href="#HTML起手应该写什么" class="headerlink" title="HTML起手应该写什么"></a>HTML起手应该写什么</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="常用的表章节的标签"><a href="#常用的表章节的标签" class="headerlink" title="常用的表章节的标签"></a>常用的表章节的标签</h1><ul>
-<li>标题 h1~h6</li>
-<li>章节 section</li>
-<li>文章 article</li>
-<li>段落 p</li>
-<li>头部 header</li>
-<li>脚部 footer</li>
-<li>主要内容 main</li>
-<li>旁支内容 aside</li>
-<li>划分 div</li>
-</ul>
-<h1 id="全局属性"><a href="#全局属性" class="headerlink" title="全局属性"></a>全局属性</h1><ul>
-<li>class </li>
-<li>contenteditable 可编辑的</li>
-<li>hidden</li>
-<li>id</li>
-<li>style</li>
-<li>tabindex tab切换</li>
-<li>title</li>
-</ul>
-<h1 id="常用标签"><a href="#常用标签" class="headerlink" title="常用标签"></a>常用标签</h1><ul>
-<li>ol + li</li>
-<li>ul + li</li>
-<li>dl + dt + dd 描述列表</li>
-<li>pre 保留空格</li>
-<li>hr 分割线</li>
-<li>br 换行</li>
-<li>em 语气强调</li>
-<li>strong 本质强调</li>
-<li>code 写js 外面用pre包裹，保留空格</li>
-<li>quote 行内引用，不换行</li>
-<li>blockquote 块级引用 </li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1279,7 +1263,7 @@ image的图片，img标签加上max-width:100%,可以使图片在手机上自适
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
