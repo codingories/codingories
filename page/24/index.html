@@ -158,6 +158,262 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">node模块分享———PATH模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-12-05 17:28:03 / Modified: 17:29:30" itemprop="dateCreated datePublished" datetime="2018-12-05T17:28:03+08:00">2018-12-05</time>
+            </span>
+
+          
+            <span id="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="node模块分享———PATH模块" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>node 模块分享———PATH模块</p>
+<p>fs：
+基础的文件操作 API
+path：
+提供和路径相关的操作 API
+*readline：
+用于读取大文本文件，一行一行读
+fs-extra（第三方）：
+<a href="https://www.npmjs.com/package/fs-extra" target="_blank" rel="noopener">https://www.npmjs.com/package/fs-extra</a> </p>
+<p>在文件操作的过程中，都”必须”使用物理路径（绝对路径）
+path 模块提供了一系列与路径相关的 API
+path.join([p1][,p2][,p3]…) =&gt; 连接多个路径
+path.basename(p, ext) =&gt; 获取文件名
+path.dirname(p) =&gt; 获取文件夹路径
+path.extname(p) =&gt; 获取文件扩展名
+path.format(obj) 和 path.parse(p)
+path.relative(from, to) =&gt; 获取从 from 到 to 的相对路径
+源码地址：
+<a href="https://github.com/nodejs/node/blob/master/lib/path.js" target="_blank" rel="noopener">https://github.com/nodejs/node/blob/master/lib/path.js</a></p>
+<p>// PATH模块的使用</p>
+<p>const path = require(‘path’);
+const temp = path.join(__dirname, ‘./../lyrics/血染的风采.lrc’);</p>
+<p>path.basename(p[, ext])
+console.log(path.basename(temp));
+// 获取文件名</p>
+<p>console.log(path.basename(temp, ‘rc’));
+// 获取文件名without扩展名</p>
+<p>path.delimiter
+// 获取不同操作系统中默认的路径分隔符 Windows是; Linux是:
+console.log(path.delimiter);</p>
+<p>// 获取环境变量
+console.log(process.env.PATH.split(path.delimiter));</p>
+<p>// 获取目录名称
+console.log(path.dirname(temp));</p>
+<p>path.extname(p)
+// 获取路径中的扩展名，包含.
+console.log(path.extname(temp));</p>
+<p>path.parse(pathString)
+// 将一个路径字符串转换为一个对象（包含文件目录，文件名，扩展名）
+var obj = path.parse(temp);
+console.log(obj);</p>
+<p>path.format(pathObject)
+// 将路径对象转字符串
+var obj = path.parse(temp);
+console.log(path.format(obj));</p>
+<p>path.isAbsolute(path)
+// true
+console.log(path.isAbsolute(temp));
+// true
+console.log(path.isAbsolute(‘../temp/1.txt’));</p>
+<p>path.join([path1][, path2][, …])
+// 拼合路径组成
+path.join(__dirname, ‘..’, ‘./temp’, ‘a’, ‘../../1.txt’);</p>
+<p>path.normalize(p)
+// 常规化一个路径,为windows设计
+var a = path.normalize(‘C:/dev\abc//cba////1.txt’);
+console.log(a);</p>
+<p>path.relative(from, to)
+console.log(path.relative(__dirname,’C:\Users\iceStone\Desktop\fed01\day03\lyrics\血染的风采.lrc’));
+// 获取to 相对于from的相对路径</p>
+<p>path.resolve([from …], to)
+console.log(path.resolve(<strong>dirname, ‘..’, ‘./‘, ‘./code’));
+// 与join不同,直接编程c:/dev/code
+console.log(path.resolve(</strong>dirname, ‘c:/dev’, ‘./‘, ‘./code’));</p>
+<p>path.sep
+// 获取当前操作系统中默认用的路径成员分隔符 windows:\ linux:/
+console.log(path.sep);</p>
+<p>path
+// 根据操作系统决定
+path.win32 
+// 允许在任意操作系统上使用windows的方式操作路径</p>
+<p>path.posix
+// 允许在任意操作系统上使用Linux的方式操作路径</p>
+<p>// var p = {
+//   win32: p
+// };
+// p.win32 = p; 
+// console.log(p === p.win32); 涉及到执行机制问题
+// {
+//   a
+//   var a = 10;
+// }</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">npm知识分享</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-12-05 16:36:34 / Modified: 16:43:48" itemprop="dateCreated datePublished" datetime="2018-12-05T16:36:34+08:00">2018-12-05</time>
+            </span>
+
+          
+            <span id="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" class="post-meta-item leancloud_visitors" data-flag-title="npm知识分享" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="nrm-的使用"><a href="#nrm-的使用" class="headerlink" title="nrm 的使用"></a>nrm 的使用</h3><p>npm intall -g nrm 安装nrm 用于 切换镜像点
+nrm ls 查看镜像点
+nrm test 测试速度
+nrm use taboo 选择镜像点</p>
+<h3 id="npm常用命令"><a href="#npm常用命令" class="headerlink" title="npm常用命令"></a>npm常用命令</h3><p>npm config 配置 
+npm init 初始化package.json文件
+npm search 
+npm info + 包名 列出信息
+npm install
+npm uninstall
+npm list 显示依赖项
+npm outdated 判断有没有更新
+npm update
+npm run 运行定义的脚本
+npm cache [clean|ls] 清除缓存
+文档:<a href="https://docs.npmjs.com/" target="_blank" rel="noopener">https://docs.npmjs.com/</a> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -815,14 +1071,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

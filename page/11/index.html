@@ -158,6 +158,210 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%AD/" class="post-title-link" itemprop="url">Vue造轮子-popover组件(中)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-29 10:37:40" itemprop="dateCreated datePublished" datetime="2020-01-29T10:37:40+08:00">2020-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-30 13:41:57" itemprop="dateModified" datetime="2020-01-30T13:41:57+08:00">2020-01-30</time>
+              </span>
+
+          
+            <span id="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%AD/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-popover组件(中)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%AD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-现在遇到的问题"><a href="#1-现在遇到的问题" class="headerlink" title="1. 现在遇到的问题"></a>1. 现在遇到的问题</h4><ul>
+<li>如果在popover外面包了个div写上overflow:hidden就会出bug,所以要把弹出的div放到按钮的同一个层级</li>
+<li>关于click事件的,之前解决的方式是写click.stop,但是其实还是会有bug,会打断用户的事件链，用户在外面写@click,点击按钮没有用，但是点击按钮周围空白区域会有,那么就会导致别人用了组件无法自己添加click事件,所以不能用stop解决这个问题。</li>
+</ul>
+<h4 id="2-解决overflow-hidden的问题"><a href="#2-解决overflow-hidden的问题" class="headerlink" title="2. 解决overflow:hidden的问题"></a>2. 解决overflow:hidden的问题</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">     xxx()&#123;</span><br><span class="line">       this.visible &#x3D; !this.visible</span><br><span class="line">       if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">         setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">         &#x2F;&#x2F; 主要是下面这四句实现,但是还是有bug</span><br><span class="line">         document.body.appendChild(this.$refs.contentWrapper)</span><br><span class="line">         let &#123;width, height, top, left&#125; &#x3D; this.$refs.triggerWrapper.getBoundingClientRect()</span><br><span class="line">         this.$refs.contentWrapper.style.left &#x3D; left + &#39;px&#39;</span><br><span class="line">         this.$refs.contentWrapper.style.top &#x3D; top + &#39;px&#39;</span><br><span class="line">         &#x2F;&#x2F; </span><br><span class="line">           let eventHandler &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">             this.visible &#x3D; false;</span><br><span class="line">             console.log(&#39;document 隐藏 popover&#39;)</span><br><span class="line">             document.removeEventListener(&#39;click&#39;,eventHandler)</span><br><span class="line">           &#125;</span><br><span class="line">           document.addEventListener(&#39;click&#39;, eventHandler)</span><br><span class="line">         &#125;)</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">         console.log(&#39;vm 隐藏 popover&#39;)</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-面试题-v-show和v-if的区别-v-if是是否出现在dom树上，v-show是改变其css样式。"><a href="#3-面试题-v-show和v-if的区别-v-if是是否出现在dom树上，v-show是改变其css样式。" class="headerlink" title="3. 面试题:v-show和v-if的区别,v-if是是否出现在dom树上，v-show是改变其css样式。"></a>3. 面试题:v-show和v-if的区别,v-if是是否出现在dom树上，v-show是改变其css样式。</h4><h4 id="4-解决当容器有-overflow-hidden-造成的bug"><a href="#4-解决当容器有-overflow-hidden-造成的bug" class="headerlink" title="4. 解决当容器有 overflow hidden 造成的bug"></a>4. 解决当容器有 overflow hidden 造成的bug</h4><ul>
+<li>clientRect是相距可视范围，绝对定位相距于body定位。现在我们的浮层是相对于body定位，而按钮获取到的top是相对于window定位而引发的bug。</li>
+<li>解决这个问题只要得到两者之间的插值就好解决<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">   xxx()&#123;</span><br><span class="line">     this.visible &#x3D; !this.visible</span><br><span class="line">     if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">       setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">         document.body.appendChild(this[&#39;$refs&#39;][&#39;contentWrapper&#39;])</span><br><span class="line">         let &#123;top, left&#125; &#x3D;this[&#39;$refs&#39;][&#39;triggerWrapper&#39;].getBoundingClientRect()</span><br><span class="line">         &#x2F;&#x2F; 这两句话解决</span><br><span class="line">         this[&#39;$refs&#39;][&#39;contentWrapper&#39;].style.left &#x3D; left + window.scrollX + &#39;px&#39; </span><br><span class="line">         this[&#39;$refs&#39;][&#39;contentWrapper&#39;].style.top &#x3D; top + window.scrollY +&#39;px&#39;</span><br><span class="line">         &#x2F;&#x2F; </span><br><span class="line">         let eventHandler &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">           this.visible &#x3D; false;</span><br><span class="line">           console.log(&#39;document 隐藏 popover&#39;)</span><br><span class="line">           document.removeEventListener(&#39;click&#39;,eventHandler)</span><br><span class="line">         &#125;</span><br><span class="line">         document.addEventListener(&#39;click&#39;, eventHandler)</span><br><span class="line">       &#125;)</span><br><span class="line">     &#125;else&#123;</span><br><span class="line">       console.log(&#39;vm 隐藏 popover&#39;)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-解决外部点击click无效的问题。"><a href="#5-解决外部点击click无效的问题。" class="headerlink" title="5. 解决外部点击click无效的问题。"></a>5. 解决外部点击click无效的问题。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 先将点按钮和点外面的逻辑分开</span><br><span class="line">onClick(event)&#123;</span><br><span class="line">  if(this.$refs.triggerWrapper.contains(event.target))&#123;</span><br><span class="line">    console.log(&#39;按钮&#39;)</span><br><span class="line">    this.visible &#x3D; !this.visible</span><br><span class="line">    </span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&#39;其它&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 将之前的代码移动进去</span><br><span class="line"> methods: &#123;</span><br><span class="line">  onClick(event)&#123;</span><br><span class="line">    if(this.$refs.triggerWrapper.contains(event.target))&#123;</span><br><span class="line">      this.visible &#x3D; !this.visible</span><br><span class="line">      if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">          document.body.appendChild(this[&#39;$refs&#39;][&#39;contentWrapper&#39;])</span><br><span class="line">          let &#123;top, left&#125; &#x3D; this[&#39;$refs&#39;][&#39;triggerWrapper&#39;].getBoundingClientRect()</span><br><span class="line">          this[&#39;$refs&#39;][&#39;contentWrapper&#39;].style.left &#x3D; left + window.scrollX + &#39;px&#39;</span><br><span class="line">          this[&#39;$refs&#39;][&#39;contentWrapper&#39;].style.top &#x3D; top + window.scrollY + &#39;px&#39;</span><br><span class="line">          let eventHandler &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">            if(this[&#39;$refs&#39;][&#39;contentWrapper&#39;].contains(e.target))&#123; </span><br><span class="line">              &#x2F;&#x2F; 这句话解决了点击内容消失的问题</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              this.visible &#x3D; false;</span><br><span class="line">              document.removeEventListener(&#39;click&#39;, eventHandler)</span><br><span class="line">              console.log(&#39;关闭&#39;) &#x2F;&#x2F; document事件引起的</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          document.addEventListener(&#39;click&#39;, eventHandler)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&#39;非按钮&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-开始重构上面那段代码"><a href="#6-开始重构上面那段代码" class="headerlink" title="6.开始重构上面那段代码"></a>6.开始重构上面那段代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">  methods: &#123;</span><br><span class="line">  positionContent() &#123;</span><br><span class="line">    document.body.appendChild(this[&quot;$refs&quot;][&quot;contentWrapper&quot;])</span><br><span class="line">    let &#123;top, left&#125; &#x3D; this[&quot;$refs&quot;][&quot;triggerWrapper&quot;].getBoundingClientRect()</span><br><span class="line">    this[&quot;$refs&quot;][&quot;contentWrapper&quot;].style.left &#x3D; left + window.scrollX + &quot;px&quot;</span><br><span class="line">    this[&quot;$refs&quot;][&quot;contentWrapper&quot;].style.top &#x3D; top + window.scrollY + &quot;px&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  listenToDocument() &#123;</span><br><span class="line">    let eventHandler &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">      if (this[&quot;$refs&quot;][&quot;contentWrapper&quot;].contains(e.target)) &#123; &#x2F;&#x2F; 这句话解决了点击内容消失的问题</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.visible &#x3D; false</span><br><span class="line">        console.log(&#39;关闭&#39;)</span><br><span class="line">        document.removeEventListener(&quot;click&quot;, eventHandler)</span><br><span class="line">        console.log(&quot;关闭&quot;) &#x2F;&#x2F; document事件引起的</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    document.addEventListener(&quot;click&quot;, eventHandler)</span><br><span class="line">  &#125;,</span><br><span class="line">  listenToDocument()&#123;</span><br><span class="line">    let eventHandler &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">      if ( this[&quot;$refs&quot;][&quot;contentWrapper&quot;] &amp;&amp;</span><br><span class="line">        this[&quot;$refs&quot;][&quot;contentWrapper&quot;].contains(e.target)) &#123; &#x2F;&#x2F; 这句话解决了点击内容消失的问题</span><br><span class="line">        return</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.visible &#x3D; false</span><br><span class="line">        document.removeEventListener(&quot;click&quot;, eventHandler)</span><br><span class="line">        console.log(&quot;关闭&quot;) &#x2F;&#x2F; document事件引起的</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    document.addEventListener(&quot;click&quot;, eventHandler)</span><br><span class="line">  &#125;,</span><br><span class="line">  opShow()&#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      this.positionContent()</span><br><span class="line">      this.listenToDocument()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  onClick(event) &#123;</span><br><span class="line">    if (this[&quot;$refs&quot;][&quot;triggerWrapper&quot;].contains(event.target)) &#123;</span><br><span class="line">      this.visible &#x3D; !this.visible</span><br><span class="line">      if (this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">        this.opShow()</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        console.log(&#39;关闭&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h4 id="7-还有一个bug-上面打印关闭，关闭了两次"><a href="#7-还有一个bug-上面打印关闭，关闭了两次" class="headerlink" title="7. 还有一个bug,上面打印关闭，关闭了两次"></a>7. 还有一个bug,上面打印关闭，关闭了两次</h4></li>
+<li>原因是document会去关闭它，onClick也会去关闭它</li>
+<li>我们需要把关闭入口收拢，这个就是代码的紧密性，也就是高内聚低耦合的内聚。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">  methods: &#123;</span><br><span class="line">  onClickDocument(e)&#123;</span><br><span class="line">    if ( this[&quot;$refs&quot;][&quot;popover&quot;] &amp;&amp; (this[&quot;$refs&quot;][&quot;popover&quot;] &amp;&amp;</span><br><span class="line">      this[&quot;$refs&quot;][&quot;popover&quot;].contains(e.target))) &#123;return&#125;</span><br><span class="line">    else &#123;</span><br><span class="line">      this.close()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  positionContent() &#123;</span><br><span class="line">    document.body.appendChild(this[&quot;$refs&quot;][&quot;contentWrapper&quot;])</span><br><span class="line">    let &#123;top, left&#125; &#x3D; this[&quot;$refs&quot;][&quot;triggerWrapper&quot;].getBoundingClientRect()</span><br><span class="line">    this[&quot;$refs&quot;][&quot;contentWrapper&quot;].style.left &#x3D; left + window.scrollX + &quot;px&quot;</span><br><span class="line">    this[&quot;$refs&quot;][&quot;contentWrapper&quot;].style.top &#x3D; top + window.scrollY + &quot;px&quot;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  open()&#123; &#x2F;&#x2F; 打开的收拢</span><br><span class="line">    this.visible &#x3D; true</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      this.positionContent()</span><br><span class="line">      document.addEventListener(&quot;click&quot;, this.onClickDocument)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  close()&#123; &#x2F;&#x2F; 关闭的收拢</span><br><span class="line">    this.visible &#x3D; false</span><br><span class="line">    document.removeEventListener(&quot;click&quot;, this.onClickDocument)</span><br><span class="line">  &#125;,</span><br><span class="line">  onClick(event) &#123;</span><br><span class="line">    if (this[&quot;$refs&quot;][&quot;triggerWrapper&quot;].contains(event.target)) &#123;</span><br><span class="line">      if (this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">        this.close()</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.open()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;&#x2F; 所有重要的操作都要进行收拢</span><br></pre></td></tr></table></figure>
+<h4 id="最后，个人微信，欢迎交流"><a href="#最后，个人微信，欢迎交流" class="headerlink" title="最后，个人微信，欢迎交流!"></a>最后，个人微信，欢迎交流!</h4><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat.jpg"></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8A/" class="post-title-link" itemprop="url">Vue造轮子-popover组件(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-29 10:37:32 / Modified: 13:51:40" itemprop="dateCreated datePublished" datetime="2020-01-29T10:37:32+08:00">2020-01-29</time>
+            </span>
+
+          
+            <span id="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-popover组件(上)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-popover是什么以及难点在哪"><a href="#1-popover是什么以及难点在哪" class="headerlink" title="1. popover是什么以及难点在哪"></a>1. popover是什么以及难点在哪</h4><ul>
+<li>点一下出现一个卡片,也叫气泡卡片</li>
+<li>难点在于css的样式 </li>
+</ul>
+<h4 id="2-用户会怎么去用"><a href="#2-用户会怎么去用" class="headerlink" title="2. 用户会怎么去用"></a>2. 用户会怎么去用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种做法，用插槽做</span><br><span class="line">&lt;g-popover&gt;</span><br><span class="line">  &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">    &lt;div&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;template slot&#x3D;&quot;trigger&quot;&gt;</span><br><span class="line">    &lt;button&gt;点我&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;g-popover&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 第二种做法，用指令做，这种方式不太用，指令大多数是造轮子用的所以就用第一种方法做</span><br><span class="line">&lt;div ref&#x3D;&quot;xxx&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;button v-popover&#x3D;&quot;$refs.xxx&quot;&gt;&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-为什么要用用inline-block，因为这样多个popover组件才不会一行"><a href="#3-为什么要用用inline-block，因为这样多个popover组件才不会一行" class="headerlink" title="3. 为什么要用用inline-block，因为这样多个popover组件才不会一行"></a>3. 为什么要用用inline-block，因为这样多个popover组件才不会一行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; popover.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;popover&quot;&gt;</span><br><span class="line">    &lt;slot name&#x3D;&quot;content&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">  .popover&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: top;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.html</span><br><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;g-popover&gt;</span><br><span class="line">    &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">      &lt;div&gt;popover内容1&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">      &lt;button&gt;点我1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;g-popover&gt;</span><br><span class="line">  &lt;g-popover&gt;</span><br><span class="line">    &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">      &lt;div&gt;popover内容2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">      &lt;button&gt;点我2&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;g-popover&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-优秀的前端css一定是写的很6的"><a href="#4-优秀的前端css一定是写的很6的" class="headerlink" title="4. 优秀的前端css一定是写的很6的"></a>4. 优秀的前端css一定是写的很6的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; popover.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class&#x3D;&quot;popover&quot; @click&#x3D;&quot;xxx&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;content-wrapper&quot; v-if&#x3D;&quot;visible&quot; &gt;</span><br><span class="line">    &lt;slot name&#x3D;&quot;content&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;GuluPopover&quot;,</span><br><span class="line">    data ()&#123;</span><br><span class="line">    return &#123;visible:false&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">    xxx()&#123;</span><br><span class="line">        this.visible &#x3D; !this.visible</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">.popover&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: top;</span><br><span class="line">    position: relative;</span><br><span class="line">    .content-wrapper&#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    bottom: 100%;</span><br><span class="line">    left: 0;</span><br><span class="line">    border: 1px solid red;</span><br><span class="line">    box-shadow: 0 0 3px rgba(0,0,0,0.5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-开始完善功能-实现点外面之后内容消失"><a href="#5-开始完善功能-实现点外面之后内容消失" class="headerlink" title="5. 开始完善功能,实现点外面之后内容消失"></a>5. 开始完善功能,实现点外面之后内容消失</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这样写会出现bug,刚出现外面就会点击，也就是刚开启就会关闭</span><br><span class="line">&#x2F;&#x2F; 出现原因是点击的时候就建了eventListener,而不是出现了再建eventListener</span><br><span class="line">&#x2F;&#x2F; 具体涉及到原生js的一些核心，叫做事件机制，事件的冒泡机制</span><br><span class="line">methods: &#123;</span><br><span class="line">  xxx()&#123; </span><br><span class="line">    this.visible &#x3D; !this.visible</span><br><span class="line">    console.log(&#39;切换 visible&#39;)</span><br><span class="line">    if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">      document.body.addEventListener(&#39;click&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line">        this.visible &#x3D; false</span><br><span class="line">        console.log(&#39;点击body就关闭popover&#39;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 这个bug用异步解决</span><br></pre></td></tr></table></figure>
+<h4 id="6-解决第三次点击不行"><a href="#6-解决第三次点击不行" class="headerlink" title="6.解决第三次点击不行"></a>6.解决第三次点击不行</h4><ul>
+<li>第一步<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 这样写还是不行</span><br><span class="line">    &#x2F;&#x2F; this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F;   document.addEventListener(&#39;click&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F;     this.visible &#x3D; false</span><br><span class="line">    &#x2F;&#x2F;     console.log(&quot;进入click&quot;)</span><br><span class="line">    &#x2F;&#x2F;     console.log(this.visible);</span><br><span class="line">    &#x2F;&#x2F;   &#125;)</span><br><span class="line">    &#x2F;&#x2F; &#125;)</span><br><span class="line"></span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        document.addEventListener(&#39;click&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line">        this.visible &#x3D; false</span><br><span class="line">        console.log(&quot;进入click&quot;)</span><br><span class="line">        console.log(this.visible);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>第二步<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  xxx()&#123;</span><br><span class="line">    this.visible &#x3D; !this.visible</span><br><span class="line">    if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">      setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        console.log(&quot;新增 document click 监听器&quot;)</span><br><span class="line">        document.addEventListener(&#39;click&#39;,</span><br><span class="line">          function x()&#123;</span><br><span class="line">            this.visible &#x3D; false;</span><br><span class="line">            console.log(&#39;删除监听器&#39;)</span><br><span class="line">            document.removeEventListener(&#39;click&#39;,x)</span><br><span class="line">            &#x2F;&#x2F; 但是这句话有问题，我删除的x，并不是我绑定的,我绑定的是x,bind this之后的新函数，</span><br><span class="line">            console.log(&#39;点击body就关闭popover&#39;)</span><br><span class="line">          &#125;.bind(this)</span><br><span class="line">        )</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 这样写也有个坑,原因是</span><br><span class="line">x()</span><br><span class="line">x.bind()会变成一个新的函数,</span><br></pre></td></tr></table></figure></li>
+<li>第三步<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">     xxx()&#123;</span><br><span class="line">       this.visible &#x3D; !this.visible</span><br><span class="line">       console.log(this.visible)</span><br><span class="line">       console.log(&#39;切换 visible&#39;)</span><br><span class="line">       if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">         setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">           let eventHander &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">             this.visible &#x3D; false;</span><br><span class="line">             document.removeEventListener(&#39;click&#39;,eventHander)</span><br><span class="line">           &#125;</span><br><span class="line">           document.addEventListener(&#39;click&#39;, eventHander)</span><br><span class="line">         &#125;)</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="7">
+<li>解决点击popover关闭的bug,实现最简单的popover<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; 通过以下代码发现vm 隐藏了一次popover，document隐藏了一次</span><br><span class="line"> methods: &#123;</span><br><span class="line">   xxx()&#123;</span><br><span class="line">     this.visible &#x3D; !this.visible</span><br><span class="line">     if(this.visible &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">       setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">         let eventHandler &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">           this.visible &#x3D; false;</span><br><span class="line">           console.log(&#39;document 隐藏 popover&#39;)</span><br><span class="line">           document.removeEventListener(&#39;click&#39;,eventHandler)</span><br><span class="line">         &#125;</span><br><span class="line">         document.addEventListener(&#39;click&#39;, eventHandler)</span><br><span class="line">       &#125;)</span><br><span class="line">     &#125;else&#123;</span><br><span class="line">       console.log(&#39;vm 隐藏 popover&#39;)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#x2F;&#x2F; 所以需要阻止冒泡,让popover事件在其内部进行处理就可以了</span><br><span class="line">&lt;div class&#x3D;&quot;popover&quot; @click.stop&#x3D;&quot;xxx&quot;&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;content-wrapper&quot; v-if&#x3D;&quot;visible&quot; @click.stop&gt;</span><br><span class="line">     &lt;slot name&#x3D;&quot;content&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line"> &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="8-目前还有哪些没有实现"><a href="#8-目前还有哪些没有实现" class="headerlink" title="8. 目前还有哪些没有实现"></a>8. 目前还有哪些没有实现</h4><ul>
+<li>用户有的时候希望是hover的时候显示，支持多种事件</li>
+<li>假设在外面写一个div，有overflow:hidden的属性就会出bug，这就是其它的框架都把popover放外面的原因</li>
+</ul>
+<h4 id="最后，欢迎交流"><a href="#最后，欢迎交流" class="headerlink" title="最后，欢迎交流"></a>最后，欢迎交流</h4><img src="https://i.loli.net/2020/01/27/gS4ZwP6zfAvULYT.jpg" alt="微信" width="400" height="400" align="bottom">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-Tabs%E6%B5%8B%E8%AF%95-%E4%B8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -918,7 +1122,7 @@
           <ol start="0">
 <li><p>Vue的常用修饰符</p>
 <ul>
-<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#46;&#x40;&#x63;&#108;&#105;&#99;&#107;&#46;&#115;&#116;&#111;&#x70;">&#49;&#46;&#x40;&#x63;&#108;&#105;&#99;&#107;&#46;&#115;&#116;&#111;&#x70;</a>=”xxx”<a href="mailto:&#50;&#46;&#64;&#99;&#x6c;&#105;&#99;&#x6b;&#46;&#112;&#x72;&#x65;&#118;&#101;&#110;&#x74;">&#50;&#46;&#64;&#99;&#x6c;&#105;&#99;&#x6b;&#46;&#112;&#x72;&#x65;&#118;&#101;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#x2e;&#x40;&#107;&#101;&#121;&#112;&#x72;&#101;&#x73;&#115;&#46;&#101;&#x6e;&#116;&#x65;&#114;">&#51;&#x2e;&#x40;&#107;&#101;&#121;&#112;&#x72;&#101;&#x73;&#115;&#46;&#101;&#x6e;&#116;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
+<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#x2e;&#64;&#99;&#108;&#105;&#x63;&#107;&#46;&#115;&#116;&#x6f;&#112;">&#49;&#x2e;&#64;&#99;&#108;&#105;&#x63;&#107;&#46;&#115;&#116;&#x6f;&#112;</a>=”xxx”<a href="mailto:&#50;&#x2e;&#64;&#x63;&#x6c;&#x69;&#99;&#x6b;&#x2e;&#112;&#114;&#x65;&#118;&#101;&#110;&#x74;">&#50;&#x2e;&#64;&#x63;&#x6c;&#x69;&#99;&#x6b;&#x2e;&#112;&#114;&#x65;&#118;&#101;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#46;&#x40;&#x6b;&#x65;&#x79;&#112;&#x72;&#x65;&#115;&#115;&#x2e;&#x65;&#110;&#x74;&#x65;&#114;">&#51;&#46;&#x40;&#x6b;&#x65;&#x79;&#112;&#x72;&#x65;&#115;&#115;&#x2e;&#x65;&#110;&#x74;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
 </ul>
 </li>
 <li><p>@click.stop=”xxx”</p>
@@ -944,189 +1148,6 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update的形式</span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;admiring-mountain-4y7fx</span><br><span class="line">改成.sync的形式</span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;quirky-hooks-cpnnh</span><br></pre></td></tr></table></figure>
 
 </li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/22/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/22/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" class="post-title-link" itemprop="url">如何理解Vue的数据响应式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-22 18:49:45 / Modified: 19:00:04" itemprop="dateCreated datePublished" datetime="2019-12-22T18:49:45+08:00">2019-12-22</time>
-            </span>
-
-          
-            <span id="/2019/12/22/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="如何理解Vue的数据响应式" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/12/22/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/22/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>Vue 的数据响应式<ol>
-<li>首先 vue 通过 setter 和 getter 为传入 vue 的 data 进行虚拟的读写，定义完属性之后，如何要另外+属性并且为其增加 getter setter 则需要用 defineProperty。通过 defineProperty 增加代理和监控，如果发现 data 改变了则调用 render 更新视图。</li>
-</ol>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/" class="post-title-link" itemprop="url">浅析两种vue版本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-14 20:37:28 / Modified: 21:01:15" itemprop="dateCreated datePublished" datetime="2019-12-14T20:37:28+08:00">2019-12-14</time>
-            </span>
-
-          
-            <span id="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/" class="post-meta-item leancloud_visitors" data-flag-title="浅析两种vue版本" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>两个版本对应的文件名<ul>
-<li>完整版的名字是vue.js</li>
-<li>非完整版的名字是vue.runtime.js  </li>
-</ul>
-</li>
-<li>两个版本的区别<ul>
-<li>vue 有两个版本一个,完整版的视图没有写在js里面，可以直接写在页面里面。而不完整版不支持，也不支持写在template中，必须要用render函数去写，如果强行写template会有一个警告出现。</li>
-</ul>
-</li>
-<li>template 和 render 怎么用<ul>
-<li>完整版的写法可以用template<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">el: &quot;#app&quot;,</span><br><span class="line">template: &#96;&lt;div&gt;&#123;&#123;n&#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line">data: &#123;</span><br><span class="line">    n: 0</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    add() &#123;</span><br><span class="line">    this.n +&#x3D; 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>非完整版的写法只能用render
-new Vue({<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">el: &quot;#app&quot;,</span><br><span class="line">render(createElement) &#123;</span><br><span class="line">    let h &#x3D; createElement;</span><br><span class="line">    return h(&quot;div&quot;, [this.n, h(&quot;button&quot;, &#123; on: &#123; click: this.add &#125; &#125;, &quot;+1&quot;)]);</span><br><span class="line">&#125;,</span><br><span class="line">data: &#123;</span><br><span class="line">    n: 0</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    add() &#123;</span><br><span class="line">    this.n +&#x3D; 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>非完整版本的好处在于它更加独立，相对于完整版没有了compiler，因此体积更小，通过webpack的vue-loader转化成h(‘div’,this.n),也就是在打包的时候把我们写的html翻译成h的形式</li>
-</ul>
-</li>
-<li>用codesandebox.io预览<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;nifty-ride-g0m2d</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -1214,14 +1235,14 @@ new Vue({<figure class="highlight plain"><table><tr><td class="gutter"><pre><spa
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

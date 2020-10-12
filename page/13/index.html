@@ -158,6 +158,195 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" class="post-title-link" itemprop="url">移动端适配</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-09-08 08:01:42 / Modified: 08:03:58" itemprop="dateCreated datePublished" datetime="2019-09-08T08:01:42+08:00">2019-09-08</time>
+            </span>
+
+          
+            <span id="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" class="post-meta-item leancloud_visitors" data-flag-title="移动端适配" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="viewport适配方案"><a href="#viewport适配方案" class="headerlink" title="viewport适配方案"></a>viewport适配方案</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 放在页面头部</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    const WIDTH &#x3D; 750   &#x2F;&#x2F; 设计稿宽度</span><br><span class="line">    const mobileAdapter &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      let scale &#x3D; screen.width&#x2F;WIDTH  &#x2F;&#x2F; 缩放比</span><br><span class="line">      let content &#x3D; &#96;width&#x3D;$&#123;WIDTH&#125;, initial-scale&#x3D;$&#123;scale&#125;, maximum-scale&#x3D;$&#123;scale&#125;, minimum-scale&#x3D;$&#123;scale&#125;&#96;</span><br><span class="line">      let meta &#x3D; document.querySelector(&#39;meta[name&#x3D;viewport]&#39;)</span><br><span class="line">      if(!meta) &#123;</span><br><span class="line">        meta &#x3D; document.createElement(&#39;meta&#39;)</span><br><span class="line">        meta.setAttribute(&#39;name&#39;, &#39;viewport&#39;)</span><br><span class="line">        document.head.appendChild(meta)</span><br><span class="line">      &#125; </span><br><span class="line">      meta.setAttribute(&#39;content&#39;, content)</span><br><span class="line">    &#125;</span><br><span class="line">    mobileAdapter()</span><br><span class="line">    window.onorientationchange &#x3D; mobileAdapter  &#x2F;&#x2F; 监听屏幕旋转</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案二-vw写法"><a href="#方案二-vw写法" class="headerlink" title="方案二 vw写法"></a>方案二 vw写法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    const WIDTH &#x3D; 750</span><br><span class="line">    document.documentElement.style.setProperty(&#39;--width&#39;, (WIDTH&#x2F;100));</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">html &#123;</span><br><span class="line">font-size:00*window.innerWidth  &#x2F; 750</span><br><span class="line">&#125;</span><br><span class="line">const WIDTH &#x3D; 750 </span><br><span class="line">const setView &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    document.documentElement.style.fontSize &#x3D; (1–*screen.width&#x2F;WIDTH) + ‘px’</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如果使用了sass</span><br><span class="line">@function px2rem($px)&#123;</span><br><span class="line">    @return $px * 1rem &#x2F;100;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案四"><a href="#方案四" class="headerlink" title="方案四"></a>方案四</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">弹性盒子适配</span><br><span class="line">VH REM高度 适配大屏幕电视机</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么时候使用</span><br><span class="line"></span><br><span class="line">fastclick是2017年之前的移动端延迟解决方案</span><br><span class="line">1. 当移动端因为一些原因未使用 &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width&quot;&gt;的时候使用。</span><br><span class="line">2. 2017年以前使用，现在一般不用。但为了应付面试仍然学习它，因为不少面试官还生活在2017年以前。</span><br><span class="line">如何使用</span><br><span class="line">document.addEventListener(&#39;DOMContentLoaded&#39;, function() &#123;</span><br><span class="line">    FastClick.attach(document.body)</span><br><span class="line">&#125;, false)</span><br><span class="line"></span><br><span class="line">onst FastClick &#x3D; (function()&#123;</span><br><span class="line"></span><br><span class="line">      function attach(root) &#123;</span><br><span class="line">        let targetElement &#x3D; null</span><br><span class="line">        root.addEventListener(&#39;touchstart&#39;, function () &#123;</span><br><span class="line">          targetElement &#x3D; event.target</span><br><span class="line">        &#125;)</span><br><span class="line">        root.addEventListener(&#39;touchend&#39;, function (event) &#123;</span><br><span class="line">          event.preventDefault()</span><br><span class="line">          let touch &#x3D; event.changedTouches[0]</span><br><span class="line">          let clickEvent &#x3D; document.createEvent(&#39;MouseEvents&#39;)</span><br><span class="line">          clickEvent.initMouseEvent(&#39;click&#39;, true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null)</span><br><span class="line">          clickEvent.forwardedTouchEvent &#x3D; true </span><br><span class="line">          targetElement.dispatchEvent(clickEvent)</span><br><span class="line">        &#125;)        </span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return &#123; attach &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line"></span><br><span class="line">    FastClick.attach(document.body)</span><br></pre></td></tr></table></figure>
+
+<h2 id="other-vscode快捷使用"><a href="#other-vscode快捷使用" class="headerlink" title="other vscode快捷使用"></a>other vscode快捷使用</h2><pre><code>div下写50个p
+div&gt;p[$]*50
+
+选中四行
+command+shift+p,Emmet Wrap,然后div*</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/29/%E6%B5%85%E6%9E%90URL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/29/%E6%B5%85%E6%9E%90URL/" class="post-title-link" itemprop="url">浅析URL</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-08-29 15:20:16 / Modified: 17:16:09" itemprop="dateCreated datePublished" datetime="2019-08-29T15:20:16+08:00">2019-08-29</time>
+            </span>
+
+          
+            <span id="/2019/08/29/%E6%B5%85%E6%9E%90URL/" class="post-meta-item leancloud_visitors" data-flag-title="浅析URL" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/08/29/%E6%B5%85%E6%9E%90URL/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/29/%E6%B5%85%E6%9E%90URL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="URL-包含哪几部分，每部分分别有什么作用"><a href="#URL-包含哪几部分，每部分分别有什么作用" class="headerlink" title="URL 包含哪几部分，每部分分别有什么作用"></a>URL 包含哪几部分，每部分分别有什么作用</h1><ul>
+<li>URL:包含协议+域名或IP+端口号+路径+查询字符串+锚点。</li>
+<li>协议:说明用什么协议</li>
+<li>域名:代表一台机器</li>
+<li>路径:使用不同路径请求不同页面。</li>
+<li>查询字符串:通过查询字符串，实现同一个页面，不同的内容。</li>
+<li>锚点:锚点定位查询结果的第几个，或者是某一块内容</li>
+</ul>
+<h1 id="DNS-的作用是什么，nslookup-命令怎么用"><a href="#DNS-的作用是什么，nslookup-命令怎么用" class="headerlink" title="DNS 的作用是什么，nslookup 命令怎么用"></a>DNS 的作用是什么，nslookup 命令怎么用</h1><ul>
+<li>DNS:把域名和IP联系起来的系统就称为DNS。当你在浏览器中输入一个网址，浏览器首先会向DNS服务商（比如电信）询问此网址对应什么IP,之后电信会回答一个ip。</li>
+<li>nslookup: +一个域名，返回一个ip地址</li>
+</ul>
+<h1 id="IP-的作用是什么，ping-命令怎么用"><a href="#IP-的作用是什么，ping-命令怎么用" class="headerlink" title="IP 的作用是什么，ping 命令怎么用"></a>IP 的作用是什么，ping 命令怎么用</h1><ul>
+<li>IP的作用:一.如何定位一台设备。二.如何封装数据报文，以跟其他设备交流。</li>
+</ul>
+<h1 id="域名是什么，分别哪几类域名"><a href="#域名是什么，分别哪几类域名" class="headerlink" title="域名是什么，分别哪几类域名"></a>域名是什么，分别哪几类域名</h1><ul>
+<li>com是顶级域名，xxx.com是二级域名，俗称一级域名。<code>www.xxx.com</code>是三级域名（俗称二级域名），他们是父子关系。有可能是同一家，也有可能不是。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1156,531 +1345,6 @@ Vます＋つける　</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/23/2019-6-23-morning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/23/2019-6-23-morning/" class="post-title-link" itemprop="url">2019_6_23_morning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-23 22:49:25 / Modified: 22:56:50" itemprop="dateCreated datePublished" datetime="2019-06-23T22:49:25+08:00">2019-06-23</time>
-            </span>
-
-          
-            <span id="/2019/06/23/2019-6-23-morning/" class="post-meta-item leancloud_visitors" data-flag-title="2019_6_23_morning" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/23/2019-6-23-morning/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/23/2019-6-23-morning/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <iframe src="https://quizlet.com/412891047/write/embed?i=1po46r&x=1jj1" height="500" width="100%" style="border:0"></iframe>
-
-<p>敏捷，快速（两个）
-手早い（てばやい）　素早い（すばやい）</p>
-<p>1.得分2.重点
-ポイント</p>
-<p>不由自主，不小心。举例：看美女，坐过站
-つい</p>
-<p>动不动（一般用于不好）
-がち</p>
-<p>三类动词特殊否定（４个） Vない-&gt;1.ず2.ぬ3.ん4.ざる</p>
-<p>真实的自己，自己的心情
-自分らしい</p>
-<p>纠结，不满
-葛藤（かっとう）</p>
-<p>噂（うわさ）をすれば影（かげ）がさす
-说曹操，曹操就到。</p>
-<p>在背地里说坏话
-陰(かげ)で悪口（わるぐち）を言う</p>
-<p>表达方式
-表現（ひょうげん）</p>
-<p>心情
-気持ち（きもち）</p>
-<p>踏踏实实，端正（强调态度，两个）
-1.きちんと2.ちゃんと</p>
-<p>踏实（强调行动）
-しっかり</p>
-<p>请教（两个，重点考）
-1.教わる（おそわる）2.ならう</p>
-<p>认真，仔细
-丁寧（ていねい）</p>
-<p>1.事例，案例2.小盒子，化妆盒
-ケース</p>
-<p>1.丈二和尚摸不着头2.云里雾里
-チンプンカンプン</p>
-<p>～を必要とする
-把～当作必要</p>
-<p>不是~吗？（一辈子不用翻译）
-~ではないか</p>
-<p>羽生善治（はぶ　よしはる）
-日本将棋大师</p>
-<p>してしまう（两个意思）
-1.坏的意思居多2.完成</p>
-<p>种类
-種（しゅ）</p>
-<p>工匠的招数
-職人（しょくにん）技（わざ）</p>
-<p>思念
-思い</p>
-<p>用…来玩（自动词）；举例玩智能手机
-～で遊ぶ;スマートホンで遊ぶ</p>
-<p>1.完全具备2.完善
-完備（かんび）</p>
-<p>car navigation ;汽车导航（系统）
-カーナビ</p>
-<p>充电【名・自他・サ变/三类】
-充電（じゅうでん）</p>
-<p>电波，信号 
-電波[でんぱ]</p>
-<p>成立【自动词・五段/一类】
-成り立つ（なりたつ）</p>
-<p>众口一词
-口を揃える（そろえる）</p>
-<p>强加
-押し付ける（おしつける）</p>
-<p>忍不住~
-〜ずにはいられない</p>
-<p>态度
-姿勢（しせい）</p>
-<p>根深蒂固【形容词/イ形容词】
-根強い[ねづよい]</p>
-<p>已经，早就
-もはや
- 早就已经
-片付ける（かたづける）</p>
-<p>并非…
-わけではない</p>
-<p>劝告
-お勧め（おすすめ）</p>
-<p>注意到，发现到
-気付き（きづき）</p>
-<p>便签
-メモ</p>
-<p>重新审视
-見直す</p>
-<p>按照日期顺序
-日付（ひづけ）の順（じゅん）で</p>
-<p>钻牛角尖（贬义）
-思い込み</p>
-<p>溺水；沉迷
-溺れる（おぼれる）</p>
-<p>问，打听【他动词・一段/二类】
-問いかける</p>
-<p>把~分开
-〜を別(べつ)にする</p>
-<p>1.回顾<del>2.照顾</del>
-顧みる（かえりみる）</p>
-<p>尝试
-試みる（こころみる）</p>
-<p>回顾
-振り返る</p>
-<p>不在乎
-問わず（とわず）</p>
-<p>不停的
-どんどん</p>
-<p>平均一点
-ずつ</p>
-<p>长到身上，引申为（知识，习惯，技术等）成为自己的东西。
-身に付く （みにつく）</p>
-<p>畅销书
-ベストセラー</p>
-<p>急急忙忙
-せっせと</p>
-<p>不管，姑且先。举例：不管怎么样，先向社长报道
-とりあえず</p>
-<p>显眼
-目立つ （めたつ）</p>
-<p>心情舒服（两个）
-1.心地（ここち）がよい　2.きもちがいい</p>
-<p>~起来很舒服,举例：摸起来舒服
-Vます＋ごこちよい，触り心地良い（ごこちよい）</p>
-<p>居心地[いごこち] 
-心情，感觉。</p>
-<p>作法
-作法[さほう]</p>
-<p>引起大家兴趣，讨论
-話題作（わだいさく）</p>
-<p>抓住
-掴む（つかむ）</p>
-<p>方便
-都合（つごう）</p>
-<p>【英】pendant ;坠，耳坠，挂件
-ペンダント</p>
-<p>【英】key holder ;钥匙（挂）圈。
-キーホルダー</p>
-<p>家长
-保護者（ほごしゃ） </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/23/2019-6-23-afternoon/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/23/2019-6-23-afternoon/" class="post-title-link" itemprop="url">2019_6_23_afternoon</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-23 22:49:09 / Modified: 22:52:58" itemprop="dateCreated datePublished" datetime="2019-06-23T22:49:09+08:00">2019-06-23</time>
-            </span>
-
-          
-            <span id="/2019/06/23/2019-6-23-afternoon/" class="post-meta-item leancloud_visitors" data-flag-title="2019_6_23_afternoon" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/23/2019-6-23-afternoon/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/23/2019-6-23-afternoon/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <iframe src="https://quizlet.com/412891206/match/embed?i=1po46r&x=1jj1" height="500" width="100%" style="border:0"></iframe>
-
-<p>装假牙
-入れ歯（いれば）をつける</p>
-<p>竞争，争夺【自动词・五段/一类】
-競う[きそう] </p>
-<p>瞄准【他动词・五段/一类】
-狙う[ねらう]</p>
-<p>争，争夺【他动词・五段/一类】
-争う[あらそう]</p>
-<p>夺，抢夺【他动词・五段/一类】
-奪う[うばう]</p>
-<p>批评，论，影评【名・他动词・サ变/三类】
-批評[ひひょう]</p>
-<p>发表【名・他动词・サ变/三类】
-掲載[けいさい]</p>
-<p>1.收纳2.~恢复平静
-納める[おさめる] </p>
-<p>1.积攒2.停滞【他动词・一段/二类】
-溜める（ためる）</p>
-<p>胜【自动词・五段/一类】    &lt;—&gt;输【自他・一段/二类】
-勝つ&lt;—&gt;負ける</p>
-<p>胜过【自动词・五段/一类】&lt;—&gt;不如【自动词・五段/一类】
-勝（まさ）る&lt;—&gt;劣る（おとる）</p>
-<p>要求；渴望；寻求【他动词・一段/二类】，举例：求真理
-求（もと）める</p>
-<p>焦，煳。因火烧烤而变黑。【自动词・一段/二类】
-焦げる（こげる）</p>
-<p>炎症，发炎【名词】
-炎症（えんしょう）</p>
-<p>胃炎
-胃炎（いえん）</p>
-<p>高兴，愉快，爽快【形容词/イ形容词】
-快い（こころよい）</p>
-<p>次序。顺序（单独使用）。举例：轮到我
-番。私の番（ばん）</p>
-<p>顺序，次序（可以接名词后，表示按…顺序）
-順（じゅん）</p>
-<p>绘画，画【名词】
-絵画（かいが）</p>
-<p>正直；率直
-率直に（そっちょく）</p>
-<p>轻易地（举例：轻易地相信）
-安易に（あんい）</p>
-<p>灵活的（举例：大脑灵活）
-柔軟に（じゅうなん）</p>
-<p>取得资格
-資格を取得（しゅとく）</p>
-<p>急性子&lt;—&gt;不慌不忙
-短気（たんき）&lt;—&gt; 呑気（のんき）
- 
-成立（指条件成立）
-成立（せいりつ）</p>
-<p>超过&lt;—&gt;低于
-上回る（うわまわる）&lt;—&gt;下回る（したまわる）</p>
-<p>成立（指公司成立）
-作る（つくる）</p>
-<p>采集，收集【名・他动词・サ变/三类】
-採集[さいしゅう]
- 物一般读ぶつ,读成もつ的四个特殊单词,1.作物，农作物，庄稼2.书，书籍，图书3.货物，物资，财物4.货物，行李
-1.作物（さくもつ）2.書物（しょもつ）3.貨物（かもつ）4.荷物（にもつ）</p>
-<p>だぶだぶ
-衣服，鞋子过于肥大</p>
-<p>空空荡荡（举例：教师没有学生）
-がらがら「联想：空（から）っぽ，没人；空的）」</p>
-<p>酣睡
-ぐっすり</p>
-<p>悠闲
-のんびり</p>
-<p>1.进展2.主持会议【名・自他・サ变/三类】
-進行（しんこう）</p>
-<p>安装
-取り付ける</p>
-<p>拦住
-引き止める</p>
-<p>带过去
-持ち寄る</p>
-<p>接受
-受け入れる</p>
-<p>1.竞争对手2.情敌
-ライバル</p>
-<p>guest,客人
-ゲスト</p>
-<p>1.排风扇2.粉丝
-ファン</p>
-<p>关系亲密，亲近
-親（した）しい</p>
-<p>怀念
-懐（なつ）かしい</p>
-<p>详细的
-詳（くわ）しい</p>
-<p>可靠的，值得依赖的
-頼（たの）もしい</p>
-<p>人人为我，给我
-～てくれる</p>
-<p>引导到（联想，拉到道路）
-導く（みちびく）</p>
-<p>率领（举例：率领员工）
-率いる（ひきいる）</p>
-<p>经常
-度々（たびたび）</p>
-<p>疑问词+量词+ も 
-表示数量很多</p>
-<p>さん的书面语，强调尊敬（举例：林さん）
-氏（し）,林氏</p>
-<p>1.直接2.不要通过第三者，（举例：直接和舍长说）3.直接穿衣服，裙子。举例（不穿打底裤，直接穿裙子）
-直（じか）に</p>
-<p>差一点
-もう少し</p>
-<p>差一点就…了（两种句型）
-1.もう少し＋Vた＋ところだ2.もう少し＋V原+ところだった</p>
-<p>碰，撞【自动词・五段/一类】
-ぶつかる</p>
-<p>卑鄙；无耻；狡猾
-卑怯（ひきょう）</p>
-<p>狡猾
-狡（ずる）い</p>
-<p>纠缠
-しつこい</p>
-<p>胆小的人
-臆病（おくびょう）な人</p>
-<p>长高
-身長（しんちょう）が伸びる</p>
-<p>努めて</p>
-<p>努力向上
-向上（こうじょう）を努（つと）める</p>
-<p>马铃薯的长势
-トマトの生育（せいいく）</p>
-<p>果实
-実（み）</p>
-<p>汉字的起源
-漢字の起源（きげん）</p>
-<p>きっかけ后句的注意点
-きっかけ后面强调变化</p>
-<p>～成为契机（举例：吵架成为契机，开始恋爱）
-～がきっかけになる/となる</p>
-<p>把～当作契机(举例：把吵架当作契机，开始恋爱)
-〜をきっかけにする/とする　</p>
-<p>（比赛）不出场【名词】【自动・三类】
-欠場（けつじょう）</p>
-<p>（上下班，上课）缺席
-欠席（けっせき）</p>
-<p>1.主动退出2.谢绝（举例：上海市政府颁发给我优秀市民的荣誉，被我谢绝了，一般是好事）【名・他动词・サ变/三类】
-辞退（じたい）</p>
-<p>顺利（举例：项目，等稍大的场合）
-順調（じゅんちょう）</p>
-<p>流畅，流利。【形容动词/ナ形容词】
-流暢（りゅうちょう）</p>
-<p>摔了一跤
-転ぶ（ころぶ）</p>
-<p>6个表示进展顺利的词。（2，3联想月经不调，4联想运行顺利）
-1.スムーズに2.順調に3.好調に4.うまく行く5.うまく運ぶ6.滑らか</p>
-<p>产生（矛盾纠纷，不好的事情多一点）
-生じる（しょうじる）</p>
-<p>使（植物等）生长【他动词・五段/一类】
-生「は」やす</p>
-<p>生产【名词】
-生産「せいさん」</p>
-<p>1.出生2.产生3.被创生(和创新有关)【自动词・一段/二类】
-生（う）まれる</p>
-<p>ついて和ついで
-ついて表示就…而言，因此。ついで有継（つ）ぐ而来，表示下一个</p>
-<p>1.沿着〜2.服从〜（方针，政策）
-〜に沿って</p>
-<p>代替~
-~に代（か）わって</p>
-<p>服从～（方针，政策）
-～に従（したが）って</p>
-<p>竟然
-だった</p>
-<p>作为…来说（后半句不正常，举例：作为司机来说，不认路）
-～にしては</p>
-<p>终于
-遂（つい）に</p>
-<p>1.后接否定，表示怎么也不~（举例：怎么也不听。叫半天，不来） 2.后接adj表示厉害 3.后+の＋名词表示厉害（举例陈老师是很厉害的老师）
-なかなか的三个用法</p>
-<p>不久（两个）
-1.間も無く（まもなく，ま表示时间）2.やがて</p>
-<p>偶尔
-たまに</p>
-<p>1.竟然2.~之类的(表轻视)
-～なんて</p>
-<p>做某事之后，动作再也没发生。（举例：哥哥去了非洲，再也没回来）
-Vたきり</p>
-<p>1.Vて初めて2.Vて+こそ3.Vてからでなければ　辨析
-1.做了〜之后才是，2.做了之后才3.如果不是～之后，前面条件满足后才。只有~才（强调必要条件）</p>
-<p>1.N+の/Vた +挙句（あげく）2.N+の/Vた +末（すえ）に
-都是经过～之后，发生～，1.不好（举例谈恋爱五年分手），2.好（举例谈恋爱五年结婚）</p>
-<p>不得不～
-〜せざるを得ない</p>
-<p>唯一一个肯定表示否定
-〜兼（か）ねる</p>
-<p>做不来～
-Vます＋来ない</p>
-<p>责怪别人
-～くせに</p>
-<p>两者比较
-一方で</p>
-<p>完全不（两个）
-Vる＋しかない/ほかない</p>
-<p>希望对方做某事
-〜てほしい</p>
-<p>影响
-差し支（つか）え</p>
-<p>自谦
-お/ご＋Vます＋します</p>
-<p>尊他
-お＋Vます＋になります</p>
-<p>ある　自谦
-ございます</p>
-<p>いる　尊他（２） 自谦（１）
-いる尊他：いらっしゃいます、おいでになります 自谦：おります</p>
-<p>行く、来る　尊他（２） 自谦（２，区别）
-尊他：いらっしゃいます、おいでになります 自谦：伺います（涉及对象）　参ります（不涉及对象）</p>
-<p>する　尊他 自谦
-尊他：なさいます 自谦：いたします</p>
-<p>言う　尊他 自谦（２，区别）
-尊他：おっしゃいます 自谦：申します（不涉及对象）、申し上げます（涉及对象）</p>
-<p>見る　尊他 自谦
-尊他：ご覧になります 自谦：拝見します</p>
-<p>会う　尊他 自谦
-尊他：お会いになります 自谦：お目にかかります</p>
-<p>〜のは〜から
-之所以～是因为～</p>
-<p>まず（２个）
-1.首先2绝对（不），绝对（没有）</p>
-<p>～て以来　〜て以降（いこう）　〜てからというもの的辨析
-～以后，一直做（不做），后句+持续状态</p>
-<p>1.〜たい和2.〜たがる
-1.是第一人称2.用于其他人，第三人称</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1752,14 +1416,14 @@ Vる＋しかない/ほかない</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

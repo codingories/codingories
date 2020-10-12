@@ -158,6 +158,292 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">高级前端养成02nodeJS基础学习01之文件模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-13 08:22:02" itemprop="dateCreated datePublished" datetime="2020-06-13T08:22:02+08:00">2020-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-17 16:26:29" itemprop="dateModified" datetime="2020-06-17T16:26:29+08:00">2020-06-17</time>
+              </span>
+
+          
+            <span id="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成02nodeJS基础学习01之文件模块" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.学习目标
+一个基于文件的 todo 工具</p>
+<ol start="2">
+<li><p>操作概览 按 j 下移动 按 t 选第一个回车 已完成
+t add 买火腿肠
+回车点击删除
+tclear 全部清除</p>
+</li>
+<li><p>详细需求</p>
+<ul>
+<li><p>功能
+可以列出所有的 todo
+可以新增 todo
+可以编辑 todo
+可以删除 todo
+可以标记 todo 为已完成/未完成</p>
+</li>
+<li><p>命令
+t
+t add 任务名
+t clear</p>
+</li>
+</ul>
+</li>
+<li><p>crm 学习法
+copy 抄 Run 运行 Modify 改</p>
+</li>
+<li><p>用到 4 个库</p>
+<ul>
+<li>commander</li>
+<li>inquirer</li>
+<li>winston</li>
+<li>jest</li>
+</ul>
+</li>
+<li><p>打开一个空文件夹，初始化项目
+yarn init -y</p>
+</li>
+<li><p>创建 index.js 并运行，node index
+console.log(‘hi’)</p>
+</li>
+<li><p>直接用 commander.js
+yarn add commander
+开始 crm</p>
+</li>
+<li><p>参数用…args 传过来</p>
+</li>
+<li><p>实现创建功能
+把 index.js 改成 cli.js ，再新建 index.js
+node cli add 更快的方式执行 run nodes js file cli.js add 这样之后直接点运行就可以</p>
+</li>
+<li><p>add 要把 todo 放到数据库，但是现在没有，推荐放到 home 目录的.todo 。搜索 node’s get home const home dir = require(‘’os).homedir()</p>
+</li>
+<li><p>但是这个不是环境变量
+const home = process.env.HOME || homier;</p>
+</li>
+<li><p>devdocs 搜索 readfile</p>
+<ul>
+<li>ax,有 x 的都很奇怪，不推荐用，w 也很少用</li>
+</ul>
+</li>
+<li><p>面向接口编程</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; 读取之前的任务</span><br><span class="line">const list &#x3D;db.read()</span><br><span class="line">&#x2F;&#x2F; 往里面添加一个 title 任务</span><br><span class="line">list.push(&#123;title, done:false&#125;)</span><br><span class="line">&#x2F;&#x2F; 储存任务到文件</span><br><span class="line">db.write(list) &#x2F;&#x2F; 面向接口编程</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li><p>这样子以后我们会发现有以下代码</p>
+<ul>
+<li>index.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const homedir &#x3D; require(&#39;os&#39;).homedir();  &#x2F;&#x2F; &#x2F;Users&#x2F;ories</span><br><span class="line">const home &#x3D; process.env.HOME || homedir;  &#x2F;&#x2F; &#x2F;Users&#x2F;ories,process.env.HOME 用户配置过的环境</span><br><span class="line">const p &#x3D; require(&#39;path&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const dbPath &#x3D; p.join(home, &#39;.todo&#39;)</span><br><span class="line">const db &#x3D; require(&#39;.&#x2F;db.js&#39;)</span><br><span class="line">module.exports.add &#x3D; async (title)&#x3D;&gt;&#123;</span><br><span class="line">  &#x2F;&#x2F; 读取之前的任务</span><br><span class="line">  const list &#x3D; await db.read() &#x2F;&#x2F; await 表示异步拿到promise结果 前面必须加async</span><br><span class="line">  &#x2F;&#x2F; 往里面添加一个 title 任务</span><br><span class="line">  list.push(&#123;title, done:false&#125;)</span><br><span class="line">  &#x2F;&#x2F; 储存任务到文件</span><br><span class="line">  await db.write(list) &#x2F;&#x2F; 面向接口编程,这里最好写一下await，因为我们要确保这里的异步等结束</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>db.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const homedir &#x3D; require(&#39;os&#39;).homedir();  &#x2F;&#x2F; &#x2F;Users&#x2F;ories</span><br><span class="line">const home &#x3D; process.env.HOME || homedir;  &#x2F;&#x2F; &#x2F;Users&#x2F;ories,process.env.HOME 用户配置过的环境</span><br><span class="line">const p &#x3D; require(&#39;path&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const dbPath &#x3D; p.join(home, &#39;.todo&#39;)</span><br><span class="line"></span><br><span class="line">const db &#x3D; &#123;</span><br><span class="line">  read(path &#x3D; dbPath)&#123;</span><br><span class="line">    return new Promise((resolve, reject)&#x3D;&gt;&#123; &#x2F;&#x2F; promise经典用法，异步不能return,所以成功的时候resolve,错误reject</span><br><span class="line">      fs.readFile(path, &#123;flag: &#39;a+&#39;&#125;, (error,data)&#x3D;&gt;&#123; &#x2F;&#x2F; a+ 读文件不存在则创建</span><br><span class="line">        if (error) return reject(error)</span><br><span class="line">        let list</span><br><span class="line">        try&#123;</span><br><span class="line">          list &#x3D; JSON.parse(data.toString())</span><br><span class="line">        &#125;catch(error2) &#123;</span><br><span class="line">          list &#x3D; []</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(list)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  write(list,path &#x3D; dbPath)&#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">      const string &#x3D; JSON.stringify(list)</span><br><span class="line">      fs.writeFile(dbPath, string +&#39;\n&#39;, (error)&#x3D;&gt;&#123;</span><br><span class="line">        if(error) return reject( error )</span><br><span class="line">        resolve()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports &#x3D; db &#x2F;&#x2F; 这是nodejs的导出</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 不能用export default db ，这是浏览器可以用的</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cli.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const program &#x3D; require(&#39;commander&#39;);</span><br><span class="line">const api &#x3D; require(&#39;.&#x2F;index.js&#39;);</span><br><span class="line"></span><br><span class="line">program.</span><br><span class="line">  option(&#39;-x,--xxx&#39;,&#39;what the x&#39;)</span><br><span class="line">program.</span><br><span class="line">  command(&#39;add&#39;)</span><br><span class="line">  .description(&#39;add a task&#39;)</span><br><span class="line">  .action((...args)&#x3D;&gt;&#123;</span><br><span class="line">     const words &#x3D; args[1].join(&#39; &#39;)</span><br><span class="line">     api.add(words)</span><br><span class="line">     &#x2F;&#x2F; console.log(words);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">program.</span><br><span class="line">command(&#39;clear&#39;)</span><br><span class="line">  .description(&#39;clear all tasks&#39;)</span><br><span class="line">  .action((...args)&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; const words &#x3D; args.slice(0,-1).join(&#39; &#39;)</span><br><span class="line">    &#x2F;&#x2F; console.log(words);</span><br><span class="line">    console.log(&#39;this is clear&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把报错的线去掉</p>
+</li>
+</ol>
+<ul>
+<li>出现线的原因是 webstorm 不知道你是 nodejs，还是 web 的 js 需要配置下</li>
+<li>打开 Languages &amp; Frameworks.Javascript,Libraries,勾选 Node.js Core</li>
+<li>如果没有这个选项则在 Node.js and Npm 中打开配置</li>
+</ul>
+<ol start="17">
+<li><p>void api.showAll() // async 默认返回 promise, 可以用 void 强制去除下划线</p>
+</li>
+<li><p>安装 inquirer 库，实现列表展示</p>
+</li>
+<li><p>如何优化很长的代码，就是起一个名字，放一起</p>
+</li>
+<li><p>webstorm 有一个 structure 功能，可看到代码结构</p>
+</li>
+<li><p>如何把我们的代码发布到 npm</p>
+</li>
+</ol>
+<ul>
+<li>修改 package.json<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;:&#123;</span><br><span class="line">  &quot;t&quot;: &quot;.&#x2F;cli.js&quot; &#x2F;&#x2F; bin表示命令行最后生成的命令</span><br><span class="line">&#125;,</span><br><span class="line">&quot;files&quot;: [ &#x2F;&#x2F; 告诉npm哪些是有用的文件</span><br><span class="line">  &quot;*.js&quot;</span><br><span class="line">],</span><br></pre></td></tr></table></figure></li>
+<li>运行命令<ul>
+<li>yarn login 和 yarn publish</li>
+<li>npm adduser 和 npm publish</li>
+<li>注意要把淘宝源切换为原始源</li>
+<li>如果提示出错，请把出错理解一下</li>
+</ul>
+</li>
+</ul>
+<ol start="22">
+<li><p>加上 nodeJS 的 shebang,告诉命令行用什么执行</p>
+</li>
+<li><p>让 cli.js 编程可执行文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x cli.js</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发布到 npm</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br><span class="line">之后在其他地方yarn global upgrade terminaltodo</span><br><span class="line">就可以实现更新使用t --version</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/" class="post-title-link" itemprop="url">高级前端养成01nodeJS基础学习00</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-11 19:16:48" itemprop="dateCreated datePublished" datetime="2020-06-11T19:16:48+08:00">2020-06-11</time>
+            </span>
+
+          
+            <span id="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成01nodeJS基础学习00" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/04/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9000-%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1407,230 +1693,6 @@ class Meta:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%8C/" class="post-title-link" itemprop="url">django实现在线教育网站二</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-05 07:59:21 / Modified: 10:59:49" itemprop="dateCreated datePublished" datetime="2020-05-05T07:59:21+08:00">2020-05-05</time>
-            </span>
-
-          
-            <span id="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="django实现在线教育网站二" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%8C/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%8C/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一. Navicat 的使用</p>
-<ul>
-<li><p>连接，连接名可以随便填写，主机名需要根据需要填写</p>
-</li>
-<li><p>右键顶部可以新建数据库，字符集尽量选择 utf-8,排序规则选择 utf-8general-ci</p>
-</li>
-<li><p>在表上右键可以新建表，也可以通过查询输入 sql 命令实现</p>
-</li>
-<li><p>新建列，然后保存表名
-<img src="https://i.loli.net/2020/05/05/z7h3cyoJGBlIkvN.png" alt="新建列.png"></p>
-</li>
-<li><p>进一步设计表，设计表结构</p>
-</li>
-<li><p>解决没有主键的问题。
-<img src="https://i.loli.net/2020/05/05/4OMqisVb6IvnxtD.png" alt="添加主键.png"></p>
-</li>
-<li><p>数据的复制，语句查询，表转存，导入 sql 文件，</p>
-</li>
-<li><p>mac 下工具因为是 essential 版，不是 premium 版 没有数据传输功能，这个功能非常方便把线下的库放到线上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下载地址</span><br><span class="line">https:&#x2F;&#x2F;www.macwk.com&#x2F;soft&#x2F;navicat-premium</span><br></pre></td></tr></table></figure>
-<p>二. pycharm 简单使用</p>
-</li>
-<li><p>pure python 选择解释器，右键 add local,找到 python 可执行文件的路径,make available to all projects</p>
-</li>
-<li><p>如果是虚拟环境要选择虚拟环境的目录下的 script 中的 python,因为我们选择了 virtualenvwarpper 所以选择 existing interpret 就可以了</p>
-</li>
-<li><p>pycharm 调试代码 打断点,以 debug 的方式运行，按 f6 单步调试，直接运行到另外一个断点处，f8,</p>
-</li>
-<li><p>f5 的作用是 进入到某个函数去调用</p>
-</li>
-<li><p>pycharm 快捷键，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ctrl+d 删除代码</span><br><span class="line">alt + 箭头,左右 回到上一个位置，上下调整代码移动用到</span><br><span class="line">ctrl + &#x2F; 注释代码</span><br><span class="line">ctrl + home&#x2F;end 列出当前文件有哪些类</span><br><span class="line">shift + home&#x2F;end</span><br><span class="line">tab</span><br><span class="line">shift+tab</span><br><span class="line">ctrl+h 全局搜索 project directory常用,directory搜索源码常用</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/03/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/03/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%94/" class="post-title-link" itemprop="url">旺财记账本react版实现五</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-03 18:26:59" itemprop="dateCreated datePublished" datetime="2020-05-03T18:26:59+08:00">2020-05-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-30 14:12:09" itemprop="dateModified" datetime="2020-05-30T14:12:09+08:00">2020-05-30</time>
-              </span>
-
-          
-            <span id="/2020/05/03/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%94/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现五" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/03/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%94/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/03/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%BA%94/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一. &lt;&gt;到底什么意思？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const X: React.FC &#x3D; ()...</span><br><span class="line">X 的类型是一个 React 函数组件</span><br><span class="line">const X: React.FC&lt;Props&gt;</span><br><span class="line">X 的类型是一个接受 Props 的React 函数组件</span><br><span class="line">&lt;&gt;可以理解为java中的泛型，即理解为类型参数</span><br><span class="line">参考:https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5cbd961d6fb9a03231208ee6</span><br></pre></td></tr></table></figure>
-
-<p>二. TypeScript 学习思路</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先用再血,用以致学，工作思维,前端的核心竞争力是学的快</span><br></pre></td></tr></table></figure>
-
-<p>三. 开始制作标签页</p>
-<ul>
-<li>自定义 hook，必须 use 开头<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const useTags &#x3D; ()&#x3D;&gt;&#123; &#x2F;&#x2F; 封装一个自定义Hook</span><br><span class="line">  const [tags, setTags] &#x3D; useState&lt;string[]&gt;([&#39;衣&#39;,&#39;食&#39;,&#39;住&#39;,&#39;行&#39;]);</span><br><span class="line">  return &#123;tags, setTags&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>use 需要导出一个对象，不是导出数组，避免 ts 报错</li>
-<li>用 use 就叫封装一个自定义 hook</li>
-</ul>
-<p>四. 创建 /tags/:tag 路由, 学会 exact 的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;AppWrapper&gt;</span><br><span class="line">      &lt;Router&gt;</span><br><span class="line">        &lt;Switch &gt;</span><br><span class="line">          &lt;Route exact path&#x3D;&quot;&#x2F;tags&quot; &gt;</span><br><span class="line">            &lt;Tags &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route exact path&#x3D;&quot;&#x2F;tags&#x2F;:tag&quot; &gt;</span><br><span class="line">            &lt;Tag &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route exact path&#x3D;&quot;&#x2F;money&quot;&gt;</span><br><span class="line">            &lt;Money &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route exact path&#x3D;&quot;&#x2F;statistics&quot;&gt;</span><br><span class="line">            &lt;Statistics &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Redirect exact from&#x3D;&quot;&#x2F;&quot; to&#x3D;&quot;&#x2F;money&quot; &#x2F;&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;*&quot;&gt;</span><br><span class="line">            &lt;NoMatch &#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">        &lt;&#x2F;Switch&gt;</span><br><span class="line">      &lt;&#x2F;Router&gt;</span><br><span class="line">    &lt;&#x2F;AppWrapper&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>五. 修改 tag 的类型，修改成对象，为改 tag 做准备
-六. 函数封装创建 id 和 class 类封装创建 id 的区别</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 类</span><br><span class="line">  let id &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  class Id &#123;</span><br><span class="line">    value: number;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">      id +&#x3D; 1;</span><br><span class="line">      this.value &#x3D; id;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  export &#123;Id&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 函数</span><br><span class="line">let id &#x3D; 0</span><br><span class="line">const createId &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  id +&#x3D; 1;</span><br><span class="line">  return id;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export &#123;createId&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>七. 通过提前声明变量，解决 id 的 bug</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useState&#125; from &#39;react&#39;</span><br><span class="line">import &#123;createId&#125; from &#39;.&#x2F;lib&#x2F;createId&#39;</span><br><span class="line"></span><br><span class="line">const defaultTags &#x3D; [</span><br><span class="line">  &#123;id: createId(), name:&#39;衣&#39;&#125;,</span><br><span class="line">  &#123;id: createId(), name:&#39;食&#39;&#125;,</span><br><span class="line">  &#123;id: createId(), name:&#39;住&#39;&#125;,</span><br><span class="line">  &#123;id: createId(), name:&#39;行&#39;&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">const useTags &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [tags, setTags] &#x3D; useState&lt;&#123; id: number; name: string &#125; []&gt;(defaultTags);</span><br><span class="line">  return &#123;tags, setTags&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123;useTags&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>八. 技巧：useParams 与 findTag
-九. 封装 findTag 到 useTags 里面，封装细节
-十. omit 的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">type RecordItem &#x3D; &#123;</span><br><span class="line">  tagIds: number[];</span><br><span class="line">  note: string</span><br><span class="line">  category: &#39;+&#39; | &#39;-&#39; &#x2F;&#x2F; 只能取&#39;+&#39; | &#39;-&#39;</span><br><span class="line">  amount: number</span><br><span class="line">  createdAt: string &#x2F;&#x2F; ISO 8601</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type newRecordItem &#x3D; Omit&lt;RecordItem, &#39;createdAt&#39;&gt; &#x2F;&#x2F; omit 忽略RecordItem的&#39;createAt&#39;，只要剩下的,多个用|分割</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1702,14 +1764,14 @@ class Meta:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

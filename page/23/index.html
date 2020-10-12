@@ -158,6 +158,404 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-title-link" itemprop="url">vue学习分享一</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-29 10:48:22" itemprop="dateCreated datePublished" datetime="2019-01-29T10:48:22+08:00">2019-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-02-01 15:49:37" itemprop="dateModified" datetime="2019-02-01T15:49:37+08:00">2019-02-01</time>
+              </span>
+
+          
+            <span id="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-meta-item leancloud_visitors" data-flag-title="vue学习分享一" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.webpack属性配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">module.exports&#x3D; &#123;</span><br><span class="line">    entry: &#123; main是默认入口，也可以是多入口</span><br><span class="line">        main:&#39;.&#x2F;src&#x2F;main.js&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    出口</span><br><span class="line">    output:&#123;</span><br><span class="line">        filename:&#39;.&#x2F;build.js&#39;, 指定js文件</span><br><span class="line">        path: path.join(__dirname,&#39;..&#39;,&#39;dist&#39;)   最好是绝对路径 </span><br><span class="line">        &#x2F;&#x2F; 代表当前目录的上一级的dist</span><br><span class="line">    &#125;,</span><br><span class="line">    module:&#123;</span><br><span class="line">        一样的功能rules: webpack2.x之后新加的</span><br><span class="line">        loaders:[  require(&#39;.&#x2F;a.css||.&#x2F;a.js&#39;)</span><br><span class="line">            &#123;test: &#x2F;\.css$&#x2F;,</span><br><span class="line">            loader:&#39;style-loader!css-loader&#39;,</span><br><span class="line">            顺序是反过来的2!1</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;test: &#x2F;\.(jpg|svg))$&#x2F;,</span><br><span class="line">            loader:&#39;style-loader?limit&#x3D;4096&amp;name&#x3D;[name].[ext]&#39;,</span><br><span class="line">            顺序是反过来的2!1</span><br><span class="line">            [name].[ext]内置提供的，因为本身是先读这个文件</span><br><span class="line">            options:&#123;</span><br><span class="line">                limit:4096,</span><br><span class="line">                name:&#39;[name].[ext]&#39;</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        插件的执行顺序是依次执行的</span><br><span class="line">        new htnlWebpackPlugin(&#123;</span><br><span class="line">            template:&#39;.&#x2F;src&#x2F;index.html&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">        将src下的template属性描述的文件根据当前配置的output.path</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="今日重点"><a href="#今日重点" class="headerlink" title="今日重点"></a>今日重点</h4><ul>
+<li>运行起来Vue</li>
+<li>vue常用指令</li>
+<li>组件的使用</li>
+</ul>
+<h3 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h3><hr>
+<h4 id="webpack-ES6的处理"><a href="#webpack-ES6的处理" class="headerlink" title="webpack-ES6的处理"></a>webpack-ES6的处理</h4><ul>
+<li>ES6的模块，vue本身默认支持es6的模块导入导出</li>
+<li>babel<ul>
+<li>babel-loader(内部依赖babel-core)<ul>
+<li>关键字(presets es2015)</li>
+<li>函数(plugins babel-plugin-transform-runtime)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="ES6中模块"><a href="#ES6中模块" class="headerlink" title="ES6中模块"></a>ES6中模块</h4><p>一.坑的地方，教程里面的webpack版本是<a href="mailto:&#x77;&#101;&#x62;&#112;&#x61;&#99;&#107;&#x40;&#x33;&#x2e;&#x34;&#x2e;&#49;">&#x77;&#101;&#x62;&#112;&#x61;&#99;&#107;&#x40;&#x33;&#x2e;&#x34;&#x2e;&#49;</a>,而最新版本已经到了<a href="mailto:&#x77;&#x65;&#98;&#x70;&#x61;&#x63;&#x6b;&#x40;&#x34;&#46;&#x32;&#x37;&#x2e;&#x31;">&#x77;&#x65;&#98;&#x70;&#x61;&#x63;&#x6b;&#x40;&#x34;&#46;&#x32;&#x37;&#x2e;&#x31;</a>,新版本不想下兼容老版本，各种错误需要谷歌解决，主要是版本问题。因为版本问题，所以决定重新来过。最终参考了文章解决:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5ad1ef5d518825556534f137#heading-20</span><br></pre></td></tr></table></figure>
+
+<p>二.ES6两种不一样的导出模块的方式</p>
+<ul>
+<li>默认<ul>
+<li>导入<code>import [,..xxx] [,..from] &#39;./xxx.ext&#39;</code></li>
+<li>导出 <code>export default obj;</code></li>
+</ul>
+</li>
+<li>声明式<ul>
+<li>1导出 <code>export var obj = xxx;</code></li>
+<li>2导出 <code>export var obj2 = {};</code></li>
+<li>3单独导出 <code> export {stu};</code></li>
+<li>导入 <code>import {obj,obj2,stu} from &#39;./xxx.js&#39;;  直接使用obj</code></li>
+</ul>
+</li>
+<li>全体</li>
+<li>默认导出和声明式导入在使用上的区别<ul>
+<li>要注意，声明式导入的时候，必须{名称} 名称要一致（按需导入)</li>
+<li>默认导入，可以随意的使用变量名</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认导出</span><br><span class="line">var temp1 &#x3D; &#39;我是默认导出的结果&#39;;</span><br><span class="line">export default temp1;</span><br><span class="line">&#x2F;&#x2F; 导入方式是  import xxx from &#39;.&#x2F;cal.js&#39;，这种名称可以随便写</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明式导出</span><br><span class="line">export var obj1 &#x3D; &#39;我是声明式导出1&#39;;</span><br><span class="line">export var obj2 &#x3D; &#39;我是声明式导出2&#39;;</span><br><span class="line">export var obj3 &#x3D; &#39;我是声明式导出3&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入方式是</span><br><span class="line">&#x2F;&#x2F; 声明式导入必须写对名字</span><br><span class="line">&#x2F;&#x2F; import &#123;obj1,obj2&#125; from &#39;.&#x2F;cal.js&#39;; </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;另一种方式声明导出</span><br><span class="line">var obj4 &#x3D; &#39;我是声明式导出4&#39;</span><br><span class="line">export &#123;obj4&#125;;</span><br><span class="line">&#x2F;&#x2F; 导入方式是</span><br><span class="line">&#x2F;&#x2F; import &#123;obj1,obj2,obj4&#125; from &#39;.&#x2F;cal.js&#39;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;默认导入</span><br><span class="line">&#x2F;&#x2F; import defaultObj from &#39;.&#x2F;cal.js&#39;;</span><br><span class="line">&#x2F;&#x2F; console.log(defaultObj);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明式导入(按需加载)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; function test()&#123;&#x2F;&#x2F;不能包含在函数内部，只能在最外层作用域import和export</span><br><span class="line">&#x2F;&#x2F;     import &#123;obj1,obj2,obj4&#125; from &#39;.&#x2F;cal.js&#39;</span><br><span class="line">&#x2F;&#x2F;     console.log(obj1,obj2,obj4);</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line">&#x2F;&#x2F; test();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; import &#123;obj1,obj2,obj4&#125; from &#39;.&#x2F;cal.js&#39;</span><br><span class="line">&#x2F;&#x2F; console.log(obj1,obj2,obj4);</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;全体导入</span><br><span class="line">import * as obj from &#39;.&#x2F;cal.js&#39;;</span><br><span class="line">console.log(obj)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">default:&quot;我是默认导出的结果&quot;    </span><br><span class="line">        import xxx from &#39;.&#x2F;cal.js&#39;会获取到整个对象的default属性</span><br><span class="line">obj1:&quot;我是声明式导出1&quot;</span><br><span class="line">obj2:&quot;我是声明式导出2&quot; </span><br><span class="line">obj3:&quot;我是声明式导出3&quot;     import &#123;obj1,obj2&#125;</span><br><span class="line">obj4:&quot;我是声明式导出4&quot;</span><br><span class="line">&#125;</span><br><span class="line">    import * as allObj from &#39;.&#x2F;cal.js&#39;;  获取的就是一整个对象</span><br></pre></td></tr></table></figure>
+<ul>
+<li>import 和export一定写在顶级，不要包含在{}内</li>
+</ul>
+<h4 id="ES6中的代码变化"><a href="#ES6中的代码变化" class="headerlink" title="ES6中的代码变化"></a>ES6中的代码变化</h4><ul>
+<li>对象属性的声明 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &#39;abc&#39;;</span><br><span class="line">var person &#x3D; &#123;name&#125;; 简写-&gt; var person &#x3D; &#123;name:name&#125;;</span><br><span class="line"></span><br><span class="line">声明函数 </span><br><span class="line">var cal &#x3D; &#123;</span><br><span class="line">    add:function()&#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;,</span><br><span class="line">    add2()&#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;,</span><br><span class="line">    add3:funtion(n1,n2)&#123;</span><br><span class="line">        return n1 + n2;</span><br><span class="line">    &#125;,</span><br><span class="line">    add4(n1,n2)&#123;  干掉了function</span><br><span class="line">        return n1 + n2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>当属性的key和变量的名相同,而要使用变量的值做value,</li>
+<li>就可以简写{name}-&gt;{name:name}</li>
+<li>es6中的函数声明<ul>
+<li>就是干掉了:function   只需要写成add(){ }</li>
+</ul>
+</li>
+</ul>
+<h4 id="vue单文件方式"><a href="#vue单文件方式" class="headerlink" title="vue单文件方式"></a>vue单文件方式</h4><ul>
+<li>单文件就是以<em>.vue结尾的文件。最终通过webpack也会编译成</em>.js在浏览器运行</li>
+<li>内容： <template></template> + <script></script> + <style></style><ul>
+<li>1:template中只能有一个根节点 2.x</li>
+<li>2:script中  按照 export default {配置} 来写</li>
+<li>3:style中 可以设置scoped属性，让其只在template中生效</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">第一步:</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;01_第一个vue程序启动&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;!--1:在index.html中写上div id&#x3D;&quot;app&quot; app可以随意--&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!--以上内容是一个坑，未来vue编译好代码，往里面插入--&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line">第二步:</span><br><span class="line">&#x2F;&#x2F;2:引入 Vue</span><br><span class="line">import Vue from &#39;Vue&#39;;</span><br><span class="line"></span><br><span class="line">安装:npm i vue -S ; npm i vue-loader vue-template-compiler -D</span><br><span class="line">&#x2F;&#x2F;3:创建一个Vue的实例,一般一个项目,大多就是一个vue实例来完成显示</span><br><span class="line">new Vue(&#123;</span><br><span class="line">   el: &#39;#app&#39;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">碰到报错:vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config.</span><br><span class="line"></span><br><span class="line">通过 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cominglately&#x2F;article&#x2F;details&#x2F;80555210 解决</span><br></pre></td></tr></table></figure>
+
+<p>npm i 和 npm –production区别
+npm i 是全部恢复
+npm –production 只有 dependencies</p>
+<p>webpack-dev-server 的配置，教程上是老版本新版本的话要重新安装插件，详情参考以下地址解决:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5ad1ef5d518825556534f137</span><br></pre></td></tr></table></figure>
+
+<p>用package.json文件实现命令的简化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;npx webpack --config webpack.config.js&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;npx webpack-dev-server --config webpack.config.js --color --progress --hot&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后通过:npm run start 来实现快速命令</p>
+<h4 id="vue介绍"><a href="#vue介绍" class="headerlink" title="vue介绍"></a>vue介绍</h4><ul>
+<li>2014年诞生,2013年react,09年angularjs</li>
+<li>作者 尤雨溪</li>
+<li>核心概念:     组件化  双向数据流 (基于ES5中的defineProperty来实现的),IE9才支持</li>
+<li>angular核心： 模块化 双向数据绑定(脏检测:一个数组（$watch）)<ul>
+<li>开发一个登陆的模块，登陆需要显示的头部、底部、中部</li>
+<li>组件:组合起来的一个部件（头部、底部、中部）</li>
+<li><strong>细分代码</strong><ul>
+<li>头部: 页面、样式、动态效果</li>
+<li>代码: template style script</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>框架对比，建议学完vue再看</li>
+<li><a href="https://cn.vuejs.org/v2/guide/comparison.html#Reacts" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/comparison.html#Reacts</a></li>
+</ul>
+<h4 id="双向数据流"><a href="#双向数据流" class="headerlink" title="双向数据流"></a>双向数据流</h4><ul>
+<li>1向：js内存属性发生改变，影响页面的变化</li>
+<li>1向：页面的改变影响js内存属性的改变</li>
+</ul>
+<h4 id="vue中常用的v-指令演示"><a href="#vue中常用的v-指令演示" class="headerlink" title="vue中常用的v-指令演示"></a>vue中常用的v-指令演示</h4><ul>
+<li>常用指令 </li>
+<li>v-text 是元素的innerText只能在双标签中使用</li>
+<li>v-html 是元素的innerHTML，不能包含<!-- –&gt;</li>
+<li>v-if 元素是否移除或者插入</li>
+<li>v-show 元素是否显示或隐藏</li>
+<li>v-model 双向数据绑定，v-bind是单向数据绑定(内存js改变影响页面)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">1.先在src创建index.html,声明div id&#x3D;app</span><br><span class="line">2.写main.js</span><br><span class="line">    &#x2F;&#x2F; 1:引入vue</span><br><span class="line">    import Vue from &#39;vue&#39;;</span><br><span class="line">    &#x2F;&#x2F; 2:引入app.vue 用他的内容来替换div id &#x3D; app</span><br><span class="line">    import App from &#39;.&#x2F;app.vue&#39;</span><br><span class="line">    &#x2F;&#x2F; 3:构建vue实例</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        &#x2F;&#x2F; 渲染内容的目的地</span><br><span class="line">        el:&#39;#app&#39;,</span><br><span class="line">        &#x2F;&#x2F; 渲染内容</span><br><span class="line">        render:function(c)&#123; &#x2F;&#x2F; c只是一个形参,叫什么都可以</span><br><span class="line">            return c(App);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F; 一般来说,key是固定的,值是你设定(可变的)</span><br><span class="line">3.写app.vue</span><br><span class="line">    &lt;template&gt;</span><br><span class="line">        &lt;!--只能有一个根结点--&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;!--pre原样输出--&gt;</span><br><span class="line">            &lt;pre&gt;</span><br><span class="line">                * v-text 是元素的innerText只能在双标签中使用</span><br><span class="line">                * v-html 是元素的innerHTML,不能包含&lt;!--&#123;&#123;xxx&#125;&#125;--&gt;</span><br><span class="line">                * v-if 元素是否移除或者插入</span><br><span class="line">                * v-show 元素是否显示或隐藏</span><br><span class="line">                * v-model 双向数据绑定,v-bind是单向数据绑定(内存js改变影响页面)</span><br><span class="line">            &lt;&#x2F;pre&gt;</span><br><span class="line">            v-text :</span><br><span class="line">            &lt;!--一般而言v-xxx可以写变量--&gt;</span><br><span class="line">            &lt;span v-text&#x3D;&quot;text&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-text&#x3D;&quot;text&quot;&gt;</span><br><span class="line">            &lt;hr&#x2F;&gt;</span><br><span class="line">            v-html :</span><br><span class="line">            &lt;span v-html&#x3D;&quot;html&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;hr&#x2F;&gt;</span><br><span class="line">            v-if:</span><br><span class="line">            &lt;div v-if&#x3D;&quot;isShow&quot; style&#x3D;&quot;height:100px;background-color:red&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">            v-show:</span><br><span class="line">            &lt;div v-show&#x3D;&quot;isShow&quot; style&#x3D;&quot;height:100px;background-color:green&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">            v-model:</span><br><span class="line">            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-model&#x3D;&quot;mTest&quot;&gt;</span><br><span class="line">            &#123;&#123;mTest&#125;&#125;</span><br><span class="line">            &lt;br&#x2F;&gt;&lt;!--给下面的input的value复制用v-bind:value&#x3D;&quot;mTest&quot;--&gt;</span><br><span class="line">            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-bind:value&#x3D;&quot;mTest&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        export default &#123;</span><br><span class="line">            data()&#123;</span><br><span class="line">                return&#123;</span><br><span class="line">                    text:&#39;我是v-text玩的东西&#39;,</span><br><span class="line">                    html:&#96;</span><br><span class="line">                        &lt;ul&gt;</span><br><span class="line">                            &lt;li&gt;哈哈&lt;&#x2F;li&gt;</span><br><span class="line">                            &lt;li&gt;呵呵&lt;&#x2F;li&gt;</span><br><span class="line">                        &lt;&#x2F;ul&gt;</span><br><span class="line">                        &#96;,</span><br><span class="line">                    isShow:false,</span><br><span class="line">                    mTest:&#39;haha&#39;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="class结合v-bind使用"><a href="#class结合v-bind使用" class="headerlink" title="class结合v-bind使用"></a>class结合v-bind使用</h4><ul>
+<li>需要根据可变的表达式的结果来给class赋值，就需要用到v-bind:class=”xxx”</li>
+<li>v-bind:属性名=”表达式”，最终表达式运算结束的结果赋值给该属性名<ul>
+<li>简化的写法是: <code>:属性名=&quot;表达式&quot;</code></li>
+</ul>
+</li>
+<li>class:结果的分类<ul>
+<li>一个样式: 返回字符串(三元表达式和key和样式的清单对象)</li>
+<li>多个样式：返回对象(样式做key，true或false做值)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">vue css You may need an appropriate loader to handle this file type.报错</span><br><span class="line">解决方法参考:https:&#x2F;&#x2F;github.com&#x2F;webpack&#x2F;webpack&#x2F;issues&#x2F;1470</span><br><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;5ba253651c3b</span><br><span class="line">加完要重启下服务器</span><br><span class="line">#案例#</span><br><span class="line">    &lt;template&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;div v-bind:class&#x3D;&quot;isRed?&#39;red&#39;:&#39;green&#39;&quot;&gt;1111111111&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div :class&#x3D;&quot;&#123;&#39;red&#39;:true,&#39;big&#39;:true&#125;&quot;&gt;多个class&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;!--复杂情况，通过遍历，根据当前对象的成绩,匹配key和样式的清单对象，用成绩做key,取对象的value,最终返回字符串做样式名--&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li v-for&#x3D;&quot;stu in stus&quot; :class&#x3D;&quot;&#123;&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;green&#39;&#125;[stu.score]&quot;&gt;</span><br><span class="line">                    &#123;&#123;stu.name&#125;&#125;</span><br><span class="line">                &lt;&#x2F;li&gt;</span><br><span class="line">            &lt;&#x2F;ul&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    &#x2F;&#x2F; class 取一个 返回一个字符串</span><br><span class="line">    &#x2F;&#x2F; 取多个 返回一个对象</span><br><span class="line">    &#x2F;&#x2F; 一个学生列表 每个人都有成绩 AB,根据当前学生的成绩匹配显示不同的颜色</span><br><span class="line">    &#x2F;&#x2F; A-red B-green</span><br><span class="line">        export default &#123;</span><br><span class="line">            data()&#123;</span><br><span class="line">                return &#123;</span><br><span class="line">                    isRed:false,</span><br><span class="line">                    stus:[&#123;name:&#39;jack&#39;,score:&#39;A&#39;&#125;,&#123;name:&#39;rose&#39;,score:&#39;B&#39;&#125;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .red&#123;</span><br><span class="line">            background-color: red;</span><br><span class="line">        &#125;</span><br><span class="line">        .green&#123;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line">        .big&#123;</span><br><span class="line">            font-size: 30px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="methods和v-on的使用"><a href="#methods和v-on的使用" class="headerlink" title="methods和v-on的使用"></a>methods和v-on的使用</h4><ul>
+<li>绑定事件的方法<ul>
+<li><code>v-on:事件名=&quot;表达式||函数名&quot;</code></li>
+<li>简写: <code>@事件名=&quot;表达式||函数名&quot;</code></li>
+</ul>
+</li>
+<li>函数名如果没有参数，可以省略()  只给一个函数名称</li>
+<li>声明组件内函数，在export default这个对象的根属性加上methods属性，其是一个对象<ul>
+<li>key 是函数名 值是函数体</li>
+</ul>
+</li>
+<li>在export default这个对象的根属性加上data属性，其是一个函数，返回一个对象<ul>
+<li>对象的属性是我们初始化的变量的名称</li>
+</ul>
+</li>
+<li>凡是在template中使用变量或者函数，不需要加this</li>
+<li>在script中使用就需要加上this</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div v-bind:class&#x3D;&quot;isRed?&#39;red&#39;:&#39;green&#39;&quot;&gt;1111111111&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div :class&#x3D;&quot;&#123;&#39;red&#39;:true,&#39;big&#39;:true&#125;&quot;&gt;多个class&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;!--复杂情况，通过遍历，根据当前对象的成绩,匹配成绩和样式的清单对象，用成绩做key,取对象的value,最终返回字符串做样式名--&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li v-for&#x3D;&quot;stu in stus&quot; :class&#x3D;&quot;&#123;&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;green&#39;&#125;[stu.score]&quot;&gt;</span><br><span class="line">                &#123;&#123;stu.name&#125;&#125;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--&lt;button v-on:click&#x3D;&quot;isRed &#x3D; !isRed&quot;&gt;点我大变化&lt;&#x2F;button&gt;--&gt;</span><br><span class="line">        &lt;button @click&#x3D;&quot;change&quot;&gt;点我大变化&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isRed:false,</span><br><span class="line">                stus:[&#123;name:&#39;jack&#39;,score:&#39;A&#39;&#125;,&#123;name:&#39;rose&#39;,score:&#39;B&#39;&#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; 声明函数,属于组件对象的</span><br><span class="line">        methods:&#123;</span><br><span class="line">            &#x2F;&#x2F;包含多个函数名做key,函数体做value</span><br><span class="line">            change()&#123;</span><br><span class="line">                &#x2F;&#x2F; 在script中能使用的对象，基本template中也能使用,但是</span><br><span class="line">                &#x2F;&#x2F; 在script中加this,template中不需要this</span><br><span class="line">                this.isRed &#x3D; !this.isRed;</span><br><span class="line">                this.stus.push(&#123;</span><br><span class="line">                    name:&#39;mick&#39;,score:&#39;A&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .red&#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .green&#123;</span><br><span class="line">        background-color: green;</span><br><span class="line">    &#125;</span><br><span class="line">    .big&#123;</span><br><span class="line">        font-size: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="v-for的使用"><a href="#v-for的使用" class="headerlink" title="v-for的使用"></a>v-for的使用</h4><ul>
+<li><p>可以使用操作数组 (item,index)</p>
+</li>
+<li><p>可以使用操作对象 (value,key,index)</p>
+</li>
+<li><p>key 是类似trank by 的一个属性</p>
+</li>
+<li><p>为的是告诉vue，js中的元素，与页面之间的关联，当识图删除元素的时候，是单个元素的删除而不是正版替换，所以需要关联其关系，设置(必须,性能)  </p>
+</li>
+<li><p>2.2.0+ 的版本里，当在组件中使用 v-for 时，key 现在是必须的。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li v-for&#x3D;&quot;(stu,index) in stus&quot; v-bind:key&#x3D;index&gt;</span><br><span class="line">            index:&#123;&#123;index&#125;&#125;,stu:&#123;&#123;stu&#125;&#125;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line"></span><br><span class="line">        使用对象的方式 &lt;hr&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;li v-for&#x3D;&quot;(value,key,i) in person&quot; v-bind:key&#x3D;&quot;i+&#39;-label&#39;&quot;&gt; </span><br><span class="line">                value:&#123;&#123;value&#125;&#125;</span><br><span class="line">                key:&#123;&#123;key&#125;&#125;</span><br><span class="line">                i:&#123;&#123;i&#125;&#125;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                stus:[&#123;name:&#39;jack&#39;,score:&#39;A&#39;&#125;,&#123;name:&#39;rose&#39;,score:&#39;B&#39;&#125;],</span><br><span class="line">                person:&#123;name:&#39;mick&#39;,alise:&#39;麦克&#39;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .red&#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .green&#123;</span><br><span class="line">        background-color: green;</span><br><span class="line">    &#125;</span><br><span class="line">    .big&#123;</span><br><span class="line">        font-size: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">[Vue warn]: Duplicate keys detected: &#39;0&#39;. This may cause an update error. -b 警告解决方案:https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;4bc3c6688e09</span><br></pre></td></tr></table></figure>
+<h4 id="漂亮的列表"><a href="#漂亮的列表" class="headerlink" title="漂亮的列表"></a>漂亮的列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li v-for&#x3D;&quot;(hero,index) in heros&quot; :key&#x3D;&quot;index&quot;</span><br><span class="line">                :class&#x3D;&quot;&#123;&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;blue&#39;,&#39;C&#39;:&#39;green&#39;,&#39;D&#39;:&#39;pink&#39;&#125;[hero.score]</span><br><span class="line">&quot;&gt;</span><br><span class="line">                &#123;&#123;hero.name&#125;&#125;,&#123;&#123;hero.score&#125;&#125;</span><br><span class="line">                &lt;button @click&#x3D;&quot;del(index)&quot;&gt;删除英雄&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">        英雄姓名:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-model&#x3D;&quot;name&quot;&gt;&lt;br&#x2F;&gt;</span><br><span class="line">        英雄成绩:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-model&#x3D;&quot;score&quot;&gt;</span><br><span class="line">        &lt;button @click&#x3D;&quot;addHero&quot;&gt;添加英雄&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                name:&#39;&#39;,</span><br><span class="line">                score:&#39;&#39;,</span><br><span class="line">                heros: [&#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    name: &#39;奥利安娜&#39;,</span><br><span class="line">                    score: &#39;A&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 2,</span><br><span class="line">                    name: &#39;崔斯特&#39;,</span><br><span class="line">                    score: &#39;B&#39;</span><br><span class="line">                &#125;,&#123;</span><br><span class="line">                    id: 3,</span><br><span class="line">                    name: &#39;妲己&#39;,</span><br><span class="line">                    score: &#39;C&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 4,</span><br><span class="line">                    name: &#39;阿拉斯加&#39;,</span><br><span class="line">                    score: &#39;D&#39;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            addHero()&#123;</span><br><span class="line">                &#x2F;&#x2F; 获取页面输入的值的时候,你用什么?v-model</span><br><span class="line">                this.heros.push(&#123;</span><br><span class="line">                    name:this.name,</span><br><span class="line">                    score:this.score</span><br><span class="line">                &#125;);</span><br><span class="line">                this.name&#x3D;&#39;&#39;;</span><br><span class="line">                this.score&#x3D;&#39;&#39;</span><br><span class="line">            &#125;,</span><br><span class="line">            del(index)&#123;</span><br><span class="line">                this.heros.splice(index,1)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .red &#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .green &#123;</span><br><span class="line">        background-color: yellowgreen;</span><br><span class="line">    &#125;</span><br><span class="line">    .blue &#123;</span><br><span class="line">        background-color: skyblue;</span><br><span class="line">    &#125;</span><br><span class="line">    .pink &#123;</span><br><span class="line">        background-color: hotpink;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">splice的使用 查看文档:http:&#x2F;&#x2F;www.w3school.com.cn&#x2F;jsref&#x2F;jsref_splice.asp</span><br></pre></td></tr></table></figure>
+
+<h4 id="父子组件的使用"><a href="#父子组件的使用" class="headerlink" title="父子组件的使用"></a>父子组件的使用</h4><ul>
+<li>父和子，使用的是父，被用的是子</li>
+<li>父需要声明子组件，引入子组件对象，声明方式如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import 子组件对象 from &#39;.&#x2F;xxx.vue&#39;;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        components:&#123;</span><br><span class="line">            组件名:子组件对象</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>案例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;headerVue&gt;&lt;&#x2F;headerVue&gt;</span><br><span class="line">        &lt;bodyVue&gt;&lt;&#x2F;bodyVue&gt;</span><br><span class="line">        &lt;footerVue&gt;&lt;&#x2F;footerVue&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F;引入子组件对象</span><br><span class="line">以下为父组件</span><br><span class="line">import headerVue from &#39;.&#x2F;components&#x2F;header.vue&#39;</span><br><span class="line">import bodyVue from &#39;.&#x2F;components&#x2F;body.vue&#39;</span><br><span class="line">import footerVue from &#39;.&#x2F;components&#x2F;footer.vue&#39;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;&#125;,</span><br><span class="line">        &#x2F;&#x2F;必须声明</span><br><span class="line">        components:&#123;</span><br><span class="line">            &#x2F;&#x2F;组件名(在模板中使用) :组件对象</span><br><span class="line">            headerVue:headerVue,</span><br><span class="line">            bodyVue, &#x2F;&#x2F;简写</span><br><span class="line">            footerVue,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">以下为子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        我是头</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    div&#123;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellowgreen;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全局组件，使用更为方便，不需要声明，直接用</li>
+<li>在main.js中引入一次，在main.js中使用 <code>vue.component(&#39;组件名&#39;,组件对象);</code></li>
+<li>所有的组件就可以直接通过组件名，使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">main.js中组件全局声明</span><br><span class="line">&#x2F;&#x2F; 1:引入vue</span><br><span class="line">import Vue from &#39;vue&#39;;</span><br><span class="line">import App from &#39;.&#x2F;app.vue&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;引入子组件对象</span><br><span class="line">import headerVue from &#39;.&#x2F;components&#x2F;header.vue&#39;</span><br><span class="line">import bodyVue from &#39;.&#x2F;components&#x2F;body.vue&#39;</span><br><span class="line">import footerVue from &#39;.&#x2F;components&#x2F;footer.vue&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明全局组件</span><br><span class="line">Vue.component(&#39;headerVue&#39;,headerVue);</span><br><span class="line">Vue.component(&#39;bodyVue&#39;,bodyVue);</span><br><span class="line">Vue.component(&#39;footerVue&#39;,footerVue);</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el:&#39;.app&#39;,</span><br><span class="line">    render:c &#x3D;&gt; c(App)</span><br><span class="line">    &#x2F;&#x2F; 1: 当参数是一个的时候，小括号可以省略</span><br><span class="line">    &#x2F;&#x2F; 2: 当代码只有一行且是返回值的时候，可以省略打括号</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="父传子"><a href="#父传子" class="headerlink" title="父传子"></a>父传子</h4><ul>
+<li>父组件通过子组件的属性将值进行传递<ul>
+<li>方式有2:<ul>
+<li>常量:  prop1=”常量值”</li>
+<li>变量:  :prop2=”变量名”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子组件需要声明<ul>
+<li>根属性props:[‘prop1’,’prop2’]</li>
+<li>在页面中直接使用</li>
+<li>在js中应该如何使用prop1？   this.prop1获取<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;headerVue textone&#x3D;&quot;大&quot;&gt;&lt;&#x2F;headerVue&gt;</span><br><span class="line">        &lt;bodyVue :texttwo&#x3D;&quot;text2&quot;&gt;&lt;&#x2F;bodyVue&gt;</span><br><span class="line">        &lt;footerVue&gt;&lt;&#x2F;footerVue&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F;引入子组件对象</span><br><span class="line">import headerVue from &#39;.&#x2F;components&#x2F;header.vue&#39;</span><br><span class="line">import bodyVue from &#39;.&#x2F;components&#x2F;body.vue&#39;</span><br><span class="line">import footerVue from &#39;.&#x2F;components&#x2F;footer.vue&#39;</span><br><span class="line"></span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                text2:&#39;哈哈呵呵&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;&#125;,</span><br><span class="line">        &#x2F;&#x2F;必须声明</span><br><span class="line">        components:&#123;</span><br><span class="line">            &#x2F;&#x2F;组件名(在模板中使用) :组件对象</span><br><span class="line">            headerVue:headerVue,</span><br><span class="line">            bodyVue, &#x2F;&#x2F;简写</span><br><span class="line">            footerVue,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        我是&#123;&#123;textone&#125;&#125;头</span><br><span class="line">        &lt;button @click&#x3D;&quot;show&quot;&gt;从js中获取父组件值&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F;接受父组件值参数的设置</span><br><span class="line">        props:[&#39;textone&#39;],</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                alert(this.textone)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    div&#123;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellowgreen;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="看文档的对象分类"><a href="#看文档的对象分类" class="headerlink" title="看文档的对象分类"></a>看文档的对象分类</h4></li>
+</ul>
+</li>
+<li>1:全局的代表Vue.的</li>
+<li>2:实例的代表this.或者new Vue().</li>
+<li>3:选项代表 new Vue() 的参数</li>
+<li>或者 export default里边的属性</li>
+</ul>
+<h4 id="子向父组件通信（vuebus）-扩展"><a href="#子向父组件通信（vuebus）-扩展" class="headerlink" title="子向父组件通信（vuebus）(扩展)"></a>子向父组件通信（vuebus）(扩展)</h4><ul>
+<li>通过new Vue()这样的一个对象，来$on(‘事件名’,fn(prop1,pro2))</li>
+<li>另一个组件引入同一个vuebus,  来$emit(‘事件名’,prop1,pro2)</li>
+</ul>
+--></li></ul>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/" class="post-title-link" itemprop="url">reactNative学习分享五</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-21 13:58:36" itemprop="dateCreated datePublished" datetime="2019-01-21T13:58:36+08:00">2019-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-02-01 15:40:15" itemprop="dateModified" datetime="2019-02-01T15:40:15+08:00">2019-02-01</time>
+              </span>
+
+          
+            <span id="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/" class="post-meta-item leancloud_visitors" data-flag-title="reactNative学习分享五" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.Functions are not valid as a React child. This may happen if you return a Component instead of <Component> from render 的错误,写函数的时候不要忘记加()</Component></p>
+<p>二.scrollView 当一帧滚动完之后的属性,onMomentumScrollEnd </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 当一帧滚动结束的时候调用</span><br><span class="line">onScrollAnimationEnd(e)&#123;</span><br><span class="line">    &#x2F;&#x2F; 求出当前的页码</span><br><span class="line">    let currentPage &#x3D; Math.floor(e.nativeEvent.contentOffset.x &#x2F; width);</span><br><span class="line">    &#x2F;&#x2F; 更新状态机</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">       activePage: currentPage</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会自动将scrollView事件传进去，需要一个e作为接受</p>
+<p>三.this.setState is not a function错误
+需要再constructor 加上 this.onScrollAnimationEnd = this.onScrollAnimationEnd.bind(this)</p>
+<p>四.js开发中能写成局部的就写成局部的</p>
+<p>五. 查找url里面是否含有w.h,如果找到了返回任意正数，否则返回负一。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (url.search(&#39;w.h&#39;))</span><br></pre></td></tr></table></figure>
+
+<p>六. Image的resizeMode 用contain 完全展示出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image source&#x3D;&#123;&#123;uri: this.props.rightIcon&#125;&#125;</span><br><span class="line">   style&#x3D;&#123;&#123;width:64,height:43,resizeMode:&#39;contain&#39;&#125;&#125;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>七.navigator传递参数问题
+首先这个借口已经不在维护，其实用新的接口更好，建议大家迁移到新的react-navigation库,但是由于教程
+是老的所以我还是用的这个，传递参数的时候有问题，找了好久发现了传递的参数的位置: 
+相关文档可以参考：<a href="http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B</a> 
+以及自己的收藏夹内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.props.navigator.state.routeStack[1].passProps.url</span><br></pre></td></tr></table></figure>
+
+<p>八.WebView的使用犯的低级错误，需要把WebView属性写到 /&gt; 内</p>
+<p>九.instance.render is not a function error in reactjs 错误，语法问题 改成es6写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        &#x2F;&#x2F; 初始化数据源</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            dataSource: new ListView.DataSource(</span><br><span class="line">                &#123;rowHasChanged: (row1, row2) &#x3D;&gt; row1 !&#x3D;&#x3D; row2&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1146,262 +1544,6 @@ cnpm i babel-preset-react -D
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">node模块分享———PATH模块</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-12-05 17:28:03 / Modified: 17:29:30" itemprop="dateCreated datePublished" datetime="2018-12-05T17:28:03+08:00">2018-12-05</time>
-            </span>
-
-          
-            <span id="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="node模块分享———PATH模块" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/node%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E2%80%94PATH%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>node 模块分享———PATH模块</p>
-<p>fs：
-基础的文件操作 API
-path：
-提供和路径相关的操作 API
-*readline：
-用于读取大文本文件，一行一行读
-fs-extra（第三方）：
-<a href="https://www.npmjs.com/package/fs-extra" target="_blank" rel="noopener">https://www.npmjs.com/package/fs-extra</a> </p>
-<p>在文件操作的过程中，都”必须”使用物理路径（绝对路径）
-path 模块提供了一系列与路径相关的 API
-path.join([p1][,p2][,p3]…) =&gt; 连接多个路径
-path.basename(p, ext) =&gt; 获取文件名
-path.dirname(p) =&gt; 获取文件夹路径
-path.extname(p) =&gt; 获取文件扩展名
-path.format(obj) 和 path.parse(p)
-path.relative(from, to) =&gt; 获取从 from 到 to 的相对路径
-源码地址：
-<a href="https://github.com/nodejs/node/blob/master/lib/path.js" target="_blank" rel="noopener">https://github.com/nodejs/node/blob/master/lib/path.js</a></p>
-<p>// PATH模块的使用</p>
-<p>const path = require(‘path’);
-const temp = path.join(__dirname, ‘./../lyrics/血染的风采.lrc’);</p>
-<p>path.basename(p[, ext])
-console.log(path.basename(temp));
-// 获取文件名</p>
-<p>console.log(path.basename(temp, ‘rc’));
-// 获取文件名without扩展名</p>
-<p>path.delimiter
-// 获取不同操作系统中默认的路径分隔符 Windows是; Linux是:
-console.log(path.delimiter);</p>
-<p>// 获取环境变量
-console.log(process.env.PATH.split(path.delimiter));</p>
-<p>// 获取目录名称
-console.log(path.dirname(temp));</p>
-<p>path.extname(p)
-// 获取路径中的扩展名，包含.
-console.log(path.extname(temp));</p>
-<p>path.parse(pathString)
-// 将一个路径字符串转换为一个对象（包含文件目录，文件名，扩展名）
-var obj = path.parse(temp);
-console.log(obj);</p>
-<p>path.format(pathObject)
-// 将路径对象转字符串
-var obj = path.parse(temp);
-console.log(path.format(obj));</p>
-<p>path.isAbsolute(path)
-// true
-console.log(path.isAbsolute(temp));
-// true
-console.log(path.isAbsolute(‘../temp/1.txt’));</p>
-<p>path.join([path1][, path2][, …])
-// 拼合路径组成
-path.join(__dirname, ‘..’, ‘./temp’, ‘a’, ‘../../1.txt’);</p>
-<p>path.normalize(p)
-// 常规化一个路径,为windows设计
-var a = path.normalize(‘C:/dev\abc//cba////1.txt’);
-console.log(a);</p>
-<p>path.relative(from, to)
-console.log(path.relative(__dirname,’C:\Users\iceStone\Desktop\fed01\day03\lyrics\血染的风采.lrc’));
-// 获取to 相对于from的相对路径</p>
-<p>path.resolve([from …], to)
-console.log(path.resolve(<strong>dirname, ‘..’, ‘./‘, ‘./code’));
-// 与join不同,直接编程c:/dev/code
-console.log(path.resolve(</strong>dirname, ‘c:/dev’, ‘./‘, ‘./code’));</p>
-<p>path.sep
-// 获取当前操作系统中默认用的路径成员分隔符 windows:\ linux:/
-console.log(path.sep);</p>
-<p>path
-// 根据操作系统决定
-path.win32 
-// 允许在任意操作系统上使用windows的方式操作路径</p>
-<p>path.posix
-// 允许在任意操作系统上使用Linux的方式操作路径</p>
-<p>// var p = {
-//   win32: p
-// };
-// p.win32 = p; 
-// console.log(p === p.win32); 涉及到执行机制问题
-// {
-//   a
-//   var a = 10;
-// }</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">npm知识分享</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-12-05 16:36:34 / Modified: 16:43:48" itemprop="dateCreated datePublished" datetime="2018-12-05T16:36:34+08:00">2018-12-05</time>
-            </span>
-
-          
-            <span id="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" class="post-meta-item leancloud_visitors" data-flag-title="npm知识分享" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="nrm-的使用"><a href="#nrm-的使用" class="headerlink" title="nrm 的使用"></a>nrm 的使用</h3><p>npm intall -g nrm 安装nrm 用于 切换镜像点
-nrm ls 查看镜像点
-nrm test 测试速度
-nrm use taboo 选择镜像点</p>
-<h3 id="npm常用命令"><a href="#npm常用命令" class="headerlink" title="npm常用命令"></a>npm常用命令</h3><p>npm config 配置 
-npm init 初始化package.json文件
-npm search 
-npm info + 包名 列出信息
-npm install
-npm uninstall
-npm list 显示依赖项
-npm outdated 判断有没有更新
-npm update
-npm run 运行定义的脚本
-npm cache [clean|ls] 清除缓存
-文档:<a href="https://docs.npmjs.com/" target="_blank" rel="noopener">https://docs.npmjs.com/</a> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1473,14 +1615,14 @@ npm cache [clean|ls] 清除缓存
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">237</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
