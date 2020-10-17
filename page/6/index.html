@@ -158,6 +158,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">高级前端养成 04nodeJS 基础学习 03 之调试 Node.js 程序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-17 16:26:13 / Modified: 17:52:05" itemprop="dateCreated datePublished" datetime="2020-06-17T16:26:13+08:00">2020-06-17</time>
+            </span>
+
+          
+            <span id="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成 04nodeJS 基础学习 03 之调试 Node.js 程序" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>方法</p>
+<ul>
+<li>WebStorm Debug + 断点</li>
+<li>VSCode Debug + 断点</li>
+<li>命令行 + Chrome + 断点</li>
+</ul>
+</li>
+<li><p>操作</p>
+<ul>
+<li>step over</li>
+<li>step into/step out</li>
+<li>watch</li>
+</ul>
+</li>
+<li><p>配置 debugger
+<img src="https://i.loli.net/2020/06/17/m6MpfWZySujO24L.jpg" alt="配置debugger.png"></p>
+</li>
+<li><p>然后 run 任务</p>
+</li>
+<li><p>添加 debugger，然后点 run debugger，可以看到变量</p>
+</li>
+<li><p>点击 step over 执行这一行</p>
+</li>
+<li><p>如果需要看其它的变量那么点一下加，输入，举例输入 this</p>
+</li>
+<li><p>step in 和 step out</p>
+</li>
+<li><p>添加调试的名称参数，每次可以用不同的 name</p>
+</li>
+<li><p>vscode 的调试</p>
+<ul>
+<li>基本功能和 webstorm 差不多</li>
+<li><img src="https://i.loli.net/2020/06/17/yOFdBbETruqRYGw.png" alt="配置vscode的使用.png"></li>
+</ul>
+</li>
+<li><p>第三种调试方式，不用任何工具</p>
+<ul>
+<li>node –inspect-brk cli.js add task 200<ul>
+<li>直接用浏览器去查看</li>
+<li>点下播放执行下去,http 程序不需要加 brl</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li>step over 执行这一行</li>
+<li>step in 进入</li>
+<li>step out 退出</li>
+<li>添加变量</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1428,271 +1561,6 @@ class Meta:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%B8%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%B8%89/" class="post-title-link" itemprop="url">django实现在线教育网站三</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-05 11:41:03" itemprop="dateCreated datePublished" datetime="2020-05-05T11:41:03+08:00">2020-05-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-11 15:06:11" itemprop="dateModified" datetime="2020-05-11T15:06:11+08:00">2020-05-11</time>
-              </span>
-
-          
-            <span id="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%B8%89/" class="post-meta-item leancloud_visitors" data-flag-title="django实现在线教育网站三" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%B8%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/05/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%B8%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一.django 基础知识</p>
-<ul>
-<li>django 目录结构<ul>
-<li>启动项目。<ol>
-<li>source .bashrc</li>
-<li>mkvirtualenv mxonline</li>
-<li>pip install django==2.2 -i <a href="https://pypi.douban.com/simple" target="_blank" rel="noopener">https://pypi.douban.com/simple</a></li>
-<li>ls ~/.virtualenvs/ 查看生成的项目</li>
-<li>配置 python 的虚拟环境解释器<ul>
-<li><img src="https://i.loli.net/2020/05/05/rQ2qxhHCBwAlTeO.png" alt="配置虚拟环境解释器.png"></li>
-</ul>
-</li>
-<li>settings,urls,会用到</li>
-<li>切换到目录下 python manage.py startapp polls 新建应用。方法二.tools run manage.py Task，然后 startapp message_form，这个时候 urls.py 下 INSTALLED_APPS 不会自动注册，需要自己手动配置，’message_form.apps.MessageFormConfig’</li>
-<li>重新组织目录结构，将自己的 apps 和第三方的 apps 分开</li>
-</ol>
-<ul>
-<li><img src="https://i.loli.net/2020/05/05/hRnV19M5G7EJdCp.png" alt="目录结构.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>二. django 快速配置 settings</p>
-<ul>
-<li><p>制作留言板功能</p>
-<ol>
-<li>将 html 原始文件改名成 message_form.html 放到 templates 下面</li>
-<li>开始配置 url,  重启之后发生 Error: Django is not importable in this environment 的报错，应该是环境的问题</li>
-<li>先,source .bashrc, 配置编译器 /Users/ories/.virtualenvs/mxonline 路径下的<ul>
-<li><img src="https://i.loli.net/2020/05/08/wKWHy3kUJlOCGIQ.png" alt="重新配置编译器.png"></li>
-</ul>
-</li>
-<li>这个时候 run 出现 LookupError: No installed app with label ‘admin’.的报错，通过重新创建项目解决</li>
-<li>配置文件夹此时文件结构<ul>
-<li><img src="https://i.loli.net/2020/05/08/5sPoDQi7YftnMCv.png" alt="文件结构.png"></li>
-</ul>
-</li>
-<li>配置<a href="http://127.0.0.1:8000/message_form/" target="_blank" rel="noopener">http://127.0.0.1:8000/message_form/</a></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># apps中message_form下的views</span><br><span class="line">from django.shortcuts import render</span><br><span class="line">def message_form(request):</span><br><span class="line">    return render(request, &quot;message_form.html&quot;)</span><br><span class="line"></span><br><span class="line"># apps中message_form下的urls</span><br><span class="line">from django.contrib import admin</span><br><span class="line">from django.urls import path</span><br><span class="line">from apps.message_form.views import message_form</span><br><span class="line"></span><br><span class="line">urlpatterns &#x3D; [</span><br><span class="line">    path(&#39;admin&#x2F;&#39;, admin.site.urls),</span><br><span class="line">    path(&#39;message_form&#x2F;&#39;, message_form),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>分离 html 文件中 css 样式<ul>
-<li>在 message_form 下面新建 static css style.css,并将 css 复制进去</li>
-<li>在 message_form_html 中加入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#x2F;static&#x2F;css&#x2F;style.css&quot;&gt;</span><br></pre></td></tr></table></figure></li>
-<li>重启服务完成</li>
-</ul>
-</li>
-<li>实现不同 app 下的静态文件分门别类放入不同 APP 下面</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">TEMPLATES &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">        &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,</span><br><span class="line">        &#39;DIRS&#39;: [os.path.join(BASE_DIR, &#39;templates&#39;)]</span><br><span class="line">        ,</span><br><span class="line">        &#39;APP_DIRS&#39;: True,  # 只要settings中的APP_DIRS设置为ture，以及debug设置为true,就可以实现不同app下的静态文件分门别类放入不同APP下面</span><br><span class="line">        &#39;OPTIONS&#39;: &#123;</span><br><span class="line">            &#39;context_processors&#39;: [</span><br><span class="line">                &#39;django.template.context_processors.debug&#39;,</span><br><span class="line">                &#39;django.template.context_processors.request&#39;,</span><br><span class="line">                &#39;django.contrib.auth.context_processors.auth&#39;,</span><br><span class="line">                &#39;django.contrib.messages.context_processors.messages&#39;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>如何将 static 改成 myStatic</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STATIC_URL &#x3D; &#39;&#x2F;myStatic&#x2F;&#39;</span><br></pre></td></tr></table></figure>
-
-<ol start="10">
-<li>配置全局 static，将静态 css 文件放到一起</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STATIC_URL &#x3D; os.path.join(BASE_DIR, &#39;static&#39;)</span><br></pre></td></tr></table></figure>
-
-<ol start="11">
-<li>总结</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 配置一个html页面显示的步骤</span><br><span class="line">1. 配置url</span><br><span class="line">2. 配置对应的views逻辑</span><br><span class="line">3. 拆封静态(css,js,images)放入到static,html放入到template之下</span><br><span class="line">  1. 也可以放到对应的app下面</span><br><span class="line">  2. 也可以放入到全局的template和static目录之下</span><br><span class="line">4. 配置全局的static文件访问路径的配置STATICFILES_DIRS</span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li><p>models 数据表设计</p>
-<ul>
-<li><p>通过 navicate,新建数据库 mxonline</p>
-</li>
-<li><p><img src="https://i.loli.net/2020/05/08/bazWPvkVoF86lrG.png" alt="新建数据库.png"></p>
-</li>
-<li><p>生成 django 表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">makemigrations</span><br><span class="line">migrate # 将表yin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将默认 sqlite 配置成 mysql</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">&#39;default&#39;: &#123;</span><br><span class="line">    &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,</span><br><span class="line">    &#39;NAME&#39;: &#39;mxonline&#39;,</span><br><span class="line">    &#39;USER&#39;: &#39;root&#39;,</span><br><span class="line">    &#39;PASSWORD&#39;: &#39;root&#39;,</span><br><span class="line">    &#39;HOST&#39;: &#39;127.0.0.1&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>重启之后会报错，因为没有安装 mysql 的驱动包<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在虚拟环境中使用</span><br><span class="line">pip install mysqlclient&#x3D;&#x3D;1.4.6</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>在 mysql 中生成 django 默认表</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">makemigrations</span><br><span class="line">migrate</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>生成自定义表，在 message_form 下的 models.py 中</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Message(models.Model):</span><br><span class="line">name &#x3D; models.CharField(max_length&#x3D;20, verbose_name&#x3D;&quot;姓名&quot;)</span><br><span class="line">email &#x3D; models.EmailField(verbose_name&#x3D;&quot;邮箱&quot;)</span><br><span class="line">address &#x3D; models.CharField(max_length&#x3D;100, verbose_name&#x3D;&quot;联系地址&quot;)</span><br><span class="line">message &#x3D; models.TextField(verbose_name&#x3D;&quot;留言信息&quot;)</span><br><span class="line"></span><br><span class="line">class Meta:</span><br><span class="line">    verbose_name &#x3D; &quot;留言信息&quot;</span><br><span class="line">    verbose_name_plural &#x3D; verbose_name</span><br><span class="line">    # db_table &#x3D; &quot;message&quot;  # 自己指定表名</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后 makemigrations,migrate</li>
-<li>通过设计表的方式打开表</li>
-<li>自己设置主键</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; models.CharField(max_length&#x3D;20, verbose_name&#x3D;&quot;姓名&quot;,primary_key&#x3D;&#39;true&#39;)</span><br></pre></td></tr></table></figure>
-
-<ol start="15">
-<li>通过文档或者源码查看到所哟的 charfiled</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;2.2&#x2F;ref&#x2F;models&#x2F;fields&#x2F;</span><br></pre></td></tr></table></figure>
-
-<ol start="16">
-<li>如何对表进行增删改查</li>
-</ol>
-<ul>
-<li>先通过 Navicate 在数据表里添加数据</li>
-</ul>
-<ol start="17">
-<li>查询所有数据</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import render</span><br><span class="line">from apps.message_form.models import Message</span><br><span class="line">def message_form(request):</span><br><span class="line">    # queryset 1. 进行for循环 2. 进行切片</span><br><span class="line">    # queryset本身并没有进行sql操作</span><br><span class="line">    all_messages &#x3D; Message.objects.all()</span><br><span class="line">    sliced_query &#x3D; Message.objects.all()[:1]</span><br><span class="line">    print(all_messages.query)  # 打印出sql语句</span><br><span class="line">    # SELECT &#96;message&#96;.&#96;name&#96;, &#96;message&#96;.&#96;email&#96;, &#96;message&#96;.&#96;address&#96;, &#96;message&#96;.&#96;message&#96; FROM &#96;message&#96;</span><br><span class="line">    print(sliced_query.query)</span><br><span class="line">    # SELECT &#96;message&#96;.&#96;name&#96;, &#96;message&#96;.&#96;email&#96;, &#96;message&#96;.&#96;address&#96;, &#96;message&#96;.&#96;message&#96; FROM &#96;message&#96;  LIMIT 1</span><br><span class="line">    for message in all_messages:</span><br><span class="line">        print(message.name)</span><br><span class="line">    return render(request, &quot;message_form.html&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="18">
-<li>filter 方法进行晒讯</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import render</span><br><span class="line">from apps.message_form.models import Message</span><br><span class="line">def message_form(request):</span><br><span class="line">    #2. filter</span><br><span class="line">    all_messages &#x3D; Message.objects.filter(name&#x3D;&quot;bobby&quot;)</span><br><span class="line">    print(all_messages.query)</span><br><span class="line">    for message in all_messages:</span><br><span class="line">        print(message.name)</span><br><span class="line">    return render(request, &quot;message_form.html&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="19">
-<li>get 获取数据的使用<ul>
-<li>get 返回一个对象，数据不存在或者有多条数据存在抛出异常<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import render</span><br><span class="line">from apps.message_form.models import Message</span><br><span class="line">def message_form(request):</span><br><span class="line">    #3 .get 返回一个对象，数据不存在或者有多条数据存在抛出异常</span><br><span class="line">    message &#x3D; Message.objects.get(name&#x3D;&quot;ories1&quot;)</span><br><span class="line">    print(message.name)</span><br><span class="line">    return render(request, &quot;message_form.html&quot;)</span><br></pre></td></tr></table></figure></li>
-<li>利用 try catch 捕获异常<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    message &#x3D; Message.objects.get(name&#x3D;&quot;bobby1&quot;)</span><br><span class="line">except Message.DoesNotExist as e:</span><br><span class="line">    pass</span><br><span class="line">except Message.MultipleObjectsReturned as e:</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>删除 get 获取的数据</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def message_form(request):</span><br><span class="line"># 3 .get 返回一个对象，数据不存在或者有多条数据存在抛出异常</span><br><span class="line">message &#x3D; Message.objects.get(name&#x3D;&quot;ories&quot;)</span><br><span class="line">message.delete()</span><br><span class="line">return render(request, &quot;message_form.html&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="21">
-<li>删除全部内容</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">all_messages &#x3D; Message.objects.filter(name&#x3D;&quot;bobby&quot;)</span><br><span class="line">all_messages.delete()</span><br></pre></td></tr></table></figure>
-
-<ol start="22">
-<li>filter 和 get 的对比，filter 不操作数据库，需要循环或者切片才操作数据库，get 直接操作数据库</li>
-<li>通过类插入数据</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def message_form(request):</span><br><span class="line">  # 进行数据插入操作</span><br><span class="line">  message &#x3D; Message()</span><br><span class="line">  message.name &#x3D; &quot;ories&quot;</span><br><span class="line">  message.email &#x3D; &quot;ories@imooc.com&quot;</span><br><span class="line">  message.address &#x3D; &quot;Shanghai&quot;</span><br><span class="line">  message.message &#x3D; &quot;留言&quot;</span><br><span class="line">  message.save()  # 1. 如果存在则更新，如果不存在则插入</span><br><span class="line">  return render(request, &quot;message_form.html&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="24">
-<li>如何从前端提取到数据，保存到数据库中</li>
-</ol>
-<ul>
-<li><p>第一步前端 html 代码的改造,在最下面加上 csrf_token</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;&quot;&#x2F;message_form&#x2F;&quot; method&#x3D;&quot;post&quot; class&#x3D;&quot;smart-green&quot;&gt;</span><br><span class="line">    &lt;h1&gt;留言信息</span><br><span class="line">        &lt;span&gt;请留下你的信息.&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">        &lt;span&gt;姓名 :&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input id&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;name&quot; class&#x3D;&quot;error&quot; placeholder&#x3D;&quot;请输入您的姓名&quot;&#x2F;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;error-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;label&gt;</span><br><span class="line"></span><br><span class="line">    &lt;label&gt;</span><br><span class="line">        &lt;span&gt;邮箱 :&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input id&#x3D;&quot;email&quot; type&#x3D;&quot;email&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;email&quot; placeholder&#x3D;&quot;请输入邮箱地址&quot;&#x2F;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;error-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;label&gt;</span><br><span class="line"></span><br><span class="line">    &lt;label&gt;</span><br><span class="line">        &lt;span&gt;联系地址 :&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input id&#x3D;&quot;address&quot; type&#x3D;&quot;text&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;address&quot; placeholder&#x3D;&quot;请输入联系地址&quot;&#x2F;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;error-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;label&gt;</span><br><span class="line"></span><br><span class="line">    &lt;label&gt;</span><br><span class="line">        &lt;span&gt;留言 :&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;textarea id&#x3D;&quot;message&quot; name&#x3D;&quot;message&quot;  placeholder&#x3D;&quot;请输入你的建议 &quot;&gt;&lt;&#x2F;textarea&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;error-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;label&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;success-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">        &lt;span&gt;&amp;nbsp;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;submit&quot; class&#x3D;&quot;button&quot; value&#x3D;&quot;提交&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;label&gt;</span><br><span class="line">    &lt;input type&#x3D;&#39;hidden&#39; name&#x3D;&#39;csrfmiddlewaretoken&#39; value&#x3D;&#39;SfHkbL4feo1G00sJQtbO7TtLN4c2BUwa&#39; &#x2F;&gt;</span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第二步,根据请求方法进行判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import render</span><br><span class="line">from apps.message_form.models import Message</span><br><span class="line">def message_form(request):</span><br><span class="line">    # 从html中提取数据保存到数据库中</span><br><span class="line">    if request.method &#x3D;&#x3D; &quot;POST&quot;:</span><br><span class="line">        name &#x3D; request.POST.get(&#39;name&#39;, &quot;&quot;)</span><br><span class="line">        email &#x3D; request.POST.get(&#39;email&#39;, &quot;&quot;)</span><br><span class="line">        address &#x3D; request.POST.get(&#39;address&#39;, &quot;&quot;)</span><br><span class="line">        message_text &#x3D; request.POST.get(&#39;message&#39;, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">        message &#x3D; Message()</span><br><span class="line">        message.name &#x3D; name</span><br><span class="line">        message.email &#x3D; email</span><br><span class="line">        message.address &#x3D; address</span><br><span class="line">        message.message &#x3D; message_text</span><br><span class="line">        message.save()</span><br><span class="line">    return render(request, &quot;message_form.html&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="25">
-<li><p>如何将数据显示到页面，template 模板讲解</p>
-<ul>
-<li>views 写法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import render</span><br><span class="line">from apps.message_form.models import Message</span><br><span class="line">def message_form(request):</span><br><span class="line">    # 从html中提取数据保存到数据库中</span><br><span class="line">    if request.method &#x3D;&#x3D; &quot;GET&quot;:</span><br><span class="line">        var_dict &#x3D; &#123;&#125;</span><br><span class="line">        all_messages &#x3D; Message.objects.all()</span><br><span class="line">        if all_messages:</span><br><span class="line">            message &#x3D; all_messages[0]</span><br><span class="line">            var_dict &#x3D; &#123;</span><br><span class="line">                &quot;message&quot;: message  # locals就是全部的变量</span><br><span class="line">            &#125;</span><br><span class="line">        return render(request, &quot;message_form.html&quot;, var_dict)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>template 写法</p>
-<ul>
-<li>普通 template 用法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;</span><br><span class="line">  &lt;span&gt;姓名 :&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;input id&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot; value&#x3D;&quot;&#123;% if message.name &#x3D;&#x3D; &#39;ories&#39; %&#125;oriestest&#123;% endif %&#125;&quot; name&#x3D;&quot;name&quot; class&#x3D;&quot;error&quot; placeholder&#x3D;&quot;请输入您的姓名&quot;&#x2F;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;error-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;label&gt;</span><br></pre></td></tr></table></figure></li>
-<li>判断匹配前两个字母<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;</span><br><span class="line">  &lt;span&gt;姓名 :&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;input id&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot; value&#x3D;&quot;&#123;% ifequal message.name|slice:&#39;2&#39; &#39;or&#39; %&#125;oriestest&#123;% endifequal %&#125;&quot; name&#x3D;&quot;name&quot; class&#x3D;&quot;error&quot; placeholder&#x3D;&quot;请输入您的姓名&quot;&#x2F;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;error-msg&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;label&gt;</span><br><span class="line">template文档:https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;2.2&#x2F;ref&#x2F;templates&#x2F;builtins&#x2F;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>post 请求没有 return 所造成的 bug</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1764,7 +1632,7 @@ class Meta:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

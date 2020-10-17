@@ -158,6 +158,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/28/day3-Easy-09-Palindrome-Number/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/28/day3-Easy-09-Palindrome-Number/" class="post-title-link" itemprop="url">day3_Easy_09_Palindrome_Number</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-28 14:30:21" itemprop="dateCreated datePublished" datetime="2019-05-28T14:30:21+08:00">2019-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-05-29 10:49:58" itemprop="dateModified" datetime="2019-05-29T10:49:58+08:00">2019-05-29</time>
+              </span>
+
+          
+            <span id="/2019/05/28/day3-Easy-09-Palindrome-Number/" class="post-meta-item leancloud_visitors" data-flag-title="day3_Easy_09_Palindrome_Number" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/05/28/day3-Easy-09-Palindrome-Number/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/05/28/day3-Easy-09-Palindrome-Number/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+Example 1:
+Input: 121
+Output: true
+Example 2:
+Input: -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+Example 3:
+Input: 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">通过计算的方法：</span><br><span class="line">class Solution:</span><br><span class="line">    def isPalindrome(self, x: int) -&gt; bool:</span><br><span class="line">        num &#x3D; 0</span><br><span class="line">        a &#x3D; abs(x)</span><br><span class="line">        while(a !&#x3D; 0):</span><br><span class="line">            temp &#x3D; a % 10</span><br><span class="line">            num &#x3D; num * 10 + temp</span><br><span class="line">            a &#x3D; a &#x2F;&#x2F; 10</span><br><span class="line">        if x&gt;&#x3D;0 and x &#x3D;&#x3D; num:</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br><span class="line">        </span><br><span class="line">通过转字符串的方法：</span><br><span class="line">class Solution:</span><br><span class="line">    def isPalindrome(self, x: int) -&gt; bool:</span><br><span class="line">        x &#x3D; str(x)</span><br><span class="line">        y &#x3D; x[::-1]</span><br><span class="line">        if x &#x3D;&#x3D; y:</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/05/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1610,601 +1707,6 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/04/04/matplotlib-share/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/04/matplotlib-share/" class="post-title-link" itemprop="url">matplotlib_share</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-04-04 09:47:45 / Modified: 09:58:20" itemprop="dateCreated datePublished" datetime="2019-04-04T09:47:45+08:00">2019-04-04</time>
-            </span>
-
-          
-            <span id="/2019/04/04/matplotlib-share/" class="post-meta-item leancloud_visitors" data-flag-title="matplotlib_share" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/04/04/matplotlib-share/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/04/04/matplotlib-share/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">unrate = pd.read_csv(<span class="string">'unrate.csv'</span>)</span><br><span class="line">unrate[<span class="string">'DATE'</span>] = pd.to_datetime(unrate[<span class="string">'DATE'</span>])<span class="comment"># 类型转换把/形式转成标准格式</span></span><br><span class="line">print(unrate.head(<span class="number">12</span>))</span><br></pre></td></tr></table></figure>
-
-<pre><code>         DATE  VALUE
-0  1948-01-01    3.4
-1  1948-02-01    3.8
-2  1948-03-01    4.0
-3  1948-04-01    3.9
-4  1948-05-01    3.5
-5  1948-06-01    3.6
-6  1948-07-01    3.6
-7  1948-08-01    3.9
-8  1948-09-01    3.8
-9  1948-10-01    3.7
-10 1948-11-01    3.8
-11 1948-12-01    4.0</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.plot()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_1_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">first_twelve = unrate[<span class="number">0</span>:<span class="number">12</span>] <span class="comment"># 把数据中前12个样本拿出来</span></span><br><span class="line">plt.plot(first_twelve[<span class="string">'DATE'</span>],first_twelve[<span class="string">'VALUE'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<pre><code>/usr/local/lib/python3.7/site-packages/pandas/plotting/_converter.py:129: FutureWarning: Using an implicitly registered datetime converter for a matplotlib plotting method. The converter was registered by pandas on import. Future versions of pandas will require you to explicitly register matplotlib converters.
-
-To register the converters:
-    &gt;&gt;&gt; from pandas.plotting import register_matplotlib_converters
-    &gt;&gt;&gt; register_matplotlib_converters()
-  warnings.warn(msg, FutureWarning)</code></pre>
-<p><img src="/.io/2019/04//output_2_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(first_twelve[<span class="string">'DATE'</span>],first_twelve[<span class="string">'VALUE'</span>])</span><br><span class="line">plt.xticks(rotation=<span class="number">45</span>) <span class="comment"># 斜着写x坐标</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_3_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(first_twelve[<span class="string">'DATE'</span>],first_twelve[<span class="string">'VALUE'</span>])</span><br><span class="line">plt.xticks(rotation=<span class="number">90</span>) <span class="comment"># 斜着写x坐标</span></span><br><span class="line">plt.xlabel(<span class="string">'Month'</span>) <span class="comment"># x 轴标签</span></span><br><span class="line">plt.ylabel(<span class="string">'Unemployment Rate'</span>) <span class="comment"># y 轴标签 </span></span><br><span class="line">plt.title(<span class="string">'Monthly Unemployment Trends, 1948'</span>) <span class="comment"># 顶部标签</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_4_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">fig = plt.figure() <span class="comment"># 指定出默认画图的区间</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_5_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">fig = plt.figure() <span class="comment"># 指定出默认画图的区间</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_6_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># fig = plt.figure()</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">3</span>,<span class="number">6</span>)) <span class="comment"># 当前画图区域的长度</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">ax1.plot(np.random.randint(<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>),np.arange(<span class="number">5</span>))</span><br><span class="line">ax2.plot(np.arange(<span class="number">10</span>)*<span class="number">3</span>, np.arange(<span class="number">10</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_7_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在同一图上画两条直线,且颜色不一样</span></span><br><span class="line"><span class="comment"># unrate['MONTH'] = unrate['DATE'].dt.month</span></span><br><span class="line">unrate[<span class="string">'MONTH'</span>] = unrate[<span class="string">'DATE'</span>].dt.month</span><br><span class="line">fig = plt.figure(figsize=(<span class="number">6</span>,<span class="number">3</span>))</span><br><span class="line">plt.plot(unrate[<span class="number">0</span>:<span class="number">12</span>][<span class="string">'MONTH'</span>], unrate[<span class="number">0</span>:<span class="number">12</span>][<span class="string">'VALUE'</span>],c=<span class="string">'red'</span>)</span><br><span class="line">plt.plot(unrate[<span class="number">12</span>:<span class="number">24</span>][<span class="string">'MONTH'</span>], unrate[<span class="number">12</span>:<span class="number">24</span>][<span class="string">'VALUE'</span>],c=<span class="string">'blue'</span>) <span class="comment"># c可以是rgb颜色</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_8_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">6</span>))</span><br><span class="line">colors = [<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'orange'</span>,<span class="string">'black'</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    start_index = i * <span class="number">12</span></span><br><span class="line">    end_index = (i+<span class="number">1</span>)*<span class="number">12</span></span><br><span class="line">    subset = unrate[start_index:end_index]</span><br><span class="line">    plt.plot(subset[<span class="string">'MONTH'</span>],subset[<span class="string">'VALUE'</span>],c=colors[i])</span><br><span class="line">    </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_9_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">6</span>))</span><br><span class="line">colors = [<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'orange'</span>,<span class="string">'black'</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    start_index = i * <span class="number">12</span></span><br><span class="line">    end_index = (i+<span class="number">1</span>)*<span class="number">12</span></span><br><span class="line">    subset = unrate[start_index:end_index]</span><br><span class="line">    label = str(<span class="number">1948</span> + i) <span class="comment"># 指定label</span></span><br><span class="line">    plt.plot(subset[<span class="string">'MONTH'</span>],subset[<span class="string">'VALUE'</span>],c=colors[i],label = label)</span><br><span class="line">    </span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>) <span class="comment"># legend函数用于指定图上的线是什么东西</span></span><br><span class="line">print(help(plt.legend)) <span class="comment"># 自己定义放哪里</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<pre><code>Help on function legend in module matplotlib.pyplot:
-
-legend(*args, **kwargs)
-    Place a legend on the axes.
-
-    Call signatures::
-
-        legend()
-        legend(labels)
-        legend(handles, labels)
-
-    The call signatures correspond to three different ways how to use
-    this method.
-
-    **1. Automatic detection of elements to be shown in the legend**
-
-    The elements to be added to the legend are automatically determined,
-    when you do not pass in any extra arguments.
-
-    In this case, the labels are taken from the artist. You can specify
-    them either at artist creation or by calling the
-    :meth:`~.Artist.set_label` method on the artist::
-
-        line, = ax.plot([1, 2, 3], label=&#39;Inline label&#39;)
-        ax.legend()
-
-    or::
-
-        line.set_label(&#39;Label via method&#39;)
-        line, = ax.plot([1, 2, 3])
-        ax.legend()
-
-    Specific lines can be excluded from the automatic legend element
-    selection by defining a label starting with an underscore.
-    This is default for all artists, so calling `Axes.legend` without
-    any arguments and without setting the labels manually will result in
-    no legend being drawn.
-
-
-    **2. Labeling existing plot elements**
-
-    To make a legend for lines which already exist on the axes
-    (via plot for instance), simply call this function with an iterable
-    of strings, one for each legend item. For example::
-
-        ax.plot([1, 2, 3])
-        ax.legend([&#39;A simple line&#39;])
-
-    Note: This way of using is discouraged, because the relation between
-    plot elements and labels is only implicit by their order and can
-    easily be mixed up.
-
-
-    **3. Explicitly defining the elements in the legend**
-
-    For full control of which artists have a legend entry, it is possible
-    to pass an iterable of legend artists followed by an iterable of
-    legend labels respectively::
-
-        legend((line1, line2, line3), (&#39;label1&#39;, &#39;label2&#39;, &#39;label3&#39;))
-
-    Parameters
-    ----------
-
-    handles : sequence of `.Artist`, optional
-        A list of Artists (lines, patches) to be added to the legend.
-        Use this together with *labels*, if you need full control on what
-        is shown in the legend and the automatic mechanism described above
-        is not sufficient.
-
-        The length of handles and labels should be the same in this
-        case. If they are not, they are truncated to the smaller length.
-
-    labels : sequence of strings, optional
-        A list of labels to show next to the artists.
-        Use this together with *handles*, if you need full control on what
-        is shown in the legend and the automatic mechanism described above
-        is not sufficient.
-
-    Other Parameters
-    ----------------
-
-
-    loc : int or string or pair of floats, default: :rc:`legend.loc` (&#39;best&#39; for axes, &#39;upper right&#39; for figures)
-        The location of the legend. Possible codes are:
-
-            ===============   =============
-            Location String   Location Code
-            ===============   =============
-            &#39;best&#39;            0
-            &#39;upper right&#39;     1
-            &#39;upper left&#39;      2
-            &#39;lower left&#39;      3
-            &#39;lower right&#39;     4
-            &#39;right&#39;           5
-            &#39;center left&#39;     6
-            &#39;center right&#39;    7
-            &#39;lower center&#39;    8
-            &#39;upper center&#39;    9
-            &#39;center&#39;          10
-            ===============   =============
-
-
-        Alternatively can be a 2-tuple giving ``x, y`` of the lower-left
-        corner of the legend in axes coordinates (in which case
-        ``bbox_to_anchor`` will be ignored).
-
-        The &#39;best&#39; option can be quite slow for plots with large amounts
-        of data. Your plotting speed may benefit from providing a specific
-        location.
-
-    bbox_to_anchor : `.BboxBase`, 2-tuple, or 4-tuple of floats
-        Box that is used to position the legend in conjunction with *loc*.
-        Defaults to `axes.bbox` (if called as a method to `.Axes.legend`) or
-        `figure.bbox` (if `.Figure.legend`).  This argument allows arbitrary
-        placement of the legend.
-
-        Bbox coordinates are interpreted in the coordinate system given by
-        `bbox_transform`, with the default transform
-        Axes or Figure coordinates, depending on which ``legend`` is called.
-
-        If a 4-tuple or `.BboxBase` is given, then it specifies the bbox
-        ``(x, y, width, height)`` that the legend is placed in.
-        To put the legend in the best location in the bottom right
-        quadrant of the axes (or figure)::
-
-            loc=&#39;best&#39;, bbox_to_anchor=(0.5, 0., 0.5, 0.5)
-
-        A 2-tuple ``(x, y)`` places the corner of the legend specified by *loc* at
-        x, y.  For example, to put the legend&#39;s upper right-hand corner in the
-        center of the axes (or figure) the following keywords can be used::
-
-            loc=&#39;upper right&#39;, bbox_to_anchor=(0.5, 0.5)
-
-    ncol : integer
-        The number of columns that the legend has. Default is 1.
-
-    prop : None or :class:`matplotlib.font_manager.FontProperties` or dict
-        The font properties of the legend. If None (default), the current
-        :data:`matplotlib.rcParams` will be used.
-
-    fontsize : int or float or {&#39;xx-small&#39;, &#39;x-small&#39;, &#39;small&#39;, &#39;medium&#39;, &#39;large&#39;, &#39;x-large&#39;, &#39;xx-large&#39;}
-        Controls the font size of the legend. If the value is numeric the
-        size will be the absolute font size in points. String values are
-        relative to the current default font size. This argument is only
-        used if `prop` is not specified.
-
-    numpoints : None or int
-        The number of marker points in the legend when creating a legend
-        entry for a `.Line2D` (line).
-        Default is ``None``, which will take the value from
-        :rc:`legend.numpoints`.
-
-    scatterpoints : None or int
-        The number of marker points in the legend when creating
-        a legend entry for a `.PathCollection` (scatter plot).
-        Default is ``None``, which will take the value from
-        :rc:`legend.scatterpoints`.
-
-    scatteryoffsets : iterable of floats
-        The vertical offset (relative to the font size) for the markers
-        created for a scatter plot legend entry. 0.0 is at the base the
-        legend text, and 1.0 is at the top. To draw all markers at the
-        same height, set to ``[0.5]``. Default is ``[0.375, 0.5, 0.3125]``.
-
-    markerscale : None or int or float
-        The relative size of legend markers compared with the originally
-        drawn ones.
-        Default is ``None``, which will take the value from
-        :rc:`legend.markerscale`.
-
-    markerfirst : bool
-        If *True*, legend marker is placed to the left of the legend label.
-        If *False*, legend marker is placed to the right of the legend
-        label.
-        Default is *True*.
-
-    frameon : None or bool
-        Control whether the legend should be drawn on a patch
-        (frame).
-        Default is ``None``, which will take the value from
-        :rc:`legend.frameon`.
-
-    fancybox : None or bool
-        Control whether round edges should be enabled around the
-        :class:`~matplotlib.patches.FancyBboxPatch` which makes up the
-        legend&#39;s background.
-        Default is ``None``, which will take the value from
-        :rc:`legend.fancybox`.
-
-    shadow : None or bool
-        Control whether to draw a shadow behind the legend.
-        Default is ``None``, which will take the value from
-        :rc:`legend.shadow`.
-
-    framealpha : None or float
-        Control the alpha transparency of the legend&#39;s background.
-        Default is ``None``, which will take the value from
-        :rc:`legend.framealpha`.  If shadow is activated and
-        *framealpha* is ``None``, the default value is ignored.
-
-    facecolor : None or &quot;inherit&quot; or a color spec
-        Control the legend&#39;s background color.
-        Default is ``None``, which will take the value from
-        :rc:`legend.facecolor`.  If ``&quot;inherit&quot;``, it will take
-        :rc:`axes.facecolor`.
-
-    edgecolor : None or &quot;inherit&quot; or a color spec
-        Control the legend&#39;s background patch edge color.
-        Default is ``None``, which will take the value from
-        :rc:`legend.edgecolor` If ``&quot;inherit&quot;``, it will take
-        :rc:`axes.edgecolor`.
-
-    mode : {&quot;expand&quot;, None}
-        If `mode` is set to ``&quot;expand&quot;`` the legend will be horizontally
-        expanded to fill the axes area (or `bbox_to_anchor` if defines
-        the legend&#39;s size).
-
-    bbox_transform : None or :class:`matplotlib.transforms.Transform`
-        The transform for the bounding box (`bbox_to_anchor`). For a value
-        of ``None`` (default) the Axes&#39;
-        :data:`~matplotlib.axes.Axes.transAxes` transform will be used.
-
-    title : str or None
-        The legend&#39;s title. Default is no title (``None``).
-
-    title_fontsize: str or None
-        The fontsize of the legend&#39;s title.  Default is the default fontsize.
-
-    borderpad : float or None
-        The fractional whitespace inside the legend border.
-        Measured in font-size units.
-        Default is ``None``, which will take the value from
-        :rc:`legend.borderpad`.
-
-    labelspacing : float or None
-        The vertical space between the legend entries.
-        Measured in font-size units.
-        Default is ``None``, which will take the value from
-        :rc:`legend.labelspacing`.
-
-    handlelength : float or None
-        The length of the legend handles.
-        Measured in font-size units.
-        Default is ``None``, which will take the value from
-        :rc:`legend.handlelength`.
-
-    handletextpad : float or None
-        The pad between the legend handle and text.
-        Measured in font-size units.
-        Default is ``None``, which will take the value from
-        :rc:`legend.handletextpad`.
-
-    borderaxespad : float or None
-        The pad between the axes and legend border.
-        Measured in font-size units.
-        Default is ``None``, which will take the value from
-        :rc:`legend.borderaxespad`.
-
-    columnspacing : float or None
-        The spacing between columns.
-        Measured in font-size units.
-        Default is ``None``, which will take the value from
-        :rc:`legend.columnspacing`.
-
-    handler_map : dict or None
-        The custom dictionary mapping instances or types to a legend
-        handler. This `handler_map` updates the default handler map
-        found at :func:`matplotlib.legend.Legend.get_legend_handler_map`.
-
-
-
-    Returns
-    -------
-
-    :class:`matplotlib.legend.Legend` instance
-
-    Notes
-    -----
-
-    Not all kinds of artist are supported by the legend command. See
-    :doc:`/tutorials/intermediate/legend_guide` for details.
-
-    Examples
-    --------
-
-    .. plot:: gallery/text_labels_and_annotations/legend.py
-
-None</code></pre>
-<p><img src="/.io/2019/04//output_10_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">reviews = pd.read_csv(<span class="string">'fandango_scores.csv'</span>)</span><br><span class="line">cols = [<span class="string">'FILM'</span>,<span class="string">'RT_user_norm'</span>,<span class="string">'Metacritic_user_nom'</span>,<span class="string">'IMDB_norm'</span>,<span class="string">'Fandango_Ratingvalue'</span>,<span class="string">'Fandango_Stars'</span>]</span><br><span class="line">norm_reviews = reviews[cols]</span><br><span class="line">print(norm_reviews[:<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-<pre><code>                             FILM  RT_user_norm  Metacritic_user_nom  \
-0  Avengers: Age of Ultron (2015)           4.3                 3.55   
-
-   IMDB_norm  Fandango_Ratingvalue  Fandango_Stars  
-0        3.9                   4.5             5.0  </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> arange</span><br><span class="line">num_cols = [<span class="string">"RT_user_norm"</span>,<span class="string">"Metacritic_user_nom"</span>,<span class="string">"IMDB_norm"</span>,<span class="string">"Fandango_Ratingvalue"</span>,<span class="string">"Fandango_Stars"</span>]</span><br><span class="line">bar_heights = norm_reviews.ix[<span class="number">0</span>,num_cols].values <span class="comment"># 把列拿出来</span></span><br><span class="line">print(bar_heights) <span class="comment"># 打印出当前媒体的评分值</span></span><br><span class="line">bar_positions = arange(<span class="number">5</span>)+<span class="number">0.75</span> <span class="comment"># 表示当前柱离开0值的位置</span></span><br><span class="line">print(bar_positions) <span class="comment">#柱和柱差1</span></span><br><span class="line">fig,ax = plt.subplots() <span class="comment"># fig,表示样式ax 控制轴</span></span><br><span class="line">ax.bar(bar_positions,bar_heights,<span class="number">0.8</span>) <span class="comment"># 0.8表示柱子的粗细</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<pre><code>[4.3 3.55 3.9 4.5 5.0]
-[0.75 1.75 2.75 3.75 4.75]
-
-
-/usr/local/Cellar/ipython/7.2.0/libexec/vendor/lib/python3.7/site-packages/ipykernel_launcher.py:4: DeprecationWarning: 
-.ix is deprecated. Please use
-.loc for label based indexing or
-.iloc for positional indexing
-
-See the documentation here:
-http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated
-  after removing the cwd from sys.path.</code></pre>
-<p><img src="/.io/2019/04//output_12_2.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">num_cols = [<span class="string">"RT_user_norm"</span>,<span class="string">"Metacritic_user_nom"</span>,<span class="string">"IMDB_norm"</span>,<span class="string">"Fandango_Ratingvalue"</span>,<span class="string">"Fandango_Stars"</span>]</span><br><span class="line">bar_heights = norm_reviews.ix[<span class="number">0</span>, num_cols].values</span><br><span class="line">bar_positions = arange(<span class="number">5</span>) + <span class="number">0.75</span></span><br><span class="line">tick_positions = range(<span class="number">1</span>,<span class="number">6</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.bar(bar_positions,bar_heights,<span class="number">0.5</span>)</span><br><span class="line">ax.set_xticks(tick_positions)</span><br><span class="line">ax.set_xticklabels(num_cols,rotation=<span class="number">45</span>)</span><br><span class="line"></span><br><span class="line">ax.set_xlabel(<span class="string">'Rating Source'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Average Rating'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Average User Rating For Avengers: Age of Ultron (2015)'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<pre><code>/usr/local/Cellar/ipython/7.2.0/libexec/vendor/lib/python3.7/site-packages/ipykernel_launcher.py:2: DeprecationWarning: 
-.ix is deprecated. Please use
-.loc for label based indexing or
-.iloc for positional indexing
-
-See the documentation here:
-http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated</code></pre>
-<p><img src="/.io/2019/04//output_13_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> arange</span><br><span class="line">num_cols = [<span class="string">"RT_user_norm"</span>,<span class="string">"Metacritic_user_nom"</span>,<span class="string">"IMDB_norm"</span>,<span class="string">"Fandango_Ratingvalue"</span>,<span class="string">"Fandango_Stars"</span>]</span><br><span class="line"></span><br><span class="line">bar_widths = norm_reviews.ix[<span class="number">0</span>, num_cols].values</span><br><span class="line">bar_positions = arange(<span class="number">5</span>)+<span class="number">0.75</span></span><br><span class="line">tick_positions = range(<span class="number">1</span>,<span class="number">6</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.barh(bar_positions,bar_widths,<span class="number">0.5</span>) <span class="comment"># 通过这个.barh得到横着的图</span></span><br><span class="line">ax.set_yticks(tick_positions)</span><br><span class="line">ax.set_yticklabels(num_cols)</span><br><span class="line">ax.set_ylabel(<span class="string">'Rating Source'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'Average Rating'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Average User Rating For Avengers: Age of Ultron (2015)'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<pre><code>/usr/local/Cellar/ipython/7.2.0/libexec/vendor/lib/python3.7/site-packages/ipykernel_launcher.py:5: DeprecationWarning: 
-.ix is deprecated. Please use
-.loc for label based indexing or
-.iloc for positional indexing
-
-See the documentation here:
-http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated
-  &quot;&quot;&quot;</code></pre>
-<p><img src="/.io/2019/04//output_14_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],norm_reviews[<span class="string">'RT_user_norm'</span>]) <span class="comment"># scatter是散点图</span></span><br><span class="line">ax.set_xlabel(<span class="string">'Fandango'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Rotten Tomatoes'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_15_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line">ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>) <span class="comment"># 加子图1</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>) <span class="comment"># 加子图2</span></span><br><span class="line">ax1.scatter(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],norm_reviews[<span class="string">'RT_user_norm'</span>])</span><br><span class="line">ax1.set_xlabel(<span class="string">'Fandango'</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">'Rotten Tomatoes'</span>)</span><br><span class="line">ax2.scatter(norm_reviews[<span class="string">'RT_user_norm'</span>],norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>])</span><br><span class="line">ax2.set_xlabel(<span class="string">'Rotten Tomatoes'</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">'Fandango'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_16_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">reviews = pd.read_csv(<span class="string">'fandango_scores.csv'</span>)</span><br><span class="line">cols = [<span class="string">'FILM'</span>,<span class="string">'RT_user_norm'</span>,<span class="string">'Metacritic_user_nom'</span>,<span class="string">'IMDB_norm'</span>,<span class="string">'Fandango_Ratingvalue'</span>]</span><br><span class="line">norm_reviews = reviews[cols]</span><br><span class="line">print(norm_reviews[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
-
-<pre><code>                             FILM  RT_user_norm  Metacritic_user_nom  \
-0  Avengers: Age of Ultron (2015)           4.3                 3.55   
-1               Cinderella (2015)           4.0                 3.75   
-2                  Ant-Man (2015)           4.5                 4.05   
-3          Do You Believe? (2015)           4.2                 2.35   
-4   Hot Tub Time Machine 2 (2015)           1.4                 1.70   
-
-   IMDB_norm  Fandango_Ratingvalue  
-0       3.90                   4.5  
-1       3.55                   4.5  
-2       3.90                   4.5  
-3       2.70                   4.5  
-4       2.55                   3.0  </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fandango_distribution = norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>].value_counts()</span><br><span class="line">fandango_distribution = fandango_distribution.sort_index()</span><br><span class="line">imdb_distribution = norm_reviews[<span class="string">'IMDB_norm'</span>].value_counts()</span><br><span class="line">imdb_distribution = imdb_distribution.sort_index()</span><br><span class="line">print(fandango_distribution)</span><br><span class="line">print(imdb_distribution)</span><br></pre></td></tr></table></figure>
-
-<pre><code>2.7     2
-2.8     2
-2.9     5
-3.0     4
-3.1     3
-3.2     5
-3.3     4
-3.4     9
-3.5     9
-3.6     8
-3.7     9
-3.8     5
-3.9    12
-4.0     7
-4.1    16
-4.2    12
-4.3    11
-4.4     7
-4.5     9
-4.6     4
-4.8     3
-Name: Fandango_Ratingvalue, dtype: int64
-2.00     1
-2.10     1
-2.15     1
-2.20     1
-2.30     2
-2.45     2
-2.50     1
-2.55     1
-2.60     2
-2.70     4
-2.75     5
-2.80     2
-2.85     1
-2.90     1
-2.95     3
-3.00     2
-3.05     4
-3.10     1
-3.15     9
-3.20     6
-3.25     4
-3.30     9
-3.35     7
-3.40     1
-3.45     7
-3.50     4
-3.55     7
-3.60    10
-3.65     5
-3.70     8
-3.75     6
-3.80     3
-3.85     4
-3.90     9
-3.95     2
-4.00     1
-4.05     1
-4.10     4
-4.15     1
-4.20     2
-4.30     1
-Name: IMDB_norm, dtype: int64</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots()</span><br><span class="line"><span class="comment"># ax.hist(norm_reviews['Fandango_Ratingvalue']) # hist表示这个图带有bins的结构</span></span><br><span class="line"><span class="comment"># ax.hist(norm_reviews['Fandango_Ratingvalue'],bins=20)</span></span><br><span class="line">ax.hist(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],range=(<span class="number">4</span>,<span class="number">5</span>),bins=<span class="number">20</span>) <span class="comment"># range 表示4,5</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_19_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>,<span class="number">20</span>))</span><br><span class="line">ax1 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">ax3 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">ax4 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">4</span>)</span><br><span class="line">ax1.hist(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],bins=<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax1.set_title(<span class="string">'Distribution of Fandango Ratings'</span>)</span><br><span class="line">ax1.set_ylim(<span class="number">0</span>,<span class="number">50</span>) <span class="comment"># 设置y轴区间</span></span><br><span class="line"></span><br><span class="line">ax2.hist(norm_reviews[<span class="string">'RT_user_norm'</span>],<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax2.set_title(<span class="string">'Distribution of Rotten Tomatoes Ratings'</span>)</span><br><span class="line">ax2.set_ylim(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">ax3.hist(norm_reviews[<span class="string">'Metacritic_user_nom'</span>],<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax3.set_title(<span class="string">'Distribution of Metacritic Ratings'</span>)</span><br><span class="line">ax3.set_ylim(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">ax4.hist(norm_reviews[<span class="string">'IMDB_norm'</span>],<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax4.set_title(<span class="string">'Distribution of Rotten IMDB Ratings'</span>)</span><br><span class="line">ax4.set_ylim(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_20_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 四分图</span></span><br><span class="line">fig,ax = plt.subplots()</span><br><span class="line">ax.boxplot(norm_reviews[<span class="string">'RT_user_norm'</span>]) <span class="comment"># 盒图</span></span><br><span class="line">ax.set_xticklabels([<span class="string">'Rotten Tomatoes'</span>])</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_21_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画四个盒特征盒子图</span></span><br><span class="line">num_cols = [<span class="string">'RT_user_norm'</span>,<span class="string">'Metacritic_user_nom'</span>,<span class="string">'IMDB_norm'</span>,<span class="string">'Fandango_Ratingvalue'</span>]</span><br><span class="line">fig,ax = plt.subplots()</span><br><span class="line">ax.boxplot(norm_reviews[num_cols].values)</span><br><span class="line">ax.set_xticklabels(num_cols,rotation=<span class="number">90</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_22_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">women_degrees = pd.read_csv(<span class="string">'percent-bachelors-degrees-women-usa.csv'</span>)</span><br><span class="line">plt.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[<span class="string">'Biology'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_23_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots()</span><br><span class="line">fig,ax = plt.subplots()</span><br><span class="line"><span class="comment"># print(women_degrees)</span></span><br><span class="line">ax.plot(women_degrees[<span class="string">'Year'</span>],women_degrees[<span class="string">'Biology'</span>],label=<span class="string">"Women"</span>)</span><br><span class="line">ax.plot(women_degrees[<span class="string">'Year'</span>],<span class="number">100</span>-women_degrees[<span class="string">'Biology'</span>],label=<span class="string">"Men"</span>)</span><br><span class="line"></span><br><span class="line">ax.tick_params(bottom=<span class="string">"off"</span>,top=<span class="string">"off"</span>,left=<span class="string">"off"</span>,right=<span class="string">"off"</span>) <span class="comment"># 去掉标尺</span></span><br><span class="line">ax.set_title(<span class="string">'Percentage of Biology Degrees Awarded By Gender'</span>) </span><br><span class="line">ax.legend(loc=<span class="string">"upper right"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<pre><code>/usr/local/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:424: MatplotlibDeprecationWarning: 
-Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a boolean is deprecated; use an actual boolean (True/False) instead.
-  warn_deprecated(&quot;2.2&quot;, &quot;Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a &quot;</code></pre>
-<p><img src="/.io/2019/04//output_24_1.png" alt="png"></p>
-<p><img src="/.io/2019/04//output_24_2.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Color</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">women_degrees = pd.read_csv(<span class="string">'percent-bachelors-degrees-women-usa.csv'</span>)</span><br><span class="line">major_cats = [<span class="string">'Biology'</span>, <span class="string">'Computer Science'</span>, <span class="string">'Engineering'</span>, <span class="string">'Math and Statistics'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cb_dark_blue = (<span class="number">0</span>/<span class="number">255</span>, <span class="number">107</span>/<span class="number">255</span>, <span class="number">164</span>/<span class="number">255</span>) <span class="comment"># 得到一个远组</span></span><br><span class="line">cb_orange = (<span class="number">255</span>/<span class="number">255</span>, <span class="number">128</span>/<span class="number">255</span>, <span class="number">14</span>/<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">12</span>, <span class="number">12</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sp <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">    ax = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,sp+<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># The color for each line is assigned here.</span></span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[major_cats[sp]], c=cb_dark_blue, label=<span class="string">'Women'</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], <span class="number">100</span>-women_degrees[major_cats[sp]], c=cb_orange, label=<span class="string">'Men'</span>)</span><br><span class="line">    <span class="keyword">for</span> key,spine <span class="keyword">in</span> ax.spines.items():</span><br><span class="line">        spine.set_visible(<span class="literal">False</span>)</span><br><span class="line">    ax.set_xlim(<span class="number">1968</span>, <span class="number">2011</span>)</span><br><span class="line">    ax.set_ylim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">    ax.set_title(major_cats[sp])</span><br><span class="line">    ax.tick_params(bottom=<span class="string">"off"</span>, top=<span class="string">"off"</span>, left=<span class="string">"off"</span>, right=<span class="string">"off"</span>)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_25_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">18</span>, <span class="number">3</span>)) <span class="comment"># 指定合适的子图</span></span><br><span class="line">stem_cats = [<span class="string">'Engineering'</span>, <span class="string">'Computer Science'</span>, <span class="string">'Psychology'</span>, <span class="string">'Biology'</span>, <span class="string">'Physical Sciences'</span>, <span class="string">'Math and Statistics'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sp <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">6</span>):</span><br><span class="line">    ax = fig.add_subplot(<span class="number">1</span>,<span class="number">6</span>,sp+<span class="number">1</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[stem_cats[sp]], c=cb_dark_blue, label=<span class="string">'Women'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], <span class="number">100</span>-women_degrees[stem_cats[sp]], c=cb_orange, label=<span class="string">'Men'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">for</span> key,spine <span class="keyword">in</span> ax.spines.items():</span><br><span class="line">        spine.set_visible(<span class="literal">False</span>)</span><br><span class="line">    ax.set_xlim(<span class="number">1968</span>, <span class="number">2011</span>)</span><br><span class="line">    ax.set_ylim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">    ax.set_title(stem_cats[sp])</span><br><span class="line">    ax.tick_params(bottom=<span class="string">"off"</span>, top=<span class="string">"off"</span>, left=<span class="string">"off"</span>, right=<span class="string">"off"</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br><span class="line">fig = plt.figure(figsize=(<span class="number">18</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sp <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">6</span>):</span><br><span class="line">    ax = fig.add_subplot(<span class="number">1</span>,<span class="number">6</span>,sp+<span class="number">1</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[stem_cats[sp]], c=cb_dark_blue, label=<span class="string">'Women'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], <span class="number">100</span>-women_degrees[stem_cats[sp]], c=cb_orange, label=<span class="string">'Men'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">for</span> key,spine <span class="keyword">in</span> ax.spines.items():</span><br><span class="line">        spine.set_visible(<span class="literal">False</span>)</span><br><span class="line">    ax.set_xlim(<span class="number">1968</span>, <span class="number">2011</span>)</span><br><span class="line">    ax.set_ylim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">    ax.set_title(stem_cats[sp])</span><br><span class="line">    ax.tick_params(bottom=<span class="string">"off"</span>, top=<span class="string">"off"</span>, left=<span class="string">"off"</span>, right=<span class="string">"off"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> sp == <span class="number">0</span>:</span><br><span class="line">        ax.text(<span class="number">2005</span>, <span class="number">87</span>, <span class="string">'Men'</span>) <span class="comment"># 在指定位置添加</span></span><br><span class="line">        ax.text(<span class="number">2002</span>, <span class="number">8</span>, <span class="string">'Women'</span>)</span><br><span class="line">    <span class="keyword">elif</span> sp == <span class="number">5</span>:</span><br><span class="line">        ax.text(<span class="number">2005</span>, <span class="number">62</span>, <span class="string">'Men'</span>)</span><br><span class="line">        ax.text(<span class="number">2001</span>, <span class="number">35</span>, <span class="string">'Women'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/.io/2019/04//output_26_0.png" alt="png"></p>
-<p><img src="/.io/2019/04//output_26_1.png" alt="png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2276,7 +1778,7 @@ Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

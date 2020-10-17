@@ -158,6 +158,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8B/" class="post-title-link" itemprop="url">Vue造轮子-popover组件(下)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-29 10:37:44" itemprop="dateCreated datePublished" datetime="2020-01-29T10:37:44+08:00">2020-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-31 11:46:57" itemprop="dateModified" datetime="2020-01-31T11:46:57+08:00">2020-01-31</time>
+              </span>
+
+          
+            <span id="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-popover组件(下)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-上一次的问题总结。"><a href="#1-上一次的问题总结。" class="headerlink" title="1. 上一次的问题总结。"></a>1. 上一次的问题总结。</h4><ul>
+<li>overflow:hidden -&gt; body.appendChild</li>
+<li>关闭重复 -&gt; 分开,document 只管外面,popover 只管里面</li>
+<li>忘了取消监听 document -&gt; 收拢 close</li>
+</ul>
+<h4 id="2-可以把一个函数哟没有五行作为一个优化的标准-简称为五行定律"><a href="#2-可以把一个函数哟没有五行作为一个优化的标准-简称为五行定律" class="headerlink" title="2. 可以把一个函数哟没有五行作为一个优化的标准,简称为五行定律"></a>2. 可以把一个函数哟没有五行作为一个优化的标准,简称为五行定律</h4><h4 id="3-接下来把样式改好点"><a href="#3-接下来把样式改好点" class="headerlink" title="3. 接下来把样式改好点"></a>3. 接下来把样式改好点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">.content-wrapper &#123; &#x2F;&#x2F; 如果写了scoped,popover里面那么就只作用于popover里面,移到外面就在外面了就可以</span><br><span class="line">  position: absolute;</span><br><span class="line">  border: 1px solid  $border-color;</span><br><span class="line">  border-radius: $border-radius;</span><br><span class="line">  filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));</span><br><span class="line">  &#x2F;*通过drop-shadow解决小三角没有阴影的问题，但是兼容性不好 *&#x2F;</span><br><span class="line">  &#x2F;*box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);*&#x2F;</span><br><span class="line">  background: white;</span><br><span class="line">  transform: translateY(-100%);</span><br><span class="line">  margin-top: -10px;</span><br><span class="line">  padding: .5em 1em;</span><br><span class="line">  max-width: 20em;</span><br><span class="line">  word-break: break-all;</span><br><span class="line">  &amp;::before ,  &amp;::after&#123;</span><br><span class="line">    content: &#39;&#39;;</span><br><span class="line">    display: block;</span><br><span class="line">    width: 0;</span><br><span class="line">    height: 0;</span><br><span class="line">    position: absolute;</span><br><span class="line">    border: 10px solid transparent;</span><br><span class="line">    left: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::after&#123;</span><br><span class="line">    content: &#39;&#39;;</span><br><span class="line">    display: block;</span><br><span class="line">    width: 0;</span><br><span class="line">    height: 0;</span><br><span class="line">    position: absolute;</span><br><span class="line">    border: 10px solid transparent;</span><br><span class="line">    left: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::before &#123;</span><br><span class="line">    border-top-color: black;</span><br><span class="line">    top: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::after &#123;</span><br><span class="line">    border-top-color: white;</span><br><span class="line">    top: calc(100% - 1px);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-增加功能-用户可以选择-popover-是上面下面左面右面"><a href="#4-增加功能-用户可以选择-popover-是上面下面左面右面" class="headerlink" title="4. 增加功能:用户可以选择 popover 是上面下面左面右面"></a>4. 增加功能:用户可以选择 popover 是上面下面左面右面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 先要给contentWrapper加一个类,传递进入位置信息</span><br><span class="line">  &lt;div ref&#x3D;&quot;contentWrapper&quot; class&#x3D;&quot;content-wrapper&quot; v-if&#x3D;&quot;visible&quot;</span><br><span class="line">    :class&#x3D;&quot;&#123;[&#96;position-$&#123;position&#125;&#96;]:true&#125;&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 获得位置信息</span><br><span class="line">  props: &#123;</span><br><span class="line">      position:&#123;</span><br><span class="line">        type: String,</span><br><span class="line">        default: &#39;top&#39;,</span><br><span class="line">        validator(value)&#123;</span><br><span class="line">          return [&#39;top&#39;,&#39;bottom&#39;,&#39;left&#39;,&#39;right&#39;].indexOf(value) &gt;&#x3D; 0</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 在method里面写方法,主要控制大概位置</span><br><span class="line">  method: &#123;</span><br><span class="line">    positionContent() &#123;</span><br><span class="line">        const &#123;contentWrapper, triggerWrapper&#125; &#x3D; this[&#39;$refs&#39;]</span><br><span class="line">        document.body.appendChild(contentWrapper)</span><br><span class="line">        let &#123;width, height, top, left&#125; &#x3D; triggerWrapper.getBoundingClientRect()</span><br><span class="line">        if(this.position &#x3D;&#x3D;&#x3D; &#39;top&#39;)&#123;</span><br><span class="line">          contentWrapper.style.left &#x3D; left + window.scrollX + &quot;px&quot;</span><br><span class="line">          contentWrapper.style.top &#x3D; top + window.scrollY + &quot;px&quot;</span><br><span class="line">        &#125;else if(this.position &#x3D;&#x3D;&#x3D; &#39;bottom&#39;)&#123;</span><br><span class="line">          contentWrapper.style.left &#x3D; left + window.scrollX + &quot;px&quot;</span><br><span class="line">          contentWrapper.style.top &#x3D; top + height + window.scrollY + &quot;px&quot;</span><br><span class="line">        &#125;else if(this.position &#x3D;&#x3D;&#x3D; &#39;left&#39;)&#123;</span><br><span class="line">          contentWrapper.style.left &#x3D; left + window.scrollX + &quot;px&quot;</span><br><span class="line">          let &#123;height: height2&#125; &#x3D; contentWrapper.getBoundingClientRect()</span><br><span class="line">          contentWrapper.style.top &#x3D; top  + window.scrollY + (height - height2)&#x2F;2 + &quot;px&quot;</span><br><span class="line">        &#125;else if(this.position &#x3D;&#x3D;&#x3D; &#39;right&#39;)&#123;</span><br><span class="line">          contentWrapper.style.left &#x3D; left + window.scrollX + width + &quot;px&quot;</span><br><span class="line">          let &#123;height: height2&#125; &#x3D; contentWrapper.getBoundingClientRect()</span><br><span class="line">          contentWrapper.style.top &#x3D; top  + window.scrollY + (height - height2)&#x2F;2 + &quot;px&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 然后对css进行处理,主要是箭头当想</span><br><span class="line">  &lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">  $border-color: #333;</span><br><span class="line">  $border-radius: 4px;</span><br><span class="line">  .popover &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: top;</span><br><span class="line">    position: relative;</span><br><span class="line">  &#125;</span><br><span class="line">  .content-wrapper &#123; &#x2F;&#x2F; 如果写了scoped,popover里面那么就只作用于popover里面,移到外面就在外面了就可以</span><br><span class="line">    position: absolute;</span><br><span class="line">    border: 1px solid  $border-color;</span><br><span class="line">    border-radius: $border-radius;</span><br><span class="line">    filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));</span><br><span class="line">    &#x2F;*通过drop-shadow解决小三角没有阴影的问题，但是兼容性不好 *&#x2F;</span><br><span class="line">    &#x2F;*box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);*&#x2F;</span><br><span class="line">    background: white;</span><br><span class="line">    padding: .5em 1em;</span><br><span class="line">    max-width: 20em;</span><br><span class="line">    word-break: break-all;</span><br><span class="line">    &amp;::before ,  &amp;::after&#123;</span><br><span class="line">      content: &#39;&#39;;</span><br><span class="line">      display: block;</span><br><span class="line">      border: 10px solid transparent;</span><br><span class="line">      width: 0;</span><br><span class="line">      height: 0;</span><br><span class="line">      position: absolute;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp;.position-top &#123;</span><br><span class="line">      transform: translateY(-100%);</span><br><span class="line">      margin-top: -10px;</span><br><span class="line">      &amp;::before, &amp;::after&#123;</span><br><span class="line">        left: 10px;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::before &#123;</span><br><span class="line">        border-top-color: black;</span><br><span class="line">        top: 100%;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::after &#123;</span><br><span class="line">        border-top-color: white;</span><br><span class="line">        top: calc(100% - 1px);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp;.position-bottom &#123;</span><br><span class="line">      margin-top: 10px;</span><br><span class="line">      &amp;::before, &amp;::after&#123;</span><br><span class="line">        left: 10px;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::before &#123;</span><br><span class="line">        border-bottom-color: black;</span><br><span class="line">        bottom: 100%;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::after &#123;</span><br><span class="line">        border-bottom-color: white;</span><br><span class="line">        bottom: calc(100% - 1px);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp;.position-left&#123;</span><br><span class="line">      transform: translateX(-100%);</span><br><span class="line">      margin-left: -10px;</span><br><span class="line">      &amp;::before, &amp;::after&#123;</span><br><span class="line">        transform: translateY(-50%);</span><br><span class="line">        top: 50%;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::before &#123;</span><br><span class="line">        border-left-color: black;</span><br><span class="line">        left: 100%;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::after &#123;</span><br><span class="line">        border-left-color: white;</span><br><span class="line">        left: calc(100% - 1px)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp;.position-right&#123;</span><br><span class="line">      margin-left: 10px;</span><br><span class="line">      &amp;::before, &amp;::after&#123;</span><br><span class="line">        transform: translateY(-50%);</span><br><span class="line">        top: 50%;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::before &#123;</span><br><span class="line">        border-right-color: black;</span><br><span class="line">        right: 100%;</span><br><span class="line">      &#125;</span><br><span class="line">      &amp;::after &#123;</span><br><span class="line">        border-right-color: white;</span><br><span class="line">        right: calc(100% - 1px)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-发现目前代码比较冗余，进一步优化代码"><a href="#5-发现目前代码比较冗余，进一步优化代码" class="headerlink" title="5.发现目前代码比较冗余，进一步优化代码"></a>5.发现目前代码比较冗余，进一步优化代码</h4><ul>
+<li>多个 if else 逻辑相似，首先要把共有代码抽上去，利用表驱动编程的技巧。
+<img src="https://i.loli.net/2020/01/31/WCRjO28ilBVMzGd.png" alt="表驱动编程.png"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">positionContent() &#123;</span><br><span class="line">      const &#123;contentWrapper, triggerWrapper&#125; &#x3D; this[&#39;$refs&#39;]</span><br><span class="line">      document.body.appendChild(contentWrapper)</span><br><span class="line">      const &#123;width, height, top, left&#125; &#x3D; triggerWrapper.getBoundingClientRect()</span><br><span class="line">      const &#123;height: height2&#125; &#x3D; contentWrapper.getBoundingClientRect()</span><br><span class="line">      let positions &#x3D; &#123;</span><br><span class="line">        top: &#123;</span><br><span class="line">          top: top + window.scrollY,</span><br><span class="line">          left: left + window.scrollX</span><br><span class="line">        &#125;,</span><br><span class="line">        bottom: &#123;</span><br><span class="line">          top: top + height + window.scrollY,</span><br><span class="line">          left: left + window.scrollX</span><br><span class="line">        &#125;,</span><br><span class="line">        left: &#123;</span><br><span class="line">          top: top  + window.scrollY + (height - height2)&#x2F;2,</span><br><span class="line">          left: left + window.scrollX</span><br><span class="line">        &#125;,</span><br><span class="line">        right: &#123;</span><br><span class="line">          top:  top  + window.scrollY + (height - height2)&#x2F;2,</span><br><span class="line">          left: left + window.scrollX + width</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">      contentWrapper.style.left &#x3D; positions[this.position].left + &#39;px&#39;</span><br><span class="line">      contentWrapper.style.top &#x3D; positions[this.position].top + &#39;px&#39;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="6-实现-hover-的效果"><a href="#6-实现-hover-的效果" class="headerlink" title="6.实现 hover 的效果"></a>6.实现 hover 的效果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 每个事件的处理逻辑不一样，所以要分开写if</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    if(this.trigger &#x3D;&#x3D;&#x3D; &#39;click&#39;)&#123;</span><br><span class="line">      this[&#39;$refs&#39;][&#39;popover&#39;].addEventListener(&#39;click&#39;,this.onClick)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this[&#39;$refs&#39;][&#39;popover&#39;].addEventListener(&#39;mouseenter&#39;,this.open)</span><br><span class="line">      this[&#39;$refs&#39;][&#39;popover&#39;].addEventListener(&#39;mouseleave&#39;,this.close)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 负责任的轮子要写destory,防止内存泄露</span><br><span class="line">  destroyed()&#123;</span><br><span class="line">    if(this.trigger &#x3D;&#x3D;&#x3D; &#39;click&#39;)&#123;</span><br><span class="line">      this[&#39;$refs&#39;][&#39;popover&#39;].removeEventListener(&#39;click&#39;,this.onClick)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this[&#39;$refs&#39;][&#39;popover&#39;].removeEventListener(&#39;mouseenter&#39;,this.open)</span><br><span class="line">      this[&#39;$refs&#39;][&#39;popover&#39;].removeEventListener(&#39;mouseleave&#39;,this.close)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1055,115 +1158,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-title-link" itemprop="url">浅谈vue修饰符</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-27 09:19:49 / Modified: 09:35:21" itemprop="dateCreated datePublished" datetime="2019-12-27T09:19:49+08:00">2019-12-27</time>
-            </span>
-
-          
-            <span id="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-meta-item leancloud_visitors" data-flag-title="浅谈vue修饰符" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol start="0">
-<li><p>Vue的常用修饰符</p>
-<ul>
-<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#x2e;&#64;&#99;&#108;&#105;&#x63;&#107;&#46;&#115;&#116;&#x6f;&#112;">&#49;&#x2e;&#64;&#99;&#108;&#105;&#x63;&#107;&#46;&#115;&#116;&#x6f;&#112;</a>=”xxx”<a href="mailto:&#50;&#x2e;&#64;&#x63;&#x6c;&#x69;&#99;&#x6b;&#x2e;&#112;&#114;&#x65;&#118;&#101;&#110;&#x74;">&#50;&#x2e;&#64;&#x63;&#x6c;&#x69;&#99;&#x6b;&#x2e;&#112;&#114;&#x65;&#118;&#101;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#46;&#x40;&#x6b;&#x65;&#x79;&#112;&#x72;&#x65;&#115;&#115;&#x2e;&#x65;&#110;&#x74;&#x65;&#114;">&#51;&#46;&#x40;&#x6b;&#x65;&#x79;&#112;&#x72;&#x65;&#115;&#115;&#x2e;&#x65;&#110;&#x74;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
-</ul>
-</li>
-<li><p>@click.stop=”xxx”</p>
-<ul>
-<li>@click.stop的作用是阻止事件传播和事件冒泡</li>
-</ul>
-</li>
-<li><p>@click.prevent=”xxx”</p>
-<ul>
-<li>@click.prevent 的作用是阻止默认动作</li>
-<li>参考:
-<code>https://codesandbox.io/s/adoring-bash-mf3ox</code></li>
-</ul>
-</li>
-<li><p>@keypress.enter=”xxx”</p>
-<ul>
-<li>监听键盘enter按下时，触发事件xxx</li>
-</ul>
-</li>
-<li><p>:money.sync=”total”
-.sync比较复杂，用于父子组件通信，子组件触发事件通知父组件。举例: :money.sync=”total”等价于 :money=”total” v-on:update:money=”total=$event”。是一种语法糖。
-具体案例:</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update的形式</span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;admiring-mountain-4y7fx</span><br><span class="line">改成.sync的形式</span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;quirky-hooks-cpnnh</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1235,7 +1229,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

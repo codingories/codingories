@@ -158,6 +158,296 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" class="post-title-link" itemprop="url">高级前端养成13nodeJS框架03之Koa全解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-05 11:38:28 / Modified: 23:11:17" itemprop="dateCreated datePublished" datetime="2020-07-05T11:38:28+08:00">2020-07-05</time>
+            </span>
+
+          
+            <span id="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成13nodeJS框架03之Koa全解" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>Koa 的时间线</li>
+</ol>
+<ul>
+<li><p>Express</p>
+<ul>
+<li>2010 年 6 月,TJ 开始编写 Exporess</li>
+<li>2014 年发展到 v0.12,基本成熟，移交 StrongLoop</li>
+</ul>
+</li>
+<li><p>Koa</p>
+<ul>
+<li>2013 年 8 月,TJ 开始编写 Koa</li>
+<li>2015 年 8 月，Koa 发布 v1.0.0 版本</li>
+</ul>
+</li>
+<li><p>Node.js</p>
+<ul>
+<li>2013 年 3 月，Node.js v0.10 发布</li>
+<li>2014 年 12 月，io.js 不满 Node.js 的管理发起分裂</li>
+<li>2015 年 2 月，Node.js v0.12 发布</li>
+<li>2015 年 9 月，Node.js 与 io.js 合并成为 Node.js v4.0</li>
+</ul>
+</li>
+<li><p>koa 对 Node.js 的支持</p>
+<ul>
+<li>2015 年 2 月，Koa 放弃对 Node v0.11 以下的支持，并开始支持 io,js</li>
+<li>2015 年 10 月，Koa 放弃对 Node v4.0 以下的支持，并用 ES6 重写所有代码，发布 v2.0.0 内测版</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Koa 对比 Express</li>
+</ol>
+<ul>
+<li>编程模型不同<ul>
+<li>Express 的中间件是线型的</li>
+<li>Koa 的中间件是 U 型的</li>
+</ul>
+</li>
+<li>对语言特性的使用不同<ul>
+<li>Express 使用回调函数 next()</li>
+<li>Koa v1.x 使用 generator 语法</li>
+<li>Koa v2.x 使用 async/await 语法</li>
+</ul>
+</li>
+<li>总结<ul>
+<li>2011 ～ 2016 年，大概率使用 Express</li>
+<li>2017 年之后，可能会使用 Koa</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>Koa 的中间件的模型</li>
+</ol>
+<ul>
+<li><img src="https://i.loli.net/2020/07/05/CpeNvzrWQA9toaG.png" alt="koa模型.png"></li>
+</ul>
+<ol start="4">
+<li>工具安装</li>
+</ol>
+<ul>
+<li>node-dev</li>
+<li>ts-node-dev</li>
+<li>注意<ul>
+<li>如果用 ts,需要运行 tsc –init 初始化 tsconfig.json</li>
+<li>还需要安装@types/koa</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>koa 的 hello world</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add koa</span><br><span class="line">yarn add @types&#x2F;koa</span><br><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>await next() 是什么意思</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; 空</span><br><span class="line">  await next(); &#x2F;&#x2F; 等待 下一个中间件</span><br><span class="line">  const time &#x3D; ctx.response.get(&#39;X-Response-Time&#39;);</span><br><span class="line">  console.log(&#96;$&#123;ctx.url&#125; - $&#123;time&#125;&#96;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>next() 表示进入下一个函数</li>
+<li>下一个函数会返回一个 Promise 对象，称为 p</li>
+<li>下一个函数所有代码执行完毕后，将 p 置为成功</li>
+<li>await 会等待 p 成功后，再回头执行剩余代码</li>
+</ul>
+<ol start="7">
+<li>await next()改写成 promise 的写法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) &#x3D;&gt; &#123;</span><br><span class="line">  const start &#x3D; Date.now();</span><br><span class="line">  return next().then(()&#x3D;&gt;&#123;</span><br><span class="line">    const time &#x3D; ctx.response.get(&#39;X-Response-Time&#39;);</span><br><span class="line">    console.log(&#96;$&#123;ctx.url&#125; - $&#123;time&#125;&#96;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一定要写 return ,因为中间件必须返回 Promise 对象</li>
+<li>错误处理再这里有点反模式，因为你不知道下一个中间件会产生什么错误，这么写就耦合了，用 app.on(‘error 更方便点’)</li>
+</ul>
+<ol start="8">
+<li>思考</li>
+</ol>
+<ul>
+<li>Express 里如何计算 response time<ul>
+<li>思路一: 用两个 app.use 加 res.locals</li>
+<li>思路二: 搜业界方案，看源码</li>
+<li>推荐带着问题看源码,tj 做了两件事情，1.记录开始时间 process.hrtime(startAt)，2.调用 onHeader 库知道用户什么时候写 header,</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li><p>koa 的 api</p>
+<ul>
+<li><p>app.xxx // application</p>
+<ul>
+<li><a href="https://koajs.com/#application" target="_blank" rel="noopener">文档</a></li>
+<li>API<ul>
+<li>app.env</li>
+<li>app.proxy</li>
+<li>app.subdomainOffset</li>
+<li>app.listen()</li>
+<li>app.callback()</li>
+<li><strong>app.use(fn)–插入中间件</strong></li>
+<li>app.keys</li>
+<li>app.context 见 ctx</li>
+<li><strong>app.on(‘error’,fn)–错误处理</strong></li>
+<li><strong>app.emit–触发时间</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ctx.xxx // context</p>
+<ul>
+<li><p><a href="https://koajs.com/#context" target="_blank" rel="noopener">文档</a></p>
+</li>
+<li><p>API</p>
+<ul>
+<li><p>ctx.req // Node.js 封装的请求</p>
+</li>
+<li><p>ctx.res</p>
+</li>
+<li><p>ctx.request // KOA 封装的 js 请求</p>
+</li>
+<li><p>crx.response</p>
+</li>
+<li><p>crx.state–跨中间件分享数据</p>
+</li>
+<li><p>ctx.app</p>
+</li>
+<li><p>ctx.cookies.get/set</p>
+</li>
+<li><p>ctx.throw</p>
+</li>
+<li><p>ctx.assert</p>
+</li>
+<li><p>ctx.respond 不推荐使用</p>
+</li>
+<li><p>request 委托，response 委托</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; ctx.body &#x3D; &#39;hi&#39;</span><br><span class="line"> &#x2F;&#x2F; ctx.response.body &#x3D; &#39;hi&#39;</span><br><span class="line"> &#x2F;&#x2F; 称ctx是response的委托</span><br><span class="line"> &#x2F;&#x2F; 委托模式的源代码实现</span><br><span class="line">Object.defineProperty(ctx, &#39;body&#39;, &#123;</span><br><span class="line">  get()&#123;</span><br><span class="line">    return ctx.response.body</span><br><span class="line">  &#125;,</span><br><span class="line">  set(v)&#123;</span><br><span class="line">    ctx.response.body &#x3D; v</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建议直接用真实的方法，因为容易混</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ctx.request.xxx</p>
+</li>
+</ol>
+<ul>
+<li>request.method</li>
+<li>request.path</li>
+<li>request.query</li>
+<li>request.idempotent,幂等，多次操作是否会有一样的影响。get 有，get 获取几次都一样。post,一遍两遍是不一样的。幂等不管多少次都一样，http 中常用只有 get 是幂等的，还有 option</li>
+<li>request.get(field)</li>
+</ul>
+<ol start="11">
+<li><p>ctx.response.xxx
+-response.status
+-response.body<em>5,string 字符串，buffer 文件读到内存里就是 Buffer,也就是没有文件编码的内容,Stream 流，json 化的 Object,null
+-response.set()</em>2 key value 和对象
+-response.append()，添加响应头</p>
+</li>
+<li><p>总结</p>
+</li>
+</ol>
+<ul>
+<li>Koa 原理<ul>
+<li>封装请求和响应</li>
+<li>通过 U 型模型</li>
+</ul>
+</li>
+<li>跟 Express 的区别<ul>
+<li>模型不同</li>
+<li>语法特性不同 7.6.0 版本之后完全支持</li>
+<li>没有内置中间件</li>
+</ul>
+</li>
+<li>Koa API<ul>
+<li>平平无奇，几乎和 Express 一样</li>
+</ul>
+</li>
+</ul>
+<ol start="13">
+<li>谁在用 Koa</li>
+</ol>
+<ul>
+<li>egg.js</li>
+<li>next.js(推荐)/NUXT/Nest</li>
+</ul>
+<ol start="14">
+<li><a href="https://github.com/codingories/13koa-demo-1" target="_blank" rel="noopener">案例代码</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/28/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9012nodeJS%E6%A1%86%E6%9E%B602%E4%B9%8BExpress%E5%85%A8%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -708,7 +998,7 @@
 <li>use 是使用，使用什么？</li>
 <li>理解 app.use<ul>
 <li>创建新目录 express-demo-2<ul>
-<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;">&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;">&#103;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
 <li>尝试使用 req.url 和 res.send</li>
 <li>多次使用会报错</li>
 <li>改成 res.write,还记得流吗</li>
@@ -2584,139 +2874,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">高级前端养成 04nodeJS 基础学习 03 之调试 Node.js 程序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-17 16:26:13 / Modified: 17:52:05" itemprop="dateCreated datePublished" datetime="2020-06-17T16:26:13+08:00">2020-06-17</time>
-            </span>
-
-          
-            <span id="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成 04nodeJS 基础学习 03 之调试 Node.js 程序" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9004nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A003%E4%B9%8B%E8%B0%83%E8%AF%95Node-js%E7%A8%8B%E5%BA%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>方法</p>
-<ul>
-<li>WebStorm Debug + 断点</li>
-<li>VSCode Debug + 断点</li>
-<li>命令行 + Chrome + 断点</li>
-</ul>
-</li>
-<li><p>操作</p>
-<ul>
-<li>step over</li>
-<li>step into/step out</li>
-<li>watch</li>
-</ul>
-</li>
-<li><p>配置 debugger
-<img src="https://i.loli.net/2020/06/17/m6MpfWZySujO24L.jpg" alt="配置debugger.png"></p>
-</li>
-<li><p>然后 run 任务</p>
-</li>
-<li><p>添加 debugger，然后点 run debugger，可以看到变量</p>
-</li>
-<li><p>点击 step over 执行这一行</p>
-</li>
-<li><p>如果需要看其它的变量那么点一下加，输入，举例输入 this</p>
-</li>
-<li><p>step in 和 step out</p>
-</li>
-<li><p>添加调试的名称参数，每次可以用不同的 name</p>
-</li>
-<li><p>vscode 的调试</p>
-<ul>
-<li>基本功能和 webstorm 差不多</li>
-<li><img src="https://i.loli.net/2020/06/17/yOFdBbETruqRYGw.png" alt="配置vscode的使用.png"></li>
-</ul>
-</li>
-<li><p>第三种调试方式，不用任何工具</p>
-<ul>
-<li>node –inspect-brk cli.js add task 200<ul>
-<li>直接用浏览器去查看</li>
-<li>点下播放执行下去,http 程序不需要加 brl</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>总结</p>
-<ul>
-<li>step over 执行这一行</li>
-<li>step in 进入</li>
-<li>step out 退出</li>
-<li>添加变量</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2788,7 +2945,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

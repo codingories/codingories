@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 什么是柯里化Currying 让所有函数只接收一个参数 单一参数有什么意义？ 基于单一参数函数，已经衍生出非常理论知识   但参数函数如何支持两个参数 方式一.用对象形式12const add &#x3D; (&amp;#123; a,b &amp;#125;) &#x3D;&gt; a + badd(&amp;#123;a:1,b:2&amp;#125;) 方式二.用闭包形式123&#x2F;&#x2F; add 接受一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级前端养成42js专精10之函数全解下">
+<meta property="og:url" content="codingories.github.io/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="1. 什么是柯里化Currying 让所有函数只接收一个参数 单一参数有什么意义？ 基于单一参数函数，已经衍生出非常理论知识   但参数函数如何支持两个参数 方式一.用对象形式12const add &#x3D; (&amp;#123; a,b &amp;#125;) &#x3D;&gt; a + badd(&amp;#123;a:1,b:2&amp;#125;) 方式二.用闭包形式123&#x2F;&#x2F; add 接受一">
+<meta property="article:published_time" content="2020-10-14T12:34:58.000Z">
+<meta property="article:modified_time" content="2020-10-15T00:31:19.840Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="高级前端">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>高级前端养成42js专精10之函数全解下 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级前端养成42js专精10之函数全解下
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-14 20:34:58" itemprop="dateCreated datePublished" datetime="2020-10-14T20:34:58+08:00">2020-10-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-15 08:31:19" itemprop="dateModified" datetime="2020-10-15T08:31:19+08:00">2020-10-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成42js专精10之函数全解下" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-什么是柯里化Currying"><a href="#1-什么是柯里化Currying" class="headerlink" title="1. 什么是柯里化Currying"></a>1. 什么是柯里化Currying</h3><ul>
+<li>让所有函数只接收一个参数</li>
+<li>单一参数有什么意义？<ul>
+<li>基于单一参数函数，已经衍生出非常理论知识</li>
+</ul>
+</li>
+<li>但参数函数如何支持两个参数</li>
+<li>方式一.用对象形式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const add &#x3D; (&#123; a,b &#125;) &#x3D;&gt; a + b</span><br><span class="line">add(&#123;a:1,b:2&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>方式二.用闭包形式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; add 接受一个数字，返回一个函数</span><br><span class="line">const add &#x3D; a &#x3D;&gt; b &#x3D;&gt; a + b</span><br><span class="line">add(1)(2)</span><br></pre></td></tr></table></figure></li>
+<li>总结:就算所有函数只接受一个参数，也可以接受两个参数，如果没有接受过函数式一整套理论，没有必要用柯里化</li>
+</ul>
+<h3 id="2-如何柯里化一个函数"><a href="#2-如何柯里化一个函数" class="headerlink" title="2. 如何柯里化一个函数"></a>2. 如何柯里化一个函数</h3><ul>
+<li>即:把多参数函数，变成单参数函数</li>
+<li>面试题:如何把三参数函数add(1,2,3)变成curriedAdd(1)(2)(3)形式?<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> curriedArr = <span class="function"><span class="params">a</span> =&gt;</span> <span class="function"><span class="params">b</span>=&gt;</span> <span class="function"><span class="params">c</span>=&gt;</span> add(a,b,c)</span><br></pre></td></tr></table></figure></li>
+<li>面试题升级:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">假设</span><br><span class="line">addTwo 接受两个参数</span><br><span class="line">addThree 接受三个参数</span><br><span class="line">addFour 接受四个参数</span><br><span class="line">请写出一个currify函数，使得它们分别接受2,3,4次参数，比如</span><br><span class="line">currify(addTwo)(1)(2) &#x2F;&#x2F; 3</span><br><span class="line">currify(addThree)(1)(2)(3) &#x2F;&#x2F; 6</span><br><span class="line">currify(addFour)(1)(2)(3)(4) &#x2F;&#x2F; 10</span><br><span class="line">也就是说,currify能将任意接受固定个参数的函数变成单一参数的函数</span><br></pre></td></tr></table></figure></li>
+<li>具体代码<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">addTwo = <span class="function">(<span class="params">a,b</span>)=&gt;</span> a+b</span><br><span class="line">  addThree = <span class="function">(<span class="params">a,b,c</span>) =&gt;</span> a + b + c</span><br><span class="line">  currify = <span class="function">(<span class="params">fn, params = []</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">arg</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">const</span> newParams = params.concat(arg)</span><br><span class="line">      <span class="keyword">if</span>(newParams.length===fn.length)&#123;</span><br><span class="line">        <span class="keyword">return</span> fn(...newParams)</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> currify(fn, newParams)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  newAddTwo = currify(addTwo)</span><br><span class="line">  <span class="built_in">console</span>.log(newAddTwo(<span class="number">1</span>)(<span class="number">2</span>)) <span class="comment">// 3</span></span><br><span class="line">  newAddThree = currify(addThree)</span><br><span class="line">  <span class="built_in">console</span>.log(newAddThree(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-高阶函数"><a href="#3-高阶函数" class="headerlink" title="3. 高阶函数"></a>3. 高阶函数</h1></li>
+<li>把函数作为参数或者返回值的函数</li>
+<li>JS内置的告阶函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind</span><br><span class="line">Function.prototype.apply</span><br><span class="line">Function.prototype.call</span><br><span class="line">Array.prototype.sort</span><br><span class="line">Array.prototype.map</span><br><span class="line">Array.prototype.filter</span><br><span class="line">Array.prototype.reduce</span><br></pre></td></tr></table></figure></li>
+<li>理解JS的call用法才能真正掌握JS</li>
+<li>搞懂高阶函数bind.call<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bind = <span class="built_in">Function</span>.prototype.bind</span><br><span class="line">  <span class="keyword">var</span> f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'arguments'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'------'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> newF1 = f1.bind(&#123;<span class="attr">name</span>:<span class="string">'frank'</span>&#125;,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(newF1())</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 公式</span></span><br><span class="line">  <span class="comment">// obj.method(a,b,c,d,e)</span></span><br><span class="line">  <span class="comment">// obj.method.call(obj,a,b,c,d,e)</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 设obj=f1</span></span><br><span class="line">  <span class="comment">// 设method = bind</span></span><br><span class="line">  <span class="comment">// 代入</span></span><br><span class="line">  <span class="comment">// f1.bind(a,b,c,d,e)</span></span><br><span class="line">  <span class="comment">// f1.bind.call(f1,a,b,c,d,e)</span></span><br><span class="line">  <span class="comment">// 代入参数</span></span><br><span class="line">  <span class="comment">// a = &#123;name:'frank'&#125;</span></span><br><span class="line">  <span class="comment">// b,c,d = 1,2,3</span></span><br><span class="line">  <span class="comment">// f1.bind(&#123;name:'frank'&#125;,1,2,3)</span></span><br><span class="line">  <span class="comment">// f1.bind.call(f1, &#123;name:'frank'&#125;,1,2,3)</span></span><br><span class="line">  <span class="comment">// 参数意思 =&gt; f1 this=&#123;name:'frank'&#125; arguments=[1,2,3]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// f1.bind === Function.prototype.bind</span></span><br><span class="line">  <span class="comment">// var bind = Function.prototype.bind</span></span><br><span class="line">  <span class="comment">// 所以 f1.bind 就是 bind</span></span><br><span class="line">  <span class="comment">// bind.call(f1,&#123;name:'frank'&#125;,1,2,3) // 这个式子</span></span><br><span class="line">  <span class="comment">// 结论</span></span><br><span class="line">  <span class="comment">// bind.call 接受一个函数fn,this,其他参数</span></span><br><span class="line">  <span class="comment">// 返回一个新的函数，会调用fn,并传入this和其他参数</span></span><br></pre></td></tr></table></figure></li>
+<li>搞懂高阶函数apply.call<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> apply = <span class="built_in">Function</span>.prototype.apply</span><br><span class="line"> <span class="comment">// apply.call是什么意思</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'this'</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'arguments'</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'------'</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> f1.apply(&#123;<span class="attr">name</span>:<span class="string">'frank'</span>&#125;[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"> <span class="comment">// 公式</span></span><br><span class="line"> <span class="comment">// obj.method(a,b,c,d,e)</span></span><br><span class="line"> <span class="comment">// obj.method.call(obj,a,b,c,d,e)</span></span><br><span class="line"> <span class="comment">// 设obj=f1</span></span><br><span class="line"> <span class="comment">// 设method = apply</span></span><br><span class="line"> <span class="comment">// 代入</span></span><br><span class="line"> <span class="comment">// f1.apply(a,b,c,d,e)</span></span><br><span class="line"> <span class="comment">// f1.apply.call(f1,a,b,c,d,e)</span></span><br><span class="line"> <span class="comment">// 代入参数</span></span><br><span class="line"> <span class="comment">// 设 a = &#123;name:'frank'&#125;</span></span><br><span class="line"> <span class="comment">// b = [1,2,3]</span></span><br><span class="line"> <span class="comment">// f1.apply(&#123;name:'frank'&#125;,[1,2,3]) // 这个式子</span></span><br><span class="line"> <span class="comment">// f1.apply.call(f1,   &#123;name:'frank'&#125;,[1,2,3])</span></span><br><span class="line"> <span class="comment">// apply.call(f1,   &#123;name:'frank'&#125;,[1,2,3])</span></span><br><span class="line"> <span class="comment">// 总结apply直接调用一个新的函数f1,不会返回一个新的函数，bind会返回一个新的函数</span></span><br><span class="line"> <span class="comment">// 把参数 &#123;name:'frank'&#125;作为this,把数组[1,2,3]展开</span></span><br></pre></td></tr></table></figure></li>
+<li>搞懂call.call<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> call = <span class="built_in">Function</span>.prototype.call</span><br><span class="line"> <span class="comment">// call.call是什么意思</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'this'</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'arguments'</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'------'</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> f1.call(&#123;<span class="attr">name</span>:<span class="string">'frank'</span>&#125;, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"> <span class="comment">// 公式</span></span><br><span class="line"> <span class="comment">// obj.method(a,b,c,d,e)</span></span><br><span class="line"> <span class="comment">// obj.method.call(obj,a,b,c,d,e)</span></span><br><span class="line"> <span class="comment">// 设obj=f1</span></span><br><span class="line"> <span class="comment">// 设method = call</span></span><br><span class="line"> <span class="comment">// 代入</span></span><br><span class="line"> <span class="comment">// f1.call(a,b,c,d)</span></span><br><span class="line"> <span class="comment">// f1.call.call(f1,a,b,c,d)</span></span><br><span class="line"> <span class="comment">// 代入参数</span></span><br><span class="line"> <span class="comment">// 设 a = &#123;name:'frank'&#125;</span></span><br><span class="line"> <span class="comment">// b,c,d = 1,2,3</span></span><br><span class="line"> <span class="comment">// f1.call(&#123;name:'frank'&#125;,1,2,3) // 这个式子</span></span><br><span class="line"> <span class="comment">// f1.call.call(f1,   &#123;name:'frank'&#125;,1,2,3)</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// f1.call === Function.prototype.call</span></span><br><span class="line"> <span class="comment">// call === Function.protyotype.call</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// call.call(f1,   &#123;name:'frank'&#125;,1,2,3)</span></span><br><span class="line"> <span class="comment">// 意思就是call(f1,   &#123;name:'frank'&#125;,1,2,3)</span></span><br><span class="line"> <span class="comment">// 调用f1，this是f1，后面的参数就是1,2,3,返回值直接是一个结果</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF/" rel="tag"># 高级前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/11/%E6%81%8B%E4%B8%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E5%AD%A300%E4%B9%8B%E9%93%BE%E8%A1%A8/" rel="prev" title="恋上数据结构和算法第一季00之链表">
+      <i class="fa fa-chevron-left"></i> 恋上数据结构和算法第一季00之链表
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是柯里化Currying"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是柯里化Currying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-如何柯里化一个函数"><span class="nav-number">2.</span> <span class="nav-text">2. 如何柯里化一个函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-高阶函数"><span class="nav-number"></span> <span class="nav-text">3. 高阶函数</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

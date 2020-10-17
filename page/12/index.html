@@ -158,6 +158,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-title-link" itemprop="url">浅谈vue修饰符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-27 09:19:49 / Modified: 09:35:21" itemprop="dateCreated datePublished" datetime="2019-12-27T09:19:49+08:00">2019-12-27</time>
+            </span>
+
+          
+            <span id="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-meta-item leancloud_visitors" data-flag-title="浅谈vue修饰符" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/27/%E6%B5%85%E8%B0%88vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol start="0">
+<li><p>Vue的常用修饰符</p>
+<ul>
+<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#46;&#x40;&#99;&#108;&#x69;&#99;&#x6b;&#x2e;&#115;&#116;&#111;&#x70;">&#49;&#46;&#x40;&#99;&#108;&#x69;&#99;&#x6b;&#x2e;&#115;&#116;&#111;&#x70;</a>=”xxx”<a href="mailto:&#50;&#x2e;&#64;&#x63;&#x6c;&#x69;&#99;&#107;&#46;&#112;&#114;&#101;&#x76;&#x65;&#110;&#x74;">&#50;&#x2e;&#64;&#x63;&#x6c;&#x69;&#99;&#107;&#46;&#112;&#114;&#101;&#x76;&#x65;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#x2e;&#x40;&#107;&#x65;&#x79;&#112;&#114;&#x65;&#x73;&#115;&#46;&#x65;&#110;&#116;&#x65;&#114;">&#51;&#x2e;&#x40;&#107;&#x65;&#x79;&#112;&#114;&#x65;&#x73;&#115;&#46;&#x65;&#110;&#116;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
+</ul>
+</li>
+<li><p>@click.stop=”xxx”</p>
+<ul>
+<li>@click.stop的作用是阻止事件传播和事件冒泡</li>
+</ul>
+</li>
+<li><p>@click.prevent=”xxx”</p>
+<ul>
+<li>@click.prevent 的作用是阻止默认动作</li>
+<li>参考:
+<code>https://codesandbox.io/s/adoring-bash-mf3ox</code></li>
+</ul>
+</li>
+<li><p>@keypress.enter=”xxx”</p>
+<ul>
+<li>监听键盘enter按下时，触发事件xxx</li>
+</ul>
+</li>
+<li><p>:money.sync=”total”
+.sync比较复杂，用于父子组件通信，子组件触发事件通知父组件。举例: :money.sync=”total”等价于 :money=”total” v-on:update:money=”total=$event”。是一种语法糖。
+具体案例:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update的形式</span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;admiring-mountain-4y7fx</span><br><span class="line">改成.sync的形式</span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;quirky-hooks-cpnnh</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/22/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1078,114 +1187,6 @@ Object.assign(obj,{age:18,gender:’main’})</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/10/CSS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/10/CSS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">CSS知识总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-09-10 13:28:45 / Modified: 13:48:11" itemprop="dateCreated datePublished" datetime="2019-09-10T13:28:45+08:00">2019-09-10</time>
-            </span>
-
-          
-            <span id="/2019/09/10/CSS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="CSS知识总结" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/09/10/CSS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/10/CSS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h1><ol>
-<li>根据HTML构建HTML树</li>
-<li>根据CSS构建CSS树</li>
-<li>将前面两棵树合并成一棵渲染树</li>
-<li>Layout布局，这步相当于是素描，摆放文档流的位置，计算大小</li>
-<li>Paint绘制，这部分相当于是天色，把文字，阴影等都画出来</li>
-<li>Compose合成（根据层叠关系展示画面）</li>
-</ol>
-<h1 id="三种更新方式"><a href="#三种更新方式" class="headerlink" title="三种更新方式"></a>三种更新方式</h1><ol>
-<li>全部走一遍</li>
-<li>跳过layout,直接repaint + composite</li>
-<li>跳过layout和paint,直接composite</li>
-</ol>
-<h1 id="如何查看渲染过程"><a href="#如何查看渲染过程" class="headerlink" title="如何查看渲染过程"></a>如何查看渲染过程</h1><ol>
-<li>调出console</li>
-<li>按esc，选左边三个点</li>
-<li>选择rendering</li>
-</ol>
-<h1 id="查看css各属性触发什么？"><a href="#查看css各属性触发什么？" class="headerlink" title="查看css各属性触发什么？"></a>查看css各属性触发什么？</h1><ol>
-<li>CSSrigger.com</li>
-</ol>
-<h1 id="CSS动画优化"><a href="#CSS动画优化" class="headerlink" title="CSS动画优化"></a>CSS动画优化</h1><ol>
-<li>不要用left之类的属性,用transform做动画</li>
-<li>使用will-change或translate</li>
-</ol>
-<h1 id="CSS-动画的两种做法"><a href="#CSS-动画的两种做法" class="headerlink" title="CSS 动画的两种做法"></a>CSS 动画的两种做法</h1><ol>
-<li>transition。在某个需要动画的标签里写，transition: all 1s;。在此标签的伪类比如hover里面写:transform: scale(1.3,1.3);</li>
-<li>animation。先要定义@keyframes，然后在需要动画的标签里面写属性如:animation: .5s wrapper infinite alternate-reverse<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wrapper &#123;</span><br><span class="line">  0%&#123;</span><br><span class="line">    transform:scale(1);</span><br><span class="line">  &#125;</span><br><span class="line">  100%&#123;</span><br><span class="line">    transform:scale(1.2)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1257,7 +1258,7 @@ Object.assign(obj,{age:18,gender:’main’})</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

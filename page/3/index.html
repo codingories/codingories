@@ -158,6 +158,390 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/31/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8B%E6%89%8Basync-await%E5%85%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/31/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8B%E6%89%8Basync-await%E5%85%A8%E8%A7%A3/" class="post-title-link" itemprop="url">高级前端养成35js专精04之手async/await全解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-31 20:16:08" itemprop="dateCreated datePublished" datetime="2020-08-31T20:16:08+08:00">2020-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-03 22:12:31" itemprop="dateModified" datetime="2020-09-03T22:12:31+08:00">2020-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/31/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8B%E6%89%8Basync-await%E5%85%A8%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成35js专精04之手async/await全解" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/31/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8B%E6%89%8Basync-await%E5%85%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/31/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8B%E6%89%8Basync-await%E5%85%A8%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>约定</li>
+</ol>
+<ul>
+<li>Promise 表示类</li>
+<li>promise 表示实例对象</li>
+</ul>
+<ol start="2">
+<li>基本用法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const result &#x3D; await promise</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>从 Promise 说起</li>
+</ol>
+<ul>
+<li>Promise 封装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function 摇骰子()&#123;</span><br><span class="line">  return new Promise((resolve,reject)&#x3D;&gt;&#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">      resolve(Math.floor(Math.random()*6) + 1)</span><br><span class="line">    &#125;,3000)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 Promise</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">摇骰子().then(s1,f1).then(s2,f2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果直接不加 setTimeout</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function 摇骰子()&#123;</span><br><span class="line">  return new Promise((resolve,reject)&#x3D;&gt;&#123;</span><br><span class="line">      resolve(Math.floor(Math.random()*6) + 1)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">摇骰子().then(n&#x3D;&gt;&#123;console.log(n)&#125;)</span><br><span class="line">console.log(&#39;end&#39;)</span><br><span class="line">&#x2F;&#x2F; 结果为end, n</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果后面再加 setTimeout</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function 摇骰子()&#123;</span><br><span class="line">  return new Promise((resolve,reject)&#x3D;&gt;&#123;</span><br><span class="line">      resolve(Math.floor(Math.random()*6) + 1)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">摇骰子().then(n&#x3D;&gt;&#123;console.log(&#39;n&#39;,n)&#125;)</span><br><span class="line">console.log(&#39;end&#39;)</span><br><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&#39;timeout&#39;,0)</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; 结果为end, n,控制台多出一个数字是setTimeOut的id</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>ES6 之前</li>
+</ol>
+<ul>
+<li>只有正在执行的代码，和等待执行代码(即异步队列)
+<img src="https://i.loli.net/2020/08/31/jaxXZDlv4komWKh.png" alt="ES6之前.png"></li>
+<li>后来前端觉得回调太蛋疼，于是想出来 Promise<ul>
+<li>如果 ajax 为缓存，那和直接写 SetTimeout(S1)效果一样，都是直接放到异步队列，这样的 api 过于蛋疼
+<img src="https://i.loli.net/2020/08/31/1K4yitcu5wNxlqD.png" alt="蛋疼的api.png"></li>
+<li>所以引入宏任务和微任务的概念，先执行微任务，微任务执行快
+<img src="https://i.loli.net/2020/08/31/jxKYyLF1528MiBr.png" alt="宏任务和微任务.png"></li>
+<li>一般 promise 都是微任务，setTimeout 是宏任务</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li><p>宏任务 macrotask 和 微任务 microtask 任务模型</p>
+<ul>
+<li>先 Ma 后 Mi,一开始正在执行的任务也是大任务，其实一开始没有两个任务队列</li>
+<li>为了让 Promise 回调更早执行，强行插入了一个队列</li>
+<li>如果没有 Mi 任务，不如直接用 setTimeout</li>
+</ul>
+</li>
+<li><p>Promise 的其他 API</p>
+<ul>
+<li><p>Promise.resolve(result),制造一个成功(或失败)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function 摇骰子()&#123;</span><br><span class="line">  let result &#x3D; 4</span><br><span class="line">  return new Promise((resolve,reject)&#x3D;&gt;&#123;</span><br><span class="line">      resolve(4)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">摇骰子().then(n&#x3D;&gt;console.log(n))</span><br><span class="line">&#x2F;&#x2F; 上面这样写过于麻烦,简化成</span><br><span class="line">function 摇骰子()&#123;</span><br><span class="line">  let result &#x3D; 4</span><br><span class="line">  return Promise.resolve(4)</span><br><span class="line">  &#x2F;&#x2F; 值为4的Promise</span><br><span class="line">&#125;</span><br><span class="line">摇骰子().then(n&#x3D;&gt;console.log(n))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; resolve制造失败的例子</span><br><span class="line">function 摇骰子()&#123;</span><br><span class="line">  return Promise.resolve(new Promise((resolve,reject)&#x3D;&gt;reject()))</span><br><span class="line">&#125;</span><br><span class="line">摇骰子()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Promise.reject(reason)，制造一个失败</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.reject(&#39;我错了&#39;).then(null, (reason)&#x3D;&gt;console.log(reason))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Promise.all(数组)，等待全部成功，或者有一个失败</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([Promise.resolve(1),Promise.resolve(2),Promise.resolve(3)]).then(</span><br><span class="line">    values&#x3D;&gt;console.log(values)</span><br><span class="line">)</span><br><span class="line">&#x2F;&#x2F; [1,2,3]</span><br><span class="line">Promise.all([Promise.reject(1),Promise.resolve(2),Promise.resolve(3)]).then(</span><br><span class="line">  null,reason&#x3D;&gt;console.log(reason)</span><br><span class="line">)</span><br><span class="line">&#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Promise.race(数组)，等待第一个状态改变</p>
+<ul>
+<li>使用场景，备份用户数据到某个服务器，根据用户所在区域备份，</li>
+<li>同时备份中国用户和美国用户的数据哪个先成功</li>
+</ul>
+</li>
+<li><p>Promise.allSettled(数组)，等待全部状态改变，目前处于 Stage-4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Promise.allSettled([Promise.reject(1),Promise.reject(2),Promise.resolve(3)]).then(</span><br><span class="line">  (reason)&#x3D;&gt;console.log(reason)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a href="https://www.caniuse.com/#search=allSettled" target="_blank" rel="noopener">allSettled 兼容性</a>不是特别好</p>
+</li>
+<li><p>自己写一个 allSettled</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">task1 &#x3D; ()&#x3D;&gt; new Promise((resolve, reject)&#x3D;&gt;&#123;</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;reject(&#39;第一扇门关了&#39;)&#125;,3000)</span><br><span class="line">&#125;)</span><br><span class="line">task2 &#x3D; ()&#x3D;&gt; new Promise((resolve, reject)&#x3D;&gt;&#123;</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;reject(&#39;第二扇门关了&#39;)&#125;,4000)</span><br><span class="line">&#125;)</span><br><span class="line">task3 &#x3D; ()&#x3D;&gt; new Promise((resolve, reject)&#x3D;&gt;&#123;</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;resolve(&#39;第三扇门开了&#39;)&#125;,5000)</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; 这样写只会打印出,第一扇门关了</span><br><span class="line">Promise.all([task1(),task2(),task3()]).</span><br><span class="line">  then(null, (reason)&#x3D;&gt;&#123;console.log(reason)&#125;)</span><br><span class="line">&#x2F;&#x2F; 都返回成功对象就行</span><br><span class="line"></span><br><span class="line">Promise.all([</span><br><span class="line">  task1().then(()&#x3D;&gt;(&#123;status:&#39;ok&#39;&#125;),()&#x3D;&gt;(&#123;status: &#39;not ok&#39;&#125;)),</span><br><span class="line">  task2().then(()&#x3D;&gt;(&#123;status:&#39;ok&#39;&#125;),()&#x3D;&gt;(&#123;status: &#39;not ok&#39;&#125;)),</span><br><span class="line">  task3().then(()&#x3D;&gt;(&#123;status:&#39;ok&#39;&#125;),()&#x3D;&gt;(&#123;status: &#39;not ok&#39;&#125;))</span><br><span class="line">  ]).then((reason)&#x3D;&gt;&#123;console.log(reason)&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 对代码进行优化,通过转换函数x,x的意思是确保不会失败</span><br><span class="line">x &#x3D; (promise) &#x3D;&gt; promise.then(</span><br><span class="line">  (value)&#x3D;&gt;(&#123;status:&#39;ok&#39;,value&#125;),</span><br><span class="line">  (reason)&#x3D;&gt;(&#123;status: &#39;not ok&#39;,reason&#125;))</span><br><span class="line"></span><br><span class="line">Promise.all([</span><br><span class="line">  x(task1()),</span><br><span class="line">  x(task2()),</span><br><span class="line">  x(task3()),</span><br><span class="line">]).then((v)&#x3D;&gt;console.log(v))</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 继续优化x</span><br><span class="line">x &#x3D; (promiseList) &#x3D;&gt; promiseList.map( promise &#x3D;&gt; promise.then(</span><br><span class="line">  (value)&#x3D;&gt;(&#123;status:&#39;ok&#39;,value&#125;),</span><br><span class="line">  (reason)&#x3D;&gt;(&#123;status: &#39;not ok&#39;,reason&#125;))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">Promise.all(x([task1(),task2(),task3()])).then((v)&#x3D;&gt;console.log(v))</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 继续优化，自己写一个Promise.allSettled2</span><br><span class="line">Promise.allSettled2 &#x3D; function(promiseList)&#123;</span><br><span class="line">  return Promise.all(x(promiseList))</span><br><span class="line">&#125;</span><br><span class="line">Promise.allSettled2(x([task1(),task2(),task3()])).then((v)&#x3D;&gt;console.log(v))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Promise 的应用场景</p>
+</li>
+</ol>
+<ul>
+<li>多次处理一个结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">摇骰子.then(v&#x3D;&gt; v1 ).then(v1 &#x3D;&gt; v2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>串行<ul>
+<li>这里有一个悖论:一旦 promise 出现，那么任务就已经执行了</li>
+<li>所以不是 promise 串行，而是任务串行</li>
+<li>解法:把任务放进队列，完成一个再做下一个</li>
+</ul>
+</li>
+<li>并行<ul>
+<li>Promise.all([p1,p2])不好用</li>
+<li>Promise.allSettled 又太行</li>
+<li>怎么办</li>
+</ul>
+</li>
+<li>面试代码题<ul>
+<li>页面有两个按钮 A 和 B,以及一个输入框,A 按钮点击后发送一个请求，返回一个字符串 A，B 也发请求，但返回字符串 B,返回后会把字符串赋值给输入框，但 A、B 发送的两个请求返回的时间不同，点击两个按钮的顺序也不一定，B 要比 A 先返回，而最终效果要求是输入框字符的顺序 A B。</li>
+<li><img src="https://i.loli.net/2020/09/01/JGa5vScgDjOICBd.png" alt="面试题大致意思.png"></li>
+<li>答案<ul>
+<li>在工程上，如果发现有结果了之前的都不要，ajax 一般有 cancel 这个 api，一旦渲染结果就调用 cancel</li>
+<li>对于题目，保证在第一个任务完成后调用第二个任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>这样写会出现点击 b1,b2,出现字符串 B,再出现字符串 A</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"b1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"b2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"input1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ajax1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串A"</span>);</span><br><span class="line">    &#125;, <span class="number">5000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">ajax2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串B"</span>);</span><br><span class="line">    &#125;, <span class="number">3000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">b1.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ajax1().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    input1.value = s;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">b2.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ajax2().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    input1.value = s;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>联想餐厅点餐逻辑,将任务放入队列，处理串行,点 a,b 就只出现’字符串 B’</li>
+<li><img src="https://i.loli.net/2020/09/01/3AkUWGO2uRXiKHF.png" alt="餐厅取餐.png"></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">ajax1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串A"</span>);</span><br><span class="line">    &#125;, <span class="number">5000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">ajax2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串B"</span>);</span><br><span class="line">    &#125;, <span class="number">3000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> 取餐队伍 = [];</span><br><span class="line"><span class="keyword">let</span> 吧台 = [];</span><br><span class="line"><span class="keyword">let</span> 问 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> lastN = 吧台[吧台.length - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> lastS = 吧台[吧台.length - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span> (取餐队伍[<span class="number">0</span>][<span class="number">0</span>] === lastN) &#123;</span><br><span class="line">    取餐队伍[<span class="number">0</span>][<span class="number">1</span>].call(<span class="literal">null</span>, lastS);</span><br><span class="line">    取餐队伍.shift();</span><br><span class="line">    吧台.pop();</span><br><span class="line">    问();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">b1.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="built_in">Math</span>.random();</span><br><span class="line">  ajax1().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    吧台.push([n, s]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"吧台"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(吧台);</span><br><span class="line">    问();</span><br><span class="line">  &#125;);</span><br><span class="line">  取餐队伍.push([</span><br><span class="line">    n,</span><br><span class="line">    (s) =&gt; &#123;</span><br><span class="line">      input1.value = s;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(s);</span><br><span class="line">    &#125;,</span><br><span class="line">  ]);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"取餐队伍"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(取餐队伍);</span><br><span class="line">&#125;;</span><br><span class="line">b2.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="built_in">Math</span>.random();</span><br><span class="line">  ajax2().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    吧台.push([n, s]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"吧台"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(吧台);</span><br><span class="line">    问();</span><br><span class="line">  &#125;);</span><br><span class="line">  取餐队伍.push([</span><br><span class="line">    n,</span><br><span class="line">    (s) =&gt; &#123;</span><br><span class="line">      input1.value = s;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(s);</span><br><span class="line">    &#125;,</span><br><span class="line">  ]);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"取餐队伍"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(取餐队伍);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>Promise 错误处理</li>
+</ol>
+<ul>
+<li>其实挺好用的<ul>
+<li>promise.then(s1,f1)即可</li>
+<li>不行，我想要全局错误处理(以 axios 为例),见<a href="https://juejin.im/post/6844903569745788941#heading-6" target="_blank" rel="noopener">axios 作弊表</a>中的拦截器部分</li>
+</ul>
+</li>
+<li>语法糖<ul>
+<li>promise.then(s1).catch(f1)</li>
+</ul>
+</li>
+<li>错误处理之后<ul>
+<li>如果你没有继续跑错，那么错误就不会出现</li>
+<li>如果继续抛错，那么后续回调就要继续处理错误</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>promise 挺好用，但是前端似乎对 Promise 不满</li>
+</ol>
+<ul>
+<li><a href="https://blog.fundebug.com/2017/04/04/nodejs-async-await/" target="_blank" rel="noopener">async/await 替代 Promise 的 6 个理由</a></li>
+</ul>
+<ol start="10">
+<li>async/await 基本用法</li>
+</ol>
+<ul>
+<li>最常见用法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> temp = <span class="keyword">await</span> makePromise();</span><br><span class="line">  <span class="keyword">return</span> temp + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点<ul>
+<li>完全没有缩进,就像是在写同步代码</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>用 async 封装一个要骰子函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> 摇骰子(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">6</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果需要 reject,直接 throw Error(‘xxx’)</p>
+</li>
+<li><p>使用</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> fn()&#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> 摇骰子()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果需要处理错误，可以 try catch</p>
+</li>
+<li><p>async 的用法</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> 摇骰子(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">6</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> 摇骰子();</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要注意如果 api 不是 promise，不能用 await</li>
+<li>用 async/await 实现等三秒要骰子会非常麻烦</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> 摇骰子(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">6</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;, <span class="number">3000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> 摇骰子();</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>总结:await 好是好，但是只能和 promise 搭配如果没有，那就需要自己封装 promise</p>
+</li>
+<li><p>async/await 捕获错误</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> 摇骰子(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"骰子坏了"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">await</span> 摇骰子();</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>为什么需要 async</li>
+</ol>
+<ul>
+<li>看起来非常多余，await 所在函数就是 async，不是么？</li>
+<li>在 await 发布之前有些人已经自己模拟了 await,为了兼容就代码普通函数里的 await(xxx)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">  var result &#x3D; await(摇骰子())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>await 错误处理</li>
+</ol>
+<ul>
+<li>常见</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> response;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  response = <span class="keyword">await</span> axios.get(<span class="string">"/xxx"</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="keyword">if</span> (e.response) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.response.status);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">throw</span> e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(response);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一个字:丑</li>
+<li>正确做法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> axios.get(<span class="string">"/xxx"</span>).then(<span class="literal">null</span>, errorHandler);</span><br><span class="line"><span class="built_in">console</span>.log(response);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>细节<ul>
+<li>可以把 4xx/5xx 等常见错误用拦截器全局处理</li>
+<li>await 只用关心成功，失败全部交给 errorHandler</li>
+<li>errorHandler 也可以放在拦截器里</li>
+<li>举例</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ajax = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// reject(&#123;</span></span><br><span class="line">    <span class="comment">//   response: &#123;</span></span><br><span class="line">    <span class="comment">//     status: 403,</span></span><br><span class="line">    <span class="comment">//   &#125;,</span></span><br><span class="line">    <span class="comment">// &#125;);</span></span><br><span class="line">    resolve(&#123;</span><br><span class="line">      data: &#123; <span class="attr">name</span>: <span class="string">"ories"</span> &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> error = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"提示用户没有权限"</span>);</span><br><span class="line">  <span class="keyword">throw</span> e;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> ajax().then(<span class="literal">null</span>, error);</span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>await 的传染性</li>
+</ol>
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">await console.log(2)</span><br><span class="line">console.log(3)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分析</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(3)变成异步任务了</span><br><span class="line">Promise 同样有传染性(同步变异步)</span><br><span class="line">谁没有传染性:回调</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>await 的应用场景</li>
+</ol>
+<ul>
+<li>多次处理一个结果</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> r1 = <span class="keyword">await</span> makePromise();</span><br><span class="line"><span class="keyword">const</span> r2 = handleR1(r1);</span><br><span class="line"><span class="keyword">const</span> r3 = handleR2(r2);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>串行<ul>
+<li>天生串行</li>
+<li>循环的时候有 bug(JS 又出了一个新东西来弥补)</li>
+<li>for-await-of</li>
+</ul>
+</li>
+<li>并行<ul>
+<li>await Promise.all([p1,p2,p3])就是并行了</li>
+</ul>
+</li>
+</ul>
+<ol start="16">
+<li>常见问题</li>
+</ol>
+<ul>
+<li>async/await 是 promise 的语法糖，如何用 promise 实现 async/await<ul>
+<li>答:有的语法糖好改写，有的语法糖不好改写。这个语法糖就不好改写，因为这是语言层面的改动，而不是 API 层面的。</li>
+</ul>
+</li>
+<li>有些 await 需要等待上一个 await 的结果，有些不用，如何让不用同步的 await 异步进行<ul>
+<li>答: 虽然解法很简单，但好像很多人都不知道,改变执行顺序就行。</li>
+</ul>
+</li>
+<li>代码题</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> test = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  a = (<span class="built_in">console</span>.log(<span class="string">"a:"</span> + a), a) + (<span class="keyword">await</span> <span class="number">10</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;;</span><br><span class="line">test();</span><br><span class="line"><span class="built_in">console</span>.log(++a);</span><br><span class="line"><span class="comment">// 1 10,用加号,考点在于await左边并非都是后执行,a+即使在await左边也要先算</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/30/sketch%E5%AD%A6%E4%B9%A000/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1290,7 +1674,7 @@ b) 其中 current 用来 link 到最新的发布</li>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id root@39.103.166.176</span><br><span class="line">Jirengu2020</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>此时 ssh <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#x33;&#57;&#46;&#49;&#48;&#x33;&#46;&#49;&#54;&#x36;&#46;&#49;&#55;&#54;">&#x72;&#x6f;&#111;&#116;&#64;&#x33;&#57;&#46;&#49;&#48;&#x33;&#46;&#49;&#54;&#x36;&#46;&#49;&#55;&#54;</a> 就不需要密码了</li>
+<li>此时 ssh <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#51;&#x39;&#46;&#49;&#x30;&#51;&#46;&#x31;&#54;&#x36;&#x2e;&#49;&#x37;&#x36;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#51;&#x39;&#46;&#49;&#x30;&#51;&#46;&#x31;&#54;&#x36;&#x2e;&#49;&#x37;&#x36;</a> 就不需要密码了</li>
 <li>linux 密码设置 <code>passwd root</code></li>
 <li>别人想要服务器</li>
 </ul>
@@ -1936,367 +2320,6 @@ b) 其中 current 用来 link 到最新的发布</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="post-title-link" itemprop="url">41JS编程接口-DOM事件与事件委托</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-02 13:54:43 / Modified: 13:55:44" itemprop="dateCreated datePublished" datetime="2020-08-02T13:54:43+08:00">2020-08-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%88%9D%E7%BA%A7%E5%89%8D%E7%AB%AF-%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">初级前端 前端基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="post-meta-item leancloud_visitors" data-flag-title="41JS编程接口-DOM事件与事件委托" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>从点击事件开始</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;爷爷&quot;&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;爸爸&quot;&gt;</span><br><span class="line">     &lt;div class&#x3D;&quot;儿子&quot;&gt;</span><br><span class="line">       文字</span><br><span class="line">     &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line"> &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>即.爷爷&gt;.爸爸&gt;.儿子</p>
-</li>
-<li><p>给三个 div 分别添加事件监听 fnYe/fnBa/fnEr</p>
-</li>
-<li><p>提问 1: 点击了谁</p>
-<ul>
-<li>点击文字，算不算点击儿子？</li>
-<li>点击文字，算不算点击爸爸？</li>
-<li>点击文字，算不算点击爷爷？</li>
-<li>答案: 都算</li>
-</ul>
-</li>
-<li><p>提问 2: 调用顺序</p>
-<ul>
-<li>点击文字，最先调用 fnYe/fnBa/fnEr 中的哪一个函数?</li>
-<li>答案: 都行。</li>
-<li>IE 5 认为先调 fnEr,网景认为先调用 fnYe,最后闹到 w3c</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>和事佬 W3C</li>
-</ol>
-<ul>
-<li><p>2002 年, W3C 发布标砖</p>
-<ul>
-<li>文档名为 DOM Level2 Events Specification</li>
-<li>规定浏览器应该同时支持两种调用顺序</li>
-<li>首先按<label style="color:red">爷爷-&gt;爸爸-&gt;儿子</label>顺序看有没有函数监听</li>
-<li>然后按<label style="color:blue">儿子-&gt;爸爸-&gt;爷爷</label>顺序看有没有函数监听</li>
-<li>有监听函数就调用，并提供事件信息，没有就跳过</li>
-</ul>
-</li>
-<li><p>术语</p>
-<ul>
-<li><label style="color:red">从外向内</label>找监听函数，叫<label style="color:red">事件捕获</label></li>
-<li><label style="color:blue">从内向外</label>找监听函数，叫<label style="color:blue">事件冒泡</label></li>
-</ul>
-</li>
-<li><p>疑问</p>
-<ul>
-<li>那岂不是 fnYe/fnBa/fnEr 都调用两次？</li>
-<li>并不是，开发者<label style="color:green">自己选择</label>把 fnYe 放在<label style="color:red">捕获阶段</label>还是放在<label style="color:blue">冒泡阶段</label></li>
-</ul>
-</li>
-<li><p>示意图
-<img src="https://i.loli.net/2020/08/02/Ed1KGNiZafLMTCe.png" alt="事件示意图.png"></p>
-</li>
-</ul>
-<ol start="3">
-<li>addEventListener</li>
-</ol>
-<ul>
-<li>事件绑定 API<ul>
-<li>IE5* baba.attachEvent(‘onclick’, fn) // 冒泡</li>
-<li>网景: baba.addEventListener(‘click’,fn) //捕获</li>
-<li>W3C: baba.addEventListener(‘click’, fn, bool)</li>
-</ul>
-</li>
-<li>如果 bool 不传或为 falsy<ul>
-<li>就让 fn 走冒泡，即当浏览器在冒泡阶段发现 baba 有 fn 监听函数，就会调用 fn,并提供事件信息</li>
-</ul>
-</li>
-<li>如果 bool 为 true<ul>
-<li>就让 fn 走捕获，即当浏览器在捕获阶段发现 baba 有 fn 监听函数，就会调用 fn,并提供事件信息</li>
-</ul>
-</li>
-<li><a href="http://js.jirengu.com/rakunusixu/1/edit?html,js,console,output" target="_blank" rel="noopener">相关代码</a></li>
-</ul>
-<ol start="4">
-<li>小结</li>
-</ol>
-<ul>
-<li>两个疑问<ul>
-<li>儿子被点击了，算不算点击老子？</li>
-<li>那么先调用老子的函数还是先调用儿子的函数？</li>
-</ul>
-</li>
-<li>捕获与冒泡<ul>
-<li>捕获说先调用爸爸的监听函数</li>
-<li>冒泡说先调用儿子的监听函数</li>
-</ul>
-</li>
-<li>W3C 事件模型<ul>
-<li>先捕获(先爸爸=&gt;儿子)再冒泡(再儿子=&gt;爸爸)</li>
-<li>注意 e 对象被传给所有监听函数</li>
-<li>事件结束后，e 对象就不存在了</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>target v.s. currentTarget</li>
-</ol>
-<ul>
-<li>区别<ul>
-<li>e.target - 用户操作的元素</li>
-<li>e.currentTarget - 程序员监听的元素</li>
-<li>this 是 e.currentTarget, 不推荐使用它</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>div&gt;span{文字},用户点击文字,@click 放在 div 里面</li>
-<li>e.target 就是 span</li>
-<li>e.currentTarget 就是 div</li>
-</ul>
-</li>
-</ul>
-<ol start="6">
-<li>如果只有一个对象那么谁先放事件，谁先执行</li>
-</ol>
-<ul>
-<li>背景<ul>
-<li>只有一个 div 被监听(不考虑父子同时被监听)</li>
-<li>fn 分别在捕获阶段和冒泡阶段监听 click 事件</li>
-<li>用户点击的元素就是开发者监听的</li>
-<li>谁先监听谁先执行</li>
-</ul>
-</li>
-<li><a href="http://js.jirengu.com/zajezogixu/1/edit?html,js,console,output" target="_blank" rel="noopener">相关代码</a></li>
-</ul>
-<ol start="7">
-<li>取消冒泡</li>
-</ol>
-<ul>
-<li>捕获不可取消，但是冒泡可以<ul>
-<li>e.stopPropagation()可中断冒泡，浏览器不再向上走</li>
-<li>通俗来说：有人打我，我自己解决，别告诉我老子</li>
-<li>一般永远封装某些独立的组件</li>
-</ul>
-</li>
-</ul>
-<ol start="8">
-<li><p>不可取消冒泡</p>
-<ol>
-<li>有些事件不可取消冒泡</li>
-<li>MDN 搜索 scroll event, 看到 Bubbles 和 Cancelable</li>
-<li>Cancelable 就是开发者是否可以取消冒泡</li>
-<li>推荐看英文版，中文版内容不全</li>
-</ol>
-</li>
-<li><p>如何组织滚动</p>
-</li>
-</ol>
-<ul>
-<li>scroll 事件不可取消冒泡<ul>
-<li>阻止 scroll 默认动作没用，因为先有滚动才有滚动事件</li>
-<li>要阻止滚动，可阻止 wheel 和 touchstart 的默认动作</li>
-<li>注意你需要找准滚动条所在的元素，<a href="http://js.jirengu.com/zubowilode/1/edit?html,js,console,output" target="_blank" rel="noopener">示例</a></li>
-<li>但是滚动条还能用，可用 CSS 让滚动条 display:none，或者 width:0</li>
-</ul>
-</li>
-<li>CSS 也行<ul>
-<li>使用 overflow:hidden 可以直接取消滚动条</li>
-<li>但此时 JS 依然可以修改 scrollTop</li>
-</ul>
-</li>
-</ul>
-<ol start="10">
-<li>小结</li>
-</ol>
-<ul>
-<li>target 和 currentTarget<ul>
-<li>一个是用户点击的，一个是开发者监听的</li>
-</ul>
-</li>
-<li>取消冒泡<ul>
-<li>e.stopPropagation()</li>
-</ul>
-</li>
-<li>事件的特性<ul>
-<li>Bubbles 表示是否冒泡</li>
-<li>Cancelable 表示是否支持开发者取消冒泡</li>
-<li>如 scroll 不支持取消冒泡</li>
-</ul>
-</li>
-<li>如何禁用滚动<ul>
-<li>取消特定元素的 wheel 和 touchstart 的默认动作</li>
-</ul>
-</li>
-</ul>
-<ol start="11">
-<li>自定义事件</li>
-</ol>
-<ul>
-<li>浏览器自带事件<ul>
-<li>一共 100 多种事件，列表在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Events" target="_blank" rel="noopener">MDN</a> 上</li>
-</ul>
-</li>
-<li>开发者如何在自带事件之外，自定义一个事件<ul>
-<li>见<a href="http://js.jirengu.com/xexoxudeci/1/edit?html,js,output" target="_blank" rel="noopener">示例</a></li>
-</ul>
-</li>
-</ul>
-<ol start="12">
-<li>事件委托</li>
-</ol>
-<ul>
-<li><p>场景一</p>
-<ul>
-<li>你要给 100 个按钮添加点击事件，咋办？</li>
-<li>答: 监听这 100 个按钮的祖先，等冒泡的时候判断 target 是不是这 100 个按钮中的一个</li>
-<li><a href="http://js.jirengu.com/xafovapiwa/2/edit" target="_blank" rel="noopener">查看案例</a>，<code>div&gt;button{click $}*100</code></li>
-</ul>
-</li>
-<li><p>场景二</p>
-<ul>
-<li>你要监听目前不存在的元素的点击事件，咋办？</li>
-<li>答:监听祖先，等点击的时候看看是不是我想要监听的元素即可</li>
-<li><a href="http://js.jirengu.com/cuzewuxuye/1/edit?html,css,js,output" target="_blank" rel="noopener">案例二</a></li>
-</ul>
-</li>
-<li><p>有点</p>
-<ul>
-<li>省监听数（内存）</li>
-<li>可以监听动态元素</li>
-</ul>
-</li>
-</ul>
-<ol start="13">
-<li>封装事件委托</li>
-</ol>
-<ul>
-<li><p>要求</p>
-<ul>
-<li>写出这样一个函数 on(‘click’,’#testDiv’,’li’,fn)</li>
-<li>当用户点击#testDiv 里的 li 元素时，调用 fn 函数</li>
-<li>要求用到事件委托</li>
-</ul>
-</li>
-<li><p>答案一</p>
-<ul>
-<li>判断 target 是否匹配’li’</li>
-</ul>
-</li>
-<li><p>答案二</p>
-<ul>
-<li>(递归判断)[<a href="https://github.com/FrankFang/wheels/blob/master/lib/dom/index.js]" target="_blank" rel="noopener">https://github.com/FrankFang/wheels/blob/master/lib/dom/index.js]</a> target/target 的爸爸/target 的爷爷</li>
-</ul>
-</li>
-<li><p>整合进 jQuery</p>
-<ul>
-<li>可以自己实现$(‘#xxx’).on(‘click’,’li’,fn)</li>
-</ul>
-</li>
-<li><p><a href="http://js.jirengu.com/lazunaxoxe/1/edit?html,css,js,output" target="_blank" rel="noopener">链接地址</a></p>
-</li>
-<li><p>面试直接甩以下代码，但是实际是有问题的,比如 button 里面是 span 的情况</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function on(eventType, element, selector, fn)&#123;</span><br><span class="line">  if(!(element instanceof Element))&#123;</span><br><span class="line">    element &#x3D; document.querySelector(element)</span><br><span class="line">  &#125;</span><br><span class="line">  element.addEventListener(eventType, (e)&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; 给当前元素添加一个监听</span><br><span class="line">    const t &#x3D; e.target</span><br><span class="line">    if(t.matches(selector))&#123;</span><br><span class="line">&#x2F;&#x2F;       看当前元素是否满足selector，满足就调用函数</span><br><span class="line">      fn(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>正确的方式,见<a href="http://js.jirengu.com/hinovuwawu/2/edit" target="_blank" rel="noopener">代码</a></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">  const button &#x3D; document.createElement(&#39;button&#39;)</span><br><span class="line">  const span &#x3D; document.createElement(&#39;span&#39;)</span><br><span class="line">  span.textContent &#x3D; &#39;click1&#39;</span><br><span class="line">  button.appendChild(span)</span><br><span class="line">  div1.appendChild(button)</span><br><span class="line">&#125;,1000)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">on(&#39;click&#39;,&#39;#div1&#39;,&#39;button&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&#39;button 被点击了&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">function on(eventType, element, selector, fn)&#123;</span><br><span class="line">  if(!(element instanceof Element))&#123;</span><br><span class="line">    element &#x3D; document.querySelector(element)</span><br><span class="line">  &#125;</span><br><span class="line">    element.addEventListener(eventType, e &#x3D;&gt; &#123;</span><br><span class="line">      let el &#x3D; e.target</span><br><span class="line">      while (!el.matches(selector)) &#123;</span><br><span class="line">&#x2F;&#x2F;         看一下被操作的元素是否符合button</span><br><span class="line">        if (element &#x3D;&#x3D;&#x3D; el) &#123;</span><br><span class="line">          &#x2F;&#x2F; 如果当前元素已经是传进来的div1,就认为是找不到了</span><br><span class="line">          el &#x3D; null</span><br><span class="line">          &#x2F;&#x2F; 超过了就找不到</span><br><span class="line">          break</span><br><span class="line">        &#125;</span><br><span class="line">        el &#x3D; el.parentNode</span><br><span class="line">        &#x2F;&#x2F; 不符合就让元素等于爸爸</span><br><span class="line">      &#125;</span><br><span class="line">      el &amp;&amp; fn.call(el, e, el)</span><br><span class="line">      &#x2F;&#x2F; 这是找到的情况下</span><br><span class="line">    &#125;)</span><br><span class="line">    return element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>JS 支持事件吗</li>
-</ol>
-<ul>
-<li>支持也不支持。DOM 事件不属于 JS 的功能，属于浏览器提供的 DOM 的功能</li>
-<li>JS 只是调用了 DOM 提供的 addEventListener 而已</li>
-<li>追问<ul>
-<li>如何当 JS 支持事件？手写一个事件系统。</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2368,7 +2391,7 @@ b) 其中 current 用来 link 到最新的发布</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

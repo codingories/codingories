@@ -158,6 +158,160 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/24/use-vue-in-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/24/use-vue-in-python/" class="post-title-link" itemprop="url">use_vue_in_python</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-24 17:04:33" itemprop="dateCreated datePublished" datetime="2019-06-24T17:04:33+08:00">2019-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-06-25 16:02:51" itemprop="dateModified" datetime="2019-06-25T16:02:51+08:00">2019-06-25</time>
+              </span>
+
+          
+            <span id="/2019/06/24/use-vue-in-python/" class="post-meta-item leancloud_visitors" data-flag-title="use_vue_in_python" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/24/use-vue-in-python/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/24/use-vue-in-python/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文章参考:<a href="https://ahackersday.com/blog/is-django-and-vue-js-a-good-combination/" target="_blank" rel="noopener">https://ahackersday.com/blog/is-django-and-vue-js-a-good-combination/</a>
+一.最简单的加载vue的方式
+‘’’</p>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<p>‘’’</p>
+<p>二.自己在django里面定义好一个测试用的url,和view,然后再template中加入以下，代码但是发现无效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;unpkg.com&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      new Vue(&#123;</span><br><span class="line">        el: &#39;#app&#39;,</span><br><span class="line">        data: &#123;</span><br><span class="line">          message: &#39;Hello Vue.js!&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">      &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：按照以上两部发现代码会报错，尝试修改之后无法解决是括号冲突问题，暂时先跳过。
+开始重新构建一个项目。</p>
+<p>安装虚拟环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv vuengo_env # 创建需要环境，+ -p ，会报The path vuengo_env (from --python&#x3D;vuengo_env) is not an executable file错</span><br><span class="line">$ cd vuengo_env</span><br><span class="line">$ source bin&#x2F;activate # 进入虚拟环境</span><br></pre></td></tr></table></figure>
+
+<p>安装三个库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install django&#x3D;&#x3D;2.0.5 -i http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple --trusted-host pypi.douban.com</span><br><span class="line">$ pip3 install djangorestframework -i http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple --trusted-host pypi.douban.com </span><br><span class="line">$ pip3 install django-cors-headers&#x3D;&#x3D;2.2.0 -i http:&#x2F;&#x2F;pypi.douban.com&#x2F;simple --trusted-host pypi.douban.com # 装django-cors-headers 是因为要解决跨域问题</span><br></pre></td></tr></table></figure>
+
+<p>开始构建django项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">django-admin.py startproject vuengo</span><br><span class="line">cd vuengo</span><br></pre></td></tr></table></figure>
+
+<p>开始编辑配置django项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 增加 &#39;corsheader&#39; 到 INSTALLED_APPS </span><br><span class="line">INSTALLED_APPS &#x3D; (</span><br><span class="line">    ...</span><br><span class="line">    &#39;corsheaders&#39;,</span><br><span class="line">    &#39;rest_framework&#39;,</span><br><span class="line">    ...</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 随便在哪添加这一行</span><br><span class="line">CORS_ORIGIN_ALLOW_ALL &#x3D; True</span><br><span class="line"></span><br><span class="line"># 添加 127.0.0.1 到 ALLOWED_HOSTS</span><br><span class="line">ALLOWED_HOSTS &#x3D; [c]</span><br><span class="line"></span><br><span class="line"># 增加 &#39;corsheaders.middleware.CorsMiddleware&#39;, 在 &#39;django.middleware.common.CommonMiddleware&#39; 上面，在MIDDLEWARE里:</span><br><span class="line">MIDDLEWARE &#x3D; [</span><br><span class="line">    ...</span><br><span class="line">    &#39;corsheaders.middleware.CorsMiddleware&#39;,</span><br><span class="line">    &#39;django.middleware.common.CommonMiddleware&#39;,</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>尝试启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py makemigrations</span><br><span class="line">$ python manage.py migrate</span><br><span class="line">$ python manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<p>创建管理员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py createsuperuser</span><br><span class="line">Username (leave blank to use &#39;username&#39;): admin</span><br><span class="line">Email address: admin@example.com</span><br><span class="line">Password: password123</span><br><span class="line">Password (again): password123</span><br><span class="line">Superuser created successfully.</span><br></pre></td></tr></table></figure>
+
+<p>接下来通过Vue CLI,安装vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 全局安装 vue全家桶</span><br><span class="line">$sudo npm install -g vue-cli</span><br><span class="line">$ vue init webpack vuengo</span><br><span class="line">$ cd vuengo</span><br><span class="line">$ npm install</span><br><span class="line">$ npm run dev</span><br><span class="line"></span><br><span class="line">? Project name vuengo</span><br><span class="line">? Project description A Vue.js project</span><br><span class="line">? Author Stein Ove Helset &lt;steinove@ahackersday.com&gt;</span><br><span class="line">? Vue build standalone</span><br><span class="line">? Install vue-router? Yes</span><br><span class="line">? Use ESLint to lint your code? No</span><br><span class="line">? Set up unit tests No</span><br><span class="line">? Setup e2e tests with Nightwatch? No</span><br><span class="line">? Should we run &#96;npm install&#96; for you after the project has been created? (recommended) npm</span><br></pre></td></tr></table></figure>
+
+<p>安装Axios</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios</span><br></pre></td></tr></table></figure>
+
+
+<p>修改index,css框架学习可以参考：<a href="http://www.ruanyifeng.com/blog/2017/10/bulma.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2017/10/bulma.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;vuengo&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;bulma&#x2F;0.7.1&#x2F;css&#x2F;bulma.min.css&quot;&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;section class&#x3D;&quot;section&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;div id&#x3D;&quot;app&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;section&gt;</span><br><span class="line">    &lt;!-- built files will be auto injected --&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>启动app task</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py startapp task</span><br></pre></td></tr></table></figure>
+
+<p>修改models</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># models.py</span><br><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Task(models.Model): # Our database model is called Task</span><br><span class="line">    TODO &#x3D; 0</span><br><span class="line">    DONE &#x3D; 1</span><br><span class="line"></span><br><span class="line">    STATUS_CHOICES &#x3D; ( # We create a tuple of status choices</span><br><span class="line">        (TODO, &#39;To do&#39;),</span><br><span class="line">        (DONE, &#39;Done&#39;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    description &#x3D; models.CharField(max_length&#x3D;255) # The tasks description is limited to 255 characters</span><br><span class="line">    status &#x3D; models.IntegerField(choices&#x3D;STATUS_CHOICES, default&#x3D;TODO) # The task&#39;s status, default status &#x3D; TODO</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># serializers.py</span><br><span class="line"></span><br><span class="line">from rest_framework import serializers</span><br><span class="line"></span><br><span class="line">from .models import Task</span><br><span class="line"></span><br><span class="line">class TaskSerializer(serializers.HyperlinkedModelSerializer):</span><br><span class="line">    class Meta:</span><br><span class="line">        model &#x3D; Task</span><br><span class="line">        fields &#x3D; (&#39;id&#39;, &#39;description&#39;, &#39;status&#39;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># views.py</span><br><span class="line"></span><br><span class="line">from .models import Task # Import our Task model</span><br><span class="line">from .serializers import TaskSerializer # Import the serializer we just created</span><br><span class="line"></span><br><span class="line"># Import django rest framework functions</span><br><span class="line"></span><br><span class="line">from rest_framework import viewsets </span><br><span class="line">from rest_framework.authentication import BasicAuthentication</span><br><span class="line">from rest_framework.permissions import IsAuthenticated</span><br><span class="line"></span><br><span class="line">class TaskViewSet(viewsets.ModelViewSet): # Create a class based view</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    API endpoint that allows tasks to be viewed or edited.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    authentication_classes &#x3D; (BasicAuthentication,)</span><br><span class="line">    permission_classes &#x3D; (IsAuthenticated,)</span><br><span class="line">    queryset &#x3D; Task.objects.all() # Select all taks</span><br><span class="line">    serializer_class &#x3D; TaskSerializer # Serialize data</span><br></pre></td></tr></table></figure>
+
+<p>在settings.py里添加task到我们之前添加corsheaders的地方，接下来我们向数据库增加任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py makemigrations # We need to create the database</span><br><span class="line">$ python manage.py migrate # We need to create the database</span><br><span class="line">$ python manage.py shell # Opens up a shell</span><br></pre></td></tr></table></figure>
+
+<p>在shell中写入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ from task.models import Task # Import the model</span><br><span class="line">$ task1 &#x3D; Task.objects.create(description&#x3D;&#39;Description 1&#39;)</span><br><span class="line">$ task2 &#x3D; Task.objects.create(description&#x3D;&#39;Description 2&#39;)</span><br><span class="line">$ task3 &#x3D; Task.objects.create(description&#x3D;&#39;Description 3&#39;, status&#x3D;1)</span><br><span class="line">$ Task.objects.all() # Check if the tasks has been created</span><br><span class="line">&lt;QuerySet [&lt;Task: Task object (1)&gt;, &lt;Task: Task object (2)&gt;, &lt;Task: Task object (3)&gt;]&gt; # Our three tasks</span><br></pre></td></tr></table></figure>
+
+<p>最后在vuengo/urls.py中写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from django.urls import path, include</span><br><span class="line"></span><br><span class="line">from rest_framework import routers # Import the router</span><br><span class="line"></span><br><span class="line">from task.views import TaskViewSet # Import the view we just created</span><br><span class="line"></span><br><span class="line">router &#x3D; routers.DefaultRouter() # Define the router with our view</span><br><span class="line">router.register(r&#39;tasks&#39;, TaskViewSet)</span><br><span class="line"></span><br><span class="line">urlpatterns &#x3D; [</span><br><span class="line">    path(&#39;&#39;, include(router.urls)), # Add the view to the patterns</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/23/2019-6-23-morning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2378,105 +2532,6 @@ Output: 1-&gt;2-&gt;3</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/13/day18-Easy-70-Climbing-Stairs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/13/day18-Easy-70-Climbing-Stairs/" class="post-title-link" itemprop="url">day19_Easy_70_Climbing_Stairs</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-13 19:05:19 / Modified: 20:37:44" itemprop="dateCreated datePublished" datetime="2019-06-13T19:05:19+08:00">2019-06-13</time>
-            </span>
-
-          
-            <span id="/2019/06/13/day18-Easy-70-Climbing-Stairs/" class="post-meta-item leancloud_visitors" data-flag-title="day19_Easy_70_Climbing_Stairs" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/13/day18-Easy-70-Climbing-Stairs/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/13/day18-Easy-70-Climbing-Stairs/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>day19_Easy_70_Climbing_Stairs
-You are climbing a stair case. It takes n steps to reach to the top.
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-Note: Given n will be a positive integer.
-Example 1:
-Input: 2
-Output: 2
-Explanation: There are two ways to climb to the top.</p>
-<ol>
-<li>1 step + 1 step</li>
-<li>2 steps
-Example 2:
-Input: 3
-Output: 3
-Explanation: There are three ways to climb to the top.</li>
-<li>1 step + 1 step + 1 step</li>
-<li>1 step + 2 steps</li>
-<li>2 steps + 1 step</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def climbStairs(self, n: int) -&gt; int:</span><br><span class="line">        prev,current &#x3D; 0,1</span><br><span class="line">        for i in range(n):</span><br><span class="line">            prev,current &#x3D; current,prev + current</span><br><span class="line">        return current</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2548,7 +2603,7 @@ Explanation: There are three ways to climb to the top.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">239</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
