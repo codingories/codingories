@@ -158,6 +158,335 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9023%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B05%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9023%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B05%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">高级前端养成23博客系统之05创建博客</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-11 20:06:11 / Modified: 20:07:18" itemprop="dateCreated datePublished" datetime="2020-08-11T20:06:11+08:00">2020-08-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">数据库 博客系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9023%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B05%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成23博客系统之05创建博客" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9023%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B05%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9023%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B05%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>如何在代码中隐藏代码或者密钥</li>
+</ol>
+<ul>
+<li>需求 withSession.tsx 中的 password</li>
+<li>第一种方式:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; bash</span><br><span class="line">export SECRET&#x3D;8963956d-3de2-45e8-a608-ff08313827a3</span><br><span class="line">&#x2F;&#x2F; 代码里</span><br><span class="line">password: process.env.SECRET,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在开发的时候执行一遍，在部署的机子执行一遍，那么密码就自己知道</li>
+</ul>
+</li>
+<li>第二种方式:next.js 内置对环境变量支持,<a href="https://nextjs.org/docs/basic-features/environment-variables" target="_blank" rel="noopener">文档</a><ul>
+<li>创建.env.local 设置环境变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SECRET&#x3D;8963956d-3de2-45e8-a608-ff08313827a3</span><br></pre></td></tr></table></figure></li>
+<li>马上在.gitignore 中加入.env.local</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>消除一处 @ts-ignore</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; withSession.tsx</span><br><span class="line">export function withSession(handler:NextApiHandler | GetServerSideProps) &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; sign_in.tsx</span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D;</span><br><span class="line">  withSession( async (context:GetServerSidePropsContext) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; @ts-ignore</span><br><span class="line">    const user &#x3D; context.req.session.get(&#39;currentUser&#39;)</span><br><span class="line">    return &#123;</span><br><span class="line">      props: &#123;</span><br><span class="line">        user: JSON.parse(JSON.stringify(user))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>博客的创建</p>
+</li>
+<li><p>封装 form 组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ChangeEventHandler, FormEventHandler, ReactChild&#125; from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">type Props &#x3D; &#123;</span><br><span class="line">  onSubmit: FormEventHandler;</span><br><span class="line">  fields: &#123;</span><br><span class="line">    label: string,</span><br><span class="line">    type: &#39;text&#39;|&#39;password&#39;|&#39;textarea&#39;,</span><br><span class="line">    value: string | number,</span><br><span class="line">    onChange: ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;,</span><br><span class="line">    errors: string[]</span><br><span class="line">  &#125;[];</span><br><span class="line">  buttons: ReactChild</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const Form: React.FC&lt;Props&gt; &#x3D; (props) &#x3D;&gt;&#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;form onSubmit&#x3D;&#123;props.onSubmit&#125;&gt;</span><br><span class="line">      &#123;props.fields.map(field&#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            &#123;field.label&#125;</span><br><span class="line">            &#123;field.type &#x3D;&#x3D;&#x3D; &#39;textarea&#39; ?</span><br><span class="line">              &lt;textarea onChange&#x3D;&#123;field.onChange&#125;&gt;&#123;field.value&#125;&lt;&#x2F;textarea&gt;:</span><br><span class="line">              &lt;input type&#x3D;&#123;field.type&#125; value&#x3D;&#123;field.value&#125;</span><br><span class="line">              onChange &#x3D; &#123;field.onChange&#125;&#x2F;&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;field.errors?.length &gt; 0 &amp;&amp; &lt;div&gt;</span><br><span class="line">              &#123;field.errors.join(&#39;,&#39;)&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;&#125;</span><br><span class="line">          &lt;&#x2F;label&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;)&#125;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &#123;props.buttons&#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 posts/new.tsx</p>
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NextPage&#125; from &#39;next&#39;</span><br><span class="line">import &#123;Form&#125; from &#39;..&#x2F;..&#x2F;components&#x2F;form&#39;</span><br><span class="line">import &#123;useCallback, useState&#125; from &#39;react&#39;</span><br><span class="line">import axios, &#123;AxiosResponse&#125; from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">const PostsNew: NextPage &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(&#123;</span><br><span class="line">    title: &#39;&#39;,</span><br><span class="line">    content:[]</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const [errors, setErrors] &#x3D; useState(&#123;</span><br><span class="line">    title:[], content:[]</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const onChange &#x3D; useCallback((key, value)&#x3D;&gt;&#123;</span><br><span class="line">    setFormData(&#123;</span><br><span class="line">      ...formData,</span><br><span class="line">      [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,[formData])</span><br><span class="line"></span><br><span class="line">  const onSubmit &#x3D; useCallback((e)&#x3D;&gt;&#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    axios.post(&#96;&#x2F;api&#x2F;v1&#x2F;posts&#96;, formData)</span><br><span class="line">      .then(()&#x3D;&gt;&#123;</span><br><span class="line">        alert(&#39;提交成功!&#39;)</span><br><span class="line">      &#125;,(error)&#x3D;&gt;&#123;</span><br><span class="line">        if(error.response)&#123;</span><br><span class="line">          const response: AxiosResponse &#x3D; error.response;</span><br><span class="line">          &#x2F;&#x2F; if(response)</span><br><span class="line">          if(response.status &#x3D;&#x3D;&#x3D; 422)&#123;</span><br><span class="line">            setErrors(response.data);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;,[formData]) &#x2F;&#x2F; []不加参数参数，表示只在页面第一次创建渲染创建onSubmit函数,其它时候ui怎么变,onSubmit不变</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Form fields&#x3D;&#123;[</span><br><span class="line">        &#123;label:&#39;标题&#39;,type:&#39;text&#39;, value: formData.title,</span><br><span class="line">          onChange: e&#x3D;&gt;onChange(&#39;username&#39;, e.target.value)</span><br><span class="line">          , errors: errors.title &#125;,</span><br><span class="line">        &#123;label:&#39;内容&#39;,type:&#39;textarea&#39;, value: formData.title,</span><br><span class="line">          onChange: e&#x3D;&gt;onChange(&#39;username&#39;, e.target.value)</span><br><span class="line">          , errors: errors.title &#125;,</span><br><span class="line">      ]</span><br><span class="line">      &#125; onSubmit&#x3D;&#123;onSubmit&#125; buttons&#x3D;&#123;&lt;&gt;</span><br><span class="line">        &lt;button type&#x3D;&quot;submit&quot;&gt;提交&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;&gt;&#125; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default PostsNew;</span><br></pre></td></tr></table></figure></code></pre>
+<ol start="4">
+<li>进一步封装代码</li>
+</ol>
+<ul>
+<li><p>先设计好如何使用封装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const onSubmit &#x3D; (formData) &#x3D;&gt; &#123;</span><br><span class="line">  axios.post().then(()&#x3D;&gt;&#123;</span><br><span class="line">    window.alert()</span><br><span class="line">  &#125;,(e)&#x3D;&gt;&#123;</span><br><span class="line">    setErrors(e.response.data)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br><span class="line">const &#123;form,setErrors&#125; &#x3D; useForm(initFormData,initErrors,fields,onSubmit);</span><br><span class="line"></span><br><span class="line">return(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123;form&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>T 占位符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export function useForm&lt;T&gt;(initFormData:T)&#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form&gt;1&lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>受控 input 和非受控 input，自己操心数据变更 props,数据由 props 控制</p>
+<ul>
+<li>受控 input</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input value&#x3D;xxx onChange&#x3D;&#123;e&#x3D;&gt; xxx&#x3D;e.target.value&#125; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非受控 input，组件搞定数据变更,value 由组件内部的 state 变化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input defaultValue&#x3D;xxx&#x2F; ref&#x3D;&#123;inputRef&#125;&gt;</span><br><span class="line">&#x2F;&#x2F; 通过ref去获得值,inputRef.current.value</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/uncontrolled-components.html" target="_blank" rel="noopener">相关文档</a></li>
+</ul>
+</li>
+<li><p>获得 error 的初始值 e</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useState&#125; from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">export function useForm&lt;T&gt;(initFormData:T)&#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 非受控</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(initFormData)</span><br><span class="line">  &#x2F;&#x2F; initFormData &#x3D; &#123;username:&#39;&#39;, password:&#39;&#39;&#125;</span><br><span class="line">  &#x2F;&#x2F; initErrors &#x3D; &#123;username: [], password: []&#125;</span><br><span class="line">  const [errors, setErrors] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; const e: &#123; [k: string]: string[] &#125; &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; const e: &#123; [k: keyof T]: string[] &#125; &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; [key in keyof T] &#x3D; k in (&#39;title&#39;|&#39;password&#39;)</span><br><span class="line">    const e: &#123; [key in keyof T]?: string[] &#125; &#x3D; &#123;&#125;; &#x2F;&#x2F; 死记硬背, key的下标全部都是T的下标</span><br><span class="line">    for (let key in initFormData) &#123;</span><br><span class="line">      if (initFormData.hasOwnProperty(key))&#123;</span><br><span class="line">        e[key] &#x3D; []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return e &#x2F;&#x2F; 只做初始值</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form&gt;1&lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完成 onchange 事件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const onChange &#x3D; useCallback((key: keyof T, value: any)&#x3D;&gt;&#123;</span><br><span class="line">   &#x2F;&#x2F; 看到keyof 就脑补成, &#39;username&#39;|&#39;password&#39;</span><br><span class="line">   setFormData(&#123;</span><br><span class="line">     ...formData,</span><br><span class="line">     [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,[formData])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完成外部传进来的 onSubmit 事件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useCallback, useState&#125; from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">export function useForm&lt;T&gt;(initFormData: T, onSubmit: (fd: T) &#x3D;&gt; void) &#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 非受控</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(initFormData)</span><br><span class="line">  &#x2F;&#x2F; initFormData &#x3D; &#123;username:&#39;&#39;, password:&#39;&#39;&#125;</span><br><span class="line">  &#x2F;&#x2F; initErrors &#x3D; &#123;username: [], password: []&#125;</span><br><span class="line">  const [errors, setErrors] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; const e: &#123; [k: string]: string[] &#125; &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; const e: &#123; [k: keyof T]: string[] &#125; &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; [key in keyof T] &#x3D; k in (&#39;title&#39;|&#39;password&#39;)</span><br><span class="line">    const e: &#123; [key in keyof T]?: string[] &#125; &#x3D; &#123;&#125; &#x2F;&#x2F; 死记硬背, key的下标全部都是T的下标</span><br><span class="line">    for (let key in initFormData) &#123;</span><br><span class="line">      if (initFormData.hasOwnProperty(key)) &#123;</span><br><span class="line">        e[key] &#x3D; []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return e &#x2F;&#x2F; 只做初始值</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const onChange &#x3D; useCallback((key: keyof T, value: any) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 看到keyof 就脑补成, &#39;username&#39;|&#39;password&#39;</span><br><span class="line">    setFormData(&#123;</span><br><span class="line">      ...formData,</span><br><span class="line">      [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [formData])</span><br><span class="line"></span><br><span class="line">  const _onSubmit &#x3D; useCallback((e) &#x3D;&gt; &#123;</span><br><span class="line">    e.preventDefault() &#x2F;&#x2F; 调用外面submit</span><br><span class="line">    onSubmit(formData)</span><br><span class="line">  &#125;, [onSubmit, formData])</span><br><span class="line"></span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form&gt;1&lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>继续为 useForm 增加 fields,buttons</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ChangeEventHandler, ReactChild, useCallback, useState&#125; from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">type Field &#x3D; &#123;</span><br><span class="line">  label: string,</span><br><span class="line">  type: &#39;text&#39;|&#39;password&#39;|&#39;textarea&#39;,</span><br><span class="line">  value: string | number,</span><br><span class="line">  onChange: ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;,</span><br><span class="line">  errors: string[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function useForm&lt;T&gt;(initFormData: T, fields: Field[],  buttons: ReactChild, onSubmit: (fd: T) &#x3D;&gt; void) &#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line">  &#x2F;&#x2F; 非受控</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(initFormData)</span><br><span class="line">  &#x2F;&#x2F; initFormData &#x3D; &#123;username:&#39;&#39;, password:&#39;&#39;&#125;</span><br><span class="line">  &#x2F;&#x2F; initErrors &#x3D; &#123;username: [], password: []&#125;</span><br><span class="line">  const [errors, setErrors] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; const e: &#123; [k: string]: string[] &#125; &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; const e: &#123; [k: keyof T]: string[] &#125; &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; [key in keyof T] &#x3D; k in (&#39;title&#39;|&#39;password&#39;)</span><br><span class="line">    const e: &#123; [key in keyof T]?: string[] &#125; &#x3D; &#123;&#125; &#x2F;&#x2F; 死记硬背, key的下标全部都是T的下标</span><br><span class="line">    for (let key in initFormData) &#123;</span><br><span class="line">      if (initFormData.hasOwnProperty(key)) &#123;</span><br><span class="line">        e[key] &#x3D; []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return e &#x2F;&#x2F; 只做初始值</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const onChange &#x3D; useCallback((key: keyof T, value: any) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 看到keyof 就脑补成, &#39;username&#39;|&#39;password&#39;</span><br><span class="line">    setFormData(&#123;</span><br><span class="line">      ...formData,</span><br><span class="line">      [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [formData])</span><br><span class="line"></span><br><span class="line">  const _onSubmit &#x3D; useCallback((e) &#x3D;&gt; &#123;</span><br><span class="line">    e.preventDefault() &#x2F;&#x2F; 调用外面submit</span><br><span class="line">    onSubmit(formData)</span><br><span class="line">  &#125;, [onSubmit, formData])</span><br><span class="line"></span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form onSubmit&#x3D;&#123;_onSubmit&#125;&gt;</span><br><span class="line">      &#123;fields.map(field&#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            &#123;field.label&#125;</span><br><span class="line">            &#123;field.type &#x3D;&#x3D;&#x3D; &#39;textarea&#39; ?</span><br><span class="line">              &lt;textarea onChange&#x3D;&#123;field.onChange&#125;&gt;&#123;field.value&#125;&lt;&#x2F;textarea&gt;:</span><br><span class="line">              &lt;input type&#x3D;&#123;field.type&#125; value&#x3D;&#123;field.value&#125;</span><br><span class="line">                     onChange &#x3D; &#123;field.onChange&#125;&#x2F;&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;field.errors?.length &gt; 0 &amp;&amp; &lt;div&gt;</span><br><span class="line">              &#123;field.errors.join(&#39;,&#39;)&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;&#125;</span><br><span class="line">          &lt;&#x2F;label&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;)&#125;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;buttons&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>useForm 造完</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ChangeEventHandler, ReactChild, useCallback, useState&#125; from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">type Field&lt;T&gt; &#x3D; &#123;</span><br><span class="line">  label: string,</span><br><span class="line">  type: &#39;text&#39;|&#39;password&#39;|&#39;textarea&#39;,</span><br><span class="line">  key: keyof T,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function useForm&lt;T&gt;(initFormData: T, fields: Field&lt;T&gt;[],  buttons: ReactChild, onSubmit: (fd: T) &#x3D;&gt; void) &#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line">  &#x2F;&#x2F; 非受控</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(initFormData)</span><br><span class="line">  const [errors, setErrors] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    const e: &#123; [key in keyof T]?: string[] &#125; &#x3D; &#123;&#125; &#x2F;&#x2F; 死记硬背, key的下标全部都是T的下标</span><br><span class="line">    for (let key in initFormData) &#123;</span><br><span class="line">      if (initFormData.hasOwnProperty(key)) &#123;</span><br><span class="line">        e[key] &#x3D; []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return e &#x2F;&#x2F; 只做初始值</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const onChange &#x3D; useCallback((key: keyof T, value: any) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 看到keyof 就脑补成, &#39;username&#39;|&#39;password&#39;</span><br><span class="line">    setFormData(&#123;</span><br><span class="line">      ...formData,</span><br><span class="line">      [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [formData])</span><br><span class="line"></span><br><span class="line">  const _onSubmit &#x3D; useCallback((e) &#x3D;&gt; &#123;</span><br><span class="line">    e.preventDefault() &#x2F;&#x2F; 调用外面submit</span><br><span class="line">    onSubmit(formData)</span><br><span class="line">  &#125;, [onSubmit, formData])</span><br><span class="line"></span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form onSubmit&#x3D;&#123;_onSubmit&#125;&gt;</span><br><span class="line">      &#123;fields.map(field&#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            &#123;field.label&#125;</span><br><span class="line">            &#123;field.type &#x3D;&#x3D;&#x3D; &#39;textarea&#39; ?</span><br><span class="line">              &lt;textarea onChange&#x3D;&#123;(e)&#x3D;&gt; onChange(field.key, e.target.value)&#125;&gt;&#123;formData[field.key]&#125;&lt;&#x2F;textarea&gt;:</span><br><span class="line">              &lt;input type&#x3D;&#123;field.type&#125; value&#x3D;&#123;formData[field.key].toString()&#125;</span><br><span class="line">                     onChange &#x3D; &#123;(e)&#x3D;&gt; onChange(field.key, e.target.value)&#125;&#x2F;&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;errors[field.key]?.length &gt; 0 &amp;&amp; &lt;div&gt;</span><br><span class="line">              &#123;errors[field.key].join(&#39;,&#39;)&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;&#125;</span><br><span class="line">          &lt;&#x2F;label&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;)&#125;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;buttons&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>成功在 new.tsx 中使用封装的 useForm</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NextPage&#125; from &#39;next&#39;</span><br><span class="line">import axios, &#123;AxiosResponse&#125; from &#39;axios&#39;</span><br><span class="line">import &#123;useForm&#125; from &#39;..&#x2F;..&#x2F;hooks&#x2F;useForm&#39;</span><br><span class="line"></span><br><span class="line">const PostsNew: NextPage &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">  const onSubmit &#x3D; (formData: typeof initFormData)&#x3D;&gt;&#123;</span><br><span class="line">    axios.post(&#96;&#x2F;api&#x2F;v1&#x2F;posts&#96;, formData)</span><br><span class="line">      .then(()&#x3D;&gt;&#123;</span><br><span class="line">        alert(&#39;提交成功!&#39;)</span><br><span class="line">      &#125;,(error)&#x3D;&gt;&#123;</span><br><span class="line">        if(error.response)&#123;</span><br><span class="line">          const response: AxiosResponse &#x3D; error.response;</span><br><span class="line">          &#x2F;&#x2F; if(response)</span><br><span class="line">          if(response.status &#x3D;&#x3D;&#x3D; 422)&#123;</span><br><span class="line">            setErrors(response.data);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;&#x2F;&#x2F; []不加参数参数，表示只在页面第一次创建渲染创建onSubmit函数,其它时候ui怎么变,onSubmit不变</span><br><span class="line"></span><br><span class="line">  const initFormData &#x3D;  &#123;title: &#39;&#39;, content: &#39;&#39;&#125;</span><br><span class="line"></span><br><span class="line">  const &#123;form, setErrors&#125; &#x3D; useForm(</span><br><span class="line">    initFormData,</span><br><span class="line">    [</span><br><span class="line">          &#123;label:&#39;标题&#39;,type:&#39;text&#39;, key: &#39;title&#39;&#125;,</span><br><span class="line">          &#123;label:&#39;内容&#39;,type:&#39;textarea&#39;, key:&#39;content&#39;&#125;,</span><br><span class="line">        ],</span><br><span class="line">        &lt;button type&#x3D;&quot;submit&quot;&gt;提交&lt;&#x2F;button&gt;,</span><br><span class="line">    onSubmit</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  return(</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;form&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default PostsNew;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>继续优化封装 useform</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ReactChild, useCallback, useState&#125; from &#39;react&#39;</span><br><span class="line">import &#123;AxiosResponse&#125; from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">type Field&lt;T&gt; &#x3D; &#123;</span><br><span class="line">  label: string,</span><br><span class="line">  type: &#39;text&#39; | &#39;password&#39; | &#39;textarea&#39;,</span><br><span class="line">  key: keyof T,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type useFormOptions&lt;T&gt; &#x3D; &#123;</span><br><span class="line">  initFormData: T;</span><br><span class="line">  fields: Field&lt;T&gt;[];</span><br><span class="line">  buttons: ReactChild;</span><br><span class="line">  submit: &#123;</span><br><span class="line">    request: (formData:T)&#x3D;&gt; Promise&lt;AxiosResponse&lt;T&gt;&gt;;</span><br><span class="line">    message: string;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function useForm&lt;T&gt;(options: useFormOptions&lt;T&gt;) &#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line">  const &#123;initFormData, fields, buttons, submit&#125; &#x3D; options</span><br><span class="line">  &#x2F;&#x2F; 非受控</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(initFormData)</span><br><span class="line">  const [errors, setErrors] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    const e: &#123; [key in keyof T]?: string[] &#125; &#x3D; &#123;&#125; &#x2F;&#x2F; 死记硬背, key的下标全部都是T的下标</span><br><span class="line">    for (let key in initFormData) &#123;</span><br><span class="line">      if (initFormData.hasOwnProperty(key)) &#123;</span><br><span class="line">        e[key] &#x3D; []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return e &#x2F;&#x2F; 只做初始值</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const onChange &#x3D; useCallback((key: keyof T, value: any) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 看到keyof 就脑补成, &#39;username&#39;|&#39;password&#39;</span><br><span class="line">    setFormData(&#123;</span><br><span class="line">      ...formData,</span><br><span class="line">      [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [formData])</span><br><span class="line"></span><br><span class="line">  const _onSubmit &#x3D; useCallback((e) &#x3D;&gt; &#123;</span><br><span class="line">    e.preventDefault() &#x2F;&#x2F; 调用外面submit</span><br><span class="line">    submit.request(formData).then(()&#x3D;&gt;&#123;</span><br><span class="line">      window.alert(submit.message)</span><br><span class="line">    &#125;,(error)&#x3D;&gt;&#123;</span><br><span class="line">      if (error.response) &#123;</span><br><span class="line">        const response: AxiosResponse &#x3D; error.response</span><br><span class="line">        if (response.status &#x3D;&#x3D;&#x3D; 422) &#123;</span><br><span class="line">          setErrors(response.data)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [submit, formData])</span><br><span class="line"></span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form onSubmit&#x3D;&#123;_onSubmit&#125;&gt;</span><br><span class="line">      &#123;fields.map(field &#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            &#123;field.label&#125;</span><br><span class="line">            &#123;field.type &#x3D;&#x3D;&#x3D; &#39;textarea&#39; ?</span><br><span class="line">              &lt;textarea onChange&#x3D;&#123;(e) &#x3D;&gt; onChange(field.key, e.target.value)&#125;&gt;&#123;formData[field.key]&#125;&lt;&#x2F;textarea&gt; :</span><br><span class="line">              &lt;input type&#x3D;&#123;field.type&#125; value&#x3D;&#123;formData[field.key].toString()&#125;</span><br><span class="line">                     onChange&#x3D;&#123;(e) &#x3D;&gt; onChange(field.key, e.target.value)&#125;&#x2F;&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;errors[field.key]?.length &gt; 0 &amp;&amp; &lt;div&gt;</span><br><span class="line">              &#123;errors[field.key].join(&#39;,&#39;)&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;&#125;</span><br><span class="line">          &lt;&#x2F;label&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;)&#125;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;buttons&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form, setErrors: setErrors</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>使用最终优化的 useform,以 sign_up 为例</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NextPage&#125; from &#39;next&#39;</span><br><span class="line">import &#123; useState, useCallback &#125; from &#39;react&#39;;</span><br><span class="line">import axios, &#123; AxiosResponse &#125; from &#39;axios&#39;</span><br><span class="line">import &#123; useForm &#125; from &#39;hooks&#x2F;useForm&#39;;</span><br><span class="line"></span><br><span class="line">const SignUp: NextPage &#x3D; () &#x3D;&gt; &#123; &#x2F;&#x2F; 利用NextPage初始化注册页面</span><br><span class="line">  const &#123;form&#125; &#x3D; useForm(&#123;</span><br><span class="line">    initFormData:&#123;</span><br><span class="line">      username: &#39;&#39;,</span><br><span class="line">      password: &#39;&#39;,</span><br><span class="line">      passwordConfirmation: &#39;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    fields:[</span><br><span class="line">      &#123;</span><br><span class="line">        label:&#39;用户名&#39;,type:&#39;text&#39;, key: &#39;username&#39;,</span><br><span class="line">       &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        label: &#39;密码&#39;, type: &#39;password&#39;, key: &#39;password&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        label:&#39;确认密码&#39;,type:&#39;password&#39;, key: &#39;passwordConfirmation&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">    buttons:&lt;button type&#x3D;&quot;submit&quot;&gt;登录&lt;&#x2F;button&gt;,</span><br><span class="line">    submit: &#123;</span><br><span class="line">      request: formData &#x3D;&gt; axios.post(&#96;&#x2F;api&#x2F;v1&#x2F;users&#96;, formData),</span><br><span class="line">      message: &#96;注册成功&#96;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;h1&gt;注册&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;form&#125;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default SignUp;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/" class="post-title-link" itemprop="url">高级前端养成32js专精01之手写EventHub</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-05 14:07:34" itemprop="dateCreated datePublished" datetime="2020-08-05T14:07:34+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-06 10:05:37" itemprop="dateModified" datetime="2020-08-06T10:05:37+08:00">2020-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成32js专精01之手写EventHub" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一. 解题思路</p>
+<ol>
+<li>确定 API</li>
+<li>添加测试用例</li>
+<li>让测试用例通过</li>
+<li>重构代码</li>
+</ol>
+<p>二. 确定 API</p>
+<ol>
+<li>EventHub#on</li>
+<li>EventHub#off</li>
+<li>EventHub#emit</li>
+</ol>
+<p>三. 第一个知识点使用 ts-node 创建项目</p>
+<ol>
+<li>创建 EVENTHUB 文件夹</li>
+<li>创建 src/index.ts</li>
+<li>创建 ts-node 支持</li>
+<li>安装 ts-node</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">如果有的话先卸载 确定安装最新版</span><br><span class="line">ts-node -v</span><br><span class="line">which ts-node</span><br><span class="line">yarn global add</span><br><span class="line"></span><br><span class="line">开始安装</span><br><span class="line">yarn global add ts-node</span><br><span class="line">(如果有bug @8.3.0)</span><br><span class="line"></span><br><span class="line">index.ts</span><br><span class="line">const a &#x3D; ‘hi’</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
+
+5. 运行 ts-node src/index.ts
+6. 新建test/index.ts 用来做测试用例
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">src&#x2F;index.ts</span><br><span class="line">class EventHub &#123;&#125;</span><br><span class="line">export default EventHub;</span><br><span class="line"></span><br><span class="line">test&#x2F;index.ts</span><br><span class="line">import EventHub from ‘..&#x2F;src&#x2F;index’;</span><br><span class="line">console.log(EventHub)</span><br><span class="line">尝试运行有没有打印出来</span><br><span class="line">console.log(EventHub);</span><br></pre></td></tr></table></figure></code></pre>
+<p>四. 第二个知识点使用断言 console.assert</p>
+<ol>
+<li>第一个测试用例，断言测试 eventHub 是一个对象是真的</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test&#x2F;index.ts</span><br><span class="line">import EventHub from ‘..&#x2F;src&#x2F;index’;</span><br><span class="line">console.log(EventHub)</span><br><span class="line">const eventHub &#x3D; new EventHub();</span><br><span class="line">console.log(assert(eventHub instance Object &#x3D;&#x3D;&#x3D; true， “eventHub是一个对象”))</span><br><span class="line">console.assert(eventHub instance Object &#x3D;&#x3D;&#x3D; true， “eventHub是一个对象”))</span><br><span class="line">ts-node test&#x2F;index.ts 如果运行什么东西都没就是对的，否则报错</span><br></pre></td></tr></table></figure>
+
+<p>五. 实现on</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class EventHub &#123;</span><br><span class="line">  cache &#x3D; &#123;&#125;;</span><br><span class="line">  &#x2F;&#x2F; &#123;</span><br><span class="line">  &#x2F;&#x2F;  &#39;楚天都市报&#39;: [fn1, fn2, fn3],</span><br><span class="line">  &#x2F;&#x2F;  &#39;羊城晚报&#39; : [fn1, fn2, fn3]</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">  &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName &#x3D; 楚天, fn</span><br><span class="line">    if(this.cache[eventName] &#x3D;&#x3D;&#x3D; undefined)&#123;</span><br><span class="line">      this.cache[eventName] &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    const array &#x3D; this.cache[eventName];</span><br><span class="line">    array.push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>六. 实现emit，并测试成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">emit(eventName)&#123;</span><br><span class="line">    let array &#x3D; this.cache[eventName];</span><br><span class="line">    if(array&#x3D;&#x3D;&#x3D; undefined)&#123;</span><br><span class="line">      array &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    array.forEach(fn &#x3D;&gt; &#123;</span><br><span class="line">      fn();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 测试代码</span><br><span class="line">let called &#x3D; false;</span><br><span class="line">eventHub.on(&quot;xxx&quot;, ()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&quot;被调用&quot;)</span><br><span class="line">  called &#x3D; true;</span><br><span class="line">  console.log(&#39;called:&#39;+ called);</span><br><span class="line">&#125;);</span><br><span class="line">eventHub.emit(&quot;xxx&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>七. 优化代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">emit(eventName)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 this.cache[eventName] 数组里面的 fn 全部依次调用</span><br><span class="line">    (this.cache[eventName] || []).forEach(fn &#x3D;&gt; fn());</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>八. 完成参数传递</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;indext.ts</span><br><span class="line">class EventHub &#123;</span><br><span class="line">  cache &#x3D; &#123;&#125;;</span><br><span class="line">  &#x2F;&#x2F; &#123;</span><br><span class="line">  &#x2F;&#x2F;  &#39;楚天都市报&#39;: [fn1, fn2, fn3],</span><br><span class="line">  &#x2F;&#x2F;  &#39;羊城晚报&#39; : [fn1, fn2, fn3]</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 推进 this.cache[eventName] 数组</span><br><span class="line">    &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName &#x3D; 楚天, fn</span><br><span class="line">    this.cache[eventName] &#x3D; this.cache[eventName] || []</span><br><span class="line">    this.cache[eventName].push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName, data)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 this.cache[eventName] 数组里面的 fn 全部依次调用</span><br><span class="line">    (this.cache[eventName] || []).forEach(fn &#x3D;&gt; fn(data));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default EventHub;</span><br><span class="line">&#x2F;&#x2F; test&#x2F;index.ts</span><br><span class="line">import EventHub from &#39;..&#x2F;src&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 尝试运行有没有打印出来</span><br><span class="line">const eventHub &#x3D; new EventHub();</span><br><span class="line">console.assert(eventHub instanceof Object, &#39;eventHub是一个对象&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; on emit</span><br><span class="line">let called &#x3D; false;</span><br><span class="line">eventHub.on(&quot;xxx&quot;, (y)&#x3D;&gt;&#123;</span><br><span class="line">  called &#x3D; true;</span><br><span class="line">  console.log(&#39;called:&#39;+ called);</span><br><span class="line">  console.log(y);</span><br><span class="line">  console.assert(y &#x3D;&#x3D;&#x3D; &quot;今天天气不错&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">eventHub.emit(&quot;xxx&quot;, &quot;今天天气不错&quot;);</span><br></pre></td></tr></table></figure>
+<p>九. 初步实现off</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">off(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 从 this.cache[eventName] 数组删除</span><br><span class="line">    this.cache[eventName] &#x3D; this.cache[eventName] || [];</span><br><span class="line">    let index &#x3D; undefined;</span><br><span class="line">    for (let i &#x3D; 0; i &lt; this.cache[eventName].length; i++)&#123;</span><br><span class="line">      if(this.cache[eventName][i] &#x3D;&#x3D;&#x3D; fn)&#123;</span><br><span class="line">        index &#x3D; i;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(index &#x3D;&#x3D;&#x3D; undefined)&#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      this.cache[eventName].splice(index,1)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>十. 优化off代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class EventHub &#123;</span><br><span class="line">  cache &#x3D; &#123;&#125;;</span><br><span class="line">  &#x2F;&#x2F; &#123;</span><br><span class="line">  &#x2F;&#x2F;  &#39;楚天都市报&#39;: [fn1, fn2, fn3],</span><br><span class="line">  &#x2F;&#x2F;  &#39;羊城晚报&#39; : [fn1, fn2, fn3]</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 推进 this.cache[eventName] 数组</span><br><span class="line">    &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName &#x3D; 楚天, fn</span><br><span class="line">    this.cache[eventName] &#x3D; this.cache[eventName] || [];</span><br><span class="line">    this.cache[eventName].push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName, data?)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 this.cache[eventName] 数组里面的 fn 全部依次调用</span><br><span class="line">    (this.cache[eventName] || []).forEach(fn &#x3D;&gt; fn(data));</span><br><span class="line">  &#125;</span><br><span class="line">  off(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 从 this.cache[eventName] 数组删除</span><br><span class="line">    let index &#x3D; indexOf(this.cache[eventName], fn);</span><br><span class="line">    if(index &#x3D;&#x3D;&#x3D; -1)return;</span><br><span class="line">    this.cache[eventName].splice(index,1)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default EventHub;</span><br><span class="line"></span><br><span class="line">function indexOf(array, item) &#123;</span><br><span class="line">  if(array &#x3D;&#x3D;&#x3D; undefined) return -1;</span><br><span class="line">  let index &#x3D; -1;</span><br><span class="line">  for (let i &#x3D; 0; i &lt; array.length; i++)&#123;</span><br><span class="line">    if(array[i] &#x3D;&#x3D;&#x3D; item)&#123;</span><br><span class="line">      index &#x3D; i;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>十一. 优化测试代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import EventHub from &#39;..&#x2F;src&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const test1 &#x3D; (message)&#x3D;&gt;&#123;</span><br><span class="line">  const eventHub &#x3D; new EventHub();</span><br><span class="line">  console.assert(eventHub instanceof Object, &#39;eventHub是一个对象&#39;);</span><br><span class="line">  console.log(message)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const test2 &#x3D; (message)&#x3D;&gt;&#123;</span><br><span class="line">  const eventHub &#x3D; new EventHub();</span><br><span class="line">  &#x2F;&#x2F; on emit</span><br><span class="line">  let called &#x3D; false;</span><br><span class="line">  eventHub.on(&quot;xxx&quot;, (y)&#x3D;&gt;&#123;</span><br><span class="line">    called &#x3D; true;</span><br><span class="line">    console.assert(y &#x3D;&#x3D;&#x3D; &quot;今天天气不错&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">  eventHub.emit(&quot;xxx&quot;, &quot;今天天气不错&quot;);</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    console.assert(called &#x3D;&#x3D;&#x3D; true)</span><br><span class="line">    console.log(message)</span><br><span class="line">  &#125;,1000)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const test3 &#x3D; (message)&#x3D;&gt;&#123;</span><br><span class="line">  const eventHub &#x3D; new EventHub();</span><br><span class="line">  &#x2F;&#x2F; 另一个完全不同的送报纸公司</span><br><span class="line">  let called &#x3D; false;</span><br><span class="line">  const fn1 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    called &#x3D; true;</span><br><span class="line">  &#125;;</span><br><span class="line">  eventHub.on(&quot;yyy&quot;, fn1);</span><br><span class="line">  eventHub.off(&quot;yyy&quot;, fn1);</span><br><span class="line">  eventHub.emit(&quot;yyy&quot;);</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    console.assert(called &#x3D;&#x3D;&#x3D; false);</span><br><span class="line">    console.log(message)</span><br><span class="line">  &#125;,1000);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test1(&quot;EventHub 可以创建对象&quot;);</span><br><span class="line">test2(&quot;.on 了之后 .emit, 会触发 .on的函数&quot;);</span><br><span class="line">test3(&quot;.off 有用&quot;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2490,385 +2819,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" class="post-title-link" itemprop="url">高级前端养成15数据可视化之01Echarts使用指北</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-11 07:54:33" itemprop="dateCreated datePublished" datetime="2020-07-11T07:54:33+08:00">2020-07-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-12 22:15:34" itemprop="dateModified" datetime="2020-07-12T22:15:34+08:00">2020-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">数据可视化</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成15数据可视化之01Echarts使用指北" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一. 引入echarts</p>
-<ul>
-<li>无webpack/parcel<ul>
-<li>直接在html引入script src=path/to/echarts.min.js</li>
-<li>然后使用全局变量window.echarts</li>
-</ul>
-</li>
-<li>有webpack/parcel<ul>
-<li>yarn add echarts</li>
-<li>import echarts from ‘echarts’ 或者 var echarts = require(‘charts’)</li>
-<li>然后使用echarts即可</li>
-<li>小技巧安装echarts的类型 yarn add @types/echarts</li>
-</ul>
-</li>
-</ul>
-<p>二. 如何学习echarts</p>
-<ul>
-<li>使用crm学习</li>
-</ul>
-<p>三. webstorm很牛的一个功能</p>
-<ul>
-<li>右键local history,show history，给你显示所有的变更</li>
-</ul>
-<p>四. 功能</p>
-<ul>
-<li>换主题<ul>
-<li>echarts.init(xxx,’dart’)</li>
-</ul>
-</li>
-<li>webStorm/VSCode技巧<ul>
-<li>安装@types/echarts加强代码提示</li>
-</ul>
-</li>
-<li>细节配置<ul>
-<li>如何修改线，提示等</li>
-<li>如何查看<a href="https://echarts.apache.org/zh/cheat-sheet.html" target="_blank" rel="noopener">术语表</a></li>
-</ul>
-</li>
-</ul>
-<p>五.更新数据</p>
-<ul>
-<li>再次setOption即可<ul>
-<li>echarts会自动找出差异，并更新图表</li>
-<li>使用showLoading()/hideLoading()</li>
-</ul>
-</li>
-</ul>
-<p>六. 点击时间</p>
-<ul>
-<li>使用 on 即可<ul>
-<li>获取dataIndex 和 seriesIndex</li>
-</ul>
-</li>
-</ul>
-<p>七. 移动端适配</p>
-<ul>
-<li>常规技巧<ul>
-<li>meta:vp 抄淘宝手机版</li>
-<li>用JS获取屏幕宽度设置在div上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取屏幕宽度，背下来</span><br><span class="line">const width &#x3D; document.documentElement.clientWidth</span><br></pre></td></tr></table></figure></li>
-<li>设定款高比</li>
-</ul>
-</li>
-<li>echarts提供的功能<ul>
-<li>baseOption + media</li>
-</ul>
-</li>
-</ul>
-<p>八. 前端最好有3个电脑</p>
-<ul>
-<li>左边一个放文档，中间放代码，右边放浏览器</li>
-</ul>
-<p>九. 如何在Vue中使用echarts</p>
-<ul>
-<li>自己封装一个组件即可<ul>
-<li>看视频演示</li>
-</ul>
-</li>
-<li>也可以搜别人的封装<ul>
-<li><a href="https://github.com/ecomfe/vue-echarts" target="_blank" rel="noopener">https://github.com/ecomfe/vue-echarts</a></li>
-</ul>
-</li>
-</ul>
-<p>十. react用useEffect就是vue的mounted在其中渲染
-十一. <a href="https://github.com/codingories/15echarts-demo-1" target="_blank" rel="noopener">相关代码</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">高级前端养成14nodeJS框架04之Cypress-自动化测试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-10 17:46:27 / Modified: 17:47:59" itemprop="dateCreated datePublished" datetime="2020-07-10T17:46:27+08:00">2020-07-10</time>
-            </span>
-
-          
-            <span id="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成14nodeJS框架04之Cypress-自动化测试" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>Cypress 介绍</li>
-</ol>
-<ul>
-<li>v1.0.0 - 2017 年 10 月，基于 Electron (Chromium + Node.js), 多平台支持，但不支持 IE</li>
-<li>v2.0.0 - 2018 年 2 月，升级至 Chromium 59</li>
-<li>v3.0.0 - 2018 年 5 月，支持 Node 任务，可以用来连接数据库，读文件等</li>
-<li>v4.0.0 - 2020 年 2 月，支持 Firefox 和基于 Chromium 的 Edge 浏览器</li>
-</ul>
-<ol start="2">
-<li>Cypress 优点</li>
-</ol>
-<ul>
-<li>界面美观友好</li>
-<li>支持模拟手机</li>
-<li>每一步操作截图</li>
-<li>全程录屏</li>
-<li>支持 debug,随时暂停</li>
-<li>自动等待 UI 更新，减少异步代码</li>
-</ul>
-<ol start="3">
-<li>使用 Cypress</li>
-</ol>
-<ul>
-<li><p>步骤</p>
-<ul>
-<li>创建目录 cypress-demo-1</li>
-<li>使用 VSCode 或 WS 打开目录</li>
-<li>局部安装 cypress，方法请看安装方法 2</li>
-<li>输入./node_modules/.bin/cypress open</li>
-<li>如果你是局部安装，就输入./node_modules/.bin/cypress open</li>
-<li>然后你就看到了 Cypress 界面</li>
-<li>同时 Cypress 会提示你是否要安装案例，选择是</li>
-<li>示例文件可随时删除，不用心疼</li>
-<li>同时 Cypress 会创建</li>
-</ul>
-</li>
-<li><p>安装方式一</p>
-<ul>
-<li>可以用浏览器<a href="https://www.cypress.io/" target="_blank" rel="noopener">下载</a>，解压，然后双击 exe 运行</li>
-<li>最好解压的时候就选好安装目录，否则移动目录很耗时</li>
-<li>但是这个解压过程比较考验 cpu 硬盘性能，且耗时长</li>
-<li>这种方式不支持局部安装，只能把目录拖到界面里使用</li>
-</ul>
-</li>
-<li><p>安装方式二</p>
-<ul>
-<li>用 npm 或 yarn 安装</li>
-<li>安装命令: yarn add –dev cypress 或 npm i -D cypress</li>
-<li>但这样也不安装成功，因为有墙</li>
-<li>破墙办法 1，使用神奇教程,将*.cypress.io 加入白名单，然后运行安装命令</li>
-<li>破墙办法 2，下载 cypress.zip,然后在安装命令前面加上 CYPRESS_INSTALL_BINARY=/绝对路径/cypress.zip</li>
-<li>比如我的命令就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CYPRESS_INSTALL_BINARY&#x3D;&#x2F;Users&#x2F;ories&#x2F;Desktop&#x2F;cypress.zip yarn add --dev cypress</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="4">
-<li>运行 example</li>
-</ol>
-<ul>
-<li>界面<ul>
-<li>直接在 GUI 界面单机 acions.spec.js</li>
-<li>然后你就会看到自动化测试过程</li>
-</ul>
-</li>
-<li>命令<ul>
-<li>cypress run –spec “cypress/integration/examples/actions.spec.js”</li>
-<li>在上面命令后面加上 –headed 有惊喜</li>
-</ul>
-</li>
-<li>用 WebStorm 更惊喜<ul>
-<li>先安装 cypress 插件(装完后会提示你安装 reporter)</li>
-<li>然后打开 cypress-demo-1,找到 actions.spec.js,按照视频操作</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>不运行 examples</li>
-</ol>
-<ul>
-<li>方法一<ul>
-<li>直接删掉 examples 目录</li>
-</ul>
-</li>
-<li>方法二<ul>
-<li>将 example/从 integration/目录移走即可</li>
-</ul>
-</li>
-<li>方法三<ul>
-<li>在 cypress.json 里面加上”ignoreTestFiles”:[“<em>.hot-update.js”,”*<em>/examples/</em>.</em>“]</li>
-</ul>
-</li>
-<li>这样就不会运行 examples 里<ul>
-<li>./node_modules/.bin/cypress run</li>
-</ul>
-</li>
-</ul>
-<ol start="6">
-<li>开始写自己的测试</li>
-</ol>
-<ul>
-<li>./node_modules/.bin/cypress open</li>
-<li>如果 open 比较麻烦可以./node_modules/.bin/cypress run</li>
-</ul>
-<ol start="7">
-<li>只测试重要的页面</li>
-</ol>
-<ul>
-<li>比如登录，加入购物车，下单</li>
-<li>不要测样式，只测功能</li>
-</ul>
-<ol start="8">
-<li>如何写测试api</li>
-</ol>
-<ul>
-<li>webstorm 自动提示和看文档</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2936,14 +2890,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

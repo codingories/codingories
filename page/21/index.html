@@ -158,6 +158,423 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/04/22/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/22/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-title-link" itemprop="url">ReactNative学习分享一</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-22 11:27:33" itemprop="dateCreated datePublished" datetime="2019-04-22T11:27:33+08:00">2019-04-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-12 15:13:55" itemprop="dateModified" datetime="2020-07-12T15:13:55+08:00">2020-07-12</time>
+              </span>
+
+          
+            <span id="/2019/04/22/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-meta-item leancloud_visitors" data-flag-title="ReactNative学习分享一" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/04/22/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/04/22/ReactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>title: ReactNative学习分享一
+date: 2018-12-19 21:37:27
+tags: ReactNative
+— 初始化一个新的reactNative项目
+react-native init 项目名称</p>
+<p>一.View标签，可以理解成为网页中div。
+二.FlexBox布局:
+a.移动端只有两种水平从左到右，垂直从上到下。
+ flexDirection: <code>row  | column </code>
+b）justifyContent:<code>flex-start | flex-end | center | space-between | space-around</code>
+  定义了伸缩项目在主轴线的对齐方式
+  flex-start(默认值)：伸缩项目向一行的起始位置靠齐。
+  flex-end：伸缩项目向一行的结束位置靠齐。
+  center：伸缩项目向一行的中间位置靠齐。
+  space-between：两端对齐，项目之间的间隔都相等。
+  space-around：伸缩项目会平均地分布在行里，两端保留一半的空间。
+c） alignItems:  <code>flex-start | flex-end | center | baseline | stretch</code>
+       定义项目在交叉轴上如何对齐，可以把其想像成侧轴（垂直于主轴）的“对齐方式”。
+      flex-start：交叉轴的起点对齐。
+      flex-end：交叉轴的终点对齐 。
+      center：交叉轴的中点对齐。
+      baseline：项目的第一行文字的基线对齐。(移动端没有用)
+      stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+d)  flexWrap: <code>nowrap | wrap | wrap-reverse</code>
+默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。
+    nowrap(默认值)：不换行。
+    wrap：换行，第一行在上方。
+    wrap-reverse：换行，第一行在下方。（和wrap相反）(Native里面无效)
+三.Flex元素属性
+    a.“flex-grow”、“flex-shrink”和“flex-basis”三个属性的缩写， 其中第二个和第三个参数（flex-shrink、flex-basis）是可选参数。
+   默认值为“0 1 auto”。
+   宽度 ＝ 弹性宽度 * ( flexGrow / sum( flexGorw ) )
+   <code>flex:1</code>
+    b）alignSelf:  “auto | flex-start | flex-end | center | baseline | stretch”
+align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+    c) Image案例</p>
+<p>案例图片</p>
+<p><img src="https://s1.ax1x.com/2018/12/20/Fr9Azj.png" alt="case" title="案例"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/04/04/Seaborn-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/04/Seaborn-1/" class="post-title-link" itemprop="url">Seaborn-1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-04-04 14:05:25 / Modified: 17:02:54" itemprop="dateCreated datePublished" datetime="2019-04-04T14:05:25+08:00">2019-04-04</time>
+            </span>
+
+          
+            <span id="/2019/04/04/Seaborn-1/" class="post-meta-item leancloud_visitors" data-flag-title="Seaborn-1" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/04/04/Seaborn-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/04/04/Seaborn-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline <span class="comment"># 写完代码直接将图显示在notebook上</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sinplot</span><span class="params">(flip=<span class="number">1</span>)</span>:</span></span><br><span class="line">    x = np.linspace(<span class="number">0</span>, <span class="number">14</span>, <span class="number">100</span>) <span class="comment"># 0,14区间上找出来100个点</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">7</span>): <span class="comment"># 画6条线</span></span><br><span class="line">        plt.plot(x, np.sin(x + i * <span class="number">.5</span>) * (<span class="number">7</span> - i) * flip)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinplot() <span class="comment"># matplot 默认画风</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_2_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set() <span class="comment"># 使用seaborn 默认的参数</span></span><br><span class="line">sinplot() <span class="comment"># 风格发生改变</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_3_0.png" alt="png"></p>
+<h3 id="5种主题风格"><a href="#5种主题风格" class="headerlink" title="5种主题风格"></a>5种主题风格</h3><ul>
+<li>darkgrid</li>
+<li>whitegrid</li>
+<li>dark</li>
+<li>white</li>
+<li>ticks</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"whitegrid"</span>) <span class="comment"># 设置seaborn的风格</span></span><br><span class="line">data = np.random.normal(size=(<span class="number">20</span>, <span class="number">6</span>)) + np.arange(<span class="number">6</span>) / <span class="number">2</span></span><br><span class="line">sns.boxplot(data=data)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e09ee10&gt;</code></pre>
+<p><img src="/.io/2019/04//output_5_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"dark"</span>) <span class="comment"># 没有刻度线</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_6_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"white"</span>) <span class="comment"># 没有刻度线</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_7_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"ticks"</span>) <span class="comment"># 加上线段</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_8_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sinplot()</span><br><span class="line">sns.despine() <span class="comment"># 去掉上面，右边的线</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_9_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#f, ax = plt.subplots()</span></span><br><span class="line">sns.violinplot(data)</span><br><span class="line">sns.despine(offset=<span class="number">30</span>) <span class="comment"># 画的图离开轴线的距离</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_10_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"whitegrid"</span>)</span><br><span class="line">sns.boxplot(data=data, palette=<span class="string">"deep"</span>)</span><br><span class="line">sns.despine(left=<span class="literal">True</span>) <span class="comment"># 把左边的轴隐藏起来</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_11_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> sns.axes_style(<span class="string">"darkgrid"</span>): <span class="comment"># 用with打开一种风格,with里面都是执行当前的风格</span></span><br><span class="line">    plt.subplot(<span class="number">211</span>)</span><br><span class="line">    sinplot()</span><br><span class="line">plt.subplot(<span class="number">212</span>) <span class="comment"># with外面 不是当前这种风格</span></span><br><span class="line">sinplot(<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_12_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.set()</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"paper"</span>) <span class="comment"># 设置整体画图域按相对尺寸的顺序(线条越来越粗)</span></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_14_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"talk"</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_15_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"poster"</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_16_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"notebook"</span>, font_scale=<span class="number">1.5</span>, rc=&#123;<span class="string">"lines.linewidth"</span>: <span class="number">2.5</span>&#125;) <span class="comment">#font_scale 字体大小,"lines.linewidth"线的粗细</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_17_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">sns.set(rc=&#123;<span class="string">"figure.figsize"</span>: (<span class="number">6</span>, <span class="number">6</span>)&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="调色板"><a href="#调色板" class="headerlink" title="调色板"></a>调色板</h3><ul>
+<li>颜色很重要</li>
+<li>color_palette()能传入任何Matplotlib所支持的颜色</li>
+<li>color_palette()不写参数则默认颜色</li>
+<li>set_palette()设置所有图的颜色</li>
+</ul>
+<h3 id="分类色板"><a href="#分类色板" class="headerlink" title="分类色板"></a>分类色板</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">current_palette = sns.color_palette()</span><br><span class="line">sns.palplot(current_palette) <span class="comment"># 打印出seaborn中的current_palette</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_20_0.png" alt="png"></p>
+<p>老版本为6个默认的颜色循环主题： deep, muted, pastel, bright, dark, colorblind</p>
+<h3 id="圆形画板"><a href="#圆形画板" class="headerlink" title="圆形画板"></a>圆形画板</h3><p>当你有六个以上的分类要区分时，最简单的方法就是在一个圆形的颜色空间中画出均匀间隔的颜色(这样的色调会保持亮度和饱和度不变)。这是大多数的当他们需要使用比当前默认颜色循环中设置的颜色更多时的默认方案。</p>
+<p>最常用的方法是使用hls的颜色空间，这是RGB值的一个简单转换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"hls"</span>, <span class="number">8</span>)) <span class="comment"># 圆形色板分成八份</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_23_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data = np.random.normal(size=(<span class="number">20</span>, <span class="number">8</span>)) + np.arange(<span class="number">8</span>) / <span class="number">2</span></span><br><span class="line">sns.boxplot(data=data,palette=sns.color_palette(<span class="string">"hls"</span>, <span class="number">8</span>)) <span class="comment"># 随机造一些数据</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11d3b44e0&gt;</code></pre>
+<p><img src="/.io/2019/04//output_24_1.png" alt="png"></p>
+<p>hls_palette()函数来控制颜色的亮度和饱和</p>
+<ul>
+<li>l-亮度 lightness </li>
+<li>s-饱和 saturation</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.hls_palette(<span class="number">8</span>, l=<span class="number">.7</span>, s=<span class="number">0.9</span>)) <span class="comment"># 右边是饱和度和亮度</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_26_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"Paired"</span>,<span class="number">8</span>)) <span class="comment">#现在调出来的调色板成对</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_27_0.png" alt="png"></p>
+<h3 id="使用xkcd颜色来命名颜色"><a href="#使用xkcd颜色来命名颜色" class="headerlink" title="使用xkcd颜色来命名颜色"></a>使用xkcd颜色来命名颜色</h3><p>xkcd包含了一套众包努力的针对随机RGB色的命名。产生了954个可以随时通过xdcd_rgb字典中调用的命名颜色。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], sns.xkcd_rgb[<span class="string">"pale red"</span>], lw=<span class="number">3</span>) <span class="comment"># xkcd 方式选取颜色</span></span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">2</span>], sns.xkcd_rgb[<span class="string">"medium green"</span>], lw=<span class="number">3</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">3</span>], sns.xkcd_rgb[<span class="string">"denim blue"</span>], lw=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x11f6a9e48&gt;]</code></pre>
+<p><img src="/.io/2019/04//output_29_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">colors = [<span class="string">"windows blue"</span>, <span class="string">"amber"</span>, <span class="string">"greyish"</span>, <span class="string">"faded green"</span>, <span class="string">"dusty purple"</span>]</span><br><span class="line">sns.palplot(sns.xkcd_palette(colors))</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_30_0.png" alt="png"></p>
+<h3 id="连续色板"><a href="#连续色板" class="headerlink" title="连续色板"></a>连续色板</h3><p>色彩随数据变换，比如数据越来越重要则颜色越来越深</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"Blues"</span>))</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_32_0.png" alt="png"></p>
+<p>如果想要翻转渐变，可以在面板名称中添加一个_r后缀</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"BuGn_r"</span>)) <span class="comment"># +_r 由深到浅</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_34_0.png" alt="png"></p>
+<h3 id="cubehelix-palette-调色板"><a href="#cubehelix-palette-调色板" class="headerlink" title="cubehelix_palette()调色板"></a>cubehelix_palette()调色板</h3><p>色调线性变换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"cubehelix"</span>, <span class="number">8</span>)) <span class="comment"># 指定颜色变换区间,不大常用</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_36_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.cubehelix_palette(<span class="number">8</span>, start=<span class="number">.5</span>, rot=<span class="number">-.75</span>))</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_37_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.cubehelix_palette(<span class="number">8</span>, start=<span class="number">.75</span>, rot=<span class="number">-.150</span>))</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_38_0.png" alt="png"></p>
+<h3 id="light-palette-和dark-palette-调用定制连续调色板"><a href="#light-palette-和dark-palette-调用定制连续调色板" class="headerlink" title="light_palette() 和dark_palette()调用定制连续调色板"></a>light_palette() 和dark_palette()调用定制连续调色板</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.light_palette(<span class="string">"green"</span>)) <span class="comment"># 指定绿色从浅到深</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_40_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.dark_palette(<span class="string">"purple"</span>))</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_41_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.light_palette(<span class="string">"navy"</span>, reverse=<span class="literal">True</span>)) <span class="comment"># reverse 反转</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_42_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x, y = np.random.multivariate_normal([<span class="number">0</span>, <span class="number">0</span>], [[<span class="number">1</span>, <span class="number">-.5</span>], [<span class="number">-.5</span>, <span class="number">1</span>]], size=<span class="number">300</span>).T</span><br><span class="line">pal = sns.dark_palette(<span class="string">"green"</span>, as_cmap=<span class="literal">True</span>)</span><br><span class="line">sns.kdeplot(x, y, cmap=pal); <span class="comment"># 把green传到颜色中来</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_43_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.light_palette((<span class="number">210</span>, <span class="number">90</span>, <span class="number">60</span>), input=<span class="string">"husl"</span>))</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_44_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats,integrate</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.set(color_codes = <span class="literal">True</span>)</span><br><span class="line">np.random.seed(sum(map(ord,<span class="string">"distributions"</span>)))</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="comment"># 写完代码直接将图显示在notebook上</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.normal(size=<span class="number">100</span>) <span class="comment"># 随机生成高斯数据</span></span><br><span class="line">sns.distplot(x,kde=<span class="literal">False</span>) <span class="comment"># x表示数据,kde暂时不管，表示和密度估计</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11c1de080&gt;</code></pre>
+<p><img src="/.io/2019/04//output_46_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(x,bins=<span class="number">20</span>,kde=<span class="literal">False</span>) <span class="comment"># 在x轴的取值区间上平均分成多少等份</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e24ac88&gt;</code></pre>
+<p><img src="/.io/2019/04//output_47_1.png" alt="png"></p>
+<p>数据分布情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.gamma(<span class="number">6</span>, size=<span class="number">200</span>)</span><br><span class="line">sns.distplot(x,kde=<span class="literal">False</span>,fit=stats.gamma) <span class="comment"># 显示出数据的整体轮廓,分布状态</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e2ed6a0&gt;</code></pre>
+<p><img src="/.io/2019/04//output_49_1.png" alt="png"></p>
+<p>根据均值和协方差生成数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mean,cov = [<span class="number">0</span>,<span class="number">1</span>],[(<span class="number">1</span>,<span class="number">.5</span>),(<span class="number">.5</span>,<span class="number">1</span>)] <span class="comment"># 指定好均值和协方差</span></span><br><span class="line">data = np.random.multivariate_normal(mean,cov,<span class="number">200</span>) <span class="comment"># 通过numpy生成数据</span></span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">"x"</span>,<span class="string">"y"</span>]) <span class="comment"># 把x,y的二维数据转成DataFrame格式</span></span><br><span class="line"><span class="comment"># df</span></span><br></pre></td></tr></table></figure>
+
+<p>观测两个变量之间的分布关系最好用散点图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.jointplot(x=<span class="string">"x"</span>,y=<span class="string">"y"</span>,data=df,stat_func=stats.pearsonr) <span class="comment"># 绘制散点图,同时会把单变量直方图生成出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># g.annotate(pearson,template='r: &#123;val:.2f&#125;\np: &#123;p:.3f&#125;')</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>/usr/local/lib/python3.7/site-packages/seaborn/axisgrid.py:1847: UserWarning: JointGrid annotation is deprecated and will be removed in a future release.
+  warnings.warn(UserWarning(msg))</code></pre>
+<p><img src="/.io/2019/04//output_53_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x,y = np.random.multivariate_normal(mean,cov,<span class="number">1000</span>).T <span class="comment"># 定义数据</span></span><br><span class="line"><span class="keyword">with</span> sns.axes_style(<span class="string">"white"</span>): <span class="comment"># 指定黑白相间的风格</span></span><br><span class="line">    sns.jointplot(x=x,y=y,kind=<span class="string">"hex"</span>,color=<span class="string">"k"</span>,stat_func=stats.pearsonr) <span class="comment"># 查看哪个区域分布的多，在数据量大的时候用的多</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/.io/2019/04//output_54_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iris = sns.load_dataset(<span class="string">"iris"</span>) <span class="comment"># 加载内置数据集，iris</span></span><br><span class="line">sns.pairplot(iris)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;seaborn.axisgrid.PairGrid at 0x1208876a0&gt;</code></pre>
+<p><img src="/.io/2019/04//output_55_1.png" alt="png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/04/04/matplotlib-share/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4914,319 +5331,10 @@ N＋にて</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/10/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/10/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day3/" class="post-title-link" itemprop="url">n2词汇打卡day3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-03-10 16:58:33 / Modified: 16:59:43" itemprop="dateCreated datePublished" datetime="2019-03-10T16:58:33+08:00">2019-03-10</time>
-            </span>
-
-          
-            <span id="/2019/03/10/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day3/" class="post-meta-item leancloud_visitors" data-flag-title="n2词汇打卡day3" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/03/10/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/10/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>n2词汇打卡day3</p>
-<p>1.揣测，体察
-察する</p>
-<p>2.我体谅她的心情，什么也没说。
-彼女の気持ちを察して、何も言わなかた。</p>
-<p>3.察言观色、识趣，看得懂当时状况的人。
-空気を読む</p>
-<p>4.体谅，体贴
-思いやり</p>
-<p>5.周りの人への思いやりを大切にしたい。
-我想好好珍惜这份对周围人的体谅之心。</p>
-<p>6.嘲弄
-からかう</p>
-<p>7.彼女ができて、友達にからかわれた。
-我交到了女朋友了，结果受到了朋友的嘲弄。</p>
-<p>8.体谅人
-思いやりがある</p>
-<p>9.热恋
-熱々　あつあつ</p>
-<p>10.气氛高涨;凸起,隆起
-盛り上がる
-カップル</p>
-<p>10.宴会气氛热烈，一直进行到深夜。
-パーティーは盛り上がって、夜中まで続いた。</p>
-<p>11.吵，吵闹
-騒ぐ　さわぐ</p>
-<p>12.平，平坦。
-平　たいら</p>
-<p>13.气泡
-泡　あわ</p>
-<p>14.吃惊;厌烦
-あきれる</p>
-<p>15.彼はいつも遅刻するので、あきれてしまう。
-他老是迟到，真是让人厌烦。</p>
-<p>16.开玩笑，打闹，嘲弄
-ふざける</p>
-<p>17.我和朋友打闹的时候，不小心摔倒，腿部骨折了。
-友達とふざけていたら、転んで足の骨を折（お）った。</p>
-<p>18.骨折　こっせつ</p>
-<p>19.许久，久违
-久しいい</p>
-<p>20.我好久没和高中时的同班同学见面了。
-高校時代のクラスメートと久しく会っていない。</p>
-<p>21.鞠躬，行礼，点头寒暄
-おじぎ＜する＞</p>
-<p>22.早上见到房东，我点头打了个招呼。
-朝、大家さんに会ったので、おじぎした。</p>
-<p>23.鞠躬行礼
-お辞儀</p>
-<p>24.点头，颔首，打招呼。
-会釈　えしゃく</p>
-<p>25.交换，相交
-交わす</p>
-<p>26.近所（きんじょ）の人たちに会うと、笑顔であいさつを交わす。
-邻居们见面的时候，会微笑着互相打招呼。</p>
-<p>27.视线交汇
-視線を交わす</p>
-<p>28.回头，回顾，回忆
-振り返る</p>
-<p>29.学生時代を振り返ると、なつかしい。
-回顾学生时代，那段时光令人怀念。</p>
-<p>其它</p>
-<p>１：５６　思うやりなんですね
-やはり思いやりが</p>
-<p>長い間</p>
-<p>合わなくなって久しい</p>
-<p>お久しぶりです</p>
-<p>ご無沙汰しております</p>
-<p>４：３６　寿司を（）食べます</p>
-<p>謝る　あやまる</p>
-<p>お互い　おたがい</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/09/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/09/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day2/" class="post-title-link" itemprop="url">n2词汇打卡day2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-03-09 10:29:51 / Modified: 10:30:53" itemprop="dateCreated datePublished" datetime="2019-03-09T10:29:51+08:00">2019-03-09</time>
-            </span>
-
-          
-            <span id="/2019/03/09/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day2/" class="post-meta-item leancloud_visitors" data-flag-title="n2词汇打卡day2" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/03/09/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/09/n2%E8%AF%8D%E6%B1%87%E6%89%93%E5%8D%A1day2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>n2词汇打卡day2</p>
-<p>1.一代（人），世代，辈份
-世代　
-せだい</p>
-<p>2.不是一代人，有时说话会有代沟。
-世代が違うと、話が合わないこともある。</p>
-<p>3.三十年一代
-三十年で一つの区切り</p>
-<p>4.1.段落。2.阶段。【名词】
-区切り (くぎり)</p>
-<p>5.1.【英】代沟。
-ジェネレーションギャップ </p>
-<p>6.继承（两个）
-1.継ぐ　つぐ
-2.継承   けいしょう</p>
-<p>7.明年我将接受父亲的公司。
-来年、父の会社を継ぐことになった。</p>
-<p>8.继承</p>
-<p>9.继承家业
-家業を継ぐ</p>
-<p>10.继承意志
-意志を継ぐ</p>
-<p>11.受恩惠，富足
-恵（めぐ）まれる　</p>
-<p>12.我总是能交到很多朋友。
-私は、いつも友人に恵まれている。</p>
-<p>13.运气好
-運に恵まれる</p>
-<p>14.一个幸福的孩子
-恵まれた子</p>
-<p>15.頼る
-たよる</p>
-<p>16.我们是好朋友，需要帮忙的时候，我希望你能来找我。
-私たちは親友なのだから、困った時は頼ってほしい。</p>
-<p>17.可靠的，有出息
-頼もしい</p>
-<p>18.她是一个可靠的人，什么事都能和她商量。
-彼女は何でも相談できる頼もしい存在だ。
-　
-19.被依靠
-頼られる</p>
-<p>20.成为依靠
-頼りになる</p>
-<p>21.学习，以……为榜样
-見習う</p>
-<p>22.我有好几个值得学习的朋友。
-私には見習うべき友人が何人かいる。</p>
-<p>23.（因突然的变故等）心神不定。【自动词・一段/二类】
-動じる 
-[どうじる] </p>
-<p>24吐露，坦言
-打ち明ける</p>
-<p>25.友たちにだけに秘密を打ち明けた。
-我只对好朋友吐露了秘密。</p>
-<p>26.不慌张
-慌ていない</p>
-<p>27.鼓励
-励ます</p>
-<p>28.我考试不及格的时候，朋友鼓励了我。
-私が真に落ちた時、友達が励ましてくれた。</p>
-<p>29.模拟测试
-模擬テスト</p>
-<p>30.硬是，敢于
-あえて</p>
-<p>31.因为是很重要的朋友，所以我才敢说一些忠言逆耳。
-大切な友達だから、あえて厳しい忠告もする。</p>
-<p>32.良药苦口，忠言逆耳
-良薬は口に苦(にが)し </p>
-<p>33.忠告（两个）
-1.助言
-2.アドバイス </p>
-<p>34.安慰
-慰める　</p>
-<p>35.我被女朋友甩了的时候，朋友安慰了我。
-彼女にふられたとき、友達がなぐさめてくれた。</p>
-<ol start="36">
-<li>1.被（异性）拒绝，被甩，受冷遇，碰钉子。
-振られる 【自动词・一段/二类】
-[ふられる] </li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5294,14 +5402,14 @@ N＋にて</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

@@ -158,6 +158,165 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-10-%E9%99%90%E5%88%B6%E8%8A%82%E7%82%B9%E6%8B%96%E5%8A%A8%E5%8C%BA%E5%9F%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/04/LearnJsplumb-10-%E9%99%90%E5%88%B6%E8%8A%82%E7%82%B9%E6%8B%96%E5%8A%A8%E5%8C%BA%E5%9F%9F/" class="post-title-link" itemprop="url">LearnJsplumb_10_限制节点拖动区域</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-04 09:41:10 / Modified: 09:42:35" itemprop="dateCreated datePublished" datetime="2019-06-04T09:41:10+08:00">2019-06-04</time>
+            </span>
+
+          
+            <span id="/2019/06/04/LearnJsplumb-10-%E9%99%90%E5%88%B6%E8%8A%82%E7%82%B9%E6%8B%96%E5%8A%A8%E5%8C%BA%E5%9F%9F/" class="post-meta-item leancloud_visitors" data-flag-title="LearnJsplumb_10_限制节点拖动区域" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/04/LearnJsplumb-10-%E9%99%90%E5%88%B6%E8%8A%82%E7%82%B9%E6%8B%96%E5%8A%A8%E5%8C%BA%E5%9F%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/04/LearnJsplumb-10-%E9%99%90%E5%88%B6%E8%8A%82%E7%82%B9%E6%8B%96%E5%8A%A8%E5%8C%BA%E5%9F%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.11.1&#x2F;themes&#x2F;smoothness&#x2F;jquery-ui.css&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #diagramContainer &#123;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            width: 80%;</span><br><span class="line">            height: 400px;</span><br><span class="line">            border: 1px solid gray;</span><br><span class="line">        &#125;</span><br><span class="line">        .item &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            height: 80px;</span><br><span class="line">            width: 80px;</span><br><span class="line">            border: 1px solid blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;diagramContainer&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_left&quot; class&#x3D;&quot;item&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_right&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;left:150px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.3.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.12.1&#x2F;jquery-ui.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jquery.jsplumb.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    &#x2F;* global jsPlumb, $ *&#x2F;</span><br><span class="line">    $(&#39;.item&#39;).resizable(&#123;</span><br><span class="line">        resize: function (event, ui) &#123;</span><br><span class="line">            jsPlumb.repaint(ui.helper)</span><br><span class="line">        &#125;,</span><br><span class="line">        handles: &#39;all&#39;</span><br><span class="line">    &#125;);</span><br><span class="line">    jsPlumb.ready(function () &#123;</span><br><span class="line">        jsPlumb.connect(&#123;</span><br><span class="line">            source: &#39;item_left&#39;,</span><br><span class="line">            target: &#39;item_right&#39;,</span><br><span class="line">            endpoint: &#39;Rectangle&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        jsPlumb.draggable(&#39;item_left&#39;, &#123;containment: &#39;parent&#39;&#125;);</span><br><span class="line">        jsPlumb.draggable(&#39;item_right&#39;, &#123;containment: &#39;parent&#39;&#125;);</span><br><span class="line">        &#x2F;&#x2F; 默认情况下，节点可以被拖动到区域外边，如果想只能在区域内拖动，需要设置containment，这样节点只能在固定区域内移动。</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/" class="post-title-link" itemprop="url">LearnJsplumb_09节点改变尺寸</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-04 09:33:16 / Modified: 09:34:57" itemprop="dateCreated datePublished" datetime="2019-06-04T09:33:16+08:00">2019-06-04</time>
+            </span>
+
+          
+            <span id="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/" class="post-meta-item leancloud_visitors" data-flag-title="LearnJsplumb_09节点改变尺寸" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.11.1&#x2F;themes&#x2F;smoothness&#x2F;jquery-ui.css&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #diagramContainer &#123;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            width: 80%;</span><br><span class="line">            height: 400px;</span><br><span class="line">            border: 1px solid gray;</span><br><span class="line">        &#125;</span><br><span class="line">        .item &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            height: 80px;</span><br><span class="line">            width: 80px;</span><br><span class="line">            border: 1px solid blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;diagramContainer&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_left&quot; class&#x3D;&quot;item&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_right&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;left:150px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.3.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.12.1&#x2F;jquery-ui.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jsplumb.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    &#x2F;* global jsPlumb, $ *&#x2F;</span><br><span class="line">    $(&#39;.item&#39;).resizable(&#123;</span><br><span class="line">        resize: function (event, ui) &#123;</span><br><span class="line">            jsPlumb.repaint(ui.helper)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)&#x2F;&#x2F; jsplumb实际上不支持改变节点大小，实际上只能通过jquery ui resizable 方法去改变</span><br><span class="line">    jsPlumb.ready(function () &#123;</span><br><span class="line">        jsPlumb.connect(&#123;</span><br><span class="line">            source: &#39;item_left&#39;,</span><br><span class="line">            target: &#39;item_right&#39;,</span><br><span class="line">            endpoint: &#39;Rectangle&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        jsPlumb.draggable(&#39;item_left&#39;);</span><br><span class="line">        jsPlumb.draggable(&#39;item_right&#39;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-08%E7%BB%99%E7%AB%AF%E7%82%B9%E5%A2%9E%E5%8A%A0%E6%A0%B7%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -792,199 +951,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/03/LearnJsplumb-00%E8%BF%9E%E6%8E%A5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/03/LearnJsplumb-00%E8%BF%9E%E6%8E%A5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9/" class="post-title-link" itemprop="url">LearnJsplumb_00连接两个节点</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-03 11:23:22 / Modified: 15:43:54" itemprop="dateCreated datePublished" datetime="2019-06-03T11:23:22+08:00">2019-06-03</time>
-            </span>
-
-          
-            <span id="/2019/06/03/LearnJsplumb-00%E8%BF%9E%E6%8E%A5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9/" class="post-meta-item leancloud_visitors" data-flag-title="LearnJsplumb_00连接两个节点" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/03/LearnJsplumb-00%E8%BF%9E%E6%8E%A5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/03/LearnJsplumb-00%E8%BF%9E%E6%8E%A5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;连接两个节点&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    #diagramContainer &#123;</span><br><span class="line">        padding: 20px;</span><br><span class="line">        width: 80%;</span><br><span class="line">        height: 200px;</span><br><span class="line">        border: 1px solid gray;</span><br><span class="line">    &#125;</span><br><span class="line">    .item &#123;</span><br><span class="line">        height: 80px;</span><br><span class="line">        width: 80px;</span><br><span class="line">        border: 1px solid blue;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;diagramContainer&quot;&gt;</span><br><span class="line">        &lt;div id&#x3D;&quot;item_left&quot; class&#x3D;&quot;item&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div id&#x3D;&quot;item_right&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;margin-left:50px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;jsPlumb&#x2F;2.6.8&#x2F;js&#x2F;jsplumb.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;* global jsPlumb *&#x2F;</span><br><span class="line">        jsPlumb.ready(function () &#123;</span><br><span class="line">            jsPlumb.connect(&#123;</span><br><span class="line">                source: &#39;item_left&#39;,</span><br><span class="line">                target: &#39;item_right&#39;,</span><br><span class="line">                endpoint: &#39;Dot&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>| 参数      | 参数类型                 | 是否必须    | 说明
-| ——– | —–:                  | :—-:    |
-| source   | String,Object,Endpoint  | 是         | 连线源的标识，可以是id, element, 或者Endpoint
-| target   | String,Object,Endpoint  | 是         | 连线目标的标识，可以是id, element, 或者Endpoint
-| endpoint | String                  | 可选       | 端点类型，形状</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/03/day8-Easy-26-Remove-Duplicates-from-Sorted-Array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/03/day8-Easy-26-Remove-Duplicates-from-Sorted-Array/" class="post-title-link" itemprop="url">day8_Easy_26_Remove_Duplicates_from_Sorted_Array</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-03 10:38:43 / Modified: 11:08:14" itemprop="dateCreated datePublished" datetime="2019-06-03T10:38:43+08:00">2019-06-03</time>
-            </span>
-
-          
-            <span id="/2019/06/03/day8-Easy-26-Remove-Duplicates-from-Sorted-Array/" class="post-meta-item leancloud_visitors" data-flag-title="day8_Easy_26_Remove_Duplicates_from_Sorted_Array" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/03/day8-Easy-26-Remove-Duplicates-from-Sorted-Array/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/03/day8-Easy-26-Remove-Duplicates-from-Sorted-Array/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>day8_Easy_26_Remove_Duplicates_from_Sorted_Array</p>
-<p>Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
-Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
-Example 1:
-Given nums = [1,1,2],</p>
-<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.</p>
-<p>It doesn’t matter what you leave beyond the returned length.
-Example 2:
-Given nums = [0,0,1,1,1,2,2,3,3,4],</p>
-<p>Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.</p>
-<p>It doesn’t matter what values are set beyond the returned length.
-Clarification:
-Confused why the returned value is an integer but your answer is an array?
-Note that the input array is passed in by reference, which means modification to the input array will be known to the caller as well.
-Internally you can think of this:
-// nums is passed in by reference. (i.e., without making a copy)
-int len = removeDuplicates(nums);</p>
-<p>// any modification to nums in your function would be known by the caller.
-// using the length returned by your function, it prints the first len elements.
-for (int i = 0; i &lt; len; i++) {
-    print(nums[i]);
-}</p>
-<p>这道题目需要注意的点是不能新增加列表空间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def removeDuplicates(self, nums: List[int]) -&gt; int:</span><br><span class="line">        if not nums:</span><br><span class="line">            return 0</span><br><span class="line">        </span><br><span class="line">        count &#x3D; 0</span><br><span class="line">        for i in range(len(nums)):</span><br><span class="line">            if nums[count] !&#x3D; nums[i]:</span><br><span class="line">                count +&#x3D; 1</span><br><span class="line">                nums[count] &#x3D;nums[i]</span><br><span class="line">        </span><br><span class="line">        return count+1</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1052,14 +1022,14 @@ for (int i = 0; i &lt; len; i++) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

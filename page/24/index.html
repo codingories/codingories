@@ -158,6 +158,294 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/12/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/12/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart3/" class="post-title-link" itemprop="url">react学习分享part3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-12-12 09:26:57" itemprop="dateCreated datePublished" datetime="2018-12-12T09:26:57+08:00">2018-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-13 17:20:48" itemprop="dateModified" datetime="2018-12-13T17:20:48+08:00">2018-12-13</time>
+              </span>
+
+          
+            <span id="/2018/12/12/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart3/" class="post-meta-item leancloud_visitors" data-flag-title="react学习分享part3" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/12/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/12/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.组件中使用行内样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在行内样式中 ,如果是字符必须要用引号，数值不需要用引号</span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;div&gt;</span><br><span class="line">            &lt;h1 style&#x3D;&#123; &#123; color:&#39;red&#39;,fontSize: &#39;35px&#39;,zIndex:3,fontWeight:200,textAlign:&#39;center&#39; &#125; &#125;&gt;这是评论列表组件&lt;&#x2F;h1&gt;</span><br><span class="line">            &#123;this.state.CommentList.map(</span><br><span class="line">                item &#x3D;&gt; &lt;CmtItem &#123;...item&#125; key&#x3D;&#123; item.user &#125;&gt;&lt;&#x2F;CmtItem&gt;)&#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.使用css样式表美化组件</p>
+<pre><code>+ 安装解析css工具
+    cnpm i style-loader css-loader -D
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module: &#123; &#x2F;&#x2F; 所有第三方 模块的配置规则</span><br><span class="line">rules:[ &#x2F;&#x2F; 第三方匹配规则</span><br><span class="line">            &#123; test: &#x2F;\.js|jsx$&#x2F;, use: &#39;babel-loader&#39;, exclude: &#x2F;node_modules&#x2F; &#125;,</span><br><span class="line">            &#123; test: &#x2F;\.css$&#x2F;, use: [&#39;style-loader&#39;, &#39;css-loader&#39;] &#125;, &#x2F;&#x2F;打包处理 css 样式表的第三方loader </span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+    总结,先创建样式表。组件里面需要美化了，那就导入样式表，把对应的类名加载元素，又因为css无法被webpack处理，在webpack.config.js中配置。
+
++ css样式表路径配置参数
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; test: &#x2F;\.css$&#x2F;, use: [&#39;style-loader&#39;, &#39;css-loader?modules&amp;localIdentName&#x3D;[path][name]-[local]-[hash:5]&#39;] &#125;, &#x2F;&#x2F;打包处理 css 样式表的第三方loader &#x3D;</span><br></pre></td></tr></table></figure>
+
++ :global()包裹的类名，是全局生效的。:local()包裹的类会被模块化，一般不用。</code></pre>
+<p>3.React中绑定事件的注意点
+    + a. 箭头函数的指向问题
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;button id&#x3D;&quot;btn&quot;&gt;按钮&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    onload &#x3D; function()&#123;</span><br><span class="line">        const btn &#x3D; document.getElementById(&#39;btn&#39;)</span><br><span class="line">        console.log(this)</span><br><span class="line">        &#x2F;&#x2F; btn.onclick &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F;  this.style.backgroundColor &#x3D; &#39;red&#39;</span><br><span class="line">        &#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">        btn.onclick &#x3D; function() &#123;</span><br><span class="line">            this.style.backgroundColor &#x3D; &#39;red&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        this.style.backgroundColor &#x3D; &#39;red&#39;</span><br><span class="line">    &#125;, 1000) &#x2F;&#x2F; 一秒后变红</span><br><span class="line">    </span><br><span class="line">    myclickHandler &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">        console.log(&#39;22222222&#39;)</span><br><span class="line">    &#125;          </span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">总结:箭头函数指向当前作用域外面一层，function指向当前函数</span><br></pre></td></tr></table></figure>
+4.使用this.setState修改state上的数据的两个注意事项:
+    + a.在 setState , 只会把 对应的 state 状态更新,而不会 覆盖其它的 state 状态
+    + b.如果大家在 调用完 this.setState 之后, 又想立即拿到 最新的 state 值, 需要使用 this.setState({},callback)
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">    show &#x3D; (arg1, arg2) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; console.log(&quot;show方法被调用了&quot; + arg1 + arg2)</span><br><span class="line">    &#x2F;&#x2F; 注意: React 中,如果想为 state 中的数据， 重新赋值， 不要使用 this.state.*** &#x3D; 值</span><br><span class="line">    &#x2F;&#x2F; 应该 调用 React 提供的 this.setState(&#123; msg:&#39;123&#39; &#125;)</span><br><span class="line">    &#x2F;&#x2F; this.state.msg &#x3D; &#39; dooooooo&#39;</span><br><span class="line">    &#x2F;&#x2F; 在react中,推荐使用this.setState(&#123; &#125;) 修改状态值</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">        &#x2F;&#x2F; 在 setState , 只会把 对应的 state 状态更新,而不会 覆盖其它的 state 状态</span><br><span class="line">        msg: &#39;123&#39; + arg1 + arg2</span><br><span class="line">    &#125;, function()&#123;</span><br><span class="line">        console.log(this.state.msg)</span><br><span class="line">    &#125;)</span><br><span class="line">    this.setState(&#123;&#125;,callback)</span><br><span class="line">console.log(this.state.msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+5.react中同步和绑定文本框的值
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">txtChanged &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; console.log(e.target.value)</span><br><span class="line">    &#x2F;&#x2F; console.log(&#39;变化了&#39;);</span><br><span class="line">    &#x2F;&#x2F; 在 on Change事件中,获取文本框的值，有两种方案;</span><br><span class="line">    &#x2F;&#x2F; 方案1: 通过 事件参数 e 来获取;</span><br><span class="line">    const newVal &#x3D; e.target.value</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">        msg:newVal</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/11/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/11/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart2/" class="post-title-link" itemprop="url">react学习分享part2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-12-11 10:10:55" itemprop="dateCreated datePublished" datetime="2018-12-11T10:10:55+08:00">2018-12-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-12 12:53:16" itemprop="dateModified" datetime="2018-12-12T12:53:16+08:00">2018-12-12</time>
+              </span>
+
+          
+            <span id="/2018/12/11/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart2/" class="post-meta-item leancloud_visitors" data-flag-title="react学习分享part2" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/11/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/11/react%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%ABpart2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.jsx语法中的注意事项</p>
+<ol>
+<li><p>jsx的注释问题
+单行注释和多行注释
+推荐用{/**/} 因为只占一行
+多行: 
+{
+ //<br>}</p>
+</li>
+<li><p>为jsx中的元素添加类名: 需要用 <code>className</code> 来替代class;label的for属性替代<code>htmlFor</code>
+React中创建组件的两种方式</p>
+</li>
+</ol>
+<p>二.创建组件的方式
+    1.组件的第一种创建方式
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 第一种创建组件的方式</span><br><span class="line">function Hello() &#123; </span><br><span class="line">    &#x2F;&#x2F; 如果 在一个组件中 return 一个null。则表示此组件是空的,什么都不渲染</span><br><span class="line">    &#x2F;&#x2F; return null</span><br><span class="line">    &#x2F;&#x2F; 在组件中,必须返回一个合法的 jsx 虚拟DOM元素</span><br><span class="line">    return &lt;div&gt;这是 Hello 组件&lt;&#x2F;div&gt;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">&#123;&#x2F;* 直接把组件的名称，以标签形式，丢到页面上即可 *&#x2F;&#125;</span><br><span class="line">    &lt;Hello&gt;&lt;&#x2F;Hello&gt;</span><br><span class="line">&lt;&#x2F;div&gt;, document.getElementById(&#39;app&#39;))</span><br></pre></td></tr></table></figure></p>
+<pre><code>2.第一种组件创建方法的组件的传值方式
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 在构造函数中接收外界 传递过来的数据</span><br><span class="line">function Hello(props) &#123; </span><br><span class="line">    console.log(props)</span><br><span class="line">    &#x2F;&#x2F; props.name &#x3D; &#39;zs&#39;</span><br><span class="line">    return &lt;div&gt;这是 Hello 组件 --- &#123;props.name&#125; ---&#123;props.age&#125; ---&#123;props.gender&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#125;</span><br><span class="line">const dog &#x3D; &#123;</span><br><span class="line">    name: &#39;大黄&#39;,</span><br><span class="line">    age: 3,</span><br><span class="line">    gender: &#39;雄&#39;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">    &#x2F;&#x2F; 使用组件并为组件传递 props 数据</span><br><span class="line">    &lt;Hello name&#x3D;&#123;dog.name&#125; age&#x3D;&#123;dog.age&#125; gender&#x3D;&#123;dog.gender&#125;&gt;&lt;&#x2F;Hello&gt;</span><br><span class="line">&lt;&#x2F;div&gt;, document.getElementById(&#39;app&#39;))</span><br><span class="line">  结论:不论是Vue 还是 React,组件中的props 永远都是只读的,不能被重新赋值;</span><br></pre></td></tr></table></figure>
+
+3. es5 语法新特性 ...扩展运算符
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var o2 &#x3D; &#123;</span><br><span class="line">age: 22,</span><br><span class="line">address: &#39;中国北京&#39;,</span><br><span class="line">phone: &#39;139999&#39; </span><br><span class="line">&#125;</span><br><span class="line">var o1 &#x3D; &#123;</span><br><span class="line">    name: &#39;zs&#39;,</span><br><span class="line">    ...o2</span><br><span class="line">&#125;</span><br><span class="line">console.log(o1) &#x2F;&#x2F; &#123;name: &quot;zs&quot;, age: 22, address: &quot;中国北京&quot;, phone: &quot;139999&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+4. 组件的抽离开
+    组件首字母必须大写，否则浏览器无法渲染。
+
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">先把function 抽离出去，再在首行增加</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">主文件首部增加</span><br><span class="line">import Hello from &#39;.&#x2F;components&#x2F;Hello.jsx&#39;</span><br></pre></td></tr></table></figure>
+
+
+5. 想要省略后缀名的时候也能导入模块
+   在webpack.config.js中 和 module平级的地方增加  
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line"> extensions:[&#39;.js&#39;,&#39;.jsx&#39;,&#39;json&#39;]</span><br><span class="line"> &#125; &#x2F;&#x2F; 表示，这几个文件的后缀名，可以省略不写</span><br></pre></td></tr></table></figure>
+
+
+6. 配置@别名
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions:[&#39;.js&#39;,&#39;.jsx&#39;,&#39;json&#39;],</span><br><span class="line">    alias: &#123; </span><br><span class="line">        &#39;@&#39;: path.join(__dirname,&#39;.&#x2F;src&#39;) &#x2F;&#x2F; 这样,@ 就表示项目根目录中 src 的这一层路径</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<p>二.第二种创建组件的方式
+    1.class 基础知识
+        a. 基础使用</p>
+<pre><code>        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> import React from &#39;react&#39; &#x2F;&#x2F; 创建组建,虚拟Dom元素,生命周期</span><br><span class="line">import ReactDOM from &#39;react-dom&#39; &#x2F;&#x2F; 把创建好的 组件 和虚拟DOM 放到页面上展示的</span><br><span class="line">&#x2F;&#x2F; 导入 Hello 组件</span><br><span class="line">&#x2F;&#x2F; 默认,如果不做单独的配置的话，不能省略 .jsx 后缀名</span><br><span class="line">import Hello from &#39;@&#x2F;components&#x2F;Hello&#39;</span><br><span class="line">const dog &#x3D; &#123;</span><br><span class="line">    name: &#39;大黄&#39;,</span><br><span class="line">    age: 3,</span><br><span class="line">    gender: &#39;雄&#39;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">&#123;&#x2F;* 直接把组件的名称，以标签形式，丢到页面上即可 *&#x2F;&#125;</span><br><span class="line">    &lt;Hello &#123;...dog&#125;&gt;&lt;&#x2F;Hello&gt;</span><br><span class="line">&lt;&#x2F;div&gt;, document.getElementById(&#39;app&#39;))</span><br><span class="line">&#x2F;&#x2F; 结论:不论是Vue 还是 React,组件中的props 永远都是只读的,不能被重新赋值;</span><br><span class="line">&#x2F;&#x2F; var o2 &#x3D; &#123;</span><br><span class="line">&#x2F;&#x2F;  age: 22,</span><br><span class="line">&#x2F;&#x2F;  address: &#39;中国北京&#39;,</span><br><span class="line">&#x2F;&#x2F;  phone: &#39;139999&#39; </span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line">&#x2F;&#x2F; var o1 &#x3D; &#123;</span><br><span class="line">&#x2F;&#x2F;  name: &#39;zs&#39;,</span><br><span class="line">&#x2F;&#x2F;  ...o2</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line">&#x2F;&#x2F; console.log(o1) &#x2F;&#x2F; &#123;name: &quot;zs&quot;, age: 22, address: &quot;中国北京&quot;, phone: &quot;139999&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+    b.构造属性，实例方法，实例属性，静态方法，静态属性
+
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age)&#123;</span><br><span class="line">    this.name &#x3D; name</span><br><span class="line">    this.age &#x3D; age</span><br><span class="line">&#125;</span><br><span class="line">Person.info &#x3D; &#39;bbbbb&#39;</span><br><span class="line">const p1 &#x3D; new Person(&#39;王多多&#39;,18)</span><br><span class="line">console.log(p1)</span><br><span class="line">Person.prototype.say &#x3D; function() &#123;</span><br><span class="line">    console.log(&#39;这是 Person 的实例方法&#39;)</span><br><span class="line">&#125;;</span><br><span class="line">p1.say() &#x2F;&#x2F; 这是 实例方法</span><br><span class="line">console.log(&quot;------------------------------------------------------&quot;)</span><br><span class="line">&#x2F;&#x2F; 创建一个动物类</span><br><span class="line">Person.show &#x3D; function () &#123;</span><br><span class="line">    console.log(&#39;这是 Person 的静态 show 方法&#39;)</span><br><span class="line">&#125;</span><br><span class="line">Person.show()</span><br><span class="line">class Animal &#123;</span><br><span class="line">    &#x2F;&#x2F; 这是类的 构造器</span><br><span class="line">    &#x2F;&#x2F; 每一个类中,都有一个构造器,如果我们程序员没有手动指定构造器,那么,可以认为类内部有个隐形的,看不见的 空构造器,类似于 constructor()&#123;&#125;</span><br><span class="line">    &#x2F;&#x2F; 构造器的作用,就是,每当 new 这个类的时候,必然会优先执行 构造器的代码</span><br><span class="line">    constructor(name,age) &#123;</span><br><span class="line">        &#x2F;&#x2F; 实例属性</span><br><span class="line">        this.name &#x3D; name </span><br><span class="line">        this.age &#x3D; age</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 在 class 内部，通过 static 修饰的属性,就是静态属性</span><br><span class="line">    static info &#x3D; &quot;eee&quot;</span><br><span class="line">    &#x2F;&#x2F; 这是动物的实例方法(今后会经常用到 实例方法)</span><br><span class="line">    jiao()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 这是 动物 类的静态方法(今后用的不多)</span><br><span class="line">    static show()&#123;</span><br><span class="line">        console.log(&#39;这是 Animal 的静态 show 方法&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const a1 &#x3D; new Animal(&#39;大黄&#39;,3)</span><br><span class="line">console.log(a1) </span><br><span class="line">a1.jiao() &#x2F;&#x2F; 实例方法</span><br><span class="line">Animal.show()</span><br></pre></td></tr></table></figure>
+        // 注意1: 在 class 的 { } 区间内，只能写 构造器,静态方法和静态属性,实例方法
+        // 注意2: class 关键字内部，还是用 原来的配方实现的;所以说,我们把 class 关键字,称作 语法糖;
+
+
+    c.使用extends关键字实现子类继承父类
+
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这是父类 【大家可以直接把 父类，理解成 原型对象 prototype】</span><br><span class="line">class Person &#123;</span><br><span class="line">    constructor(name,age)&#123;</span><br><span class="line">        this.name &#x3D; name</span><br><span class="line">        this.age &#x3D; age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 这是子类 美国人</span><br><span class="line">&#x2F;&#x2F; 在class 类中，可以使用 extends 关键字，实现 子类继承父类</span><br><span class="line">&#x2F;&#x2F; 语法: class 子类 extends 父类 &#123;&#125; </span><br><span class="line">class American extends Person&#123;</span><br><span class="line">&#125;</span><br><span class="line">const a1 &#x3D; new American(&#39;Jack&#39;, 20)</span><br><span class="line">console.log(a1)</span><br><span class="line">class Chinese extends Person&#123;</span><br><span class="line">&#125;</span><br><span class="line">const c1 &#x3D; new Chinese(&#39;张三&#39;, 20)</span><br><span class="line">console.log(c1)</span><br></pre></td></tr></table></figure>
+
+
+    d.子类访问父类上的实例方法
+
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这是父类 【大家可以直接把 父类，理解成 原型对象 prototype】</span><br><span class="line">class Person &#123;</span><br><span class="line">    constructor(name,age)&#123;</span><br><span class="line">        this.name &#x3D; name</span><br><span class="line">        this.age &#x3D; age</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 打招呼 的 实例方法</span><br><span class="line">    sayHello()&#123;</span><br><span class="line">        console.log(&#39;大家好&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 这是子类 美国人</span><br><span class="line">&#x2F;&#x2F; 在class 类中，可以使用 extends 关键字，实现 子类继承父类</span><br><span class="line">&#x2F;&#x2F; 语法: class 子类 extends 父类 &#123;&#125; </span><br><span class="line">class American extends Person&#123;</span><br><span class="line">&#125;</span><br><span class="line">const a1 &#x3D; new American(&#39;Jack&#39;, 20)</span><br><span class="line">a1.sayHello()</span><br><span class="line">class Chinese extends Person&#123;</span><br><span class="line">&#125;</span><br><span class="line">const c1 &#x3D; new Chinese(&#39;张三&#39;, 20)</span><br><span class="line">c1.sayHello()</span><br></pre></td></tr></table></figure>
+
+
+    e. 继承,公共方法,super的使用
+
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这是父类 【大家可以直接把 父类，理解成 原型对象 prototype】</span><br><span class="line">class Person &#123;</span><br><span class="line">    constructor(name,age)&#123;</span><br><span class="line">        this.name &#x3D; name</span><br><span class="line">        this.age &#x3D; age</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 打招呼 的 实例方法</span><br><span class="line">    sayHello()&#123;</span><br><span class="line">        console.log(&#39;大家好&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 这是子类 美国人</span><br><span class="line">&#x2F;&#x2F; 在class 类中，可以使用 extends 关键字，实现 子类继承父类</span><br><span class="line">&#x2F;&#x2F; 语法: class 子类 extends 父类 &#123;&#125; </span><br><span class="line">class American extends Person&#123;</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        &#x2F;&#x2F; 问题1: 为什么一定要在 constructor 中调用 super</span><br><span class="line">        &#x2F;&#x2F; 答案: 因为,如果一个子类,通过 extends 关键字继承了父类,那么,在子类的 constructor 构造函数中, 必须 优先调用一下 super()</span><br><span class="line">        &#x2F;&#x2F; 问题2: super 是个什么东西?</span><br><span class="line">        &#x2F;&#x2F; 答案: super 是一个函数，而且，它是 父亲的 构造器; 子类中的super,其实就是父亲中，constructor 构造器的一个引用</span><br><span class="line">        &#x2F;&#x2F; 问题3: 为什么 调用了 super()之后,a1 实例的 name 和 age 都变成 undefined了？</span><br><span class="line">        super(name,age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const a1 &#x3D; new American(&#39;Jack&#39;, 20)</span><br><span class="line">console.log(a1)</span><br><span class="line">a1.sayHello()</span><br><span class="line">class Chinese extends Person&#123;</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        super(name, age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const c1 &#x3D; new Chinese(&#39;张三&#39;, 20)</span><br><span class="line">c1.sayHello()</span><br></pre></td></tr></table></figure>
+
+
+2.使用class关键字来创建组件,ES6中class关键字，是实现面向对象编程的新形式;
+
+
+    a.最基本的组件结构
+
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果使用 class 定义组件,必须 让自己的组件,继承自 React.Component</span><br><span class="line">    class 组件名称 extends React.Component &#123;</span><br><span class="line">        &#x2F;&#x2F; 在 组件内部,必须要有 render 函数</span><br><span class="line">        render()&#123;</span><br><span class="line">            &#x2F;&#x2F; render 函数中, 必须 返回合法的 JSX 虚拟DOM结构</span><br><span class="line">            return &lt;div&gt;这是 class 创建的组件&lt;&#x2F;div&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">--------------------------------</span><br><span class="line"></span><br><span class="line">    import React from &#39;react&#39; </span><br><span class="line">    import ReactDOM from &#39;react-dom&#39; </span><br><span class="line">    import &#39;@&#x2F;03.class-继承-公共方法&#39;</span><br><span class="line">    &#x2F;&#x2F; class 关键字创建组件</span><br><span class="line">    class Movie extends React.Component &#123;</span><br><span class="line">        &#x2F;&#x2F; render 函数的作用</span><br><span class="line">        render() &#123;</span><br><span class="line">            &#x2F;&#x2F;return null</span><br><span class="line">            return &lt;div&gt;</span><br><span class="line">                这是 Movie 组件</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ReactDOM.render(&lt;Movie&gt;&lt;&#x2F;Movie&gt;, document.getElementById(&#39;app&#39;))</span><br></pre></td></tr></table></figure>
+
+    b. class 创建的组件进行传参数
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39; </span><br><span class="line">import ReactDOM from &#39;react-dom&#39; </span><br><span class="line">&#x2F;&#x2F; import &#39;@&#x2F;03.class-继承-公共方法&#39;</span><br><span class="line">&#x2F;&#x2F; class 关键字创建组件</span><br><span class="line">class Movie extends React.Component &#123;</span><br><span class="line">    &#x2F;&#x2F; render 函数的作用</span><br><span class="line">    render() &#123;</span><br><span class="line">        &#x2F;&#x2F;return null</span><br><span class="line">        &#x2F;&#x2F; 在 class 关键字创建的组件中，如果想使用 外界传递过来的 props 参数, 不需要接收,直接通过 this.props.*** 访问即可</span><br><span class="line">        return &lt;div&gt;</span><br><span class="line">            这是 Movie 组件 -- &#123; this.props.name &#125; -- &#123; this.props.age &#125; -- &#123;this.props.gender&#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const user &#x3D; &#123;</span><br><span class="line">    name: &#39;zs&#39;,</span><br><span class="line">    age: 22,</span><br><span class="line">    gender: &#39;男&#39;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">    123</span><br><span class="line">    &lt;Movie &#123;...user&#125;&gt;&lt;&#x2F;Movie&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    , document.getElementById(&#39;app&#39;))</span><br></pre></td></tr></table></figure>
+
+    c.两种创建组件方式的对比
+        1. 用构造函数创建出来的组件: 叫做&quot;无状态组件&quot; 【无状态组件今后用的不多】
+        2. 用class关键字创建出来的组件: 叫做&quot;有状态组件&quot;
+        3. 有状态组件和无状态组件之间的本质区别就是:有无state属性，和 有无生命周期函数
+            -- 如果一个组件需要有自己的私有数据，则推荐使用:class 创建的有状态组件
+            -- React官方说: 无状态组件，由于没有自己的state和生命周期函数,所以运行效率会比 有状态组件稍微高一些;
+        4. 组件中props 和 state/date 之间的区别
+            + props中的数据都是外界传递过来的
+            + state/data中的数据,都是组件私有的; (通过Ajax获取回来的数据,一般都是私有数据);
+            + props 中的数据都是只读的;不能重新赋值;
+            + state/data 中的数据,都是可读可写的;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/09/webpack%E5%88%86%E4%BA%AB&react%20part1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -949,177 +1237,10 @@ npm cache [clean|ls] 清除缓存
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/11/27/%E4%BB%8A%E6%97%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/27/%E4%BB%8A%E6%97%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">今日工作总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-11-27 17:19:04" itemprop="dateCreated datePublished" datetime="2018-11-27T17:19:04+08:00">2018-11-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-12-02 21:16:42" itemprop="dateModified" datetime="2018-12-02T21:16:42+08:00">2018-12-02</time>
-              </span>
-
-          
-            <span id="/2018/11/27/%E4%BB%8A%E6%97%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="今日工作总结" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/11/27/%E4%BB%8A%E6%97%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/11/27/%E4%BB%8A%E6%97%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>   1.开会梳理实验室实验环节，讨论实验内容
-   2.制作白皮书，目前打算使用reveal.js来实现白皮书效果，需要研究如何使用reveal.js</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="post-title-link" itemprop="url">第一篇文章</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-11-26 21:04:22" itemprop="dateCreated datePublished" datetime="2018-11-26T21:04:22+08:00">2018-11-26</time>
-            </span>
-
-          
-            <span id="/2018/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="post-meta-item leancloud_visitors" data-flag-title="第一篇文章" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这是自己的第一篇博客文章，总说人要经常总结才能进步，但是由于自己本身比较懒，包括一直很忙也没时间愿意去写东西。虽然心里一直想着要写点什么，技术方面也好，生活方面…总之，今天买了个域名，算是个不错的开始，也好希望自己能坚持下来。
-希望通过这个博客能够多去分享一些东西，记录一些东西，让自己努力成长，等到以后回头看看自己年轻时候的岁月，一定也算是一份美好的回忆。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span>
+    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1187,14 +1308,14 @@ npm cache [clean|ls] 清除缓存
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

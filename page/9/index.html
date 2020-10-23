@@ -158,6 +158,283 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/03/11/React%E5%85%A8%E8%A7%A3%E4%B9%8B01Class%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/11/React%E5%85%A8%E8%A7%A3%E4%B9%8B01Class%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">React全解之01Class组件详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-11 10:25:21" itemprop="dateCreated datePublished" datetime="2020-03-11T10:25:21+08:00">2020-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-29 22:56:33" itemprop="dateModified" datetime="2020-09-29T22:56:33+08:00">2020-09-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/03/11/React%E5%85%A8%E8%A7%A3%E4%B9%8B01Class%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="React全解之01Class组件详解" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/03/11/React%E5%85%A8%E8%A7%A3%E4%B9%8B01Class%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/11/React%E5%85%A8%E8%A7%A3%E4%B9%8B01Class%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="零-元素与组件"><a href="#零-元素与组件" class="headerlink" title="零. 元素与组件"></a>零. 元素与组件</h4><ul>
+<li><code>const div = React.createElement(&#39;div&#39;,...)</code>,这是一个 React 元素(D 小写)</li>
+<li><code>const Div = ()=&gt;React.createElement(&#39;div&#39;,...)</code>,这是一个 React 组件(D 大写)</li>
+<li>就目前而言，一个返回 React 元素的<font color="skyblue">函数</font>就是组件</li>
+<li>在 Vue 里，一个构造选项就可以表示一个组件</li>
+</ul>
+<h4 id="一-需要注意写-React-标签的时候，一定要注意不是写-HTML-标签"><a href="#一-需要注意写-React-标签的时候，一定要注意不是写-HTML-标签" class="headerlink" title="一. 需要注意写 React 标签的时候，一定要注意不是写 HTML 标签"></a>一. 需要注意写 React 标签的时候，一定要注意不是写 HTML 标签</h4><ul>
+<li><code>&lt;div /&gt;</code>会被翻译为 React.createElement(‘div’)</li>
+<li><code>&lt;Welcome /&gt;</code>会被翻译为 React.createElement(‘Welcome’)</li>
+<li>可以用 <a href="https://babeljs.io/repl/" target="_blank" rel="noopener">bebel online</a> 直接翻译</li>
+<li>React.createElement 的逻辑<ul>
+<li>如果传入一个字符串’div’,则会创建一个 div</li>
+<li>如果传入一个函数，则会调用该函数，获取其返回值</li>
+<li>如果传入一个类，则在类前面加个 new(这回导致执行 constructor),获取一个组件对象，然后调用对象的 render 方法，获取其返回值</li>
+</ul>
+</li>
+</ul>
+<h4 id="二-class-组件创建方式"><a href="#二-class-组件创建方式" class="headerlink" title="二. class 组件创建方式"></a>二. class 组件创建方式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">class B extends React.Component &#123;</span><br><span class="line">  constructor(props)&#123;</span><br><span class="line">    super(props);</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;hi&lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三-小试牛刀，通过类组件和函数组件，分别实现-1-功能"><a href="#三-小试牛刀，通过类组件和函数组件，分别实现-1-功能" class="headerlink" title="三. 小试牛刀，通过类组件和函数组件，分别实现+1 功能"></a>三. 小试牛刀，通过类组件和函数组件，分别实现+1 功能</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./styles.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      爸爸</span><br><span class="line">      &lt;Son /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  constructor() &#123;</span></span><br><span class="line"><span class="regexp">    super();</span></span><br><span class="line"><span class="regexp">    this.state = &#123;</span></span><br><span class="line"><span class="regexp">      n: 0,</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  add() &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ this.state.n += 1 为什么不行</span></span><br><span class="line"><span class="regexp">    this.setState(&#123; n: this.state.n + 1 &#125;);</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div className="Son"&gt;</span></span><br><span class="line"><span class="regexp">        儿子 n: &#123;this.state.n&#125;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; this.add()&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">        &lt;Grandson /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const Grandson = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">  const [n, setN] = React.useState(0);</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div className="Grandson"&gt;</span></span><br><span class="line"><span class="regexp">      孙子 n:&#123;n&#125;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="四-React-组件如何使用-Props-外部数据"><a href="#四-React-组件如何使用-Props-外部数据" class="headerlink" title="四. React 组件如何使用 Props 外部数据"></a>四. React 组件如何使用 Props 外部数据</h4><ul>
+<li>这里的 Props 和 Vue 里面 Props 一个意思</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./styles.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      爸爸</span><br><span class="line">      &lt;Son messageForSon=<span class="string">"儿子你好"</span> /&gt;</span><br><span class="line">      <span class="comment">// 传值用""或者&#123;&#125;</span></span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div className="Son"&gt;</span></span><br><span class="line"><span class="regexp">        我是儿子，我爸对我说「&#123;this.props.messageForSon&#125;」</span></span><br><span class="line"><span class="regexp">        &lt;Grandson messageForGrandson="孙贼你好" /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const Grandson = (props) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div className="Grandson"&gt;</span></span><br><span class="line"><span class="regexp">      我是孙子，我爸对我说「&#123;props.messageForGrandson&#125;」</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="四-React-组件如何使用-state-内部数据"><a href="#四-React-组件如何使用-state-内部数据" class="headerlink" title="四. React 组件如何使用 state 内部数据"></a>四. React 组件如何使用 state 内部数据</h4><ul>
+<li>这里的 State 和 Vue 里面 Data 一个意思</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./styles.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      爸爸</span><br><span class="line">      &lt;Son /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  constructor() &#123;</span></span><br><span class="line"><span class="regexp">    super();</span></span><br><span class="line"><span class="regexp">    this.state = &#123;</span></span><br><span class="line"><span class="regexp">      n: 0,</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  add() &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ this.state.n += 1 为什么不行, 因为React没有像vue那样做数据劫持，必须用setState,</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ React理念是数据不可变，所以必须生成新的对象,再传给setState</span></span><br><span class="line"><span class="regexp">    this.setState(&#123; n: this.state.n + 1 &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 这样写可以，但是由于setState是异步的更新UI的过程，牛x的程序员为了避免混淆了新的state和旧的state而产生bug</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ this.setState(state=&gt;&#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/   const n = state.n+1</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/   console.log(n)</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/   return &#123;n&#125;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ &#125;)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div className="Son"&gt;</span></span><br><span class="line"><span class="regexp">        儿子 n: &#123;this.state.n&#125;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; this.add()&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">        &lt;Grandson /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const Grandson = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">  const [n, setN] = React.useState(0);</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 函数组件用useState返回数组,第一项读，第二项写</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div className="Grandson"&gt;</span></span><br><span class="line"><span class="regexp">      孙子 n:&#123;n&#125;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">      &#123;<span class="comment">/*  setN 永远不会改变N*/</span>&#125;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="五-React-和-Vue-的编程模型对比"><a href="#五-React-和-Vue-的编程模型对比" class="headerlink" title="五. React 和 Vue 的编程模型对比"></a>五. React 和 Vue 的编程模型对比</h4><ul>
+<li>Vue 的编程模型<ul>
+<li>一个对象，对应一个虚拟 DOM,当对象的属性改变时,把属性相关的 DOM 节点全部更新。注意:Vue 为了其他考量，也引入了虚拟 DOM 和 DOM diff,下图只是简化</li>
+</ul>
+</li>
+<li>React 的编程模型<ul>
+<li>一个对象，对应一个虚拟 DOM。另一个对象，对应另一个虚拟 DOM。对比两个虚拟 DOM,找不同(DOM diff),最后局部更新 DOM</li>
+</ul>
+</li>
+</ul>
+<h4 id="六-复杂的-state"><a href="#六-复杂的-state" class="headerlink" title="六. 复杂的 state"></a>六. 复杂的 state</h4><ul>
+<li>类组件里有 n 和 m</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./styles.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      爸爸</span><br><span class="line">      &lt;Son /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  constructor() &#123;</span></span><br><span class="line"><span class="regexp">    super();</span></span><br><span class="line"><span class="regexp">    this.state = &#123;</span></span><br><span class="line"><span class="regexp">      n: 0,</span></span><br><span class="line"><span class="regexp">      m: 0,</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  addN() &#123;</span></span><br><span class="line"><span class="regexp">    this.setState(&#123; n: this.state.n + 1 &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ m 会被覆盖为 undefined 吗？,不会，第一层自动会沿用</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  addM() &#123;</span></span><br><span class="line"><span class="regexp">    this.setState(&#123; m: this.state.m + 1 &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ n 会被覆盖为 undefined 吗？</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div className="Son"&gt;</span></span><br><span class="line"><span class="regexp">        儿子 n: &#123;this.state.n&#125;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; this.addN()&#125;&gt;n+1&lt;/</span>button&gt;</span><br><span class="line">        m: &#123;<span class="keyword">this</span>.state.m&#125;</span><br><span class="line">        &lt;button onClick=&#123;() =&gt; <span class="keyword">this</span>.addM()&#125;&gt;m+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Grandson /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const Grandson = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">  const [n, setN] = React.useState(0);</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div className="Grandson"&gt;</span></span><br><span class="line"><span class="regexp">      孙子 n:&#123;n&#125;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数组件有 m,n</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./styles.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      爸爸</span><br><span class="line">      &lt;Son /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  constructor() &#123;</span></span><br><span class="line"><span class="regexp">    super();</span></span><br><span class="line"><span class="regexp">    this.state = &#123;</span></span><br><span class="line"><span class="regexp">      n: 0,</span></span><br><span class="line"><span class="regexp">      m: 0,</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  addN() &#123;</span></span><br><span class="line"><span class="regexp">    this.setState(&#123; n: this.state.n + 1 &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ m 会被覆盖为 undefined 吗？</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  addM() &#123;</span></span><br><span class="line"><span class="regexp">    this.setState(&#123; m: this.state.m + 1 &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ n 会被覆盖为 undefined 吗？</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div className="Son"&gt;</span></span><br><span class="line"><span class="regexp">        儿子 n: &#123;this.state.n&#125;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; this.addN()&#125;&gt;n+1&lt;/</span>button&gt;</span><br><span class="line">        m: &#123;<span class="keyword">this</span>.state.m&#125;</span><br><span class="line">        &lt;button onClick=&#123;() =&gt; <span class="keyword">this</span>.addM()&#125;&gt;m+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Grandson /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const Grandson = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">  const [n, setN] = React.useState(0);</span></span><br><span class="line"><span class="regexp">  const [m, setM] = React.useState(0);</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div className="Grandson"&gt;</span></span><br><span class="line"><span class="regexp">      孙子 n:&#123;n&#125;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;n+1&lt;/</span>button&gt;</span><br><span class="line">      m:&#123;m&#125;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setM(m + <span class="number">1</span>)&#125;&gt;m+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="七-总结"><a href="#七-总结" class="headerlink" title="七. 总结"></a>七. 总结</h4><ul>
+<li>类组件里的 setState 会自动合并第一层属性</li>
+<li>但是并不会合并第二层属性</li>
+<li>使用 Object.assign 或者…操作符合并第二层属性</li>
+<li>函数组件的 setX 则完全不会合并</li>
+<li>要合并必须自己用…合并</li>
+</ul>
+<h4 id="八-React事件绑定各种写法"><a href="#八-React事件绑定各种写法" class="headerlink" title="八. React事件绑定各种写法"></a>八. React事件绑定各种写法</h4><ul>
+<li><p>类组件的事件绑定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;()=&gt; <span class="keyword">this</span>.addN()&#125; &gt;n+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 传递一个函数给onClick即可，注意C大写</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 这种写法最安全</span></span><br><span class="line"><span class="regexp">&lt;button onClick=&#123;this.addN()&#125; &gt;n+1&lt;/</span>button&gt;</span><br><span class="line"><span class="comment">// 这种写法有问题，会使this.addN里的this变成window</span></span><br><span class="line">&lt;button onClick=&#123;<span class="keyword">this</span>.addN.bind(<span class="keyword">this</span>)&#125;&gt;n+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 这样写可以，因为它返回一个绑定了当前 this 的新函数</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 但是这样写太麻烦，不如用第一种</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 但是第一种写法依然太长，可以用this._addN = ()=&gt;this.addN()</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 给箭头函数取一个名字，然后写成</span></span><br><span class="line"><span class="regexp">&lt;button onClick=&#123;this._addN&#125;&gt;n+1&lt;/</span>button&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>当用户点击<code>&lt;button onClick={this.addN} /&gt;</code>React会做什么？</p>
+<ul>
+<li>会运行button.onClick.call(null,event), 浏览器this===null会变成window，所以第二种写法this会变成window</li>
+</ul>
+</li>
+<li><p>函数组件注意事项</p>
+<ul>
+<li>函数组件跟类组件相似的地方，也是通过setX(新值)来更新UI</li>
+<li>跟类组件不同的地方，没有this,一律使用参数和变量</li>
+</ul>
+</li>
+<li><p>类组件的事件绑定最终写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">  addN = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.setState(&#123;<span class="attr">n</span>: <span class="keyword">this</span>.state.n + <span class="number">1</span>&#125;)</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.addN&#125;</span>&gt;</span>n+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/03/04/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6-%E6%9C%AC%E5%9C%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/04/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6-%E6%9C%AC%E5%9C%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">(旺财记账)本地版项目总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-04 14:26:18" itemprop="dateCreated datePublished" datetime="2020-03-04T14:26:18+08:00">2020-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-11 10:24:16" itemprop="dateModified" datetime="2020-03-11T10:24:16+08:00">2020-03-11</time>
+              </span>
+
+          
+            <span id="/2020/03/04/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6-%E6%9C%AC%E5%9C%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="(旺财记账)本地版项目总结" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/03/04/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6-%E6%9C%AC%E5%9C%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/04/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6-%E6%9C%AC%E5%9C%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>用了哪些知识</li>
+</ol>
+<ul>
+<li><img src="https://i.loli.net/2020/03/04/LRlkAMZfqgitu5C.png" alt="知识点总结.png"></li>
+</ul>
+<ol start="2">
+<li>有什么地方可以改进</li>
+<li>手机调试的三种方式</li>
+</ol>
+<ul>
+<li>手机调试，和电脑在同一局域网</li>
+<li>chrome 远程调试,可以看 console,安卓可以用,也可以 debugger，如果是 iphone 可以用 safari 的远程调试</li>
+<li>vconsole 进行调试，万不得已才会用</li>
+</ul>
+<ol start="4">
+<li>切记雷同<ol>
+<li>自己想名字</li>
+<li>样式自己想一下看其它的</li>
+<li>项目描述不空洞</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/29/Mac%E7%B3%BB%E7%BB%9Fwow%E8%87%AA%E5%8A%A8%E9%92%93%E9%B1%BCpython%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1042,313 +1319,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/" class="post-title-link" itemprop="url">番茄闹钟二(引入react-router)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-12 17:04:58" itemprop="dateCreated datePublished" datetime="2020-02-12T17:04:58+08:00">2020-02-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-13 18:15:46" itemprop="dateModified" datetime="2020-02-13T18:15:46+08:00">2020-02-13</time>
-              </span>
-
-          
-            <span id="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/" class="post-meta-item leancloud_visitors" data-flag-title="番茄闹钟二(引入react-router)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-安装-react-router"><a href="#1-安装-react-router" class="headerlink" title="1. 安装 react-router"></a>1. 安装 react-router</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br><span class="line">yarn add @types&#x2F;react-router-dom &#x2F;&#x2F; 引入声明类型文件</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-引入-react-router"><a href="#2-引入-react-router" class="headerlink" title="2. 引入 react-router"></a>2. 引入 react-router</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import &#123;BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function Home() &#123;</span><br><span class="line">  return &lt;h2&gt;Home&lt;&#x2F;h2&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function About() &#123;</span><br><span class="line">  return &lt;h2&gt;About&lt;&#x2F;h2&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Topics() &#123;</span><br><span class="line">  let match &#x3D; useRouteMatch()</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;Topics&lt;&#x2F;h2&gt;</span><br><span class="line"></span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;components&#96;&#125;&gt;Components&lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;props-v-state&#96;&#125;&gt;</span><br><span class="line">            Props v. State</span><br><span class="line">          &lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">      &#123;&#x2F;* The Topics page has its own &lt;Switch&gt; with more routes</span><br><span class="line">          that build on the &#x2F;topics URL path. You can think of the</span><br><span class="line">          2nd &lt;Route&gt; here as an &quot;index&quot; page for all topics, or</span><br><span class="line">          the page that is shown when no topic is selected *&#x2F;&#125;</span><br><span class="line">      &lt;Switch&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;&#96;$&#123;match.path&#125;&#x2F;:topicId&#96;&#125;&gt;</span><br><span class="line">          &lt;Topic&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;Route&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;match.path&#125;&gt;</span><br><span class="line">          &lt;h3&gt;Please select a topic.&lt;&#x2F;h3&gt;</span><br><span class="line">        &lt;&#x2F;Route&gt;</span><br><span class="line">      &lt;&#x2F;Switch&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Topic() &#123;</span><br><span class="line">  let &#123;topicId&#125; &#x3D; useParams()</span><br><span class="line">  return &lt;h3&gt;Requested topic ID: &#123;topicId&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to&#x3D;&quot;&#x2F;&quot;&gt;Home&lt;&#x2F;Link&gt;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to&#x3D;&quot;&#x2F;about&quot;&gt;About&lt;&#x2F;Link&gt;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to&#x3D;&quot;&#x2F;topics&quot;&gt;Topics&lt;&#x2F;Link&gt;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;about&quot;&gt;</span><br><span class="line">            &lt;About&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;topics&quot;&gt;</span><br><span class="line">            &lt;Topics&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;&quot;&gt;</span><br><span class="line">            &lt;Home&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">        &lt;&#x2F;Switch&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;Router&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
-<h4 id="3-路由的基本引入"><a href="#3-路由的基本引入" class="headerlink" title="3. 路由的基本引入"></a>3. 路由的基本引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; App.tsx</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;</span><br><span class="line">import &#123;BrowserRouter as Router, Route&#125; from &#39;react-router-dom&#39;</span><br><span class="line">import Login from &quot;.&#x2F;components&#x2F;Login&#x2F;Login&quot;</span><br><span class="line">import SignUp from &quot;.&#x2F;components&#x2F;SignUp&#x2F;SignUp&quot;</span><br><span class="line">import Index from &#39;.&#x2F;components&#x2F;Index&#x2F;Index&#39;</span><br><span class="line"></span><br><span class="line">class Component extends React.Component  &#123;</span><br><span class="line">  public render()&#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Router&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Route exact&#x3D;&#123;true&#125; path&#x3D;&quot;&#x2F;&quot; component&#x3D;&#123;Index&#125;&#x2F;&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;login&quot; component&#x3D;&#123;Login&#125; &#x2F;&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;signUp&quot; component&#x3D;&#123;SignUp&#125; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;Router&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Component</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.tsx</span><br><span class="line">import * as React from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">class Component extends React.Component &#123;</span><br><span class="line">  public render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className&#x3D;&quot;Component&quot;&gt;</span><br><span class="line">        Index</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Component</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-Index-页面跳转到登录页面"><a href="#4-Index-页面跳转到登录页面" class="headerlink" title="4. Index 页面跳转到登录页面"></a>4. Index 页面跳转到登录页面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import * as React from &#39;react&#39;;</span><br><span class="line">import &#123; Button &#125; from &#39;antd&#39;;</span><br><span class="line"></span><br><span class="line">interface Irouter &#123;</span><br><span class="line">  history: any</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; router 给 Index 传 props 属性, 要声明 props 的类型,也可以直接声明一个接口</span><br><span class="line">class Component extends React.Component&lt;Irouter&gt; &#123;</span><br><span class="line"></span><br><span class="line">  login &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    this.props.history.push(&#39;&#x2F;login&#39;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className&#x3D;&quot;Component&quot;&gt;</span><br><span class="line">      &lt;Button onClick&#x3D;&#123;this.login&#125;&gt;登录&lt;&#x2F;Button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Component</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-withRouter-的用法"><a href="#5-withRouter-的用法" class="headerlink" title="5. withRouter 的用法"></a>5. withRouter 的用法</h4><ul>
-<li>index 是直接通过 Router 组件传过来的值，所以会带有 props.history,如果不是通过 Router 渲染出来的路由,也想知道当前的路由信息，那么必须要用到 withRouter 的组件，</li>
-</ul>
-<h4 id="6-BrowserRouter-和-HashRouter-的区别"><a href="#6-BrowserRouter-和-HashRouter-的区别" class="headerlink" title="6. BrowserRouter 和 HashRouter 的区别"></a>6. BrowserRouter 和 HashRouter 的区别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 后面相当于就是个 hash</span><br><span class="line"></span><br><span class="line">browser 的坏处是，如果用 BrowerRouter,部署到服务器上输入</span><br><span class="line">http:&#x2F;&#x2F;localhost:3000&#x2F;login可能会找不到,只能找到http:&#x2F;&#x2F;localhost:3000&#x2F;,</span><br><span class="line">因为这个是个单页面应用，单页应用只是映射到 index 上面，login 的话可能会返回 404,如果使用 browserrouter,</span><br><span class="line">必须要配置服务器把http:&#x2F;&#x2F;localhost:3000&#x2F;下的所有路径指向index这个入口文件</span><br></pre></td></tr></table></figure>
-
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">番茄闹钟一(React-Antd-Typescript 框架搭建)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-10 18:51:38" itemprop="dateCreated datePublished" datetime="2020-02-10T18:51:38+08:00">2020-02-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-12 13:12:11" itemprop="dateModified" datetime="2020-02-12T13:12:11+08:00">2020-02-12</time>
-              </span>
-
-          
-            <span id="/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="番茄闹钟一(React-Antd-Typescript 框架搭建)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="一-主要文档"><a href="#一-主要文档" class="headerlink" title="一. 主要文档"></a>一. 主要文档</h4><ul>
-<li><a href="https://reactjs.org/docs/hello-world.html" target="_blank" rel="noopener">React</a></li>
-<li><a href="https://reacttraining.com/react-router" target="_blank" rel="noopener">React Router</a></li>
-<li><a href="https://ant.design/docs/react/getting-started-cn" target="_blank" rel="noopener">Ant design</a></li>
-<li><a href="http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html" target="_blank" rel="noopener">TypeScript</a></li>
-<li><a href="https://redux.js.org/introduction/getting-started" target="_blank" rel="noopener">Redux</a></li>
-</ul>
-<h4 id="二-开始使用-体验-react-脚手架"><a href="#二-开始使用-体验-react-脚手架" class="headerlink" title="二. 开始使用,体验 react 脚手架"></a>二. 开始使用,体验 react 脚手架</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app react-app-demo</span><br><span class="line">cd react-app-demo</span><br><span class="line">yarn start</span><br></pre></td></tr></table></figure>
-
-<h4 id="三-跟着文档做"><a href="#三-跟着文档做" class="headerlink" title="三. 跟着文档做"></a>三. 跟着文档做</h4><ol>
-<li>渲染一个元素</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(&lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>渲染 JSX 的使用</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const name &#x3D; &#39;Josh Perez&#39;;</span><br><span class="line">const element &#x3D; &lt;h1&gt;Hello, &#123;name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(element, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>渲染一个时钟</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function tick() &#123;</span><br><span class="line">  const element &#x3D; (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;h2&gt;It is &#123;new Date().toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">  ReactDOM.render(element, document.getElementById(&#39;root&#39;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setInterval(tick, 1000);</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>组件部分 Components and Props</p>
-<ul>
-<li>函数组件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app.js</span><br><span class="line">import React from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">function Welcome(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Welcome;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.js</span><br><span class="line">import Welcome from &#39;.&#x2F;App&#39;;</span><br><span class="line">const element &#x3D; &lt;Welcome name&#x3D;&quot;Ories&quot; &#x2F;&gt;;</span><br><span class="line">ReactDOM.render(element, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>类组件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app.js</span><br><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.js</span><br><span class="line">import Welcome from &#39;.&#x2F;App&#39;;</span><br><span class="line">const element &#x3D; &lt;Welcome name&#x3D;&quot;Ories1&quot; &#x2F;&gt;;</span><br><span class="line">ReactDOM.render(element, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>props</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; props 就是父组件传给子组件的值</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>注意</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; return 的时候必须要div包裹起来</span><br><span class="line">function App() &#123;</span><br><span class="line">   return (</span><br><span class="line">     &lt;div&gt;</span><br><span class="line">       &lt;Welcome name&#x3D;&quot;Sara&quot; &#x2F;&gt;</span><br><span class="line">       &lt;Welcome name&#x3D;&quot;Cahal&quot; &#x2F;&gt;</span><br><span class="line">       &lt;Welcome name&#x3D;&quot;Edite&quot; &#x2F;&gt;</span><br><span class="line">     &lt;&#x2F;div&gt;</span><br><span class="line">   );</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>State 和 Lifecycle</p>
-<ul>
-<li><p>State</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; index.js</span><br><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;; &#x2F;&#x2F; 在这里给state赋值</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;It is &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">        &#x2F;&#x2F; 在render这个部分,通过this.state.date访问到这个属性</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;Clock &#x2F;&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Lifecycle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.timerID &#x3D; setInterval(</span><br><span class="line">      () &#x3D;&gt; this.tick(),</span><br><span class="line">      1000</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    clearInterval(this.timerID);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  tick() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      date: new Date()</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;It is &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;Clock&#x2F;&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>处理事件</p>
-<ul>
-<li><p>简单的事件绑定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">helloWorld()&#123;</span><br><span class="line">  console.log(1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;this.helloWorld&#125;&gt;</span><br><span class="line">        按钮</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">      &lt;h2&gt;It is &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>toggle 案例-绑定 this</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Toggle extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;isToggleOn: true&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; This binding is necessary to make &#96;this&#96; work in the callback</span><br><span class="line">    this.handleClick &#x3D; this.handleClick.bind(this);</span><br><span class="line">    &#x2F;&#x2F; 把this进行绑定，点击一个按钮，在react中经常会出现bind this这种情况，</span><br><span class="line">    &#x2F;&#x2F; 因为点击一个按钮,其event经常会指向dom元素,而不是指向react class本身,所以需要bind this</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    this.setState(state &#x3D;&gt; (&#123;</span><br><span class="line">      isToggleOn: !state.isToggleOn</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;button onClick&#x3D;&#123;this.handleClick&#125;&gt;</span><br><span class="line">        &#123;this.state.isToggleOn ? &#39;ON&#39; : &#39;OFF&#39;&#125;</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Toggle &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;root&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>条件渲染</p>
-<ul>
-<li><p>案例一</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function UserGreeting(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Welcome back!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function GuestGreeting(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Please sign up.&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Greeting(props) &#123;</span><br><span class="line">  const isLoggedIn &#x3D; props.isLoggedIn;</span><br><span class="line">  if (isLoggedIn) &#123;</span><br><span class="line">    return &lt;UserGreeting &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;GuestGreeting &#x2F;&gt;;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(&lt;Greeting isLoggedIn&#x3D;&#123;true&#125; &#x2F;&gt;,   document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>案例二,按钮切换登录状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">function UserGreeting(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Welcome back!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function GuestGreeting(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Please sign up.&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Greeting(props) &#123;</span><br><span class="line">  const isLoggedIn &#x3D; props.isLoggedIn;</span><br><span class="line">  if (isLoggedIn) &#123;</span><br><span class="line">    return &lt;UserGreeting &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;GuestGreeting &#x2F;&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function LoginButton(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick&#x3D;&#123;props.onClick&#125;&gt;</span><br><span class="line">      Login</span><br><span class="line">    &lt;&#x2F;button&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function LogoutButton(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick&#x3D;&#123;props.onClick&#125;&gt;</span><br><span class="line">      Logout</span><br><span class="line">    &lt;&#x2F;button&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class LoginControl extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleLoginClick &#x3D; this.handleLoginClick.bind(this);</span><br><span class="line">    this.handleLogoutClick &#x3D; this.handleLogoutClick.bind(this);</span><br><span class="line">    this.state &#x3D; &#123;isLoggedIn: false&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleLoginClick() &#123;</span><br><span class="line">    this.setState(&#123;isLoggedIn: true&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleLogoutClick() &#123;</span><br><span class="line">    this.setState(&#123;isLoggedIn: false&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    const isLoggedIn &#x3D; this.state.isLoggedIn;</span><br><span class="line">    let button;</span><br><span class="line"></span><br><span class="line">    if (isLoggedIn) &#123;</span><br><span class="line">      button &#x3D; &lt;LogoutButton onClick&#x3D;&#123;this.handleLogoutClick&#125; &#x2F;&gt;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      button &#x3D; &lt;LoginButton onClick&#x3D;&#123;this.handleLoginClick&#125; &#x2F;&gt;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Greeting isLoggedIn&#x3D;&#123;isLoggedIn&#125; &#x2F;&gt;</span><br><span class="line">        &#123;button&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;LoginControl &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;root&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>List 和 Keys</p>
-<ul>
-<li><p>渲染列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">&lt;li key&#x3D;&#123;number.toString()&#125;&gt;&#123;number&#125;&lt;&#x2F;li&gt;</span><br><span class="line">&#x2F;&#x2F; 要加keys</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;ul&gt;&#123;listItems&#125;&lt;&#x2F;ul&gt;,</span><br><span class="line">  document.getElementById(&#39;root&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Forms 表单提交案例</p>
-<ul>
-<li>输入的值会变大写</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class NameForm extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;value: &#39;&#39;&#125;;</span><br><span class="line"></span><br><span class="line">    this.handleChange &#x3D; this.handleChange.bind(this);</span><br><span class="line">    this.handleSubmit &#x3D; this.handleSubmit.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(event) &#123;</span><br><span class="line">    this.setState(&#123;value: event.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(&#39;A name was submitted: &#39; + this.state.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;form onSubmit&#x3D;&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Name:</span><br><span class="line">          &lt;input type&#x3D;&quot;text&quot; value&#x3D;&#123;this.state.value.toUpperCase()&#125; onChange&#x3D;&#123;this.handleChange&#125; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;label&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;Submit&quot; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;NameForm &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;root&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>状态提升</p>
-<ul>
-<li><p>水有没有开</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">function BoilingVerdict(props) &#123;</span><br><span class="line">if (props.celsius &gt;&#x3D; 100) &#123;</span><br><span class="line">  return &lt;p&gt;The water would boil.&lt;&#x2F;p&gt;;</span><br><span class="line">&#125;</span><br><span class="line">return &lt;p&gt;The water would not boil.&lt;&#x2F;p&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Calculator extends React.Component &#123;</span><br><span class="line">constructor(props) &#123;</span><br><span class="line">  super(props);</span><br><span class="line">  this.handleChange &#x3D; this.handleChange.bind(this);</span><br><span class="line">  this.state &#x3D; &#123;temperature: &#39;&#39;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleChange(e) &#123;</span><br><span class="line">  this.setState(&#123;temperature: e.target.value&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  const temperature &#x3D; this.state.temperature;</span><br><span class="line">  return (</span><br><span class="line">    &lt;fieldset&gt;</span><br><span class="line">      &lt;legend&gt;Enter temperature in Celsius:&lt;&#x2F;legend&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        value&#x3D;&#123;temperature&#125;</span><br><span class="line">        onChange&#x3D;&#123;this.handleChange&#125; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">      &lt;BoilingVerdict</span><br><span class="line">        celsius&#x3D;&#123;parseFloat(temperature)&#125; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;fieldset&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">&lt;Calculator &#x2F;&gt;,</span><br><span class="line">document.getElementById(&#39;root&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>组合和继承</p>
-<ul>
-<li><p>组合</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; index.js</span><br><span class="line">function FancyBorder(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&#123;&#39;FancyBorder FancyBorder-&#39; + props.color&#125;&gt;</span><br><span class="line">      &#123;props.children&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function WelcomeDialog() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;FancyBorder color&#x3D;&quot;red&quot;&gt;</span><br><span class="line">    &#x2F;&#x2F; 这里可以改成green, blue</span><br><span class="line">      &lt;h1 className&#x3D;&quot;Dialog-title&quot;&gt;</span><br><span class="line">        Welcome</span><br><span class="line">      &lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;p className&#x3D;&quot;Dialog-message&quot;&gt;</span><br><span class="line">        Thank you for visiting our spacecraft!</span><br><span class="line">      &lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;FancyBorder&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;WelcomeDialog &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;root&#39;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.css</span><br><span class="line">.FancyBorder &#123;</span><br><span class="line">  border: 1px solid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.FancyBorder-red&#123;</span><br><span class="line">  border-color: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.FancyBorder-blue&#123;</span><br><span class="line">  border-color: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.FancyBorder-green&#123;</span><br><span class="line">  border-color: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>继承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    function FancyBorder(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&#123;&#39;FancyBorder FancyBorder-&#39; + props.color&#125;&gt;</span><br><span class="line">      &#123;props.children&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Dialog(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;FancyBorder color&#x3D;&quot;blue&quot;&gt;</span><br><span class="line">      &lt;h1 className&#x3D;&quot;Dialog-title&quot;&gt;</span><br><span class="line">        &#123;props.title&#125;</span><br><span class="line">      &lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;p className&#x3D;&quot;Dialog-message&quot;&gt;</span><br><span class="line">        &#123;props.message&#125;</span><br><span class="line">      &lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;FancyBorder&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function WelcomeDialog() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Dialog</span><br><span class="line">      title&#x3D;&quot;Welcome&quot;</span><br><span class="line">      message&#x3D;&quot;Thank you for visiting our sda!&quot; &#x2F;&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="四-TypeScript-简介"><a href="#四-TypeScript-简介" class="headerlink" title="四. TypeScript 简介"></a>四. TypeScript 简介</h4><ol>
-<li><p>案例一</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function greeter(person: string) &#123;</span><br><span class="line">  return &quot;Hello, &quot; + person;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user &#x3D; &quot;Jane User&quot;; &#x2F;&#x2F; 如果在这个地方改成bool,数字，下面一行会报错</span><br><span class="line"></span><br><span class="line">document.body.textContent &#x3D; greeter(user);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义 Person 的对象类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; interface 主要用在对象上面</span><br><span class="line">interface Person &#123;</span><br><span class="line">  firstName: string;</span><br><span class="line">  lastName: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function greeter(person: Person) &#123;</span><br><span class="line">    return &quot;Hello, &quot; + person.firstName + &quot; &quot; + person.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user &#x3D; &#123; firstName: &quot;Jane&quot;, lastName: &quot;User&quot; &#125;;</span><br><span class="line"></span><br><span class="line">document.body.textContent &#x3D; greeter(user);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="五-构建-React-Antd-Typescript-项目"><a href="#五-构建-React-Antd-Typescript-项目" class="headerlink" title="五. 构建 React+Antd+Typescript 项目"></a>五. 构建 React+Antd+Typescript 项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yarn create react-app potato --template typescript</span><br><span class="line">yarn add antd</span><br><span class="line">&#x2F;&#x2F; app.css</span><br><span class="line">@import &#39;~antd&#x2F;dist&#x2F;antd.css&#39;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1416,14 +1390,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

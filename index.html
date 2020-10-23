@@ -158,6 +158,396 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/" class="post-title-link" itemprop="url">63虚拟DOM与DOMdiff</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-19 22:05:28" itemprop="dateCreated datePublished" datetime="2020-10-19T22:05:28+08:00">2020-10-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-23 21:27:23" itemprop="dateModified" datetime="2020-10-23T21:27:23+08:00">2020-10-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">前端基础</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/" class="post-meta-item leancloud_visitors" data-flag-title="63虚拟DOM与DOMdiff" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-虚拟DOM"><a href="#1-虚拟DOM" class="headerlink" title="1. 虚拟DOM"></a>1. 虚拟DOM</h3><ul>
+<li>DOM操作慢?<ul>
+<li>这句话类似于:刘翔矮(对比姚明) </li>
+<li>DOM操作慢是对比JS原生API,比如数组操作</li>
+<li>任何基于DOM的库(Vue/React)都不可能在操作DOM时比DOM快</li>
+</ul>
+</li>
+<li>为什么网上有这样的耀眼？<ul>
+<li>因为在某些情况下，虚拟DOM快</li>
+</ul>
+</li>
+<li>例子1.减少DOM操作<ul>
+<li>虚拟DOM可以将多次操作合并为一次操作，如果你添加1000个节点，却是一个接一个操作的,减少dom操作的次数。</li>
+<li>虚拟DOM借助DOM diff可以把多余的操作省略，页面上有990个节点，添加10个节点，把之前的990个和现在的10个全部都放入innerHTML中，那么就多渲染了很多东西，实际上只有10个是新增的,但是vue/react可以通过对比只增加10个，减少dom操作的范围。</li>
+</ul>
+</li>
+<li>跨平台<ul>
+<li>虚拟DOM不仅可以变成DOM，还可以变成小程序，IOS应用，安卓应用，因为虚拟DOM本质是一个JS对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-虚拟DOM长什么样子"><a href="#2-虚拟DOM长什么样子" class="headerlink" title="2. 虚拟DOM长什么样子"></a>2. 虚拟DOM长什么样子</h3><ul>
+<li>React,以下代码表示一个标签为div，子元素为span,classname为red,点击事件调用一个函数的dom<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vNode = &#123;</span><br><span class="line">  key: <span class="literal">null</span>,</span><br><span class="line">  props: &#123; </span><br><span class="line">    children: [ <span class="comment">// 子元素们</span></span><br><span class="line">      &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;,</span><br><span class="line">      &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;</span><br><span class="line">    ],</span><br><span class="line">    className: <span class="string">"red"</span>, <span class="comment">// 标签上的属性</span></span><br><span class="line">    onClick: <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125; <span class="comment">//事件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ref: <span class="literal">null</span>,</span><br><span class="line">  type: <span class="string">"div"</span>, <span class="comment">// 标签名 or 组件名</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Vue<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vNode = &#123;</span><br><span class="line">  tag: <span class="string">"div"</span>, <span class="comment">// 标签名 or 组件名</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    class: "red",// 标签上的属性</span><br><span class="line">    on: &#123;</span><br><span class="line">      click: <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125; <span class="comment">// 事件</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  children: [ <span class="comment">// 子元素们</span></span><br><span class="line">    &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;,</span><br><span class="line">    &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-如何创建虚拟dom"><a href="#3-如何创建虚拟dom" class="headerlink" title="3. 如何创建虚拟dom"></a>3. 如何创建虚拟dom</h3><ul>
+<li>React.createElement<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">createElement(<span class="string">'div'</span>,&#123;<span class="attr">className</span>: <span class="string">'red'</span>,<span class="attr">onClick</span>:<span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;&#125;,</span><br><span class="line">  [</span><br><span class="line">    createElement(<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span1'</span>),</span><br><span class="line">    createElement(<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span2'</span>)</span><br><span class="line">  ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li>Vue(只能在render函数里得到h)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">h(<span class="string">'div'</span>,&#123;</span><br><span class="line">  class: 'red',</span><br><span class="line">  on: &#123;</span><br><span class="line">    click:<span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,[h[<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span1'</span>,h(<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span2'</span>)])</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="4-创建虚拟dom简写"><a href="#4-创建虚拟dom简写" class="headerlink" title="4. 创建虚拟dom简写"></a>4. 创建虚拟dom简写</h3><ul>
+<li>React<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">"red"</span> onCLick=&#123;fn&#125;&gt;</span><br><span class="line">  &lt;span&gt;span1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span&gt;span2&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 通过babel 转为createElement形式</span></span><br></pre></td></tr></table></figure></li>
+<li>Vue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className&#x3D;&quot;red&quot; @click&#x3D;&quot;fn&quot;&gt;</span><br><span class="line">  &lt;span&gt;span1&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;span&gt;span2&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 通过vue-loader 转为h形式</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-第一部分总结"><a href="#5-第一部分总结" class="headerlink" title="5. 第一部分总结"></a>5. 第一部分总结</h3><ul>
+<li>虚拟DOM是什么<ul>
+<li>一个能代表DOM树的对象，通常含有标签名，标签上的属性，事件监听和子元素们，以及其他属性</li>
+</ul>
+</li>
+<li>虚拟DOM有什么优点<ul>
+<li>能减少不必要的DOM操作(两个例子背下来)</li>
+<li>能跨平台渲染</li>
+</ul>
+</li>
+<li>虚拟DOM有什么缺点<ul>
+<li>需要额外的创建函数，如createElement或h，但可以通过JSX来简化成XML语法</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-操作原生dom和react对比"><a href="#6-操作原生dom和react对比" class="headerlink" title="6. 操作原生dom和react对比"></a>6. 操作原生dom和react对比</h3><ul>
+<li>插入1000个节点，react快，插入100000个节点，原生dom快</li>
+</ul>
+<h3 id="7-DomDiff"><a href="#7-DomDiff" class="headerlink" title="7. DomDiff"></a>7. DomDiff</h3><ul>
+<li>把虚拟DOM想像成树形<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"x"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"y"</span>&gt;</span>&#123;string1&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;string2&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="https://i.loli.net/2020/10/20/VrknIs6WJEmpMHd.png" alt="图片 1.png"></li>
+<li>当数据变化时<ul>
+<li>当x从red变成green
+<img src="https://i.loli.net/2020/10/20/pzuaQ1NeUVm4sGj.png" alt="图片 2.png"></li>
+</ul>
+</li>
+<li>DOM diff 发现<ul>
+<li>div 标签类型没变，只需要更新 div 对应的 DOM 的属性  </li>
+<li>子元素没变，不更新</li>
+</ul>
+</li>
+<li>当y从true变成false
+<img src="https://i.loli.net/2020/10/20/8179AjZ3EzlHCbq.png" alt="图片 3.png"></li>
+<li>DOM diff 发现<ul>
+<li>div 没变，不用更新</li>
+<li>子元素1标签没变，但是children变了，更新 DOM 内容</li>
+<li>子元素2不见了，删除对应的 DOM</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-DomDiff小结"><a href="#8-DomDiff小结" class="headerlink" title="8. DomDiff小结"></a>8. DomDiff小结</h3><ul>
+<li>什么是 DOM diff<ul>
+<li>就是一个函数，我们称之为 patch</li>
+<li>patches = patch(oldVNode, newVNode)</li>
+<li>patches 就是要运行的 DOM 操作，可能长这样：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;<span class="attr">type</span>: <span class="string">'INSERT'</span>, <span class="attr">vNode</span>: ... &#125;,</span><br><span class="line">  &#123;<span class="attr">type</span>: <span class="string">'TEXT'</span>,  <span class="attr">vNode</span>: ... &#125;,</span><br><span class="line">  &#123;<span class="attr">type</span>: <span class="string">'PROPS'</span>, <span class="attr">propsPatch</span>: [...]&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-DOM-diff大概逻辑"><a href="#9-DOM-diff大概逻辑" class="headerlink" title="9. DOM diff大概逻辑"></a>9. DOM diff大概逻辑</h3><ul>
+<li>Tree diff<ul>
+<li>将新旧两棵树逐层对比，找出哪些节点需要更新</li>
+<li>如果节点是组件就看Component diff</li>
+<li>如果节点是标签就看Element diff</li>
+</ul>
+</li>
+<li>Component diff<ul>
+<li>如果节点是组件，就先看组件类型</li>
+<li>类型不同直接替换（删除旧的）</li>
+<li>类型相同则只更新属性</li>
+<li>然后深入组件做Tree diff(递归)</li>
+</ul>
+</li>
+<li>Element diff<ul>
+<li>如果节点是原生标签，则看标签名</li>
+<li>标签名不同直接替换，相同则只更新属性</li>
+<li>然后进入标签后代做Tree diff(递归)</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-Dom-diff的缺点"><a href="#10-Dom-diff的缺点" class="headerlink" title="10. Dom diff的缺点"></a>10. Dom diff的缺点</h3><ul>
+<li>同级节点对比存在bug<ul>
+<li>会出现识别错误</li>
+<li>举例，砍掉左腿右腿变成左腿</li>
+<li>解决方案，命名，给id,绑定key,注意永远不要以数组的index绑定key</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9043%E4%B9%8Bwebpack5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9043%E4%B9%8Bwebpack5/" class="post-title-link" itemprop="url">高级前端养成43之webpack5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-17 15:53:05" itemprop="dateCreated datePublished" datetime="2020-10-17T15:53:05+08:00">2020-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-18 21:12:43" itemprop="dateModified" datetime="2020-10-18T21:12:43+08:00">2020-10-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/10/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9043%E4%B9%8Bwebpack5/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成43之webpack5" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9043%E4%B9%8Bwebpack5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9043%E4%B9%8Bwebpack5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-任务一-转译JS"><a href="#1-任务一-转译JS" class="headerlink" title="1. 任务一: 转译JS"></a>1. 任务一: 转译JS</h3><ul>
+<li><p>把src/index.js变成大部分浏览器支持的js</p>
+</li>
+<li><p>通过npm info webpack versions查看版本</p>
+</li>
+<li><p>安装最新版本,yarn add –dev <a href="mailto:&#x77;&#x65;&#98;&#112;&#x61;&#99;&#x6b;&#64;&#53;&#x2e;&#49;&#x2e;&#x33;">&#x77;&#x65;&#98;&#112;&#x61;&#99;&#x6b;&#64;&#53;&#x2e;&#49;&#x2e;&#x33;</a></p>
+</li>
+<li><p>npm info webpack-cli version 查看最新cli</p>
+</li>
+<li><p>yarn add –dev <a href="mailto:&#x77;&#x65;&#x62;&#x70;&#x61;&#x63;&#x6b;&#x2d;&#x63;&#x6c;&#x69;&#64;&#52;&#46;&#48;&#x2e;&#x30;">&#x77;&#x65;&#x62;&#x70;&#x61;&#x63;&#x6b;&#x2d;&#x63;&#x6c;&#x69;&#64;&#52;&#46;&#48;&#x2e;&#x30;</a></p>
+</li>
+<li><p>初始化，新建webpack.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建src/index.js,并输入console.log(‘ories’)</p>
+</li>
+<li><p>控制台输入./node_modules/.bin/webpack进行执行</p>
+</li>
+<li><p>切换webpack的mode,production,development观察区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; production能省代码就省代码</span><br><span class="line">&#x2F;&#x2F; development能多代码就多代码</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2-什么是Tree-Shaking"><a href="#2-什么是Tree-Shaking" class="headerlink" title="2. 什么是Tree Shaking"></a>2. 什么是Tree Shaking</h3><ul>
+<li><p>增加冠希的名称引入,如果没有用到那么打包的代码中不会出现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wyz <span class="keyword">from</span> <span class="string">'./wuyanzu.js'</span></span><br><span class="line"><span class="keyword">import</span> gx <span class="keyword">from</span> <span class="string">'./guanxi.js'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(wyz.name)</span><br><span class="line"><span class="comment">// Tree Shaking</span></span><br><span class="line"><span class="comment">// console.log(gx.name)</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Tree Shaking的意思就是代码分析没人用过的东西就打包就直接不用</p>
+</li>
+<li><p>如果在guanxi.js中加入我的照片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// guanxi.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;<span class="attr">name</span>:<span class="string">'冠希'</span>, sayName()&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pictures = <span class="string">'我拍的照片'</span></span><br><span class="line"><span class="keyword">export</span> &#123; pictures &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>然后,在index.js中引入,最终打包也不会出现冠希,这被称为部分treeShaking,即不把所有东西shaking掉，shaking掉部分东西</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wyz <span class="keyword">from</span> <span class="string">'./wuyanzu.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123;pictures&#125; <span class="keyword">from</span> <span class="string">'./guanxi.js'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(wyz.name)</span><br><span class="line"><span class="comment">// 部分Tree Shaking</span></span><br><span class="line"><span class="built_in">console</span>.log(pictures)</span><br></pre></td></tr></table></figure></li>
+<li><p>继续深入,写一个公共方法的sayname.js，并在guanxi和wuyanzu中引入,最终发现打包中没有，由于没有在index中使用到</p>
+</li>
+</ul>
+<h3 id="3-知识点总结"><a href="#3-知识点总结" class="headerlink" title="3. 知识点总结"></a>3. 知识点总结</h3><ul>
+<li><p>如何安装webpack和webpack-cli最新版本</p>
+<ul>
+<li>通过npm info webpack versions查看版本</li>
+<li>安装最新版本,yarn add –dev <a href="mailto:&#119;&#x65;&#98;&#112;&#97;&#99;&#107;&#x40;&#53;&#x2e;&#49;&#46;&#x33;">&#119;&#x65;&#98;&#112;&#97;&#99;&#107;&#x40;&#53;&#x2e;&#49;&#46;&#x33;</a></li>
+<li>npm info webpack-cli version 查看最新cli</li>
+<li>yarn add –dev <a href="mailto:&#x77;&#x65;&#98;&#x70;&#x61;&#x63;&#x6b;&#x2d;&#x63;&#108;&#105;&#x40;&#52;&#x2e;&#48;&#46;&#48;">&#x77;&#x65;&#98;&#x70;&#x61;&#x63;&#x6b;&#x2d;&#x63;&#108;&#105;&#x40;&#52;&#x2e;&#48;&#46;&#48;</a></li>
+</ul>
+</li>
+<li><p>mode为development和production的区别是什么?</p>
+<ul>
+<li>前者用于开发，会有注释，后者用于生产，具有高度智能的代码分析</li>
+<li>development就是启用开发模式，production就是启用生产模式， development就是速度比较快，缺点，代码注释多，不容易看清代码结构，production的优点是把所有注释删除了，代码是最简洁的，缺点就是慢因为要做代码分析</li>
+</ul>
+</li>
+<li><p>devtool 为eval和false的区别是什么？</p>
+<ul>
+<li>devtool有eval,打包出的有eval,好处开发者工具会方便点,false就没有eval</li>
+<li>eval就是在代码里加上eval,false就是不开启任何其他功能，eval的优点就是我们在使用chrome开发者工具会体验更好，每个eval都会生成一个单独的文件,false的优点就是没有eval少点代码,缺点是没有单独文件</li>
+</ul>
+</li>
+<li><p>如何回答A和B的区别是什么？</p>
+<ul>
+<li>说一下a是啥，b是啥。a的优缺点,b的优缺点</li>
+</ul>
+</li>
+<li><p>webpack是怎么处理依赖的？</p>
+<ul>
+<li>生产环境所有依赖放到一个eval里面，可以用一个require函数包起来,全部写到文件里，然后互相引入</li>
+<li>生产环境，把所有东西拷贝到一个map里面</li>
+</ul>
+</li>
+<li><p>什么是treeShaking?</p>
+<ul>
+<li>即webpack通过代码分析之后，把没有用的东西删掉</li>
+</ul>
+</li>
+<li><p>分析技巧</p>
+<ul>
+<li>逐渐深入，把demo复杂化</li>
+<li>想办法阻止取消某个功能，如果能就知道一个多的选项，否则就知道默认选项</li>
+<li>对比，两次的结果通过工具一行行对比</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-任务一变形"><a href="#4-任务一变形" class="headerlink" title="4. 任务一变形"></a>4. 任务一变形</h3><ul>
+<li>把src/index.js改为src/main.js</li>
+<li>查看webpack config 文档,改entry</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/14/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9042js%E4%B8%93%E7%B2%BE10%E4%B9%8B%E5%87%BD%E6%95%B0%E5%85%A8%E8%A7%A3%E4%B8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1798,745 +2188,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/" class="post-title-link" itemprop="url">Vue3造轮子flavour-ui组件库之00使用Vite搭建官网</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-09-21 20:53:28 / Modified: 23:04:58" itemprop="dateCreated datePublished" datetime="2020-09-21T20:53:28+08:00">2020-09-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%80%A0%E8%BD%AE%E5%AD%90/" itemprop="url" rel="index"><span itemprop="name">造轮子</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/" class="post-meta-item leancloud_visitors" data-flag-title="Vue3造轮子flavour-ui组件库之00使用Vite搭建官网" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>技术栈</li>
-</ol>
-<ul>
-<li>Vue3.0</li>
-<li>TypeScript</li>
-<li>Vue Router</li>
-<li>Vite</li>
-</ul>
-<ol start="2">
-<li>目录</li>
-</ol>
-<ul>
-<li>使用 Vite 搭建官网</li>
-<li>Switch 组件</li>
-<li>Button 组件</li>
-<li>Dialog 组件</li>
-<li>Tabs 组件</li>
-<li>官网细节完善</li>
-<li>发布代码到 npm</li>
-</ul>
-<ol start="3">
-<li>用 Vite 构建官网,创建项目</li>
-</ol>
-<ul>
-<li><p>进入自定义的项目目录</p>
-</li>
-<li><p>全局安装 create-vite-app</p>
-<ul>
-<li>yarn global add <a href="mailto:&#99;&#114;&#x65;&#x61;&#116;&#x65;&#45;&#x76;&#105;&#x74;&#101;&#x2d;&#97;&#x70;&#x70;&#64;&#x31;&#x2e;&#x31;&#56;&#x2e;&#x30;">&#99;&#114;&#x65;&#x61;&#116;&#x65;&#45;&#x76;&#105;&#x74;&#101;&#x2d;&#97;&#x70;&#x70;&#64;&#x31;&#x2e;&#x31;&#56;&#x2e;&#x30;</a></li>
-<li>或者 npm i -g <a href="mailto:&#x63;&#114;&#x65;&#x61;&#x74;&#101;&#45;&#118;&#x69;&#116;&#x65;&#x2d;&#x61;&#x70;&#112;&#x40;&#x31;&#46;&#x31;&#x38;&#46;&#x30;">&#x63;&#114;&#x65;&#x61;&#x74;&#101;&#45;&#118;&#x69;&#116;&#x65;&#x2d;&#x61;&#x70;&#112;&#x40;&#x31;&#46;&#x31;&#x38;&#46;&#x30;</a></li>
-<li>创建项目目录,cva flavour-ui(这个是项目名可以自己修改)</li>
-<li>yarn</li>
-<li>yarn dev</li>
-</ul>
-</li>
-<li><p>小知识</p>
-<ul>
-<li>vite 文档给出的命令是<ul>
-<li>npm init vite-app <code>&lt;project-name&gt;</code></li>
-<li>yarn create vite-app <code>&lt;project-name&gt;</code></li>
-</ul>
-</li>
-<li>等价于<ul>
-<li>全局安装 create-vite-app 然后</li>
-<li><code>cva &lt;project-name&gt;</code></li>
-</ul>
-</li>
-<li>等价于<ul>
-<li>npx createa-vite-app <code>&lt;project-name&gt;</code></li>
-<li>即 npx 会帮你全局安装用到的包</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>使用 VSCode 或 WebStorm 打开目录</p>
-<ul>
-<li>将目录拖进即可</li>
-</ul>
-</li>
-<li><p>自己尝试去修改里面的文件，并尝试新建组件</p>
-<ul>
-<li>发现 Vue2 和 Vue3 的区别</li>
-<li>90%的写法完全一致:除了以下几点<ul>
-<li>Vue 3 的 Template 支持<font color="skyblue">多个根标签</font>，Vue 2 不支持</li>
-<li>Vue 3 有 <font color="skyblue">createApp()</font>，而 Vue 2 的是 new Vue()</li>
-<li>createApp(<font color="skyblue">组件</font>)，new Vue({template, render})</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>提交一下代码,git init</p>
-</li>
-</ul>
-<ol start="4">
-<li>引入 Vue Router 4</li>
-</ol>
-<ul>
-<li>路由器，用于页面切换</li>
-<li>使用命令行查看 vue-router 所有版本号<ul>
-<li>npm info vue-router versions</li>
-</ul>
-</li>
-<li>安装 vue-router<ul>
-<li>yarn add <a href="mailto:&#118;&#x75;&#x65;&#45;&#114;&#111;&#x75;&#x74;&#x65;&#114;&#x40;&#52;&#x2e;&#x30;&#46;&#x30;&#x2d;&#98;&#101;&#116;&#x61;&#46;&#51;">&#118;&#x75;&#x65;&#45;&#114;&#111;&#x75;&#x74;&#x65;&#114;&#x40;&#52;&#x2e;&#x30;&#46;&#x30;&#x2d;&#98;&#101;&#116;&#x61;&#46;&#51;</a></li>
-</ul>
-</li>
-<li>初始化 vue-router<ul>
-<li>新建 history 对象</li>
-<li>新建 router 对象</li>
-<li>引入 TypeScript</li>
-<li>app.use(router)</li>
-<li>添加 <code>&lt;router-view&gt;</code></li>
-<li>添加 <code>&lt;router-link&gt;</code></li>
-</ul>
-</li>
-<li>把 main.js 改成 main.ts 出现问题，找不到模块 xxx.vue<ul>
-<li>出现原因，TypeScript 只能理解 .ts 文件，无法理解 .vue 文件</li>
-<li>解决办法，Google 搜索 Vue 3 can not find module<ul>
-<li>创建 xxx.d.ts，告诉 TS 如何理解 .vue 文件</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; shims-vue.d.ts</span><br><span class="line">declare module &#39;*.vue&#39; &#123;</span><br><span class="line">  import &#123; ComponentOptions &#125; from &#39;vue&#39;</span><br><span class="line">  const ComponentOptions: ComponentOptions;</span><br><span class="line">  export default ComponentOptions</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>开始创建官网,创建首页和文档页</li>
-</ol>
-<ul>
-<li>新建 views 文件夹<ul>
-<li>Home.vue<ul>
-<li>Topnav：左边是 logo，右边是 menu</li>
-<li>Banner：文字介绍 + 开始按钮</li>
-</ul>
-</li>
-<li>Doc.vue<ul>
-<li>Topnav：同上</li>
-<li>Content：左边是 aside，右边是 main</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="6">
-<li>封装 topNav 组件</li>
-</ol>
-<ul>
-<li>home 页面和 doc 页面都用到了 topNav 组件，需要进行封装</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"topnav"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"logo"</span>&gt;LOGO&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;ul class="menu"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;li&gt;菜单1&lt;/</span>li&gt;</span><br><span class="line">      &lt;li&gt;菜单<span class="number">2</span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;style lang="scss" scoped&gt;</span></span><br><span class="line"><span class="regexp">.topnav &#123;</span></span><br><span class="line"><span class="regexp">  background: pink;</span></span><br><span class="line"><span class="regexp">  display: flex;</span></span><br><span class="line"><span class="regexp">  padding: 16px;</span></span><br><span class="line"><span class="regexp">  &gt; .logo &#123;</span></span><br><span class="line"><span class="regexp">    max-width: 6em;</span></span><br><span class="line"><span class="regexp">    margin-right: auto;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  &gt; .menu &#123;</span></span><br><span class="line"><span class="regexp">    display: flex;</span></span><br><span class="line"><span class="regexp">    white-space: nowrap;</span></span><br><span class="line"><span class="regexp">    flex-wrap: nowrap;</span></span><br><span class="line"><span class="regexp">    &gt; li &#123;</span></span><br><span class="line"><span class="regexp">      margin: 0 1em;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>完善 home 页面样式</li>
-</ol>
-<ul>
-<li>写一大堆样式</li>
-</ul>
-<ol start="8">
-<li>完善 Doc 样式</li>
-</ol>
-<ul>
-<li>边栏+主内容，参考 vue 文档样式</li>
-<li>定好目标，需要实现手机和 pc 端样式</li>
-<li>先实现手机，因为手机用户群大</li>
-</ul>
-<ol start="9">
-<li>在 aside 里添加 router-link</li>
-</ol>
-<ul>
-<li>方便用户切换组件文档，即传说中的嵌套路由</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Topnav&gt;&lt;<span class="regexp">/Topnav&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;aside&gt;边栏&lt;/</span>aside&gt;</span><br><span class="line">      &lt;aside&gt;</span><br><span class="line">        &lt;h2&gt;组件列表&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">        &lt;ol&gt;</span></span><br><span class="line"><span class="regexp">          &lt;li&gt;</span></span><br><span class="line"><span class="regexp">            &lt;router-link to="/</span>doc/swich<span class="string">"&gt;Switch 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;router-link to="</span>/doc/button<span class="string">"&gt;Button 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;router-link to="</span>/doc/dialog<span class="string">"&gt;Dialog 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;router-link to="</span>/doc/tabs<span class="string">"&gt;Tabs 组件&lt;/router-link&gt;</span></span><br><span class="line"><span class="string">          &lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;/ol&gt;</span></span><br><span class="line"><span class="string">      &lt;/aside&gt;</span></span><br><span class="line"><span class="string">      &lt;main&gt;主内容&lt;/main&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="10">
-<li>调节 topnav 和 aside 样式</li>
-</ol>
-<ul>
-<li>写一大堆的 css</li>
-</ul>
-<ol start="11">
-<li>实现切换 aside</li>
-</ol>
-<ul>
-<li>点击一次显示，再点击一次隐藏,实现这个功能需要使用到 vue 的 provide/inject</li>
-<li>将 menuVisible 变量放到 APP，通过 provide 告诉子组件可以访问到，具体见下图
-<img src="https://i.loli.net/2020/09/21/fSwdn7leVuNEL4B.png" alt="menuVisible位置.png"><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.vue</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref, provide &#125; <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"App"</span>,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> menuVisible = ref(<span class="literal">false</span>); <span class="comment">//  ref理解成盒子,里面有个值false</span></span><br><span class="line">    provide(<span class="string">"menuVisible"</span>, menuVisible); <span class="comment">// set,标记为所有子组件都可以用</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// topnav.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"topnav"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"logo"</span> @click=<span class="string">"toggleMenu"</span>&gt;LOGO&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;ul class="menu"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;li&gt;菜单1&lt;/</span>li&gt;</span><br><span class="line">      &lt;li&gt;菜单<span class="number">2</span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> &#123; inject, Ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    setup()&#123;</span><br><span class="line">      <span class="keyword">const</span> menuVisible =  inject&lt;Ref&lt;boolean&gt;&gt;(<span class="string">'menuVisible'</span>); <span class="comment">// get, 获取xxx</span></span><br><span class="line">      <span class="keyword">const</span> toggleMenu = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        menuVisible.value = !menuVisible.value</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> &#123;toggleMenu&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// doc.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Topnav&gt;&lt;<span class="regexp">/Topnav&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;aside v-if="menuVisible"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h2&gt;组件列表&lt;/</span>h2&gt;</span><br><span class="line">        &lt;ol&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/switch"</span>&gt;Switch 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/button"</span>&gt;Button 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/dialog"</span>&gt;Dialog 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;router-link to=<span class="string">"/doc/tabs"</span>&gt;Tabs 组件&lt;<span class="regexp">/router-link&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span><br><span class="line">        &lt;<span class="regexp">/ol&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>aside&gt;</span><br><span class="line">      &lt;main&gt;主内容&lt;<span class="regexp">/main&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> Topnav <span class="keyword">from</span> <span class="string">'../components/Topnav.vue'</span></span><br><span class="line">  <span class="keyword">import</span> &#123; inject, Ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    components: &#123; Topnav &#125;,</span><br><span class="line">    setup()&#123;</span><br><span class="line">      <span class="keyword">const</span> menuVisible =  inject&lt;Ref&lt;boolean&gt;&gt;(<span class="string">'menuVisible'</span>); <span class="comment">// get</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'topnav 获取的 menu Visible 为: '</span> + menuVisible.value)</span><br><span class="line">      <span class="keyword">return</span> &#123;menuVisible&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li>改造 topnav，添加一个切换按钮</li>
-</ol>
-<ul>
-<li>通过媒体查询完成，写一大堆 css</li>
-</ul>
-<ol start="13">
-<li>完善 aside 逻辑</li>
-</ol>
-<ul>
-<li>需要根据屏幕宽度动态判断是否显示按钮</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"App"</span>,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> width = <span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">    <span class="keyword">const</span> menuVisible = ref(width &lt;= <span class="number">800</span> ? <span class="literal">false</span> : <span class="literal">true</span>);</span><br><span class="line">    provide(<span class="string">"menuVisible"</span>, menuVisible); <span class="comment">// set</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>点击组件，显示响应文档</li>
-</ol>
-<ul>
-<li>知识点，嵌套路由</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line">router.afterEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"路由切换了"</span>); <span class="comment">// 每次点击路由会执行</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>先把 router 封装成单独的 route.ts</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createWebHashHistory, createRouter &#125; <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span><br><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">"./views/Home.vue"</span>;</span><br><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> Doc <span class="keyword">from</span> <span class="string">"./views/Doc.vue"</span>;</span><br><span class="line"><span class="comment">// @ts-ignore</span></span><br><span class="line"><span class="keyword">import</span> SwitchDemo <span class="keyword">from</span> <span class="string">"./components/SwitchDemo.vue"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> history = createWebHashHistory();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">  history: history,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">"/"</span>, <span class="attr">component</span>: Home &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">"/doc"</span>,</span><br><span class="line">      component: Doc,</span><br><span class="line">      children: [&#123; <span class="attr">path</span>: <span class="string">"switch"</span>, <span class="attr">component</span>: SwitchDemo &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"路由切换了"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在 app 里面引 router</li>
-<li>在 app.vue 里将 menuVisible.value 变 false,如果是 pc 就不要隐藏</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;router-view/&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script lang="ts"&gt;</span></span><br><span class="line"><span class="regexp">import &#123;ref, provide&#125; from 'vue'</span></span><br><span class="line"><span class="regexp">import &#123;router&#125; from "./</span>router<span class="string">"</span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  name: 'App',</span></span><br><span class="line"><span class="string">  setup()&#123;</span></span><br><span class="line"><span class="string">    const width = document.documentElement.clientWidth;</span></span><br><span class="line"><span class="string">    const menuVisible = ref(width &lt;= 800 ? false : true);</span></span><br><span class="line"><span class="string">    provide("</span>menuVisible<span class="string">", menuVisible); // set</span></span><br><span class="line"><span class="string">    router.afterEach(() =&gt; &#123;</span></span><br><span class="line"><span class="string">      if(width &lt;= 800)&#123;</span></span><br><span class="line"><span class="string">        menuVisible.value = false</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>完善路由，添加二级默认路由</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const history &#x3D; createWebHashHistory();</span><br><span class="line">export const router &#x3D; createRouter(&#123;</span><br><span class="line">  history:history,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;path:&#39;&#x2F;&#39;, component: Home&#125;,</span><br><span class="line">    &#123;path:&#39;&#x2F;doc&#39;, component: Doc,children: [</span><br><span class="line">      &#123; path: &quot;&quot;, component: DocDemo &#125;, &#x2F;&#x2F; 二级组件的根路由</span><br><span class="line">      &#123; path: &quot;switch&quot;, component: SwitchDemo &#125;,</span><br><span class="line">      &#123; path: &quot;button&quot;, component: ButtonDemo &#125;,</span><br><span class="line">      &#123; path: &quot;dialog&quot;, component: DialogDemo &#125;,</span><br><span class="line">      &#123; path: &quot;tabs&quot;, component: TabsDemo &#125;</span><br><span class="line">    ],</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="15">
-<li>最终效果
-<img src="https://i.loli.net/2020/09/21/zbEpL7yfueWXicS.png" alt="最终效果.png"></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/15/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9040js%E4%B8%93%E7%B2%BE08%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E7%BB%84%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/15/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9040js%E4%B8%93%E7%B2%BE08%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E7%BB%84%E5%90%88/" class="post-title-link" itemprop="url">高级前端养成40js专精08之继承和组合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-15 20:38:33" itemprop="dateCreated datePublished" datetime="2020-09-15T20:38:33+08:00">2020-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-16 22:06:53" itemprop="dateModified" datetime="2020-09-16T22:06:53+08:00">2020-09-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/09/15/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9040js%E4%B8%93%E7%B2%BE08%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E7%BB%84%E5%90%88/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成40js专精08之继承和组合" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/09/15/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9040js%E4%B8%93%E7%B2%BE08%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E7%BB%84%E5%90%88/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/15/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9040js%E4%B8%93%E7%B2%BE08%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E7%BB%84%E5%90%88/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>为什么要有类</li>
-</ol>
-<ul>
-<li>不同对象的属性重复了，就有了类</li>
-<li>为什么要有继承<ul>
-<li>不同的类的属性重复了，就有了继承</li>
-</ul>
-</li>
-<li>大部分编程技巧都是为了解决重复</li>
-</ul>
-<ol start="2">
-<li>两个对象的属性重复了</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person1 = &#123;</span><br><span class="line">  name: <span class="string">"ories"</span>,</span><br><span class="line">  age: <span class="number">18</span>,</span><br><span class="line">  sayHi() &#123;&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> person2 = &#123;</span><br><span class="line">  name: <span class="string">"jack"</span>,</span><br><span class="line">  age: <span class="number">23</span>,</span><br><span class="line">  sayHi() &#123;&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>于是就有了类和构造函数</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  name;</span><br><span class="line">  age;</span><br><span class="line">  sayHi() &#123;&#125;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">"ories"</span>, <span class="number">18</span>);</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person(<span class="string">"jack"</span>, <span class="number">23</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>我们发现 js 的 class 特别麻烦，声明 name，写了四次，于是改写 TypeScript</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Person&#123;</span><br><span class="line">  sayHi(): <span class="built_in">void</span> &#123;&#125; <span class="comment">// sayHi 的返回值为空</span></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span>, <span class="keyword">public</span> age: <span class="built_in">number</span></span>)&#123;&#125;</span><br><span class="line">  <span class="comment">// 由于name前面有public,所以name会变为this.name</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">'ories'</span>, <span class="number">18</span>)</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person(<span class="string">'jack'</span>, <span class="number">23</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>细节</p>
-<ul>
-<li>name 和 age 怎么赋值的</li>
-<li>类型怎么写的</li>
-<li>如何运行上面代码, ts-node</li>
-</ul>
-</li>
-<li><p>更加配置化运行 TypeScript</p>
-<ul>
-<li>加入 tsconfig.json</li>
-<li>常见配置 compilerOptions/noImplicitAny:true,禁用隐式的 any 类型</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>总结</li>
-</ol>
-<ul>
-<li>类<ul>
-<li>类就是把对象的属性提前写好，避免重复</li>
-<li>类里面的字段会编程对象的属性</li>
-<li>为了节约内存，所有函数<font color="orange">都是共用的</font>(存疑 1)<ul>
-<li>person1.sayHi === person2.sayHi</li>
-</ul>
-</li>
-<li>而<font color="orange">非函数属性是各个对象自有的</font>(存疑 2)</li>
-<li>使用 <font color="skyblue">console.dir(person1)</font>可以看出来</li>
-</ul>
-</li>
-<li>构造函数<ul>
-<li>属性名虽然可以提前写好，但是属性值不行</li>
-<li>所以需要构造函数接收函数，初始化属性值</li>
-<li>构造函数不需要写 return,默认会 return 新对象,即 constructor 默认 return this</li>
-</ul>
-</li>
-<li>语法<ul>
-<li>JS 的所有语法可以在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="noopener">MDN</a> 查看</li>
-<li>TS 的所有语法可以在 TS <a href="https://www.typescriptlang.org/docs/handbook/classes.html" target="_blank" rel="noopener">英文</a>/<a href="https://www.tslang.cn/docs/handbook/classes.html" target="_blank" rel="noopener">中文</a>官网查看</li>
-<li>学会举一反三，不要妄图系统掌握</li>
-</ul>
-</li>
-</ul>
-<ol start="4">
-<li>函数都是共用的?</li>
-</ol>
-<ul>
-<li>给每个对象自身加个函数行不</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Person &#123;</span><br><span class="line">  mySayhi = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;; <span class="comment">// 自用</span></span><br><span class="line">  sayHi(): <span class="built_in">void</span> &#123;&#125; <span class="comment">// 共用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.dir(person1);</span><br><span class="line"><span class="built_in">console</span>.dir(person2);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这玩意儿除了浪费内存还有啥用<ul>
-<li>React 里面非常有用</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  name = <span class="string">"Frank"</span>;</span><br><span class="line">  sayHi = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hi, I'm <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.sayHi&#125;&gt;say hi&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>非函数属性是各个对象自有的</li>
-</ol>
-<ul>
-<li>创建一个共用的属性行吗</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.kind = <span class="string">"人类"</span>;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.kind === person2.kind;</span><br><span class="line"><span class="comment">// 不用原型做不到(class 做不到)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>但是可以在 class 身上加属性</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> kind = <span class="string">"人类"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(Person.kind); <span class="comment">// 人类</span></span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>小结</li>
-</ol>
-<ul>
-<li>类<ul>
-<li>声明对象的自身属性(非函数)</li>
-<li>声明对象的共有函数</li>
-<li>声明对象的自身函数</li>
-<li>声明类的自身属性(可以是函数)</li>
-</ul>
-</li>
-</ul>
-<ol start="8">
-<li>继承</li>
-</ol>
-<ul>
-<li>现在要给 Person 添加功能<ul>
-<li>person1.on(‘dire’,fn)</li>
-<li>person1.emit(‘die’)</li>
-<li>person1.off(‘die’,fn)</li>
-<li>让 Person 实例具有发布订阅功能，怎么做?</li>
-</ul>
-</li>
-</ul>
-<ol start="9">
-<li>加代码</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">  sayHi() &#123;&#125;</span><br><span class="line">  cache = [];</span><br><span class="line">  on() &#123;&#125;</span><br><span class="line">  off() &#123;&#125;</span><br><span class="line">  emit() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="comment">// 这样person1 就既是人类，有能发布订阅</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>除了人类，还有另一个类:报社</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 报社</span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(public name)&#123;</span><br><span class="line">    print()&#123;&#125;</span><br><span class="line">    cache = []</span><br><span class="line">    on()&#123;&#125;</span><br><span class="line">    off()&#123;&#125;</span><br><span class="line">    emit()&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样 报社1 就既是报社，又能发布订阅</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>消除重复<ul>
-<li>Person 和报社有重复属性<ul>
-<li>把重复属性抽出来，单独写一个类 EventEmitter</li>
-<li>然后让 Person 和报社继承 EventEmitter</li>
-</ul>
-</li>
-<li>细节<ul>
-<li>constructor 要调用 super()</li>
-<li>以保证 EventEmitter 实例被初始化</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>继承</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventEmitter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;&#125;</span><br><span class="line">  cache = []</span><br><span class="line">  on()&#123;&#125;</span><br><span class="line">  off()&#123;&#125;</span><br><span class="line">  emit()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">EventEmitter</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(public name)&#123;</span><br><span class="line">    <span class="keyword">super</span>() <span class="comment">// super的作用是调用EventEmitter中的constructor</span></span><br><span class="line">  &#125;</span><br><span class="line">  sayHi()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> 报社 <span class="keyword">extends</span> <span class="title">EventEmitter</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(public name)&#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  print()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="10">
-<li>继承的其他功能</li>
-</ol>
-<ul>
-<li>重写<ul>
-<li>子类重写父类的所有属性，以实现多态</li>
-<li>多态的意思是不同的子类对同一个消息有不同的反应</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">EventEmitter</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(public name)&#123; <span class="keyword">super</span>() &#125;</span><br><span class="line">  sayHi()&#123;&#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我要监听啦'</span>)</span><br><span class="line">    <span class="keyword">super</span>.on(eventName, fn)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="11">
-<li>继承有什么问题?</li>
-</ol>
-<ul>
-<li>如果我需要更多功能怎么办?</li>
-<li>两个选择<ul>
-<li>让 EvenEmitter 继承其他类</li>
-<li>让 Person 继承两个类(多继承)</li>
-<li>两个方法都不好</li>
-</ul>
-</li>
-</ul>
-<ol start="12">
-<li>组合</li>
-</ol>
-<ul>
-<li>组合并没有固定的写法，只演示一种写法</li>
-<li>让 Person 实现发布订阅</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  eventEmitter = <span class="keyword">new</span> EventEmitter(); <span class="comment">// 人类拥有事件发布功能</span></span><br><span class="line">  name;</span><br><span class="line">  sayHi() &#123;&#125;</span><br><span class="line">  on(eventName, fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.eventEmitter.on(eventName, fn);</span><br><span class="line">  &#125;</span><br><span class="line">  off(eventName, fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.eventEmitter.off(eventName, fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName, data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.eventEmitter.emit(eventName, data);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>优化代码</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  name;</span><br><span class="line">  sayHi() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">"frank"</span>);</span><br><span class="line">mixin(person1, <span class="keyword">new</span> EventEmitter()); <span class="comment">// 把EventEmitter的on ,off, emit 拷贝到person1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">to, from</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> <span class="keyword">from</span>) &#123;</span><br><span class="line">    to[key] = <span class="keyword">from</span>[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 注意,这是最简化的mixin,实际会复杂点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实际上要这么写</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEventEmitter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> cache = [];</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    on() &#123;&#125;,</span><br><span class="line">    off() &#123;&#125;,</span><br><span class="line">    emit() &#123;&#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 组合的意思是要什么复制什么,只把地址复制过去</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果要更多功能</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  name;</span><br><span class="line">  sayHi() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">"ories"</span>);</span><br><span class="line">mixin(person1, <span class="keyword">new</span> EventEmitter());</span><br><span class="line">mixin(person1, <span class="keyword">new</span> Flyer());</span><br><span class="line">mixin(person1, <span class="keyword">new</span> Killer());</span><br></pre></td></tr></table></figure>
-
-<ol start="13">
-<li>有了组合,可能不需要 class</li>
-</ol>
-<ul>
-<li>直接用函数+必包</li>
-<li>举例,猫，狗，动物</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dog</span><br><span class="line">  .wangwang()</span><br><span class="line">  .poop();</span><br><span class="line">cat</span><br><span class="line">  .miaomiao()</span><br><span class="line">  .poop();</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">animal &#x2F;&#x2F; 动物父类</span><br><span class="line">  .poop()</span><br><span class="line">    dog &#x2F;&#x2F; 狗子类</span><br><span class="line">      .wangwang()</span><br><span class="line">    cat &#x2F;&#x2F; 猫子类</span><br><span class="line">      .miaomiao()</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>机器人</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cleaningRobot</span><br><span class="line">  .run()</span><br><span class="line">  .clean()</span><br><span class="line"></span><br><span class="line">animal</span><br><span class="line">  .poop()</span><br><span class="line">    dog.wangwang()</span><br><span class="line">    cat.miaomiao()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">robot &#x2F;&#x2F; 机器人父类</span><br><span class="line">  .run()</span><br><span class="line">    murderRobot &#x2F;&#x2F; 子类杀人机器人</span><br><span class="line">      .kill()</span><br><span class="line">    cleaningRobot &#x2F;&#x2F; 子类清扫机器人</span><br><span class="line">      .clean()</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>碰到需求:狗形状各杀人机器人</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">robot</span><br><span class="line">  .run()</span><br><span class="line">    murderRobot</span><br><span class="line">      .kill()</span><br><span class="line">    cleaningRobot</span><br><span class="line">      .clean()</span><br><span class="line"></span><br><span class="line">animal</span><br><span class="line">  .poop() &#x2F;&#x2F; 这行不需要</span><br><span class="line">    dog</span><br><span class="line">      .wangwang() &#x2F;&#x2F; 这行需要,所以通过继承搞出狗型杀人机器人基本是不可能的</span><br><span class="line">    cat</span><br><span class="line">      .miaomiao()</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>于是用组合<ul>
-<li>dog = poop()+wangwang()</li>
-<li>cat = poop()+miaomiao()</li>
-<li>cleaningRobot = run()+clean()</li>
-<li>murderRobot = run()+kill()</li>
-<li>狗型杀人机器人 = run()+kill()+wangwang()</li>
-</ul>
-</li>
-<li>代码怎么写, 不用 class 写 dog</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> createWang = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123;</span><br><span class="line">  wangwang: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`汪汪,我是<span class="subst">$&#123;stage.name&#125;</span>`</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> createRun = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123;</span><br><span class="line">  run: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    state.position += <span class="number">1</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> createDog = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> state = &#123; name, <span class="attr">position</span>: <span class="number">0</span> &#125;; <span class="comment">// 这个state是一个闭包</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, createWang(state), createRun(state));</span><br><span class="line">  <span class="comment">// 空对象最后就剩下wangwang,run的地址,</span></span><br><span class="line">  <span class="comment">// &#123;&#125;是唯一暴露的出口</span></span><br><span class="line">  <span class="comment">// 对象是穷人的必包,java没有闭包只能用对象封装功能</span></span><br><span class="line">  <span class="comment">// 如果有闭包，就用对象，闭包，对象暴露api,api去操作这个对象</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> dog = createDog(<span class="string">"小白"</span>);</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>最早写前端的一批人由 java 转入，他们带来了 class 继承，多态</li>
-</ol>
-<ul>
-<li>前端写着写着发现代码越写越复杂</li>
-<li>后端有些数据结构相对固定，但是事实上前端的需求很灵活，</li>
-<li>这样子前端就开始想是不是面向对象的问题,继承为什么难用，一旦出现交叉就搞不过来</li>
-<li>所以往其他方向探索，一大分支就是函数式编程，以上就是函数来搞定</li>
-</ul>
-<ol start="15">
-<li>狗型杀人机器人怎么写</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> createMurderRobotDog = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> state = &#123; name, <span class="attr">position</span>: <span class="number">0</span> &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(</span><br><span class="line">    &#123;&#125;,</span><br><span class="line">    createWang(state),</span><br><span class="line">    createRun(state),</span><br><span class="line">    createKill(stage)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> murderRobotDog = createMurderRobotDog(<span class="string">"小黑"</span>);</span><br></pre></td></tr></table></figure>
-
-<ol start="16">
-<li>组合的总结</li>
-</ol>
-<ul>
-<li>组合的缺点，写法太灵活</li>
-<li>组合优于继承</li>
-</ul>
-<ol start="17">
-<li>从新再写一遍组合</li>
-</ol>
-<ul>
-<li>用 wangwang 和 poop 创造出 dog</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dog = poop + wangwang</span></span><br><span class="line"><span class="keyword">const</span> createPoop = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123;</span><br><span class="line">  <span class="comment">// 这里不加括号会有bug,js会以为是代码块，不返回对象</span></span><br><span class="line">  poop() &#123;</span><br><span class="line">    state.weight -= <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`我在拉屎，体重变为<span class="subst">$&#123;state.weight&#125;</span>`</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">p = createPoop(&#123; <span class="attr">weight</span>: <span class="number">100</span> &#125;);</span><br><span class="line">p.poop();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createWang = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123;</span><br><span class="line">  wangwang() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`汪汪,我叫<span class="subst">$&#123;state.name&#125;</span>`</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">w = createWang(&#123; <span class="attr">name</span>: <span class="string">"小白"</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createDog = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> state = &#123; <span class="attr">name</span>: name, <span class="attr">weight</span>: <span class="number">100</span> &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, createWang(state), createPoop(state));</span><br><span class="line">&#125;;</span><br><span class="line">dog = createDog(<span class="string">"小白"</span>);</span><br><span class="line">dog.wangwang();</span><br><span class="line">dog.poop();</span><br></pre></td></tr></table></figure>
-
-<ol start="18">
-<li>什么时候用继承</li>
-</ol>
-<ul>
-<li>场景<ul>
-<li>开发者不会用组合</li>
-<li>功能没有太多交叉的地方，一眼就能看出继承关系</li>
-<li>前端库比较喜欢用继承</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>const vm = new Vue({…})</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 共有属性上有on emit off</span><br><span class="line">&#x2F;&#x2F; 为代码其就是</span><br><span class="line">mixin(Vue.prototype, eventemitter) &#x2F;&#x2F; 组合</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Vue 混入了 EventEmitter</li>
-<li>class App extends React.Component{…}</li>
-<li>React.Component 内置了方便的复用代码(钩子)</li>
-</ul>
-<ol start="19">
-<li>什么时候用组合</li>
-</ol>
-<ul>
-<li>场景<ul>
-<li>功能组合非常灵活，无法一眼看出继承关系</li>
-<li>插件系统,Vue 的插件就是将功能复制到 Vue 的原型</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Vue的源代码</span><br><span class="line">&#x2F;&#x2F; Vue.use 接受一个插件，或者对象</span><br><span class="line">有一句installedPlugins.push(plugin) &#x2F;&#x2F; 把插件安装到被安装的插件里</span><br><span class="line">&#x2F;&#x2F; 详情见Vue文档开发插件3,把created复制到当前实例</span><br><span class="line">&#x2F;&#x2F; 或者4.在Vue.prototype去添加属性</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>mixin 模式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">源代码中的mergeOptions,其实就是复制属性到Vue的options</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>举例<ul>
-<li>Vue.mixin()</li>
-<li>Vue.use(MyPlugin)</li>
-<li>React 接收组件的组件,由于 react 用函数，组件组合起来更方便</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"App"</span>&gt;</span>&#123;connect(A, B)&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>我是A,我的儿子是&#123;props.children&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>我是B<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params">Component1, component2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;Component1&gt;&lt;<span class="regexp">/Component1&gt; | &lt;Component2 /</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/Fragment&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="20">
-<li>总结</li>
-</ol>
-<ul>
-<li>如果开发基础库，用继承</li>
-<li>业务开发使用组合</li>
-<li>不一定对，需要灵活选择</li>
-</ul>
-<ol start="21">
-<li>组合更占内存么？</li>
-</ol>
-<ul>
-<li>通过将函数写在外面解决,会产生新的函数</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> f1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line">createF1 = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">f1</span>: f1 &#125;);</span><br><span class="line"><span class="keyword">const</span> f2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line">createF2 = <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">f2</span>: f2 &#125;);</span><br><span class="line">createDog = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> state = &#123; name &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, createF1(), createF2());</span><br><span class="line">&#125;;</span><br><span class="line">dog1 = createDog(<span class="number">1</span>);</span><br><span class="line">dog2 = createDog(<span class="number">2</span>);</span><br><span class="line">dog1.f1 === dog2.f1;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然而面向对象也会产生先的对象</li>
-<li>在原理上没太多区别</li>
-</ul>
-<ol start="22">
-<li>觉得对你有帮助的朋友，请关注公众号!
-<img src="https://i.loli.net/2020/09/16/qsr73mt2kBHcDPu.jpg" alt="qrCode.jpg"></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2604,14 +2259,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
