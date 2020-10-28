@@ -158,6 +158,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/11/28/jquery%20%E8%BD%BD%E5%85%A5%E4%B9%8B%E5%90%8E%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/28/jquery%20%E8%BD%BD%E5%85%A5%E4%B9%8B%E5%90%8E%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB/" class="post-title-link" itemprop="url">jquery 载入之后直接执行动画</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-11-28 14:44:57" itemprop="dateCreated datePublished" datetime="2018-11-28T14:44:57+08:00">2018-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-05 14:07:03" itemprop="dateModified" datetime="2018-12-05T14:07:03+08:00">2018-12-05</time>
+              </span>
+
+          
+            <span id="/2018/11/28/jquery%20%E8%BD%BD%E5%85%A5%E4%B9%8B%E5%90%8E%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB/" class="post-meta-item leancloud_visitors" data-flag-title="jquery 载入之后直接执行动画" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/11/28/jquery%20%E8%BD%BD%E5%85%A5%E4%B9%8B%E5%90%8E%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/jquery%20%E8%BD%BD%E5%85%A5%E4%B9%8B%E5%90%8E%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%E5%8A%A8%E7%94%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>被自己蠢哭了，不知道什么原因，用了最新版的jquery之后animate函数不能页面载入之后自动执行，重新查了文档之后，重写，解决。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    let $logo &#x3D; $(&quot;#fp-logo&quot;);</span><br><span class="line">    $logo.animate(&#123;&quot;margin-left&quot;:&quot;-200px&quot;&#125;, 1000, function() &#123;</span><br><span class="line">        console.log(1)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/11/27/%E4%BB%8A%E6%97%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -392,7 +479,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

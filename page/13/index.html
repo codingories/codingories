@@ -158,6 +158,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">JS对象基本用法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-09-20 21:47:55 / Modified: 22:01:11" itemprop="dateCreated datePublished" datetime="2019-09-20T21:47:55+08:00">2019-09-20</time>
+            </span>
+
+          
+            <span id="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="JS对象基本用法" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="声明对象的两种语法"><a href="#声明对象的两种语法" class="headerlink" title="声明对象的两种语法"></a>声明对象的两种语法</h1><ol>
+<li>let obj = {‘name’ : ‘frank’,’age’:21 } 常用，写起来简单</li>
+<li>let obj = new Object({‘name’:’frank’}) </li>
+</ol>
+<h1 id="如何删除对象的属性"><a href="#如何删除对象的属性" class="headerlink" title="如何删除对象的属性"></a>如何删除对象的属性</h1><ol>
+<li>delete obj.xxx </li>
+<li>delete obj[‘xxx’]</li>
+</ol>
+<h1 id="如何查看对象的属性"><a href="#如何查看对象的属性" class="headerlink" title="如何查看对象的属性"></a>如何查看对象的属性</h1><ol>
+<li>查看自身所有属性Object.keys(obj)</li>
+<li>查看自身所有值Object.values</li>
+<li>查看自身所有属性和值obj.values和obj.entries</li>
+<li>查看自身+共有属性,console.dir(obj) </li>
+<li>判断一个属性是否是自身的，如果是返回true,obj.hasOwnProperty(‘toString’)</li>
+</ol>
+<h1 id="如何修改或增加对象的属性"><a href="#如何修改或增加对象的属性" class="headerlink" title="如何修改或增加对象的属性"></a>如何修改或增加对象的属性</h1><ol>
+<li>直接赋值 <ol>
+<li>let obj = {name:’frank’} // name 是字符串</li>
+<li>obj.name = ‘frank’ // name是字符串</li>
+<li>obj[‘name’] = ‘frank’</li>
+</ol>
+</li>
+<li>批量赋值
+Object.assign(obj,{age:18,gender:’main’})</li>
+</ol>
+<h1 id="‘name’-in-obj和obj-hasOwnProperty-‘name’-的区别"><a href="#‘name’-in-obj和obj-hasOwnProperty-‘name’-的区别" class="headerlink" title="‘name’ in obj和obj.hasOwnProperty(‘name’) 的区别"></a>‘name’ in obj和obj.hasOwnProperty(‘name’) 的区别</h1><ol>
+<li>‘name’ in obj 是’name’是否包含在obj的全部属性中，也就是说如果’name’在<strong>proto</strong>中也会返回true</li>
+<li>obj.hasOwnProperty(‘name’) 指的是’name’是否包含在obj的本身属性中，不会去检查obj的<strong>proto</strong>中是否有’name’</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/14/JS%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -341,7 +449,7 @@
       
           <h1 id="JavaScript的发明者"><a href="#JavaScript的发明者" class="headerlink" title="JavaScript的发明者"></a>JavaScript的发明者</h1><ul>
 <li>网景公司的员工Brendan Eich,用10天时间设计出了Javascript。</li>
-<li><img src="/.io/2019/09//Brendan.jpg" alt="img"></li>
+<li><img src="/12/JavaScript%E7%9A%84%E8%AF%9E%E7%94%9F/Brendan.jpg" alt="img"></li>
 </ul>
 <h1 id="JavaScript的设计思路"><a href="#JavaScript的设计思路" class="headerlink" title="JavaScript的设计思路"></a>JavaScript的设计思路</h1><ul>
 <li>借鉴C语言的基本语法；</li>
@@ -964,19 +1072,19 @@ image的图片，img标签加上max-width:100%,可以使图片在手机上自适
 第一步：输入要创建的仓库名称，我这里的输入是demos1</p>
 <p>第二步：初始化你的仓库并写入README文件</p>
 <p>第三步：点击绿色的按钮就创建了仓库
-<img src="/.io/2019/08//1" alt="png"></p>
+<img src="/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/1" alt="png"></p>
 <p>2.接下来进入setting页面。
 第一步：选中你刚才创建的仓库
 第二步：点击setting
-<img src="/.io/2019/08//2.png" alt="png"></p>
+<img src="/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/2.png" alt="png"></p>
 <p>3.setting页面向下滚，找到github pages进行设置。
 第一步：选择master 分支。
 第二步：点击save，进行保存。
-<img src="/.io/2019/08//3.png" alt="png"></p>
+<img src="/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/3.png" alt="png"></p>
 <p>4.接下来你就可以找到这个仓库的预览地址。
-<img src="/.io/2019/08//4.png" alt="png"></p>
+<img src="/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/4.png" alt="png"></p>
 <p>5.如果你要看预览这个仓库中其它的文件可以在仓库地址后面加上你要的文件路径。
-<img src="/.io/2019/08//5.png" alt="png"></p>
+<img src="/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/5.png" alt="png"></p>
 
       
     </div>
@@ -1086,87 +1194,6 @@ image的图片，img标签加上max-width:100%,可以使图片在手机上自适
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/07/02/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/02/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-title-link" itemprop="url">vue学习分享四</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-07-02 15:34:19 / Modified: 15:35:30" itemprop="dateCreated datePublished" datetime="2019-07-02T15:34:19+08:00">2019-07-02</time>
-            </span>
-
-          
-            <span id="/2019/07/02/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-meta-item leancloud_visitors" data-flag-title="vue学习分享四" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/07/02/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/02/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>进行配置项目
-Vue配置起来怎么也起不来，最后通过复制之前的文件进行解决，原因应该是cnpm安装的版本冲突导致的。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1238,7 +1265,7 @@ Vue配置起来怎么也起不来，最后通过复制之前的文件进行解�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

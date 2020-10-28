@@ -158,6 +158,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8A/" class="post-title-link" itemprop="url">造轮子-tab组件(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-27 15:37:45 / Modified: 19:41:08" itemprop="dateCreated datePublished" datetime="2020-01-27T15:37:45+08:00">2020-01-27</time>
+            </span>
+
+          
+            <span id="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="造轮子-tab组件(上)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-如何解决之前遗留的bug"><a href="#1-如何解决之前遗留的bug" class="headerlink" title="1. 如何解决之前遗留的bug"></a>1. 如何解决之前遗留的bug</h4><ol>
+<li>根据错误提示大概确定原因，toast.test.js .style 造成。</li>
+<li>用二分法找bug到底是哪一个用例出错。</li>
+<li>log+分析代码,mounted和$nextTick是有时间间隙的，得到原因测试用例中mount完了之后立刻click,click之后再$nextTick设置高度,所以可能是click太快了，此时s当$nextTick的时候，已经toast已经被我们关掉了，所以无法设置高度,那么解决方案就是我们就需要模拟用户点击，200ms后再点击<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; toast.test.js</span><br><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    closeButton.click()</span><br><span class="line">    expect(callback).to.have.been.called</span><br><span class="line">    done()</span><br><span class="line">&#125;,200)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="2-对tabs进行需求分析-每一个组件都要进行四步"><a href="#2-对tabs进行需求分析-每一个组件都要进行四步" class="headerlink" title="2. 对tabs进行需求分析,每一个组件都要进行四步"></a>2. 对tabs进行需求分析,每一个组件都要进行四步</h4><ol>
+<li>需求</li>
+<li>ui </li>
+<li>代码<ul>
+<li>先考虑用户怎么用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; elementUI的使用方法一</span><br><span class="line">&lt;g-tabs&gt;</span><br><span class="line">    &lt;g-tabs-item label&#x3D;&quot;美女&quot;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            美女相关咨询</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-item&gt;</span><br><span class="line">    &lt;g-tabs-item label&#x3D;&quot;世界杯&quot;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            世界杯相关咨询</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-item&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;	</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; elementUI的使用方法二,加icon</span><br><span class="line">&#x2F;&#x2F; 这种使用方法有个问题，tab上加背景色没办法加</span><br><span class="line">&lt;g-tabs&gt;</span><br><span class="line">    &lt;g-tabs-item slot&#x3D;&quot;label&quot;&gt;</span><br><span class="line">        &lt;g-icon&gt;  </span><br><span class="line">            美女相关咨询</span><br><span class="line">        &lt;&#x2F;g-icon&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-item&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 我们设计的使用方式,这种方式改背景色就很简单直接在g-tabs-nav上添加就可以了。</span><br><span class="line">&lt;g-tabs selected&#x3D;&quot;tab1&quot;&gt;</span><br><span class="line">    &lt;g-tabs-nav&gt;</span><br><span class="line">        &lt;g-tabs-item name&#x3D;&quot;tab1&quot;&gt;&lt;&#x2F;g-tabs-item&gt;	</span><br><span class="line">        &lt;g-tabs-item name&#x3D;&quot;tab2&quot;&gt;&lt;&#x2F;g-tabs-item&gt;	</span><br><span class="line">    &lt;&#x2F;g-tabs-nav&gt;</span><br><span class="line">    &lt;g-tabs-content&gt;</span><br><span class="line">        &lt;g-tabs-pane name&#x3D;&quot;tab1&quot;&gt;&lt;&#x2F;g-tabs-pane&gt;</span><br><span class="line">        &lt;g-tabs-pane name&#x3D;&quot;tab2&quot;&gt;&lt;&#x2F;g-tabs-pane&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-content&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>测试</li>
+</ol>
+<h4 id="3-新建5个组件"><a href="#3-新建5个组件" class="headerlink" title="3. 新建5个组件"></a>3. 新建5个组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs.vue</span><br><span class="line">&#x2F;&#x2F; tabs-head</span><br><span class="line">&#x2F;&#x2F; tabs-body</span><br><span class="line">&#x2F;&#x2F; tabs-item</span><br><span class="line">&#x2F;&#x2F; tabs-pane</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-子组件不能改父组件的值，一定要通过通知父组件，让父组件来改"><a href="#4-子组件不能改父组件的值，一定要通过通知父组件，让父组件来改" class="headerlink" title="4. 子组件不能改父组件的值，一定要通过通知父组件，让父组件来改"></a>4. 子组件不能改父组件的值，一定要通过通知父组件，让父组件来改</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这么写的原因</span><br><span class="line">&lt;!-- &lt;g-tabs selected&#x3D;&quot;selectedTab&quot; @update:selected&#x3D;&quot;selectedTab &#x3D; $event&quot;&gt;  --&gt;</span><br><span class="line">&lt;!-- 这句话是语法糖完全等价上面一句 --&gt;</span><br><span class="line">&lt;g-tabs :selected.sync&#x3D;&quot;selectedTab&quot;&gt; </span><br><span class="line">    &lt;g-tabs-head&gt;</span><br><span class="line">        &lt;g-tabs-item name&#x3D;&quot;woman&quot;&gt;</span><br><span class="line">            美女</span><br><span class="line">        &lt;&#x2F;g-tabs-item&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-head&gt;</span><br><span class="line">    &lt;g-tabs-body&gt;</span><br><span class="line">        &lt;g-tabs-pane name&#x3D;&quot;woman&quot;&gt;</span><br><span class="line">            美女相关咨询</span><br><span class="line">        &lt;&#x2F;g-tabs-pane&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-body&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5-添加-tabs-相关组件的基本-props，之后开始完善"><a href="#5-添加-tabs-相关组件的基本-props，之后开始完善" class="headerlink" title="5.添加 tabs 相关组件的基本 props，之后开始完善"></a>5.添加 tabs 相关组件的基本 props，之后开始完善</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs.vue</span><br><span class="line">props: &#123;</span><br><span class="line">    selected: &#123;</span><br><span class="line">        type: String,</span><br><span class="line">        required: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">direction: &#123;</span><br><span class="line">    type: String,</span><br><span class="line">    default: &#39;horizontal&#39;,</span><br><span class="line">    validator(value)&#123;</span><br><span class="line">        return [&#39;horizontal&#39;, &#39;vertical&#39;].indexOf(value) &gt;&#x3D; 0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">created()&#123;</span><br><span class="line">    &#x2F;&#x2F; this.$emit(&#39;update:selected&#39;,&#39;xxx&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; tabs-item.vue</span><br><span class="line"> props: &#123;</span><br><span class="line">  disabled: &#123;</span><br><span class="line">    type: Boolean,</span><br><span class="line">    default: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 为了实现右边有个按钮的功能</span><br><span class="line">&#x2F;&#x2F; tabs-head</span><br><span class="line">&lt;div class&#x3D;&quot;tabs-head&quot;&gt;</span><br><span class="line">    &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;slot name&#x3D;&quot;actions&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; index.html</span><br><span class="line">&lt;g-tabs :selected.sync&#x3D;&quot;selectedTab&quot;&gt;</span><br><span class="line">    &lt;g-tabs-head&gt;</span><br><span class="line">        &lt;template slot&#x3D;&quot;actions&quot;&gt;</span><br><span class="line">            &lt;button&gt;设置&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-head&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/27/toast%E7%BB%84%E4%BB%B6%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -436,7 +536,7 @@
           <ol start="0">
 <li><p>Vue的常用修饰符</p>
 <ul>
-<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#x31;&#x2e;&#x40;&#99;&#108;&#105;&#x63;&#107;&#46;&#x73;&#116;&#x6f;&#112;">&#x31;&#x2e;&#x40;&#99;&#108;&#105;&#x63;&#107;&#46;&#x73;&#116;&#x6f;&#112;</a>=”xxx”<a href="mailto:&#x32;&#x2e;&#x40;&#x63;&#108;&#x69;&#99;&#x6b;&#46;&#x70;&#x72;&#101;&#x76;&#x65;&#110;&#116;">&#x32;&#x2e;&#x40;&#x63;&#108;&#x69;&#99;&#x6b;&#46;&#x70;&#x72;&#101;&#x76;&#x65;&#110;&#116;</a>=”xxx”<a href="mailto:&#x33;&#x2e;&#x40;&#107;&#x65;&#x79;&#112;&#x72;&#101;&#x73;&#x73;&#46;&#101;&#110;&#116;&#101;&#114;">&#x33;&#x2e;&#x40;&#107;&#x65;&#x79;&#112;&#x72;&#101;&#x73;&#x73;&#46;&#101;&#110;&#116;&#101;&#114;</a>=”xxx”4.:money.sync=”total”</li>
+<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#x2e;&#64;&#x63;&#x6c;&#105;&#x63;&#107;&#x2e;&#x73;&#x74;&#111;&#112;">&#49;&#x2e;&#64;&#x63;&#x6c;&#105;&#x63;&#107;&#x2e;&#x73;&#x74;&#111;&#112;</a>=”xxx”<a href="mailto:&#x32;&#46;&#64;&#x63;&#x6c;&#105;&#x63;&#x6b;&#x2e;&#112;&#114;&#101;&#118;&#101;&#110;&#116;">&#x32;&#46;&#64;&#x63;&#x6c;&#105;&#x63;&#x6b;&#x2e;&#112;&#114;&#101;&#118;&#101;&#110;&#116;</a>=”xxx”<a href="mailto:&#x33;&#x2e;&#x40;&#107;&#x65;&#121;&#x70;&#114;&#x65;&#115;&#115;&#46;&#x65;&#x6e;&#116;&#x65;&#114;">&#x33;&#x2e;&#x40;&#107;&#x65;&#121;&#x70;&#114;&#x65;&#115;&#115;&#46;&#x65;&#x6e;&#116;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
 </ul>
 </li>
 <li><p>@click.stop=”xxx”</p>
@@ -921,7 +1021,7 @@ new Vue({<figure class="highlight plain"><table><tr><td class="gutter"><pre><spa
 
       
           <p>jQuery是前端最流行的前端框架之一，世界上有很多网站使用jQuery(见下图)。
-<img src="/.io/2019/11//1.png" alt="png"></p>
+<img src="/07/learn-jQuery/1.png" alt="png"></p>
 <p>一.jQuery 如何获取元素
 通过css选择器获取元素比如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　$(document) &#x2F;&#x2F;选择整个文档对象</span><br><span class="line">　　$(&#39;#myId&#39;) &#x2F;&#x2F;选择ID为myId的网页元素</span><br><span class="line">　　$(&#39;div.myClass&#39;) &#x2F;&#x2F; 选择class为myClass的div元素</span><br><span class="line">　　$(&#39;input[name&#x3D;first]&#39;) &#x2F;&#x2F; 选择name属性等于first的input元素</span><br></pre></td></tr></table></figure>
@@ -1066,114 +1166,6 @@ jQuery移动元素方法有两组，一组方法是直接移动该元素，另�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">JS对象基本用法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-09-20 21:47:55 / Modified: 22:01:11" itemprop="dateCreated datePublished" datetime="2019-09-20T21:47:55+08:00">2019-09-20</time>
-            </span>
-
-          
-            <span id="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="JS对象基本用法" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/20/JS%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="声明对象的两种语法"><a href="#声明对象的两种语法" class="headerlink" title="声明对象的两种语法"></a>声明对象的两种语法</h1><ol>
-<li>let obj = {‘name’ : ‘frank’,’age’:21 } 常用，写起来简单</li>
-<li>let obj = new Object({‘name’:’frank’}) </li>
-</ol>
-<h1 id="如何删除对象的属性"><a href="#如何删除对象的属性" class="headerlink" title="如何删除对象的属性"></a>如何删除对象的属性</h1><ol>
-<li>delete obj.xxx </li>
-<li>delete obj[‘xxx’]</li>
-</ol>
-<h1 id="如何查看对象的属性"><a href="#如何查看对象的属性" class="headerlink" title="如何查看对象的属性"></a>如何查看对象的属性</h1><ol>
-<li>查看自身所有属性Object.keys(obj)</li>
-<li>查看自身所有值Object.values</li>
-<li>查看自身所有属性和值obj.values和obj.entries</li>
-<li>查看自身+共有属性,console.dir(obj) </li>
-<li>判断一个属性是否是自身的，如果是返回true,obj.hasOwnProperty(‘toString’)</li>
-</ol>
-<h1 id="如何修改或增加对象的属性"><a href="#如何修改或增加对象的属性" class="headerlink" title="如何修改或增加对象的属性"></a>如何修改或增加对象的属性</h1><ol>
-<li>直接赋值 <ol>
-<li>let obj = {name:’frank’} // name 是字符串</li>
-<li>obj.name = ‘frank’ // name是字符串</li>
-<li>obj[‘name’] = ‘frank’</li>
-</ol>
-</li>
-<li>批量赋值
-Object.assign(obj,{age:18,gender:’main’})</li>
-</ol>
-<h1 id="‘name’-in-obj和obj-hasOwnProperty-‘name’-的区别"><a href="#‘name’-in-obj和obj-hasOwnProperty-‘name’-的区别" class="headerlink" title="‘name’ in obj和obj.hasOwnProperty(‘name’) 的区别"></a>‘name’ in obj和obj.hasOwnProperty(‘name’) 的区别</h1><ol>
-<li>‘name’ in obj 是’name’是否包含在obj的全部属性中，也就是说如果’name’在<strong>proto</strong>中也会返回true</li>
-<li>obj.hasOwnProperty(‘name’) 指的是’name’是否包含在obj的本身属性中，不会去检查obj的<strong>proto</strong>中是否有’name’</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1245,7 +1237,7 @@ Object.assign(obj,{age:18,gender:’main’})</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-count">243</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
