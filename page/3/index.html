@@ -158,6 +158,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8Basync-await%E5%85%A8%E8%A7%A3-%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8Basync-await%E5%85%A8%E8%A7%A3-%E4%B8%AD/" class="post-title-link" itemprop="url">高级前端养成35js专精04之async/await全解(中)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-01 22:18:51 / Modified: 22:51:44" itemprop="dateCreated datePublished" datetime="2020-09-01T22:18:51+08:00">2020-09-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/09/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8Basync-await%E5%85%A8%E8%A7%A3-%E4%B8%AD/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成35js专精04之async/await全解(中)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8Basync-await%E5%85%A8%E8%A7%A3-%E4%B8%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9035js%E4%B8%93%E7%B2%BE04%E4%B9%8Basync-await%E5%85%A8%E8%A7%A3-%E4%B8%AD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>Promise 的应用场景</li>
+</ol>
+<ul>
+<li>多次处理一个结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">摇骰子.then(v&#x3D;&gt; v1 ).then(v1 &#x3D;&gt; v2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>串行<ul>
+<li>这里有一个悖论:一旦 promise 出现，那么任务就已经执行了</li>
+<li>所以不是 promise 串行，而是任务串行</li>
+<li>解法:把任务放进队列，完成一个再做下一个</li>
+</ul>
+</li>
+<li>并行<ul>
+<li>Promise.all([p1,p2])不好用</li>
+<li>Promise.allSettled 又太行</li>
+<li>怎么办</li>
+</ul>
+</li>
+<li>面试代码题<ul>
+<li>页面有两个按钮 A 和 B,以及一个输入框,A 按钮点击后发送一个请求，返回一个字符串 A，B 也发请求，但返回字符串 B,返回后会把字符串赋值给输入框，但 A、B 发送的两个请求返回的时间不同，点击两个按钮的顺序也不一定，B 要比 A 先返回，而最终效果要求是输入框字符的顺序 A B。</li>
+<li><img src="https://i.loli.net/2020/09/01/JGa5vScgDjOICBd.png" alt="面试题大致意思.png"></li>
+<li>答案<ul>
+<li>在工程上，如果发现有结果了之前的都不要，ajax 一般有 cancel 这个 api，一旦渲染结果就调用 cancel</li>
+<li>对于题目，保证在第一个任务完成后调用第二个任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>这样写会出现点击 b1,b2,出现字符串 B,再出现字符串 A</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"b1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"b2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"input1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ajax1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串A"</span>);</span><br><span class="line">    &#125;, <span class="number">5000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">ajax2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串B"</span>);</span><br><span class="line">    &#125;, <span class="number">3000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">b1.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ajax1().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    input1.value = s;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">b2.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ajax2().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    input1.value = s;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>联想餐厅点餐逻辑,将任务放入队列，处理串行,点 a,b 就只出现’字符串 B’</li>
+<li><img src="https://i.loli.net/2020/09/01/3AkUWGO2uRXiKHF.png" alt="餐厅取餐.png"></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">ajax1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串A"</span>);</span><br><span class="line">    &#125;, <span class="number">5000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">ajax2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(<span class="string">"字符串B"</span>);</span><br><span class="line">    &#125;, <span class="number">3000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> 取餐队伍 = [];</span><br><span class="line"><span class="keyword">let</span> 吧台 = [];</span><br><span class="line"><span class="keyword">let</span> 问 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> lastN = 吧台[吧台.length - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> lastS = 吧台[吧台.length - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span> (取餐队伍[<span class="number">0</span>][<span class="number">0</span>] === lastN) &#123;</span><br><span class="line">    取餐队伍[<span class="number">0</span>][<span class="number">1</span>].call(<span class="literal">null</span>, lastS);</span><br><span class="line">    取餐队伍.shift();</span><br><span class="line">    吧台.pop();</span><br><span class="line">    问();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">b1.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="built_in">Math</span>.random();</span><br><span class="line">  ajax1().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    吧台.push([n, s]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"吧台"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(吧台);</span><br><span class="line">    问();</span><br><span class="line">  &#125;);</span><br><span class="line">  取餐队伍.push([</span><br><span class="line">    n,</span><br><span class="line">    (s) =&gt; &#123;</span><br><span class="line">      input1.value = s;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(s);</span><br><span class="line">    &#125;,</span><br><span class="line">  ]);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"取餐队伍"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(取餐队伍);</span><br><span class="line">&#125;;</span><br><span class="line">b2.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="built_in">Math</span>.random();</span><br><span class="line">  ajax2().then(<span class="function">(<span class="params">s</span>) =&gt;</span> &#123;</span><br><span class="line">    吧台.push([n, s]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"吧台"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(吧台);</span><br><span class="line">    问();</span><br><span class="line">  &#125;);</span><br><span class="line">  取餐队伍.push([</span><br><span class="line">    n,</span><br><span class="line">    (s) =&gt; &#123;</span><br><span class="line">      input1.value = s;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(s);</span><br><span class="line">    &#125;,</span><br><span class="line">  ]);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"取餐队伍"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(取餐队伍);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Promise 错误处理</li>
+</ol>
+<ul>
+<li>其实挺好用的<ul>
+<li>promise.then(s1,f1)即可</li>
+<li>不行，我想要全局错误处理(以 axios 为例),见<a href="https://juejin.im/post/6844903569745788941#heading-6" target="_blank" rel="noopener">axios 作弊表</a>中的拦截器部分</li>
+</ul>
+</li>
+<li>语法糖<ul>
+<li>promise.then(s1).catch(f1)</li>
+</ul>
+</li>
+<li>错误处理之后<ul>
+<li>如果你没有继续跑错，那么错误就不会出现</li>
+<li>如果继续抛错，那么后续回调就要继续处理错误</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>promise 挺好用，但是前端似乎对 Promise 不满</li>
+</ol>
+<ul>
+<li><a href="https://blog.fundebug.com/2017/04/04/nodejs-async-await/" target="_blank" rel="noopener">async/await 替代 Promise 的 6 个理由</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/01/7-Promise-%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1938,7 +2094,7 @@ b) 其中 current 用来 link 到最新的发布</li>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id root@39.103.166.176</span><br><span class="line">Jirengu2020</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>此时 ssh <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#x33;&#x39;&#x2e;&#49;&#48;&#51;&#x2e;&#49;&#54;&#54;&#46;&#x31;&#55;&#54;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#x33;&#x39;&#x2e;&#49;&#48;&#51;&#x2e;&#49;&#54;&#54;&#46;&#x31;&#55;&#54;</a> 就不需要密码了</li>
+<li>此时 ssh <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#51;&#57;&#46;&#49;&#48;&#51;&#46;&#x31;&#54;&#x36;&#x2e;&#x31;&#x37;&#x36;">&#x72;&#x6f;&#111;&#116;&#64;&#51;&#57;&#46;&#49;&#48;&#51;&#46;&#x31;&#54;&#x36;&#x2e;&#x31;&#x37;&#x36;</a> 就不需要密码了</li>
 <li>linux 密码设置 <code>passwd root</code></li>
 <li>别人想要服务器</li>
 </ul>
@@ -2053,208 +2209,6 @@ b) 其中 current 用来 link 到最新的发布</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9024%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B06%E5%90%8E%E7%AB%AF%E5%88%86%E9%A1%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9024%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B06%E5%90%8E%E7%AB%AF%E5%88%86%E9%A1%B5/" class="post-title-link" itemprop="url">高级前端养成24博客系统之06后端分页</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-11 20:06:18 / Modified: 20:07:51" itemprop="dateCreated datePublished" datetime="2020-08-11T20:06:18+08:00">2020-08-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">数据库 博客系统</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9024%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B06%E5%90%8E%E7%AB%AF%E5%88%86%E9%A1%B5/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成24博客系统之06后端分页" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9024%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B06%E5%90%8E%E7%AB%AF%E5%88%86%E9%A1%B5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9024%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B06%E5%90%8E%E7%AB%AF%E5%88%86%E9%A1%B5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>前端统一处理未登录</li>
-</ol>
-<ul>
-<li>实现未登录发博客跳转到登录页</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ReactChild, useCallback, useState&#125; from &#39;react&#39;</span><br><span class="line">import &#123;AxiosResponse&#125; from &#39;axios&#39;</span><br><span class="line"></span><br><span class="line">type Field&lt;T&gt; &#x3D; &#123;</span><br><span class="line">  label: string,</span><br><span class="line">  type: &#39;text&#39; | &#39;password&#39; | &#39;textarea&#39;,</span><br><span class="line">  key: keyof T,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type useFormOptions&lt;T&gt; &#x3D; &#123;</span><br><span class="line">  initFormData: T;</span><br><span class="line">  fields: Field&lt;T&gt;[];</span><br><span class="line">  buttons: ReactChild;</span><br><span class="line">  submit: &#123;</span><br><span class="line">    request: (formData:T)&#x3D;&gt; Promise&lt;AxiosResponse&lt;T&gt;&gt;;</span><br><span class="line">    success: () &#x3D;&gt; void;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function useForm&lt;T&gt;(options: useFormOptions&lt;T&gt;) &#123; &#x2F;&#x2F; 通过参数反推T,useForm里面有个T,T的类型就是initFormData的类型</span><br><span class="line">  const &#123;initFormData, fields, buttons, submit&#125; &#x3D; options</span><br><span class="line">  &#x2F;&#x2F; 非受控</span><br><span class="line">  const [formData, setFormData] &#x3D; useState(initFormData)</span><br><span class="line">  const [errors, setErrors] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    const e: &#123; [key in keyof T]?: string[] &#125; &#x3D; &#123;&#125; &#x2F;&#x2F; 死记硬背, key的下标全部都是T的下标</span><br><span class="line">    for (let key in initFormData) &#123;</span><br><span class="line">      if (initFormData.hasOwnProperty(key)) &#123;</span><br><span class="line">        e[key] &#x3D; []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return e &#x2F;&#x2F; 只做初始值</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const onChange &#x3D; useCallback((key: keyof T, value: any) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 看到keyof 就脑补成, &#39;username&#39;|&#39;password&#39;</span><br><span class="line">    setFormData(&#123;</span><br><span class="line">      ...formData,</span><br><span class="line">      [key]: value &#x2F;&#x2F; [key]如果不加[]，就是&quot;key&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [formData])</span><br><span class="line"></span><br><span class="line">  const _onSubmit &#x3D; useCallback((e) &#x3D;&gt; &#123;</span><br><span class="line">    e.preventDefault() &#x2F;&#x2F; 调用外面submit</span><br><span class="line">    submit.request(formData).then(submit.success,(error)&#x3D;&gt;&#123;</span><br><span class="line">      if (error.response) &#123;</span><br><span class="line">        const response: AxiosResponse &#x3D; error.response</span><br><span class="line">        if (response.status &#x3D;&#x3D;&#x3D; 422) &#123;</span><br><span class="line">          setErrors(response.data)</span><br><span class="line">        &#125; else if(response.status &#x3D;&#x3D;&#x3D; 401)&#123;</span><br><span class="line">          window.alert(&#39;请先登录&#39;)</span><br><span class="line">          window.location.href &#x3D;</span><br><span class="line">            &#96;&#x2F;sign_in?return_to&#x3D;$&#123;encodeURIComponent(window.location.pathname)&#125;&#96;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, [submit, formData])</span><br><span class="line"></span><br><span class="line">  const form &#x3D; (</span><br><span class="line">    &lt;form onSubmit&#x3D;&#123;_onSubmit&#125;&gt;</span><br><span class="line">      &#123;fields.map(field &#x3D;&gt;</span><br><span class="line">        &lt;div key&#x3D;&#123;field.key.toString()&#125;&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            &#123;field.label&#125;</span><br><span class="line">            &#123;field.type &#x3D;&#x3D;&#x3D; &#39;textarea&#39; ?</span><br><span class="line">              &lt;textarea onChange&#x3D;&#123;(e) &#x3D;&gt; onChange(field.key, e.target.value)&#125; value&#x3D;&#123;formData[field.key].toString()&#125; &#x2F;&gt; :</span><br><span class="line">              &lt;input type&#x3D;&#123;field.type&#125; value&#x3D;&#123;formData[field.key].toString()&#125;</span><br><span class="line">                     onChange&#x3D;&#123;(e) &#x3D;&gt; onChange(field.key, e.target.value)&#125;&#x2F;&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            &#123;errors[field.key]?.length &gt; 0 &amp;&amp; &lt;div&gt;</span><br><span class="line">              &#123;errors[field.key].join(&#39;,&#39;)&#125;</span><br><span class="line">            &lt;&#x2F;div&gt;&#125;</span><br><span class="line">          &lt;&#x2F;label&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;)&#125;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;buttons&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;</span><br><span class="line">    form: form, setErrors: setErrors</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>通过安装 query-string 库实现登录成功跳转并且将 message 写成 callback</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import &#123;GetServerSideProps, GetServerSidePropsContext, NextPage&#125; from &#39;next&#39;</span><br><span class="line">import axios, &#123; AxiosResponse &#125; from &#39;axios&#39;</span><br><span class="line">import &#123;withSession&#125; from &#39;..&#x2F;lib&#x2F;withSession&#39;</span><br><span class="line">import &#123;User&#125; from &#39;..&#x2F;src&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import &#123;useForm&#125; from &#39;..&#x2F;hooks&#x2F;useForm&#39;</span><br><span class="line">import qs from &#39;query-string&#39;</span><br><span class="line"></span><br><span class="line">const SignIn: NextPage&lt;&#123;user: User&#125;&gt; &#x3D; (props) &#x3D;&gt; &#123; &#x2F;&#x2F; 利用NextPage初始化登录页面</span><br><span class="line">  const &#123;form&#125; &#x3D; useForm(&#123;</span><br><span class="line">    initFormData: &#123;</span><br><span class="line">      username: &#39;&#39;,</span><br><span class="line">      password: &#39;&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    fields:[</span><br><span class="line">      &#123;label:&#39;用户名&#39;,type:&#39;text&#39;, key: &#39;username&#39;&#125;,</span><br><span class="line">      &#123; label:&#39;密码&#39;,type:&#39;password&#39;, key: &#39;password&#39;&#125;],</span><br><span class="line">    buttons:&lt;button type&#x3D;&quot;submit&quot;&gt;登录&lt;&#x2F;button&gt;,</span><br><span class="line">    submit: &#123;</span><br><span class="line">      request: formData &#x3D;&gt; axios.post(&#96;&#x2F;api&#x2F;v1&#x2F;sessions&#96;, formData),</span><br><span class="line">      success: () &#x3D;&gt; &#123;</span><br><span class="line">        window.alert(&#39;登录成功&#39;)</span><br><span class="line">        const query &#x3D; qs.parse(window.location.search)</span><br><span class="line">        window.location.href &#x3D; query.returnTo.toString();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &#123;</span><br><span class="line">        props.user &amp;&amp;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          当前登录用户为 &#123;props.user.username&#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &#125;</span><br><span class="line">      &lt;h1&gt;登录&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;form&#125;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default SignIn;</span><br><span class="line"></span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D;</span><br><span class="line">  withSession( async (context:GetServerSidePropsContext) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; @ts-ignore</span><br><span class="line">    const user &#x3D; context.req.session.get(&#39;currentUser&#39;)</span><br><span class="line">    return &#123;</span><br><span class="line">      props: &#123;</span><br><span class="line">        user: JSON.parse(JSON.stringify(user||&#39;&#39;))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>总结博客创建逻辑</p>
-</li>
-<li><p>后端如果发现没登录就返回 401</p>
-</li>
-<li><p>前端发现 401 也提示登录，同时在登录页面 url 附上 returnTo 参数</p>
-</li>
-<li><p>前度登录成功之后，返回 returnTo</p>
-</li>
-<li><p>后端发现登录了，就可以获取 currentUser</p>
-</li>
-<li><p>两个页面复用代码怎么做，用户提交成功跳转列表页面</p>
-</li>
-</ol>
-<ul>
-<li>从首页拷贝代码到 posts 页面，实现展示 posts</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import &#123;GetServerSideProps, NextPage&#125; from &#39;next&#39;;</span><br><span class="line">import &#123;getDatabaseConnection&#125; from &#39;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;Post&#125; from &#39;src&#x2F;entity&#x2F;Post&#39;</span><br><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type Props &#x3D; &#123;</span><br><span class="line">  posts: Post[],</span><br><span class="line">&#125;</span><br><span class="line">const PostsIndex: NextPage&lt;Props&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;posts&#125; &#x3D; props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;文章列表&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;posts.map(post &#x3D;&gt;</span><br><span class="line">        &lt;Link key&#x3D;&#123;post.id&#125; href&#x3D;&#123;&#96;&#x2F;posts&#x2F;$&#123;post.id&#125;&#96;&#125;&gt;</span><br><span class="line">          &lt;a&gt;</span><br><span class="line">            &#123;post.title&#125;</span><br><span class="line">          &lt;&#x2F;a&gt;</span><br><span class="line">        &lt;&#x2F;Link&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default PostsIndex;</span><br><span class="line"></span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D; async (context) &#x3D;&gt; &#123;</span><br><span class="line">  const connection &#x3D; await getDatabaseConnection()</span><br><span class="line">  const posts &#x3D; await connection.manager.find(Post)</span><br><span class="line">  &#x2F;&#x2F; console.log(&#39;connect1&#39;)</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      posts : JSON.parse(JSON.stringify(posts))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>成功实现首页复用代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import PostsIndex, &#123;getServerSideProps&#125; from &#39;.&#x2F;posts&#39;</span><br><span class="line"></span><br><span class="line">export default PostsIndex</span><br><span class="line"></span><br><span class="line">export &#123;getServerSideProps&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li><p>分页怎么做?</p>
-</li>
-<li><p>设计 url</p>
-<ul>
-<li>/posts?page=1</li>
-<li>/posts?page=N |</li>
-<li>后端获取 page(查询字符串)</li>
-<li>typeorm 的 page 功能</li>
-<li>输出 JSON 给前端，同时告诉前端这是第几页</li>
-</ul>
-</li>
-<li><p>微博 Facebook</p>
-<ul>
-<li>数据更新太快 id+offset</li>
-<li>某一条记录 id 搜 20 个</li>
-<li>/posts | /posts?id=</li>
-<li>/posts?id=上一页的最后一个 id&amp;offset=16</li>
-<li>后端获取 id 小于此 id 的数据，最多 16 条</li>
-</ul>
-</li>
-<li><p>得到翻页计算方法，n skip (n-1)*10 take 10</p>
-</li>
-<li><p>完成分页最基本的样子</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">import &#123;GetServerSideProps, NextPage&#125; from &#39;next&#39;;</span><br><span class="line">import &#123;getDatabaseConnection&#125; from &#39;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;Post&#125; from &#39;src&#x2F;entity&#x2F;Post&#39;</span><br><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line">import qs from &#39;querystring&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type Props &#x3D; &#123;</span><br><span class="line">  posts: Post[],</span><br><span class="line">  count: number;</span><br><span class="line">  perPage: number;</span><br><span class="line">  page: number</span><br><span class="line">&#125;</span><br><span class="line">const PostsIndex: NextPage&lt;Props&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;posts&#125; &#x3D; props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;文章列表(&#123;props.count&#125;)|每页&#123;props.perPage&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;posts.map(post &#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Link key&#x3D;&#123;post.id&#125; href&#x3D;&#123;&#96;&#x2F;posts&#x2F;$&#123;post.id&#125;&#96;&#125;&gt;</span><br><span class="line">            &lt;a&gt;</span><br><span class="line">              &#123;post.title&#125;</span><br><span class="line">            &lt;&#x2F;a&gt;</span><br><span class="line">          &lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &lt;footer&gt;</span><br><span class="line">        共&#123;props.count&#125;篇文章,当前是第&#123;props.page&#125;页</span><br><span class="line">        &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;props.page-1&#125;&#96;&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;</span><br><span class="line">        |</span><br><span class="line">        &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;props.page+1&#125;&#96;&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;</span><br><span class="line">      &lt;&#x2F;footer&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default PostsIndex;</span><br><span class="line"></span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D; async (context) &#x3D;&gt; &#123;</span><br><span class="line">  const index &#x3D; context.req.url.indexOf(&#39;?&#39;);</span><br><span class="line">  const search &#x3D; context.req.url.substr(index + 1);</span><br><span class="line">  const query &#x3D; qs.parse(search);</span><br><span class="line">  const page &#x3D; parseInt(query.page.toString()) || 1;</span><br><span class="line"></span><br><span class="line">  const connection &#x3D; await getDatabaseConnection()</span><br><span class="line">  const perPage &#x3D; 3;</span><br><span class="line">  const [posts, count] &#x3D; await connection.manager.findAndCount(Post,</span><br><span class="line">    &#123;skip:(page-1)*perPage, take:perPage&#125;);</span><br><span class="line"></span><br><span class="line">  console.log(&#39;query&#39;, query);</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      posts : JSON.parse(JSON.stringify(posts)),</span><br><span class="line">      count: count,</span><br><span class="line">      perPage,</span><br><span class="line">      page</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li><p>上一步做了什么</p>
-<ol>
-<li>获取查询参数 pate = N</li>
-<li>计算:(N-1)*perPage 和 take: perPage</li>
-<li>把数据,count,perPage,page 传给页面(SSR)</li>
-<li>前端显示数据，count,page</li>
-</ol>
-</li>
-<li><p>初步完成分页</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">import &#123;GetServerSideProps, NextPage&#125; from &#39;next&#39;;</span><br><span class="line">import &#123;getDatabaseConnection&#125; from &#39;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;Post&#125; from &#39;src&#x2F;entity&#x2F;Post&#39;</span><br><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line">import qs from &#39;querystring&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">type Props &#x3D; &#123;</span><br><span class="line">  posts: Post[],</span><br><span class="line">  count: number;</span><br><span class="line">  perPage: number;</span><br><span class="line">  page: number;</span><br><span class="line">  totalPage: number;</span><br><span class="line">&#125;</span><br><span class="line">const PostsIndex: NextPage&lt;Props&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;posts&#125; &#x3D; props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;文章列表(&#123;props.count&#125;)|每页&#123;props.perPage&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;posts.map(post &#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Link key&#x3D;&#123;post.id&#125; href&#x3D;&#123;&#96;&#x2F;posts&#x2F;$&#123;post.id&#125;&#96;&#125;&gt;</span><br><span class="line">            &lt;a&gt;</span><br><span class="line">              &#123;post.title&#125;</span><br><span class="line">            &lt;&#x2F;a&gt;</span><br><span class="line">          &lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &lt;footer&gt;</span><br><span class="line">        共&#123;props.count&#125;篇文章,当前是第&#123;props.page&#125; &#x2F; &#123;props.totalPage&#125;页</span><br><span class="line">        &#123;props.page !&#x3D;&#x3D; 1 &amp;&amp;  &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;props.page-1&#125;&#96;&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt; &#125;</span><br><span class="line"></span><br><span class="line">        &#123;props.page &lt; props.totalPage &amp;&amp; &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;props.page+1&#125;&#96;&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;&#125;</span><br><span class="line"></span><br><span class="line">      &lt;&#x2F;footer&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default PostsIndex;</span><br><span class="line"></span><br><span class="line">export const getServerSideProps: GetServerSideProps &#x3D; async (context) &#x3D;&gt; &#123;</span><br><span class="line">  const index &#x3D; context.req.url.indexOf(&#39;?&#39;);</span><br><span class="line">  const search &#x3D; context.req.url.substr(index + 1);</span><br><span class="line">  const query &#x3D; qs.parse(search);</span><br><span class="line">  const page &#x3D; parseInt(query.page.toString()) || 1;</span><br><span class="line">  const connection &#x3D; await getDatabaseConnection()</span><br><span class="line">  const perPage &#x3D; 3;</span><br><span class="line">  const [posts, count] &#x3D; await connection.manager.findAndCount(Post,</span><br><span class="line">    &#123;skip:(page-1)*perPage, take:perPage&#125;);</span><br><span class="line"></span><br><span class="line">  console.log(&#39;query&#39;, query);</span><br><span class="line">  return &#123;</span><br><span class="line">    props: &#123;</span><br><span class="line">      posts : JSON.parse(JSON.stringify(posts)),</span><br><span class="line">      count: count,</span><br><span class="line">      perPage,</span><br><span class="line">      page,</span><br><span class="line">      totalPage:Math.ceil(count &#x2F; perPage)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>封装 pager 组件</li>
-</ol>
-<ul>
-<li>需求 &lt;1 …3 4 5 6 7 8 9 10&gt; 第 6/10 页</li>
-</ul>
-<ol start="10">
-<li>搭建并且使用 pager</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; usePager</span><br><span class="line">export const usePager &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const pager &#x3D; (</span><br><span class="line">    &lt;div&gt;pager&lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;pager&#125;;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; index.tsx</span><br><span class="line">const PostsIndex: NextPage&lt;Props&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;posts&#125; &#x3D; props;</span><br><span class="line">  const &#123;pager&#125; &#x3D; usePager()</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;文章列表(&#123;props.count&#125;)|每页&#123;props.perPage&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;posts.map(post &#x3D;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Link key&#x3D;&#123;post.id&#125; href&#x3D;&#123;&#96;&#x2F;posts&#x2F;$&#123;post.id&#125;&#96;&#125;&gt;</span><br><span class="line">            &lt;a&gt;</span><br><span class="line">              &#123;post.title&#125;</span><br><span class="line">            &lt;&#x2F;a&gt;</span><br><span class="line">          &lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &lt;footer&gt;</span><br><span class="line">        &#123;pager&#125;</span><br><span class="line">        共&#123;props.count&#125;篇文章,当前是第&#123;props.page&#125; &#x2F; &#123;props.totalPage&#125;页</span><br><span class="line">        &#123;props.page !&#x3D;&#x3D; 1 &amp;&amp;  &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;props.page-1&#125;&#96;&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt; &#125;</span><br><span class="line"></span><br><span class="line">        &#123;props.page &lt; props.totalPage &amp;&amp; &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;props.page+1&#125;&#96;&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;&#125;</span><br><span class="line"></span><br><span class="line">      &lt;&#x2F;footer&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line">export default PostsIndex;</span><br></pre></td></tr></table></figure>
-
-<ol start="11">
-<li>把之前的代码放到 usePager</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line"></span><br><span class="line">type Options &#x3D; &#123;</span><br><span class="line">  count: number;</span><br><span class="line">  page: number;</span><br><span class="line">  totalPage: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const usePager &#x3D; (options: Options)&#x3D;&gt;&#123;</span><br><span class="line">  const &#123;count, page, totalPage&#125; &#x3D; options</span><br><span class="line">  const pager &#x3D; (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      共&#123;count&#125;篇文章,当前是第&#123;page&#125; &#x2F; &#123;totalPage&#125;页</span><br><span class="line">      &#123;page !&#x3D;&#x3D; 1 &amp;&amp;  &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;page-1&#125;&#96;&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt; &#125;</span><br><span class="line">      &#123;page &lt; totalPage &amp;&amp; &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;page+1&#125;&#96;&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;pager&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li>usePager 功能基本完成</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line">import &#123;number&#125; from &#39;prop-types&#39;</span><br><span class="line">import _ from &#39;lodash&#39;</span><br><span class="line"></span><br><span class="line">type Options &#x3D; &#123;</span><br><span class="line">  page: number;</span><br><span class="line">  totalPage: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const usePager &#x3D; (options: Options)&#x3D;&gt;&#123;</span><br><span class="line">  const &#123; page, totalPage&#125; &#x3D; options</span><br><span class="line">  const numbers &#x3D; [];</span><br><span class="line">  numbers.push(1);</span><br><span class="line">  for (let i &#x3D; page - 3; i&lt;&#x3D; page + 3; i++)&#123;</span><br><span class="line">    numbers.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">  numbers.push(totalPage);</span><br><span class="line">  &#x2F;&#x2F; x&#x3D; [1,2,3,4,5,7]</span><br><span class="line">  &#x2F;&#x2F; y &#x3D; [1,2,3,4,5,-1,7]</span><br><span class="line">  const pageNumbers &#x3D; _.uniq(numbers).sort().filter(n&#x3D;&gt; n&gt;&#x3D;1 &amp;&amp; n &lt; totalPage).reduce((result,n)&#x3D;&gt; n - (result[result.length-1]|| 0) &#x3D;&#x3D;&#x3D; 1?</span><br><span class="line">    result.concat(n): result.concat(-1,n),[]);</span><br><span class="line"></span><br><span class="line">  const pager &#x3D; (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;page !&#x3D;&#x3D; 1 &amp;&amp;  &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;page-1&#125;&#96;&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt; &#125;</span><br><span class="line">      &#123;pageNumbers.map(n &#x3D;&gt; n &#x3D;&#x3D;&#x3D; -1 ?</span><br><span class="line">        &lt;span&gt;...&lt;&#x2F;span&gt;:</span><br><span class="line">        &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;n&#125;&#96;&#125;&gt;</span><br><span class="line">          &lt;a&gt;&#123;n&#125;&lt;&#x2F;a&gt;</span><br><span class="line">        &lt;&#x2F;Link&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &#123;page &lt; totalPage &amp;&amp; &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;page+1&#125;&#96;&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;&#125;</span><br><span class="line">      &lt;span&gt;</span><br><span class="line">        第&#123;page&#125; &#x2F; &#123;totalPage&#125;页</span><br><span class="line">      &lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;pager&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="13">
-<li>给 pager 增加 css</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line">import &#123;number&#125; from &#39;prop-types&#39;</span><br><span class="line">import _ from &#39;lodash&#39;</span><br><span class="line"></span><br><span class="line">type Options &#x3D; &#123;</span><br><span class="line">  page: number;</span><br><span class="line">  totalPage: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const usePager &#x3D; (options: Options)&#x3D;&gt;&#123;</span><br><span class="line">  const &#123; page, totalPage&#125; &#x3D; options</span><br><span class="line">  const numbers &#x3D; [];</span><br><span class="line">  numbers.push(1);</span><br><span class="line">  for (let i &#x3D; page - 3; i&lt;&#x3D; page + 3; i++)&#123;</span><br><span class="line">    numbers.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">  numbers.push(totalPage);</span><br><span class="line">  &#x2F;&#x2F; x&#x3D; [1,2,3,4,5,7]</span><br><span class="line">  &#x2F;&#x2F; y &#x3D; [1,2,3,4,5,-1,7]</span><br><span class="line">  const pageNumbers &#x3D; _.uniq(numbers).sort().filter(n&#x3D;&gt; n&gt;&#x3D;1 &amp;&amp; n &lt; totalPage).reduce((result,n)&#x3D;&gt; n - (result[result.length-1]|| 0) &#x3D;&#x3D;&#x3D; 1?</span><br><span class="line">    result.concat(n): result.concat(-1,n),[]);</span><br><span class="line"></span><br><span class="line">  const pager &#x3D; (</span><br><span class="line">    &lt;div className&#x3D;&quot;wrapper&quot;&gt;</span><br><span class="line">      &#123;page !&#x3D;&#x3D; 1 &amp;&amp;  &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;page-1&#125;&#96;&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt; &#125;</span><br><span class="line">      &#123;pageNumbers.map(n &#x3D;&gt; n &#x3D;&#x3D;&#x3D; -1 ?</span><br><span class="line">        &lt;span&gt;...&lt;&#x2F;span&gt;:</span><br><span class="line">        &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;n&#125;&#96;&#125;&gt;</span><br><span class="line">          &lt;a&gt;&#123;n&#125;&lt;&#x2F;a&gt;</span><br><span class="line">        &lt;&#x2F;Link&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &#123;page &lt; totalPage &amp;&amp; &lt;Link href&#x3D;&#123;&#96;?page&#x3D;$&#123;page+1&#125;&#96;&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;&#125;</span><br><span class="line">      &lt;span&gt;</span><br><span class="line">        第&#123;page&#125; &#x2F; &#123;totalPage&#125;页</span><br><span class="line">      &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;style jsx&gt;&#123;&#96;</span><br><span class="line">        .wrapper &#123;</span><br><span class="line">          margin: 0 -8px;</span><br><span class="line">        &#125;</span><br><span class="line">        .wrapper &gt; a, .wrapper &gt; span &#123;</span><br><span class="line">          margin: 0 8px;</span><br><span class="line">        &#125;</span><br><span class="line">      &#96;&#125;&lt;&#x2F;style&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;pager&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>通过 urlMaker 解耦,抽离 userpager 自定义 hook</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">import Link from &#39;next&#x2F;link&#39;</span><br><span class="line">import &#123;number&#125; from &#39;prop-types&#39;</span><br><span class="line">import _ from &#39;lodash&#39;</span><br><span class="line"></span><br><span class="line">type Options &#x3D; &#123;</span><br><span class="line">  page: number;</span><br><span class="line">  totalPage: number;</span><br><span class="line">  urlMaker?: (n: number) &#x3D;&gt; string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const defaultUrlMaker &#x3D; (n:number) &#x3D;&gt; &#96;?page&#x3D;$&#123;n&#125;&#96;</span><br><span class="line"></span><br><span class="line">export const usePager &#x3D; (options: Options)&#x3D;&gt;&#123;</span><br><span class="line">  const &#123; page, totalPage, urlMaker:_urlMaker&#125; &#x3D; options</span><br><span class="line">  const urlMaker &#x3D; _urlMaker || defaultUrlMaker</span><br><span class="line">  const numbers &#x3D; [];</span><br><span class="line">  numbers.push(1);</span><br><span class="line">  for (let i &#x3D; page - 3; i&lt;&#x3D; page + 3; i++)&#123;</span><br><span class="line">    numbers.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">  numbers.push(totalPage);</span><br><span class="line">  &#x2F;&#x2F; x&#x3D; [1,2,3,4,5,7]</span><br><span class="line">  &#x2F;&#x2F; y &#x3D; [1,2,3,4,5,-1,7]</span><br><span class="line">  const pageNumbers &#x3D; _.uniq(numbers).sort().filter(n&#x3D;&gt; n&gt;&#x3D;1 &amp;&amp; n &lt; totalPage).reduce((result,n)&#x3D;&gt; n - (result[result.length-1]|| 0) &#x3D;&#x3D;&#x3D; 1?</span><br><span class="line">    result.concat(n): result.concat(-1,n),[]);</span><br><span class="line"></span><br><span class="line">  const pager &#x3D; (</span><br><span class="line">    &lt;div className&#x3D;&quot;wrapper&quot;&gt;</span><br><span class="line">      &#123;page !&#x3D;&#x3D; 1 &amp;&amp;  &lt;Link href&#x3D;&#123;urlMaker(page-1)&#125;&gt;&lt;a&gt;上一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt; &#125;</span><br><span class="line">      &#123;pageNumbers.map(n &#x3D;&gt; n &#x3D;&#x3D;&#x3D; -1 ?</span><br><span class="line">        &lt;span&gt;...&lt;&#x2F;span&gt;:</span><br><span class="line">        &lt;Link href&#x3D;&#123;urlMaker(n)&#125;&gt;</span><br><span class="line">          &lt;a&gt;&#123;n&#125;&lt;&#x2F;a&gt;</span><br><span class="line">        &lt;&#x2F;Link&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">      &#123;page &lt; totalPage &amp;&amp; &lt;Link href&#x3D;&#123;urlMaker(page+1)&#125;&gt;&lt;a&gt;下一页&lt;&#x2F;a&gt;&lt;&#x2F;Link&gt;&#125;</span><br><span class="line">      &lt;span&gt;</span><br><span class="line">        第&#123;page&#125; &#x2F; &#123;totalPage&#125;页</span><br><span class="line">      &lt;&#x2F;span&gt;</span><br><span class="line">      &lt;style jsx&gt;&#123;&#96;</span><br><span class="line">        .wrapper &#123;</span><br><span class="line">          margin: 0 -8px;</span><br><span class="line">        &#125;</span><br><span class="line">        .wrapper &gt; a, .wrapper &gt; span &#123;</span><br><span class="line">          margin: 0 8px;</span><br><span class="line">        &#125;</span><br><span class="line">      &#96;&#125;&lt;&#x2F;style&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">  return &#123;pager&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="15">
-<li>修复一个小 bug,page 为空</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const page &#x3D; parseInt(query.page?.toString()) || 1;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2333,13 +2287,13 @@ b) 其中 current 用来 link 到最新的发布</li>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

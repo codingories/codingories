@@ -158,6 +158,352 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9016nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8BNext-js%E5%85%A8%E8%A7%A3%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9016nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8BNext-js%E5%85%A8%E8%A7%A3%E4%B8%8A/" class="post-title-link" itemprop="url">高级前端养成16nodeJS框架之Next.js全解上</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-11 13:44:08" itemprop="dateCreated datePublished" datetime="2020-07-11T13:44:08+08:00">2020-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-12 22:15:16" itemprop="dateModified" datetime="2020-07-12T22:15:16+08:00">2020-07-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Next-js/" itemprop="url" rel="index"><span itemprop="name">Next.js</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9016nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8BNext-js%E5%85%A8%E8%A7%A3%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成16nodeJS框架之Next.js全解上" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9016nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8BNext-js%E5%85%A8%E8%A7%A3%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9016nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8BNext-js%E5%85%A8%E8%A7%A3%E4%B8%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.Next.js 的背景</p>
+<ul>
+<li>zeit 团队水平如何？请看<a href="https://www.zhihu.com/question/59278159/answer/813629215" target="_blank" rel="noopener">这个</a>。后改名为 Vercel</li>
+<li>简而言之，一个高中开始变成的，会做平面设计的复旦大学计算机专业毕业生，在微软工作过一年后，加入 zeit 团队</li>
+<li>几乎每一个同事都有非常强大的背景</li>
+<li>Next.js 核心团队四个人平均年龄 20 岁</li>
+<li>按 star 数，zeit 是 GitHub 组织的 Top20</li>
+<li>全员远程工作</li>
+</ul>
+<p>二. Next.js 的定位</p>
+<ul>
+<li>Node.js 全栈框架<ul>
+<li>CSS-in-JS</li>
+<li>页面预渲染 + SSR (服务端渲染)</li>
+<li>前后端同构建(代码同时运行在两端)</li>
+<li>Node.js10.13 以上</li>
+<li>React yes!</li>
+<li>TypeScript yes!</li>
+</ul>
+</li>
+<li>弱项<ul>
+<li>完全没有提供数据库相关功能，可自行搭配 Sequelize 或 TypeOrm</li>
+<li>完全没有提供测试相关功能，可自行搭配 Jest 或 Cypress</li>
+<li>有一个叫做<a href="https://github.com/blitz-js/blitz" target="_blank" rel="noopener">Blitz.js</a>的框架在这些方向上努力</li>
+</ul>
+</li>
+</ul>
+<p>三. 谁在用 Next.js</p>
+<ul>
+<li>国内<ul>
+<li>腾讯网手机版<a href="https://xw.qq.com/" target="_blank" rel="noopener">https://xw.qq.com</a></li>
+<li><a href="https://www.zhihu.com/question/53022579/answer/133367508" target="_blank" rel="noopener">Teambition</a></li>
+</ul>
+</li>
+<li>国外<ul>
+<li>Netflix Jobs, Twitch 手机版， Hulu, TikTok 抖音海外版，漫威官网， Material UI 官网</li>
+</ul>
+</li>
+<li>总结<ul>
+<li>国外用得比较多，国内用得少</li>
+<li>那么国内学这个好找工作么？</li>
+</ul>
+</li>
+</ul>
+<p>四. 关于国内学 Next.js 是好找工作</p>
+<ul>
+<li>思考<ul>
+<li>国内一般招聘偏后端的前端，看看纯 Node 后端市场</li>
+<li>Next.js 切合了 SSR,Serverless 等技术热点</li>
+<li>支付宝的 Umi.js 是一个类 Next.js 框架，说明被认可</li>
+<li>Next.js 背后团队</li>
+<li>已经会 express 和 koa，可自行掌握 egg.js</li>
+</ul>
+</li>
+<li>综上<ul>
+<li>进可往技术热点靠</li>
+<li>退可回到 egg.js</li>
+</ul>
+</li>
+</ul>
+<p>五. 使用 Next.js 做博客系统</p>
+<ul>
+<li>官方教程<ul>
+<li>官方入门教程就是做博客系统</li>
+</ul>
+</li>
+<li>需求<ul>
+<li>我们对博客系统的需求足够了解，不需再讨论</li>
+</ul>
+</li>
+<li>难易程度<ul>
+<li>非常简单，易于学习</li>
+</ul>
+</li>
+</ul>
+<p>六. 创建项目</p>
+<ul>
+<li>命令<ul>
+<li>npm init next-app nextjs-blog-1</li>
+<li>然后选择 Default starter app</li>
+<li>使用你的编辑器打开 nextjs-blog-1</li>
+<li>打开编辑器的终端，添加.gitignore</li>
+<li>yarn dev</li>
+<li>用浏览器打开控制台给出的网址</li>
+</ul>
+</li>
+</ul>
+<p>七. 开始 CRM 学习</p>
+<ul>
+<li>改内容<ul>
+<li>Welcome to 改成 Hello</li>
+</ul>
+</li>
+<li>加页面<ul>
+<li>创建 pages/posts/first-po</li>
+<li>猜猜如何访问这个页面</li>
+<li>路径为 /posts/first-post</li>
+</ul>
+</li>
+<li>总结<ul>
+<li>约定大于配置</li>
+<li>不需要配置，只需要约定，开发者自然意会</li>
+<li>Rails 的理念</li>
+</ul>
+</li>
+</ul>
+<p>八. Link 快速导航</p>
+<ul>
+<li>官方教程在此</li>
+<li>用法<ul>
+<li>把<a href="xxx">点击跳转</a>改成</li>
+<li><Link href="xxx"><a>点击跳转</a></Link></li>
+</ul>
+</li>
+<li>优点<ul>
+<li>页面不会刷新，用 AJAX 请求新页面内容</li>
+<li>不会请求重复的 HTML,CSS,JS</li>
+<li>自动在页面插入新内容，删除旧内容</li>
+<li>因为省了很多请求和解析过程，所以速度极快</li>
+</ul>
+</li>
+<li>吐槽<ul>
+<li>借鉴了 Rails Turbolinks，Pjax 等技术</li>
+</ul>
+</li>
+<li>传统导航</li>
+<li>快速导航</li>
+</ul>
+<p>九. 同构代码</p>
+<ul>
+<li>代码运行在两端<ul>
+<li>在组件里写一句 console.log(‘执行了’)</li>
+<li>会发现 Node 控制台会输出这句话</li>
+<li>会发现 Chrome 控制台也会输出这句话</li>
+</ul>
+</li>
+<li>注意差异<ul>
+<li>不是所有的代码都会运行，有些需要用户触发</li>
+<li>不是所有的 API 都能用，比如 window 在 Node 里报错</li>
+</ul>
+</li>
+</ul>
+<p>十. 小结</p>
+<ul>
+<li>创建项目<ul>
+<li>npm init next-app 项目名</li>
+</ul>
+</li>
+<li>快速导航<ul>
+<li><code>&lt;Link href=xxx&gt;包住&lt;/a&gt;</code></li>
+</ul>
+</li>
+<li>同构代码<ul>
+<li>一份代码，两端运行(省了一份)</li>
+</ul>
+</li>
+</ul>
+<p>十一. 全局配置</p>
+<ul>
+<li><a href="https://nextjs.org/learn/basics/assets-metadata-css" target="_blank" rel="noopener">官方教程</a><ul>
+<li>自定义<code>&lt;Head&gt;</code></li>
+<li>全局 css</li>
+<li>局部 css</li>
+</ul>
+</li>
+</ul>
+<p>十二. 自定义<code>&lt;Head&gt;</code></p>
+<ul>
+<li><p>使用 <code>&lt;Head&gt;</code></p>
+<ul>
+<li>更改各个页面 title</li>
+<li>更改页面 meta:viewport</li>
+</ul>
+</li>
+<li><p>全局配置</p>
+<ul>
+<li>page/_app.js<ul>
+<li>export default function App 是每个页面的根组件</li>
+<li>页面切换时 App 不会销毁，App 是里面的组件会销毁</li>
+<li>可用 App 保存全局状态</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>创建_app.js 之后需要重启 yarn dev</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>十三. 全局的 css</p>
+<ul>
+<li>放在_app.js 里<ul>
+<li>import ‘../styles/global.css’</li>
+<li>因为切页面时 App 不会销毁</li>
+<li>其他地方不能 import global.css</li>
+<li>其他地方只能写局部 css</li>
+</ul>
+</li>
+<li>插曲<ul>
+<li>相对引用比较麻烦，改成 import ‘styles/global.css’，查看<a href="https://nextjs.org/docs/advanced-features/module-path-aliases" target="_blank" rel="noopener">文档</a></li>
+</ul>
+</li>
+</ul>
+<p>十四. 局部 css</p>
+<ul>
+<li>官方支持<ul>
+<li>默认支持 <a href="https://nextjs.org/learn/basics/assets-metadata-css/css-styling" target="_blank" rel="noopener">styled-jsx</a> 和 <a href="https://nextjs.org/learn/basics/assets-metadata-css/layout-component" target="_blank" rel="noopener">CSS Modules</a></li>
+<li>一般来说，简单需求用前者，复杂需求用后者</li>
+</ul>
+</li>
+<li>个人偏好<ul>
+<li>styled-jsx 不方便分离 CSS 和 JS</li>
+<li>CSS Modules 用起来太麻烦</li>
+<li>更喜欢用 <a href="https://styled-components.com/" target="_blank" rel="noopener">styled-components</a></li>
+</ul>
+</li>
+</ul>
+<p>十五. 使用 SCSS</p>
+<ul>
+<li>安装依赖<ul>
+<li>yarn add sass</li>
+</ul>
+</li>
+<li>直接用<ul>
+<li>把后缀.css 改为.scss 即可</li>
+</ul>
+</li>
+</ul>
+<p>十六. 静态资源</p>
+<ul>
+<li>next 官方推荐放在 public/里，但不是很好，因为不支持改 hash 名，导致不会更新</li>
+<li>其他类型文件<ul>
+<li>图片<ul>
+<li>配置 file-loader</li>
+<li>或者直接用 next-images</li>
+</ul>
+</li>
+<li>SVG<ul>
+<li>一部分可以当作图片使用</li>
+<li>icons/svg 要当作 SVG Symbols 使用</li>
+<li>目前没有插件，只能自己配置</li>
+</ul>
+</li>
+<li>更多<ul>
+<li>自己要 loader,然后配置 next.config.js</li>
+<li>或者看有没有人封装成 next 插件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://github.com/codingories/16nextjs-blog-1" target="_blank" rel="noopener">代码链接</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1373,7 +1719,7 @@
 <li>use 是使用，使用什么？</li>
 <li>理解 app.use<ul>
 <li>创建新目录 express-demo-2<ul>
-<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
 <li>尝试使用 req.url 和 res.send</li>
 <li>多次使用会报错</li>
 <li>改成 res.write,还记得流吗</li>
@@ -2696,138 +3042,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">高级前端养成06nodeJS基础学习05之HttpRequest模块之实现命令行翻译工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-22 10:06:11 / Modified: 11:03:43" itemprop="dateCreated datePublished" datetime="2020-06-22T10:06:11+08:00">2020-06-22</time>
-            </span>
-
-          
-            <span id="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成06nodeJS基础学习05之HttpRequest模块之实现命令行翻译工具" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>md5 的不可知验证</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">三方,a,b,公方g,a密码p1,b密码p2,c是小偷装作知道密码,a，b给g密码md5,比对md5是不是同一个md5，c发现插入不了，c得到的md53无法和a和b配对，这就是如何在不公开密码的情况下知道有没有密码</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>只要 if else 超过 5 个一定是代码有问题， 要用表驱动编程</p>
-</li>
-<li><p>编译 ts 到 js，首先全局安装 typescript</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add typescript</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>开始上传到 npm</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tsc - - init 初始化</span><br><span class="line">outDir 改成 dist</span><br><span class="line">运行 tsc -p . 表示当前目录</span><br><span class="line">尝试修改错误，但是还是执行不成功，用临时办法，把 noImplicitAny 修改 false</span><br><span class="line">开始上传到 nrm</span><br><span class="line">nrm use npm</span><br><span class="line">npm add user codingories</span><br><span class="line">运行 npm publish</span><br><span class="line">碰到问题 会把不需要 publish 的文件 publish 到 npm，配置文件为 files 少了一个 s</span><br><span class="line">如果只用本地 可以配置下 alias ，必须用绝对路径</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>开始回顾写代码过程,完成显示版本，功能，必须传的参数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.js</span><br><span class="line">const &#123; Command &#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command();</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;english&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>开始学习调翻译接口</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.js</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">const &#123;translate&#125; &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; import &#123;translate&#125; from &quot;.&#x2F;main&quot;; &#x2F;&#x2F; 会报错</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command();</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;English&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line">  .arguments(&#39;&lt;English&gt;&#39;)</span><br><span class="line">  .action(function (english) &#123;</span><br><span class="line">    console.log(english)</span><br><span class="line">    translate(english)</span><br><span class="line">  &#125;);</span><br><span class="line">program.parse(process.argv);</span><br><span class="line">&#x2F;&#x2F; main.ts</span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;translate&#39;)</span><br><span class="line">  console.log(word)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>完成通过 httpRequest 和百度服务器做交互</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.ts</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">&#x2F;&#x2F; const &#123;translate&#125; &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line"></span><br><span class="line">import &#123;translate&#125; from &quot;.&#x2F;main&quot;; &#x2F;&#x2F; js会报错，必须ts</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command();</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;English&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line">  .arguments(&#39;&lt;English&gt;&#39;)</span><br><span class="line">  .action(function (english) &#123;</span><br><span class="line">    console.log(english)</span><br><span class="line">    translate(english)</span><br><span class="line">  &#125;);</span><br><span class="line">program.parse(process.argv);</span><br><span class="line">&#x2F;&#x2F; main.ts</span><br><span class="line">import * as https from &#39;https&#39;</span><br><span class="line">import * as querystring from &#39;querystring&#39;</span><br><span class="line">import md5 &#x3D; require(&#39;md5&#39;)</span><br><span class="line"></span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;word&#39;)</span><br><span class="line">  console.log(word)</span><br><span class="line">  &#x2F;&#x2F; console.log(md5(&#39;1&#39;)) &#x2F;&#x2F; 引入不了，因为没有typescript类型文件,yarn add --dev @types&#x2F;md5解决类型问题</span><br><span class="line"></span><br><span class="line">  const appId &#x3D; &#39;???&#39;</span><br><span class="line">  const appSecret &#x3D; &#39;???&#39;</span><br><span class="line">  const salt &#x3D; Math.random()</span><br><span class="line">  const sign &#x3D; md5(appId + word + salt + appSecret)</span><br><span class="line"></span><br><span class="line">  const query: string &#x3D; querystring.stringify(&#123;</span><br><span class="line">    q: word,</span><br><span class="line">    from: &#39;en&#39;,</span><br><span class="line">    to: &#39;zh&#39;,</span><br><span class="line">    appid: appId,</span><br><span class="line">    salt: salt, &#x2F;&#x2F; 假的随机数</span><br><span class="line">    sign: sign</span><br><span class="line">    &#x2F;&#x2F; ?q&#x3D;banana&amp;from&#x3D;en&amp;to&#x3D;zh&amp;appid&#x3D;20200426000430230&amp;salt&#x3D;1435660288&amp;sign&#x3D;64f66d6aff1391bdd49775fc2824b9e6</span><br><span class="line"></span><br><span class="line">  &#125;) &#x2F;&#x2F; 构造查询字符串</span><br><span class="line">  const options &#x3D; &#123;</span><br><span class="line">    hostname: &#39;api.fanyi.baidu.com&#39;,</span><br><span class="line">    port: 443,</span><br><span class="line">    path: &#39;&#x2F;api&#x2F;trans&#x2F;vip&#x2F;translate?&#39; + query,</span><br><span class="line">    method: &#39;GET&#39;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(options)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  const req &#x3D; https.request(options, (res) &#x3D;&gt; &#123;</span><br><span class="line">    res.on(&#39;data&#39;, (d) &#x3D;&gt; &#123;</span><br><span class="line">      process.stdout.write(d)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 通过https.request和百度服务器做交互</span><br><span class="line"></span><br><span class="line">    req.on(&#39;error&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">      console.error(e)</span><br><span class="line">    &#125;)</span><br><span class="line">    req.end()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>完成 0603 处理 secret 和使用 TypeScript 声明 BaiduResult</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; main.ts</span><br><span class="line">import * as https from &#39;https&#39;</span><br><span class="line">import * as querystring from &#39;querystring&#39;</span><br><span class="line">import md5 &#x3D; require(&#39;md5&#39;)</span><br><span class="line">import &#123;appId, appSecret&#125; from &#39;.&#x2F;private&#39;</span><br><span class="line"></span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(md5(&#39;1&#39;)) &#x2F;&#x2F; 引入不了，因为没有typescript类型文件,yarn add --dev @types&#x2F;md5解决类型问题</span><br><span class="line">  const salt &#x3D; Math.random()</span><br><span class="line">  const sign &#x3D; md5(appId + word + salt + appSecret) &#x2F;&#x2F; appSecret 一般都是放在服务器</span><br><span class="line"></span><br><span class="line">  const query: string &#x3D; querystring.stringify(&#123;</span><br><span class="line">    q: word,</span><br><span class="line">    from: &#39;en&#39;,</span><br><span class="line">    to: &#39;zh&#39;,</span><br><span class="line">    appid: appId+1,</span><br><span class="line">    salt: salt, &#x2F;&#x2F; 假的随机数</span><br><span class="line">    sign: sign</span><br><span class="line">    &#x2F;&#x2F; ?q&#x3D;banana&amp;from&#x3D;en&amp;to&#x3D;zh&amp;appid&#x3D;20200426000430230&amp;salt&#x3D;1435660288&amp;sign&#x3D;64f66d6aff1391bdd49775fc2824b9e6</span><br><span class="line">  &#125;) &#x2F;&#x2F; 构造查询字符串</span><br><span class="line">  const options &#x3D; &#123;</span><br><span class="line">    hostname: &#39;api.fanyi.baidu.com&#39;,</span><br><span class="line">    port: 443,</span><br><span class="line">    path: &#39;&#x2F;api&#x2F;trans&#x2F;vip&#x2F;translate?&#39; + query,</span><br><span class="line">    method: &#39;GET&#39;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  const request &#x3D; https.request(options, (response) &#x3D;&gt; &#123;</span><br><span class="line">    let chunks &#x3D; []</span><br><span class="line">    response.on(&#39;data&#39;, (chunk) &#x3D;&gt; &#123;</span><br><span class="line">      chunks.push(chunk) &#x2F;&#x2F; data 就是每次下载得到数据</span><br><span class="line">    &#125;)</span><br><span class="line">    response.on(&#39;end&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      const string &#x3D; Buffer.concat(chunks).toString() &#x2F;&#x2F; end,就是把每次下载完的数据合起来</span><br><span class="line">      type BaiduResult &#x3D; &#123;</span><br><span class="line">        error_code?: string; &#x2F;&#x2F; 第二个ts语法，:前面+？</span><br><span class="line">        error_msg?: string;</span><br><span class="line">        from: string;</span><br><span class="line">        to: string;</span><br><span class="line">        trans_result:&#123; src: string, dst: string &#125;[]</span><br><span class="line">      &#125;</span><br><span class="line">      const object: BaiduResult &#x3D; JSON.parse(string);</span><br><span class="line"></span><br><span class="line">      if(object.error_code)&#123;</span><br><span class="line">        if(object.error_code &#x3D;&#x3D;&#x3D; &#39;52003&#39;)&#123;</span><br><span class="line">          console.error(&#39;用户认证失败&#39;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          console.error(object.error_msg)</span><br><span class="line">        &#125;</span><br><span class="line">        process.exit(2); &#x2F;&#x2F; 退出当前进程</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        console.log(object.trans_result[0].dst)</span><br><span class="line">        process.exit(0); &#x2F;&#x2F; 退出当前进程,0 表示正确</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 通过https.request和百度服务器做交互</span><br><span class="line"></span><br><span class="line">  request.on(&#39;error&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">    console.error(e)</span><br><span class="line">  &#125;)</span><br><span class="line">  request.end()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; cli.ts</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;)</span><br><span class="line">&#x2F;&#x2F; const &#123;translate&#125; &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line"></span><br><span class="line">import &#123;translate&#125; from &#39;.&#x2F;main&#39; &#x2F;&#x2F; js会报错，必须ts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command()</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;English&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line">  .arguments(&#39;&lt;English&gt;&#39;)</span><br><span class="line">  .action(function (english) &#123;</span><br><span class="line">    translate(english)</span><br><span class="line">  &#125;)</span><br><span class="line">program.parse(process.argv)</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>实现可以中-&gt;英,英-&gt;中</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.ts</span><br><span class="line">import * as https from &#39;https&#39;</span><br><span class="line">import * as querystring from &#39;querystring&#39;</span><br><span class="line">import md5 &#x3D; require(&#39;md5&#39;)</span><br><span class="line">import &#123;appId, appSecret&#125; from &#39;.&#x2F;private&#39;</span><br><span class="line"></span><br><span class="line">const errorMap &#x3D; &#123;</span><br><span class="line">  52001: &#39;请求超时&#39;,</span><br><span class="line">  52002: &#39;系统错误&#39;,</span><br><span class="line">  52003: &#39;用户认证失败&#39;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(md5(&#39;1&#39;)) &#x2F;&#x2F; 引入不了，因为没有typescript类型文件,yarn add --dev @types&#x2F;md5解决类型问题</span><br><span class="line">  const salt &#x3D; Math.random()</span><br><span class="line">  const sign &#x3D; md5(appId + word + salt + appSecret) &#x2F;&#x2F; appSecret 一般都是放在服务器</span><br><span class="line"></span><br><span class="line">  let from, to;</span><br><span class="line">  if(&#x2F;[a-zA-Z]&#x2F;.test(word[0]))&#123;</span><br><span class="line">    &#x2F;&#x2F; 英-&gt;中</span><br><span class="line">    from &#x3D; &#39;en&#39;;</span><br><span class="line">    to &#x3D; &#39;zh&#39;;</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    &#x2F;&#x2F; 中-&gt;英</span><br><span class="line">    from &#x3D; &#39;zh&#39;;</span><br><span class="line">    to &#x3D; &#39;en&#39;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const query: string &#x3D; querystring.stringify(&#123;</span><br><span class="line">    q: word,</span><br><span class="line">    appid: appId,</span><br><span class="line">    from,</span><br><span class="line">    to,</span><br><span class="line">    salt, &#x2F;&#x2F; 假的随机数</span><br><span class="line">    sign</span><br><span class="line">    &#x2F;&#x2F; ?q&#x3D;banana&amp;from&#x3D;en&amp;to&#x3D;zh&amp;appid&#x3D;20200426000430230&amp;salt&#x3D;1435660288&amp;sign&#x3D;64f66d6aff1391bdd49775fc2824b9e6</span><br><span class="line">  &#125;) &#x2F;&#x2F; 构造查询字符串</span><br><span class="line">  const options &#x3D; &#123;</span><br><span class="line">    hostname: &#39;api.fanyi.baidu.com&#39;,</span><br><span class="line">    port: 443,</span><br><span class="line">    path: &#39;&#x2F;api&#x2F;trans&#x2F;vip&#x2F;translate?&#39; + query,</span><br><span class="line">    method: &#39;GET&#39;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  const request &#x3D; https.request(options, (response) &#x3D;&gt; &#123;</span><br><span class="line">    let chunks &#x3D; []</span><br><span class="line">    response.on(&#39;data&#39;, (chunk) &#x3D;&gt; &#123;</span><br><span class="line">      chunks.push(chunk) &#x2F;&#x2F; data 就是每次下载得到数据</span><br><span class="line">    &#125;)</span><br><span class="line">    response.on(&#39;end&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      const string &#x3D; Buffer.concat(chunks).toString() &#x2F;&#x2F; end,就是把每次下载完的数据合起来</span><br><span class="line">      type BaiduResult &#x3D; &#123;</span><br><span class="line">        error_code?: string; &#x2F;&#x2F; 第二个ts语法，:前面+？</span><br><span class="line">        error_msg?: string;</span><br><span class="line">        from: string;</span><br><span class="line">        to: string;</span><br><span class="line">        trans_result: &#123; src: string, dst: string &#125;[]</span><br><span class="line">      &#125;</span><br><span class="line">      const object: BaiduResult &#x3D; JSON.parse(string)</span><br><span class="line"></span><br><span class="line">      if (object.error_code) &#123;</span><br><span class="line">        if (object.error_code in errorMap) &#123;</span><br><span class="line">          console.error(errorMap[object.error_code] || object.error_msg)</span><br><span class="line">        &#125;</span><br><span class="line">        process.exit(2) &#x2F;&#x2F; 退出当前进程</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(object.trans_result[0].dst)</span><br><span class="line">        object.trans_result.map(obj &#x3D;&gt; &#123;</span><br><span class="line">          console.log(obj.dst);</span><br><span class="line">        &#125;)</span><br><span class="line">        process.exit(0) &#x2F;&#x2F; 退出当前进程,0 表示正确</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 通过https.request和百度服务器做交互</span><br><span class="line"></span><br><span class="line">  request.on(&#39;error&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">    console.error(e)</span><br><span class="line">  &#125;)</span><br><span class="line">  request.end()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>10.安装好 typescript 准备开始用 tsc 将 ts 代码编译成 js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; package.json,设置命令行</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;06fanyi&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.1&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;bin&quot;: &#123;</span><br><span class="line">    &quot;fy&quot;: &quot;src&#x2F;cli.ts&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;ts-node-dev src&#x2F;main.ts&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;commander&quot;: &quot;3.0.2&quot;,</span><br><span class="line">    &quot;md5&quot;: &quot;^2.2.1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@types&#x2F;md5&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;@types&#x2F;node&quot;: &quot;^14.0.13&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="11">
-<li>准备开始上传到 npm,添加 shebang</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env node</span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li>配置需要发布的文件</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;06fanyi&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.1&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;dist&#x2F;index.js&quot;,</span><br><span class="line">  &quot;bin&quot;: &#123;</span><br><span class="line">    &quot;fy&quot;: &quot;dist&#x2F;cli.js&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;files&quot;: [</span><br><span class="line">    &quot;dist&#x2F;**&#x2F;*.js&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;ts-node-dev src&#x2F;main.ts&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;commander&quot;: &quot;3.0.2&quot;,</span><br><span class="line">    &quot;md5&quot;: &quot;^2.2.1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@types&#x2F;md5&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;@types&#x2F;node&quot;: &quot;^14.0.13&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2906,13 +3120,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -158,6 +158,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">高级前端养成06nodeJS基础学习05之HttpRequest模块之实现命令行翻译工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-22 10:06:11 / Modified: 11:03:43" itemprop="dateCreated datePublished" datetime="2020-06-22T10:06:11+08:00">2020-06-22</time>
+            </span>
+
+          
+            <span id="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成06nodeJS基础学习05之HttpRequest模块之实现命令行翻译工具" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>md5 的不可知验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">三方,a,b,公方g,a密码p1,b密码p2,c是小偷装作知道密码,a，b给g密码md5,比对md5是不是同一个md5，c发现插入不了，c得到的md53无法和a和b配对，这就是如何在不公开密码的情况下知道有没有密码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只要 if else 超过 5 个一定是代码有问题， 要用表驱动编程</p>
+</li>
+<li><p>编译 ts 到 js，首先全局安装 typescript</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add typescript</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>开始上传到 npm</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tsc - - init 初始化</span><br><span class="line">outDir 改成 dist</span><br><span class="line">运行 tsc -p . 表示当前目录</span><br><span class="line">尝试修改错误，但是还是执行不成功，用临时办法，把 noImplicitAny 修改 false</span><br><span class="line">开始上传到 nrm</span><br><span class="line">nrm use npm</span><br><span class="line">npm add user codingories</span><br><span class="line">运行 npm publish</span><br><span class="line">碰到问题 会把不需要 publish 的文件 publish 到 npm，配置文件为 files 少了一个 s</span><br><span class="line">如果只用本地 可以配置下 alias ，必须用绝对路径</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>开始回顾写代码过程,完成显示版本，功能，必须传的参数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.js</span><br><span class="line">const &#123; Command &#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command();</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;english&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>开始学习调翻译接口</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.js</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">const &#123;translate&#125; &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; import &#123;translate&#125; from &quot;.&#x2F;main&quot;; &#x2F;&#x2F; 会报错</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command();</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;English&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line">  .arguments(&#39;&lt;English&gt;&#39;)</span><br><span class="line">  .action(function (english) &#123;</span><br><span class="line">    console.log(english)</span><br><span class="line">    translate(english)</span><br><span class="line">  &#125;);</span><br><span class="line">program.parse(process.argv);</span><br><span class="line">&#x2F;&#x2F; main.ts</span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;translate&#39;)</span><br><span class="line">  console.log(word)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>完成通过 httpRequest 和百度服务器做交互</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.ts</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">&#x2F;&#x2F; const &#123;translate&#125; &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line"></span><br><span class="line">import &#123;translate&#125; from &quot;.&#x2F;main&quot;; &#x2F;&#x2F; js会报错，必须ts</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command();</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;English&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line">  .arguments(&#39;&lt;English&gt;&#39;)</span><br><span class="line">  .action(function (english) &#123;</span><br><span class="line">    console.log(english)</span><br><span class="line">    translate(english)</span><br><span class="line">  &#125;);</span><br><span class="line">program.parse(process.argv);</span><br><span class="line">&#x2F;&#x2F; main.ts</span><br><span class="line">import * as https from &#39;https&#39;</span><br><span class="line">import * as querystring from &#39;querystring&#39;</span><br><span class="line">import md5 &#x3D; require(&#39;md5&#39;)</span><br><span class="line"></span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(&#39;word&#39;)</span><br><span class="line">  console.log(word)</span><br><span class="line">  &#x2F;&#x2F; console.log(md5(&#39;1&#39;)) &#x2F;&#x2F; 引入不了，因为没有typescript类型文件,yarn add --dev @types&#x2F;md5解决类型问题</span><br><span class="line"></span><br><span class="line">  const appId &#x3D; &#39;???&#39;</span><br><span class="line">  const appSecret &#x3D; &#39;???&#39;</span><br><span class="line">  const salt &#x3D; Math.random()</span><br><span class="line">  const sign &#x3D; md5(appId + word + salt + appSecret)</span><br><span class="line"></span><br><span class="line">  const query: string &#x3D; querystring.stringify(&#123;</span><br><span class="line">    q: word,</span><br><span class="line">    from: &#39;en&#39;,</span><br><span class="line">    to: &#39;zh&#39;,</span><br><span class="line">    appid: appId,</span><br><span class="line">    salt: salt, &#x2F;&#x2F; 假的随机数</span><br><span class="line">    sign: sign</span><br><span class="line">    &#x2F;&#x2F; ?q&#x3D;banana&amp;from&#x3D;en&amp;to&#x3D;zh&amp;appid&#x3D;20200426000430230&amp;salt&#x3D;1435660288&amp;sign&#x3D;64f66d6aff1391bdd49775fc2824b9e6</span><br><span class="line"></span><br><span class="line">  &#125;) &#x2F;&#x2F; 构造查询字符串</span><br><span class="line">  const options &#x3D; &#123;</span><br><span class="line">    hostname: &#39;api.fanyi.baidu.com&#39;,</span><br><span class="line">    port: 443,</span><br><span class="line">    path: &#39;&#x2F;api&#x2F;trans&#x2F;vip&#x2F;translate?&#39; + query,</span><br><span class="line">    method: &#39;GET&#39;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(options)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  const req &#x3D; https.request(options, (res) &#x3D;&gt; &#123;</span><br><span class="line">    res.on(&#39;data&#39;, (d) &#x3D;&gt; &#123;</span><br><span class="line">      process.stdout.write(d)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 通过https.request和百度服务器做交互</span><br><span class="line"></span><br><span class="line">    req.on(&#39;error&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">      console.error(e)</span><br><span class="line">    &#125;)</span><br><span class="line">    req.end()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>完成 0603 处理 secret 和使用 TypeScript 声明 BaiduResult</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; main.ts</span><br><span class="line">import * as https from &#39;https&#39;</span><br><span class="line">import * as querystring from &#39;querystring&#39;</span><br><span class="line">import md5 &#x3D; require(&#39;md5&#39;)</span><br><span class="line">import &#123;appId, appSecret&#125; from &#39;.&#x2F;private&#39;</span><br><span class="line"></span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(md5(&#39;1&#39;)) &#x2F;&#x2F; 引入不了，因为没有typescript类型文件,yarn add --dev @types&#x2F;md5解决类型问题</span><br><span class="line">  const salt &#x3D; Math.random()</span><br><span class="line">  const sign &#x3D; md5(appId + word + salt + appSecret) &#x2F;&#x2F; appSecret 一般都是放在服务器</span><br><span class="line"></span><br><span class="line">  const query: string &#x3D; querystring.stringify(&#123;</span><br><span class="line">    q: word,</span><br><span class="line">    from: &#39;en&#39;,</span><br><span class="line">    to: &#39;zh&#39;,</span><br><span class="line">    appid: appId+1,</span><br><span class="line">    salt: salt, &#x2F;&#x2F; 假的随机数</span><br><span class="line">    sign: sign</span><br><span class="line">    &#x2F;&#x2F; ?q&#x3D;banana&amp;from&#x3D;en&amp;to&#x3D;zh&amp;appid&#x3D;20200426000430230&amp;salt&#x3D;1435660288&amp;sign&#x3D;64f66d6aff1391bdd49775fc2824b9e6</span><br><span class="line">  &#125;) &#x2F;&#x2F; 构造查询字符串</span><br><span class="line">  const options &#x3D; &#123;</span><br><span class="line">    hostname: &#39;api.fanyi.baidu.com&#39;,</span><br><span class="line">    port: 443,</span><br><span class="line">    path: &#39;&#x2F;api&#x2F;trans&#x2F;vip&#x2F;translate?&#39; + query,</span><br><span class="line">    method: &#39;GET&#39;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  const request &#x3D; https.request(options, (response) &#x3D;&gt; &#123;</span><br><span class="line">    let chunks &#x3D; []</span><br><span class="line">    response.on(&#39;data&#39;, (chunk) &#x3D;&gt; &#123;</span><br><span class="line">      chunks.push(chunk) &#x2F;&#x2F; data 就是每次下载得到数据</span><br><span class="line">    &#125;)</span><br><span class="line">    response.on(&#39;end&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      const string &#x3D; Buffer.concat(chunks).toString() &#x2F;&#x2F; end,就是把每次下载完的数据合起来</span><br><span class="line">      type BaiduResult &#x3D; &#123;</span><br><span class="line">        error_code?: string; &#x2F;&#x2F; 第二个ts语法，:前面+？</span><br><span class="line">        error_msg?: string;</span><br><span class="line">        from: string;</span><br><span class="line">        to: string;</span><br><span class="line">        trans_result:&#123; src: string, dst: string &#125;[]</span><br><span class="line">      &#125;</span><br><span class="line">      const object: BaiduResult &#x3D; JSON.parse(string);</span><br><span class="line"></span><br><span class="line">      if(object.error_code)&#123;</span><br><span class="line">        if(object.error_code &#x3D;&#x3D;&#x3D; &#39;52003&#39;)&#123;</span><br><span class="line">          console.error(&#39;用户认证失败&#39;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          console.error(object.error_msg)</span><br><span class="line">        &#125;</span><br><span class="line">        process.exit(2); &#x2F;&#x2F; 退出当前进程</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        console.log(object.trans_result[0].dst)</span><br><span class="line">        process.exit(0); &#x2F;&#x2F; 退出当前进程,0 表示正确</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 通过https.request和百度服务器做交互</span><br><span class="line"></span><br><span class="line">  request.on(&#39;error&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">    console.error(e)</span><br><span class="line">  &#125;)</span><br><span class="line">  request.end()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; cli.ts</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;)</span><br><span class="line">&#x2F;&#x2F; const &#123;translate&#125; &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line"></span><br><span class="line">import &#123;translate&#125; from &#39;.&#x2F;main&#39; &#x2F;&#x2F; js会报错，必须ts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const program &#x3D; new commander.Command();</span><br><span class="line">const program &#x3D; new Command()</span><br><span class="line">&#x2F;&#x2F; console.log(program)</span><br><span class="line">program.version(&#39;0.0.1&#39;)</span><br><span class="line">  .name(&#39;fy&#39;)</span><br><span class="line">  .usage(&#39;&lt;English&gt;&#39;) &#x2F;&#x2F; &lt;必须选 [可选</span><br><span class="line">  .arguments(&#39;&lt;English&gt;&#39;)</span><br><span class="line">  .action(function (english) &#123;</span><br><span class="line">    translate(english)</span><br><span class="line">  &#125;)</span><br><span class="line">program.parse(process.argv)</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>实现可以中-&gt;英,英-&gt;中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; cli.ts</span><br><span class="line">import * as https from &#39;https&#39;</span><br><span class="line">import * as querystring from &#39;querystring&#39;</span><br><span class="line">import md5 &#x3D; require(&#39;md5&#39;)</span><br><span class="line">import &#123;appId, appSecret&#125; from &#39;.&#x2F;private&#39;</span><br><span class="line"></span><br><span class="line">const errorMap &#x3D; &#123;</span><br><span class="line">  52001: &#39;请求超时&#39;,</span><br><span class="line">  52002: &#39;系统错误&#39;,</span><br><span class="line">  52003: &#39;用户认证失败&#39;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const translate &#x3D; (word) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(md5(&#39;1&#39;)) &#x2F;&#x2F; 引入不了，因为没有typescript类型文件,yarn add --dev @types&#x2F;md5解决类型问题</span><br><span class="line">  const salt &#x3D; Math.random()</span><br><span class="line">  const sign &#x3D; md5(appId + word + salt + appSecret) &#x2F;&#x2F; appSecret 一般都是放在服务器</span><br><span class="line"></span><br><span class="line">  let from, to;</span><br><span class="line">  if(&#x2F;[a-zA-Z]&#x2F;.test(word[0]))&#123;</span><br><span class="line">    &#x2F;&#x2F; 英-&gt;中</span><br><span class="line">    from &#x3D; &#39;en&#39;;</span><br><span class="line">    to &#x3D; &#39;zh&#39;;</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    &#x2F;&#x2F; 中-&gt;英</span><br><span class="line">    from &#x3D; &#39;zh&#39;;</span><br><span class="line">    to &#x3D; &#39;en&#39;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const query: string &#x3D; querystring.stringify(&#123;</span><br><span class="line">    q: word,</span><br><span class="line">    appid: appId,</span><br><span class="line">    from,</span><br><span class="line">    to,</span><br><span class="line">    salt, &#x2F;&#x2F; 假的随机数</span><br><span class="line">    sign</span><br><span class="line">    &#x2F;&#x2F; ?q&#x3D;banana&amp;from&#x3D;en&amp;to&#x3D;zh&amp;appid&#x3D;20200426000430230&amp;salt&#x3D;1435660288&amp;sign&#x3D;64f66d6aff1391bdd49775fc2824b9e6</span><br><span class="line">  &#125;) &#x2F;&#x2F; 构造查询字符串</span><br><span class="line">  const options &#x3D; &#123;</span><br><span class="line">    hostname: &#39;api.fanyi.baidu.com&#39;,</span><br><span class="line">    port: 443,</span><br><span class="line">    path: &#39;&#x2F;api&#x2F;trans&#x2F;vip&#x2F;translate?&#39; + query,</span><br><span class="line">    method: &#39;GET&#39;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  const request &#x3D; https.request(options, (response) &#x3D;&gt; &#123;</span><br><span class="line">    let chunks &#x3D; []</span><br><span class="line">    response.on(&#39;data&#39;, (chunk) &#x3D;&gt; &#123;</span><br><span class="line">      chunks.push(chunk) &#x2F;&#x2F; data 就是每次下载得到数据</span><br><span class="line">    &#125;)</span><br><span class="line">    response.on(&#39;end&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      const string &#x3D; Buffer.concat(chunks).toString() &#x2F;&#x2F; end,就是把每次下载完的数据合起来</span><br><span class="line">      type BaiduResult &#x3D; &#123;</span><br><span class="line">        error_code?: string; &#x2F;&#x2F; 第二个ts语法，:前面+？</span><br><span class="line">        error_msg?: string;</span><br><span class="line">        from: string;</span><br><span class="line">        to: string;</span><br><span class="line">        trans_result: &#123; src: string, dst: string &#125;[]</span><br><span class="line">      &#125;</span><br><span class="line">      const object: BaiduResult &#x3D; JSON.parse(string)</span><br><span class="line"></span><br><span class="line">      if (object.error_code) &#123;</span><br><span class="line">        if (object.error_code in errorMap) &#123;</span><br><span class="line">          console.error(errorMap[object.error_code] || object.error_msg)</span><br><span class="line">        &#125;</span><br><span class="line">        process.exit(2) &#x2F;&#x2F; 退出当前进程</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(object.trans_result[0].dst)</span><br><span class="line">        object.trans_result.map(obj &#x3D;&gt; &#123;</span><br><span class="line">          console.log(obj.dst);</span><br><span class="line">        &#125;)</span><br><span class="line">        process.exit(0) &#x2F;&#x2F; 退出当前进程,0 表示正确</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 通过https.request和百度服务器做交互</span><br><span class="line"></span><br><span class="line">  request.on(&#39;error&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">    console.error(e)</span><br><span class="line">  &#125;)</span><br><span class="line">  request.end()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>10.安装好 typescript 准备开始用 tsc 将 ts 代码编译成 js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; package.json,设置命令行</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;06fanyi&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.1&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;bin&quot;: &#123;</span><br><span class="line">    &quot;fy&quot;: &quot;src&#x2F;cli.ts&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;ts-node-dev src&#x2F;main.ts&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;commander&quot;: &quot;3.0.2&quot;,</span><br><span class="line">    &quot;md5&quot;: &quot;^2.2.1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@types&#x2F;md5&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;@types&#x2F;node&quot;: &quot;^14.0.13&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>准备开始上传到 npm,添加 shebang</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env node</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>配置需要发布的文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;06fanyi&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.1&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;dist&#x2F;index.js&quot;,</span><br><span class="line">  &quot;bin&quot;: &#123;</span><br><span class="line">    &quot;fy&quot;: &quot;dist&#x2F;cli.js&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;files&quot;: [</span><br><span class="line">    &quot;dist&#x2F;**&#x2F;*.js&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;ts-node-dev src&#x2F;main.ts&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;commander&quot;: &quot;3.0.2&quot;,</span><br><span class="line">    &quot;md5&quot;: &quot;^2.2.1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@types&#x2F;md5&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;@types&#x2F;node&quot;: &quot;^14.0.13&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1586,211 +1718,6 @@ const home = process.env.HOME || homier;</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">django实现在线教育网站四(需求分析和表结构设计)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-11 09:23:29" itemprop="dateCreated datePublished" datetime="2020-05-11T09:23:29+08:00">2020-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-23 20:58:27" itemprop="dateModified" datetime="2020-05-23T20:58:27+08:00">2020-05-23</time>
-              </span>
-
-          
-            <span id="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="django实现在线教育网站四(需求分析和表结构设计)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>Django app 数据库设计</p>
-<ul>
-<li>users-用户相关</li>
-<li>courses 课程相关</li>
-<li>organization 机构相关</li>
-<li>operation 用户操作相关</li>
-</ul>
-</li>
-<li><p>进入tools manage.py task</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    startapp users</span><br><span class="line">    startapp courses</span><br><span class="line">    startapp operation</span><br><span class="line">    startapp organizations</span><br><span class="line">  &#96;&#96;&#96; </span><br><span class="line">3. 在settings.py进行配置</span><br></pre></td></tr></table></figure>
-<p>解决settings报错LookupError: No installed app with label ‘admin’。的问题，<a href="https://www.jianshu.com/p/58b7dde0c267" target="_blank" rel="noopener">https://www.jianshu.com/p/58b7dde0c267</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 解决第一张表users用户表的设计</span><br></pre></td></tr></table></figure>
-<p>django自带了用户表auth_user,对于大多数系统都是可用的
-分析需求发现默认的没有
-我们通过重载user.models 添加字段
-需要注意昵称可以为空
-第一种处理方式</p>
-</li>
-</ol>
-<p>from django.db import models
-from django.contrib.auth.models import AbstractUser</p>
-<p>class UserProfile(AbstractUser):
-    nick_name = models.CharField(max_length=50, verbose_name=”昵称”, null=True, blank=True) # 可以为空，默认为空,
-    # 例如地址字段，没有设置null=True, blank=True 就是必填选项,那么必须设置一个默认值可以设置为””</p>
-<p>第二种处理方式
-给一个default值
-class UserProfile(AbstractUser):
-    nick_name = models.CharField(max_length=50, verbose_name=”昵称”, default=””)</p>
-<p>依次写下下面字段
-class UserProfile(AbstractUser):
-    nick_name = models.CharField(max_length=50, verbose_name=”昵称”, default=””)
-    birthday = models.DateField(verbose_name=”生日”, null=True, blank=True)
-    gender = models.CharField(verbose_name=”姓名”, choices=GENDER_CHOICES, max_length=6)
-    address = models.CharField(max_length=100, verbose_name=”地址”, default=””)
-    mobile = models.CharField(max_length=11, unique=True, verbose_name=”手机号码”)
-    image = models.ImageField(upload_to=”head_image/%Y/%m”, default=”default.jpg”)</p>
-<pre><code>class Meta:
-    verbose_name = &quot;用户信息&quot;
-    verbose_name_plural = verbose_name
-
-def __str__(self):
-    if self.nick_name:
-        return self.nick_name
-    else:
-        return self.username  # 重载 打印UserProfile之后的方法</code></pre>
-<p>之后要在django settings设置一下，指明
-AUTH_USER_MODEL = “users.UserProfile”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5. models 设计的一些坑</span><br><span class="line">  1. 循环引用</span><br></pre></td></tr></table></figure>
-<pre><code>  a 文件引用b 文件，b文件又引用a文件，
-  避免循环引用的方案，分层设计
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    ![循环引用.png](https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;15&#x2F;wRA4mPYHdjKa9n8.png)</span><br><span class="line">    - 上一层可以引用下一层，下一层是不能引用上一层的</span><br><span class="line">    - ![分层设计.png](https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;15&#x2F;wRA4mPYHdjKa9n8.png)</span><br><span class="line">6. 定义课程相关的表结构</span><br><span class="line">  - 需求分析</span><br></pre></td></tr></table></figure>
-课程标题，课程描述，课程难度...一个课程有多个用户，为一对多的关系，放到operation，这里主要定义课程本身内容，根本在于一对多，多对一</code></pre>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  - 表设计需要注意的点</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">课程 章节 视频 课程资源</span><br><span class="line">一个实体对应一张表</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">  - ![courses model.png](https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;15&#x2F;r5mhMnuDefPKiBq.png)</span><br><span class="line"></span><br><span class="line">7. pep8的引入规范</span><br></pre></td></tr></table></figure>
-<pre><code>最上是本身的包
-然后是第三方包
-最后是自己的包</code></pre>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8. 将一些公用的类放到users</span><br></pre></td></tr></table></figure>
-<p>  from datetime import datetime</p>
-<p>  class BaseModel(models.Model):
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=”添加时间”)</p>
-<pre><code>class Meta:
-    abstract = True</code></pre>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">9. 设计课程机构的models</span><br></pre></td></tr></table></figure>
-<p>from django.db import models</p>
-<p>from apps.users.models import BaseModel</p>
-<p>class City(BaseModel):
-    name = models.CharField(max_length=20, verbose_name=u”城市”)
-    desc = models.CharField(max_length=200, verbose_name=u”描述”)</p>
-<pre><code>class Meta:
-    verbose_name = &quot;城市&quot;
-    verbose_name_plural = verbose_name</code></pre>
-<p>class CourseOrg(BaseModel):
-    name = models.CharField(verbose_name=u”机构名称”, max_length=50)
-    desc = models.TextField(verbose_name=”描述”)
-    tag = models.CharField(default=”全国知名”, max_length=10, verbose_name=”机构标签”)
-    category = models.CharField(default=”pxjg”, verbose_name=”机构类别”, max_length=4,
-                                choices=((“pxjg”, “培训机构”), (“gr”, “个人”), (“gx”, “高校”)))
-    click_nums = models.IntegerField(default=0, verbose_name=u”点击数”)  # 点击数,对于很多页面做统计的时候有用
-    fav_numbs = models.IntegerField(default=0, verbose_name=”收藏数”)</p>
-<pre><code>image = models.ImageField(upload_to=&quot;org/%Y/%m&quot;, verbose_name=u&quot;logo&quot;, max_length=100)  # 表示logo
-address = models.CharField(max_length=150, verbose_name=&quot;机构地址&quot;)
-students = models.IntegerField(default=0, verbose_name=&quot;学习人数&quot;)
-course_nums = models.IntegerField(default=0, verbose_name=&quot;课程数&quot;)
-city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name=&quot;所在城市&quot;)
-
-# 所在地区最好设计外键,方便后期管理
-
-class Meta:
-    verbose_name = &quot;课程机构&quot;
-    verbose_name_plural = verbose_name</code></pre>
-<p>class Teacher(BaseModel):
-    org = models.ForeignKey(CourseOrg, on_delete=models.CASCADE, verbose_name=”所属机构”)
-    name = models.CharField(‘教师名’, max_length=50)
-    work_years = models.IntegerField(‘工作年限’, default=0)
-    work_company = models.CharField(‘就职公司’, max_length=50)
-    work_position = models.CharField(‘公司职位’, max_length=50)
-    points = models.CharField(‘教学特点’, max_length=50)
-    click_nums = models.IntegerField(‘点击数’, default=0)
-    fav_nums = models.IntegerField(‘收藏数’, default=0)
-    age = models.IntegerField(default=18, verbose_name=”年龄”)
-    image = models.ImageField(upload_to=”teacher/%Y/%m”, verbose_name=”头像”, max_length=100)</p>
-<pre><code>class Meta:
-    verbose_name = &quot;讲师&quot;
-    verbose_name_plural = verbose_name</code></pre>
-<p>```</p>
-<ol start="10">
-<li>开始设计用户操作相关的表结构 </li>
-<li>通过view - tool - structure 可以快速的对表进行浏览</li>
-<li>通过tools run manage task 查看表结构设计的有没有问题</li>
-<li>django_migrations表会记录对表的操作，migrate之后才会记录</li>
-<li>回顾知识点。<ul>
-<li>1.设计实体和关系。</li>
-<li>2.设计字段，有些看不到,比如click,是否必填很重要，CharField设置最大长度。</li>
-<li>3.外键删除，需要根据业务情况来看不一定都是及联</li>
-<li>4.获得django的User Model不直接import 而是通过get_user_model得到</li>
-<li>5.分层设计，解决循环引用的问题</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1869,13 +1796,13 @@ class Meta:
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
