@@ -314,17 +314,17 @@
 <pre><code>[[0.5488135  0.71518937 0.60276338]
  [0.54488318 0.4236548  0.64589411]
  [0.43758721 0.891773   0.96366276]]</code></pre>
-<p><img src="/.io/2019/05//output_1_1.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_1_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ax = sns.heatmap(uniform_data, vmin=<span class="number">0.2</span>,vmax=<span class="number">0.5</span>) <span class="comment"># vmin,vmax 设置取值范围</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_2_0.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_2_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">normal_data = np.random.randn(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">print(normal_data)</span><br><span class="line">ax = sns.heatmap(normal_data, center=<span class="number">0</span>) <span class="comment"># 既有正值，又有负值，center=0以0为中心</span></span><br></pre></td></tr></table></figure>
 
 <pre><code>[[ 1.26611853 -0.50587654  2.54520078]
  [ 1.08081191  0.48431215  0.57914048]
  [-0.18158257  1.41020463 -0.37447169]]</code></pre>
-<p><img src="/.io/2019/05//output_3_1.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_3_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flights = sns.load_dataset(<span class="string">"flights"</span>)</span><br><span class="line">flights.head()</span><br></pre></td></tr></table></figure>
 
 
@@ -422,23 +422,23 @@ September   508
 October     461  
 November    390  
 December    432  </code></pre>
-<p><img src="/.io/2019/05//output_5_1.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ax = sns.heatmap(flights,annot=<span class="literal">True</span>,fmt=<span class="string">"d"</span>) <span class="comment"># 把实际的值画到heatmap,fmt="d"加进去的字体是d，比较清晰</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_6_0.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_6_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ax = sns.heatmap(flights,linewidths=<span class="number">.5</span>) <span class="comment"># 指定格和格的间距</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_7_0.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_7_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ax = sns.heatmap(flights, cmap=<span class="string">"YlGnBu"</span>)<span class="comment"># 指定自己的colorbar,cmap="YlGnBu"</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_8_0.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_8_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ax = sns.heatmap(flights, cbar=<span class="literal">False</span>) <span class="comment"># 把colorbar隐藏</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_9_0.png" alt="png"></p>
+<p><img src="/28/P36-%E7%83%AD%E5%BA%A6%E5%9B%BE%E7%BB%98%E5%88%B6/output_9_0.png" alt="png"></p>
 <p>总结:heatmap 特征和特征相关性上最为常用</p>
 
       
@@ -628,41 +628,41 @@ Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pal = dict(Lunch=<span class="string">"gray"</span>,Dinner=<span class="string">"red"</span>) <span class="comment"># 指定颜色</span></span><br><span class="line">g = sns.FacetGrid(tips, hue=<span class="string">"time"</span>, palette=pal, height=<span class="number">5</span>)</span><br><span class="line">g.map(plt.scatter,<span class="string">"total_bill"</span>,<span class="string">"tip"</span>,s=<span class="number">30</span>,alpha=<span class="number">.7</span>,linewidth=<span class="number">.5</span>,edgecolor=<span class="string">"white"</span>) <span class="comment"># s表示大小,edgecolor边界颜色</span></span><br><span class="line">g.add_legend();</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_1_0.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_1_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,hue=<span class="string">"sex"</span>,palette=<span class="string">"Set1"</span>,size=<span class="number">5</span>,hue_kws=&#123;<span class="string">"marker"</span>:[<span class="string">"^"</span>,<span class="string">"v"</span>]&#125;) <span class="comment"># 指定marker形状</span></span><br><span class="line">g.map(plt.scatter,<span class="string">"total_bill"</span>,<span class="string">"tip"</span>,s=<span class="number">100</span>,linewidth=<span class="number">.5</span>,edgecolor=<span class="string">"white"</span>)</span><br><span class="line">g.add_legend();</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_2_0.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_2_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> sns.axes_style(<span class="string">"white"</span>):</span><br><span class="line">    g = sns.FacetGrid(tips,row=<span class="string">"sex"</span>,col=<span class="string">"smoker"</span>,margin_titles=<span class="literal">True</span>,size=<span class="number">2.5</span>)</span><br><span class="line">g.map(plt.scatter,<span class="string">"total_bill"</span>,<span class="string">"tip"</span>,color=<span class="string">"#334488"</span>,edgecolor=<span class="string">"white"</span>,lw=<span class="number">.5</span>) <span class="comment"># 画图</span></span><br><span class="line">g.set_axis_labels(<span class="string">"Total bill(US Dollar)"</span>,<span class="string">"Tip"</span>); <span class="comment"># 指定轴的名字，告诉别人x轴，y轴是什么东西</span></span><br><span class="line">g.set(xticks=[<span class="number">10</span>,<span class="number">30</span>,<span class="number">50</span>],yticks=[<span class="number">2</span>,<span class="number">6</span>,<span class="number">10</span>]); <span class="comment"># 设置x,y轴的取值范围，刻度的值</span></span><br><span class="line">g.fig.subplots_adjust(wspace=<span class="number">.02</span>,hspace=<span class="number">.02</span>) <span class="comment"># 设置四个子图之间的宽距</span></span><br><span class="line"><span class="comment"># g.fig.subplots_adjust(left = 0.125,right = 0.5,bottom = 0.1,top=0.9, wspace=.02, hspace=.02) </span></span><br><span class="line"><span class="comment"># 指定偏移程度，一般不用</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_3_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iris = sns.load_dataset(<span class="string">"iris"</span>)</span><br><span class="line">g = sns.PairGrid(iris) <span class="comment"># 对图，指定对图</span></span><br><span class="line">g.map(plt.scatter) <span class="comment"># 然后在对图中画</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x11e308828&gt;</code></pre>
-<p><img src="/.io/2019/05//output_4_1.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_4_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.PairGrid(iris)</span><br><span class="line">g.map_diag(plt.hist) <span class="comment"># 柱状图，指定对角线画什么图</span></span><br><span class="line">g.map_offdiag(plt.scatter) <span class="comment"># 指定非对角线上画什么图</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x11e6a0940&gt;</code></pre>
-<p><img src="/.io/2019/05//output_5_1.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g = sns.PairGrid(iris,hue=<span class="string">"species"</span>) <span class="comment"># 加入物种这个项，用不同颜色表示</span></span><br><span class="line">g.map_diag(plt.hist)</span><br><span class="line">g.map_offdiag(plt.scatter)</span><br><span class="line">g.add_legend();</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_6_0.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_6_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.PairGrid(iris,vars=[<span class="string">"sepal_length"</span>,<span class="string">"sepal_width"</span>],hue=<span class="string">"species"</span>) <span class="comment"># 画其中一部分，vars指定特征传进，指定特征子集</span></span><br><span class="line">g.map(plt.scatter);</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_7_0.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_7_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.PairGrid(tips, hue=<span class="string">"size"</span>, palette=<span class="string">"GnBu_d"</span>) <span class="comment"># 调色板指定渐变色</span></span><br><span class="line">g.map(plt.scatter,s=<span class="number">50</span>,edgecolor=<span class="string">"white"</span>)</span><br><span class="line">g.add_legend();</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_8_0.png" alt="png"></p>
+<p><img src="/27/P35-Facetgrid%E7%BB%98%E5%88%B6%E5%A4%9A%E5%8F%98%E9%87%8F/output_8_0.png" alt="png"></p>
 
       
     </div>
@@ -1075,32 +1075,32 @@ return [0, 1].</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"time"</span>) </span><br><span class="line"><span class="comment"># 先指定区域图中要画哪些信息，确认当前数据集展示哪些信息，这里要显示time</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_2_0.png" alt="png"></p>
+<p><img src="/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_2_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"time"</span>) </span><br><span class="line">g.map(plt.hist,<span class="string">"tip"</span>); <span class="comment"># plt.hist 表示条形图</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
+<p><img src="/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_3_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"sex"</span>,hue=<span class="string">"smoker"</span>) <span class="comment"># 指定列，抽烟的和不抽烟的</span></span><br><span class="line">g.map(plt.scatter,<span class="string">"total_bill"</span>,<span class="string">"tip"</span>,alpha=<span class="number">.5</span>) </span><br><span class="line">g.add_legend() <span class="comment"># smoker增加说明项指标</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x11ea74320&gt;</code></pre>
-<p><img src="/.io/2019/05//output_4_1.png" alt="png"></p>
+<p><img src="/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_4_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,row=<span class="string">"smoker"</span>,col=<span class="string">"time"</span>,margin_titles=<span class="literal">True</span>)</span><br><span class="line">g.map(sns.regplot,<span class="string">"size"</span>,<span class="string">"total_bill"</span>,color=<span class="string">".1"</span>,fit_reg=<span class="literal">False</span>,x_jitter=<span class="number">.1</span>) <span class="comment"># color颜色从深到浅</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x11e3e2278&gt;</code></pre>
-<p><img src="/.io/2019/05//output_5_1.png" alt="png"></p>
+<p><img src="/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"day"</span>,height=<span class="number">4</span>,aspect=<span class="number">.5</span>)</span><br><span class="line">g.map(sns.barplot,<span class="string">"sex"</span>,<span class="string">"total_bill"</span>)</span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1200e87b8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_6_1.png" alt="png"></p>
+<p><img src="/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_6_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Categorical</span><br><span class="line">ordered_days = tips.day.value_counts().index</span><br><span class="line"><span class="comment"># print(ordered_days)</span></span><br><span class="line">ordered_days = Categorical([<span class="string">'Thur'</span>,<span class="string">'Fri'</span>,<span class="string">'Sat'</span>,<span class="string">'Sun'</span>]) <span class="comment"># 指定顺序,尽量用pandas中的格式,这里用Categorical</span></span><br><span class="line">g = sns.FacetGrid(tips, row=<span class="string">"day"</span>, row_order=ordered_days,size=<span class="number">1.7</span>,aspect=<span class="number">4</span>,)</span><br><span class="line">g.map(sns.boxplot,<span class="string">"total_bill"</span>)</span><br></pre></td></tr></table></figure>
 
 <pre><code>CategoricalIndex([&#39;Sat&#39;, &#39;Sun&#39;, &#39;Thur&#39;, &#39;Fri&#39;], categories=[&#39;Thur&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;], ordered=False, dtype=&#39;category&#39;)
@@ -1110,7 +1110,7 @@ return [0, 1].</p>
 
 
 &lt;seaborn.axisgrid.FacetGrid at 0x1201027f0&gt;</code></pre>
-<p><img src="/.io/2019/05//output_7_2.png" alt="png"></p>
+<p><img src="/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_7_2.png" alt="png"></p>
 
       
     </div>
@@ -1199,24 +1199,24 @@ return [0, 1].</p>
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fb70a58&gt;</code></pre>
-<p><img src="/.io/2019/05//output_1_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_1_1.png" alt="png"></p>
 <p>显示值的集中趋势可以用条形图</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.barplot(x=<span class="string">"sex"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"class"</span>,data=titanic); </span><br><span class="line"><span class="comment"># class 在titanic数据集中，一个人登船之后住的船舱等级的，不同性别的获救率</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_3_0.png" alt="png"></p>
 <p>点图可以更好的描述变化差异</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.pointplot(x=<span class="string">"sex"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"class"</span>,data=titanic); </span><br><span class="line"><span class="comment"># 看 First Second Third各自的变化，男的女的获救比率的差异性</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_5_0.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_5_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.pointplot(x=<span class="string">"class"</span>,y=<span class="string">"survived"</span>,hue=<span class="string">"sex"</span>,data=titanic,</span><br><span class="line">              palette=&#123;<span class="string">"male"</span>:<span class="string">"g"</span>,<span class="string">"female"</span>:<span class="string">"m"</span>&#125;,</span><br><span class="line">              markers=[<span class="string">"^"</span>,<span class="string">"o"</span>],linestyles=[<span class="string">"-"</span>,<span class="string">"--"</span>]) <span class="comment"># markers 指定样子，linestyles指定线形</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fe79550&gt;</code></pre>
-<p><img src="/.io/2019/05//output_6_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_6_1.png" alt="png"></p>
 <p>宽形数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(data=iris,orient=<span class="string">"h"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -1224,7 +1224,7 @@ return [0, 1].</p>
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11ff456a0&gt;</code></pre>
-<p><img src="/.io/2019/05//output_8_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_8_1.png" alt="png"></p>
 <p>多层面板分类图</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,data=tips)</span><br></pre></td></tr></table></figure>
 
@@ -1232,28 +1232,28 @@ return [0, 1].</p>
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120469080&gt;</code></pre>
-<p><img src="/.io/2019/05//output_10_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_10_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,data=tips,kind=<span class="string">"bar"</span>)</span><br><span class="line"><span class="comment">#factorplot 能画很多种图，需要指定kind</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120742cf8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_11_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_11_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,col=<span class="string">"time"</span>,data=tips,kind=<span class="string">"swarm"</span>)</span><br><span class="line"><span class="comment"># 指定col="time",kind="swarm"</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x120cfa780&gt;</code></pre>
-<p><img src="/.io/2019/05//output_12_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_12_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.factorplot(x=<span class="string">"time"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"smoker"</span>,col=<span class="string">"day"</span>,data=tips,kind=<span class="string">"box"</span>,height=<span class="number">4</span>,aspect=<span class="number">.5</span>)</span><br><span class="line"><span class="comment"># aspect 是长宽比，height 和 aspect 需要自己慢慢调</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1213d1cf8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_13_1.png" alt="png"></p>
+<p><img src="/26/P33-%E5%88%86%E7%B1%BB%E5%B1%9E%E6%80%A7%E7%BB%98%E5%9B%BE/output_13_1.png" alt="png"></p>
 <p>seaborn.factorplot函数的所有参数说明，方便参考：</p>
 <p>seaborn.factorplot(x=None, y=None, hue=None, data=None, row=None, col=None, col_wrap=None, estimator=<function mean>, ci=95, n_boot=1000, units=None, order=None, hue_order=None, row_order=None, col_order=None, kind=’point’, size=4, aspect=1, orient=None, color=None, palette=None, legend=True, legend_out=True, sharex=True, sharey=True, margin_titles=False, facet_kws=None, **kwargs)</function></p>
 <h1 id="Parameters："><a href="#Parameters：" class="headerlink" title="Parameters："></a>Parameters：</h1><ul>
@@ -1354,44 +1354,44 @@ return [0, 1].</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.stripplot(x=<span class="string">"day"</span>, y=<span class="string">"total_bill"</span>, data=tips,jitter=<span class="literal">False</span>);</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_1_0.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_1_0.png" alt="png"></p>
 <p>重叠是很常见的现象，但是重叠影响我观察数据的量了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.stripplot(x=<span class="string">"day"</span>, y=<span class="string">"total_bill"</span>, data=tips, jitter=<span class="literal">True</span>); <span class="comment"># jitter 要把这些点偏</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_3_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.swarmplot(x=<span class="string">"day"</span>, y=<span class="string">"total_bill"</span>, data=tips); <span class="comment"># 做成一个数，更好看点</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_4_0.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_4_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.swarmplot(x=<span class="string">"day"</span>, y=<span class="string">"total_bill"</span>, data=tips, hue=<span class="string">"sex"</span>); <span class="comment"># 对男女进行区别</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_5_0.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_5_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.swarmplot(x=<span class="string">"total_bill"</span>,y=<span class="string">"day"</span>,hue=<span class="string">"time"</span>,data=tips); <span class="comment"># 变成横着画</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_6_0.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_6_0.png" alt="png"></p>
 <h1 id="盒图"><a href="#盒图" class="headerlink" title="盒图"></a>盒图</h1><pre><code>- IQR即统计学概念四分位距，第一四分位与第三四分位之间的距离
 - N = 1.5IQR 如果一个值&gt;Q3+N 或 &lt; Q1-N,则为离群点</code></pre>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"time"</span>,data=tips); <span class="comment"># 用盒图统计离均点</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_8_0.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_8_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.violinplot(x=<span class="string">"total_bill"</span>,y=<span class="string">"day"</span>,hue=<span class="string">"time"</span>,data=tips) <span class="comment"># 小提琴图，越厚的地方出现的频率越高</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1201a0550&gt;</code></pre>
-<p><img src="/.io/2019/05//output_9_1.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_9_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.violinplot(x=<span class="string">"day"</span>,y=<span class="string">"total_bill"</span>,hue=<span class="string">"sex"</span>,data=tips,split=<span class="literal">True</span>) <span class="comment"># split属性，表示左右分开各表示一个属性</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x122291f60&gt;</code></pre>
-<p><img src="/.io/2019/05//output_10_1.png" alt="png"></p>
+<p><img src="/25/P32-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_10_1.png" alt="png"></p>
 
       
     </div>
@@ -1561,21 +1561,21 @@ regplot()和Implot()都可以绘制回归关系，推荐regplot()
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11b6aeba8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_2_1.png" alt="png"></p>
+<p><img src="/24/P31-%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_2_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.regplot(data=tips,x=<span class="string">"size"</span>,y=<span class="string">"tip"</span>) <span class="comment"># 总共花多少钱和消费的关系</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e00dc18&gt;</code></pre>
-<p><img src="/.io/2019/05//output_3_1.png" alt="png"></p>
+<p><img src="/24/P31-%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_3_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.regplot(data=tips,x=<span class="string">"size"</span>,y=<span class="string">"tip"</span>,x_jitter=<span class="number">.05</span>)<span class="comment"># x_jitter=.05,表示在原始的数据上加上一个小的抖动</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e0c1e80&gt;</code></pre>
-<p><img src="/.io/2019/05//output_4_1.png" alt="png"></p>
+<p><img src="/24/P31-%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_4_1.png" alt="png"></p>
 
       
     </div>
