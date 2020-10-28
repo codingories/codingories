@@ -26,13 +26,13 @@
 <meta property="og:url" content="codingories.github.io/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="OriesノBlog">
 <meta property="og:description" content="1234import pandas as pdimport matplotlib.pyplot as pltimport numpy as np%matplotlib inline   12data &#x3D; pd.read_csv(&quot;creditcard.csv&quot;)data.head() # 0为正常数据作为y           .dataframe tbody tr th:only-of-type">
-<meta property="og:image" content="codingories.github.io/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/output_2_1.png">
+<meta property="og:image" content="/.io/2019/06//output_2_1.png">
 <meta property="article:published_time" content="2019-06-15T04:09:04.000Z">
 <meta property="article:modified_time" content="2019-06-15T04:09:52.790Z">
 <meta property="article:author" content="Ories">
 <meta property="article:tag" content="数据分析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="codingories.github.io/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/output_2_1.png">
+<meta name="twitter:image" content="/.io/2019/06//output_2_1.png">
 
 <link rel="canonical" href="codingories.github.io/2019/06/15/P53-%E4%B8%8B%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5/">
 
@@ -243,7 +243,7 @@
 .dataframe thead th {
     text-align: right;
 }</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -406,7 +406,7 @@
 
 
 <pre><code>Text(0, 0.5, &#39;Frequency&#39;)</code></pre>
-<p><img src="output_2_1.png" alt="png"></p>
+<p><img src="/.io/2019/06//output_2_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下采样，过采样</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler <span class="comment"># 标准化模块</span></span><br><span class="line"></span><br><span class="line">data[<span class="string">'normAmount'</span>] = StandardScaler().fit_transform(data[<span class="string">'Amount'</span>].values.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line"><span class="comment">#fit_transform对数据进行变换到[-1，1]列向量,成为新的一列[normAmount] .reshape要改成.values.reshape</span></span><br><span class="line">data = data.drop([<span class="string">'Time'</span>,<span class="string">'Amount'</span>],axis=<span class="number">1</span>)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
 
 
@@ -425,7 +425,7 @@
 .dataframe thead th {
     text-align: right;
 }</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">

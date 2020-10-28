@@ -567,12 +567,12 @@ VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/2.7/bin/
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [n, setN] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="comment">// 写成函数js引擎不会立即解析，减少多余的计算过程, 用处不大，多算一次影响不大</span></span><br><span class="line">  <span class="keyword">const</span> onClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// setN(n+1);</span></span><br><span class="line">    <span class="comment">// setN(n+2);</span></span><br><span class="line">    <span class="comment">// n 不能+3,而是+2</span></span><br><span class="line">    setN(<span class="function">(<span class="params">i</span>) =&gt;</span> i + <span class="number">1</span>);</span><br><span class="line">    setN(<span class="function">(<span class="params">i</span>) =&gt;</span> i + <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 这样写就能+3,传一个操作,set里面优先使用函数,除非下面不能用再用上面的写法</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;h1&gt;n: &#123;n&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;onClick&#125;&gt;+2&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const rootElement = document.getElementById("root");</span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;, rootElement);</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-useReducer"><a href="#2-useReducer" class="headerlink" title="2. useReducer"></a>2. useReducer</h3><ol>
-<li>创建初始值 initialState</li>
-<li>创建所有操作 reducer(state, action)</li>
-<li>传给 useReducer, 得到读和写 API</li>
-<li>调用写({type:’操作类型’})</li>
-<li>总得来说 useReducer 是 useState 得复杂版</li>
-<li>如果发现有几个变量应该放到一起, 就应该放到 useReducer 里面。例子，<a href="https://codesandbox.io/s/admiring-framework-4by2t%EF%BC%8C" target="_blank" rel="noopener">https://codesandbox.io/s/admiring-framework-4by2t，</a></li>
+<li> 创建初始值 initialState</li>
+<li> 创建所有操作 reducer(state, action)</li>
+<li> 传给 useReducer, 得到读和写 API</li>
+<li> 调用写({type:’操作类型’})</li>
+<li> 总得来说 useReducer 是 useState 得复杂版</li>
+<li> 如果发现有几个变量应该放到一起, 就应该放到 useReducer 里面。例子，<a href="https://codesandbox.io/s/admiring-framework-4by2t%EF%BC%8C" target="_blank" rel="noopener">https://codesandbox.io/s/admiring-framework-4by2t，</a></li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useReducer, useState &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> initial = &#123;</span><br><span class="line">  n: <span class="number">0</span>,</span><br><span class="line">&#125;; <span class="comment">// 创建所有值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (action.type === <span class="string">"add"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">n</span>: state.n + action.number &#125;;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (action.type === <span class="string">"mult"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">n</span>: state.n * <span class="number">2</span> &#125;;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"unknown type"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;; <span class="comment">// 这里写所有的操作, 这样的好处就是下面的代码就简单了</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [state, dispatch] = useReducer(reducer, initial);</span><br><span class="line">  <span class="keyword">const</span> &#123; n &#125; = state;</span><br><span class="line">  <span class="keyword">const</span> onClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    dispatch(&#123; <span class="attr">type</span>: <span class="string">"add"</span>, <span class="attr">number</span>: <span class="number">1</span> &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> onClick2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    dispatch(&#123; <span class="attr">type</span>: <span class="string">"add"</span>, <span class="attr">number</span>: <span class="number">2</span> &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;h1&gt;n: &#123;n&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;onClick&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">      &lt;button onClick=&#123;onClick2&#125;&gt;+<span class="number">2</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br></pre></td></tr></table></figure>
 
@@ -884,11 +884,11 @@ useState/useReducer n 每次变，ussMemo/useCallback [m]变的时候,fn 变，u
 <li>本地调试远程服务器代码的技巧</li>
 </ol>
 <h4 id="2-系统构成"><a href="#2-系统构成" class="headerlink" title="2. 系统构成"></a>2. 系统构成</h4><ol>
-<li><p>vue 前端项目</p>
+<li><p> vue 前端项目</p>
 </li>
-<li><p>django rest framework 系统实现前台功能</p>
+<li><p> django rest framework 系统实现前台功能</p>
 </li>
-<li><p>xadmin 后台管理系统</p>
+<li><p> xadmin 后台管理系统</p>
 </li>
 <li><p>vue 部分:</p>
 <ul>
@@ -954,10 +954,10 @@ useState/useReducer n 每次变，ussMemo/useCallback [m]变的时候,fn 变，u
 <li>引入第三方框架来设置某些 api 的缓存</li>
 </ol>
 <h4 id="5-django-进阶知识点"><a href="#5-django-进阶知识点" class="headerlink" title="5. django 进阶知识点"></a>5. django 进阶知识点</h4><ol>
-<li>django mirgrations 原理</li>
-<li>django 信号量</li>
-<li>django 从请求到响应的完整过程</li>
-<li>独立使用 django 的 model</li>
+<li> django mirgrations 原理</li>
+<li> django 信号量</li>
+<li> django 从请求到响应的完整过程</li>
+<li> 独立使用 django 的 model</li>
 </ol>
 <h4 id="6-vue-知识点"><a href="#6-vue-知识点" class="headerlink" title="6.vue 知识点"></a>6.vue 知识点</h4><ol>
 <li>vue 技术选型分析</li>
@@ -2340,7 +2340,7 @@ entertaining, you forget to parent them. (我知道你爱他们, 但有时你看
 <li>有两种改进思路</li>
 </ul>
 <ol>
-<li>把_state 做成一个对象</li>
+<li> 把_state 做成一个对象</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">比如_state &#x3D; &#123;n:0,m:0&#125;</span><br><span class="line">这种不行，因为useState(0)并不知道变量叫n 还是m</span><br></pre></td></tr></table></figure>
 

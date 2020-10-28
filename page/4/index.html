@@ -635,10 +635,10 @@
 </ol>
 <p>三. 第一个知识点使用 ts-node 创建项目</p>
 <ol>
-<li>创建 EVENTHUB 文件夹</li>
-<li>创建 src/index.ts</li>
-<li>创建 ts-node 支持</li>
-<li>安装 ts-node</li>
+<li> 创建 EVENTHUB 文件夹</li>
+<li> 创建 src/index.ts</li>
+<li> 创建 ts-node 支持</li>
+<li> 安装 ts-node</li>
 </ol>
 <pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">如果有的话先卸载 确定安装最新版</span><br><span class="line">ts-node -v</span><br><span class="line">which ts-node</span><br><span class="line">yarn global add</span><br><span class="line"></span><br><span class="line">开始安装</span><br><span class="line">yarn global add ts-node</span><br><span class="line">(如果有bug @8.3.0)</span><br><span class="line"></span><br><span class="line">index.ts</span><br><span class="line">const a &#x3D; ‘hi’</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
 
@@ -1970,15 +1970,15 @@
 <ul>
 <li>选做:升级 Node.js 到 V14</li>
 <li>安装@babel/cli</li>
-<li><label style="color:red">ormconfig 进行配置，localhost 一定要改成本机 ip 才能连接 docker</li>
+<li><label style="color:red">ormconfig 进行配置，localhost 一定要改成本机 ip 才能连接 docker</label></li>
 <li>npx babel ./src –out-dir dist –extensions “.ts,.tsx”</li>
 <li><label style="color:red">根据错误提示搜索答案</label></li>
-<li><label style="color:red">yarn add -dev @babel/plugin-proposal-decorators</li>
+<li><label style="color:red">yarn add -dev @babel/plugin-proposal-decorators</label></li>
 <li>去 Next.js 官网查看.babelrc 默认配置，复制</li>
-<li><label style="color:red">创建.babelrc, 添加插件</li>
-<li><label style="color:blue">重新运行刚刚失败的命令</li>
-<li><label style="color:red">得到 dist 里面的 js,运行 node dist/index.js</li>
-<li><label style="color:blue">根据错误提示再加上数消失的搜索，修改 ormconfig</li>
+<li><label style="color:red">创建.babelrc, 添加插件</label></li>
+<li><label style="color:blue">重新运行刚刚失败的命令</label></li>
+<li><label style="color:red">得到 dist 里面的 js,运行 node dist/index.js</label></li>
+<li><label style="color:blue">根据错误提示再加上数消失的搜索，修改 ormconfig</label></li>
 <li>重新运行 node dist/index.js</li>
 <li>成功看见 connection 对象即为成功</li>
 </ul>
@@ -2545,7 +2545,7 @@
 </li>
 <li>回顾一下 getStaticProps<ul>
 <li>开发环境，每次请求到来后运行，方便开发</li>
-<li>生产环境,<label style="color:red">build 时运行一次</li>
+<li>生产环境,<label style="color:red">build 时运行一次</label></li>
 </ul>
 </li>
 <li>参数<ul>

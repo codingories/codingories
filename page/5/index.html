@@ -343,8 +343,8 @@
 <ul>
 <li>官方教程在此</li>
 <li>用法<ul>
-<li>把<a href=xxx>点击跳转</a>改成</li>
-<li><Link href=xxx><a>点击跳转</a></Link></li>
+<li>把<a href="xxx">点击跳转</a>改成</li>
+<li><Link href="xxx"><a>点击跳转</a></Link></li>
 </ul>
 </li>
 <li>优点<ul>
@@ -832,7 +832,7 @@
 </ul>
 </li>
 <li>方法三<ul>
-<li>在 cypress.json 里面加上”ignoreTestFiles”:[“<em>.hot-update.js”,”*<em>/examples/</em>.</em>“]</li>
+<li>在 cypress.json 里面加上”ignoreTestFiles”:[“<em>.hot-update.js”,”**/examples/</em>.*”]</li>
 </ul>
 </li>
 <li>这样就不会运行 examples 里<ul>
@@ -1116,8 +1116,8 @@
 <ol start="11">
 <li><p>ctx.response.xxx
 -response.status
--response.body<em>5,string 字符串，buffer 文件读到内存里就是 Buffer,也就是没有文件编码的内容,Stream 流，json 化的 Object,null
--response.set()</em>2 key value 和对象
+-response.body*5,string 字符串，buffer 文件读到内存里就是 Buffer,也就是没有文件编码的内容,Stream 流，json 化的 Object,null
+-response.set()*2 key value 和对象
 -response.append()，添加响应头</p>
 </li>
 <li><p>总结</p>
@@ -1719,7 +1719,7 @@
 <li>use 是使用，使用什么？</li>
 <li>理解 app.use<ul>
 <li>创建新目录 express-demo-2<ul>
-<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#109;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
 <li>尝试使用 req.url 和 res.send</li>
 <li>多次使用会报错</li>
 <li>改成 res.write,还记得流吗</li>
@@ -2829,7 +2829,7 @@
 
       
           <ol>
-<li>Docker x MySQL</li>
+<li> Docker x MySQL</li>
 </ol>
 <ul>
 <li>用 Docker 安装数据库</li>

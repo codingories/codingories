@@ -246,8 +246,8 @@
 Object.assign(obj,{age:18,gender:’main’})</li>
 </ol>
 <h1 id="‘name’-in-obj和obj-hasOwnProperty-‘name’-的区别"><a href="#‘name’-in-obj和obj-hasOwnProperty-‘name’-的区别" class="headerlink" title="‘name’ in obj和obj.hasOwnProperty(‘name’) 的区别"></a>‘name’ in obj和obj.hasOwnProperty(‘name’) 的区别</h1><ol>
-<li>‘name’ in obj 是’name’是否包含在obj的全部属性中，也就是说如果’name’在<strong>proto</strong>中也会返回true</li>
-<li>obj.hasOwnProperty(‘name’) 指的是’name’是否包含在obj的本身属性中，不会去检查obj的<strong>proto</strong>中是否有’name’</li>
+<li>‘name’ in obj 是’name’是否包含在obj的全部属性中，也就是说如果’name’在__proto__中也会返回true</li>
+<li>obj.hasOwnProperty(‘name’) 指的是’name’是否包含在obj的本身属性中，不会去检查obj的__proto__中是否有’name’</li>
 </ol>
 
     </div>
