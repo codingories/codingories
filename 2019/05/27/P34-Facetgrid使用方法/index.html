@@ -26,18 +26,18 @@
 <meta property="og:url" content="codingories.github.io/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="OriesノBlog">
 <meta property="og:description" content="12345678910%matplotlib inlineimport numpy as npimport pandas as pdimport matplotlib as mplimport matplotlib.pyplot as pltimport seaborn as sns # 导入相关包sns.set(style&#x3D;&quot;whitegrid&quot;, color_codes&#x3D;True)titani">
-<meta property="og:image" content="/.io/2019/05//output_2_0.png">
-<meta property="og:image" content="/.io/2019/05//output_3_0.png">
-<meta property="og:image" content="/.io/2019/05//output_4_1.png">
-<meta property="og:image" content="/.io/2019/05//output_5_1.png">
-<meta property="og:image" content="/.io/2019/05//output_6_1.png">
-<meta property="og:image" content="/.io/2019/05//output_7_2.png">
+<meta property="og:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_2_0.png">
+<meta property="og:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_3_0.png">
+<meta property="og:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_4_1.png">
+<meta property="og:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_5_1.png">
+<meta property="og:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_6_1.png">
+<meta property="og:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_7_2.png">
 <meta property="article:published_time" content="2019-05-27T01:36:46.000Z">
 <meta property="article:modified_time" content="2019-05-27T01:38:13.710Z">
 <meta property="article:author" content="Ories">
 <meta property="article:tag" content="数据分析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="/.io/2019/05//output_2_0.png">
+<meta name="twitter:image" content="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_2_0.png">
 
 <link rel="canonical" href="codingories.github.io/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
 
@@ -323,32 +323,32 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"time"</span>) </span><br><span class="line"><span class="comment"># 先指定区域图中要画哪些信息，确认当前数据集展示哪些信息，这里要显示time</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_2_0.png" alt="png"></p>
+<p><img src="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_2_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"time"</span>) </span><br><span class="line">g.map(plt.hist,<span class="string">"tip"</span>); <span class="comment"># plt.hist 表示条形图</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/05//output_3_0.png" alt="png"></p>
+<p><img src="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_3_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"sex"</span>,hue=<span class="string">"smoker"</span>) <span class="comment"># 指定列，抽烟的和不抽烟的</span></span><br><span class="line">g.map(plt.scatter,<span class="string">"total_bill"</span>,<span class="string">"tip"</span>,alpha=<span class="number">.5</span>) </span><br><span class="line">g.add_legend() <span class="comment"># smoker增加说明项指标</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x11ea74320&gt;</code></pre>
-<p><img src="/.io/2019/05//output_4_1.png" alt="png"></p>
+<p><img src="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_4_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,row=<span class="string">"smoker"</span>,col=<span class="string">"time"</span>,margin_titles=<span class="literal">True</span>)</span><br><span class="line">g.map(sns.regplot,<span class="string">"size"</span>,<span class="string">"total_bill"</span>,color=<span class="string">".1"</span>,fit_reg=<span class="literal">False</span>,x_jitter=<span class="number">.1</span>) <span class="comment"># color颜色从深到浅</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x11e3e2278&gt;</code></pre>
-<p><img src="/.io/2019/05//output_5_1.png" alt="png"></p>
+<p><img src="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = sns.FacetGrid(tips,col=<span class="string">"day"</span>,height=<span class="number">4</span>,aspect=<span class="number">.5</span>)</span><br><span class="line">g.map(sns.barplot,<span class="string">"sex"</span>,<span class="string">"total_bill"</span>)</span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1200e87b8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_6_1.png" alt="png"></p>
+<p><img src="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_6_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Categorical</span><br><span class="line">ordered_days = tips.day.value_counts().index</span><br><span class="line"><span class="comment"># print(ordered_days)</span></span><br><span class="line">ordered_days = Categorical([<span class="string">'Thur'</span>,<span class="string">'Fri'</span>,<span class="string">'Sat'</span>,<span class="string">'Sun'</span>]) <span class="comment"># 指定顺序,尽量用pandas中的格式,这里用Categorical</span></span><br><span class="line">g = sns.FacetGrid(tips, row=<span class="string">"day"</span>, row_order=ordered_days,size=<span class="number">1.7</span>,aspect=<span class="number">4</span>,)</span><br><span class="line">g.map(sns.boxplot,<span class="string">"total_bill"</span>)</span><br></pre></td></tr></table></figure>
 
 <pre><code>CategoricalIndex([&#39;Sat&#39;, &#39;Sun&#39;, &#39;Thur&#39;, &#39;Fri&#39;], categories=[&#39;Thur&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;], ordered=False, dtype=&#39;category&#39;)
@@ -358,7 +358,7 @@
 
 
 &lt;seaborn.axisgrid.FacetGrid at 0x1201027f0&gt;</code></pre>
-<p><img src="/.io/2019/05//output_7_2.png" alt="png"></p>
+<p><img src="/2019/05/27/P34-Facetgrid%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/output_7_2.png" alt="png"></p>
 
     </div>
 

@@ -308,21 +308,21 @@ regplot()和Implot()都可以绘制回归关系，推荐regplot()
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11b6aeba8&gt;</code></pre>
-<p><img src="/.io/2019/05//output_2_1.png" alt="png"></p>
+<p><img src="/2019/05/24/P31-%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_2_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.regplot(data=tips,x=<span class="string">"size"</span>,y=<span class="string">"tip"</span>) <span class="comment"># 总共花多少钱和消费的关系</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e00dc18&gt;</code></pre>
-<p><img src="/.io/2019/05//output_3_1.png" alt="png"></p>
+<p><img src="/2019/05/24/P31-%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_3_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.regplot(data=tips,x=<span class="string">"size"</span>,y=<span class="string">"tip"</span>,x_jitter=<span class="number">.05</span>)<span class="comment"># x_jitter=.05,表示在原始的数据上加上一个小的抖动</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e0c1e80&gt;</code></pre>
-<p><img src="/.io/2019/05//output_4_1.png" alt="png"></p>
+<p><img src="/2019/05/24/P31-%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%BB%98%E5%9B%BE/output_4_1.png" alt="png"></p>
 
       
     </div>
@@ -535,11 +535,11 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinplot() <span class="comment"># matplot 默认画风</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_2_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_2_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set() <span class="comment"># 使用seaborn 默认的参数</span></span><br><span class="line">sinplot() <span class="comment"># 风格发生改变</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_3_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_3_0.png" alt="png"></p>
 <h3 id="5种主题风格"><a href="#5种主题风格" class="headerlink" title="5种主题风格"></a>5种主题风格</h3><ul>
 <li>darkgrid</li>
 <li>whitegrid</li>
@@ -553,54 +553,54 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e09ee10&gt;</code></pre>
-<p><img src="/.io/2019/04//output_5_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"dark"</span>) <span class="comment"># 没有刻度线</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_6_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_6_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"white"</span>) <span class="comment"># 没有刻度线</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_7_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_7_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"ticks"</span>) <span class="comment"># 加上线段</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_8_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_8_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sinplot()</span><br><span class="line">sns.despine() <span class="comment"># 去掉上面，右边的线</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_9_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_9_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#f, ax = plt.subplots()</span></span><br><span class="line">sns.violinplot(data)</span><br><span class="line">sns.despine(offset=<span class="number">30</span>) <span class="comment"># 画的图离开轴线的距离</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_10_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_10_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">"whitegrid"</span>)</span><br><span class="line">sns.boxplot(data=data, palette=<span class="string">"deep"</span>)</span><br><span class="line">sns.despine(left=<span class="literal">True</span>) <span class="comment"># 把左边的轴隐藏起来</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_11_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_11_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> sns.axes_style(<span class="string">"darkgrid"</span>): <span class="comment"># 用with打开一种风格,with里面都是执行当前的风格</span></span><br><span class="line">    plt.subplot(<span class="number">211</span>)</span><br><span class="line">    sinplot()</span><br><span class="line">plt.subplot(<span class="number">212</span>) <span class="comment"># with外面 不是当前这种风格</span></span><br><span class="line">sinplot(<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_12_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_12_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.set()</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"paper"</span>) <span class="comment"># 设置整体画图域按相对尺寸的顺序(线条越来越粗)</span></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_14_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_14_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"talk"</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_15_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_15_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"poster"</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_16_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_16_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(<span class="string">"notebook"</span>, font_scale=<span class="number">1.5</span>, rc=&#123;<span class="string">"lines.linewidth"</span>: <span class="number">2.5</span>&#125;) <span class="comment">#font_scale 字体大小,"lines.linewidth"线的粗细</span></span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_17_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_17_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">sns.set(rc=&#123;<span class="string">"figure.figsize"</span>: (<span class="number">6</span>, <span class="number">6</span>)&#125;)</span><br></pre></td></tr></table></figure>
 
 <h3 id="调色板"><a href="#调色板" class="headerlink" title="调色板"></a>调色板</h3><ul>
@@ -612,21 +612,21 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 <h3 id="分类色板"><a href="#分类色板" class="headerlink" title="分类色板"></a>分类色板</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">current_palette = sns.color_palette()</span><br><span class="line">sns.palplot(current_palette) <span class="comment"># 打印出seaborn中的current_palette</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_20_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_20_0.png" alt="png"></p>
 <p>老版本为6个默认的颜色循环主题： deep, muted, pastel, bright, dark, colorblind</p>
 <h3 id="圆形画板"><a href="#圆形画板" class="headerlink" title="圆形画板"></a>圆形画板</h3><p>当你有六个以上的分类要区分时，最简单的方法就是在一个圆形的颜色空间中画出均匀间隔的颜色(这样的色调会保持亮度和饱和度不变)。这是大多数的当他们需要使用比当前默认颜色循环中设置的颜色更多时的默认方案。</p>
 <p>最常用的方法是使用hls的颜色空间，这是RGB值的一个简单转换。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"hls"</span>, <span class="number">8</span>)) <span class="comment"># 圆形色板分成八份</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_23_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_23_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data = np.random.normal(size=(<span class="number">20</span>, <span class="number">8</span>)) + np.arange(<span class="number">8</span>) / <span class="number">2</span></span><br><span class="line">sns.boxplot(data=data,palette=sns.color_palette(<span class="string">"hls"</span>, <span class="number">8</span>)) <span class="comment"># 随机造一些数据</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11d3b44e0&gt;</code></pre>
-<p><img src="/.io/2019/04//output_24_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_24_1.png" alt="png"></p>
 <p>hls_palette()函数来控制颜色的亮度和饱和</p>
 <ul>
 <li>l-亮度 lightness </li>
@@ -635,11 +635,11 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.hls_palette(<span class="number">8</span>, l=<span class="number">.7</span>, s=<span class="number">0.9</span>)) <span class="comment"># 右边是饱和度和亮度</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_26_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_26_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"Paired"</span>,<span class="number">8</span>)) <span class="comment">#现在调出来的调色板成对</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_27_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_27_0.png" alt="png"></p>
 <h3 id="使用xkcd颜色来命名颜色"><a href="#使用xkcd颜色来命名颜色" class="headerlink" title="使用xkcd颜色来命名颜色"></a>使用xkcd颜色来命名颜色</h3><p>xkcd包含了一套众包努力的针对随机RGB色的命名。产生了954个可以随时通过xdcd_rgb字典中调用的命名颜色。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], sns.xkcd_rgb[<span class="string">"pale red"</span>], lw=<span class="number">3</span>) <span class="comment"># xkcd 方式选取颜色</span></span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">2</span>], sns.xkcd_rgb[<span class="string">"medium green"</span>], lw=<span class="number">3</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">3</span>], sns.xkcd_rgb[<span class="string">"denim blue"</span>], lw=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 
@@ -647,54 +647,54 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 
 
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x11f6a9e48&gt;]</code></pre>
-<p><img src="/.io/2019/04//output_29_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_29_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">colors = [<span class="string">"windows blue"</span>, <span class="string">"amber"</span>, <span class="string">"greyish"</span>, <span class="string">"faded green"</span>, <span class="string">"dusty purple"</span>]</span><br><span class="line">sns.palplot(sns.xkcd_palette(colors))</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_30_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_30_0.png" alt="png"></p>
 <h3 id="连续色板"><a href="#连续色板" class="headerlink" title="连续色板"></a>连续色板</h3><p>色彩随数据变换，比如数据越来越重要则颜色越来越深</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"Blues"</span>))</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_32_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_32_0.png" alt="png"></p>
 <p>如果想要翻转渐变，可以在面板名称中添加一个_r后缀</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"BuGn_r"</span>)) <span class="comment"># +_r 由深到浅</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_34_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_34_0.png" alt="png"></p>
 <h3 id="cubehelix-palette-调色板"><a href="#cubehelix-palette-调色板" class="headerlink" title="cubehelix_palette()调色板"></a>cubehelix_palette()调色板</h3><p>色调线性变换</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(<span class="string">"cubehelix"</span>, <span class="number">8</span>)) <span class="comment"># 指定颜色变换区间,不大常用</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_36_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_36_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.cubehelix_palette(<span class="number">8</span>, start=<span class="number">.5</span>, rot=<span class="number">-.75</span>))</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_37_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_37_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.cubehelix_palette(<span class="number">8</span>, start=<span class="number">.75</span>, rot=<span class="number">-.150</span>))</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_38_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_38_0.png" alt="png"></p>
 <h3 id="light-palette-和dark-palette-调用定制连续调色板"><a href="#light-palette-和dark-palette-调用定制连续调色板" class="headerlink" title="light_palette() 和dark_palette()调用定制连续调色板"></a>light_palette() 和dark_palette()调用定制连续调色板</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.light_palette(<span class="string">"green"</span>)) <span class="comment"># 指定绿色从浅到深</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_40_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_40_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.dark_palette(<span class="string">"purple"</span>))</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_41_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_41_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.light_palette(<span class="string">"navy"</span>, reverse=<span class="literal">True</span>)) <span class="comment"># reverse 反转</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_42_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_42_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x, y = np.random.multivariate_normal([<span class="number">0</span>, <span class="number">0</span>], [[<span class="number">1</span>, <span class="number">-.5</span>], [<span class="number">-.5</span>, <span class="number">1</span>]], size=<span class="number">300</span>).T</span><br><span class="line">pal = sns.dark_palette(<span class="string">"green"</span>, as_cmap=<span class="literal">True</span>)</span><br><span class="line">sns.kdeplot(x, y, cmap=pal); <span class="comment"># 把green传到颜色中来</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_43_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_43_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.light_palette((<span class="number">210</span>, <span class="number">90</span>, <span class="number">60</span>), input=<span class="string">"husl"</span>))</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_44_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_44_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats,integrate</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.set(color_codes = <span class="literal">True</span>)</span><br><span class="line">np.random.seed(sum(map(ord,<span class="string">"distributions"</span>)))</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="comment"># 写完代码直接将图显示在notebook上</span></span><br></pre></td></tr></table></figure>
 
 
@@ -704,14 +704,14 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11c1de080&gt;</code></pre>
-<p><img src="/.io/2019/04//output_46_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_46_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(x,bins=<span class="number">20</span>,kde=<span class="literal">False</span>) <span class="comment"># 在x轴的取值区间上平均分成多少等份</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e24ac88&gt;</code></pre>
-<p><img src="/.io/2019/04//output_47_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_47_1.png" alt="png"></p>
 <p>数据分布情况</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.gamma(<span class="number">6</span>, size=<span class="number">200</span>)</span><br><span class="line">sns.distplot(x,kde=<span class="literal">False</span>,fit=stats.gamma) <span class="comment"># 显示出数据的整体轮廓,分布状态</span></span><br></pre></td></tr></table></figure>
 
@@ -719,7 +719,7 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e2ed6a0&gt;</code></pre>
-<p><img src="/.io/2019/04//output_49_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_49_1.png" alt="png"></p>
 <p>根据均值和协方差生成数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mean,cov = [<span class="number">0</span>,<span class="number">1</span>],[(<span class="number">1</span>,<span class="number">.5</span>),(<span class="number">.5</span>,<span class="number">1</span>)] <span class="comment"># 指定好均值和协方差</span></span><br><span class="line">data = np.random.multivariate_normal(mean,cov,<span class="number">200</span>) <span class="comment"># 通过numpy生成数据</span></span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">"x"</span>,<span class="string">"y"</span>]) <span class="comment"># 把x,y的二维数据转成DataFrame格式</span></span><br><span class="line"><span class="comment"># df</span></span><br></pre></td></tr></table></figure>
 
@@ -728,18 +728,18 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 
 <pre><code>/usr/local/lib/python3.7/site-packages/seaborn/axisgrid.py:1847: UserWarning: JointGrid annotation is deprecated and will be removed in a future release.
   warnings.warn(UserWarning(msg))</code></pre>
-<p><img src="/.io/2019/04//output_53_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_53_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x,y = np.random.multivariate_normal(mean,cov,<span class="number">1000</span>).T <span class="comment"># 定义数据</span></span><br><span class="line"><span class="keyword">with</span> sns.axes_style(<span class="string">"white"</span>): <span class="comment"># 指定黑白相间的风格</span></span><br><span class="line">    sns.jointplot(x=x,y=y,kind=<span class="string">"hex"</span>,color=<span class="string">"k"</span>,stat_func=stats.pearsonr) <span class="comment"># 查看哪个区域分布的多，在数据量大的时候用的多</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_54_0.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_54_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iris = sns.load_dataset(<span class="string">"iris"</span>) <span class="comment"># 加载内置数据集，iris</span></span><br><span class="line">sns.pairplot(iris)</span><br></pre></td></tr></table></figure>
 
 
 
 
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x1208876a0&gt;</code></pre>
-<p><img src="/.io/2019/04//output_55_1.png" alt="png"></p>
+<p><img src="/2019/04/04/Seaborn-1/output_55_1.png" alt="png"></p>
 
       
     </div>
@@ -837,7 +837,7 @@ align-self属性允许单个项目有与其他项目不一样的对齐方式，�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.plot()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_1_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_1_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">first_twelve = unrate[<span class="number">0</span>:<span class="number">12</span>] <span class="comment"># 把数据中前12个样本拿出来</span></span><br><span class="line">plt.plot(first_twelve[<span class="string">'DATE'</span>],first_twelve[<span class="string">'VALUE'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 <pre><code>/usr/local/lib/python3.7/site-packages/pandas/plotting/_converter.py:129: FutureWarning: Using an implicitly registered datetime converter for a matplotlib plotting method. The converter was registered by pandas on import. Future versions of pandas will require you to explicitly register matplotlib converters.
@@ -846,35 +846,35 @@ To register the converters:
     &gt;&gt;&gt; from pandas.plotting import register_matplotlib_converters
     &gt;&gt;&gt; register_matplotlib_converters()
   warnings.warn(msg, FutureWarning)</code></pre>
-<p><img src="/.io/2019/04//output_2_1.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_2_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(first_twelve[<span class="string">'DATE'</span>],first_twelve[<span class="string">'VALUE'</span>])</span><br><span class="line">plt.xticks(rotation=<span class="number">45</span>) <span class="comment"># 斜着写x坐标</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_3_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_3_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(first_twelve[<span class="string">'DATE'</span>],first_twelve[<span class="string">'VALUE'</span>])</span><br><span class="line">plt.xticks(rotation=<span class="number">90</span>) <span class="comment"># 斜着写x坐标</span></span><br><span class="line">plt.xlabel(<span class="string">'Month'</span>) <span class="comment"># x 轴标签</span></span><br><span class="line">plt.ylabel(<span class="string">'Unemployment Rate'</span>) <span class="comment"># y 轴标签 </span></span><br><span class="line">plt.title(<span class="string">'Monthly Unemployment Trends, 1948'</span>) <span class="comment"># 顶部标签</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_4_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_4_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">fig = plt.figure() <span class="comment"># 指定出默认画图的区间</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_5_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_5_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">fig = plt.figure() <span class="comment"># 指定出默认画图的区间</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_6_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_6_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># fig = plt.figure()</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">3</span>,<span class="number">6</span>)) <span class="comment"># 当前画图区域的长度</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">ax1.plot(np.random.randint(<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>),np.arange(<span class="number">5</span>))</span><br><span class="line">ax2.plot(np.arange(<span class="number">10</span>)*<span class="number">3</span>, np.arange(<span class="number">10</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_7_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_7_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在同一图上画两条直线,且颜色不一样</span></span><br><span class="line"><span class="comment"># unrate['MONTH'] = unrate['DATE'].dt.month</span></span><br><span class="line">unrate[<span class="string">'MONTH'</span>] = unrate[<span class="string">'DATE'</span>].dt.month</span><br><span class="line">fig = plt.figure(figsize=(<span class="number">6</span>,<span class="number">3</span>))</span><br><span class="line">plt.plot(unrate[<span class="number">0</span>:<span class="number">12</span>][<span class="string">'MONTH'</span>], unrate[<span class="number">0</span>:<span class="number">12</span>][<span class="string">'VALUE'</span>],c=<span class="string">'red'</span>)</span><br><span class="line">plt.plot(unrate[<span class="number">12</span>:<span class="number">24</span>][<span class="string">'MONTH'</span>], unrate[<span class="number">12</span>:<span class="number">24</span>][<span class="string">'VALUE'</span>],c=<span class="string">'blue'</span>) <span class="comment"># c可以是rgb颜色</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_8_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_8_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">6</span>))</span><br><span class="line">colors = [<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'orange'</span>,<span class="string">'black'</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    start_index = i * <span class="number">12</span></span><br><span class="line">    end_index = (i+<span class="number">1</span>)*<span class="number">12</span></span><br><span class="line">    subset = unrate[start_index:end_index]</span><br><span class="line">    plt.plot(subset[<span class="string">'MONTH'</span>],subset[<span class="string">'VALUE'</span>],c=colors[i])</span><br><span class="line">    </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_9_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_9_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">6</span>))</span><br><span class="line">colors = [<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'orange'</span>,<span class="string">'black'</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    start_index = i * <span class="number">12</span></span><br><span class="line">    end_index = (i+<span class="number">1</span>)*<span class="number">12</span></span><br><span class="line">    subset = unrate[start_index:end_index]</span><br><span class="line">    label = str(<span class="number">1948</span> + i) <span class="comment"># 指定label</span></span><br><span class="line">    plt.plot(subset[<span class="string">'MONTH'</span>],subset[<span class="string">'VALUE'</span>],c=colors[i],label = label)</span><br><span class="line">    </span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>) <span class="comment"># legend函数用于指定图上的线是什么东西</span></span><br><span class="line">print(help(plt.legend)) <span class="comment"># 自己定义放哪里</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 <pre><code>Help on function legend in module matplotlib.pyplot:
@@ -1166,7 +1166,7 @@ legend(*args, **kwargs)
     .. plot:: gallery/text_labels_and_annotations/legend.py
 
 None</code></pre>
-<p><img src="/.io/2019/04//output_10_1.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_10_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">reviews = pd.read_csv(<span class="string">'fandango_scores.csv'</span>)</span><br><span class="line">cols = [<span class="string">'FILM'</span>,<span class="string">'RT_user_norm'</span>,<span class="string">'Metacritic_user_nom'</span>,<span class="string">'IMDB_norm'</span>,<span class="string">'Fandango_Ratingvalue'</span>,<span class="string">'Fandango_Stars'</span>]</span><br><span class="line">norm_reviews = reviews[cols]</span><br><span class="line">print(norm_reviews[:<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 
 <pre><code>                             FILM  RT_user_norm  Metacritic_user_nom  \
@@ -1188,7 +1188,7 @@ None</code></pre>
 See the documentation here:
 http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated
   after removing the cwd from sys.path.</code></pre>
-<p><img src="/.io/2019/04//output_12_2.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_12_2.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">num_cols = [<span class="string">"RT_user_norm"</span>,<span class="string">"Metacritic_user_nom"</span>,<span class="string">"IMDB_norm"</span>,<span class="string">"Fandango_Ratingvalue"</span>,<span class="string">"Fandango_Stars"</span>]</span><br><span class="line">bar_heights = norm_reviews.ix[<span class="number">0</span>, num_cols].values</span><br><span class="line">bar_positions = arange(<span class="number">5</span>) + <span class="number">0.75</span></span><br><span class="line">tick_positions = range(<span class="number">1</span>,<span class="number">6</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.bar(bar_positions,bar_heights,<span class="number">0.5</span>)</span><br><span class="line">ax.set_xticks(tick_positions)</span><br><span class="line">ax.set_xticklabels(num_cols,rotation=<span class="number">45</span>)</span><br><span class="line"></span><br><span class="line">ax.set_xlabel(<span class="string">'Rating Source'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Average Rating'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Average User Rating For Avengers: Age of Ultron (2015)'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 <pre><code>/usr/local/Cellar/ipython/7.2.0/libexec/vendor/lib/python3.7/site-packages/ipykernel_launcher.py:2: DeprecationWarning: 
@@ -1198,7 +1198,7 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecat
 
 See the documentation here:
 http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated</code></pre>
-<p><img src="/.io/2019/04//output_13_1.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_13_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> arange</span><br><span class="line">num_cols = [<span class="string">"RT_user_norm"</span>,<span class="string">"Metacritic_user_nom"</span>,<span class="string">"IMDB_norm"</span>,<span class="string">"Fandango_Ratingvalue"</span>,<span class="string">"Fandango_Stars"</span>]</span><br><span class="line"></span><br><span class="line">bar_widths = norm_reviews.ix[<span class="number">0</span>, num_cols].values</span><br><span class="line">bar_positions = arange(<span class="number">5</span>)+<span class="number">0.75</span></span><br><span class="line">tick_positions = range(<span class="number">1</span>,<span class="number">6</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.barh(bar_positions,bar_widths,<span class="number">0.5</span>) <span class="comment"># 通过这个.barh得到横着的图</span></span><br><span class="line">ax.set_yticks(tick_positions)</span><br><span class="line">ax.set_yticklabels(num_cols)</span><br><span class="line">ax.set_ylabel(<span class="string">'Rating Source'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'Average Rating'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Average User Rating For Avengers: Age of Ultron (2015)'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 <pre><code>/usr/local/Cellar/ipython/7.2.0/libexec/vendor/lib/python3.7/site-packages/ipykernel_launcher.py:5: DeprecationWarning: 
@@ -1209,15 +1209,15 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecat
 See the documentation here:
 http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated
   &quot;&quot;&quot;</code></pre>
-<p><img src="/.io/2019/04//output_14_1.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_14_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],norm_reviews[<span class="string">'RT_user_norm'</span>]) <span class="comment"># scatter是散点图</span></span><br><span class="line">ax.set_xlabel(<span class="string">'Fandango'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Rotten Tomatoes'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_15_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_15_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line">ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>) <span class="comment"># 加子图1</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>) <span class="comment"># 加子图2</span></span><br><span class="line">ax1.scatter(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],norm_reviews[<span class="string">'RT_user_norm'</span>])</span><br><span class="line">ax1.set_xlabel(<span class="string">'Fandango'</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">'Rotten Tomatoes'</span>)</span><br><span class="line">ax2.scatter(norm_reviews[<span class="string">'RT_user_norm'</span>],norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>])</span><br><span class="line">ax2.set_xlabel(<span class="string">'Rotten Tomatoes'</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">'Fandango'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_16_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_16_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">reviews = pd.read_csv(<span class="string">'fandango_scores.csv'</span>)</span><br><span class="line">cols = [<span class="string">'FILM'</span>,<span class="string">'RT_user_norm'</span>,<span class="string">'Metacritic_user_nom'</span>,<span class="string">'IMDB_norm'</span>,<span class="string">'Fandango_Ratingvalue'</span>]</span><br><span class="line">norm_reviews = reviews[cols]</span><br><span class="line">print(norm_reviews[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
 
 <pre><code>                             FILM  RT_user_norm  Metacritic_user_nom  \
@@ -1302,39 +1302,39 @@ Name: IMDB_norm, dtype: int64</code></pre>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots()</span><br><span class="line"><span class="comment"># ax.hist(norm_reviews['Fandango_Ratingvalue']) # hist表示这个图带有bins的结构</span></span><br><span class="line"><span class="comment"># ax.hist(norm_reviews['Fandango_Ratingvalue'],bins=20)</span></span><br><span class="line">ax.hist(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],range=(<span class="number">4</span>,<span class="number">5</span>),bins=<span class="number">20</span>) <span class="comment"># range 表示4,5</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_19_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_19_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>,<span class="number">20</span>))</span><br><span class="line">ax1 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax2 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">ax3 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">ax4 = fig.add_subplot(<span class="number">4</span>,<span class="number">1</span>,<span class="number">4</span>)</span><br><span class="line">ax1.hist(norm_reviews[<span class="string">'Fandango_Ratingvalue'</span>],bins=<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax1.set_title(<span class="string">'Distribution of Fandango Ratings'</span>)</span><br><span class="line">ax1.set_ylim(<span class="number">0</span>,<span class="number">50</span>) <span class="comment"># 设置y轴区间</span></span><br><span class="line"></span><br><span class="line">ax2.hist(norm_reviews[<span class="string">'RT_user_norm'</span>],<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax2.set_title(<span class="string">'Distribution of Rotten Tomatoes Ratings'</span>)</span><br><span class="line">ax2.set_ylim(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">ax3.hist(norm_reviews[<span class="string">'Metacritic_user_nom'</span>],<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax3.set_title(<span class="string">'Distribution of Metacritic Ratings'</span>)</span><br><span class="line">ax3.set_ylim(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">ax4.hist(norm_reviews[<span class="string">'IMDB_norm'</span>],<span class="number">20</span>,range=(<span class="number">0</span>,<span class="number">5</span>))</span><br><span class="line">ax4.set_title(<span class="string">'Distribution of Rotten IMDB Ratings'</span>)</span><br><span class="line">ax4.set_ylim(<span class="number">0</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_20_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_20_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 四分图</span></span><br><span class="line">fig,ax = plt.subplots()</span><br><span class="line">ax.boxplot(norm_reviews[<span class="string">'RT_user_norm'</span>]) <span class="comment"># 盒图</span></span><br><span class="line">ax.set_xticklabels([<span class="string">'Rotten Tomatoes'</span>])</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_21_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_21_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画四个盒特征盒子图</span></span><br><span class="line">num_cols = [<span class="string">'RT_user_norm'</span>,<span class="string">'Metacritic_user_nom'</span>,<span class="string">'IMDB_norm'</span>,<span class="string">'Fandango_Ratingvalue'</span>]</span><br><span class="line">fig,ax = plt.subplots()</span><br><span class="line">ax.boxplot(norm_reviews[num_cols].values)</span><br><span class="line">ax.set_xticklabels(num_cols,rotation=<span class="number">90</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_22_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_22_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">women_degrees = pd.read_csv(<span class="string">'percent-bachelors-degrees-women-usa.csv'</span>)</span><br><span class="line">plt.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[<span class="string">'Biology'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_23_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_23_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots()</span><br><span class="line">fig,ax = plt.subplots()</span><br><span class="line"><span class="comment"># print(women_degrees)</span></span><br><span class="line">ax.plot(women_degrees[<span class="string">'Year'</span>],women_degrees[<span class="string">'Biology'</span>],label=<span class="string">"Women"</span>)</span><br><span class="line">ax.plot(women_degrees[<span class="string">'Year'</span>],<span class="number">100</span>-women_degrees[<span class="string">'Biology'</span>],label=<span class="string">"Men"</span>)</span><br><span class="line"></span><br><span class="line">ax.tick_params(bottom=<span class="string">"off"</span>,top=<span class="string">"off"</span>,left=<span class="string">"off"</span>,right=<span class="string">"off"</span>) <span class="comment"># 去掉标尺</span></span><br><span class="line">ax.set_title(<span class="string">'Percentage of Biology Degrees Awarded By Gender'</span>) </span><br><span class="line">ax.legend(loc=<span class="string">"upper right"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 <pre><code>/usr/local/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:424: MatplotlibDeprecationWarning: 
 Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a boolean is deprecated; use an actual boolean (True/False) instead.
   warn_deprecated(&quot;2.2&quot;, &quot;Passing one of &#39;on&#39;, &#39;true&#39;, &#39;off&#39;, &#39;false&#39; as a &quot;</code></pre>
-<p><img src="/.io/2019/04//output_24_1.png" alt="png"></p>
-<p><img src="/.io/2019/04//output_24_2.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_24_1.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_24_2.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Color</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">women_degrees = pd.read_csv(<span class="string">'percent-bachelors-degrees-women-usa.csv'</span>)</span><br><span class="line">major_cats = [<span class="string">'Biology'</span>, <span class="string">'Computer Science'</span>, <span class="string">'Engineering'</span>, <span class="string">'Math and Statistics'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cb_dark_blue = (<span class="number">0</span>/<span class="number">255</span>, <span class="number">107</span>/<span class="number">255</span>, <span class="number">164</span>/<span class="number">255</span>) <span class="comment"># 得到一个远组</span></span><br><span class="line">cb_orange = (<span class="number">255</span>/<span class="number">255</span>, <span class="number">128</span>/<span class="number">255</span>, <span class="number">14</span>/<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">12</span>, <span class="number">12</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sp <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">    ax = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,sp+<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># The color for each line is assigned here.</span></span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[major_cats[sp]], c=cb_dark_blue, label=<span class="string">'Women'</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], <span class="number">100</span>-women_degrees[major_cats[sp]], c=cb_orange, label=<span class="string">'Men'</span>)</span><br><span class="line">    <span class="keyword">for</span> key,spine <span class="keyword">in</span> ax.spines.items():</span><br><span class="line">        spine.set_visible(<span class="literal">False</span>)</span><br><span class="line">    ax.set_xlim(<span class="number">1968</span>, <span class="number">2011</span>)</span><br><span class="line">    ax.set_ylim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">    ax.set_title(major_cats[sp])</span><br><span class="line">    ax.tick_params(bottom=<span class="string">"off"</span>, top=<span class="string">"off"</span>, left=<span class="string">"off"</span>, right=<span class="string">"off"</span>)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_25_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_25_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">18</span>, <span class="number">3</span>)) <span class="comment"># 指定合适的子图</span></span><br><span class="line">stem_cats = [<span class="string">'Engineering'</span>, <span class="string">'Computer Science'</span>, <span class="string">'Psychology'</span>, <span class="string">'Biology'</span>, <span class="string">'Physical Sciences'</span>, <span class="string">'Math and Statistics'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sp <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">6</span>):</span><br><span class="line">    ax = fig.add_subplot(<span class="number">1</span>,<span class="number">6</span>,sp+<span class="number">1</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[stem_cats[sp]], c=cb_dark_blue, label=<span class="string">'Women'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], <span class="number">100</span>-women_degrees[stem_cats[sp]], c=cb_orange, label=<span class="string">'Men'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">for</span> key,spine <span class="keyword">in</span> ax.spines.items():</span><br><span class="line">        spine.set_visible(<span class="literal">False</span>)</span><br><span class="line">    ax.set_xlim(<span class="number">1968</span>, <span class="number">2011</span>)</span><br><span class="line">    ax.set_ylim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">    ax.set_title(stem_cats[sp])</span><br><span class="line">    ax.tick_params(bottom=<span class="string">"off"</span>, top=<span class="string">"off"</span>, left=<span class="string">"off"</span>, right=<span class="string">"off"</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br><span class="line">fig = plt.figure(figsize=(<span class="number">18</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sp <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">6</span>):</span><br><span class="line">    ax = fig.add_subplot(<span class="number">1</span>,<span class="number">6</span>,sp+<span class="number">1</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], women_degrees[stem_cats[sp]], c=cb_dark_blue, label=<span class="string">'Women'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    ax.plot(women_degrees[<span class="string">'Year'</span>], <span class="number">100</span>-women_degrees[stem_cats[sp]], c=cb_orange, label=<span class="string">'Men'</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">for</span> key,spine <span class="keyword">in</span> ax.spines.items():</span><br><span class="line">        spine.set_visible(<span class="literal">False</span>)</span><br><span class="line">    ax.set_xlim(<span class="number">1968</span>, <span class="number">2011</span>)</span><br><span class="line">    ax.set_ylim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">    ax.set_title(stem_cats[sp])</span><br><span class="line">    ax.tick_params(bottom=<span class="string">"off"</span>, top=<span class="string">"off"</span>, left=<span class="string">"off"</span>, right=<span class="string">"off"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> sp == <span class="number">0</span>:</span><br><span class="line">        ax.text(<span class="number">2005</span>, <span class="number">87</span>, <span class="string">'Men'</span>) <span class="comment"># 在指定位置添加</span></span><br><span class="line">        ax.text(<span class="number">2002</span>, <span class="number">8</span>, <span class="string">'Women'</span>)</span><br><span class="line">    <span class="keyword">elif</span> sp == <span class="number">5</span>:</span><br><span class="line">        ax.text(<span class="number">2005</span>, <span class="number">62</span>, <span class="string">'Men'</span>)</span><br><span class="line">        ax.text(<span class="number">2001</span>, <span class="number">35</span>, <span class="string">'Women'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/.io/2019/04//output_26_0.png" alt="png"></p>
-<p><img src="/.io/2019/04//output_26_1.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_26_0.png" alt="png"></p>
+<p><img src="/2019/04/04/matplotlib-share/output_26_1.png" alt="png"></p>
 
       
     </div>
