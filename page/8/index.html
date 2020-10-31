@@ -158,6 +158,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/" class="post-title-link" itemprop="url">旺财记账本react版实现一</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-28 10:12:48" itemprop="dateCreated datePublished" datetime="2020-04-28T10:12:48+08:00">2020-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-29 09:46:20" itemprop="dateModified" datetime="2020-04-29T09:46:20+08:00">2020-04-29</time>
+              </span>
+
+          
+            <span id="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现一" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一 create-react-app 创建项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yarn config set registry https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br><span class="line">yarn global add create-react-app@3.4.1</span><br><span class="line">create-react-app --version</span><br><span class="line">create-react-app . --template typescript</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>增加.env 文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br><span class="line">BROWSER&#x3D;none</span><br></pre></td></tr></table></figure></li>
+<li>gitignore 增加/.idea</li>
+<li>提交代码
+<code>git init git status git rm -r --cached .idea git add . git commit -m &#39;init&#39;</code>
+二. react 目录结构</li>
+<li><img src="https://i.loli.net/2020/04/28/t5rsZiFwMECuGhf.png" alt="react目录结构.png"></li>
+<li>React.StrictMode 标签的作用用来检查代码</li>
+<li>react-app-env.d.ts 是 typescrpt 的声明文件，不能删</li>
+<li>tsconfig 是配置文件</li>
+<li>总结 index.html，app.tsx,index.tsc,tsconfig 一定要知道，稍微知道 react-app-env.d.ts 是声明文件就可以了</li>
+</ul>
+<p>三. react css 相关配置</p>
+<ol>
+<li>css normalize 的配置,作用是让不同浏览器上的样式尽量相近，举例：让不同的浏览器的按钮尽量相同,只要在 index.css 中加入@import-normalize 即可</li>
+<li>css normalize 和 css reset 的区别是 css normalize 要把默认样式基本一样，css reset 是把默认样式去掉</li>
+</ol>
+<p>四. 让 react 项目支持 scss</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add node-sass@npm:dart-sass &#x2F;&#x2F; 用dartsass换掉node-sass</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最难的技术问题，1.我想再某个项目中支持 scss。2. 需要用 node-sass,它有两个缺点: 下载速度慢，本地编译慢。3.于是我想改用 dart-sass 代替 node-scss。4.但是 React 只吃吃 node-sass 不支持 dart-sass。5.经过我的努力搜索和碳九。6.我发现 npm6.9 支持一个新功能，叫 package alias。7.通过 npm install node-sass@npm:dart-sass 即可偷梁换柱瞒天过海。8.最后达成了我的目标。</li>
+</ul>
+<p>五. 让@import 引用更方便。</p>
+<ul>
+<li>css 用法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里需要右击mark resource as root,直接用就可以</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>js 用法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在config中配置</span><br><span class="line">&quot;baseUrl&quot;: &quot;src&quot;,</span><br><span class="line">“include”:[&quot;src&quot;]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 styled-components,CSS in JS 方案，所有的东西都在 js 中</li>
+<li>安装 styled-components<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add styled-components@5.0.1</span><br><span class="line">yarn add -D @types&#x2F;styled-components@5.0.1 &#x2F;&#x2F; ts用这种</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>六. 使用 react-router</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br><span class="line">yarn add --dev @types&#x2F;react-router-dom</span><br><span class="line">&#x2F;&#x2F; 使用hash模式，history模式必须有后台支持，指向首页</span><br></pre></td></tr></table></figure>
+
+<p>七. 字体设置&amp;Nav 组件
+<code>在google上搜索中文字体 css github</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/27/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2210,247 +2343,6 @@ entertaining, you forget to parent them. (我知道你爱他们, 但有时你看
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/03/20/React%E5%85%A8%E8%A7%A3%E4%B9%8B03Hooks%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/20/React%E5%85%A8%E8%A7%A3%E4%B9%8B03Hooks%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">React全解之03Hooks原理解析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-20 08:45:59" itemprop="dateCreated datePublished" datetime="2020-03-20T08:45:59+08:00">2020-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-02 16:20:53" itemprop="dateModified" datetime="2020-10-02T16:20:53+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/03/20/React%E5%85%A8%E8%A7%A3%E4%B9%8B03Hooks%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="React全解之03Hooks原理解析" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/03/20/React%E5%85%A8%E8%A7%A3%E4%B9%8B03Hooks%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/20/React%E5%85%A8%E8%A7%A3%E4%B9%8B03Hooks%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-案例一-点击按钮-1"><a href="#1-案例一-点击按钮-1" class="headerlink" title="1. 案例一.点击按钮+1"></a>1. 案例一.<a href="https://codesandbox.io/s/pedantic-currying-99vm4" target="_blank" rel="noopener">点击按钮+1</a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"App 运行了"</span>);</span><br><span class="line">  <span class="keyword">const</span> [n, setN] = React.useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;n&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>同样的 n 在不同的次数执行，得出的结果是不一样的</li>
-<li>首次渲染 render<code>&lt;App/&gt;</code>组件, App 组件会调用 App 函数，执行之后得到虚拟 DIV 创建，创建真实 DIV</li>
-<li>用户点击 button 调用 setN(N+1) 再次 render<code>&lt;App /&gt;</code></li>
-<li>调用 App(),得到虚拟 DIV,DOM Diff 更新真 DIV,每次调用 App(),都会运行 State(0)</li>
-<li>每次调用 App(),都会运行 useState(0),每次 useState 的 n 不一样</li>
-<li><img src="https://i.loli.net/2020/10/02/XdbexN3WtuT5nrs.png" alt="react_1.png"></li>
-</ul>
-<h3 id="2-问自己几个问题"><a href="#2-问自己几个问题" class="headerlink" title="2. 问自己几个问题"></a>2. 问自己几个问题</h3><ul>
-<li>引出问题: 执行 setN 的时候会发生什么？n 会变吗？App()会重新执行吗？<ul>
-<li>执行 setN 表示要把 n 变了，这个时候 n 是不变的，即 setN 并不会改变 n,App 会重新执行</li>
-</ul>
-</li>
-<li>如果 App()会重新执行，那么 useState(0)的时候，n 每次的值会不同吗?<ul>
-<li>确实 n 的值是不同的</li>
-</ul>
-</li>
-<li>通过 console.log 得到答案</li>
-</ul>
-<ol>
-<li>分析</li>
-</ol>
-<ul>
-<li>setN<ul>
-<li>setN 一定会修改数据 x, 将 n+1 存入 x</li>
-<li>setN 一定会触发<code>&lt;App/ &gt;</code> 重新渲染</li>
-</ul>
-</li>
-<li>useState<ul>
-<li>useState 肯定会从 x 读取 n 的最新值</li>
-</ul>
-</li>
-<li>x<ul>
-<li>x,每个组件有自己的数据 x，我们将其命名为 state</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-首次尝试实现-useState"><a href="#3-首次尝试实现-useState" class="headerlink" title="3. 首次尝试实现 useState"></a>3. <a href="https://codesandbox.io/s/jolly-paper-g6c6j" target="_blank" rel="noopener">首次尝试实现 useState</a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myUseState = <span class="function">(<span class="params">initialValue</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"myUseState run"</span>);</span><br><span class="line">  <span class="keyword">let</span> state = initialValue;</span><br><span class="line">  <span class="keyword">const</span> setState = <span class="function">(<span class="params">newValue</span>) =&gt;</span> &#123;</span><br><span class="line">    state = newValue;</span><br><span class="line">    render();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> [state, setState];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> render = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"App 运行了"</span>);</span><br><span class="line">  <span class="keyword">const</span> [n, setN] = myUseState(<span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`n:<span class="subst">$&#123;n&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"Apps"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;n&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这样写之后还是不行，因为每次 render,n 都是初始值，解决方法是把 state 放到外面, 只要声明在 myUseState 外面即可</li>
-<li>进行这样改写就可以了。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> _state;</span><br><span class="line"><span class="keyword">const</span> myUseState = <span class="function">(<span class="params">initialValue</span>) =&gt;</span> &#123;</span><br><span class="line">  _state = _state === <span class="literal">undefined</span> ? initialValue : _state;</span><br><span class="line">  <span class="keyword">const</span> setState = <span class="function">(<span class="params">newValue</span>) =&gt;</span> &#123;</span><br><span class="line">    _state = newValue;</span><br><span class="line">    render();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> [_state, setState];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> render = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [n, setN] = myUseState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;n&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-如果一个组件用了多个-useState-怎么办？"><a href="#4-如果一个组件用了多个-useState-怎么办？" class="headerlink" title="4. 如果一个组件用了多个 useState 怎么办？"></a>4. 如果一个组件用了多个 useState 怎么办？</h3><ul>
-<li>有两种改进思路</li>
-</ul>
-<ol>
-<li> 把_state 做成一个对象</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">比如_state &#x3D; &#123;n:0,m:0&#125;</span><br><span class="line">这种不行，因为useState(0)并不知道变量叫n 还是m</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>把_state 做成数组</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比如_state &#x3D; [0,0]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如何让多个 useState 不冲突</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> _state = [];</span><br><span class="line"><span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> myUseState = <span class="function">(<span class="params">initialValue</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> currentIndex = index;</span><br><span class="line">  <span class="comment">// 这样写的原因是因为+1之后再return就return的是下一个了,n,m就不会出现再页面上是undefined</span></span><br><span class="line">  _state[currentIndex] =</span><br><span class="line">    _state[currentIndex] === <span class="literal">undefined</span> ? initialValue : _state[currentIndex];</span><br><span class="line">  <span class="keyword">const</span> setState = <span class="function">(<span class="params">newValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(currentIndex);</span><br><span class="line">    _state[currentIndex] = newValue;</span><br><span class="line">    render();</span><br><span class="line">  &#125;;</span><br><span class="line">  index += <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> [_state[currentIndex], setState];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> render = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  index = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 理论上说每次渲染app之前都需要重置index,这一步是最重要的</span></span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, rootElement);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [n, setN] = myUseState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> [m, setM] = myUseState(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;n&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; setN(n + 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;&#123;m&#125;&lt;/</span>p&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        &lt;button onClick=&#123;() =&gt; setM(n + <span class="number">1</span>)&#125;&gt;+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;, rootElement);</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-state-数组方案的缺点"><a href="#5-state-数组方案的缺点" class="headerlink" title="5. _state 数组方案的缺点"></a>5. _state 数组方案的缺点</h3><ul>
-<li>useState 调用顺序<ul>
-<li>若第一次渲染时 n 是第一个,m 是第二个,k 是第三个</li>
-<li>则第二次渲染时必须保证顺序完全一致</li>
-<li>所以 React 不允许出现如下代码, react hooks 不能写在条件循环</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (n % <span class="number">2</span> === <span class="number">1</span>) &#123;</span><br><span class="line">  [m, setN] = React.useState(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>题外话:Vue3 克服了这个问题。所以，尤雨溪说 Vue3 借鉴了 React 的思想，但是比 React 做的更好。</li>
-</ul>
-<h3 id="6-现在代码还有一个问题"><a href="#6-现在代码还有一个问题" class="headerlink" title="6. 现在代码还有一个问题"></a>6. 现在代码还有一个问题</h3><ul>
-<li><p>App 用了_state 和 index, 那其他组件用什么？</p>
-<ul>
-<li>解决办法:给每个组件创建一个_state 和 index</li>
-</ul>
-</li>
-<li><p>又有问题:放在全局作用域里重命名了怎么办？</p>
-<ul>
-<li>解决办法:放在组件对应的虚拟节点对象上</li>
-</ul>
-</li>
-<li><p>app 组件更新过程
-<img src="https://i.loli.net/2020/10/02/lqEaI2KVhmNHovX.png" alt="app组件更新过程.png"></p>
-</li>
-<li><p>上图只画了 App 组件的更新过程，两个 ChildA 组件也有同样的过程</p>
-</li>
-</ul>
-<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><ul>
-<li>每个函数组件对应一个 React 节点</li>
-<li>每个节点保存着 state 和 index</li>
-<li>useState 会读取<code>state[index]</code></li>
-<li>index 由 useState 出现的顺序决定</li>
-<li>setState 会修改 state,并触发更新</li>
-<li>注意: 本篇文章对 React 的实现做了简化，React 节点应该是 FiberNode,_state 的真实名称为 memorizedState, index 的实现则用到了链表</li>
-</ul>
-<h3 id="8-useState-错误理解案例"><a href="#8-useState-错误理解案例" class="headerlink" title="8. useState 错误理解案例"></a>8. useState 错误理解案例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [n, setN] = React.useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> log = <span class="function"><span class="params">()</span> =&gt;</span> setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;n&#125;</span>`</span>), <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;n&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button</span></span><br><span class="line"><span class="regexp">          onClick=&#123;() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">            setN(n + 1);</span></span><br><span class="line"><span class="regexp">          &#125;&#125;</span></span><br><span class="line"><span class="regexp">        &gt;</span></span><br><span class="line"><span class="regexp">          +1</span></span><br><span class="line"><span class="regexp">        &lt;/</span>button&gt;</span><br><span class="line">        &lt;button onClick=&#123;log&#125;&gt;log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &#123;/</span>*点击log <span class="number">3</span>秒后把n打印出n*<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 两种操作</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 1. 点击+1再点击log-- 无bug</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 2. 点击log再点击+1-- 有bug</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 问题: 为什么log出了旧数据?</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;, rootElement);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>其实和 for 循环 setTimeOut 0, 函数打印出 6 个 6 一样
-<img src="https://i.loli.net/2020/10/02/5VXtFxBTZhcUQ4e.png" alt="n的分身.png"></li>
-</ul>
-<h3 id="9-如何有贯穿始终的状态"><a href="#9-如何有贯穿始终的状态" class="headerlink" title="9. 如何有贯穿始终的状态"></a>9. 如何有贯穿始终的状态</h3><ul>
-<li>Vue3 就是每次都是一次 n</li>
-<li>React 底层思想非常倾向函数式所以不希望 n 多次变化</li>
-<li>解决办法:<ul>
-<li>全局变量, window.xxx, 太 low 了</li>
-<li>useRef 例子,<ul>
-<li><a href="https://codesandbox.io/s/flamboyant-elion-jvtl2" target="_blank" rel="noopener">https://codesandbox.io/s/flamboyant-elion-jvtl2</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> nRef = React.useRef(<span class="number">0</span>); <span class="comment">// Ref就是一个很简单的对象。 &#123; current:0 &#125;</span></span><br><span class="line">  <span class="keyword">const</span> log = <span class="function"><span class="params">()</span> =&gt;</span> setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;nRef.current&#125;</span>`</span>), <span class="number">1000</span>);</span><br><span class="line">  <span class="comment">// Vue3里面的current是value</span></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;nRef.current&#125; 这里并不能实时更新&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;() =&gt; (nRef.current += 1)&#125;&gt;+1&lt;/</span>button&gt;</span><br><span class="line">        &lt;button onClick=&#123;log&#125;&gt;log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 那我就是要让Ref重新渲染怎么办，React做不到，就是不会重新渲染</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 用Vue3吧，Vue能做到，所以Vue3很可能会抢走React一部分用户，因为Api更符合人的直觉</span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;, rootElement);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>手动造出来让 useRef 更新 dom</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> nRef = React.useRef(<span class="number">0</span>); <span class="comment">// Ref就是一个很简单的对象。 &#123; current:0 &#125;</span></span><br><span class="line">  <span class="keyword">const</span> log = <span class="function"><span class="params">()</span> =&gt;</span> setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;nRef.current&#125;</span>`</span>), <span class="number">1000</span>);</span><br><span class="line">  <span class="keyword">const</span> update = React.useState(<span class="literal">null</span>)[<span class="number">1</span>];</span><br><span class="line">  <span class="comment">// Vue3里面的current是value</span></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;p&gt;&#123;nRef.current&#125; 这里能实时更新&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button</span></span><br><span class="line"><span class="regexp">          onClick=&#123;() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">            nRef.current += 1;</span></span><br><span class="line"><span class="regexp">            update(nRef.current);</span></span><br><span class="line"><span class="regexp">          &#125;&#125;</span></span><br><span class="line"><span class="regexp">        &gt;</span></span><br><span class="line"><span class="regexp">          +1</span></span><br><span class="line"><span class="regexp">        &lt;/</span>button&gt;</span><br><span class="line">        &lt;button onClick=&#123;log&#125;&gt;log&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 那我就是要让Ref重新渲染怎么办，React做不到，就是不会重新渲染</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 用Vue3吧，Vue能做到，所以Vue3很可能会抢走React一部分用户，因为Api更符合人的直觉</span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;, rootElement);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Vue3 主要抄了 React 两个地方</p>
-<ul>
-<li>hooks 的思想</li>
-<li>不使用 useState,而是用 useRef，再你自己对 useRef 的 current 的值做变更的时候，自动的去 update</li>
-</ul>
-</li>
-<li><p>通过 useContext 实现贯穿始终,useRef 只是贯穿一个组件的前中后,useContext 是贯穿所有组件,大多数情况还是用 useRef,除非是非常重的方法用 useContext</p>
-</li>
-<li><p>强制更新的例子,<a href="https://codesandbox.io/s/wizardly-grothendieck-ek0i5" target="_blank" rel="noopener">https://codesandbox.io/s/wizardly-grothendieck-ek0i5</a></p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"./styles.css"</span>;</span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> themeContext = React.createContext(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// 上下文其实就是一个全局变量,把themeContext理解为一个全局变量</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [theme, setTheme] = React.useState(<span class="string">"red"</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;themeContext.Provider value=&#123;&#123; theme, setTheme &#125;&#125;&gt;</span><br><span class="line">      &#123;<span class="comment">/*value的意思是我们对全局变量进行一次赋值,值就是一个对象*/</span>&#125;</span><br><span class="line">      &#123;<span class="comment">/*themeContext.Provider 表示作用域的开始和结束*/</span>&#125;</span><br><span class="line">      &lt;div className=&#123;<span class="string">`App <span class="subst">$&#123;theme&#125;</span>`</span>&#125;&gt;</span><br><span class="line">        &lt;p&gt;&#123;theme&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">          &lt;ChildA /</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">          &lt;ChildB /</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/themeContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function ChildA() &#123;</span></span><br><span class="line"><span class="regexp">  const &#123; setTheme &#125; = React.useContext(themeContext);</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setTheme("red")&#125;&gt;red&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function ChildB() &#123;</span></span><br><span class="line"><span class="regexp">  const &#123; setTheme &#125; = React.useContext(themeContext);</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setTheme("blue")&#125;&gt;blue&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;, rootElement);</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-总结"><a href="#10-总结" class="headerlink" title="10. 总结"></a>10. 总结</h3><ul>
-<li>每次重新渲染，组件函数就会执行</li>
-<li>对应的所有 state 就会出现[分身]</li>
-<li>如果不希望出现分身，可以用 useRef/useContext 等解决</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2522,7 +2414,7 @@ entertaining, you forget to parent them. (我知道你爱他们, 但有时你看
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

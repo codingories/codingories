@@ -158,6 +158,245 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">P48_完成梯度下降模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-10 10:50:32 / Modified: 10:52:29" itemprop="dateCreated datePublished" datetime="2019-06-10T10:50:32+08:00">2019-06-10</time>
+            </span>
+
+          
+            <span id="/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="P48_完成梯度下降模块" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们将建立一个逻辑回归模型来预测一个学生是否被大学录取。假设你是一个大学系的管理员，你想根据两次考试的结果来决定每个申请人的录取机会。你有以前的申请人的历史数据，你可以用它作为逻辑回归的训练集。对于每一个培训例子，你有两个考试的申请人的分数和录取决定。为了做到这一点，我们将建立一个分类模型，根据考试成绩估计入学概率。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 三大件</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">path = <span class="string">"data"</span> + os.sep + <span class="string">"LogiReg_data.txt"</span></span><br><span class="line">pdData = pd.read_csv(path, header = <span class="literal">None</span>, names=[<span class="string">'Exam 1'</span>,<span class="string">'Exam 2'</span>,<span class="string">'Admitted'</span>]) <span class="comment"># 读取数据,并且自己指定列名</span></span><br><span class="line">pdData.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre>
+<p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Exam 1</th>
+      <th>Exam 2</th>
+      <th>Admitted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>34.623660</td>
+      <td>78.024693</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>30.286711</td>
+      <td>43.894998</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>35.847409</td>
+      <td>72.902198</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60.182599</td>
+      <td>86.308552</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>79.032736</td>
+      <td>75.344376</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdData.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(100, 3)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">positive = pdData[pdData[<span class="string">'Admitted'</span>] == <span class="number">1</span>]</span><br><span class="line">negative = pdData[pdData[<span class="string">'Admitted'</span>] == <span class="number">0</span>] <span class="comment"># 指定正例，负例</span></span><br><span class="line"></span><br><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>)) <span class="comment"># 指定画图长宽</span></span><br><span class="line">ax.scatter(positive[<span class="string">'Exam 1'</span>],positive[<span class="string">'Exam 2'</span>], s=<span class="number">30</span>, c=<span class="string">'b'</span>, marker=<span class="string">'o'</span>,label=<span class="string">'Admitted'</span>)</span><br><span class="line">ax.scatter(negative[<span class="string">'Exam 1'</span>],negative[<span class="string">'Exam 2'</span>], s=<span class="number">30</span>, c=<span class="string">'r'</span>, marker=<span class="string">'x'</span>,label=<span class="string">'Not Admitted'</span>) <span class="comment"># 画散点图</span></span><br><span class="line">ax.legend()</span><br><span class="line">ax.set_xlabel(<span class="string">'Exam 1 Score'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Exam 2 Score'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Text(0, 0.5, &#39;Exam 2 Score&#39;)</code></pre>
+<p><img src="/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/output_4_1.png" alt="png"></p>
+<p>The logistic regression 
+目标：建立分类器（求解出三个参数 θ0θ1θ2）</p>
+<p>设定阈值，根据阈值判断录取结果</p>
+<p>要完成的模块
+sigmoid : 映射到概率的函数</p>
+<p>model : 返回预测结果值</p>
+<p>cost : 根据参数计算损失</p>
+<p>gradient : 计算每个参数的梯度方向</p>
+<p>descent : 进行参数更新</p>
+<p>accuracy: 计算精度</p>
+<p>sigmoid 函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span> + np.exp(-z))  <span class="comment"># 即 e的-z次方</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums = np.arange(<span class="number">-10</span>, <span class="number">10</span>, step = <span class="number">1</span>)</span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">ax.plot(nums, sigmoid(nums), <span class="string">'r'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x10f1d9080&gt;]</code></pre>
+<p><img src="/2019/06/10/P48-%E5%AE%8C%E6%88%90%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%A8%A1%E5%9D%97/output_7_1.png" alt="png"></p>
+<p>Sigmoid</p>
+<ul>
+<li>g:ℝ→[0,1]</li>
+<li>g(0)=0.5</li>
+<li>g(−∞)=0</li>
+<li>g(+∞)=1</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(X, theta)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> sigmoid(np.dot(X, theta.T))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pdData.insert(<span class="number">0</span>, <span class="string">'Ones'</span>, <span class="number">1</span>)</span><br><span class="line">orig_data = pdData.as_matrix()</span><br><span class="line">cols = orig_data.shape[<span class="number">1</span>]</span><br><span class="line">X = orig_data[:, <span class="number">0</span>:cols<span class="number">-1</span>]</span><br><span class="line">y = orig_data[:, cols<span class="number">-1</span>:cols]</span><br><span class="line">theta = np.zeros([<span class="number">1</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>/usr/local/Cellar/ipython/7.2.0/libexec/vendor/lib/python3.7/site-packages/ipykernel_launcher.py:2: FutureWarning: Method .as_matrix will be removed in a future version. Use .values instead.</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 1.        , 34.62365962, 78.02469282],
+       [ 1.        , 30.28671077, 43.89499752],
+       [ 1.        , 35.84740877, 72.90219803],
+       [ 1.        , 60.18259939, 86.3085521 ],
+       [ 1.        , 79.03273605, 75.34437644]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0.],
+       [0.],
+       [0.],
+       [1.],
+       [1.]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theta</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0., 0., 0.]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.shape,y.shape,theta.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>((100, 3), (100, 1), (1, 3))</code></pre>
+<p>损失函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cost</span><span class="params">(X, y, theta)</span>:</span></span><br><span class="line">    left = np.multiply(-y, np.log(model(X, theta)))</span><br><span class="line">    right = np.multiply(<span class="number">1</span> - y,np.log(<span class="number">1</span> - model(X, theta)))</span><br><span class="line">    <span class="keyword">return</span> np.sum(left - right) / (len(X))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cost(X,y,theta)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0.6931471805599453</code></pre>
+<p>计算梯度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient</span><span class="params">(X,y,theta)</span>:</span></span><br><span class="line">    grad = np.zeros(theta.shape)</span><br><span class="line">    error = (model(X,theta) - y).ravel()</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(theta,ravel())):</span><br><span class="line">        term = np.multiply(error, X[:,j])</span><br><span class="line">        grad[<span class="number">0</span>,j] = np.sum(term) / len(X)</span><br><span class="line">    <span class="keyword">return</span> grad</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/10/day15-Easy-day66-Plus-One/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1007,100 +1246,6 @@ Output: “1211”</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/06/day11-Easy-35-Search-Insert-Position/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/06/day11-Easy-35-Search-Insert-Position/" class="post-title-link" itemprop="url">day11-Easy-35_Search_Insert_Position</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-06 15:08:15 / Modified: 15:10:29" itemprop="dateCreated datePublished" datetime="2019-06-06T15:08:15+08:00">2019-06-06</time>
-            </span>
-
-          
-            <span id="/2019/06/06/day11-Easy-35-Search-Insert-Position/" class="post-meta-item leancloud_visitors" data-flag-title="day11-Easy-35_Search_Insert_Position" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/06/day11-Easy-35-Search-Insert-Position/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/06/day11-Easy-35-Search-Insert-Position/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
-You may assume no duplicates in the array.
-Example 1:
-Input: [1,3,5,6], 5
-Output: 2
-Example 2:
-Input: [1,3,5,6], 2
-Output: 1
-Example 3:
-Input: [1,3,5,6], 7
-Output: 4
-Example 4:
-Input: [1,3,5,6], 0
-Output: 0</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">自己做的</span><br><span class="line">class Solution:</span><br><span class="line">    def searchInsert(self, nums: List[int], target: int) -&gt; int:</span><br><span class="line">        if target in nums:</span><br><span class="line">            return nums.index(target)</span><br><span class="line">        else:</span><br><span class="line">            for i in range(len(nums)):</span><br><span class="line">                if nums[i] &gt; target:</span><br><span class="line">                    return i</span><br><span class="line">        return len(nums)</span><br><span class="line"></span><br><span class="line">其他答案:</span><br><span class="line">class Solution:</span><br><span class="line">    def searchInsert(self, nums: List[int], target: int) -&gt; int:  </span><br><span class="line">        if target &gt; nums[len(nums) - 1]:</span><br><span class="line">            return len(nums)       </span><br><span class="line">        for i in range(len(nums)):</span><br><span class="line">            if nums[i] &gt;&#x3D; target:</span><br><span class="line">                return i</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1172,7 +1317,7 @@ Output: 0</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

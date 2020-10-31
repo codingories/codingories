@@ -158,6 +158,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%AD/" class="post-title-link" itemprop="url">造轮子-tab组件(中)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-27 19:38:06 / Modified: 23:15:03" itemprop="dateCreated datePublished" datetime="2020-01-27T19:38:06+08:00">2020-01-27</time>
+            </span>
+
+          
+            <span id="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%AD/" class="post-meta-item leancloud_visitors" data-flag-title="造轮子-tab组件(中)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%AD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-如果给一个标签一个class-标签本身又有class-vue是默认会合并的。只有两个属性是这样一个是class-一个是style。这样就比较好改样式。"><a href="#1-如果给一个标签一个class-标签本身又有class-vue是默认会合并的。只有两个属性是这样一个是class-一个是style。这样就比较好改样式。" class="headerlink" title="1. 如果给一个标签一个class,标签本身又有class,vue是默认会合并的。只有两个属性是这样一个是class,一个是style。这样就比较好改样式。"></a>1. 如果给一个标签一个class,标签本身又有class,vue是默认会合并的。只有两个属性是这样一个是class,一个是style。这样就比较好改样式。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;g-tabs-head class&#x3D;&quot;red&quot;&gt;&lt;&#x2F;g-tabs&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-组件的结构以及selected的传递过程，见下图。"><a href="#2-组件的结构以及selected的传递过程，见下图。" class="headerlink" title="2. 组件的结构以及selected的传递过程，见下图。"></a>2. 组件的结构以及selected的传递过程，见下图。</h4><ul>
+<li>没有点击的图
+<img src="https://i.loli.net/2020/01/27/iaz9jZp7fL3J5Kn.png" alt="没点击.png"></li>
+<li>发生了点击操作的图，两个item兄弟之间是没有关系的，发生了点击操作之后要做下图中的五件事情。<ol>
+<li>亮自己</li>
+<li>熄兄弟</li>
+<li>亮pane</li>
+<li>熄pane</li>
+<li>触发事件 update:selected -&gt; item2
+<img src="https://i.loli.net/2020/01/27/MdZWiJ2tFcsBxnN.png" alt="点击.png"></li>
+</ol>
+</li>
+</ul>
+<h4 id="3-接下去考虑代码的实现，有两种方案"><a href="#3-接下去考虑代码的实现，有两种方案" class="headerlink" title="3. 接下去考虑代码的实现，有两种方案"></a>3. 接下去考虑代码的实现，有两种方案</h4><ol>
+<li>第一种爷爷爸爸儿子之前互相通信</li>
+<li>用事件中心EventHub或者叫EventBus发布订阅模式实现,这种简单
+<img src="https://i.loli.net/2020/01/27/pqmbcfehoxITzQu.png" alt="发布订阅.png"><h4 id="4-下划线开头的属性不要用是私有属性给vue用的-开头的属性是专门可以用的"><a href="#4-下划线开头的属性不要用是私有属性给vue用的-开头的属性是专门可以用的" class="headerlink" title="4. 下划线开头的属性不要用是私有属性给vue用的,$开头的属性是专门可以用的"></a>4. 下划线开头的属性不要用是私有属性给vue用的,$开头的属性是专门可以用的</h4><h4 id="5-在爷爷tabs组件上面加了privide后代都可以用，其他的属性只提供给儿子不提供给孙子-只有provide是任何后代都可以访问的。"><a href="#5-在爷爷tabs组件上面加了privide后代都可以用，其他的属性只提供给儿子不提供给孙子-只有provide是任何后代都可以访问的。" class="headerlink" title="5. 在爷爷tabs组件上面加了privide后代都可以用，其他的属性只提供给儿子不提供给孙子,只有provide是任何后代都可以访问的。"></a>5. 在爷爷tabs组件上面加了privide后代都可以用，其他的属性只提供给儿子不提供给孙子,只有provide是任何后代都可以访问的。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; tabs.vue这样就有了eventBus   </span><br><span class="line">data()&#123;</span><br><span class="line">   return &#123;</span><br><span class="line">     eventBus: new Vue()</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> provide()&#123;</span><br><span class="line">   return &#123;</span><br><span class="line">     eventBus:this.eventBus</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> created()&#123;</span><br><span class="line">   console.log(&#39;爷爷的eventBus&#39;)</span><br><span class="line">   console.log(this.eventBus)</span><br><span class="line">   &#x2F;&#x2F; this.$emit(&#39;update:selected&#39;,&#39;xxx&#39;)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; tabs-head.vie儿子就有了eventBus,其他组件同理</span><br><span class="line"> inject: [&#39;eventBus&#39;],</span><br><span class="line"> created()&#123;</span><br><span class="line">   console.log(&#39;爷爷给爸爸的eventBus&#39;)</span><br><span class="line">   console.log(this.eventBus)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="下图橙色字的地方就是provide"><a href="#下图橙色字的地方就是provide" class="headerlink" title="下图橙色字的地方就是provide"></a>下图橙色字的地方就是provide</h5><img src="https://i.loli.net/2020/01/27/B8WRIygshbUwt5V.png" alt="provide.png"><h4 id="6-取函数名字的时候先取一个必须要改的名字，之后再改"><a href="#6-取函数名字的时候先取一个必须要改的名字，之后再改" class="headerlink" title="6.取函数名字的时候先取一个必须要改的名字，之后再改"></a>6.取函数名字的时候先取一个必须要改的名字，之后再改</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">  this.eventBus.$on(&#39;update:selected&#39;,(name)&#x3D;&gt;&#123;</span><br><span class="line">    console.log(name)</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 这句话的意思是监听selected被更新了，并且执行一个回调,这里监听的可能是其它的组件</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  xxx()&#123;</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;,this.name)</span><br><span class="line">    &#x2F;&#x2F; 这句话的意思是大声喊出来selected更新了</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="7-index-html中-在g-tabs中监听update-selected事件，不会触发yyy-vue的事件是不会冒泡的-在哪里触发就在哪里，但是这个问题不是冒泡问题"><a href="#7-index-html中-在g-tabs中监听update-selected事件，不会触发yyy-vue的事件是不会冒泡的-在哪里触发就在哪里，但是这个问题不是冒泡问题" class="headerlink" title="7.index.html中,在g-tabs中监听update:selected事件，不会触发yyy,vue的事件是不会冒泡的,在哪里触发就在哪里，但是这个问题不是冒泡问题"></a>7.index.html中,在g-tabs中监听update:selected事件，不会触发yyy,vue的事件是不会冒泡的,在哪里触发就在哪里，但是这个问题不是冒泡问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 我们的eventBus是g-tabs生成的new Vue(),而app.js监听的g-tabs,是一个vue组件，</span><br><span class="line">&#x2F;&#x2F; 也就是vue组件的事件，而不是new Vue()</span><br><span class="line">&lt;g-tabs :selected.sync&#x3D;&quot;selectedTab&quot; @update:selected&#x3D;&quot;yyy&quot;&gt;&lt;&#x2F;g-tabs&gt;</span><br><span class="line">  methods: &#123;</span><br><span class="line">      yyy(data)&#123;</span><br><span class="line">          console.log(&#39;yyy&#39;)</span><br><span class="line">          console.log(data)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 那么组件怎么触发呢</span><br><span class="line">  &#x2F;&#x2F; tabs.vue</span><br><span class="line">  created()&#123;</span><br><span class="line">      this.$emit(&#39;update:selected&#39;, &#39;这是 this $emit 出来的数据&#39;) &#x2F;&#x2F; 这样写可以触发外面,这里的this</span><br><span class="line">      就是当前组件</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;, &#39;这是 this event $emit 出来的数据&#39;) &#x2F;&#x2F; 这样写不可以触发外面</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; app.js</span><br><span class="line">  &lt;g-tabs :selected.sync&#x3D;&quot;selectedTab&quot; @update:selected&#x3D;&quot;yyy&quot;&gt;&lt;&#x2F;g-tabs&gt;</span><br><span class="line">  methods: &#123;</span><br><span class="line">      yyy(data)&#123;</span><br><span class="line">          console.log(&#39;yyy&#39;)</span><br><span class="line">          console.log(data)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>总结：事件要看在哪个对象上触发的，你需要知道你触发的事件是在哪个对象上触发的，一个是在this上面,一个是在this的eventBus上面,每个对象都可以触发不同事件。</li>
+</ul>
+<h4 id="8-如果在tabs-header上不会触发"><a href="#8-如果在tabs-header上不会触发" class="headerlink" title="8. 如果在tabs-header上不会触发"></a>8. 如果在tabs-header上不会触发</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs-head</span><br><span class="line">created()&#123;</span><br><span class="line">  this.$emit(&#39;update:selected&#39;, &#39;这是 tabs-head 抛出来的数据&#39;) </span><br><span class="line">  &#x2F;&#x2F; 这样写不可以触发外面是因为vue的事件系统是不会冒泡的,</span><br><span class="line">  &#x2F;&#x2F;如果g-tabs-head标签是一个div那么是可以触发到g-tabs的因为div是可以冒泡的</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; index.html</span><br><span class="line"> &lt;g-tabs :selected.sync&#x3D;&quot;selectedTab&quot; @update:selected&#x3D;&quot;yyy&quot;&gt;</span><br><span class="line">    &lt;g-tabs-head class&#x3D;&quot;red&quot;&gt;</span><br><span class="line">        &lt;template slot&#x3D;&quot;actions&quot;&gt;</span><br><span class="line">            &lt;button&gt;设置&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;g-tabs-head&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="9-关于Vue的事件要注意点"><a href="#9-关于Vue的事件要注意点" class="headerlink" title="9.关于Vue的事件要注意点"></a>9.关于Vue的事件要注意点</h4><ul>
+<li>事件是在哪个对象上调用的,在哪个对象上调用就只能在那个对象上监听</li>
+<li>事件不会冒泡,子标签触发的事件不会自动传到父标签</li>
+</ul>
+<h4 id="个人微信-欢迎交流"><a href="#个人微信-欢迎交流" class="headerlink" title="个人微信,欢迎交流!"></a>个人微信,欢迎交流!</h4><p><img src="https://i.loli.net/2020/01/27/gS4ZwP6zfAvULYT.jpg" alt="IMG_0146.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/27/%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -536,7 +647,7 @@
           <ol start="0">
 <li><p>Vue的常用修饰符</p>
 <ul>
-<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#49;&#x2e;&#x40;&#99;&#108;&#105;&#99;&#107;&#46;&#x73;&#x74;&#x6f;&#112;">&#49;&#x2e;&#x40;&#99;&#108;&#105;&#99;&#107;&#46;&#x73;&#x74;&#x6f;&#112;</a>=”xxx”<a href="mailto:&#50;&#x2e;&#64;&#99;&#108;&#105;&#99;&#107;&#x2e;&#x70;&#x72;&#x65;&#118;&#x65;&#110;&#x74;">&#50;&#x2e;&#64;&#99;&#108;&#105;&#99;&#107;&#x2e;&#x70;&#x72;&#x65;&#118;&#x65;&#110;&#x74;</a>=”xxx”<a href="mailto:&#51;&#46;&#64;&#107;&#x65;&#x79;&#112;&#x72;&#x65;&#x73;&#x73;&#x2e;&#101;&#x6e;&#116;&#x65;&#114;">&#51;&#46;&#64;&#107;&#x65;&#x79;&#112;&#x72;&#x65;&#x73;&#x73;&#x2e;&#101;&#x6e;&#116;&#x65;&#114;</a>=”xxx”4.:money.sync=”total”</li>
+<li>Vue的常用修饰符有四个分别是:<a href="mailto:&#x31;&#x2e;&#64;&#x63;&#108;&#105;&#x63;&#x6b;&#x2e;&#x73;&#116;&#111;&#x70;">&#x31;&#x2e;&#64;&#x63;&#108;&#105;&#x63;&#x6b;&#x2e;&#x73;&#116;&#111;&#x70;</a>=”xxx”<a href="mailto:&#x32;&#46;&#64;&#99;&#x6c;&#x69;&#x63;&#x6b;&#46;&#112;&#x72;&#x65;&#118;&#x65;&#x6e;&#116;">&#x32;&#46;&#64;&#99;&#x6c;&#x69;&#x63;&#x6b;&#46;&#112;&#x72;&#x65;&#118;&#x65;&#x6e;&#116;</a>=”xxx”<a href="mailto:&#51;&#46;&#x40;&#x6b;&#101;&#x79;&#112;&#114;&#101;&#115;&#115;&#46;&#101;&#110;&#x74;&#101;&#x72;">&#51;&#46;&#x40;&#x6b;&#101;&#x79;&#112;&#114;&#101;&#115;&#115;&#46;&#101;&#110;&#x74;&#101;&#x72;</a>=”xxx”4.:money.sync=”total”</li>
 </ul>
 </li>
 <li><p>@click.stop=”xxx”</p>
@@ -1073,99 +1184,6 @@ jQuery移动元素方法有两组，一组方法是直接移动该元素，另�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/28/JS%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/28/JS%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" class="post-title-link" itemprop="url">JS函数的执行时机</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-09-28 19:20:29 / Modified: 19:45:16" itemprop="dateCreated datePublished" datetime="2019-09-28T19:20:29+08:00">2019-09-28</time>
-            </span>
-
-          
-            <span id="/2019/09/28/JS%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" class="post-meta-item leancloud_visitors" data-flag-title="JS函数的执行时机" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/09/28/JS%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/28/JS%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-为什么如下代码会打印-6-个-6"><a href="#1-为什么如下代码会打印-6-个-6" class="headerlink" title="1 为什么如下代码会打印 6 个 6"></a>1 为什么如下代码会打印 6 个 6</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let i &#x3D; 0</span><br><span class="line">for(i &#x3D; 0; i&lt;6; i++)&#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;,0)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>原因是当执行 for 循环时，每一次循环，i 的值都会发生改变，而循环体中的 setTimeout 表示稍后执行，等到 for 循环之后再开始执行 console.log，此时的 i 已经为 6,所以打印出来为 6 个 6</li>
-</ul>
-<h1 id="2-让上面代码打印-0、1、2、3、4、5-的方法"><a href="#2-让上面代码打印-0、1、2、3、4、5-的方法" class="headerlink" title="2 让上面代码打印 0、1、2、3、4、5 的方法"></a>2 让上面代码打印 0、1、2、3、4、5 的方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let i &#x3D; 0; i&lt;6; i++)&#123;</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;,0)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>当 let i = 0 写在 for 里面的时候，每一次都会复制一个保存在内存里，所以等循环完之后打印出来的的 6 个 i 是不同的</li>
-</ul>
-<h1 id="3-除了使用-for-let-配合，还有什么其他方法可以打印出-0、1、2、3、4、5"><a href="#3-除了使用-for-let-配合，还有什么其他方法可以打印出-0、1、2、3、4、5" class="headerlink" title="3 除了使用 for let 配合，还有什么其他方法可以打印出 0、1、2、3、4、5"></a>3 除了使用 for let 配合，还有什么其他方法可以打印出 0、1、2、3、4、5</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i&#x3D;0;i&lt;6;i++)&#123;</span><br><span class="line">	setTimeout(function()&#123;console.log(i)&#125;(),0)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通过闭包和立即执行函数的的方式实现,通过这种方式每次循环的i也是不同的</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1237,7 +1255,7 @@ jQuery移动元素方法有两组，一组方法是直接移动该元素，另�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

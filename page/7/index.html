@@ -158,6 +158,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" class="post-title-link" itemprop="url">旺财记账本react实现六</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-16 11:46:16" itemprop="dateCreated datePublished" datetime="2020-05-16T11:46:16+08:00">2020-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-19 06:47:42" itemprop="dateModified" datetime="2020-05-19T06:47:42+08:00">2020-05-19</time>
+              </span>
+
+          
+            <span id="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react实现六" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>解决点衣进去 tags 变红的问题</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过exact实现</span><br><span class="line"> &lt;NavLink to&#x3D;&quot;&#x2F;tags&quot; exact activeClassName&#x3D;&quot;selected&quot;&gt;</span><br><span class="line">            &lt;Icon name&#x3D;&quot;tags&quot;&#x2F;&gt;</span><br><span class="line">            标签页</span><br><span class="line">&lt;&#x2F;NavLink&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>react 对象的数据不可变，不能把对象变了再给，必须深拷贝</li>
+<li>不管我们使用前进后退hash模式都是没有新的网络请求的<ul>
+<li>两种方式看页面是否刷新。1.控制台2.main.js打印 </li>
+</ul>
+</li>
+<li>将window.history.back()替换成react封装的goback<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const history &#x3D; useHistory()</span><br><span class="line">  const onClickBack &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; window.history.back()</span><br><span class="line">    history.goBack()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li>解决第一次从undefined变成空数组的bug</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/11/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E5%9B%9B-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E8%A1%A8%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1371,139 +1470,6 @@ class Meta:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/" class="post-title-link" itemprop="url">旺财记账本react版实现一</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-28 10:12:48" itemprop="dateCreated datePublished" datetime="2020-04-28T10:12:48+08:00">2020-04-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-29 09:46:20" itemprop="dateModified" datetime="2020-04-29T09:46:20+08:00">2020-04-29</time>
-              </span>
-
-          
-            <span id="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现一" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%80/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一 create-react-app 创建项目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yarn config set registry https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br><span class="line">yarn global add create-react-app@3.4.1</span><br><span class="line">create-react-app --version</span><br><span class="line">create-react-app . --template typescript</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>增加.env 文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br><span class="line">BROWSER&#x3D;none</span><br></pre></td></tr></table></figure></li>
-<li>gitignore 增加/.idea</li>
-<li>提交代码
-<code>git init git status git rm -r --cached .idea git add . git commit -m &#39;init&#39;</code>
-二. react 目录结构</li>
-<li><img src="https://i.loli.net/2020/04/28/t5rsZiFwMECuGhf.png" alt="react目录结构.png"></li>
-<li>React.StrictMode 标签的作用用来检查代码</li>
-<li>react-app-env.d.ts 是 typescrpt 的声明文件，不能删</li>
-<li>tsconfig 是配置文件</li>
-<li>总结 index.html，app.tsx,index.tsc,tsconfig 一定要知道，稍微知道 react-app-env.d.ts 是声明文件就可以了</li>
-</ul>
-<p>三. react css 相关配置</p>
-<ol>
-<li>css normalize 的配置,作用是让不同浏览器上的样式尽量相近，举例：让不同的浏览器的按钮尽量相同,只要在 index.css 中加入@import-normalize 即可</li>
-<li>css normalize 和 css reset 的区别是 css normalize 要把默认样式基本一样，css reset 是把默认样式去掉</li>
-</ol>
-<p>四. 让 react 项目支持 scss</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add node-sass@npm:dart-sass &#x2F;&#x2F; 用dartsass换掉node-sass</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>最难的技术问题，1.我想再某个项目中支持 scss。2. 需要用 node-sass,它有两个缺点: 下载速度慢，本地编译慢。3.于是我想改用 dart-sass 代替 node-scss。4.但是 React 只吃吃 node-sass 不支持 dart-sass。5.经过我的努力搜索和碳九。6.我发现 npm6.9 支持一个新功能，叫 package alias。7.通过 npm install node-sass@npm:dart-sass 即可偷梁换柱瞒天过海。8.最后达成了我的目标。</li>
-</ul>
-<p>五. 让@import 引用更方便。</p>
-<ul>
-<li>css 用法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里需要右击mark resource as root,直接用就可以</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>js 用法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在config中配置</span><br><span class="line">&quot;baseUrl&quot;: &quot;src&quot;,</span><br><span class="line">“include”:[&quot;src&quot;]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用 styled-components,CSS in JS 方案，所有的东西都在 js 中</li>
-<li>安装 styled-components<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add styled-components@5.0.1</span><br><span class="line">yarn add -D @types&#x2F;styled-components@5.0.1 &#x2F;&#x2F; ts用这种</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>六. 使用 react-router</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br><span class="line">yarn add --dev @types&#x2F;react-router-dom</span><br><span class="line">&#x2F;&#x2F; 使用hash模式，history模式必须有后台支持，指向首页</span><br></pre></td></tr></table></figure>
-
-<p>七. 字体设置&amp;Nav 组件
-<code>在google上搜索中文字体 css github</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1575,7 +1541,7 @@ class Meta:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

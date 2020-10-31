@@ -158,6 +158,284 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9007nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A006%E4%B9%8B%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9007nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A006%E4%B9%8B%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">高级前端养成07nodeJS基础学习06之操作数据库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-24 21:26:39 / Modified: 21:36:48" itemprop="dateCreated datePublished" datetime="2020-06-24T21:26:39+08:00">2020-06-24</time>
+            </span>
+
+          
+            <span id="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9007nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A006%E4%B9%8B%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成07nodeJS基础学习06之操作数据库" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9007nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A006%E4%B9%8B%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9007nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A006%E4%B9%8B%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li> Docker x MySQL</li>
+</ol>
+<ul>
+<li>用 Docker 安装数据库</li>
+<li>连接数据库</li>
+<li>增删改查</li>
+<li>ORM</li>
+<li>docker 要配置国内代理，</li>
+<li>docker ps 看一下运行的服务</li>
+</ul>
+<ol start="2">
+<li>文档上有问题</li>
+</ol>
+<ul>
+<li>docker run –name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag</li>
+<li>选择 5.7.27</li>
+<li>docker run —name mysql1 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.27</li>
+<li>右边是虚拟机的端口号，-d 以守护进程,然后会到网上拉取镜像</li>
+<li>docker 就不会和本地环境冲突</li>
+<li>docker ps 查看进程</li>
+</ul>
+<ol start="3">
+<li>一些有用的 Docker 命令</li>
+</ol>
+<ul>
+<li>docker ps 查看容器的运行状态</li>
+<li>运行 docker kill mysql1 关掉容器</li>
+<li>运行 docker container run mysql1 开启刚关掉的容器</li>
+<li>运行 docker rm mysql1 删掉容器，必要时可加-f 选项</li>
+<li>docker run 启动心容器</li>
+</ul>
+<ol start="4">
+<li>注意</li>
+</ol>
+<ul>
+<li>用 Docker 运行的容器，默认不会持久话</li>
+<li>也就是说如果容器被删掉了，那么数据也没有了</li>
+<li>如果需要持久话，自行搜索 docker msql 数据目录</li>
+<li>学习阶段不需要持久化</li>
+</ul>
+<ol start="5">
+<li>运行一个全新的容器</li>
+</ol>
+<ul>
+<li>docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.27</li>
+</ul>
+<ol start="6">
+<li>如何链接 mysql</li>
+</ol>
+<ul>
+<li>docker exec -it</li>
+<li>docker exec -it mysql1 bash</li>
+<li>docker exec -it mysql1 bash 这样就进入到容器中了，也就是另外一个 linux 机器</li>
+<li>mysql -u root -p</li>
+<li>123456</li>
+</ul>
+<ol start="7">
+<li>mysql 命令；</li>
+</ol>
+<ul>
+<li>show databases; 查看数据库</li>
+<li>使用某个数据库 use sys;</li>
+<li>查看表 show tables;</li>
+<li>查看表的内容;select * from xxx;</li>
+<li>退出 ctrl+d</li>
+</ul>
+<ol start="8">
+<li>小结: 使用 Docker 一键安装 MySQL</li>
+</ol>
+<ul>
+<li>进入容器运行 mysql 命令</li>
+<li>在 mysql 命令执行 SQL 语句</li>
+<li>希望你学会上面三个操作</li>
+</ul>
+<ol start="9">
+<li>数据库的一些基础知识</li>
+</ol>
+<ul>
+<li>一些概念</li>
+<li>什么是数据库</li>
+<li>大量数据的集合就是数据库</li>
+<li>数据库管理系统 DBMS</li>
+<li>就是数据库管理系统</li>
+</ul>
+<ol start="10">
+<li>DBMS 的结构</li>
+</ol>
+<ul>
+<li>数据管理者 24 小时监控数据叫做 server,负责对数据库的读写</li>
+<li>sql 语句-&gt;server 服务端</li>
+<li>我们用的 mysql 就是客户端</li>
+</ul>
+<ol start="11">
+<li>Node.js 连接数据库</li>
+</ol>
+<ul>
+<li>新建文件夹下面新建 test.js</li>
+<li>yarn add mysql</li>
+<li>通过 test.js</li>
+<li>mysql 的 utf8 是 bug,要使用 utfmb4</li>
+<li>mysql create table utf8mb4</li>
+<li>通过 crm 使用 mysql.js</li>
+</ul>
+<ol start="12">
+<li>04mysql 事例</li>
+</ol>
+<ul>
+<li>删除 drop</li>
+<li>插入数据 insert into user (name,age) values (‘frank’,18)</li>
+<li>删除 delete from user where name = ‘jack’;</li>
+<li>改 update user set age=70 where name=’frank’;</li>
+<li>insert into user (name,age) values (‘jack’,38)</li>
+<li>永远不要自己去写 update 和 delete; //非常重要</li>
+<li>select name from user;</li>
+<li>推荐文档菜鸟教程 只会给最简单的形式，而且可能是错的</li>
+<li>devdocs.io postgralSQL 11 版本 这个比较详细</li>
+</ul>
+<ol start="13">
+<li>总结：</li>
+</ol>
+<ul>
+<li>1.如何安装</li>
+<li>2.如何用 docker 安装 mysql</li>
+<li>3.有用的 docker 命令</li>
+<li>4.mysql 的基本命令</li>
+</ul>
+<ol start="14">
+<li>Mysql 的数据类型</li>
+</ol>
+<ul>
+<li>五大类</li>
+<li>数字类型</li>
+<li>字符串类型</li>
+<li>时间和日期类型</li>
+<li>JSON 类型（5.7.8 以上）</li>
+<li>其它特殊类型</li>
+</ul>
+<ol start="15">
+<li>前面 3 个是比较常用</li>
+</ol>
+<ul>
+<li><p>数字类型</p>
+<ul>
+<li>bit</li>
+<li>tinting</li>
+<li>bool,boolean</li>
+<li>smallint</li>
+<li>meiumint</li>
+<li>int</li>
+<li>bitint</li>
+<li>decimal</li>
+<li>float</li>
+<li>double</li>
+<li>serial 等价于 BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE</li>
+<li>具体看官方文档</li>
+<li>mysql data type</li>
+</ul>
+</li>
+<li><p>数字</p>
+<ul>
+<li>bit 表示几位的整数，最高 64</li>
+<li>BOOL 的同义词  TINYINT(1)</li>
+<li>添加一个列 alter table user add id serial;</li>
+<li>serial 的好处就是方便，不需要再给其它数据类型 id</li>
+</ul>
+</li>
+<li><p>字符串类型</p>
+<ul>
+<li>char(100) 一直 100</li>
+<li>varchar(100) 最多 100，节省空间</li>
+<li>binary(1024) 二进制，图片， 1k</li>
+<li>varbinary（1024）</li>
+<li>blob 很长的二进制</li>
+<li>text 很长的文本</li>
+<li>enum(‘v1’,’v2’) 字符串要么是 v1 要么是 v2</li>
+<li>set(‘v1’,’’v2) 可以是 v1 可以是 v2，也可以是 v1 和 v2</li>
+</ul>
+</li>
+<li><p>日期和时间类型</p>
+<ul>
+<li>date 几几年几月几号</li>
+<li>time 几点几分几秒</li>
+<li>datetime 几几年几月几号几点几分几秒</li>
+<li>timestamp 时间戳</li>
+<li>year 年 很少用</li>
+<li>具体看官方文档</li>
+</ul>
+</li>
+</ul>
+<ol start="15">
+<li>传给前端 最好输出成 IOS 8601,如果用时间戳会损失掉时区的概念</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JS 可以解析成时间戳</span><br><span class="line">‘1991-12-01T5:30:00.00+08:00’ &#x2F;&#x2F; 人类好理解 js 好理解，比时间戳好很多，时间戳很容易处理\*1000 &#x2F;1000 的问题</span><br><span class="line">Date.parse(&#39;1991-12-01T15:30:00.00+08:00&#39;) &#x2F;&#x2F;691572600000</span><br><span class="line">new Date(Date.parse(&#39;1991-12-01T15:30:00.00+08:00&#39;)) Sun Dec 01 1991 15:30:00 GMT+0800 (中国标准时间)</span><br><span class="line">如何输出成这种类型看文档</span><br></pre></td></tr></table></figure>
+
+<ol start="16">
+<li>sequelize的使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;codingories&#x2F;07sequelize-demo</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/22/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9006nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A005%E4%B9%8BHttpRequest%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1616,105 +1894,6 @@ const home = process.env.HOME || homier;</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" class="post-title-link" itemprop="url">旺财记账本react实现六</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-16 11:46:16" itemprop="dateCreated datePublished" datetime="2020-05-16T11:46:16+08:00">2020-05-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-19 06:47:42" itemprop="dateModified" datetime="2020-05-19T06:47:42+08:00">2020-05-19</time>
-              </span>
-
-          
-            <span id="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react实现六" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/16/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E5%AE%9E%E7%8E%B0%E5%85%AD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>解决点衣进去 tags 变红的问题</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过exact实现</span><br><span class="line"> &lt;NavLink to&#x3D;&quot;&#x2F;tags&quot; exact activeClassName&#x3D;&quot;selected&quot;&gt;</span><br><span class="line">            &lt;Icon name&#x3D;&quot;tags&quot;&#x2F;&gt;</span><br><span class="line">            标签页</span><br><span class="line">&lt;&#x2F;NavLink&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>react 对象的数据不可变，不能把对象变了再给，必须深拷贝</li>
-<li>不管我们使用前进后退hash模式都是没有新的网络请求的<ul>
-<li>两种方式看页面是否刷新。1.控制台2.main.js打印 </li>
-</ul>
-</li>
-<li>将window.history.back()替换成react封装的goback<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const history &#x3D; useHistory()</span><br><span class="line">  const onClickBack &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; window.history.back()</span><br><span class="line">    history.goBack()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
-<li>解决第一次从undefined变成空数组的bug</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1786,7 +1965,7 @@ const home = process.env.HOME || homier;</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
