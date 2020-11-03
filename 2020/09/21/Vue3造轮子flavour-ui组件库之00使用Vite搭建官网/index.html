@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="技术栈   Vue3.0 TypeScript Vue Router Vite   目录   使用 Vite 搭建官网 Switch 组件 Button 组件 Dialog 组件 Tabs 组件 官网细节完善 发布代码到 npm   用 Vite 构建官网,创建项目   进入自定义的项目目录  全局安装 create-vite-app  yarn global add &amp;#x63;&amp;#114;&amp;">
+  <meta name="description" content="技术栈   Vue3.0 TypeScript Vue Router Vite   目录   使用 Vite 搭建官网 Switch 组件 Button 组件 Dialog 组件 Tabs 组件 官网细节完善 发布代码到 npm   用 Vite 构建官网,创建项目   进入自定义的项目目录  全局安装 create-vite-app  yarn global add &amp;#99;&amp;#x72;&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue3造轮子flavour-ui组件库之00使用Vite搭建官网">
 <meta property="og:url" content="codingories.github.io/2020/09/21/Vue3%E9%80%A0%E8%BD%AE%E5%AD%90flavour-ui%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B00%E4%BD%BF%E7%94%A8Vite%E6%90%AD%E5%BB%BA%E5%AE%98%E7%BD%91/index.html">
 <meta property="og:site_name" content="OriesノBlog">
-<meta property="og:description" content="技术栈   Vue3.0 TypeScript Vue Router Vite   目录   使用 Vite 搭建官网 Switch 组件 Button 组件 Dialog 组件 Tabs 组件 官网细节完善 发布代码到 npm   用 Vite 构建官网,创建项目   进入自定义的项目目录  全局安装 create-vite-app  yarn global add &amp;#x63;&amp;#114;&amp;">
+<meta property="og:description" content="技术栈   Vue3.0 TypeScript Vue Router Vite   目录   使用 Vite 搭建官网 Switch 组件 Button 组件 Dialog 组件 Tabs 组件 官网细节完善 发布代码到 npm   用 Vite 构建官网,创建项目   进入自定义的项目目录  全局安装 create-vite-app  yarn global add &amp;#99;&amp;#x72;&amp;#">
 <meta property="og:image" content="https://i.loli.net/2020/09/21/fSwdn7leVuNEL4B.png">
 <meta property="og:image" content="https://i.loli.net/2020/09/21/zbEpL7yfueWXicS.png">
 <meta property="article:published_time" content="2020-09-21T12:53:28.000Z">
@@ -261,8 +261,8 @@
 </li>
 <li><p>全局安装 create-vite-app</p>
 <ul>
-<li>yarn global add <a href="mailto:&#x63;&#114;&#x65;&#97;&#x74;&#x65;&#45;&#118;&#105;&#116;&#101;&#x2d;&#x61;&#112;&#x70;&#x40;&#49;&#x2e;&#x31;&#56;&#x2e;&#48;">&#x63;&#114;&#x65;&#97;&#x74;&#x65;&#45;&#118;&#105;&#116;&#101;&#x2d;&#x61;&#112;&#x70;&#x40;&#49;&#x2e;&#x31;&#56;&#x2e;&#48;</a></li>
-<li>或者 npm i -g <a href="mailto:&#x63;&#114;&#101;&#x61;&#x74;&#x65;&#45;&#x76;&#105;&#116;&#x65;&#x2d;&#97;&#x70;&#112;&#64;&#x31;&#x2e;&#49;&#x38;&#x2e;&#x30;">&#x63;&#114;&#101;&#x61;&#x74;&#x65;&#45;&#x76;&#105;&#116;&#x65;&#x2d;&#97;&#x70;&#112;&#64;&#x31;&#x2e;&#49;&#x38;&#x2e;&#x30;</a></li>
+<li>yarn global add <a href="mailto:&#99;&#x72;&#101;&#x61;&#x74;&#101;&#x2d;&#x76;&#x69;&#x74;&#101;&#45;&#x61;&#112;&#112;&#x40;&#x31;&#x2e;&#49;&#x38;&#46;&#x30;">&#99;&#x72;&#101;&#x61;&#x74;&#101;&#x2d;&#x76;&#x69;&#x74;&#101;&#45;&#x61;&#112;&#112;&#x40;&#x31;&#x2e;&#49;&#x38;&#46;&#x30;</a></li>
+<li>或者 npm i -g <a href="mailto:&#99;&#x72;&#x65;&#97;&#x74;&#x65;&#45;&#x76;&#105;&#116;&#x65;&#45;&#97;&#112;&#x70;&#64;&#x31;&#x2e;&#x31;&#56;&#x2e;&#x30;">&#99;&#x72;&#x65;&#97;&#x74;&#x65;&#45;&#x76;&#105;&#116;&#x65;&#45;&#97;&#112;&#x70;&#64;&#x31;&#x2e;&#x31;&#56;&#x2e;&#x30;</a></li>
 <li>创建项目目录,cva flavour-ui(这个是项目名可以自己修改)</li>
 <li>yarn</li>
 <li>yarn dev</li>
@@ -316,7 +316,7 @@
 </ul>
 </li>
 <li>安装 vue-router<ul>
-<li>yarn add <a href="mailto:&#x76;&#x75;&#x65;&#x2d;&#114;&#111;&#117;&#x74;&#101;&#x72;&#x40;&#52;&#46;&#x30;&#x2e;&#x30;&#x2d;&#x62;&#101;&#x74;&#x61;&#46;&#51;">&#x76;&#x75;&#x65;&#x2d;&#114;&#111;&#117;&#x74;&#101;&#x72;&#x40;&#52;&#46;&#x30;&#x2e;&#x30;&#x2d;&#x62;&#101;&#x74;&#x61;&#46;&#51;</a></li>
+<li>yarn add <a href="mailto:&#x76;&#x75;&#101;&#x2d;&#x72;&#x6f;&#x75;&#x74;&#x65;&#114;&#x40;&#52;&#46;&#48;&#46;&#x30;&#x2d;&#98;&#x65;&#x74;&#x61;&#x2e;&#51;">&#x76;&#x75;&#101;&#x2d;&#x72;&#x6f;&#x75;&#x74;&#x65;&#114;&#x40;&#52;&#46;&#48;&#46;&#x30;&#x2d;&#98;&#x65;&#x74;&#x61;&#x2e;&#51;</a></li>
 </ul>
 </li>
 <li>初始化 vue-router<ul>
