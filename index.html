@@ -305,7 +305,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-09 21:56:57" itemprop="dateModified" datetime="2020-11-09T21:56:57+08:00">2020-11-09</time>
+                <time title="Modified: 2020-11-11 21:32:46" itemprop="dateModified" datetime="2020-11-11T21:32:46+08:00">2020-11-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -811,6 +811,66 @@
 <li>bend表示bend+会出现中间撑开两边，</li>
 <li>amp音量调节，右侧代表代表通过f1还是f2</li>
 </ul>
+<ol start="3">
+<li><p>modulation osc让合成器声音更刺激</p>
+<ul>
+<li>只能提供一个正弦波，作参数调节，去影响上面的osc
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive3-1.png"></li>
+<li>ring mod效果控制123具体哪一台，不能复选，产生的频率是和osc1作相加减，
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive3-2.png"></li>
+<li>phase直接影响正弦波起始点,范音会比较明显，声音更明亮，适合金属感音色添加</li>
+<li>position增加抖动音的频率</li>
+<li>filter fm 控制的是2台filter,不是控制osc，理解为滤波器的值的调节</li>
+</ul>
+</li>
+<li><p>用NOISE模块制作好玩的声音</p>
+<ul>
+<li>噪音产生器，给乐器增加新鲜感，刺激感
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive4-1.png"></li>
+<li>color代表频段的截取，左边截取更低的频率</li>
+<li>电子乐提升音效,下降音效</li>
+<li>brownNoise可以模仿大海，音量自动化控制
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive4-2.png"></li>
+<li>Tape hiss模拟下雨的声音，color调节高</li>
+<li>metallic金属噪音适合作hihat,ride,808的crash</li>
+<li>amp Noise模拟机器坏掉的声音
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive4-3.png"></li>
+<li>Paper揉纸的声音</li>
+<li>acpower也是机器坏的声音</li>
+<li>murmur细言细语的声音</li>
+<li>FeedBack,同样可以选择作用哪个滤波器,做声音回流也就是做了两边处理,808sub base声音
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive4-4.png"></li>
+</ul>
+</li>
+<li><p>两个filter怎样联动
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive5-1.png"></p>
+</li>
+</ol>
+<ul>
+<li>推子，控制滤波器是串联还是并联，Ser串联，Par并联，要么最上要么最下</li>
+<li>右边的推子表示效果量的大小
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive5-2.png"></li>
+</ul>
+<ol start="6">
+<li>filter细化教学</li>
+</ol>
+<ul>
+<li>点击不同的filter旋钮内容不一样
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive6-1.png"></li>
+<li>lowpass 4 和 2 的区别，数值越大切的越狠，cutoff 频点，resonance共振，更加亮一点的lowpass</li>
+<li>hipass 4 和 2和之前差不多</li>
+<li>allpass 全频切掉
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive6-2.png"></li>
+<li>double notch 和 modulation osc中的phase差不多，</li>
+<li>Band pass 左右两边都会切掉,bandwidth左右两边切的狠不狠</li>
+<li>Bandreject和bandpass相反，和Band pass相反</li>
+<li>scream 类似把人的声音加入的感觉
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive6-3.png"></li>
+<li>Daft 增加类似耳机，话筒突然嚣叫的感觉,带有金属感</li>
+<li>comb增加高频频点，最右侧变成feedback增加整个音色的靓丽度，中间damping影响音色厚度的一个值</li>
+<li>acid 其实就是一个增强的low pass
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/dzxh3massive6-4.png"></li>
+</ul>
 
       
     </div>
@@ -1122,11 +1182,11 @@
 </li>
 <li><p>通过npm info webpack versions查看版本</p>
 </li>
-<li><p>安装最新版本,yarn add –dev <a href="mailto:&#119;&#x65;&#x62;&#x70;&#x61;&#x63;&#107;&#64;&#x35;&#x2e;&#49;&#46;&#51;">&#119;&#x65;&#x62;&#x70;&#x61;&#x63;&#107;&#64;&#x35;&#x2e;&#49;&#46;&#51;</a></p>
+<li><p>安装最新版本,yarn add –dev <a href="mailto:&#x77;&#101;&#x62;&#112;&#x61;&#x63;&#x6b;&#x40;&#53;&#x2e;&#49;&#46;&#x33;">&#x77;&#101;&#x62;&#112;&#x61;&#x63;&#x6b;&#x40;&#53;&#x2e;&#49;&#46;&#x33;</a></p>
 </li>
 <li><p>npm info webpack-cli version 查看最新cli</p>
 </li>
-<li><p>yarn add –dev <a href="mailto:&#x77;&#x65;&#x62;&#112;&#x61;&#99;&#x6b;&#x2d;&#x63;&#x6c;&#105;&#64;&#52;&#46;&#x30;&#46;&#48;">&#x77;&#x65;&#x62;&#112;&#x61;&#99;&#x6b;&#x2d;&#x63;&#x6c;&#105;&#64;&#52;&#46;&#x30;&#46;&#48;</a></p>
+<li><p>yarn add –dev <a href="mailto:&#x77;&#101;&#98;&#x70;&#97;&#x63;&#x6b;&#45;&#x63;&#108;&#x69;&#x40;&#x34;&#x2e;&#48;&#46;&#x30;">&#x77;&#101;&#98;&#x70;&#97;&#x63;&#x6b;&#45;&#x63;&#108;&#x69;&#x40;&#x34;&#x2e;&#48;&#46;&#x30;</a></p>
 </li>
 <li><p>初始化，新建webpack.config.js</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1156,9 +1216,9 @@
 <li><p>如何安装webpack和webpack-cli最新版本</p>
 <ul>
 <li>通过npm info webpack versions查看版本</li>
-<li>安装最新版本,yarn add –dev <a href="mailto:&#x77;&#x65;&#x62;&#x70;&#97;&#x63;&#x6b;&#64;&#53;&#x2e;&#49;&#x2e;&#51;">&#x77;&#x65;&#x62;&#x70;&#97;&#x63;&#x6b;&#64;&#53;&#x2e;&#49;&#x2e;&#51;</a></li>
+<li>安装最新版本,yarn add –dev <a href="mailto:&#119;&#101;&#x62;&#x70;&#97;&#99;&#107;&#64;&#53;&#x2e;&#49;&#x2e;&#51;">&#119;&#101;&#x62;&#x70;&#97;&#99;&#107;&#64;&#53;&#x2e;&#49;&#x2e;&#51;</a></li>
 <li>npm info webpack-cli version 查看最新cli</li>
-<li>yarn add –dev <a href="mailto:&#x77;&#x65;&#x62;&#112;&#x61;&#99;&#107;&#x2d;&#x63;&#x6c;&#x69;&#x40;&#x34;&#x2e;&#x30;&#x2e;&#x30;">&#x77;&#x65;&#x62;&#112;&#x61;&#99;&#107;&#x2d;&#x63;&#x6c;&#x69;&#x40;&#x34;&#x2e;&#x30;&#x2e;&#x30;</a></li>
+<li>yarn add –dev <a href="mailto:&#x77;&#x65;&#x62;&#x70;&#x61;&#99;&#107;&#x2d;&#99;&#108;&#105;&#64;&#x34;&#46;&#x30;&#46;&#x30;">&#x77;&#x65;&#x62;&#x70;&#x61;&#99;&#107;&#x2d;&#99;&#108;&#105;&#64;&#x34;&#46;&#x30;&#46;&#x30;</a></li>
 </ul>
 </li>
 <li><p>mode为development和production的区别是什么?</p>
