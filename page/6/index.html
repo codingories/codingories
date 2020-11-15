@@ -158,6 +158,391 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">高级前端养成08nodeJS基础学习07之数据库基础知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-24 21:46:37" itemprop="dateCreated datePublished" datetime="2020-06-24T21:46:37+08:00">2020-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-25 11:25:08" itemprop="dateModified" datetime="2020-06-25T11:25:08+08:00">2020-06-25</time>
+              </span>
+
+          
+            <span id="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成08nodeJS基础学习07之数据库基础知识" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>关系型数据库的范式，标准</li>
+<li>第一范式</li>
+</ol>
+<ul>
+<li>定义<ul>
+<li>字段不可再分</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>我们要存储体验者的双眼视力</li>
+<li>那么应该存为左眼视力和右眼视力两个字段</li>
+<li>即 user 表里应该有 left_eye 和 right_eye</li>
+<li>而不能把他们存在一个字段</li>
+</ul>
+</li>
+<li>第一范式的缺点<ul>
+<li>数据冗余，创建的时候造一些假数据，删除导致字段消失</li>
+<li>结论：第一范式不够强</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>第二范式</li>
+</ol>
+<ul>
+<li>定义（不标准）<ul>
+<li>在 1NF 的基础上，要有键(键可由多个字段组合)</li>
+<li>所有字段分别完全依赖于键</li>
+<li>如果键是多个字段组合，则不允许部分依赖于该键</li>
+</ul>
+</li>
+<li>依赖关系<ul>
+<li>给出键，就能唯一确定字段的值</li>
+<li>如给出学号，就能唯一确定姓名，反之则不行</li>
+<li>则称姓名依赖于学号</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>第三范式</li>
+</ol>
+<ul>
+<li>定义（不标准）<ul>
+<li>一个表里不能有两侧依赖</li>
+<li>给出学号，就能确定系名:系名依赖于学号</li>
+<li>给出系名，就能确定系主任:系主任依赖于系名</li>
+<li>所以，系主任间接依赖于学号</li>
+</ul>
+</li>
+<li>解决办法<ul>
+<li>把系名和系主任单独建表</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>总结</li>
+</ol>
+<ul>
+<li>第一范式<ul>
+<li>属性不可分割</li>
+</ul>
+</li>
+<li>第二范式<ul>
+<li>字段完全依赖于键</li>
+</ul>
+</li>
+<li>第三范式<ul>
+<li>字段没有间接依赖于键</li>
+</ul>
+</li>
+<li>BC 范式<ul>
+<li>键中的属性也不存在间接依赖</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>数据库设计经验</li>
+</ol>
+<ul>
+<li>高内聚<ul>
+<li>把相关的字段放到一起，不相关的分开建表</li>
+<li>如果两个字段能够单独建表，那就单独建表</li>
+</ul>
+</li>
+<li>低耦合<ul>
+<li>如果两个表之间有弱关系</li>
+<li>一对一可放在一个表，也可两个表+外键</li>
+<li>一对多一般用外键</li>
+<li>多对多一般建中间表</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>一对一</li>
+</ol>
+<ul>
+<li>假设一个学生只能加入一个班级</li>
+<li>可以把班级放在学生表里<ul>
+<li>学生 id:1001 姓名：小明 班级 id: 4002</li>
+<li>班级 id:4002 名称:入门 1 班</li>
+</ul>
+</li>
+<li>也可以单独建立关联表<ul>
+<li>学生 id:1001 姓名:小明</li>
+<li>学生班级: id: 2003 学生 id:1001 班级 id:4002</li>
+<li>班级 id:4002 名称入门 1 班</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li><p>一对多</p>
+<ul>
+<li>假设一个作者能写多本书</li>
+<li>可以把书放在作者表里吗？<ul>
+<li>某些 DBMS 支持数组，可以存两个 id 到一个字段</li>
+<li>作者 id:1001,姓名:大牛，books:[2001,3002]</li>
+<li>如果不支持数组，就不能这样做了</li>
+</ul>
+</li>
+<li>单独建立关系表(推荐)<ul>
+<li>作者 id:1001 姓名:大牛</li>
+<li>出版: id:2001 作者 id:1001 书 id:4002，出版社 id</li>
+<li>出版: id:2002 作者 id:1001 书 id:4003,出版社 id</li>
+<li>书 id:4002 名称 JS 入门</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>多对多</p>
+</li>
+</ol>
+<ul>
+<li>假设一个学生可以加入多个班级</li>
+<li>当然每个班级也能有多个学生</li>
+<li>可以把班级放在学生表里吗？<ul>
+<li>某些 DBMS 支持数组就可以放</li>
+<li>如果不支持数组，就不能放了</li>
+</ul>
+</li>
+<li>单独建立关系表(推荐)<ul>
+<li>学生 id:1001 姓名:小明</li>
+<li>学生班级:id:2001 学生 id:1001 班级 id:4002,有效期</li>
+<li>学生班级:id:2002 学生 id:1001 班级 id:4003,有效期</li>
+<li>班级 id: 4002 名称:入门 1 班</li>
+</ul>
+</li>
+</ul>
+<ol start="10">
+<li>什么时候建关联表</li>
+</ol>
+<ul>
+<li>当关联自身存在属性时<ul>
+<li>比如关联的有效期，有效期为一年</li>
+<li>比如关联的级别，店铺会员分为 vip1-6</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>JOIN 连接表</li>
+</ol>
+<ul>
+<li>inner join,常用，显示两遍都有</li>
+<li>left join,左边显示全,左边多</li>
+<li>right join，右边显示全，右边多</li>
+<li>full outer join</li>
+</ul>
+<ol start="12">
+<li>试试看 1</li>
+</ol>
+<ul>
+<li><p>启动 mysql</p>
+<ul>
+<li>docker container start mysql1</li>
+<li>docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.27</li>
+</ul>
+</li>
+<li><p>进入 mysql</p>
+<ul>
+<li>docker exec -it mysql1 bash</li>
+<li>mysql -u root -p</li>
+<li>输入密码 123456</li>
+</ul>
+</li>
+</ul>
+<ol start="13">
+<li>试试看 2</li>
+</ol>
+<ul>
+<li><p>创建数据库</p>
+<ul>
+<li>create database db1 character set utf8mb4 collate utf8mb4_unicode_ci;</li>
+<li>show databases;</li>
+<li>use db1;</li>
+</ul>
+</li>
+<li><p>创建表</p>
+<ul>
+<li>create table users(id serial, name text);</li>
+<li>create table staffs(id serial, name text);</li>
+<li>create table orders(id serial,user_id bigint unsigned,staff_id bigint unsigned,amount int unsigned);</li>
+</ul>
+</li>
+</ul>
+<ol start="14">
+<li>试试看 3</li>
+</ol>
+<ul>
+<li><p>创建记录</p>
+<ul>
+<li>insert into users (name) values (‘XiaoMing’);</li>
+<li>insert into staffs (name) values (‘XiaoHong’);</li>
+<li>insert into orders(user_id,staff_id,amount) values (1,1,100);</li>
+</ul>
+</li>
+<li><p>使用 inner join</p>
+<ul>
+<li>select users.name as uname, orders.amount as amount from users inner join orders on users.id=orders.user_id;</li>
+<li>得到 XiaoMing 100</li>
+</ul>
+</li>
+</ul>
+<ol start="15">
+<li>语法</li>
+</ol>
+<ul>
+<li>把表名改为</li>
+<li>T1 {[INNER]|{LEFT|RIGHT|FULL}[OUTER]}JOIN T2 ON bollean_expression</li>
+<li>举例:SELECT A.PK AS A_PK,B.PK AS B_PK,A.Value AS A_Vaue,B.Value AS B_Value FROM Table_AA inner join Table_BB on A.PK=B.PK;</li>
+</ul>
+<ol start="16">
+<li>项目中使用数据库常用技巧-缓存字段</li>
+</ol>
+<ul>
+<li>假设一个博客 blog 包含多个评论 comments</li>
+<li>如何获取博客的评论数<ul>
+<li>select count(id) from comments where blog_id=8,这样太慢了</li>
+<li>在 blog 表上添加一个 comment_count 字段，每次添加 comment 则+1，每次删除 comment 则-1</li>
+</ul>
+</li>
+</ul>
+<ol start="17">
+<li>事物</li>
+</ol>
+<ul>
+<li><p>有些操作必须一次完成</p>
+<ul>
+<li>用户评论之后，要做两件事情</li>
+<li>第一步，在 comments 表新增记录</li>
+<li>第二部，在 blog 表将对应的 comment_count+1</li>
+<li>如果第一步执行了，第二步没有执行怎么办</li>
+<li>数据就乱了</li>
+</ul>
+</li>
+<li><p>使用事务</p>
+<ul>
+<li>start transation;</li>
+<li>语句 1;语句 2;语句 3;commit;</li>
+<li>只要有一句出错，则全部不生效。</li>
+</ul>
+</li>
+</ul>
+<ol start="18">
+<li>MySQL 储存引擎</li>
+</ol>
+<ul>
+<li>命令 SHOW ENGINES;</li>
+<li>常见的<ul>
+<li>InnoDB - 默认,目前版本是新版 InnoDB</li>
+<li>MyISAM - 拥有较高的插入，查询速度，但不支持事务</li>
+<li>Memory - 内存中，快速访问数据</li>
+<li>Archive - 只支持 insert 和 select</li>
+</ul>
+</li>
+</ul>
+<ol start="19">
+<li>InnoDB</li>
+</ol>
+<ul>
+<li>InnoDB 是事务型数据库的首选，支持事务，遵循 ACID,支持行锁和外键</li>
+</ul>
+<ol start="20">
+<li>索引</li>
+</ol>
+<ul>
+<li><p>语法</p>
+<ul>
+<li>CREATE UNIQUE INDEX index1 ON users(name(100))</li>
+<li>show index in users;</li>
+<li>菜鸟的教程</li>
+</ul>
+</li>
+<li><p>用途</p>
+<ul>
+<li>提交搜索效率</li>
+<li>where xxx&gt;100 那么我们可以创建 xxx 的索引,索引长度不能超过字段本身的类型长度</li>
+<li>where xxx&gt;100 and yyy&gt;200，创建 xxx,yyy 的索引</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9007nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A006%E4%B9%8B%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1693,191 +2078,6 @@ const home = process.env.HOME || homier;</p>
 </li>
 <li><p>reduce参数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Array&#x2F;reduce</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/23/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%94-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/23/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%94-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">django实现在线教育网站五-快速搭建后台管理系统</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-23 21:08:19" itemprop="dateCreated datePublished" datetime="2020-05-23T21:08:19+08:00">2020-05-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-24 20:45:49" itemprop="dateModified" datetime="2020-05-24T20:45:49+08:00">2020-05-24</time>
-              </span>
-
-          
-            <span id="/2020/05/23/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%94-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="post-meta-item leancloud_visitors" data-flag-title="django实现在线教育网站五-快速搭建后台管理系统" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/23/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%94-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/23/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%94-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>后台管理的特点
-一. 权限管理
-二. 少前端样式
-三. 快速开发</p>
-</li>
-<li><p>通过命令新建 django 后台命令</p>
-</li>
-</ol>
-<ul>
-<li>createsuperuser 创建超级用户 ories 密码:admin123</li>
-<li>查看 users_userprofile 表，发现密码不能反解</li>
-<li>密码忘记怎么办？最常用提供重置密码的按钮</li>
-<li>isstaff 决定是否可以进入后台</li>
-</ul>
-<ol start="3">
-<li>配置后台语言及时区</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LANGUAGE_CODE &#x3D; &#39;zh-hans&#39;</span><br><span class="line">TIME_ZONE &#x3D; &#39;Asia&#x2F;Shanghai&#39;</span><br><span class="line">USE_TZ &#x3D; False  # 如果是true后台存的时间就不是北京时间了</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>站点管理就是每一张表的管理，新增组，输入课程部然后保存</p>
-</li>
-<li><p>通过 users 下的 admin 给后台添加组</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from django.contrib import admin</span><br><span class="line">from apps.users.models import UserProfile</span><br><span class="line">class UserProfileAdmin(admin.ModelAdmin):</span><br><span class="line">    pass</span><br><span class="line">admin.site.register(UserProfile, UserProfileAdmin)</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>修改后台表的标题，通过 users 下的 apps.py 实现</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from django.apps import AppConfig</span><br><span class="line">class UsersConfig(AppConfig):</span><br><span class="line">    name &#x3D; &#39;apps.users&#39;</span><br><span class="line">    verbose_name &#x3D; &quot;用户&quot;</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>通过 django admin 添加的密码为明文<ul>
-<li>使用 admin.py 管理器解决，这样子解决之后页面结构就更加清晰了</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.contrib import admin</span><br><span class="line">from django.contrib.auth.admin import UserAdmin</span><br><span class="line">from apps.users.models import UserProfile</span><br><span class="line"></span><br><span class="line">class UserProfileAdmin(admin.ModelAdmin):</span><br><span class="line">    pass</span><br><span class="line">admin.site.register(UserProfile, UserAdmin)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>之后会使用 Xadmin 进行替代</li>
-</ul>
-<ol start="8">
-<li>解决增加用户(1062, “Duplicate entry ‘’ for key ‘mobile’”)的报错</li>
-</ol>
-<ul>
-<li>数据库不允许两个 mobile 都为空的数据</li>
-<li>之后小结中会讲</li>
-</ul>
-<ol start="9">
-<li>配置 xadmin 加入 django</li>
-<li>使用 xadmin，并且了解相关功能比原来的 admin 更强大</li>
-</ol>
-<ul>
-<li>xadmin 会自动发现我们定义的 Userprofile 并注册进来</li>
-<li>日志记录 xadmin_log 覆盖了 django_admin_log,</li>
-</ul>
-<ol start="11">
-<li>解决 xadmin 添加用户失败的问题，我们采用一</li>
-</ol>
-<ul>
-<li>方案一，把 unique 去掉</li>
-<li>方案二，将手机号添加到后台页面，</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在 xadmin下auth的 get_model_form 的USerCreationForm</span><br><span class="line">加上</span><br><span class="line">mobile &#x3D; forms.CharField(max_length&#x3D;11, label&#x3D;&quot;手机号码&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li>配置密码验证</li>
-</ol>
-<ul>
-<li>MxOnline settings 下 98 行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AUTH_PASSWORD_VALIDATORS &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">        &#39;NAME&#39;: &#39;django.contrib.auth.password_validation.UserAttributeSimilarityValidator&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &#39;NAME&#39;: &#39;django.contrib.auth.password_validation.MinimumLengthValidator&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    # &#123;</span><br><span class="line">    #     &#39;NAME&#39;: &#39;django.contrib.auth.password_validation.CommonPasswordValidator&#39;,</span><br><span class="line">    # &#125;,</span><br><span class="line">    # &#123;</span><br><span class="line">    #     &#39;NAME&#39;: &#39;django.contrib.auth.password_validation.NumericPasswordValidator&#39;,</span><br><span class="line">    # &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ol start="13">
-<li>如何将我们写的 model 注册到 xadmin</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#在course下新建xadmin.py</span><br><span class="line">import xadmin</span><br><span class="line">from apps.courses.models import Course</span><br><span class="line">class CourseAdmin(object):</span><br><span class="line">    pass</span><br><span class="line">xadmin.site.register(Course, CourseAdmin)</span><br></pre></td></tr></table></figure>
-
-<ol start="14">
-<li>解决 xadmin 中英文的问题</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># user&#x2F;app.py</span><br><span class="line">from django.apps import AppConfig</span><br><span class="line">class UsersConfig(AppConfig):</span><br><span class="line">    name &#x3D; &#39;apps.users&#39;</span><br><span class="line">    verbose_name &#x3D; &quot;用户&quot;</span><br></pre></td></tr></table></figure>
-
-<ol start="15">
-<li>根据依赖外间依次填入注册到 xadmin</li>
-<li>解决后台显示城市名字的问题,通过重写<strong>str</strong></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class City(BaseModel):</span><br><span class="line">    name &#x3D; models.CharField(max_length&#x3D;20, verbose_name&#x3D;u&quot;城市&quot;)</span><br><span class="line">    desc &#x3D; models.CharField(max_length&#x3D;200, verbose_name&#x3D;u&quot;描述&quot;)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        verbose_name &#x3D; &quot;城市&quot;</span><br><span class="line">        verbose_name_plural &#x3D; verbose_name</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.name  # 这里return的值一定为必填项</span><br></pre></td></tr></table></figure>
-
-<ol start="17">
-<li>配置 xadmin,定义城市页面的列表页</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class CityAdmin(object):</span><br><span class="line">    list_display &#x3D; [&quot;id&quot;, &quot;name&quot;, &quot;desc&quot;]  # 列表页显示的字段</span><br><span class="line">    search_fields &#x3D; [&quot;name&quot;, &quot;desc&quot;]</span><br><span class="line">    list_filter &#x3D; [&quot;name&quot;, &quot;desc&quot;, &quot;add_time&quot;]</span><br><span class="line">    list_editable &#x3D; [&quot;name&quot;, &quot;desc&quot;]  # 这样就不需要点进去进行编辑</span><br></pre></td></tr></table></figure>
-
-<ol start="18">
-<li>8-5 具体将每个 model 配置进 xadmin</li>
 </ol>
 
       

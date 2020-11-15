@@ -158,6 +158,143 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/04/FLstudio%E7%9A%8413%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/04/FLstudio%E7%9A%8413%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">FL studio的13个实用功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-02-04 10:12:13 / Modified: 13:12:27" itemprop="dateCreated datePublished" datetime="2020-02-04T10:12:13+08:00">2020-02-04</time>
+            </span>
+
+          
+            <span id="/2020/02/04/FLstudio%E7%9A%8413%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD/" class="post-meta-item leancloud_visitors" data-flag-title="FL studio的13个实用功能" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/04/FLstudio%E7%9A%8413%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/04/FLstudio%E7%9A%8413%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-Edison-扒音频旋律"><a href="#1-Edison-扒音频旋律" class="headerlink" title="1. Edison 扒音频旋律"></a>1. Edison 扒音频旋律</h4><ul>
+<li>在 FL studio 的的左侧 browser 放入素材。<ol>
+<li>options-&gt;File Settings-&gt;点文件夹 icon 选择路径,Browser name 进行重命名。</li>
+<li>点击 Browser 放大镜左边的 icon 可以刷新</li>
+</ol>
+</li>
+<li>开始查找音高<ol>
+<li>在素材上右键,选择 edit in audio editor</li>
+<li>点扳手的 icon,选择 analysis 下的 convert to score and dump to piano roll 即可实现分析音高功能</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-音频立体声扩展"><a href="#2-音频立体声扩展" class="headerlink" title="2. 音频立体声扩展"></a>2. 音频立体声扩展</h4><ul>
+<li>点击音色按钮，点 Precomputed effects 左边的 icon,扳手的右边，增加 Stereo Delay 的量，这个时候底鼓就变得比较宽了，像 是在左右耳打击。</li>
+</ul>
+<h4 id="3-钢琴延音踏板"><a href="#3-钢琴延音踏板" class="headerlink" title="3. 钢琴延音踏板"></a>3. 钢琴延音踏板</h4><ul>
+<li>钢琴一定要第三方的钢琴，点一下齿轮下第二个 icon,扳手左边,input port 和 out port 都调成 0,在另外一个选项条里面加载一个 midi out,midi out 的 port 也要确保一样的</li>
+<li>输入任意的一个和弦，在 midi out 面板上点击齿轮，进入 control settings,输入 Full name,controller 输入 64 默认是延音踏板,这个按钮就可以控制延音踏板了</li>
+<li>在这个按钮上点击右键，create automation clip,这个时候就可以画包络线了</li>
+</ul>
+<h4 id="4-删除无用的插件显示"><a href="#4-删除无用的插件显示" class="headerlink" title="4. 删除无用的插件显示"></a>4. 删除无用的插件显示</h4><ul>
+<li>确保文件已经删除干净，点击 browser 上的右边喇叭的 icon，点击 Installed,Effects 的意思是效果器，Generators 的意思是音源</li>
+<li>在 vst 里可以看到所有安装了和安装失败的 vst,在上面点击 windows shell menu,选择属性，看到具体路径，去具体路径找到 fst 的文件删除，然后立马关闭水果，在打开就可以了。（此操作只在 windows 下进行）</li>
+</ul>
+<h4 id="5-自动化包络控制"><a href="#5-自动化包络控制" class="headerlink" title="5. 自动化包络控制"></a>5. 自动化包络控制</h4><ul>
+<li>此操作针对第三方，比如 serum,在需要控制的旋钮上先随意动一下，然后选在 TOOLS-&gt;Last tweaked-&gt;Create automation clip</li>
+<li>这个时候创造出来的包络线就是可以控制旋钮的包络线</li>
+</ul>
+<h4 id="6-把电脑键盘当-midi-键盘"><a href="#6-把电脑键盘当-midi-键盘" class="headerlink" title="6. 把电脑键盘当 midi 键盘"></a>6. 把电脑键盘当 midi 键盘</h4><ul>
+<li>最大的好处是没有 midi 键盘，又想试听某个合成器的音色，这个方法是非常方便的。</li>
+<li>点亮键盘按钮
+<img src="https://i.loli.net/2020/02/04/EYd6peZjrkCMy8z.jpg" alt="keyboad.jpeg"></li>
+<li>确保输入法为默认英文输入法，就可以了</li>
+</ul>
+<h4 id="7-中途改变拍数"><a href="#7-中途改变拍数" class="headerlink" title="7. 中途改变拍数"></a>7. 中途改变拍数</h4><ul>
+<li>在钢琴卷帘窗口按 command+T,然后在上面右击选择 Add time signature，设置拍数，完成。</li>
+</ul>
+<h4 id="8-midi-导入和导出"><a href="#8-midi-导入和导出" class="headerlink" title="8. midi 导入和导出"></a>8. midi 导入和导出</h4><ul>
+<li>导入，直接拖动 midi 文件到音色块</li>
+<li>导出，TOOLS-&gt;Macros-&gt;Prepare for MIDI export,点击之前一定要先保存下工程文件，因为这个操作是不可逆的,然后点击 ok,接下来选择 FILE-&gt;Export-&gt;Midi File。导出操作完成那么再把文件导入的话，会有 which tracks to import，你可以根据需求来选择。</li>
+<li>只想导出几轨，把想要导出的轨道的灯点亮</li>
+</ul>
+<h4 id="9-复制包络线"><a href="#9-复制包络线" class="headerlink" title="9. 复制包络线"></a>9. 复制包络线</h4><ul>
+<li>双击包络线，选择扳手 icon-&gt;copy state,进入到另一个包络线，选择 paste state,</li>
+</ul>
+<h4 id="10-锁定包络线轨道"><a href="#10-锁定包络线轨道" class="headerlink" title="10. 锁定包络线轨道"></a>10. 锁定包络线轨道</h4><ul>
+<li>此功能在编辑一些电子和 hiphop 的时候经常用到,在包络线的灯的地方按住 shift 点击左键，会出现一个锁，这个时候 mute 调 track,包络线不会被 mute 掉，锁的地方会永远有效果。</li>
+</ul>
+<h4 id="11-多次撤销"><a href="#11-多次撤销" class="headerlink" title="11. 多次撤销"></a>11. 多次撤销</h4><ul>
+<li>ctrl+z 只能撤销一步，一直撤销 brower 中间的 icon 选择 history,也可以 ctrl+alt+z</li>
+</ul>
+<h4 id="12-让音频自己切自己"><a href="#12-让音频自己切自己" class="headerlink" title="12. 让音频自己切自己"></a>12. 让音频自己切自己</h4><ul>
+<li>这个功能适合做 hiphop,点击音色，点击扳手，Group 下的 Cut 和 By,都设置成同样的数字，意思是自己切断自己的音符</li>
+<li>还有一个功能 midi 音符多长就停在哪里，点击扳手左边的 icon,envelop 点亮，如果第二栏没有那么就把波形重新拖出来，把 envelope 设置成一个最宽的长方形，hold 和 sustain 调到最高。</li>
+</ul>
+<h4 id="13-包络线整体批量调节"><a href="#13-包络线整体批量调节" class="headerlink" title="13. 包络线整体批量调节"></a>13. 包络线整体批量调节</h4><ul>
+<li>双击包络线，选择扳手 icon,选择 scale levels,multiply 是以比例，offset 就是以固定比例上调，轨道里面下方的 control-&gt;note velocity-&gt;channel volume 调的包络线可以按 alt+x 调出界面</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/02/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AE%98%E7%BD%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -335,130 +472,6 @@
 <li>被观察感-&gt;严格要求</li>
 <li>团队中表现优异, 写完轮子不给升职加薪就好走了</li>
 </ul>
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/31/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-%E6%89%8B%E9%A3%8E%E7%90%B4%E7%BB%84%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/31/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-%E6%89%8B%E9%A3%8E%E7%90%B4%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">Vue造轮子-手风琴组件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-01-31 19:02:21" itemprop="dateCreated datePublished" datetime="2020-01-31T19:02:21+08:00">2020-01-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-01 15:13:22" itemprop="dateModified" datetime="2020-02-01T15:13:22+08:00">2020-02-01</time>
-              </span>
-
-          
-            <span id="/2020/01/31/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-%E6%89%8B%E9%A3%8E%E7%90%B4%E7%BB%84%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-手风琴组件" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/01/31/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-%E6%89%8B%E9%A3%8E%E7%90%B4%E7%BB%84%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/31/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-%E6%89%8B%E9%A3%8E%E7%90%B4%E7%BB%84%E4%BB%B6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="一-大致的使用方法"><a href="#一-大致的使用方法" class="headerlink" title="一. 大致的使用方法"></a>一. 大致的使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;app&quot; style&#x3D;&quot;padding-left: 100px&quot;&gt;</span><br><span class="line">  &lt;g-collpase&gt;</span><br><span class="line">    &lt;g-collapse-item title&#x3D;&quot;标题1&quot;&gt;内容1&lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">    &lt;g-collapse-item title&#x3D;&quot;标题2&quot;&gt;内容2&lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">    &lt;g-collapse-item title&#x3D;&quot;标题3&quot;&gt;内容3&lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">  &lt;&#x2F;g-collpase&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="二-完成最外部的样式"><a href="#二-完成最外部的样式" class="headerlink" title="二. 完成最外部的样式"></a>二. 完成最外部的样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;collapse</span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">  $grey: #ddd;</span><br><span class="line">  $border-radius: 4px;</span><br><span class="line">  .collapse &#123;</span><br><span class="line">    border: 1px solid $grey;</span><br><span class="line">    border-radius: $border-radius;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;collapse-item.vue</span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">  $grey: #ddd;</span><br><span class="line">  $border-radius: 4px;</span><br><span class="line">  .collapseItem &#123;</span><br><span class="line">    &gt; .title &#123;</span><br><span class="line">      border: 1px solid $grey;</span><br><span class="line">      margin-top: -1px;</span><br><span class="line">      margin-left: -1px;</span><br><span class="line">      margin-right: -1px;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;:first-child &#123;</span><br><span class="line">      &gt; .title &#123;</span><br><span class="line">        border-top-left-radius: $border-radius;</span><br><span class="line">        border-top-right-radius: $border-radius;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="三-进一步调节样式"><a href="#三-进一步调节样式" class="headerlink" title="三. 进一步调节样式"></a>三. 进一步调节样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; collapse-item</span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">  $grey: #ddd;</span><br><span class="line">  $border-radius: 4px;</span><br><span class="line">  .collapseItem &#123;</span><br><span class="line">    &gt; .title &#123;</span><br><span class="line">      border: 1px solid $grey;</span><br><span class="line">      margin-top: -1px;</span><br><span class="line">      margin-left: -1px;</span><br><span class="line">      margin-right: -1px;</span><br><span class="line">      min-height: 32px;</span><br><span class="line">      display: flex;</span><br><span class="line">      align-items: center;</span><br><span class="line">      padding: 0 8px;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;:first-child &#123;</span><br><span class="line">      &gt; .title &#123;</span><br><span class="line">        border-top-left-radius: $border-radius;</span><br><span class="line">        border-top-right-radius: $border-radius;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &gt; .content&#123;</span><br><span class="line">      padding: 8px;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="四-默认内容折叠起来和点击切换，基本样式和基本功能完成"><a href="#四-默认内容折叠起来和点击切换，基本样式和基本功能完成" class="headerlink" title="四. 默认内容折叠起来和点击切换，基本样式和基本功能完成"></a>四. 默认内容折叠起来和点击切换，基本样式和基本功能完成</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; collapse-item</span><br><span class="line">    data ()&#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        open: false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;content&quot; v-if&#x3D;&quot;open&quot; @click&#x3D;&quot;open&#x3D;!open&quot;&gt;</span><br><span class="line">      &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="五-完善功能第一个点开-第二个就关闭"><a href="#五-完善功能第一个点开-第二个就关闭" class="headerlink" title="五. 完善功能第一个点开,第二个就关闭"></a>五. 完善功能第一个点开,第二个就关闭</h4><ul>
-<li>因为结构比较简单，就父子两个组件，可以用父子通信来做。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">  this.eventBus.$on(&#39;update:selected&#39;, (vm)&#x3D;&gt;&#123;</span><br><span class="line">    if (vm !&#x3D;&#x3D; this)&#123;</span><br><span class="line">      this.close()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">  toggle()&#123;</span><br><span class="line">    if(this.open) &#123;</span><br><span class="line">      this.open &#x3D; false</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      this.open &#x3D; true</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;, this)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  close()&#123;</span><br><span class="line">    this.close()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="六-增加功能是否可以选择多个"><a href="#六-增加功能是否可以选择多个" class="headerlink" title="六. 增加功能是否可以选择多个"></a>六. 增加功能是否可以选择多个</h4><ul>
-<li>方案一.用 single 变量是否需要控制 eventBus</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 添加single选项,有single就注入，没有就不注入</span><br><span class="line">&#x2F;&#x2F; 但是这种方式不太完美会有警告</span><br><span class="line">props: &#123;</span><br><span class="line">  single: &#123;</span><br><span class="line">    type: Boolean,</span><br><span class="line">    default: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">provide() &#123;</span><br><span class="line">  if(this.single)&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      eventBus: this.eventBus</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="七-可以设置默认-selected"><a href="#七-可以设置默认-selected" class="headerlink" title="七. 可以设置默认 selected"></a>七. 可以设置默认 selected</h4><p>// index.html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    &lt;div id&#x3D;&quot;app&quot; style&#x3D;&quot;padding: 100px&quot;&gt;</span><br><span class="line">      &lt;g-collapse selected&#x3D;&quot;2&quot;&gt;</span><br><span class="line">        &lt;g-collapse-item title&#x3D;&quot;标题1&quot; name&#x3D;&quot;1&quot;&gt;内容1&lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">        &lt;g-collapse-item title&#x3D;&quot;标题2&quot; name&#x3D;&quot;2&quot;&gt;内容2&lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">        &lt;g-collapse-Item title&#x3D;&quot;标题3&quot; name&#x3D;&quot;3&quot;&gt;内容3&lt;&#x2F;g-collapse-Item&gt;</span><br><span class="line">      &lt;&#x2F;g-collapse&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; collapse-item.vue</span><br><span class="line">    mounted()&#123;</span><br><span class="line">      this.eventBus &amp;&amp; this.eventBus.$on(&#39;update:selected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">        if (name !&#x3D;&#x3D; this.name)&#123;</span><br><span class="line">          this.close()</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          this.show()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-
-<h4 id="八-回头解决子元素是否可以多个打开"><a href="#八-回头解决子元素是否可以多个打开" class="headerlink" title="八. 回头解决子元素是否可以多个打开"></a>八. 回头解决子元素是否可以多个打开</h4><ul>
-<li>通过 collapse.vue 传给 collapse-item</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; index.js</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot; style&#x3D;&quot;padding: 100px&quot;&gt;</span><br><span class="line">    &lt;g-collapse :selected&#x3D;&quot;selectedTab&quot; :selected.sync&#x3D;&quot;selectedTab&quot; single&gt;</span><br><span class="line">      &lt;g-collapse-item title&#x3D;&quot;标题1&quot; name&#x3D;&quot;1&quot;&gt;内容1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consequatur &lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">      &lt;g-collapse-item title&#x3D;&quot;标题2&quot; name&#x3D;&quot;2&quot;&gt;内容2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cupiditate dolore d! &lt;&#x2F;g-collapse-item&gt;</span><br><span class="line">      &lt;g-collapse-Item title&#x3D;&quot;标题3&quot; name&#x3D;&quot;3&quot;&gt; 内容3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, magnam. &lt;&#x2F;g-collapse-Item&gt;</span><br><span class="line">      &#123;&#123;selectedTab&#125;&#125;</span><br><span class="line">    &lt;&#x2F;g-collapse&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; collapse.vue</span><br><span class="line"> mounted()&#123;</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;,this.selected)</span><br><span class="line">      this.eventBus.$on(&#39;update:selected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">        this.$emit(&#39;update:selected&#39;,name)</span><br><span class="line">      &#125;)</span><br><span class="line">      this.$children.forEach((vm)&#x3D;&gt;&#123;</span><br><span class="line">        vm.single &#x3D; this.single</span><br><span class="line">        console.log(vm)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#x2F;&#x2F; collapse-item.vue</span><br><span class="line">  mounted()&#123;</span><br><span class="line">      this.eventBus &amp;&amp; this.eventBus.$on(&#39;update:selected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">        if (name !&#x3D;&#x3D; this.name)&#123;</span><br><span class="line">          if(this.single)&#123;</span><br><span class="line">            this.close()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          this.show()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-
-<h4 id="9-进一步修改，把选中的值改为数组"><a href="#9-进一步修改，把选中的值改为数组" class="headerlink" title="9.进一步修改，把选中的值改为数组"></a>9.进一步修改，把选中的值改为数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; collapse.vue</span><br><span class="line">mounted()&#123;</span><br><span class="line">  this.eventBus.$emit(&#39;update:selected&#39;,this.selected)</span><br><span class="line">  this.eventBus.$on(&#39;update:addSelected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">    this.selected.push(name)</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;,this.selected)  &#x2F;&#x2F; 通知儿子</span><br><span class="line">    this.$emit(&#39;update:selected&#39;,this.selected) &#x2F;&#x2F; 通知外面</span><br><span class="line">  &#125;)</span><br><span class="line">  this.eventBus.$on(&#39;update:removeSelected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">    let index &#x3D; this.selected.indexOf(name)</span><br><span class="line">    this.selected.splice(index,1)</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;,this.selected)</span><br><span class="line">    this.$emit(&#39;update:selected&#39;,this.selected)</span><br><span class="line">  &#125;)</span><br><span class="line">  this.$children.forEach((vm)&#x3D;&gt;&#123;</span><br><span class="line">    vm.single &#x3D; this.single</span><br><span class="line">    console.log(vm)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; collapse-item.vue</span><br><span class="line">methods:&#123;</span><br><span class="line">  toggle()&#123;</span><br><span class="line">    if(this.open) &#123;</span><br><span class="line">      this.open &#x3D; false</span><br><span class="line">      this.eventBus &amp;&amp; this.eventBus.$emit(&#39;update:removeSelected&#39;, this.name)</span><br><span class="line">      &#x2F;&#x2F; 移除一个被选中的东西</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      this.eventBus &amp;&amp; this.eventBus.$emit(&#39;update:addSelected&#39;, this.name)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-将所有数据流让父组件统一管理。"><a href="#10-将所有数据流让父组件统一管理。" class="headerlink" title="10. 将所有数据流让父组件统一管理。"></a>10. 将所有数据流让父组件统一管理。</h4><ul>
-<li>不能直接操作 props 要先深拷贝</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; collapse.vue</span><br><span class="line">    mounted()&#123;</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;,this.selected)</span><br><span class="line">    this.eventBus.$on(&#39;update:addSelected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">      let selectedCopy &#x3D; JSON.parse(JSON.stringify(this.selected))</span><br><span class="line">      if(this.single)&#123;</span><br><span class="line">        selectedCopy &#x3D; [name]</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        selectedCopy.push(name)</span><br><span class="line">      &#125;</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;,selectedCopy)  &#x2F;&#x2F; 通知儿子</span><br><span class="line">      this.$emit(&#39;update:selected&#39;,selectedCopy) &#x2F;&#x2F; 通知外面</span><br><span class="line">    &#125;)</span><br><span class="line">    this.eventBus.$on(&#39;update:removeSelected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">      let selectedCopy &#x3D; JSON.parse(JSON.stringify(this.selected))</span><br><span class="line">      let index &#x3D; selectedCopy.indexOf(name)</span><br><span class="line">      selectedCopy.splice(index,1)</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;,selectedCopy)</span><br><span class="line">      this.$emit(&#39;update:selected&#39;,selectedCopy)</span><br><span class="line">    &#125;)</span><br><span class="line">    this.$children.forEach((vm)&#x3D;&gt;&#123;</span><br><span class="line">      vm.single &#x3D; this.single</span><br><span class="line">      console.log(vm)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="11-数据流的核心"><a href="#11-数据流的核心" class="headerlink" title="11. 数据流的核心"></a>11. 数据流的核心</h4><ul>
-<li>不要出现两个东西互相让对方更新的状态</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; collapse.vue 爸爸</span><br><span class="line">    mounted()&#123;</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;,this.selected) &#x2F;&#x2F; 一开始就通知所有儿子，该选中就选中</span><br><span class="line">    this.eventBus.$on(&#39;update:addSelected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">      let selectedCopy &#x3D; JSON.parse(JSON.stringify(this.selected))</span><br><span class="line">      &#x2F;&#x2F; 如果用户添加一个我就把selected拷贝一份，因为vue不支持直接修改props</span><br><span class="line">      if(this.single)&#123;</span><br><span class="line">        selectedCopy &#x3D; [name]</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        selectedCopy.push(name)</span><br><span class="line">      &#125;</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;,selectedCopy)  &#x2F;&#x2F; 得到最新被选中的item之后,通知儿子</span><br><span class="line">      this.$emit(&#39;update:selected&#39;,selectedCopy) &#x2F;&#x2F; 通知外面</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    this.eventBus.$on(&#39;update:removeSelected&#39;, (name)&#x3D;&gt;&#123;</span><br><span class="line">      let selectedCopy &#x3D; JSON.parse(JSON.stringify(this.selected))</span><br><span class="line">      let index &#x3D; selectedCopy.indexOf(name)</span><br><span class="line">      selectedCopy.splice(index,1)</span><br><span class="line">      this.eventBus.$emit(&#39;update:selected&#39;,selectedCopy) &#x2F;&#x2F; 如果用户想移除，也通知他儿子该移除就移除</span><br><span class="line">      this.$emit(&#39;update:selected&#39;,selectedCopy)</span><br><span class="line">    &#125;)</span><br><span class="line">    this.$children.forEach((vm)&#x3D;&gt;&#123;</span><br><span class="line">      vm.single &#x3D; this.single</span><br><span class="line">      console.log(vm)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;¡</span><br><span class="line">  &#x2F;&#x2F; collapse-item.vue 儿子</span><br><span class="line">      mounted()&#123;</span><br><span class="line">    this.eventBus &amp;&amp; this.eventBus.$on(&#39;update:selected&#39;, (names)&#x3D;&gt;&#123;</span><br><span class="line">      &#x2F;&#x2F; 监听eventBus,只要他爸爸要说更新，他就更新</span><br><span class="line">      console.log(names)</span><br><span class="line">      if (names.indexOf(this.name )&gt;&#x3D; 0)&#123;</span><br><span class="line">        this.open &#x3D; true</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">          this.open &#x3D; false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    toggle()&#123;</span><br><span class="line">      if(this.open) &#123;</span><br><span class="line">        &#x2F;&#x2F; 这里也没有修改自己的OPEN，而是在mounted中等爸爸通知我们修改open,所以他的open永远是爸爸在操作，儿子不操作</span><br><span class="line">        this.eventBus &amp;&amp;this.eventBus.$emit(&#39;update:removeSelected&#39;, this.name)</span><br><span class="line">        &#x2F;&#x2F; 他自己触发一个意图，打算移除一个更新</span><br><span class="line">        &#x2F;&#x2F; 移除一个被选中的东西</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        this.eventBus &amp;&amp; this.eventBus.$emit(&#39;update:addSelected&#39;, this.name)</span><br><span class="line">        &#x2F;&#x2F; 他自己触发一个意图，打算添加一个更新</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
 
       

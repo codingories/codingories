@@ -158,6 +158,407 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">高级前端养成18nodeJS框架之07TypeORM数据库实践</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-18 15:58:13" itemprop="dateCreated datePublished" datetime="2020-07-18T15:58:13+08:00">2020-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-19 23:05:48" itemprop="dateModified" datetime="2020-07-19T23:05:48+08:00">2020-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成18nodeJS框架之07TypeORM数据库实践" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>TypeORM 简介</li>
+</ol>
+<ul>
+<li>版本<ul>
+<li>0.2.25，还没有发布 v1.0.0</li>
+</ul>
+</li>
+<li>特性<ul>
+<li>默认支持 TypeScript,Sequelize.js 对 TS<a href="https://stackoverflow.com/questions/59719330/sequelize-with-typescript-doesnt-resolve-type-correctly/62014646" target="_blank" rel="noopener">支持不够好</a></li>
+<li>支持 ActiveRecord 和 DtaMapper 两种模式</li>
+<li>支持关联(Associations)</li>
+<li>支持事务(Transaction)</li>
+<li>支持数据库迁移(Migration)</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>启动数据库 postgresql</li>
+</ol>
+<ul>
+<li><p>创建数据库目录 blog-data</p>
+<ul>
+<li>在项目目录里创建 blog-data 目录</li>
+<li>.gitignore 里添加/blog-data/</li>
+</ul>
+</li>
+<li><p>启动 PostgreSQL</p>
+<ul>
+<li><p>一句话命令启动 pg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v &quot;$PWD&#x2F;blog-data&quot;:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data -p 5432:5432 -e POSTGRES_USER&#x3D;blog -e POSTGRES_HOST_AUTH_METHOD&#x3D;trust -d postgres:12.2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v &quot;$PWD&#x2F;blog-data&quot;:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data -p 5432:5432 -e POSTGRES_USER&#x3D;blog -e POSTGRES_HOST_AUTH_METHOD&#x3D;trust -d postgres:12.2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果<label style="color:red">报错</label>,可以看这篇<a href="https://www.yuque.com/docs/share/a6f5d85c-c7eb-4a08-9db7-d693db840b9b" target="_blank" rel="noopener">教程</a>,或者将报错复制到 Google</p>
+</li>
+<li><p>如果下载慢，可以搜索<a href="https://developer.aliyun.com/article/29941" target="_blank" rel="noopener">Docker 镜像加速</a></p>
+</li>
+<li><p>docker ps -a <label style="color:#aaa">这句话可以查看容器运行状态</label></p>
+</li>
+<li><p>docker logs 容器 id <label style="color:#aaa">这句话可以查看启动日志</label></p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>验证 pg</p>
+<ul>
+<li><p>进入 docker 容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it edc bash</span><br><span class="line"># edc是容器id</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入 pg 命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -U blog -W</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>之前设置不需要密码，如果需要密码，可在 docker run 选择项里的<code>-e POSTGRES_HOST_AUTH_METHOD=trust</code>替换成<code>-e POSTGRES_PASSWORD=123456</code></li>
+</ul>
+</li>
+<li><p>执行 pg 命令</p>
+<ul>
+<li>\l 用于 list databases, 目前有一个 blog 数据库</li>
+<li>\c 用于 connect to a database</li>
+<li>\dt 用于 display tables, 目前没有 tables</li>
+</ul>
+</li>
+<li><p>用 SQL 来创建数据库</p>
+<ul>
+<li>因为 TypeORM 没有单纯提供创建数据库的 API<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE xxx ENCODING &#39;UTF8&#39; LC_COLLATE &#39;en_US.utf8&#39; LC_CTYPE &#39;en_US.utf8&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>我们需要创建三个数据库: 开发，测试，生产<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE blog_development ENCODING &#39;UTF8&#39; LC_COLLATE &#39;en_US.utf8&#39; LC_CTYPE &#39;en_US.utf8&#39;;</span><br><span class="line">CREATE DATABASE blog_test ENCODING &#39;UTF8&#39; LC_COLLATE &#39;en_US.utf8&#39; LC_CTYPE &#39;en_US.utf8&#39;;</span><br><span class="line">CREATE DATABASE blog_production ENCODING &#39;UTF8&#39; LC_COLLATE &#39;en_US.utf8&#39; LC_CTYPE &#39;en_US.utf8&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>对应英文: development,test,production</li>
+<li>最终结果得到三个数据库</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>开始安装 TypeORM</p>
+</li>
+</ol>
+<ul>
+<li><p>安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add typeorm reflect-metadata @types&#x2F;node pg</span><br></pre></td></tr></table></figure></li>
+<li><p>修改 tsconfig 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;emitDecoratorMetadata&quot;: true,</span><br><span class="line">&quot;experimentalDecorators&quot;: true,</span><br></pre></td></tr></table></figure></li>
+<li><p>初始化 typeorm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx typeorm init —database postgres</span><br><span class="line">如果这句不行就用</span><br><span class="line">.&#x2F;node_modules&#x2F;.bin&#x2F;typeorm init —database postgres</span><br></pre></td></tr></table></figure></li>
+<li><p>撤销文件的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD -- .gitignore</span><br><span class="line">git checkout HEAD -- package.json</span><br><span class="line">git checkout HEAD -- tsconfig.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 ormconfig.json 代码</p>
+</li>
+</ul>
+<ol start="4">
+<li>如何运行 TypeScript</li>
+</ol>
+<ul>
+<li>Next.js 默认使用 babel 来将 TS 编译为 JS(内置功能)</li>
+<li>TypeORM 推荐使用 ts-node 来编译(没有内置)</li>
+<li>babel 和 ts-node 对 TS 的支持并非完全一致</li>
+<li>所以我们必须进行统一，全都用 babel</li>
+</ul>
+<ol start="5">
+<li>链接数据库步骤</li>
+</ol>
+<ul>
+<li>选做:升级 Node.js 到 V14</li>
+<li>安装@babel/cli</li>
+<li><label style="color:red">ormconfig 进行配置，localhost 一定要改成本机 ip 才能连接 docker</label></li>
+<li>npx babel ./src –out-dir dist –extensions “.ts,.tsx”</li>
+<li><label style="color:red">根据错误提示搜索答案</label></li>
+<li><label style="color:red">yarn add -dev @babel/plugin-proposal-decorators</label></li>
+<li>去 Next.js 官网查看.babelrc 默认配置，复制</li>
+<li><label style="color:red">创建.babelrc, 添加插件</label></li>
+<li><label style="color:blue">重新运行刚刚失败的命令</label></li>
+<li><label style="color:red">得到 dist 里面的 js,运行 node dist/index.js</label></li>
+<li><label style="color:blue">根据错误提示再加上数消失的搜索，修改 ormconfig</label></li>
+<li>重新运行 node dist/index.js</li>
+<li>成功看见 connection 对象即为成功</li>
+</ul>
+<ol start="6">
+<li>工作流总结</li>
+</ol>
+<ul>
+<li>步骤<ul>
+<li>统一让 Next.js 和 TypeORM 使用 babel 翻译 TS</li>
+<li>每次修改 src 的 TS 代码后，翻译为 dist 里的 JS</li>
+<li>使用 node 运行 dist 的 JS，执行 TypeORM 任务</li>
+<li>也可使用 Next.js 执行 TYpeORM 任务</li>
+</ul>
+</li>
+<li>图示<ul>
+<li><img src="https://i.loli.net/2020/07/19/kmpNGXKhcv4W7aE.png" alt="总结.png"></li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>重要配置: 禁用 sync</li>
+</ol>
+<ul>
+<li>ormconfig<ul>
+<li>“synchronize”: true, =&gt; 改为 false</li>
+<li>如果为 true, 那么在连接数据库时，typeorm 会自动根据 entity 目录来修改数据表</li>
+<li>假设 entity 里面有 User,就会自动创建 User 表啊</li>
+</ul>
+</li>
+<li>为什么要禁用<ul>
+<li>因为 sync 功能可能会在我们修改 User 时直接删除数据</li>
+<li>这种行为绝对不能发生在生产环境</li>
+<li>所以要一开始杜绝 sync 功能</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>创建表(通过 migration)</li>
+</ol>
+<ul>
+<li>posts 表<ul>
+<li>npx typeorm migration:create -n CreatePost</li>
+<li>得到 src/migrations/{TIMESTAMP}-CreatePost.ts</li>
+<li>参考文档，写 up 函数</li>
+<li>为了方便撤销，写 down 函数</li>
+</ul>
+</li>
+<li>运行 migration(数据迁移)<ul>
+<li>npx babel ./src –out-dir dist –extensions “.ts,.tsx”</li>
+<li>npx typeorm migration:run</li>
+<li>npx typeorm migration:revert</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>吐槽</li>
+</ol>
+<ul>
+<li>npx 在 Windows 上极慢<ul>
+<li>建议把所有命令都卸载 package.json 里面</li>
+<li>默认会先从 node_modules/.bin 里面找命令</li>
+<li>同时，这也可以放置忘记命令</li>
+</ul>
+</li>
+<li>解决每次都要运行 babel<ul>
+<li>npx babel –help 可以看到有-w 选项</li>
+<li>让 yarn dev 同时运行 next dev 和 babel -w 即可</li>
+<li>由于 Windows 不支持&amp;操作，只有 Linux/Mac 支持</li>
+<li>搜索 npm run tasks in parallel 解决</li>
+<li>安装 concurrently 代替&amp;操作</li>
+</ul>
+</li>
+</ul>
+<ol start="10">
+<li>数据映射到实体</li>
+</ol>
+<ul>
+<li>背景<ul>
+<li>刚刚只是在数据库里创建 Post,代码如何读写 Post 呢</li>
+<li>答案: 将数据映射到 Entity(实体)</li>
+<li>命令: typeorm entity:create -n Post</li>
+</ul>
+</li>
+<li>知识点<ul>
+<li>@PrimaryGeneratedColumn(‘increment’)</li>
+<li>@Column(‘varchar’)</li>
+<li>@Column(‘text)</li>
+</ul>
+</li>
+<li>如何使用实体<ul>
+<li>EntityManager 或 Repository</li>
+<li>这只是两种不同的封装思路，需要灵活使用</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>EntityManager API</li>
+</ol>
+<ul>
+<li>举例<ul>
+<li>await manager.find(User,{name:”frank”});</li>
+<li>await manager.create(User,{name:’…’})</li>
+<li>await manager.save(user1)</li>
+<li>await manager.save([user1,user2,user3])</li>
+<li>await manager.remove(user1)</li>
+<li>await manager.update(User,1,{ name:’frank’ })</li>
+<li>await manager.delete(User,1)</li>
+<li>await manager.findOne(User,1)</li>
+</ul>
+</li>
+<li>封装思路<ul>
+<li>把所有操作都放在 manager 上</li>
+<li>把 User 类，user1 对象和其它参数传给 manager</li>
+</ul>
+</li>
+</ul>
+<ol start="12">
+<li>Repository API</li>
+</ol>
+<ul>
+<li>举例<ul>
+<li>const userRepository = getRepository(User);</li>
+<li>await userRepository.findOne(1)</li>
+<li>await userRepository.save(user)</li>
+</ul>
+</li>
+<li>封装思路<ul>
+<li>先通过 User 构造一个 repo 对象</li>
+<li>这个 repo 对象就只操作 User 表了</li>
+</ul>
+</li>
+<li>特色<ul>
+<li>TreeRepository 金额 MongoRepository</li>
+</ul>
+</li>
+</ul>
+<ol start="13">
+<li><p>测试 Post 实体代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">createConnection().then(async connection &#x3D;&gt; &#123;</span><br><span class="line">    const posts &#x3D; await connection.manager.find(Post);</span><br><span class="line">    console.log(&#39;posts1&#39;,posts);</span><br><span class="line">    const p &#x3D; new Post();</span><br><span class="line">    p.title &#x3D; &#39;Post 1&#39;;</span><br><span class="line">    p.content &#x3D; &#39;我de第一篇文章&#39;;</span><br><span class="line">    await connection.manager.save(p);</span><br><span class="line">    const posts2 &#x3D; await connection.manager.find(Post);</span><br><span class="line">    console.log(&#39;posts2&#39;,posts2);</span><br><span class="line">    await connection.close();</span><br><span class="line"></span><br><span class="line">&#125;).catch(error &#x3D;&gt; console.log(error));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>输出<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">posts1 []</span><br><span class="line">posts2 [ Post &#123; id: 1, title: &#39;Post 1&#39;, content: &#39;我de第一篇文章&#39; &#125; ]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="14">
+<li>总结</li>
+</ol>
+<ul>
+<li>migration 数据迁移<ul>
+<li>用来对数据库进行升级和降级</li>
+</ul>
+</li>
+<li>entity 实体<ul>
+<li>用类和对象来操作数据表和数据行</li>
+</ul>
+</li>
+<li>connection 连接<ul>
+<li>一个数据库连接，默认最多 10 个连接</li>
+<li>这种模式叫做连接池，可以参考<a href="https://juejin.im/post/5af026a06fb9a07ac47ff282" target="_blank" rel="noopener">这篇文章</a></li>
+</ul>
+</li>
+<li>manager/repo<ul>
+<li>两种 API 封装风格，用于操作 entity</li>
+</ul>
+</li>
+</ul>
+<ol start="15">
+<li>Seed</li>
+</ol>
+<ul>
+<li>也叫数据填充<ul>
+<li>现在有数据库了，数据表 posts 也有了，但是没有数据</li>
+<li>我们可以通过 seed 脚本来构造数据</li>
+<li>这比我们写一个网页加一个表单造数据简单得多</li>
+<li>一般不在生产环境运行 seed 脚本</li>
+</ul>
+</li>
+<li>好处<ul>
+<li>方便前端同事快速运行项目</li>
+<li>不然会被吐槽:请问你创建的这个表怎么填写数据</li>
+<li>为了防止吐槽，应该写 seed 脚本(务必)</li>
+</ul>
+</li>
+</ul>
+<ol start="16">
+<li>数据库搞定，开始开发</li>
+</ol>
+<ul>
+<li>先设计数据再做开发，前端转后端需要适应这一点</li>
+<li><a href="https://github.com/codingories/18nextjs-typeorm-1" target="_blank" rel="noopener">相关代码</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/12/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9017nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B06Nextjs%E5%85%A8%E8%A7%A3%E4%B8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2208,7 +2609,7 @@
 <li>use 是使用，使用什么？</li>
 <li>理解 app.use<ul>
 <li>创建新目录 express-demo-2<ul>
-<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
 <li>尝试使用 req.url 和 res.send</li>
 <li>多次使用会报错</li>
 <li>改成 res.write,还记得流吗</li>
@@ -2852,391 +3253,6 @@
 <ul>
 <li>背压 back pressure<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;docs&#x2F;guides&#x2F;backpressuring-in-streams&#x2F;</span><br></pre></td></tr></table></figure></li>
 <li>Node’s Streams<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jscomplete.com&#x2F;learn&#x2F;node-beyond-basics&#x2F;node-streams</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">高级前端养成08nodeJS基础学习07之数据库基础知识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-24 21:46:37" itemprop="dateCreated datePublished" datetime="2020-06-24T21:46:37+08:00">2020-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-25 11:25:08" itemprop="dateModified" datetime="2020-06-25T11:25:08+08:00">2020-06-25</time>
-              </span>
-
-          
-            <span id="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成08nodeJS基础学习07之数据库基础知识" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/24/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9008nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A007%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>关系型数据库的范式，标准</li>
-<li>第一范式</li>
-</ol>
-<ul>
-<li>定义<ul>
-<li>字段不可再分</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>我们要存储体验者的双眼视力</li>
-<li>那么应该存为左眼视力和右眼视力两个字段</li>
-<li>即 user 表里应该有 left_eye 和 right_eye</li>
-<li>而不能把他们存在一个字段</li>
-</ul>
-</li>
-<li>第一范式的缺点<ul>
-<li>数据冗余，创建的时候造一些假数据，删除导致字段消失</li>
-<li>结论：第一范式不够强</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>第二范式</li>
-</ol>
-<ul>
-<li>定义（不标准）<ul>
-<li>在 1NF 的基础上，要有键(键可由多个字段组合)</li>
-<li>所有字段分别完全依赖于键</li>
-<li>如果键是多个字段组合，则不允许部分依赖于该键</li>
-</ul>
-</li>
-<li>依赖关系<ul>
-<li>给出键，就能唯一确定字段的值</li>
-<li>如给出学号，就能唯一确定姓名，反之则不行</li>
-<li>则称姓名依赖于学号</li>
-</ul>
-</li>
-</ul>
-<ol start="4">
-<li>第三范式</li>
-</ol>
-<ul>
-<li>定义（不标准）<ul>
-<li>一个表里不能有两侧依赖</li>
-<li>给出学号，就能确定系名:系名依赖于学号</li>
-<li>给出系名，就能确定系主任:系主任依赖于系名</li>
-<li>所以，系主任间接依赖于学号</li>
-</ul>
-</li>
-<li>解决办法<ul>
-<li>把系名和系主任单独建表</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>总结</li>
-</ol>
-<ul>
-<li>第一范式<ul>
-<li>属性不可分割</li>
-</ul>
-</li>
-<li>第二范式<ul>
-<li>字段完全依赖于键</li>
-</ul>
-</li>
-<li>第三范式<ul>
-<li>字段没有间接依赖于键</li>
-</ul>
-</li>
-<li>BC 范式<ul>
-<li>键中的属性也不存在间接依赖</li>
-</ul>
-</li>
-</ul>
-<ol start="6">
-<li>数据库设计经验</li>
-</ol>
-<ul>
-<li>高内聚<ul>
-<li>把相关的字段放到一起，不相关的分开建表</li>
-<li>如果两个字段能够单独建表，那就单独建表</li>
-</ul>
-</li>
-<li>低耦合<ul>
-<li>如果两个表之间有弱关系</li>
-<li>一对一可放在一个表，也可两个表+外键</li>
-<li>一对多一般用外键</li>
-<li>多对多一般建中间表</li>
-</ul>
-</li>
-</ul>
-<ol start="7">
-<li>一对一</li>
-</ol>
-<ul>
-<li>假设一个学生只能加入一个班级</li>
-<li>可以把班级放在学生表里<ul>
-<li>学生 id:1001 姓名：小明 班级 id: 4002</li>
-<li>班级 id:4002 名称:入门 1 班</li>
-</ul>
-</li>
-<li>也可以单独建立关联表<ul>
-<li>学生 id:1001 姓名:小明</li>
-<li>学生班级: id: 2003 学生 id:1001 班级 id:4002</li>
-<li>班级 id:4002 名称入门 1 班</li>
-</ul>
-</li>
-</ul>
-<ol start="8">
-<li><p>一对多</p>
-<ul>
-<li>假设一个作者能写多本书</li>
-<li>可以把书放在作者表里吗？<ul>
-<li>某些 DBMS 支持数组，可以存两个 id 到一个字段</li>
-<li>作者 id:1001,姓名:大牛，books:[2001,3002]</li>
-<li>如果不支持数组，就不能这样做了</li>
-</ul>
-</li>
-<li>单独建立关系表(推荐)<ul>
-<li>作者 id:1001 姓名:大牛</li>
-<li>出版: id:2001 作者 id:1001 书 id:4002，出版社 id</li>
-<li>出版: id:2002 作者 id:1001 书 id:4003,出版社 id</li>
-<li>书 id:4002 名称 JS 入门</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>多对多</p>
-</li>
-</ol>
-<ul>
-<li>假设一个学生可以加入多个班级</li>
-<li>当然每个班级也能有多个学生</li>
-<li>可以把班级放在学生表里吗？<ul>
-<li>某些 DBMS 支持数组就可以放</li>
-<li>如果不支持数组，就不能放了</li>
-</ul>
-</li>
-<li>单独建立关系表(推荐)<ul>
-<li>学生 id:1001 姓名:小明</li>
-<li>学生班级:id:2001 学生 id:1001 班级 id:4002,有效期</li>
-<li>学生班级:id:2002 学生 id:1001 班级 id:4003,有效期</li>
-<li>班级 id: 4002 名称:入门 1 班</li>
-</ul>
-</li>
-</ul>
-<ol start="10">
-<li>什么时候建关联表</li>
-</ol>
-<ul>
-<li>当关联自身存在属性时<ul>
-<li>比如关联的有效期，有效期为一年</li>
-<li>比如关联的级别，店铺会员分为 vip1-6</li>
-</ul>
-</li>
-</ul>
-<ol start="11">
-<li>JOIN 连接表</li>
-</ol>
-<ul>
-<li>inner join,常用，显示两遍都有</li>
-<li>left join,左边显示全,左边多</li>
-<li>right join，右边显示全，右边多</li>
-<li>full outer join</li>
-</ul>
-<ol start="12">
-<li>试试看 1</li>
-</ol>
-<ul>
-<li><p>启动 mysql</p>
-<ul>
-<li>docker container start mysql1</li>
-<li>docker run –name mysql1 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.27</li>
-</ul>
-</li>
-<li><p>进入 mysql</p>
-<ul>
-<li>docker exec -it mysql1 bash</li>
-<li>mysql -u root -p</li>
-<li>输入密码 123456</li>
-</ul>
-</li>
-</ul>
-<ol start="13">
-<li>试试看 2</li>
-</ol>
-<ul>
-<li><p>创建数据库</p>
-<ul>
-<li>create database db1 character set utf8mb4 collate utf8mb4_unicode_ci;</li>
-<li>show databases;</li>
-<li>use db1;</li>
-</ul>
-</li>
-<li><p>创建表</p>
-<ul>
-<li>create table users(id serial, name text);</li>
-<li>create table staffs(id serial, name text);</li>
-<li>create table orders(id serial,user_id bigint unsigned,staff_id bigint unsigned,amount int unsigned);</li>
-</ul>
-</li>
-</ul>
-<ol start="14">
-<li>试试看 3</li>
-</ol>
-<ul>
-<li><p>创建记录</p>
-<ul>
-<li>insert into users (name) values (‘XiaoMing’);</li>
-<li>insert into staffs (name) values (‘XiaoHong’);</li>
-<li>insert into orders(user_id,staff_id,amount) values (1,1,100);</li>
-</ul>
-</li>
-<li><p>使用 inner join</p>
-<ul>
-<li>select users.name as uname, orders.amount as amount from users inner join orders on users.id=orders.user_id;</li>
-<li>得到 XiaoMing 100</li>
-</ul>
-</li>
-</ul>
-<ol start="15">
-<li>语法</li>
-</ol>
-<ul>
-<li>把表名改为</li>
-<li>T1 {[INNER]|{LEFT|RIGHT|FULL}[OUTER]}JOIN T2 ON bollean_expression</li>
-<li>举例:SELECT A.PK AS A_PK,B.PK AS B_PK,A.Value AS A_Vaue,B.Value AS B_Value FROM Table_AA inner join Table_BB on A.PK=B.PK;</li>
-</ul>
-<ol start="16">
-<li>项目中使用数据库常用技巧-缓存字段</li>
-</ol>
-<ul>
-<li>假设一个博客 blog 包含多个评论 comments</li>
-<li>如何获取博客的评论数<ul>
-<li>select count(id) from comments where blog_id=8,这样太慢了</li>
-<li>在 blog 表上添加一个 comment_count 字段，每次添加 comment 则+1，每次删除 comment 则-1</li>
-</ul>
-</li>
-</ul>
-<ol start="17">
-<li>事物</li>
-</ol>
-<ul>
-<li><p>有些操作必须一次完成</p>
-<ul>
-<li>用户评论之后，要做两件事情</li>
-<li>第一步，在 comments 表新增记录</li>
-<li>第二部，在 blog 表将对应的 comment_count+1</li>
-<li>如果第一步执行了，第二步没有执行怎么办</li>
-<li>数据就乱了</li>
-</ul>
-</li>
-<li><p>使用事务</p>
-<ul>
-<li>start transation;</li>
-<li>语句 1;语句 2;语句 3;commit;</li>
-<li>只要有一句出错，则全部不生效。</li>
-</ul>
-</li>
-</ul>
-<ol start="18">
-<li>MySQL 储存引擎</li>
-</ol>
-<ul>
-<li>命令 SHOW ENGINES;</li>
-<li>常见的<ul>
-<li>InnoDB - 默认,目前版本是新版 InnoDB</li>
-<li>MyISAM - 拥有较高的插入，查询速度，但不支持事务</li>
-<li>Memory - 内存中，快速访问数据</li>
-<li>Archive - 只支持 insert 和 select</li>
-</ul>
-</li>
-</ul>
-<ol start="19">
-<li>InnoDB</li>
-</ol>
-<ul>
-<li>InnoDB 是事务型数据库的首选，支持事务，遵循 ACID,支持行锁和外键</li>
-</ul>
-<ol start="20">
-<li>索引</li>
-</ol>
-<ul>
-<li><p>语法</p>
-<ul>
-<li>CREATE UNIQUE INDEX index1 ON users(name(100))</li>
-<li>show index in users;</li>
-<li>菜鸟的教程</li>
-</ul>
-</li>
-<li><p>用途</p>
-<ul>
-<li>提交搜索效率</li>
-<li>where xxx&gt;100 那么我们可以创建 xxx 的索引,索引长度不能超过字段本身的类型长度</li>
-<li>where xxx&gt;100 and yyy&gt;200，创建 xxx,yyy 的索引</li>
-</ul>
-</li>
 </ul>
 
       
