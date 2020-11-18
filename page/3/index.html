@@ -158,6 +158,328 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" class="post-title-link" itemprop="url">高级前端养成37js专精06之手写promise(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-07 20:59:47" itemprop="dateCreated datePublished" datetime="2020-09-07T20:59:47+08:00">2020-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-08 22:59:24" itemprop="dateModified" datetime="2020-09-08T22:59:24+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成37js专精06之手写promise(上)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9037js%E4%B8%93%E7%B2%BE06%E4%B9%8B%E6%89%8B%E5%86%99promise-%E4%B8%8A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>面试答题万金油方法论顺序(高级前端面试套路)</li>
+</ol>
+<ul>
+<li>该技术要解决什么问题-why</li>
+<li>该技术是怎么解决它的-how</li>
+<li>该技术有什么优点(对比其他技术) - pros</li>
+<li>该技术有什么缺点-cons</li>
+<li>如何解决这些缺点-more</li>
+</ul>
+<ol start="2">
+<li>promise 要解决什么问题</li>
+</ol>
+<ul>
+<li><p>要解决回调地狱</p>
+</li>
+<li><p>那么问题来了，回调地狱真的是个问题么？</p>
+</li>
+<li><p>有没有可能是这个程序员水平不行</p>
+<ul>
+<li>回调地狱案例</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://imgkr2.cn-bj.ufileos.com/a398cab9-2bd7-41ac-80ac-7ea97382337c.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=x%252Fh8X7V54ZokIxLzN50tjC94Ae8%253D&Expires=1599572460" alt="回调地狱"></p>
+<ul>
+<li>改写成回调不地狱</li>
+</ul>
+<p><img src="https://imgkr2.cn-bj.ufileos.com/5d6a2eed-1294-4cab-b032-8bbcd616711a.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=DKVJql3uxHuKX2lps9%252FNKF8al34%253D&Expires=1599572469" alt="回调不地狱"></p>
+<ol start="3">
+<li>现状水平差的人就是多</li>
+</ol>
+<ul>
+<li>即 Promise 解决了回调地狱的问题</li>
+</ul>
+<ol start="4">
+<li>Promise 有什么优点</li>
+</ol>
+<ul>
+<li>有两个主要的优点<ul>
+<li><ol>
+<li>减少缩进</li>
+</ol>
+<ul>
+<li>把【函数里的函数】编程【then 下面的 then】(链式)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://imgkr2.cn-bj.ufileos.com/7e165f7f-c614-4500-b6d5-902db8643467.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=6Z6%252BXPCOrlTKKGP3l5A4XcljNT8%253D&Expires=1599572569" alt="减少缩进1/2"></p>
+<p><img src="https://imgkr2.cn-bj.ufileos.com/e6ff2c2d-737e-4a82-8238-7732795b6d11.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=KpTlu3tVIHfpOPJKW0MrN44vjXY%253D&Expires=1599572586" alt="减少缩进2/2"></p>
+<ul>
+<li><ol start="2">
+<li>消灭 if(err)</li>
+</ol>
+<ul>
+<li>错误处理单独放到一个函数里</li>
+<li>如果不处理，就一直等到往后抛</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://imgkr2.cn-bj.ufileos.com/79ae35dc-b9bd-4016-b4b5-c425a37da9af.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=77Te7RFwyTpGv0YDyQJ7vd7uRyk%253D&Expires=1599572614" alt="消灭if err"></p>
+<ol start="5">
+<li>用户怎么用 Promise</li>
+</ol>
+<ul>
+<li><p>用回调的方式摇骰子
+<img src="https://imgkr2.cn-bj.ufileos.com/6696991f-a26e-452b-aded-e27be20982c1.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=iO6h2Z5AebisoKBDOL4XgMeWMzU%253D&Expires=1599572684" alt="摇骰子回调"></p>
+</li>
+<li><p>用 Promise 的方式摇骰子
+<img src="https://imgkr2.cn-bj.ufileos.com/de05b106-a2f0-4de1-abee-a2aff51c71fc.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=5BB8Dx7zeb4Vy3rx9vYdrthvWnQ%253D&Expires=1599572675" alt="摇骰子promise"></p>
+</li>
+</ul>
+<ol start="6">
+<li>Promise 的完整 API 是什么？</li>
+</ol>
+<ul>
+<li>Promise 是一个类<ul>
+<li>JS 里类是特殊的函数</li>
+<li>类属性: length(可忽略)</li>
+<li>类方法: all/allSettled/race/reject/resolve</li>
+<li>对象属性: <strong>then</strong>(重要)/finally/catch</li>
+<li>对象内部属性: <strong>state</strong>=pending/fulfilled/reject</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>API 的规则是什么</li>
+</ol>
+<ul>
+<li>Promise/A+规格文档<ul>
+<li>JS 的 Promise 的<a href="https://promisesaplus.com/" target="_blank" rel="noopener">公开标准</a></li>
+<li>有<a href="https://juejin.im/post/6844903649852784647" target="_blank" rel="noopener">中文翻译</a>，但是不保证其准确性</li>
+</ul>
+</li>
+<li>开始写代码<ul>
+<li>按照文档写测试用例</li>
+<li>先让用例失败</li>
+<li>然后让用例通过</li>
+<li>直到把文档的所有情况都考虑清楚</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>使用 chai</li>
+</ol>
+<ul>
+<li>更牛 X 的测试方案<ul>
+<li>之前的手写用例太原始了，不利于定位错误</li>
+</ul>
+</li>
+<li>步骤<ul>
+<li>yarn global add ts-node mocha 全局安装</li>
+<li>创建目录 promise-demo(名字随意)</li>
+<li>yarn init -y 或者 npm init -y</li>
+<li>yarn add chai mocha –dev</li>
+<li>yarn add @types/chai @types/mocha –dev</li>
+<li>创建 test/index.ts</li>
+<li>mocha -r ts-node/register test/index.ts 运行测试</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试起手代码</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> chai <span class="keyword">from</span> <span class="string">"chai"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> assert = chai.assert;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">""</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">""</span>, () =&gt; &#123;&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>describe,it 的意思见下图</li>
+<li>确认 mocha 可以成功使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Promise"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"可以测试相等"</span>, () =&gt; &#123;</span><br><span class="line">    assert(<span class="number">1</span> === <span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后输入<code>mocha -r ts-node/register test/index.ts</code> 运行测试</li>
+<li>mocha 的作用就是提供 describe,it 和漂亮的输出的一个库</li>
+<li>chai 就是提供 assert 的使用</li>
+<li>在 package.json 中配置,就不需要这么长命令了</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"mocha -r ts-node/register test/**/*.ts"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>yarn test 发现报错,因为 yarn 在本地找依赖，而 typescript 和 ts-node 是全局的，所以进行本地安装,基本脚手架就搭建完成了</li>
+</ul>
+<ol start="9">
+<li>新建 src/promise.ts，开始写代码,并完成第一个测试用例</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Promise"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"是一个类"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// assert(typeof Promise === 'function'); // 检测是不是函数</span></span><br><span class="line">    <span class="comment">// assert(typeof Promise.prototype === "object"); // 检测是不是对象</span></span><br><span class="line">    assert.isFunction(<span class="built_in">Promise</span>); <span class="comment">// chai.assert 可以对以上两句的简写</span></span><br><span class="line">    assert.isObject(<span class="built_in">Promise</span>.prototype);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>测试用例 2，new Promise() 必须接收一个函数,不是一个函数就报错</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试用例</span></span><br><span class="line">describe(<span class="string">"Promise"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"是一个类"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// assert(typeof Promise === 'function'); // 检测是不是函数</span></span><br><span class="line">    <span class="comment">// assert(typeof Promise.prototype === "object"); // 检测是不是对象</span></span><br><span class="line">    assert.isFunction(<span class="built_in">Promise</span>); <span class="comment">// chai.assert 可以对以上两句的简写</span></span><br><span class="line">    assert.isObject(<span class="built_in">Promise</span>.prototype);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(<span class="string">"new Promise() 必须接收一个函数,不是一个函数就报错"</span>, () =&gt; &#123;</span><br><span class="line">    assert.throw(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// assert.throw预测某个东西会报错，接收一个函数</span></span><br><span class="line">      <span class="comment">// @ts-ignore</span></span><br><span class="line">      <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="number">1</span>); <span class="comment">// 函数体里就是要报错的东西,这里的意思是预测new Promise会报错</span></span><br><span class="line">    &#125;);</span><br><span class="line">    assert.throw(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// assert.throw预测某个东西会报错，接收一个函数</span></span><br><span class="line">      <span class="comment">// @ts-ignore</span></span><br><span class="line">      <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="literal">false</span>); <span class="comment">// 函数体里就是要报错的东西,这里的意思是预测new Promise会报错</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>实现测试用例 3,new Promise(fn)会生成一个对象，对象有 then 方法</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn)会生成一个对象，对象有then方法"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;);</span><br><span class="line">  assert.isFunction(promise.then);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  then() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Promise2;</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>实现测试用例 4,new Promise(fn) 中的 fn 立即执行</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn) 中的 fn 立即执行"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  assert(called === <span class="literal">true</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn();</span><br><span class="line">  &#125;</span><br><span class="line">  then() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>实现测试用例 5,new Promise(fn)中的 fn 执行的时候接收 resolve 和 reject 两个函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn)中的fn执行的时候接收 resolve 和 reject 两个函数"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">    assert.isFunction(resolve);</span><br><span class="line">    assert.isFunction(reject);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  assert(called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(</span><br><span class="line">      () =&gt; &#123;&#125;,</span><br><span class="line">      () =&gt; &#123;&#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  then() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>测试用例 6,测试 promise.then(success)中的 success 会在 resolve 被调用的时候，执行。这里会涉及执行时机的问题,resolve 立即执行所引发的问题,resolve 执行的时候 then 还没有绑定到 promise 上去</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"promise.then(success)中的success 会在 resolve被调用的时候，执行"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// done 表示等待的执行</span></span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 该函数没有执行</span></span><br><span class="line">    assert(called === <span class="literal">false</span>); <span class="comment">// 之前不是true</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"resolve"</span>);</span><br><span class="line">    resolve();</span><br><span class="line">    assert(called === <span class="literal">true</span>); <span class="comment">//  resolve 之后是true，证明resolve()调用了succeed</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"代码执行了"</span>);</span><br><span class="line">    <span class="comment">// 该函数执行了</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  promise.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  succeed = <span class="literal">null</span>; <span class="comment">// 对象的属性, 类的属性要加static</span></span><br><span class="line">  fail = <span class="literal">null</span>;</span><br><span class="line">  resolve = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed();</span><br><span class="line">  &#125;;</span><br><span class="line">  reject = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.fail();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(<span class="keyword">this</span>.resolve.bind(<span class="keyword">this</span>), <span class="keyword">this</span>.reject.bind(<span class="keyword">this</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed, fail) &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>通过增加 setTimeout 让 resolve 等一会,并且不能立即去测试 assert 为 true,但是这样做需要在测试用例上加上 done,因为有等待执行的代码,done 的意思告诉 mocha 测试完了,可以检查测试结果了。最终实现 promise.then(success)中的 success 会在 resolve 被调用的时候执行。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn)中的fn执行的时候接收 resolve 和 reject 两个函数"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> called = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    called = <span class="literal">true</span>;</span><br><span class="line">    assert.isFunction(resolve);</span><br><span class="line">    assert.isFunction(reject);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  assert(called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  succeed = <span class="literal">null</span>; <span class="comment">// 对象的属性, 类的属性要加static</span></span><br><span class="line">  fail = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.succeed();</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.fail();</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed, fail) &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优化代码</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  succeed = <span class="literal">null</span>; <span class="comment">// 对象的属性, 类的属性要加static</span></span><br><span class="line">  fail = <span class="literal">null</span>;</span><br><span class="line">  resolve = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.succeed();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  reject = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.fail();</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">"function"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"我只接收函数"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fn(<span class="keyword">this</span>.resolve, <span class="keyword">this</span>.reject);</span><br><span class="line">  &#125;</span><br><span class="line">  then(succeed, fail) &#123;</span><br><span class="line">    <span class="keyword">this</span>.succeed = succeed; <span class="comment">// 存到对象的属性上</span></span><br><span class="line">    <span class="keyword">this</span>.fail = fail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="16">
+<li>使用 sinon 测试函数,sinon-chai 是让 sinon 和 chai 合作</li>
+</ol>
+<ul>
+<li>安装<ul>
+<li>yarn add sinon sinon-chai –dev</li>
+<li>yarn add @types/sinon @types/sinon-chai –dev</li>
+</ul>
+</li>
+<li>引入并使用 sinon-chai</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> sinon <span class="keyword">from</span> <span class="string">"sinon"</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> sinonChai <span class="keyword">from</span> <span class="string">"sinon-chai"</span>;</span><br><span class="line">chai.use(sinonChai);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>改写之前的原始版代码</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn) 中的 fn 立即执行"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> fn = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(fn);</span><br><span class="line">  assert(fn.called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>改写测试代码，把之前各种变量改写成 sinon.fake</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"new Promise(fn) 中的 fn 立即执行"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> fn = sinon.fake();</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(fn);</span><br><span class="line">  assert(fn.called);</span><br><span class="line">&#125;);</span><br><span class="line">it(<span class="string">"new Promise(fn)中的fn执行的时候接收 resolve 和 reject 两个函数"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    assert.isFunction(resolve);</span><br><span class="line">    assert.isFunction(reject);</span><br><span class="line">    done();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">it(<span class="string">"promise.then(success)中的success 会在 resolve被调用的时候，执行"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// done 表示等待的执行</span></span><br><span class="line">  <span class="keyword">const</span> success = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 该函数没有执行</span></span><br><span class="line">    <span class="comment">// assert(called === false); // 之前不是ture</span></span><br><span class="line">    assert.isFalse(success.called);</span><br><span class="line">    resolve();</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert.isTrue(success.called);</span><br><span class="line">      done();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 该函数执行了</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  promise.then(success);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="17">
+<li>测试用例 7,测试 fail,和测试用例 6 对应</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"promise.then(null, fail)中的fail 会在 reject被调用的时候，执行"</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// done 表示等待的执行</span></span><br><span class="line">  <span class="keyword">const</span> fail = sinon.fake();</span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 该函数没有执行</span></span><br><span class="line">    <span class="comment">// assert(called === false); // 之前不是ture</span></span><br><span class="line">    assert.isFalse(fail.called);</span><br><span class="line">    reject();</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      assert.isTrue(fail.called);</span><br><span class="line">      done();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 该函数执行了</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// @ts-ignore</span></span><br><span class="line">  promise.then(<span class="literal">null</span>, fail);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="18">
+<li>接下来照着 PromiseA+规范做</li>
+</ol>
+<ul>
+<li><strong>欲知后事如何，且听下回分解</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/09/07/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9036js%E4%B8%93%E7%B2%BE05%E4%B9%8B%E6%89%8B%E5%86%99bind/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2129,204 +2451,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/16/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9027%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B09%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-Nginx-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/16/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9027%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B09%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-Nginx-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">高级前端养成27博客系统之09博客系统之自动化部署+Nginx+项目总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-16 10:41:24" itemprop="dateCreated datePublished" datetime="2020-08-16T10:41:24+08:00">2020-08-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-17 23:36:36" itemprop="dateModified" datetime="2020-08-17T23:36:36+08:00">2020-08-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4%E9%83%A8%E7%BD%B2-%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">运维部署 博客系统</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/08/16/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9027%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B09%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-Nginx-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成27博客系统之09博客系统之自动化部署+Nginx+项目总结" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/16/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9027%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B09%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-Nginx-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/16/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9027%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B09%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-Nginx-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>开启服务器</li>
-<li>开启 psql 容器 docker restart xxx</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 删掉其它不相关容器</span><br><span class="line">docker system prune</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>更新代码 git stash;git pull;git stash pop; yarn build;</li>
-</ol>
-<ul>
-<li>yarn install –production=false</li>
-<li>yarn build</li>
-<li>docker build -t fang/node-web-app .</li>
-<li>docker run –network=host -p 3000:3000 -d fang/node-web-app</li>
-<li>出现错误，要把.dockerignore 中的.env.local 删掉</li>
-</ul>
-<ol start="4">
-<li>构建 app 容器 docker build</li>
-<li>开启 app 容器 docker run</li>
-<li>自动化部署脚本</li>
-</ol>
-<ul>
-<li>ssh 远程自动执行脚本</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh blog@dev1 &quot;echo hi &gt; &#x2F;tmp&#x2F;frank&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>新建/bin/deploy.sh</li>
-<li>chmod +x bin/deploy.sh</li>
-<li>上传代码</li>
-<li>ssh blog@dev1 ‘sh /home/blog/app/23createBlogs/bin/deploy.sh’</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker start 534 &amp;&amp;</span><br><span class="line">cd &#x2F;home&#x2F;blog&#x2F;app&#x2F; &amp;&amp;</span><br><span class="line">git pull &amp;&amp;</span><br><span class="line">yarn install --production&#x3D;false</span><br><span class="line">yarn build &amp;&amp;</span><br><span class="line">docker build -t fang&#x2F;node-web-app . &amp;&amp;</span><br><span class="line">docker run --name app --network&#x3D;host -p 3000:3000 -d fang&#x2F;node-web-app &amp;&amp;</span><br><span class="line">echo &#39;OK!&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 处理目录</span><br><span class="line">&lt;!-- mv -f 23createBlogs&#x2F;* .&#x2F; --&gt;</span><br><span class="line">&lt;!-- mv -f 23createBlogs&#x2F;.* .&#x2F; --&gt;</span><br><span class="line">&#x2F;&#x2F; . 和..是虚拟目录不用管</span><br><span class="line">&lt;!-- rm -rf 23createBlogs --&gt;</span><br><span class="line">ssh blog@dev1 &#39;sh &#x2F;home&#x2F;blog&#x2F;app&#x2F;bin&#x2F;deploy.sh&#39;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>通过软连接和 gitignore 解决环境配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv app&#x2F;ormconfig.json .&#x2F;shared&#x2F;</span><br><span class="line">ln -s ..&#x2F;shared&#x2F;ormconfig.json</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>通过 git diff 创建补丁</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; git create patch file from diff</span><br><span class="line">git diff &gt; migrate.patch&#39;</span><br><span class="line">git apply migrate.patch</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>最后的部署脚本</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker start app &amp;&amp;</span><br><span class="line">cd &#x2F;home&#x2F;blog&#x2F;app&#x2F; &amp;&amp;</span><br><span class="line">git pull &amp;&amp;</span><br><span class="line">yarn install --production&#x3D;false</span><br><span class="line">yarn build &amp;&amp;</span><br><span class="line">git apply migrate.patch;</span><br><span class="line">yarn compile &amp;&amp;</span><br><span class="line">yarn m:run &amp;&amp;</span><br><span class="line">git reset --hard HEAD &amp;&amp;</span><br><span class="line">docker build -t fang&#x2F;node-web-app . &amp;&amp;</span><br><span class="line">docker kill app &amp;&amp;</span><br><span class="line">docker rm app &amp;&amp;</span><br><span class="line">docker run --name app --network&#x3D;host -p 3000:3000 -d fang&#x2F;node-web-app &amp;&amp;</span><br><span class="line">echo &#39;OK!&#39;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>解决 pull push 的问题，通过远程执行本地的脚本, push 是不能省的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh blog@dev1 &#39;bash -s&#39; &lt; bin&#x2F;deploy.sh</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>使用 nginx</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx只用于静态内容</span><br><span class="line">动态内容转发</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>首先要找 docker nginx 容器<ul>
-<li>没有写–net=host 的时候的情况，桥接模式<ul>
-<li><img src="https://i.loli.net/2020/08/17/sSFnePOQXNRBJ1L.png" alt="桥接模式.png"></li>
-</ul>
-</li>
-<li>写了–net=host 的情况，可以直接访问端口<ul>
-<li><img src="https://i.loli.net/2020/08/17/RKy1e3hTsj57Hvu.png" alt="直接访问.png"></li>
-</ul>
-</li>
-<li>使用 ngnix 的好处<ul>
-<li>动静分离,让静态服务更快</li>
-<li>起多个服务，服务不中断</li>
-<li>反向代理，负载均衡铺垫，扩展性</li>
-</ul>
-</li>
-<li><a href="https://hub.docker.com/_/nginx" target="_blank" rel="noopener">相关文档</a></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh blog@dev1</span><br><span class="line">&#x2F;&#x2F; -d 长久的运行</span><br><span class="line">$ docker run --name nginx1 --network&#x3D;host -d nginx:1.19.1</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>nginx 初步使用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        listen  [::]:80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location ~ ^&#x2F;_next&#x2F;static&#x2F;  &#123;</span><br><span class="line">          root  &#x2F;home&#x2F;blog&#x2F;app&#x2F;.next&#x2F;static&#x2F;;</span><br><span class="line">          expires 30d;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;0.0.0.0:3000;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>配置 nginx,搜索 nginx full example</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx1 --network&#x3D;host -v &#x2F;home&#x2F;blog&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf -d nginx:1.19.1</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>完善 nginx 启动</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx1 --network&#x3D;host -v &#x2F;home&#x2F;blog&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf -v &#x2F;home&#x2F;blog&#x2F;app&#x2F;.next&#x2F;static&#x2F;:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;_next&#x2F;static -d nginx:1.19.1</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>配置 gzip</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen 80;</span><br><span class="line">listen [::]:80;</span><br><span class="line">server_name localhost;</span><br><span class="line">        location ~ ^&#x2F;_next&#x2F;static&#x2F;  &#123;</span><br><span class="line">          root  &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;;</span><br><span class="line">          expires 30d;</span><br><span class="line">        &#125;</span><br><span class="line">        gzip on;</span><br><span class="line">        gzip_disable &quot;msie6&quot;;</span><br><span class="line">        gzip_vary on;</span><br><span class="line">        gzip_proxied any;</span><br><span class="line">        gzip_comp_level 6;</span><br><span class="line">        gzip_buffers 16 8k;</span><br><span class="line">        gzip_http_version 1.1;</span><br><span class="line">        gzip_min_length 256;</span><br><span class="line">        gzip_types</span><br><span class="line">            text&#x2F;plain</span><br><span class="line">            text&#x2F;css</span><br><span class="line">            application&#x2F;json</span><br><span class="line">            application&#x2F;javascript</span><br><span class="line">            application&#x2F;x-javascript</span><br><span class="line">            text&#x2F;xml</span><br><span class="line">            application&#x2F;xml</span><br><span class="line">            application&#x2F;xml+rss</span><br><span class="line">            text&#x2F;javascript</span><br><span class="line">            application&#x2F;vnd.ms-fontobject</span><br><span class="line">            application&#x2F;x-font-ttf</span><br><span class="line">            font&#x2F;opentype</span><br><span class="line">            image&#x2F;svg+xml</span><br><span class="line">            image&#x2F;x-icon;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;0.0.0.0:3000;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>总结博客项目</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2398,7 +2522,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

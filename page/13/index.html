@@ -158,6 +158,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/11/07/learn-jQuery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/07/learn-jQuery/" class="post-title-link" itemprop="url">learn jQuery</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-07 15:37:48 / Modified: 16:58:34" itemprop="dateCreated datePublished" datetime="2019-11-07T15:37:48+08:00">2019-11-07</time>
+            </span>
+
+          
+            <span id="/2019/11/07/learn-jQuery/" class="post-meta-item leancloud_visitors" data-flag-title="learn jQuery" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/07/learn-jQuery/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/learn-jQuery/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>jQuery是前端最流行的前端框架之一，世界上有很多网站使用jQuery(见下图)。
+<img src="/2019/11/07/learn-jQuery/1.png" alt="png"></p>
+<p>一.jQuery 如何获取元素
+通过css选择器获取元素比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　$(document) &#x2F;&#x2F;选择整个文档对象</span><br><span class="line">　　$(&#39;#myId&#39;) &#x2F;&#x2F;选择ID为myId的网页元素</span><br><span class="line">　　$(&#39;div.myClass&#39;) &#x2F;&#x2F; 选择class为myClass的div元素</span><br><span class="line">　　$(&#39;input[name&#x3D;first]&#39;) &#x2F;&#x2F; 选择name属性等于first的input元素</span><br></pre></td></tr></table></figure>
+<p>通过jQuery特有的表达式来获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;a:first&#39;) &#x2F;&#x2F;选择网页中第一个a元素</span><br><span class="line">$(&#39;tr:odd&#39;) &#x2F;&#x2F;选择表格的奇数行</span><br><span class="line">　　$(&#39;#myForm :input&#39;) &#x2F;&#x2F; 选择表单中的input元素</span><br><span class="line">　　$(&#39;div:visible&#39;) &#x2F;&#x2F;选择可见的div元素</span><br><span class="line">　　$(&#39;div:gt(2)&#39;) &#x2F;&#x2F; 选择所有的div元素，除了前三个</span><br><span class="line">　　$(&#39;div:animated&#39;) &#x2F;&#x2F; 选择当前处于动画状态的div元素</span><br></pre></td></tr></table></figure>
+<p>二.jQuery 的链式操作是怎样的
+jQuery 的链式操作就是说让代码像一根链条一样比如像下面那样，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　$(&#39;div&#39;).find(&#39;h3&#39;).eq(2).html(&#39;Hello&#39;);</span><br><span class="line"></span><br><span class="line">$(&#39;div&#39;) &#x2F;&#x2F;找到div元素</span><br><span class="line">　　　.find(&#39;h3&#39;) &#x2F;&#x2F;选择其中的h3元素</span><br><span class="line">　　　.eq(2) &#x2F;&#x2F;选择第3个h3元素</span><br><span class="line">　　　.html(&#39;Hello&#39;); &#x2F;&#x2F;将它的内容改为Hello</span><br></pre></td></tr></table></figure>
+<p>另外,jQuery还提供了end()方法,其作用为可以后退一步</p>
+<p>三.jQuery 如何创建元素
+jQuery使用同一个函数，来完成取值（getter）和赋值（setter），即”取值器”与”赋值器”合一。到底是取值还是赋值，由函数的参数决定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;h1&#39;).html(); &#x2F;&#x2F;html()没有参数，表示取出h1的值</span><br><span class="line">$(&#39;h1&#39;).html(&#39;Hello&#39;); &#x2F;&#x2F;html()有参数Hello，表示对h1进行赋值</span><br></pre></td></tr></table></figure>
+<p>以下是一些常见的取值和赋值函数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　  .html() 取出或设置html内容</span><br><span class="line">　　.text() 取出或设置text内容</span><br><span class="line">　　.attr() 取出或设置某个属性的值</span><br><span class="line">　　.width() 取出或设置某个元素的宽度</span><br><span class="line">　　.height() 取出或设置某个元素的高度</span><br><span class="line">　　.val() 取出某个表单元素的值</span><br></pre></td></tr></table></figure>
+
+<p>四.jQuery 如何移动元素
+jQuery移动元素方法有两组，一组方法是直接移动该元素，另一组方法是移动其他元素，使得目标元素达到我们想要的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一种方法是使用.insertAfter()，把div元素移动p元素后面：</span><br><span class="line">　　$(&#39;div&#39;).insertAfter($(&#39;p&#39;));</span><br><span class="line"></span><br><span class="line">第二种方法是使用.after()，把p元素加到div元素前面：</span><br><span class="line">　　$(&#39;p&#39;).after($(&#39;div&#39;));</span><br></pre></td></tr></table></figure>
+
+<p>五.jQuery 如何修改元素的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.attr() 取出或设置某个属性的值</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/28/JS%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1091,108 +1208,6 @@ image的图片，img标签加上max-width:100%,可以使图片在手机上自适
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/" class="post-title-link" itemprop="url">如何使用GitHub Pages 预览HTML</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-08-27 21:13:35" itemprop="dateCreated datePublished" datetime="2019-08-27T21:13:35+08:00">2019-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-28 08:31:52" itemprop="dateModified" datetime="2019-08-28T08:31:52+08:00">2019-08-28</time>
-              </span>
-
-          
-            <span id="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/" class="post-meta-item leancloud_visitors" data-flag-title="如何使用GitHub Pages 预览HTML" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.登入 GitHub，新建一个 repo。
-第一步：输入要创建的仓库名称，我这里的输入是demos1</p>
-<p>第二步：初始化你的仓库并写入README文件</p>
-<p>第三步：点击绿色的按钮就创建了仓库
-<img src="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/1" alt="png"></p>
-<p>2.接下来进入setting页面。
-第一步：选中你刚才创建的仓库
-第二步：点击setting
-<img src="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/2.png" alt="png"></p>
-<p>3.setting页面向下滚，找到github pages进行设置。
-第一步：选择master 分支。
-第二步：点击save，进行保存。
-<img src="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/3.png" alt="png"></p>
-<p>4.接下来你就可以找到这个仓库的预览地址。
-<img src="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/4.png" alt="png"></p>
-<p>5.如果你要看预览这个仓库中其它的文件可以在仓库地址后面加上你要的文件路径。
-<img src="/2019/08/27/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GitHub-Pages-%E9%A2%84%E8%A7%88HTML/5.png" alt="png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1264,7 +1279,7 @@ image的图片，img标签加上max-width:100%,可以使图片在手机上自适
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/02/%E8%BF%91%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/02/%E8%BF%91%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">近阶段总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-02 13:05:08" itemprop="dateCreated datePublished" datetime="2020-06-02T13:05:08+08:00">2020-06-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-03 12:56:52" itemprop="dateModified" datetime="2020-06-03T12:56:52+08:00">2020-06-03</time>
+              </span>
+
+          
+            <span id="/2020/06/02/%E8%BF%91%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="近阶段总结" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/02/%E8%BF%91%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/02/%E8%BF%91%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>如何手动实现v-model,v-model的原理</p>
+<ul>
+<li>先给input绑定value属性值为数据name，然后给input绑定input事件将其input的value值赋给数据name<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;name&quot;&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; :value&#x3D;&quot;name&quot; @input&#x3D;&quot;name &#x3D; $event.target.value&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Vue为什么是单项数据流</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">单向数据流：父级 prop 的更新会向下流动到子组件中，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值  </span><br><span class="line">Vue是怎么实现数据响应式更新的，面试官期望听到的回答是通过Object.defineProperty()的get和set方法来实现响应式更新。</span><br><span class="line">从上面 v-model 的分析我们可以这么理解，双向数据绑定就是在单向绑定的基础上给可输入元素（input、textare等）添加了 change(input) 事件，来动态修改 model 和 view ，即通过触发（$emit）父组件的事件来修改mv来达到 mvvm 的效果。而 vue 组件间传递数据是单向的，即数据总是由父组件传递到子组件，子组件在其内部可以有自己维护的数据，但它无权修改父组件传递给它的数据，当开发者尝试这样做的时候，vue 将会报错。这样做是为了组件间更好的解耦，在开发中可能有多个子组件依赖于父组件的某个数据，假如子组件可以修改父组件数据的话，一个子组件变化会引发所有依赖这个数据的子组件发生变化，所以 vue 不推荐子组件修改父组件的数据，直接修改 props 会抛出警告。</span><br></pre></td></tr></table></figure></li>
+<li><p>diff算法是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Diff算法的作用是用来计算出 Virtual DOM 中被改变的部分，然后针对该部分进行原生DOM操作，而不用重新渲染整个页面。</span><br><span class="line">Tree Diff Element Diff真实DOM渲染，结构差异的比较</span><br><span class="line">Component Diff Component Diff 是数据层面的差异比较</span><br><span class="line">Element Diff Element Diff真实DOM渲染，结构差异的比较</span><br><span class="line"></span><br><span class="line">相关连接:https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;cdb4ad82df20</span><br></pre></td></tr></table></figure></li>
+<li><p>虚拟dom是什么？具体如何实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 虚拟DOM就是为了解决浏览器性能问题而被设计出来的。如前，若一次操作中有10次更新DOM的动作，虚拟DOM不会立即操作DOM，而是将这10次更新的diff内容保存到本地一个JS对象中，最终将这个JS对象一次性attch到DOM树上。避免大量无谓的计算量。所以，用JS对象模拟DOM节点的好处是，页面的更新可以先全部反映在JS对象(虚拟DOM)上，操作内存中的JS对象的速度显然要更快，等更新完成后，再将最终的JS对象映射成真实的DOM，交由浏览器去绘制。</span><br><span class="line">相关连接:https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;af0b398602bc</span><br></pre></td></tr></table></figure></li>
+<li><p>mixin解决重复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_34323858&#x2F;article&#x2F;details&#x2F;91399192</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.sync的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定。</span><br><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;6b062af8cf01</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>es6 map set的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;af78964c33e2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>generate 生成器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;da611c080feb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原型链</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;23090041?refer&#x3D;study-fe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reduce参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Array&#x2F;reduce</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/23/django%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%BD%91%E7%AB%99%E4%BA%94-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1441,106 +1556,6 @@ class Meta:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/" class="post-title-link" itemprop="url">旺财记账本react版实现三</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-02 09:55:03 / Modified: 17:57:24" itemprop="dateCreated datePublished" datetime="2020-05-02T09:55:03+08:00">2020-05-02</time>
-            </span>
-
-          
-            <span id="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现三" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一. ReactRouter 之 activeClassName</p>
-<ul>
-<li><p>调整样式修改底部栏的点击范围</p>
-</li>
-<li><p>通过 svgo-loader 去掉 svg 的颜色
-二. 对 money 页进行布局</p>
-</li>
-<li><p>多个 button 的写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button&#123;9&#125;*+tab</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>三. 设置记账页的样式
-四.调节 notesSection 的样式
-五.用伪元素去替代 borderbottom,防止上下不平均 bug</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; li &#123;</span><br><span class="line">  width: 50%;</span><br><span class="line">  text-align: center;</span><br><span class="line">  padding: 16px 0;</span><br><span class="line">  position: relative;</span><br><span class="line">  &amp;.selected::after&#123;</span><br><span class="line">    content: &#39;&#39;;</span><br><span class="line">    display:block;</span><br><span class="line">    height: 3px;</span><br><span class="line">    background-color:#333;</span><br><span class="line">    position:absolute;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    width: 100%;</span><br><span class="line">    left: 0; &#x2F;&#x2F; 这句话是为了防止在某些浏览器上产生bug</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>六. 解决整体比例问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过查询style.components文档进一步封装</span><br><span class="line">const MyLayout &#x3D; styled(Layout)&#96;</span><br><span class="line">  border: 1px solid red;</span><br><span class="line">  display:flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">&#96;</span><br></pre></td></tr></table></figure>
-
-<p>七. 最后对现有代码进行模块化</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1612,7 +1627,7 @@ class Meta:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" class="post-title-link" itemprop="url">svg的两个坑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-02-05 09:45:51 / Modified: 11:15:56" itemprop="dateCreated datePublished" datetime="2020-02-05T09:45:51+08:00">2020-02-05</time>
+            </span>
+
+          
+            <span id="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" class="post-meta-item leancloud_visitors" data-flag-title="svg的两个坑" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-WebStorm-按两下空格输入-soft-wrap-进行换行"><a href="#1-WebStorm-按两下空格输入-soft-wrap-进行换行" class="headerlink" title="1. WebStorm 按两下空格输入 soft wrap 进行换行"></a>1. WebStorm 按两下空格输入 soft wrap 进行换行</h4><h4 id="2-第一个坑-svg-中的-fill-属性处理"><a href="#2-第一个坑-svg-中的-fill-属性处理" class="headerlink" title="2. 第一个坑: svg 中的 fill 属性处理"></a>2. 第一个坑: svg 中的 fill 属性处理</h4><ul>
+<li>svg 里面如果有 fill=””,就会有颜色，可以手动去除,但是如果有很多个 svg 那么一个个去很麻烦</li>
+<li>用 svgo-loader 解决这个问题，在 vue.config.js 中配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">config.module</span><br><span class="line">.use(&#39;svgo-loader&#39;).loader(&#39;svgo-loader&#39;)</span><br><span class="line">.tap(options&#x3D;&gt;(&#123;</span><br><span class="line">  ...options, plugins:[&#123;</span><br><span class="line">      removeAttrs:&#123;attrs:&#39;fill&#39;&#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br><span class="line">.end()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add svgo-loader -D</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-碰到问题安装包和-node-版本不匹配"><a href="#3-碰到问题安装包和-node-版本不匹配" class="headerlink" title="3. 碰到问题安装包和 node 版本不匹配"></a>3. 碰到问题安装包和 node 版本不匹配</h4><ul>
+<li>The engine “node” is incompatible with this module. Expected version “^8.16.0 || ^10.6.0 || &gt;=11.0.0”. Got “8.12.0”</li>
+<li>解决办法用 nvm 安装 10 版本的,升级办法参考:<a href="https://dev.to/peterwitham/install-and-update-nodejs-on-the-mac-with-nvm-1m9j" target="_blank" rel="noopener">https://dev.to/peterwitham/install-and-update-nodejs-on-the-mac-with-nvm-1m9j</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 10</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-提交修改"><a href="#4-提交修改" class="headerlink" title="4. 提交修改"></a>4. 提交修改</h4><ul>
+<li>点 Version Control-&gt;左侧飞机 icon</li>
+</ul>
+<h4 id="5-统一管理-SCSS-变量"><a href="#5-统一管理-SCSS-变量" class="headerlink" title="5. 统一管理 SCSS 变量"></a>5. 统一管理 SCSS 变量</h4><ul>
+<li>在 assets 下新建 style/helper.scss,在用的地方进行引用</li>
+<li>@import “~@/assets/style/helper.scss”</li>
+</ul>
+<h4 id="6-第二个坑-引用-scss-出现下划线"><a href="#6-第二个坑-引用-scss-出现下划线" class="headerlink" title="6. 第二个坑:引用 scss 出现下划线"></a>6. 第二个坑:引用 scss 出现下划线</h4><ul>
+<li>在 settings 里面搜索 webpack,添加 webpack configuration file 路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules&#x2F;@vue&#x2F;cli-service&#x2F;webpack.config.js</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>但是还没有解决，问题处在 svg-sprite-loader 有 bug,而 WebStorm 会进行提示，其实已经有人改了但是管理这个仓库的 jetBrains 没有合并,自己 folk 以下合并下 commit,再重新发布成 svg-sprite-loader-mod</li>
+<li>安装 svg-sprite-loader-mod 并且把原来的 svg-sprite-loader 删除</li>
+<li>vue.config.js 中 svg-sprite-loader 的地方改成 svg-sprite-loader-mod</li>
+</ul>
+<h4 id="7-如果有人问你遇到的最难的技术问题是什么？"><a href="#7-如果有人问你遇到的最难的技术问题是什么？" class="headerlink" title="7. 如果有人问你遇到的最难的技术问题是什么？"></a>7. 如果有人问你遇到的最难的技术问题是什么？</h4><ul>
+<li>可以讲如何解决以上这两个问题,第二个问题过程更复杂。整个过程图如下图:
+<img src="https://i.loli.net/2020/02/05/d4ELcaUCGbhtSZz.png" alt="svg下划线问题.png"></li>
+</ul>
+<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/04/FLstudio%E7%9A%8413%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1065,104 +1183,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8B/" class="post-title-link" itemprop="url">Vue造轮子-tab组件(下)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-28 09:38:57 / Modified: 13:04:04" itemprop="dateCreated datePublished" datetime="2020-01-28T09:38:57+08:00">2020-01-28</time>
-            </span>
-
-          
-            <span id="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="Vue造轮子-tab组件(下)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/28/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-tab%E7%BB%84%E4%BB%B6-%E4%B8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-为什么一个-new-Vue-可以构造出一个-eventBus"><a href="#1-为什么一个-new-Vue-可以构造出一个-eventBus" class="headerlink" title="1. 为什么一个 new Vue 可以构造出一个 eventBus"></a>1. 为什么一个 new Vue 可以构造出一个 eventBus</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 当我们定义了new Vue之后,可以这样用</span><br><span class="line">var app &#x3D; new Vue(&#123;</span><br><span class="line">    created()&#123;</span><br><span class="line">        this.$emit()</span><br><span class="line">        this.$on()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 也可以这样用</span><br><span class="line">app.$emit()</span><br><span class="line">app.$on()</span><br><span class="line">app.$off()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 那么归根结底，只要满足能触发一个事件，监听一个事件，和取消监听一个事件，那么它就是一个事件中心</span><br><span class="line">eventBus</span><br><span class="line">eventBus.$emit() &#x2F;&#x2F; 触发一个事件</span><br><span class="line">eventBus.$on() &#x2F;&#x2F; 监听一个事件</span><br><span class="line">eventBus.$off() &#x2F;&#x2F; 取消监听一个事件</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 而我们的app 正好全部满足，而app就是 new Vue，new Vue就有这三个接口，所以new Vue就是一个eventHub。</span><br><span class="line">&#x2F;&#x2F; 因为它正好有这个三个接口，它的行为完全一样，这就叫基于行为的开发</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-开始写-CSS-样式"><a href="#2-开始写-CSS-样式" class="headerlink" title="2. 开始写 CSS 样式"></a>2. 开始写 CSS 样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- tabs-head.vue --&gt;</span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">  $tab-height: 40px;</span><br><span class="line">  .tabs-head &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    height: $tab-height;</span><br><span class="line">    justify-content: flex-start;</span><br><span class="line">    align-items: center;</span><br><span class="line">    border: 1px solid red;</span><br><span class="line">    &gt; .actions-wrapper &#123;</span><br><span class="line">      margin-left: auto; &#x2F;&#x2F; 这样写可以让按钮靠右,不要问为什么就是可以</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- tabs-item.vue --&gt;</span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span><br><span class="line">  .tabs-item &#123;</span><br><span class="line">    flex-shrink: 0;</span><br><span class="line">    padding: 0 2em; &#x2F;&#x2F; 用em是因为只关心两个栏之间的间距</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-激活属性-active-应该放在-data，还是放在-props"><a href="#3-激活属性-active-应该放在-data，还是放在-props" class="headerlink" title="3.激活属性 active 应该放在 data，还是放在 props"></a>3.激活属性 active 应该放在 data，还是放在 props</h4><ul>
-<li>如果需要用户传值，就放到 props 里面，因为 props 是你的输入参数，</li>
-<li>data 不需要用户传值，自身维护值</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抽象的讲，就像写一个函数,prop是外部传递的参数，data相当于局部变量，组件就是一个函数</span><br><span class="line">function fn(prop1,prop2)&#123;</span><br><span class="line">    var data1</span><br><span class="line">    var data2</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 我们在设计api的时候，没有需要用户传递data，我们是让用户把name传进来，实际上是tabs传递来的</span><br><span class="line">&#x2F;&#x2F; tabs传也是传，硬要用props也可以</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-在-mounted-里测试开送事件，不能用-created，因为需要确认元素已经挂载好了"><a href="#4-在-mounted-里测试开送事件，不能用-created，因为需要确认元素已经挂载好了" class="headerlink" title="4.在 mounted 里测试开送事件，不能用 created，因为需要确认元素已经挂载好了"></a>4.在 mounted 里测试开送事件，不能用 created，因为需要确认元素已经挂载好了</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app.js的new Vue</span><br><span class="line">data: &#123;</span><br><span class="line">  selectedTab: &#39;sports&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.html</span><br><span class="line">&lt;g-tabs :selected.sync&#x3D;&quot;selectedTab&quot; @update:selected&#x3D;&quot;yyy&quot;&gt;</span><br><span class="line">  &lt;g-tabs-head&gt;</span><br><span class="line">    &lt;g-tabs-item name&#x3D;&quot;woman&quot;&gt;</span><br><span class="line">      &lt;g-icon name&#x3D;&quot;setting&quot;&gt;&lt;&#x2F;g-icon&gt;美女</span><br><span class="line">    &lt;&#x2F;g-tabs-item&gt;</span><br><span class="line">  &lt;&#x2F;g-tabs-head&gt;</span><br><span class="line">&lt;&#x2F;g-tabs&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; tabs.vue发布</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    this.eventBus.$emit(&#39;update:selected&#39;, this.selected) &#x2F;&#x2F; 这样写不可以触发外面</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; tabs-item监听</span><br><span class="line">  created()&#123;</span><br><span class="line">    this.eventBus.$on(&#39;update:selected&#39;,(name)&#x3D;&gt;&#123;</span><br><span class="line">      if(name &#x3D;&#x3D;&#x3D; this.name)&#123;</span><br><span class="line">        console.log(&#96;我$&#123;this.name&#125;被选中了&#96;)</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        console.log(&#96;我$&#123;this.name&#125;没被选中了&#96;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; tabs-pane同理，选中了就把自己变成active</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-加-class-写成计算属性"><a href="#5-加-class-写成计算属性" class="headerlink" title="5. 加 class 写成计算属性"></a>5. 加 class 写成计算属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; tabs-item.vue</span><br><span class="line">  &lt;div class&#x3D;&quot;tabs-item&quot; @click&#x3D;&quot;xxx&quot; :class&#x3D;&quot;classes&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    classes() &#123; &#x2F;&#x2F; classes是一个计算属性</span><br><span class="line">      return &#123;</span><br><span class="line">        active: this.active</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    this.eventBus.$on(&#39;update:selected&#39;, (name) &#x3D;&gt; &#123;</span><br><span class="line">      this.active &#x3D; name &#x3D;&#x3D;&#x3D; this.name;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; tabs-pane,同理,但是要多加一个v-if&#x3D;&quot;active&quot; 用于控制切换隐藏</span><br><span class="line">  &lt;div class&#x3D;&quot;tabs-pane&quot; :class&#x3D;&quot;classes&quot; v-if&#x3D;&quot;active&quot;&gt;</span><br><span class="line">      &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-组件不能改自己的-props"><a href="#6-组件不能改自己的-props" class="headerlink" title="6. 组件不能改自己的 props"></a>6. 组件不能改自己的 props</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 相当于</span><br><span class="line">function fn(obj)&#123;</span><br><span class="line">    obj.a &#x3D; &#39;1&#39;</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 没多大问题，但是我们一般不要改参数传来的东西，vue也一样,如果硬要改</span><br><span class="line">function fn(obj,n)&#123;</span><br><span class="line">    obj.a &#x3D; &#39;1&#39;</span><br><span class="line">    n &#x3D; 2</span><br><span class="line">    var number &#x3D; n</span><br><span class="line">    number &#x3D; 2</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-框架主要的目的"><a href="#7-框架主要的目的" class="headerlink" title="7. 框架主要的目的"></a>7. 框架主要的目的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 使得团队的傻逼也写不出垃圾代码以保证代码的平均质量</span><br><span class="line">function fn(obj)&#123;</span><br><span class="line">    obj.a &#x3D; &#39;1&#39; &#x2F;&#x2F; bad</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br><span class="line">function fn(obj,n)&#123;</span><br><span class="line">    obj.a &#x3D; &#39;1&#39;</span><br><span class="line">    n &#x3D; 2</span><br><span class="line">    var number &#x3D; n &#x2F;&#x2F; good</span><br><span class="line">    number &#x3D; 2</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="最后-个人微信，欢迎交流"><a href="#最后-个人微信，欢迎交流" class="headerlink" title="最后:个人微信，欢迎交流!"></a>最后:个人微信，欢迎交流!</h4><img src="https://i.loli.net/2020/01/27/gS4ZwP6zfAvULYT.jpg" alt="微信" width="400" height="400" align="bottom">
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1234,7 +1254,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

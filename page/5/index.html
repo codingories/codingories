@@ -158,6 +158,213 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9019%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B01%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9019%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B01%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">高级前端养成19博客系统之01数据库设计与搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-01 15:46:53 / Modified: 15:48:32" itemprop="dateCreated datePublished" datetime="2020-08-01T15:46:53+08:00">2020-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">数据库 博客系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9019%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B01%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%90%AD%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成19博客系统之01数据库设计与搭建" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9019%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B01%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%90%AD%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9019%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B01%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>安装 并使用 WebStorm 数据库插件 Database Navigator</li>
+</ol>
+<ul>
+<li><p>1 连接数据库</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/lxPmAJK2L8rjZQq.png" alt="1连接数据库.png"></li>
+</ul>
+</li>
+<li><p>2 配置数据库连接</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/NnvAFLaIHsEUg3R.png" alt="2配置数据库连接.png"></li>
+</ul>
+</li>
+<li><p>3 选择对应表</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/uqTDJywkLBfUOYQ.png" alt="3选择对应表.png"></li>
+</ul>
+</li>
+<li><p>4 修改对应表</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/lI3fnwKU56gNRVW.png" alt="4修改对应表.png"></li>
+</ul>
+</li>
+<li><p>5 修改数据</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/MfUanOcmJLEPpbh.png" alt="5修改数据.png"></li>
+</ul>
+</li>
+<li><p>6 删除数据</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/c7UyoIVZR4LqKT9.png" alt="6删除数据.png"></li>
+</ul>
+</li>
+<li><p>7 使用 sql 命令</p>
+<ul>
+<li><img src="https://i.loli.net/2020/07/28/LftkU51A4gThWHi.png" alt="7使用sql命令.png"></li>
+</ul>
+</li>
+<li><p>8 清空数据</p>
+</li>
+</ul>
+<ol start="2">
+<li>制作登录模块</li>
+</ol>
+<ul>
+<li>登录的实质是创建 session</li>
+<li>编写 live template 代码段</li>
+<li>前端代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NextApiHandler&#125; from &#39;next&#39;</span><br><span class="line">import &#123;getDatabaseConnection&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;User&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;src&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import md5 from &#39;md5&#39;</span><br><span class="line"></span><br><span class="line">const Sessions: NextApiHandler &#x3D; async (req, res)&#x3D;&gt; &#123;</span><br><span class="line">  const &#123;username, password&#125; &#x3D; req.body</span><br><span class="line"></span><br><span class="line">  const connection &#x3D; await getDatabaseConnection() &#x2F;&#x2F; 连接数据库</span><br><span class="line">  const user &#x3D; await connection.manager.findOne(User, &#123;where: &#123;username&#125;&#125;)</span><br><span class="line">  res.setHeader(&#39;Content-Type&#39;, &#39;application&#x2F;json; charset&#x3D;utf-8&#39;)</span><br><span class="line"></span><br><span class="line">  if (user)&#123;</span><br><span class="line">    const passwordDigest &#x3D; md5(password)</span><br><span class="line">    if(user.passwordDigest &#x3D;&#x3D;&#x3D; passwordDigest)&#123;</span><br><span class="line">      res.statusCode &#x3D; 200;</span><br><span class="line">      res.end(JSON.stringify(user))</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      res.statusCode &#x3D; 422 ;</span><br><span class="line">      res.end(JSON.stringify(&#123;password: [&#39;密码不匹配&#39;]&#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; console.log(user)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    res.statusCode &#x3D; 422 ;</span><br><span class="line">    res.end(JSON.stringify( &#123;username: [&#39;用户名不存在&#39;]&#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; res.setHeader(&#39;Content-Type&#39;, &#39;application&#x2F;json; charset&#x3D;utf-8&#39;)</span><br><span class="line">  &#x2F;&#x2F; res.statusCode &#x3D; 200</span><br><span class="line">  &#x2F;&#x2F; res.write(&#39;&#39;)</span><br><span class="line">  &#x2F;&#x2F; res.end();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Sessions;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>处理 react 显示错误的 bug，实现每次只显示对应错误</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">axios.post(&#96;&#x2F;api&#x2F;v1&#x2F;sessions&#96;, formData)</span><br><span class="line">      .then(()&#x3D;&gt;&#123;</span><br><span class="line">        alert(&#39;登录成功!&#39;)</span><br><span class="line">        window.location.href &#x3D; &#39;&#x2F;sign_in&#39;</span><br><span class="line">      &#125;,(error)&#x3D;&gt;&#123;</span><br><span class="line">        if(error.response)&#123;</span><br><span class="line">          const response: AxiosResponse &#x3D; error.response;</span><br><span class="line">          &#x2F;&#x2F; if(response)</span><br><span class="line">          if(response.status &#x3D;&#x3D;&#x3D; 422)&#123;</span><br><span class="line">            console.log(&#39;response.data&#39;)</span><br><span class="line">            console.log(response.data)</span><br><span class="line">            setErrors(response.data);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;,[formData]) &#x2F;&#x2F; []不加参数参数，表示只在页面第一次创建渲染创建onSubmit函数,其它时候ui怎么变,onSubmit不变</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>通过新建 model/signIn.ts 封装后台登录逻辑</li>
+</ol>
+<ul>
+<li>SignIn.ts</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import &#123;getDatabaseConnection&#125; from &#39;..&#x2F;..&#x2F;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;User&#125; from &#39;..&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import md5 from &#39;md5&#39;</span><br><span class="line"></span><br><span class="line">export class SignIn &#123;</span><br><span class="line">  username : string;</span><br><span class="line">  password: string;</span><br><span class="line">  user: User;</span><br><span class="line"></span><br><span class="line">  errors &#x3D; &#123;</span><br><span class="line">    username: [] as string[], password: [] as string[],</span><br><span class="line">    passwordConfirmation: [] as string[]</span><br><span class="line">  &#125;</span><br><span class="line">  async validate()&#123;</span><br><span class="line">    if(this.username.trim() &#x3D;&#x3D;&#x3D; &#39;&#39;)&#123;</span><br><span class="line">      this.errors.username.push(&#39;请填写用户名&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    const connection &#x3D; await getDatabaseConnection()</span><br><span class="line">    const user &#x3D; await connection.manager.findOne(User, &#123;where: &#123;username:this.username&#125;&#125;)</span><br><span class="line">    this.user &#x3D; user;</span><br><span class="line">    if(user)&#123;</span><br><span class="line">      if(user.passwordDigest !&#x3D;&#x3D; md5(this.password))&#123;</span><br><span class="line">        this.errors.password.push(&#39;密码与用户名不匹配&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this.errors.username.push(&#39;用户名不存在&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  hasErrors()&#123;</span><br><span class="line">    return !!Object.values(this.errors).find(v &#x3D;&gt; v.length &gt; 0)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>session.tsx</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NextApiHandler&#125; from &#39;next&#39;</span><br><span class="line">import &#123;getDatabaseConnection&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;User&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;src&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import md5 from &#39;md5&#39;</span><br><span class="line">import &#123; SignIn &#125; from &#39;src&#x2F;model&#x2F;Signin&#39;</span><br><span class="line"></span><br><span class="line">const Sessions: NextApiHandler &#x3D; async (req, res)&#x3D;&gt; &#123;</span><br><span class="line">  const &#123;username, password&#125; &#x3D; req.body</span><br><span class="line">  res.setHeader(&#39;Content-Type&#39;, &#39;application&#x2F;json; charset&#x3D;utf-8&#39;)</span><br><span class="line"></span><br><span class="line">  const signIn &#x3D; new SignIn();</span><br><span class="line">  signIn.username &#x3D; username;</span><br><span class="line">  signIn.password &#x3D; password;</span><br><span class="line">  await signIn.validate();</span><br><span class="line">  if (signIn.hasErrors())&#123;</span><br><span class="line">    res.statusCode &#x3D; 422;</span><br><span class="line">    res.end(JSON.stringify(signIn.errors));</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    res.statusCode &#x3D; 200;</span><br><span class="line">    res.end(JSON.stringify(signIn.user));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; res.setHeader(&#39;Content-Type&#39;, &#39;application&#x2F;json; charset&#x3D;utf-8&#39;)</span><br><span class="line">  &#x2F;&#x2F; res.statusCode &#x3D; 200</span><br><span class="line">  &#x2F;&#x2F; res.write(&#39;&#39;)</span><br><span class="line">  &#x2F;&#x2F; res.end();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Sessions;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>登录功能如何实现阶段总结</p>
+<ol>
+<li>创建登录页面</li>
+<li>创建 posts sessions API</li>
+<li>使用 SignIn Model 来校验数据</li>
+<li>使用 session 记录登录状态</li>
+</ol>
+</li>
+<li><p>开始加 session</p>
+<ol>
+<li>封装 lib/withSession.tsx</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123; withIronSession &#125; from &#39;next-iron-session&#39;</span><br><span class="line">import &#123;NextApiHandler&#125; from &#39;next&#39;</span><br><span class="line"></span><br><span class="line">export function withSession(handler:NextApiHandler) &#123;</span><br><span class="line">  return withIronSession(handler, &#123;</span><br><span class="line">    &#x2F;&#x2F; password: process.env.SECRET_COOKIE_PASSWORD,</span><br><span class="line">    password: &#39;2608786672099914&#39;,</span><br><span class="line">    cookieName: &#39;blog&#39;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>利用 withSession。成功为 sessions.tsx 加上 session</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NextApiHandler&#125; from &#39;next&#39;</span><br><span class="line">import &#123;getDatabaseConnection&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;lib&#x2F;getDatabaseConnection&#39;</span><br><span class="line">import &#123;User&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;src&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import md5 from &#39;md5&#39;</span><br><span class="line">import &#123; SignIn &#125; from &#39;src&#x2F;model&#x2F;SignIn&#39;</span><br><span class="line">import &#123; withSession &#125; from &#39;lib&#x2F;withSession&#39;</span><br><span class="line"></span><br><span class="line">const Sessions: NextApiHandler &#x3D; async (req, res)&#x3D;&gt; &#123;</span><br><span class="line">  const &#123;username, password&#125; &#x3D; req.body</span><br><span class="line">  &#x2F;&#x2F; @ts-ignore</span><br><span class="line">  console.log(&#39;req.session&#39;,req.session)</span><br><span class="line">  res.setHeader(&#39;Content-Type&#39;, &#39;application&#x2F;json; charset&#x3D;utf-8&#39;)</span><br><span class="line"></span><br><span class="line">  const signIn &#x3D; new SignIn();</span><br><span class="line">  signIn.username &#x3D; username;</span><br><span class="line">  signIn.password &#x3D; password;</span><br><span class="line">  await signIn.validate();</span><br><span class="line">  if (signIn.hasErrors())&#123;</span><br><span class="line">    res.statusCode &#x3D; 422;</span><br><span class="line">    res.end(JSON.stringify(signIn.errors));</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    res.statusCode &#x3D; 200;</span><br><span class="line">    res.end(JSON.stringify(signIn.user));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default withSession(Sessions);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为 req 增加 session 类型</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import * as next from &#39;next&#39;</span><br><span class="line">&#x2F;&#x2F; 这种写法会导致Post从全局类型变成非全局类型，我们之后再解决这个额外问题</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">declare module &#39;next&#39;&#123;</span><br><span class="line">  import &#123;Session&#125; from &#39;next-iron-session&#39;</span><br><span class="line"></span><br><span class="line">  interface NextApiRequest &#123;</span><br><span class="line">    session : Session;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>什么是 session</p>
+<ul>
+<li>这样设置后，浏览器的 header 里就有 set-cookie,对应服务器上的一小块内存或者文件，保存登录了的 user</li>
+<li>后台就可以知道用户的登录信息了</li>
+</ul>
+</li>
+<li><p>session 的整个过程</p>
+</li>
+</ol>
+<ul>
+<li>第一次登录成功，下发随机数，服务器记下来发的对应号码的 user 是什么</li>
+<li>下次再刷新页面 session 会自动带上 cookie，在请求头里面</li>
+<li>服务器通过这个 cookie 找到 user</li>
+</ul>
+<ol start="9">
+<li><p>图解 session</p>
+<ul>
+<li><img src="https://i.loli.net/2020/08/01/God7px1uhyQntTc.png" alt="图解session.png"></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/codingories/18nextjs-typeorm-1/" target="_blank" rel="noopener">相关代码</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9018nodeJS%E6%A1%86%E6%9E%B6%E4%B9%8B07TypeORM%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E8%B7%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2609,7 +2816,7 @@
 <li>use 是使用，使用什么？</li>
 <li>理解 app.use<ul>
 <li>创建新目录 express-demo-2<ul>
-<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
 <li>尝试使用 req.url 和 res.send</li>
 <li>多次使用会报错</li>
 <li>改成 res.write,还记得流吗</li>
@@ -3008,267 +3215,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/25/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9009nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A008%E4%B9%8BStream%E6%B5%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/25/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9009nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A008%E4%B9%8BStream%E6%B5%81/" class="post-title-link" itemprop="url">高级前端养成09nodeJS基础学习08之Stream流</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-25 12:46:42" itemprop="dateCreated datePublished" datetime="2020-06-25T12:46:42+08:00">2020-06-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-26 10:41:13" itemprop="dateModified" datetime="2020-06-26T10:41:13+08:00">2020-06-26</time>
-              </span>
-
-          
-            <span id="/2020/06/25/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9009nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A008%E4%B9%8BStream%E6%B5%81/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成09nodeJS基础学习08之Stream流" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/25/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9009nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A008%E4%B9%8BStream%E6%B5%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/25/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9009nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A008%E4%B9%8BStream%E6%B5%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>第一个例子</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const stream &#x3D; fs.createWriteStream(&#39;.&#x2F;big_file.txt&#39;)</span><br><span class="line"></span><br><span class="line">for(let i&#x3D;0;i&lt;1000000;i++)&#123;</span><br><span class="line">  stream.write(&#96;这是第 $&#123;i&#125; 行内容，我们需要很多很多内容，要不停地写文件啊啊啊啊啊啊啊啊回车\n&#96;)</span><br><span class="line">&#125;</span><br><span class="line">stream.end()</span><br><span class="line">console.log(&#39;done&#39;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>分析<ul>
-<li>打开流，多次往里面塞内容，关闭流</li>
-<li>看起来就是多次写嘛，没什么大不了</li>
-<li>最终我们得到了一个 128mb 左右的文件</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>Stream - 流</li>
-</ol>
-<ul>
-<li>释意</li>
-<li>stream 是水流，但默认没有水</li>
-<li>stream.write 可以让水流中有水（数据）</li>
-<li>每次写的小数据叫 chunk(块)</li>
-<li>产生数据的一段叫做 source(源头)</li>
-<li>得到数据的一段叫做 sink(水池)</li>
-</ul>
-<ol start="3">
-<li>第二个例子</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const http &#x3D; require(&#39;http&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line">server.on(&#39;request&#39;,(request, response)&#x3D;&gt;&#123;</span><br><span class="line">  fs.readFile(&#39;.&#x2F;big_file.txt&#39;,(error, data)&#x3D;&gt;&#123;</span><br><span class="line">    if(error) throw error</span><br><span class="line">    response.end(data)</span><br><span class="line">    console.log(&#39;done&#39;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br><span class="line">console.log(&#39;8888&#39;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>分析<ul>
-<li>用任务管理器查看 Node.js 内存占用，大概 130 MB</li>
-</ul>
-</li>
-</ul>
-<ol start="4">
-<li>第三个例子</li>
-</ol>
-<ul>
-<li>用 Stream 改写二个例子</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const http &#x3D; require(&#39;http&#39;)</span><br><span class="line">const server &#x3D; http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#39;request&#39;,(request, response)&#x3D;&gt;&#123;</span><br><span class="line">  const stream &#x3D; fs.createReadStream(&#39;.&#x2F;big_file.txt&#39;)</span><br><span class="line">  stream.pipe(response)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(8888)</span><br><span class="line">console.log(&#39;8889&#39;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>分析<ul>
-<li>查看 Node.js 内存占用，基本不会高于 30 Mb</li>
-<li>文件 stream 和 response stream 通过管道相连</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>管道</li>
-</ol>
-<ul>
-<li>释意<ul>
-<li>两个流可以用一个管道相连</li>
-<li>stream1 的末尾连接上 stream2 的开端</li>
-<li>只要 stream1 有数据，就会留到 stream2</li>
-</ul>
-</li>
-<li>常用代码<ul>
-<li>stream1.pipe(stream)</li>
-</ul>
-</li>
-<li>链式操作</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- a.pipe(b).pipe(c)</span><br><span class="line">  &#x2F;&#x2F; 等价于</span><br><span class="line">- a.pipe(b)</span><br><span class="line">- b.pipe(c)</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>管道续</li>
-</ol>
-<ul>
-<li>管道可以通过事件实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; stream1 一有数据就塞给 stream2</span><br><span class="line">stream1.on(&#39;data&#39;,(chunk)&#x3D;&gt;&#123;</span><br><span class="line">  stream2.write(chunk)</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; stream1 停了，就停掉 stream2</span><br><span class="line">stream1.on(&#39;end&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">  stream2.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>总结</li>
-</ol>
-<ul>
-<li>流的好处，可以使内存降的很低</li>
-<li>两个流可以连起来，用管道</li>
-</ul>
-<ol start="8">
-<li>Stream 对象的原型链条</li>
-</ol>
-<ul>
-<li>如何研究一个对象<ul>
-<li>node –inspect-brk 4.js,打断点<ul>
-<li>s = fs.createReadStream(path)</li>
-<li>那么它的对象层级为</li>
-<li>自身属性(由 fs.ReadStream 构造)</li>
-<li>原型: stream.Readable.prototype</li>
-<li>二级原型: stream.Stream.prototype;</li>
-<li>三级原型: events.EventEmitter.prototype</li>
-<li>四级原型: Object.prototype</li>
-</ul>
-</li>
-<li>Stream 对象都继承了 EventEmitter</li>
-</ul>
-</li>
-<li>常用支持的事件和方法<ul>
-<li>可读的 stream 的重要事件 data, end</li>
-<li>可写流，drain 流干,drain 表示之前拥堵的车道不再拥堵了，非常湍急的水流已经干涸了</li>
-<li>*** drain 面试常考,但是用的不多，除非碰到非常复杂的业务</li>
-<li>可写流 finish，整个写完了</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; stream1 一有数据就塞给 stream2</span><br><span class="line">stream1.on(&#39;data&#39;,(chunk)&#x3D;&gt;&#123;</span><br><span class="line">  const flag &#x3D; stream2.write(chunk)</span><br><span class="line">  if(flag &#x3D;&#x3D;&#x3D; false) &#123;</span><br><span class="line">    &#x2F;&#x2F; don&#39;t write</span><br><span class="line">  &#125;</span><br><span class="line">  stream2.on(&#39;drain&#39;,()&#x3D;&gt;&#123; &#x2F;&#x2F; 处理耗时的数据流，高速的数据流</span><br><span class="line">    go on write</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; stream1 停了，就停掉 stream2</span><br><span class="line">stream1.on(&#39;end&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">  stream2.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="9">
-<li>Stream 的分类共四种</li>
-</ol>
-<ul>
-<li>可读</li>
-<li>可写</li>
-<li>Duplex 可读可写（双向）</li>
-<li>Transform 可读可写（变化）,scss,webpack 打包都用到 transform</li>
-</ul>
-<ol start="10">
-<li>readable 和 writable 的特点</li>
-</ol>
-<ul>
-<li><p>Readable Stream</p>
-<ul>
-<li>静止态 paused 和流动态 flowing</li>
-<li>默认处于 pause 态</li>
-<li>添加 data 事件监听，它就变为 flowing 态</li>
-<li>删掉 data 事件监听，它就变为 paused 态</li>
-<li>pause()可以将它变为 paused</li>
-<li>resume()可以将它变为 flowing</li>
-</ul>
-</li>
-<li><p>Writable Stream</p>
-<ul>
-<li>drain 流干了事件<ul>
-<li>表示可以加点水了</li>
-<li>我们调用 stream.write(chunk)的时候，可能会 false</li>
-<li>false 的意思是你写的太快了，数据积压了</li>
-<li>这个时候我们就不能再 write 了，要监听 drain</li>
-<li>等 drain 事件出发了，我们才能继续 write</li>
-</ul>
-</li>
-<li>finish 事件<ul>
-<li>调用 stream.end()之后，而且</li>
-<li>缓冲区数据已经传给底层系统之后</li>
-<li>触发 finish 事件</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="11">
-<li>如何自定义一个 Stream</li>
-</ol>
-<ul>
-<li>创建一个可写的 Writeable Stream，第一种写<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Readable&#125; &#x3D; require(&#39;stream&#39;)</span><br><span class="line"></span><br><span class="line">const inStream &#x3D; new Readable()</span><br><span class="line"></span><br><span class="line">inStream.push(&#39;AAAAAAA&#39;)</span><br><span class="line">inStream.push(&#39;BBBBBBBB&#39;) &#x2F;&#x2F; 默认可读的数据是暂停态，不会发出去，只有ondata才会发出去</span><br><span class="line"></span><br><span class="line">inStream.push(null) &#x2F;&#x2F; no more data</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; inStream.pipe(process.stdout)</span><br><span class="line"></span><br><span class="line">inStream.on(&#39;data&#39;,(chunk)&#x3D;&gt;&#123;</span><br><span class="line">  process.stdout.write(chunk) &#x2F;&#x2F; 会分两次写，因为是分两次推，但是这个例子不是边写边读</span><br><span class="line">  console.log(&#39;写了数据&#39;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>第二种写法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Readable&#125; &#x3D; require(&#39;stream&#39;)</span><br><span class="line"></span><br><span class="line">const inStream &#x3D; new Readable(&#123;</span><br><span class="line">  read(size)&#123;</span><br><span class="line">    const char &#x3D; String.fromCharCode(this.currentCharCode++)</span><br><span class="line">    this.push(char)</span><br><span class="line">    console.log(&#96;推了$&#123;char&#125;&#96;)</span><br><span class="line">    if(this.currentCharCode &gt; 90) &#123; &#x2F;&#x2F; Z</span><br><span class="line">      this.push(null)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">inStream.currentCharCode &#x3D; 65 &#x2F;&#x2F; A</span><br><span class="line">inStream.pipe(process.stdout) &#x2F;&#x2F; read会被process.stdout不停de调用</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="12">
-<li>如何创建Duplex Stream</li>
-<li>如何创建transform Stream,实现transform方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line">const zlib &#x3D; require(&#39;zlib&#39;);</span><br><span class="line">const file &#x3D; process.argv[2];</span><br><span class="line">const crypto &#x3D; require(&quot;crypto&quot;)</span><br><span class="line"></span><br><span class="line">const &#123; Transform &#125; &#x3D; require(&quot;stream&quot;);</span><br><span class="line"></span><br><span class="line">const reportProgress &#x3D; new Transform(&#123;</span><br><span class="line">  transform(chunk, encoding, callback)&#123;</span><br><span class="line">    process.stdout.write(&quot;.&quot;);</span><br><span class="line">    callback(null, chunk)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fs.createReadStream(file)</span><br><span class="line">  .pipe(crypto.createCipher(&quot;aes192&quot;,&quot;123456&quot;)) &#x2F;&#x2F; 一定要先加密再压缩</span><br><span class="line">  .pipe(zlib.createGzip())</span><br><span class="line">  &#x2F;&#x2F; .on(&quot;data&quot;,()&#x3D;&gt;process.stdout.write(&quot;.&quot;)) &#x2F;&#x2F; gzip的过程冲打印点,然后存入到后面</span><br><span class="line">  .pipe(reportProgress) &#x2F;&#x2F; 优化打点</span><br><span class="line">  .pipe(fs.createWriteStream(file+&quot;.gz&quot;))</span><br><span class="line">  .on(&quot;finish&quot;,()&#x3D;&gt;&#123;console.log(&quot;done&quot;)&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>Node.js中的Stream</li>
-</ol>
-<ul>
-<li><img src="https://i.loli.net/2020/06/26/CDkAoQMreIS34aq.png" alt="Stream in nodejs.png"></li>
-</ul>
-<ol start="15">
-<li>数据流中的积压问题</li>
-</ol>
-<ul>
-<li>背压 back pressure<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;docs&#x2F;guides&#x2F;backpressuring-in-streams&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>Node’s Streams<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;jscomplete.com&#x2F;learn&#x2F;node-beyond-basics&#x2F;node-streams</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3340,7 +3286,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

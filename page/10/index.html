@@ -158,6 +158,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/17/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%94-%E5%BC%95%E5%85%A5Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/17/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%94-%E5%BC%95%E5%85%A5Redux/" class="post-title-link" itemprop="url">番茄闹钟五(引入Redux)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-17 16:28:10" itemprop="dateCreated datePublished" datetime="2020-02-17T16:28:10+08:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-18 15:36:31" itemprop="dateModified" datetime="2020-02-18T15:36:31+08:00">2020-02-18</time>
+              </span>
+
+          
+            <span id="/2020/02/17/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%94-%E5%BC%95%E5%85%A5Redux/" class="post-meta-item leancloud_visitors" data-flag-title="番茄闹钟五(引入Redux)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/17/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%94-%E5%BC%95%E5%85%A5Redux/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/17/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%94-%E5%BC%95%E5%85%A5Redux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-什么是-Redux"><a href="#1-什么是-Redux" class="headerlink" title="1. 什么是 Redux"></a>1. 什么是 Redux</h4><ul>
+<li>Redux 是 JavaScript 状态容器，提供可预测化的状态管理。</li>
+<li><a href="https://www.redux.org.cn/" target="_blank" rel="noopener">https://www.redux.org.cn/</a></li>
+</ul>
+<h4 id="2-三个概念"><a href="#2-三个概念" class="headerlink" title="2. 三个概念"></a>2. 三个概念</h4><ul>
+<li>action 用来描述做什么事情,描述晚了之后到 reducer,</li>
+<li>reducer 就是描述完了，接收描述，并且做一定的数据处理，主要是用来执行 action 的命令，</li>
+<li>state 是用来储存数据状态</li>
+</ul>
+<h4 id="3-1-案例"><a href="#3-1-案例" class="headerlink" title="3. +1 案例"></a>3. +1 案例</h4><ul>
+<li>用 redux 实现+1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;js.jirengu.com&#x2F;licajaruqe&#x2F;2&#x2F;edit</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不用 redux 实现+1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;js.jirengu.com&#x2F;mehikakiko&#x2F;1&#x2F;edit?html,js,output</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-为什么要用-Redux"><a href="#4-为什么要用-Redux" class="headerlink" title="4. 为什么要用 Redux"></a>4. 为什么要用 Redux</h4><ul>
+<li>在 react 中一般都是单页面应用，数据量非常大，声明全局变量不好</li>
+<li>react 中还要设计兄弟组件，爷爷孙子组件数据共享的问题，Redux 就很方便管理</li>
+</ul>
+<h4 id="5-store-里面-subscribe-接口的作用"><a href="#5-store-里面-subscribe-接口的作用" class="headerlink" title="5. store 里面 subscribe 接口的作用"></a>5. store 里面 subscribe 接口的作用</h4><ul>
+<li>添加一个变化监听器，每当 dispatch action 的时候就会执行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全部案例:http:&#x2F;&#x2F;js.jirengu.com&#x2F;licajaruqe&#x2F;4&#x2F;edit</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-react-搭配-Redux-的例子"><a href="#6-react-搭配-Redux-的例子" class="headerlink" title="6. react 搭配 Redux 的例子"></a>6. react 搭配 Redux 的例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">见 Redux-demo</span><br><span class="line">http:&#x2F;&#x2F;github.com&#x2F;codingories&#x2F;redux-demo</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-在项目中结合-使用-ReactRedux"><a href="#7-在项目中结合-使用-ReactRedux" class="headerlink" title="7. 在项目中结合,使用 ReactRedux"></a>7. 在项目中结合,使用 ReactRedux</h4><ul>
+<li>connect 的作用，也是一个组件，把我们要用的组件外面包一层，然后导出，需要两个参数，mapStateToProps,mapDispatchToProps,这样子 counter 就可以通过 connect 获得 state,mapStateToProps 获取 props,mapDispatchToProps 获取 dispatch 的函数。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/15/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E5%9B%9B-todoList-%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%B0%81%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1355,124 +1473,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" class="post-title-link" itemprop="url">svg的两个坑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-02-05 09:45:51 / Modified: 11:15:56" itemprop="dateCreated datePublished" datetime="2020-02-05T09:45:51+08:00">2020-02-05</time>
-            </span>
-
-          
-            <span id="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" class="post-meta-item leancloud_visitors" data-flag-title="svg的两个坑" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/05/svg%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9D%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-WebStorm-按两下空格输入-soft-wrap-进行换行"><a href="#1-WebStorm-按两下空格输入-soft-wrap-进行换行" class="headerlink" title="1. WebStorm 按两下空格输入 soft wrap 进行换行"></a>1. WebStorm 按两下空格输入 soft wrap 进行换行</h4><h4 id="2-第一个坑-svg-中的-fill-属性处理"><a href="#2-第一个坑-svg-中的-fill-属性处理" class="headerlink" title="2. 第一个坑: svg 中的 fill 属性处理"></a>2. 第一个坑: svg 中的 fill 属性处理</h4><ul>
-<li>svg 里面如果有 fill=””,就会有颜色，可以手动去除,但是如果有很多个 svg 那么一个个去很麻烦</li>
-<li>用 svgo-loader 解决这个问题，在 vue.config.js 中配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">config.module</span><br><span class="line">.use(&#39;svgo-loader&#39;).loader(&#39;svgo-loader&#39;)</span><br><span class="line">.tap(options&#x3D;&gt;(&#123;</span><br><span class="line">  ...options, plugins:[&#123;</span><br><span class="line">      removeAttrs:&#123;attrs:&#39;fill&#39;&#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br><span class="line">.end()</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add svgo-loader -D</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-碰到问题安装包和-node-版本不匹配"><a href="#3-碰到问题安装包和-node-版本不匹配" class="headerlink" title="3. 碰到问题安装包和 node 版本不匹配"></a>3. 碰到问题安装包和 node 版本不匹配</h4><ul>
-<li>The engine “node” is incompatible with this module. Expected version “^8.16.0 || ^10.6.0 || &gt;=11.0.0”. Got “8.12.0”</li>
-<li>解决办法用 nvm 安装 10 版本的,升级办法参考:<a href="https://dev.to/peterwitham/install-and-update-nodejs-on-the-mac-with-nvm-1m9j" target="_blank" rel="noopener">https://dev.to/peterwitham/install-and-update-nodejs-on-the-mac-with-nvm-1m9j</a></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 10</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-提交修改"><a href="#4-提交修改" class="headerlink" title="4. 提交修改"></a>4. 提交修改</h4><ul>
-<li>点 Version Control-&gt;左侧飞机 icon</li>
-</ul>
-<h4 id="5-统一管理-SCSS-变量"><a href="#5-统一管理-SCSS-变量" class="headerlink" title="5. 统一管理 SCSS 变量"></a>5. 统一管理 SCSS 变量</h4><ul>
-<li>在 assets 下新建 style/helper.scss,在用的地方进行引用</li>
-<li>@import “~@/assets/style/helper.scss”</li>
-</ul>
-<h4 id="6-第二个坑-引用-scss-出现下划线"><a href="#6-第二个坑-引用-scss-出现下划线" class="headerlink" title="6. 第二个坑:引用 scss 出现下划线"></a>6. 第二个坑:引用 scss 出现下划线</h4><ul>
-<li>在 settings 里面搜索 webpack,添加 webpack configuration file 路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules&#x2F;@vue&#x2F;cli-service&#x2F;webpack.config.js</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>但是还没有解决，问题处在 svg-sprite-loader 有 bug,而 WebStorm 会进行提示，其实已经有人改了但是管理这个仓库的 jetBrains 没有合并,自己 folk 以下合并下 commit,再重新发布成 svg-sprite-loader-mod</li>
-<li>安装 svg-sprite-loader-mod 并且把原来的 svg-sprite-loader 删除</li>
-<li>vue.config.js 中 svg-sprite-loader 的地方改成 svg-sprite-loader-mod</li>
-</ul>
-<h4 id="7-如果有人问你遇到的最难的技术问题是什么？"><a href="#7-如果有人问你遇到的最难的技术问题是什么？" class="headerlink" title="7. 如果有人问你遇到的最难的技术问题是什么？"></a>7. 如果有人问你遇到的最难的技术问题是什么？</h4><ul>
-<li>可以讲如何解决以上这两个问题,第二个问题过程更复杂。整个过程图如下图:
-<img src="https://i.loli.net/2020/02/05/d4ELcaUCGbhtSZz.png" alt="svg下划线问题.png"></li>
-</ul>
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1544,7 +1544,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">245</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
