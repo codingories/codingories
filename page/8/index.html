@@ -158,6 +158,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/" class="post-title-link" itemprop="url">旺财记账本react版实现四</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-02 19:34:43" itemprop="dateCreated datePublished" datetime="2020-05-02T19:34:43+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-03 18:23:10" itemprop="dateModified" datetime="2020-05-03T18:23:10+08:00">2020-05-03</time>
+              </span>
+
+          
+            <span id="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记账本react版实现四" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E5%9B%9B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一. 将 Styled Component 改造为 Function Component</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const TagsSection: React.FC &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;_TagsSection&gt;</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;li&gt;衣&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;食&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;住&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;行&lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ol&gt;</span><br><span class="line">      &lt;button&gt;新增标签&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;_TagsSection&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export &#123;TagsSection&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>二.为 TagsSection 添加功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">const TagsSection: React.FC &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const [tags, setTags] &#x3D; useState&lt;string[]&gt;([&#39;衣&#39;,&#39;食&#39;,&#39;住&#39;,&#39;行&#39;]);</span><br><span class="line">  const [selectedTags, setSelectedTags] &#x3D; useState&lt;string[]&gt;([])</span><br><span class="line">  const onAddTag &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    const tagName &#x3D; window.prompt(&#39;新标签的名称为&#39;);</span><br><span class="line">    if(tagName!&#x3D;&#x3D;null)&#123;</span><br><span class="line">      setTags([...tags,tagName])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  const onToggleTag &#x3D; (tag: string)&#x3D;&gt;&#123;</span><br><span class="line">    console.log(tag)</span><br><span class="line">    console.log(selectedTags)</span><br><span class="line">    const index &#x3D; selectedTags.indexOf(tag);</span><br><span class="line">    if (index &gt;&#x3D; 0)&#123;</span><br><span class="line">      console.log(index,selectedTags.filter(t &#x3D;&gt; t !&#x3D;&#x3D; tag))</span><br><span class="line">      &#x2F;&#x2F; 如果 tag 已被选中， 就复制所有没有被选中的 tag, 作为新的 selectedTag</span><br><span class="line">      setSelectedTags(selectedTags.filter(t &#x3D;&gt; t !&#x3D;&#x3D; tag))</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      console.log(index,[...selectedTags, tag])</span><br><span class="line">      setSelectedTags([...selectedTags, tag])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  const getClass &#x3D; (tag:string) &#x3D;&gt; selectedTags.indexOf(tag)&gt;&#x3D;0 ? &#39;selected&#39; : &#39;&#39;;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &#123;tags.map(tag &#x3D;&gt;</span><br><span class="line">          &lt;li key&#x3D;&#123;tag&#125; onClick&#x3D;&#123;()&#x3D;&gt;onToggleTag(tag)&#125;</span><br><span class="line">            className&#x3D;&#123;getClass(tag)&#125;</span><br><span class="line">          &gt;</span><br><span class="line">            &#123;tag&#125;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      &lt;&#x2F;ol&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;onAddTag&#125;&gt;新增标签&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三. 制作备注 NoteSection 功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 写成受控组件</span><br><span class="line">const NoteSection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [note, setNote] &#x3D; useState(&#39;&#39;)</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;label&gt;</span><br><span class="line">        &lt;span&gt;备注&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;在这里添加备注&quot;</span><br><span class="line">               value&#x3D;&#123;note&#125;</span><br><span class="line">               onChange&#x3D;&#123;(e) &#x3D;&gt; setNote(e.target.value)&#125;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;label&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 写成非受控组件，焦点移除获取值.有点像vue的.lazy</span><br><span class="line">const NoteSection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [note, setNote] &#x3D; useState(&#39;&#39;)</span><br><span class="line">  const refInput &#x3D; useRef&lt;HTMLInputElement&gt;(null);</span><br><span class="line">  const x &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    if(refInput.current !&#x3D;&#x3D; null)&#123;</span><br><span class="line">      console.log(refInput.current.value)</span><br><span class="line">      setNote(refInput.current.value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;label&gt;</span><br><span class="line">        &lt;span&gt;备注&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;在这里添加备注&quot;</span><br><span class="line">               ref&#x3D;&#123;refInput&#125;</span><br><span class="line">               defaultValue&#x3D;&#123;note&#125;</span><br><span class="line">               onBlur&#x3D;&#123;x&#125;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;label&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">export &#123;NoteSection&#125;</span><br></pre></td></tr></table></figure>
+
+<p>四. React onChange 和 HTML onChange 是不一样的</p>
+<ul>
+<li>HTML 里面是鼠标一走发生的事件,早于 onBlur。React 是会在输入一个字就会触发。
+五. 把 categorySection 变成函数组件</li>
+</ul>
+<p>五. 把 CategorySection 封装成一个函数组件</p>
+<ul>
+<li><p>制作 category 的切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const CategorySection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const categoryMap &#x3D; &#123;&#39;-&#39;:&#39;支出&#39;,&#39;+&#39;:&#39;收入&#39;&#125;</span><br><span class="line">  &#x2F;&#x2F; type X &#x3D; typeof categoryMap;</span><br><span class="line">  &#x2F;&#x2F; type Y &#x3D; keyof X</span><br><span class="line">  &#x2F;&#x2F; type Keys &#x3D; keyof typeof categoryMap &#x2F;&#x2F; 这样写就少生命一个类型但是需要更多ts知识</span><br><span class="line">  &#x2F;&#x2F; const [categoryList] &#x3D; useState&lt; Keys[]&gt;([&#39;-&#39;,&#39;+&#39;])</span><br><span class="line"></span><br><span class="line">  const [categoryList] &#x3D; useState&lt; (&#39;-&#39;|&#39;+&#39;)[]&gt;([&#39;-&#39;,&#39;+&#39;])</span><br><span class="line">  const [category, setCategory] &#x3D; useState(&#39;-&#39;)</span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &#123;categoryList.map(c &#x3D;&gt;</span><br><span class="line">          &lt;li className&#x3D;&#123;category &#x3D;&#x3D;&#x3D; c ? &#39;selected&#39; : &#39;&#39;&#125; onClick&#x3D;&#123;()&#x3D;&gt;&#123;setCategory(c)&#125;&#125;</span><br><span class="line">        &gt;&#123;categoryMap[c]&#125;</span><br><span class="line">        &lt;&#x2F;li&gt;)&#125;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123;CategorySection&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>六. 开始制作数字面板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">const NumberPadSection: React.FC &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  const [output, _setOutput] &#x3D; useState(&#39;0&#39;)</span><br><span class="line">  const setOutput &#x3D; (output: string) &#x3D;&gt; &#123;</span><br><span class="line">    if(output.length &gt; 16)&#123;</span><br><span class="line">      output &#x3D; output.slice(0, 16)</span><br><span class="line">    &#125;else if(output.length &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">      output &#x3D; &#39;0&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    _setOutput(output);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const onClickButtonWrapper &#x3D; (e: React.MouseEvent) &#x3D;&gt; &#123;</span><br><span class="line">    const text &#x3D; (e.target as HTMLButtonElement).textContent;</span><br><span class="line">    if(text &#x3D;&#x3D;&#x3D; null)&#123;return;&#125;</span><br><span class="line">    switch(text)&#123;</span><br><span class="line">      case &#39;0&#39;:</span><br><span class="line">      case &#39;1&#39;:</span><br><span class="line">      case &#39;2&#39;:</span><br><span class="line">      case &#39;3&#39;:</span><br><span class="line">      case &#39;4&#39;:</span><br><span class="line">      case &#39;5&#39;:</span><br><span class="line">      case &#39;6&#39;:</span><br><span class="line">      case &#39;7&#39;:</span><br><span class="line">      case &#39;8&#39;:</span><br><span class="line">      case &#39;9&#39;:</span><br><span class="line">        if(output &#x3D;&#x3D;&#x3D; &#39;0&#39;)&#123;</span><br><span class="line">          setOutput(text);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          setOutput(output + text   )</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">      case &#39;.&#39;:</span><br><span class="line">        if (output.indexOf(&#39;.&#39;) &gt;&#x3D; 0) &#123;return;&#125;</span><br><span class="line">        setOutput(output + &#39;.&#39;)</span><br><span class="line">        break;</span><br><span class="line">      case &#39;删除&#39;:</span><br><span class="line">        if(output.length&#x3D;&#x3D;&#x3D;1)&#123;</span><br><span class="line">          setOutput(&#39;&#39;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          setOutput(output.slice(0,-1))</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">      case &#39;清空&#39;:</span><br><span class="line">        setOutput(&#39;&#39;)</span><br><span class="line">        break;</span><br><span class="line">      case &#39;OK&#39;:</span><br><span class="line">        console.log(&#39;确认&#39;)</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;Wrapper&gt;</span><br><span class="line">      &lt;div className&#x3D;&quot;output&quot;&gt;</span><br><span class="line">        &#123;output&#125;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;div className&#x3D;&quot;pad clearfix&quot; onClick&#x3D;&#123;onClickButtonWrapper&#125;&gt;</span><br><span class="line">        &lt;button&gt;1&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;2&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;3&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;删除&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;4&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;5&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;6&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;清空&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;7&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;8&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button&gt;9&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button className&#x3D;&quot;ok&quot;&gt;OK&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button className&#x3D;&quot;zero&quot;&gt;0&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button className&#x3D;&quot;dot&quot;&gt;.&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;Wrapper&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123;NumberPadSection&#125;</span><br></pre></td></tr></table></figure>
+
+<p>七. 优化数字面板功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把样式和计算的过程封装成文件</span><br></pre></td></tr></table></figure>
+
+<p>八. 通过 money 传递数据</p>
+<ul>
+<li>通过 typeof 获取值的类型</li>
+<li>通过 Partial 获得部分类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> const onChange &#x3D; (obj: Partial&lt;typeof selected&gt;)&#x3D;&gt;&#123;</span><br><span class="line">  setSelected(&#123;...selected, ...obj&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/02/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E6%9C%ACreact%E7%89%88%E5%AE%9E%E7%8E%B0%E4%B8%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1524,138 +1642,6 @@ route 是一个匹配 URL 的准则（类似正则表达式）。当 Django 响�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/03/27/vue%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/27/vue%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">vue动画原理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-27 08:33:53 / Modified: 13:35:02" itemprop="dateCreated datePublished" datetime="2020-03-27T08:33:53+08:00">2020-03-27</time>
-            </span>
-
-          
-            <span id="/2020/03/27/vue%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="vue动画原理" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/03/27/vue%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/27/vue%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>Vue 如何添加动画</p>
-<ul>
-<li>写一个 transition 标签</li>
-<li>在上面写一系列以 fade 开头的类</li>
-<li>给一些初始值</li>
-</ul>
-</li>
-<li><p>定义动画的类</p>
-<ul>
-<li>v-enter 定义动画开始的第一帧</li>
-<li>fade-enter-active 进入的过程，补间动画</li>
-<li>v-enter-to 为动画第二帧,结束状态一般不需要加</li>
-</ul>
-</li>
-<li><p>淡出和淡如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">    transition: all .3s ease;</span><br><span class="line"> &#125;</span><br><span class="line"> .slide-fade-leave-active &#123;</span><br><span class="line">   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);</span><br><span class="line"> &#125;</span><br><span class="line"> .slide-fade-enter, .slide-fade-leave-to</span><br><span class="line">   transform: translateX(10px);</span><br><span class="line">   opacity: 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>以上是用 transition 做动画，也可以用 animation 做动画,animation 更简单。</p>
-<ul>
-<li>enter-active 正在淡入</li>
-<li>animation 最终状态就是最初的状态，如果不是会很奇怪</li>
-</ul>
-</li>
-<li><p>结合第三方库比如 animate.css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;robots&quot; content&#x3D;&quot;noindex&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;link href&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;animate.css@3.5.1&quot; rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;vuejs.org&#x2F;js&#x2F;vue.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;JS Bin&lt;&#x2F;title&gt;</span><br><span class="line">&lt;style id&#x3D;&quot;jsbin-css&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;example-3&quot;&gt;</span><br><span class="line">  &lt;button @click&#x3D;&quot;show &#x3D; !show&quot;&gt;</span><br><span class="line">    Toggle render</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">  &lt;transition</span><br><span class="line">      name&#x3D;&quot;custom-classes-transition&quot;</span><br><span class="line">      enter-active-class&#x3D;&quot;animated shake&quot;</span><br><span class="line">      leave-active-class&#x3D;&quot;animated bounceOutRight&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;p v-if&#x3D;&quot;show&quot;&gt;hello&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;transition&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script id&#x3D;&quot;jsbin-javascript&quot;&gt;</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &#39;#example-3&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      show: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结合 velocity 库完全自己去实现 js 动画</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;example-4&quot;&gt;</span><br><span class="line">  &lt;button @click&#x3D;&quot;show &#x3D; !show&quot;&gt;</span><br><span class="line">    Toggle</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">  &lt;transition</span><br><span class="line">      v-on:before-enter&#x3D;&quot;beforeEnter&quot;</span><br><span class="line">      v-on:enter&#x3D;&quot;enter&quot;</span><br><span class="line">      v-on:leave&#x3D;&quot;leave&quot;</span><br><span class="line">      v-bind:css&#x3D;&quot;false&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;p v-if&#x3D;&quot;show&quot;&gt;</span><br><span class="line">      Demo</span><br><span class="line">    &lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;transition&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script id&#x3D;&quot;jsbin-javascript&quot;&gt;</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &#39;#example-4&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      show: false</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      beforeEnter: function (el) &#123;</span><br><span class="line">        el.style.opacity &#x3D; 0</span><br><span class="line">        el.style.transformOrigin &#x3D; &#39;left&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      enter: function (el, done) &#123;</span><br><span class="line"></span><br><span class="line">        Velocity(el, &#123; opacity: 1, fontSize: &#39;1.4em&#39; &#125;, &#123; duration: 300 &#125;)</span><br><span class="line">        Velocity(el, &#123; backgroundColor: &#39;red&#39; &#125;, &#123; complete: 3000 &#125;)</span><br><span class="line">        Velocity(el, &#123; fontSize: &#39;1em&#39; &#125;, &#123; complete: done &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      leave: function (el, done) &#123;</span><br><span class="line">        Velocity(el, &#123; translateX: &#39;15px&#39;, rotateZ: &#39;50deg&#39; &#125;, &#123; duration: 600 &#125;)</span><br><span class="line">        Velocity(el, &#123; rotateZ: &#39;100deg&#39; &#125;, &#123; loop: 2 &#125;)</span><br><span class="line">        Velocity(el, &#123;</span><br><span class="line">          rotateZ: &#39;45deg&#39;,</span><br><span class="line">          translateY: &#39;30px&#39;,</span><br><span class="line">          translateX: &#39;30px&#39;,</span><br><span class="line">          opacity: 0</span><br><span class="line">        &#125;, &#123; complete: done &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>多元素动画实现</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;style id&#x3D;&quot;jsbin-css&quot;&gt;</span><br><span class="line">  .fade-enter-active, .fade-leave-active&#123;</span><br><span class="line">    transition: all 1s;</span><br><span class="line">  &#125;</span><br><span class="line">  .fade-enter&#123;</span><br><span class="line">    opacity: 0;</span><br><span class="line">  &#125;</span><br><span class="line">  .fade-leave-to&#123;</span><br><span class="line">    opacity:0;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;example-4&quot;&gt;</span><br><span class="line">  &lt;transition name&#x3D;&quot;fade&quot;&gt;</span><br><span class="line">    &lt;button key&#x3D;&quot;on&quot; v-if&#x3D;&quot;status &#x3D;&#x3D;&#x3D; &#39;off&#39;&quot; @click&#x3D;&quot;status &#x3D; &#39;on&#39;&quot;&gt;on&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button key&#x3D;&quot;off&quot; v-else @click&#x3D;&quot;status &#x3D; &#39;off&#39;&quot;&gt;off&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;transition&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script id&#x3D;&quot;jsbin-javascript&quot;&gt;</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &#39;#example-4&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      status: &#39;on&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>为什么要+key<ul>
-<li>不+key，vue可能认为是同一个button</li>
-</ul>
-</li>
-<li>动画先后执行需要加入参数,mode=”out-in”</li>
-</ul>
-</li>
-<li><p>多个组件之间的过度</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">  &lt;style id&#x3D;&quot;jsbin-css&quot;&gt;</span><br><span class="line">  .component-fade-enter-active, .component-fade-leave-active &#123;</span><br><span class="line">    transition: opacity 1.3s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .component-fade-enter, .component-fade-leave-to</span><br><span class="line">    &#x2F;* .component-fade-leave-active for below version 2.1.8 *&#x2F; &#123;</span><br><span class="line">    opacity: 0;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;transition-components-demo&quot;&gt;</span><br><span class="line">  &lt;button @click&#x3D;&quot;view&#x3D;&#39;v-a&#39;&quot;&gt;A&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;button @click&#x3D;&quot;view&#x3D;&#39;v-b&#39;&quot;&gt;B&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;transition name&#x3D;&quot;component-fade&quot; mode&#x3D;&quot;out-in&quot;&gt;</span><br><span class="line">    &lt;component v-bind:is&#x3D;&quot;view&quot;&gt;&lt;&#x2F;component&gt;</span><br><span class="line">  &lt;&#x2F;transition&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script id&#x3D;&quot;jsbin-javascript&quot;&gt;</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &#39;#transition-components-demo&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      view: &#39;v-a&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">      &#39;v-a&#39;: &#123;</span><br><span class="line">        template: &#39;&lt;div&gt;Component A&lt;&#x2F;div&gt;&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#39;v-b&#39;: &#123;</span><br><span class="line">        template: &#39;&lt;div&gt;Component B&lt;&#x2F;div&gt;&#39;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>以上几种动画方式总结</p>
-<ul>
-<li><img src="https://i.loli.net/2020/03/27/lCYyaD4sSGpW6mO.png" alt="总结动画.png"></li>
-</ul>
-</li>
-<li><p>列表过渡</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;style id&#x3D;&quot;jsbin-css&quot;&gt;</span><br><span class="line">  .list-item &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    margin-right: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  .list-enter-active, .list-leave-active &#123;</span><br><span class="line">    transition: all 1s;</span><br><span class="line">  &#125;</span><br><span class="line">  .list-enter, .list-leave-to</span><br><span class="line">    &#x2F;* .list-leave-active for below version 2.1.8 *&#x2F; &#123;</span><br><span class="line">    opacity: 0;</span><br><span class="line">    transform: translateY(30px);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;list-demo&quot; class&#x3D;&quot;demo&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;add&quot;&gt;Add&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;remove&quot;&gt;Remove&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;transition-group name&#x3D;&quot;list&quot; tag&#x3D;&quot;p&quot;&gt;</span><br><span class="line">    &lt;span v-for&#x3D;&quot;item in items&quot; v-bind:key&#x3D;&quot;item&quot; class&#x3D;&quot;list-item&quot;&gt;</span><br><span class="line">      &#123;&#123; item &#125;&#125;</span><br><span class="line">    &lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;transition-group&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script id&#x3D;&quot;jsbin-javascript&quot;&gt;</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &#39;#list-demo&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      items: [1,2,3,4,5,6,7,8,9],</span><br><span class="line">      nextNum: 10</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      randomIndex: function () &#123;</span><br><span class="line">        return Math.floor(Math.random() * this.items.length)</span><br><span class="line">      &#125;,</span><br><span class="line">      add: function () &#123;</span><br><span class="line">        this.items.splice(this.randomIndex(), 0, this.nextNum++)</span><br><span class="line">      &#125;,</span><br><span class="line">      remove: function () &#123;</span><br><span class="line">        this.items.splice(this.randomIndex(), 1)</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>要用transition-group+一个标签</li>
-<li>里面马上要+一个for循环</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1727,20 +1713,20 @@ route 是一个匹配 URL 的准则（类似正则表达式）。当 Django 响�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

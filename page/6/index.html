@@ -158,6 +158,306 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/26/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9010nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A009%E4%B9%8Bchild-process/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9010nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A009%E4%B9%8Bchild-process/" class="post-title-link" itemprop="url">高级前端养成10nodeJS基础学习09之child_process</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-26 11:16:22 / Modified: 22:48:38" itemprop="dateCreated datePublished" datetime="2020-06-26T11:16:22+08:00">2020-06-26</time>
+            </span>
+
+          
+            <span id="/2020/06/26/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9010nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A009%E4%B9%8Bchild-process/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成10nodeJS基础学习09之child_process" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/26/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9010nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A009%E4%B9%8Bchild-process/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/26/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9010nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A009%E4%B9%8Bchild-process/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>什么是进程</li>
+</ol>
+<ul>
+<li>场景<ul>
+<li>nodepad.exe 是一个程序，不是进程</li>
+<li>双击 nodepad.exe 时,操作系统会开启一个进程</li>
+</ul>
+</li>
+<li>定义<ul>
+<li>进程是程序的执行实例</li>
+<li>程序在 CPU 上执行时的活动叫做进程</li>
+<li>实际上并没有明确的定义，只有一些规则</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>一个进程可以创建另一个进程（父进程与子进程）</li>
+<li>通过任务管理器可以看到进程</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>了解 cpu</p>
+<ol>
+<li>特点<ul>
+<li>一个单核 CPU,在一个时刻，只能做一件事情</li>
+<li>那么如何让用户同时看电影，听声音，和写代码呢</li>
+<li>答案是在不同进程中快速切换</li>
+<li>此处以渣男交多个女朋友为例</li>
+</ul>
+</li>
+<li>多程序并发执行<ul>
+<li>指多个程序在宏观上并行，微观上串行</li>
+<li>每个进程会出现[执行-暂停-执行]的规律</li>
+<li>多个进程之间会出现抢资源（如打印机）的现象</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>进程的两个状态</p>
+</li>
+</ol>
+<ul>
+<li>进程的第一个状态
+<img src="https://i.loli.net/2020/06/26/IPF61jcKxZfeXUz.png" alt="进程的第一个状态.png"></li>
+<li>进程的第二个状态
+<img src="https://i.loli.net/2020/06/26/xTfvugRCL2JsOib.png" alt="进程的第2个状态.png"></li>
+</ul>
+<ol start="4">
+<li>什么是阻塞</li>
+</ol>
+<ul>
+<li>等待执行的进程中<ul>
+<li>都是非运行态</li>
+<li>一些(A)在等待 CPU 资源</li>
+<li>另一些(B)在等待 I/O 完成(如文件读取)</li>
+<li>如果这个时候把 CPU 分配给 B 进程，B 还是在等 I/O</li>
+<li>我们把 B 叫做阻塞进程</li>
+<li>因此，分派程序只会把 CPU 分配给非阻塞进程</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>由于阻塞，引入进程的第三个状态，把非运行分为阻塞和就绪</li>
+</ol>
+<ul>
+<li><img src="https://i.loli.net/2020/06/26/5pWSuvo8lkeODTb.png" alt="进程的第三个状态.png"></li>
+</ul>
+<ol start="6">
+<li>线程 Thread 的引入</li>
+</ol>
+<ul>
+<li>分阶段<ul>
+<li>在面向进程设计的系统中，进程是程序的基本执行实体</li>
+<li>在面向线程设计的系统中，进程本身不是基本运行单位，而是线程的容器</li>
+</ul>
+</li>
+<li>引入原因<ul>
+<li>进程是执行的基本实体，也是资源分配的基本实体</li>
+<li>导致进程的创建，切换，销毁太消耗 CPU 的时间了</li>
+<li>于是引入线程，线程作为执行的基本实体</li>
+<li>而进程只作为资源分配的基本实体</li>
+<li>此处可以以设计师和工程师分开招聘举例</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>线程 Thread</li>
+</ol>
+<ul>
+<li>概念<ul>
+<li>CPU 调度和执行的最小单元</li>
+<li>一个进程中至少有一个线程，可以有多个线程</li>
+<li>一个进程中的线程共享该进程的所有资源</li>
+<li>进程的第一个线程叫做初始化线程</li>
+<li>线程的调度可以由操作系统负责，也可以用户自己负责</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>浏览器进程里面有渲染引擎，V8 引擎，储存模块，网络模块，用户界面模块等</li>
+<li>每个模块都可以放在一个线程里</li>
+</ul>
+</li>
+<li>分析<ul>
+<li>子进程 V.S.线程</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>Node.js 的进程控制</li>
+</ol>
+<ul>
+<li>child_process,用于新建子进程，使用目的<ul>
+<li>子进程的运行结果储存在系统缓存之中（最大 200kb）</li>
+<li>等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li><p>API</p>
+<ul>
+<li>exec(cmd, options, fn)<ul>
+<li>execute 的缩写，用于执行 bash 命令</li>
+<li>同步版本:execSync</li>
+</ul>
+</li>
+<li>流<ul>
+<li>返回一个流</li>
+</ul>
+</li>
+<li>Promise<ul>
+<li>可以使其 Promise 化（用 util.promisify）</li>
+</ul>
+</li>
+<li>有漏洞<ul>
+<li>如果 cmd 被注入了，可能执行意外的代码</li>
+<li>推荐使用 execFile</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const child_process &#x3D; require(&#39;child_process&#39;)</span><br><span class="line">const &#123;exec&#125; &#x3D; child_process</span><br><span class="line">const util &#x3D; require(&#39;util&#39;)</span><br><span class="line"></span><br><span class="line">const exec2 &#x3D; util.promisify(exec);</span><br><span class="line"></span><br><span class="line">const userInput &#x3D; &#39;; pwd&#39;</span><br><span class="line"></span><br><span class="line">exec2(&#96;ls $&#123;userInput&#125;&#96;).then(data &#x3D;&gt; &#123;</span><br><span class="line">  console.log(data.stdout)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>execFile</li>
+</ol>
+<ul>
+<li>执行特定的程序</li>
+<li>命令行的参数要用数组形式传入，无法注入</li>
+<li>同步版本: execFileSync</li>
+<li>支持流</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const child_process &#x3D; require(&#39;child_process&#39;)</span><br><span class="line">const &#123;execFile&#125; &#x3D; child_process</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const userInput &#x3D; &#39;.&#39;</span><br><span class="line"></span><br><span class="line">const streams &#x3D; execFile(&#39;ls&#39;, [&#39;-la&#39;, userInput]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">streams.stdout.on(&#39;data&#39;, (chunk)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(chunk)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>options</li>
+</ol>
+<ul>
+<li>几个常用的选项<ul>
+<li>cwd - Current working directory</li>
+<li>env - 环境变量</li>
+<li>shell - 用什么 shell</li>
+<li>maxBuffer - 最大缓存，默认 1024*1024 字节</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const child_process &#x3D; require(&#39;child_process&#39;)</span><br><span class="line">const &#123;execFile&#125; &#x3D; child_process</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const userInput &#x3D; &#39;.&#39;</span><br><span class="line"></span><br><span class="line">const streams &#x3D; execFile(&#39;ls&#39;, [&#39;-la&#39;, userInput],&#123;</span><br><span class="line">  cwd: &#39;..&#x2F;&#39;,  &#x2F;&#x2F; cwd表示默认在哪个路径下选择</span><br><span class="line">  env: &#123;NODE_ENV: &#39;development&#39;&#125;, &#x2F;&#x2F; 环境变量</span><br><span class="line">  shell: &#39;&#39;, &#x2F;&#x2F; 指定shell路径，一般不用,</span><br><span class="line">  maxBuffer: 1024*1024, &#x2F;&#x2F; 设置最大缓存,最大2mb,1024*1024</span><br><span class="line">&#125;,(error, stdout)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(error) &#x2F;&#x2F; 执行完再回调</span><br><span class="line">  console.log(stdout)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>Node.js 的 execFile,spawn 和 fork</li>
+</ol>
+<ul>
+<li>spawn 意思是产卵<ul>
+<li>用法与 execFile 方法类似</li>
+<li>没有回调函数，只能通过流事件获取结果</li>
+<li>没有最大 200kb 的限制(因为是流)</li>
+</ul>
+</li>
+<li>经验<ul>
+<li>能用 spawn 的时候不要用 execFile</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const child_process &#x3D; require(&#39;child_process&#39;)</span><br><span class="line">const &#123; spawn &#125; &#x3D; child_process</span><br><span class="line">const userInput &#x3D; &#39;.&#39;</span><br><span class="line">const streams &#x3D; spawn(&#39;ls&#39;, [&#39;-la&#39;, userInput], &#123;</span><br><span class="line">  cwd: &#39;..&#x2F;&#39;,  &#x2F;&#x2F; cwd表示默认在哪个路径下选择</span><br><span class="line">  env: &#123;NODE_ENV: &#39;development&#39;&#125;, &#x2F;&#x2F; 环境变量</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">streams.stdout.on(&#39;data&#39;,(chunk)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(chunk.toString())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>api-fork</li>
+</ol>
+<ul>
+<li>fork<ul>
+<li>创建一个子进程，执行 Node 脚本</li>
+<li>fork(‘./child.js’)相当于 spawn(‘node’,[‘./child.js’])</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>会多出一个 message 事件，用于父子通信</li>
+<li>会多出一个 send 方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; n.js</span><br><span class="line">const child_process &#x3D; require(&quot;child_process&quot;)</span><br><span class="line">var n &#x3D; child_process.fork(&#39;.&#x2F;child.js&#39;);</span><br><span class="line">n.on(&#39;message&#39;, function (m) &#123;</span><br><span class="line">  console.log(&#39;父进程得到值:&#39;, m);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">n.send(&#123;hello: &#39;world&#39;&#125;)</span><br><span class="line">&#x2F;&#x2F; child.js</span><br><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">  process.send(&#123; foo:&quot;bar&quot; &#125;)</span><br><span class="line">&#125;,2000)</span><br><span class="line"></span><br><span class="line">process.on(&#39;message&#39;, (data)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&#39;子进程得到值&#39;)</span><br><span class="line">  console.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>node.js 操作线程</li>
+</ol>
+<ul>
+<li>worker_threads,api 太新</li>
+<li>API 列表<ul>
+<li>isMainThread</li>
+<li>new Worker(filename)</li>
+<li>parentPort</li>
+<li>postMessage</li>
+</ul>
+</li>
+<li>事件列表<ul>
+<li>message</li>
+<li>exit</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/25/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9009nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A008%E4%B9%8BStream%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2047,199 +2347,6 @@ const home = process.env.HOME || homier;</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/04/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9000-%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/04/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9000-%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B/" class="post-title-link" itemprop="url">高级前端养成00-高级前端能力</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-04 13:27:11" itemprop="dateCreated datePublished" datetime="2020-06-04T13:27:11+08:00">2020-06-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-07 18:26:10" itemprop="dateModified" datetime="2020-06-07T18:26:10+08:00">2020-06-07</time>
-              </span>
-
-          
-            <span id="/2020/06/04/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9000-%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成00-高级前端能力" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/04/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9000-%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/04/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9000-%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一. 高级前端面试痛点举例</p>
-<ul>
-<li>简历没亮点</li>
-<li>手写 Promise</li>
-<li>Eventloop 了解吗</li>
-<li>webpack 原理说一下</li>
-</ul>
-<p>二. 高级前端面试重点非常强调主动</p>
-<ul>
-<li>主动写了</li>
-<li>主动研究了</li>
-<li>主动承担了</li>
-</ul>
-<p>三. 简历没亮点</p>
-<ul>
-<li>什么项目算亮点</li>
-<li>管理平台不算亮点，官网不算亮点</li>
-<li>用数据说话算亮点</li>
-<li>为团队造轮子算亮点</li>
-<li>提升性能两倍算亮点</li>
-<li>参与开源项目算亮点</li>
-</ul>
-<p>四. 哪些工作算亮点</p>
-<ul>
-<li>负责开发工作不算亮点，这是本职工作</li>
-<li>负责面试算亮点</li>
-<li>团地分享算亮点（演讲或文章）</li>
-<li>向团队安利新技术算亮点</li>
-<li>对成员进行培训算亮点</li>
-<li>总结:平时代码写烂点，突然写好点算亮点，造两轮子算亮点，造完轮子分享 ts 使用心得算亮点，面试把把关也是亮点，向团队安利新技术算亮点</li>
-</ul>
-<p>五. 如何获得这些亮点。</p>
-<ul>
-<li>平时积累轮子，参加开源项目，多做分享。
-六. 面试:</li>
-<li>常见的题目</li>
-<li>手写 Event Hub</li>
-<li>Promise</li>
-<li>手写 bind 和 call</li>
-<li>手写深拷贝</li>
-<li>Ajax 请求(封装出一个 axios)</li>
-</ul>
-<p>七. 面试解法</p>
-<ul>
-<li>平时写博客，这样至少有思路</li>
-<li>面试前刷题，手写一遍是最有效的</li>
-<li>工作中大部分只需要知道原理，需要手写</li>
-</ul>
-<ul>
-<li>举例 Promise 原理
-问题 callback hell 同类型解法 1.node js 2. generator 不够直观 3. es 6 promise 优点（看起来同步)缺点(还不是同步，await 就是语法糖)你会手写 Promise 吗</li>
-</ul>
-<ul>
-<li>举例 webpack 原理
-问题。模块，打包，以前 gulp,require,grunt,都是任务化，不符合前端思想 几个月就死掉了同类型解法。 commands amd 都是民间的标准 ES module 优点:<ol>
-<li>全兼容以上三种格式</li>
-<li>管道思想</li>
-<li>缺点慢</li>
-<li>慢怎么办 分层打包，cdn 全局属性</li>
-</ol>
-</li>
-</ul>
-<p>九. 心得体会系列</p>
-<ul>
-<li>常见的题目</li>
-<li>你遇到的最复杂的技术难题</li>
-<li>如何应对需求变更快</li>
-<li>如何与同事相处</li>
-<li>如何快速定位 bug</li>
-<li>如何控制项目的复杂度</li>
-<li>如何优化性能</li>
-<li>工程化怎么做</li>
-<li>git 规范怎么做</li>
-</ul>
-<ol start="9">
-<li>心得体会解法</li>
-</ol>
-<ul>
-<li>没想过就不会答，平时就要思考</li>
-<li>看看别人怎么答的</li>
-<li>举例:如何应对需求变更快<ul>
-<li>(调休）加班-最蠢的答案解决，</li>
-<li>假想，产品经理 提的需求，流程约束，需求变更流程-&gt;发邮件，为改进提供依据。 记录每一次变更的原因，以及优先级是否这么强烈，当前项目这样，下个项目更好。对产品进行建议，教育，一开始没有想清楚，加快自己的工作效率，重复的业务变成轮子，开发上的其他工具脚手架</li>
-</ul>
-</li>
-</ul>
-<ol start="10">
-<li>主要内容</li>
-</ol>
-<ul>
-<li>JS 专精</li>
-<li>TS 实践</li>
-<li>Webpack 专精</li>
-<li>Web 性能优化</li>
-<li>可视化（常用库）</li>
-<li>Node.js 专精</li>
-</ul>
-<ol start="11">
-<li><p>前端可视化的难点</p>
-<ul>
-<li>数据量大怎么办<ul>
-<li>全部显示出来，分段+缓存</li>
-<li>不全部显示，平均化，交互的优化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2311,20 +2418,20 @@ const home = process.env.HOME || homier;</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

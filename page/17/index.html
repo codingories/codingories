@@ -158,6 +158,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/07/day12-Easy-38-Count-and-Say/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/07/day12-Easy-38-Count-and-Say/" class="post-title-link" itemprop="url">day12-Easy-38_Count_and_Say</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-07 12:44:07 / Modified: 12:44:50" itemprop="dateCreated datePublished" datetime="2019-06-07T12:44:07+08:00">2019-06-07</time>
+            </span>
+
+          
+            <span id="/2019/06/07/day12-Easy-38-Count-and-Say/" class="post-meta-item leancloud_visitors" data-flag-title="day12-Easy-38_Count_and_Say" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/07/day12-Easy-38-Count-and-Say/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/07/day12-Easy-38-Count-and-Say/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>day12-Easy-38_Count_and_Say
+The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
+<ol>
+<li><pre><code>1</code></pre>
+</li>
+<li><pre><code>11</code></pre>
+</li>
+<li><pre><code>21</code></pre>
+</li>
+<li><pre><code>1211</code></pre>
+</li>
+<li><pre><code>111221</code></pre>
+1 is read off as “one 1” or 11. 11 is read off as “two 1s” or 21. 21 is read off as “one 2, then one 1” or 1211.
+Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence.
+Note: Each term of the sequence of integers will be represented as a string.
+ 
+Example 1:
+Input: 1
+Output: “1”
+Example 2:
+Input: 4
+Output: “1211”</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 题目先读懂</span><br><span class="line">class Solution:</span><br><span class="line">    def countAndSay(self, n: int) -&gt; str:</span><br><span class="line">        seq &#x3D; &quot;1&quot;</span><br><span class="line">        for i in range(n-1):</span><br><span class="line">            seq &#x3D; self.getNext(seq)</span><br><span class="line">        return seq</span><br><span class="line">    </span><br><span class="line">    def getNext(self, seq):</span><br><span class="line">        i , next_seq &#x3D; 0, &quot;&quot;</span><br><span class="line">        while i &lt; len(seq):</span><br><span class="line">            count &#x3D; 1</span><br><span class="line">            while i &lt; len(seq) - 1 and seq[i] &#x3D;&#x3D; seq[i+1]:</span><br><span class="line">                count +&#x3D; 1</span><br><span class="line">                i +&#x3D; 1</span><br><span class="line">            next_seq +&#x3D; str(count) + seq[i]</span><br><span class="line">            i +&#x3D; 1</span><br><span class="line">        return next_seq</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/06/P44-%E5%AD%A6%E4%B9%A0%E7%8E%87%E5%AF%B9%E7%BB%93%E6%9E%9C%E7%9A%84%E5%BD%B1%E5%93%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -935,86 +1038,6 @@ for (int i = 0; i &lt; len; i++) {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-14%E9%80%9A%E8%BF%87%E7%BC%96%E7%A0%81%E8%BF%9E%E6%8E%A5endPoint/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/04/LearnJsplumb-14%E9%80%9A%E8%BF%87%E7%BC%96%E7%A0%81%E8%BF%9E%E6%8E%A5endPoint/" class="post-title-link" itemprop="url">LearnJsplumb_14通过编码连接endPoint</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-04 13:45:22 / Modified: 13:46:32" itemprop="dateCreated datePublished" datetime="2019-06-04T13:45:22+08:00">2019-06-04</time>
-            </span>
-
-          
-            <span id="/2019/06/04/LearnJsplumb-14%E9%80%9A%E8%BF%87%E7%BC%96%E7%A0%81%E8%BF%9E%E6%8E%A5endPoint/" class="post-meta-item leancloud_visitors" data-flag-title="LearnJsplumb_14通过编码连接endPoint" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/04/LearnJsplumb-14%E9%80%9A%E8%BF%87%E7%BC%96%E7%A0%81%E8%BF%9E%E6%8E%A5endPoint/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/04/LearnJsplumb-14%E9%80%9A%E8%BF%87%E7%BC%96%E7%A0%81%E8%BF%9E%E6%8E%A5endPoint/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>初始化数据后，给节点加上了endPoint, 如果想编码让endPoint链接上。需要在addEndpoint时，就给该断点加上一个uuid, 然后通过connect()方法，将两个断点链接上。建议使用node-uuid给每个断点都加上唯一的uuid， 这样以后链接就方便多了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;通过编码连接endPoint&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.11.1&#x2F;themes&#x2F;smoothness&#x2F;jquery-ui.css&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #diagramContainer &#123;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            width: 80%;</span><br><span class="line">            height: 400px;</span><br><span class="line">            border: 1px solid gray;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .item &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            height: 80px;</span><br><span class="line">            width: 80px;</span><br><span class="line">            border: 1px solid blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;diagramContainer&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_left&quot;  class&#x3D;&quot;item&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_right&quot; style&#x3D;&quot;left:400px&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;left:150px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.3.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.12.1&#x2F;jquery-ui.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jquery.jsplumb.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    &#x2F;* global jsPlumb, $ *&#x2F;</span><br><span class="line">    $(&#39;.item&#39;).resizable(&#123;</span><br><span class="line">        resize: function (event, ui) &#123;</span><br><span class="line">            jsPlumb.repaint(ui.helper)</span><br><span class="line">        &#125;,</span><br><span class="line">        handles: &#39;all&#39;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    jsPlumb.ready(function () &#123;</span><br><span class="line"></span><br><span class="line">        jsPlumb.addEndpoint(&#39;item_left&#39;, &#123;</span><br><span class="line">            anchors: [&#39;Right&#39;],</span><br><span class="line">            uuid: &#39;fromId&#39;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        jsPlumb.addEndpoint(&#39;item_right&#39;, &#123;</span><br><span class="line">            anchors: [&#39;Left&#39;],</span><br><span class="line">            uuid: &#39;toId&#39;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        console.log(&#39;3 秒后建立连线&#39;)</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            jsPlumb.connect(&#123; uuids: [&#39;fromId&#39;, &#39;toId&#39;] &#125;)</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1086,20 +1109,20 @@ for (int i = 0; i &lt; len; i++) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

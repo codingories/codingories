@@ -158,6 +158,374 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/23/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9033js%E4%B8%93%E7%B2%BE02%E4%B9%8BJS%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/23/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9033js%E4%B8%93%E7%B2%BE02%E4%B9%8BJS%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">高级前端养成33js专精02之JS代码规范</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-23 20:51:29" itemprop="dateCreated datePublished" datetime="2020-08-23T20:51:29+08:00">2020-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-24 21:17:42" itemprop="dateModified" datetime="2020-08-24T21:17:42+08:00">2020-08-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/23/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9033js%E4%B8%93%E7%B2%BE02%E4%B9%8BJS%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成33js专精02之JS代码规范" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/23/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9033js%E4%B8%93%E7%B2%BE02%E4%B9%8BJS%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/23/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9033js%E4%B8%93%E7%B2%BE02%E4%B9%8BJS%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>业界参考</li>
+</ol>
+<ul>
+<li><a href="https://google.github.io/styleguide/jsguide.html" target="_blank" rel="noopener">谷歌 JS 代码规范</a></li>
+<li><a href="https://lin-123.github.io/javascript/" target="_blank" rel="noopener">Airbnb JS 代码规范</a></li>
+<li><a href="https://standardjs.com/rules-zhcn" target="_blank" rel="noopener">JS 标准代码样式</a></li>
+</ul>
+<ol start="2">
+<li>参考资料</li>
+</ol>
+<ul>
+<li><a href="https://coolshell.cn/articles/4758.html" target="_blank" rel="noopener">如何写出无法维护的代码</a><ul>
+<li>如果不知道什么是坏的，那也不知道什么是好的</li>
+</ul>
+</li>
+<li><a href="https://dev.to/checkgit/the-joel-test-20-years-later-1kjk" target="_blank" rel="noopener">The Joel Test</a><ul>
+<li>StackOverflow 创始人总结的技术团队衡量标准</li>
+<li>如何衡量一个技术团队好还是不好，这篇文章告诉你</li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=DxnYQRuLX7Q" target="_blank" rel="noopener">视频: The better parts</a><ul>
+<li>Douglas Crockford 阐述他认为 JS 中好的特性有哪些，坏的特性有哪些</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>好的 JS 代码原则目录</li>
+</ol>
+<ul>
+<li>质量意识</li>
+<li>语言特性</li>
+<li>命名</li>
+<li>注释</li>
+<li>lint</li>
+</ul>
+<ol start="4">
+<li>质量意识</li>
+</ol>
+<ul>
+<li>一些错误但大行其道的观点<ul>
+<li>我们没有时间写单元测试</li>
+<li>应该给每一行代码加注释</li>
+<li>代码中的空格，括号非常重要</li>
+<li>等我们有时间了再重构</li>
+<li>只要坑挖得足够多的，就可以筑起护城河</li>
+<li>测试是测试人员的事情，跟开发没关系</li>
+</ul>
+</li>
+<li>错再哪<ul>
+<li>没时间写测试，有时间改 bug</li>
+<li>正确地写注释，注释 why 而不是注释 how</li>
+<li>空格，括号远没有那么重要</li>
+<li>重构是要每天进行的</li>
+<li>只要坑挖得足够深，头发就会掉得更快</li>
+<li>应该能独立保证自己的代码质量，不要完全依赖测试人员</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>现状</li>
+</ol>
+<ul>
+<li>人员水平<ul>
+<li>大部分程序对质量的提升方法是堆时间(加班)</li>
+<li>正确的办法是自动化，监控，预警</li>
+<li>大部分前端对代码质量还停留在 Lint 工具</li>
+<li>正确的做法是静态分析，单元测试，不断重构</li>
+</ul>
+</li>
+<li>需要做的<ul>
+<li>不要被错误的观点同化</li>
+<li>相信<code>一切能用机器做的事情，都应该交给机器做</code></li>
+<li>一旦有实践自动化，测试的可能，就勇敢地上</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li><p>JS 语言特性-语言提供给我们的各种功能</p>
+<ul>
+<li>道格拉斯的观点<ul>
+<li>如果一个特性有时好用有时危险，还有一个更好的选项，那么我们总是应该使用那个更好的</li>
+<li>公司雇我们不是为了让我们使用语言的每个特性，而是让我们写出可以用的代码，并且避免错误</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>程序员的共识</p>
+</li>
+</ol>
+<ul>
+<li>1960 年代，我们花了一代人的时间去认同<ul>
+<li><a href="https://en.wikipedia.org/wiki/High-level_programming_language" target="_blank" rel="noopener">高级语言是好的</a>(反方: 机器语言效率高)</li>
+</ul>
+</li>
+<li>1970 年代，我们花了一代人的时间去认同<ul>
+<li><a href="https://zh.wikipedia.org/zh-cn/%E7%BB%93%E6%9E%84%E5%8C%96%E7%BC%96%E7%A8%8B" target="_blank" rel="noopener">goto 是不好的</a>，支持结构化编程</li>
+</ul>
+</li>
+<li>1980 年代，我们花了一代人的时间去认同<ul>
+<li><a href="https://zh.wikipedia.org/zh-cn/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%23%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">对象是好的</a>，发展面向对象</li>
+</ul>
+</li>
+<li>1990 年代，我们花了两代人的时间去认同<ul>
+<li>lambda 表达式是好的(Java,C++,PHP,JS 加强支持)</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li><del>存在即合理</del></li>
+</ol>
+<ul>
+<li>错误，有些就是不合理，比如 var 和==</li>
+</ul>
+<ol start="9">
+<li><del>代码越短越好</del></li>
+</ol>
+<ul>
+<li>错误， <code>无歧义</code>优于<code>简洁</code></li>
+</ul>
+<ol start="10">
+<li>JS 代码中的特性取舍</li>
+</ol>
+<ul>
+<li>用哪些?不用哪些？</li>
+<li>能完成特定功能无歧义，无副作用<ul>
+<li>这样的特性，优先使用</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>不要用的 JS 特性</li>
+</ol>
+<ul>
+<li>绝对不要用<ul>
+<li>全局变量</li>
+<li>var 声明</li>
+<li>==运算符</li>
+<li>包装类型 String/Boolean</li>
+</ul>
+</li>
+<li>有些人不用<ul>
+<li>class/new/this</li>
+<li>比如 React Hooks 那帮人</li>
+</ul>
+</li>
+<li>用的人不多，尽量少用<ul>
+<li>symbol,generator,iterator</li>
+<li>反射</li>
+</ul>
+</li>
+</ul>
+<ol start="12">
+<li>推荐使用的 JS 特性</li>
+</ol>
+<ul>
+<li><p>一定要用</p>
+<ul>
+<li>=== 全等</li>
+<li>…三个点运算符</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 余下操作符</span><br><span class="line">let a &#x3D; [1,2,3,4,5]</span><br><span class="line">let [_1,_2,...rest]&#x3D;a  &#x2F;&#x2F; _1,_2可以不写，只是占位置</span><br><span class="line">rest &#x2F;&#x2F; [3,4,5]</span><br><span class="line">function add(...numbers)&#123;</span><br><span class="line">  return numbers.reduce((sum,n)&#x3D;&gt;sum+n,0)</span><br><span class="line">&#125;</span><br><span class="line">add(1,2,3) &#x2F;&#x2F; 6</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 扩展运算符</span><br><span class="line">let a2 &#x3D; [1,2,3]</span><br><span class="line">let a3 &#x3D; a2</span><br><span class="line">let a4 &#x3D; [...a2]</span><br><span class="line">a4 &#x3D;&#x3D;&#x3D; a2 &#x2F;&#x2F; false</span><br><span class="line">a3 &#x3D;&#x3D;&#x3D; a2 &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>模块 import export</li>
+<li>let 和 const,优先使用 const</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  function f()&#123;</span><br><span class="line">    var n &#x3D; arguments[0] &#x2F;&#x2F; 实际就是f(n)</span><br><span class="line">    if(n&#x3D;&#x3D;&#x3D;0) return 0</span><br><span class="line">    if(n&#x3D;&#x3D;&#x3D;1) return 1</span><br><span class="line">    return f(n-1)+f(n-2)</span><br><span class="line">  &#125;</span><br><span class="line">&#x2F;&#x2F; 写成下面这种形式</span><br><span class="line">let f &#x3D; (n)&#x3D;&gt;&#123;</span><br><span class="line">    var n &#x3D; arguments[0]</span><br><span class="line">    if(n&#x3D;&#x3D;&#x3D;0) return 0</span><br><span class="line">    if(n&#x3D;&#x3D;&#x3D;1) return 1</span><br><span class="line">    return f(n-1)+f(n-2)</span><br><span class="line">  &#125;</span><br><span class="line">&#x2F;&#x2F; 去掉花括号</span><br><span class="line">let f &#x3D; n&#x3D;&gt;</span><br><span class="line">n &#x3D;&#x3D;&#x3D; 0?0:n&#x3D;&#x3D;&#x3D;1?1:f(n-1)+f(n-2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>析构赋值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let a &#x3D; 1; let b &#x3D; 2;</span><br><span class="line">[a,b]&#x3D;[b,a]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Promise/await</p>
+</li>
+<li><p>可以使用</p>
+<ul>
+<li>class</li>
+<li>getter/setter</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let person &#x3D; &#123;</span><br><span class="line">  姓: &#39;李&#39;,</span><br><span class="line">  名: &#39;白&#39;,</span><br><span class="line">  get name()&#123;</span><br><span class="line">    return this.姓 + this.名</span><br><span class="line">  &#125;,</span><br><span class="line">  set name(value)&#123;</span><br><span class="line">    this.姓 &#x3D; value[0]</span><br><span class="line">    this.名 &#x3D; value.substring(1)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">person.name &#x3D; &#39;杜甫&#39;</span><br><span class="line">person &#x2F;&#x2F; &#123;姓:&#39;杜&#39;,名:&#39;甫&#39;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>WeakMap,代替 symbol</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 经典去重</span><br><span class="line">var a &#x3D; [1,3,5,3,2,1]</span><br><span class="line">new Set(a)</span><br><span class="line">[...new Set(a)]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 如果不用set</span><br><span class="line">var hash &#x3D; new WeakMap()</span><br><span class="line">let obj &#x3D; &#123;name:&#39;frank&#39;&#125;</span><br><span class="line">hash.set(obj,1)</span><br><span class="line">hash.has(obj) &#x2F;&#x2F; true</span><br><span class="line">hash.get(obj) &#x2F;&#x2F; 1</span><br><span class="line">&#x2F;&#x2F; WeakMap不会出现内存泄漏</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Proxy,Vue3 核心取代 defineProperty</li>
+<li>存在问题但可用<ul>
+<li>箭头函数</li>
+<li>数组 API+Polyfill,<a href="https://fangyinghang.com/es-6-tutorials/" target="_blank" rel="noopener">参考资料</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 把伪数组变真数组</span><br><span class="line">Array.from(tagList)</span><br><span class="line">&#x2F;&#x2F; 以前用</span><br><span class="line">&#x2F;&#x2F; Array.prototype.slice.call(tagList,0)</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>命名</li>
+</ol>
+<ul>
+<li>坏命名示例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let xiaoliang</span><br><span class="line">let user &#x3D; [&#123;id:1,name:&#39;f&#39;&#125;,&#123;id:2,name:&#39;j&#39;&#125;] &#x2F;&#x2F; users</span><br><span class="line">let flag &#x3D; true &#x2F;&#x2F; visibleFlag</span><br><span class="line">let userInfo &#x3D; &#123;id:1,name:&#39;f&#39;&#125; &#x2F;&#x2F; 不要+Info,userData,userInfo，userInformation都是错的,所有变量都是info</span><br><span class="line">let handler &#x3D; (x)&#x3D;&gt;&#123;console.log(x)&#125; &#x2F;&#x2F; 所有的函数都handler</span><br><span class="line">&#x2F;&#x2F; 以上三个共同错误，叫的名称太抽象，不如不叫</span><br><span class="line">let cnt &#x3D; document.querySelector(&#39;#test&#39;)</span><br><span class="line">let idx &#x3D; 0</span><br><span class="line">let cur &#x3D; 0</span><br><span class="line">&#x2F;&#x2F; 以上缩写问题</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>首要规则，命名应该让人秒懂</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function user(userId)&#123;</span><br><span class="line">  return axios.get(&#96;&#x2F;users&#x2F;$&#123;userId&#125;&#96;)</span><br><span class="line">    .then((res)&#x3D;&gt;&#123;</span><br><span class="line">      console.log(res.data)</span><br><span class="line">    &#125;,handlerError)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 以上代码基本没啥问题，下面更好</span><br><span class="line">user.get &#x3D; (id) &#x3D;&gt; [</span><br><span class="line">  return axios.get(&#96;&#x2F;user&#x2F;$&#123;id&#125;&#96;)</span><br><span class="line">    .then((response)&#x3D;&gt;&#123;</span><br><span class="line">      console.log(response.data)</span><br><span class="line">    &#125;, onGetUserError)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命名应该符合英语习惯<ul>
+<li>普通变量用名词</li>
+<li>复数要加 s 或者对应复数形式</li>
+<li>布尔用 isXXX 或 canXXX 或形容词</li>
+<li>静止用 showDialog 表示是否展示 dialog</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">isDialogSeen</span><br><span class="line">canClick</span><br><span class="line">clickable</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>普通函数用动词开头</li>
+<li>钩子函数用介词加动词开头</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onError</span><br><span class="line">onLoad</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>容易混淆的对象加前缀，如$div</p>
+</li>
+<li><p>命名不准用缩写</p>
+<ul>
+<li>如 cnt/idx/cur/prev/anal</li>
+<li>某些特定的缩写可以用，比如 for 循环里面的 ijk</li>
+<li>行业通用缩写当作</li>
+</ul>
+</li>
+<li><p>注释分类</p>
+<ul>
+<li>对代码进行翻译的注释</li>
+<li>对代码进行总结的注释</li>
+<li>对 bug 进行分析的注释</li>
+<li>对参考来源的注释</li>
+<li>对潜在问题的警告的注释</li>
+<li>发泄情绪的注释</li>
+</ul>
+</li>
+</ul>
+<ol start="14">
+<li>推荐工具</li>
+</ol>
+<ul>
+<li>lint 工具<ul>
+<li>eslint</li>
+<li>Standard JS</li>
+<li>不推荐 jslint/jscs/jshint</li>
+</ul>
+</li>
+<li>推荐配置(也不是那么推荐)<ul>
+<li>eslint-config-Airbnb</li>
+</ul>
+</li>
+<li>建议<ul>
+<li>不要那么在意空格，括号</li>
+<li>请关注命名，代码解构，单元测试</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/16/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9027%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B09%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-Nginx-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -600,7 +968,7 @@ b) 其中 current 用来 link 到最新的发布</li>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id root@39.103.166.176</span><br><span class="line">Jirengu2020</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>此时 ssh <a href="mailto:&#114;&#111;&#111;&#x74;&#x40;&#51;&#x39;&#46;&#49;&#x30;&#x33;&#46;&#x31;&#x36;&#54;&#46;&#x31;&#55;&#54;">&#114;&#111;&#111;&#x74;&#x40;&#51;&#x39;&#46;&#49;&#x30;&#x33;&#46;&#x31;&#x36;&#54;&#46;&#x31;&#55;&#54;</a> 就不需要密码了</li>
+<li>此时 ssh <a href="mailto:&#114;&#x6f;&#111;&#x74;&#x40;&#x33;&#57;&#46;&#49;&#x30;&#51;&#46;&#49;&#x36;&#x36;&#x2e;&#49;&#55;&#54;">&#114;&#x6f;&#111;&#x74;&#x40;&#x33;&#57;&#46;&#49;&#x30;&#51;&#46;&#49;&#x36;&#x36;&#x2e;&#49;&#55;&#54;</a> 就不需要密码了</li>
 <li>linux 密码设置 <code>passwd root</code></li>
 <li>别人想要服务器</li>
 </ul>
@@ -2007,138 +2375,6 @@ b) 其中 current 用来 link 到最新的发布</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9020%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B02%E5%B0%86%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%9C%A8SSR%E9%A1%B5%E9%9D%A2%E4%B8%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9020%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B02%E5%B0%86%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%9C%A8SSR%E9%A1%B5%E9%9D%A2%E4%B8%AD/" class="post-title-link" itemprop="url">高级前端养成20博客系统之02将数据展示在SSR页面中</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-01 15:47:07 / Modified: 15:49:06" itemprop="dateCreated datePublished" datetime="2020-08-01T15:47:07+08:00">2020-08-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">数据库 博客系统</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9020%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B02%E5%B0%86%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%9C%A8SSR%E9%A1%B5%E9%9D%A2%E4%B8%AD/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成20博客系统之02将数据展示在SSR页面中" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9020%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B02%E5%B0%86%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%9C%A8SSR%E9%A1%B5%E9%9D%A2%E4%B8%AD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9020%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B02%E5%B0%86%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%9C%A8SSR%E9%A1%B5%E9%9D%A2%E4%B8%AD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>解决 connection 的 bug</li>
-</ol>
-<ul>
-<li>在 lib 里面新建 getDatabaseConnection</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createConnection, getConnectionManager&#125; from &#39;typeorm&#39;</span><br><span class="line"></span><br><span class="line">const promise &#x3D; (async function() &#123;</span><br><span class="line">  const manager &#x3D; getConnectionManager()</span><br><span class="line">  if(!manager.has(&#39;default&#39;))&#123;</span><br><span class="line">    console.log(&#39;创建connection.&#39;)</span><br><span class="line">    return createConnection();</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    console.log(&#39;复用connection.&#39;)</span><br><span class="line">    const current &#x3D; manager.get(&#39;default&#39;);</span><br><span class="line">    if(current.isConnected)&#123;</span><br><span class="line">      return current</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return createConnection();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">export const getDatabaseConnection &#x3D; async ()&#x3D;&gt;&#123;</span><br><span class="line">  return promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>遇到技术难题</li>
-</ol>
-<ul>
-<li>createConnection 引发刷新代码无法连接 bug,结合 getconnection,通过 create x1 + get * n,发现 ctrl+s 触发 create bug</li>
-<li>使用 typeorm getConnectionManager 解决，处于 node_module 不会刷新</li>
-<li>自己写 manager 没用，ctrl+s 触发 manager，还原</li>
-</ul>
-<ol start="3">
-<li>因为我们的 connection 是换成 js 后再去连接，引发 No metadata for “Post” was found.的问题</li>
-</ol>
-<ul>
-<li>reflect-meatdata 可以通过引入的类，反向推出类有哪些列之类的源数据</li>
-<li>在 getDatabaseConnection 配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createConnection, getConnectionManager&#125; from &#39;typeorm&#39;</span><br><span class="line">import &#39;reflect-metadata&#39;</span><br><span class="line">import &#123;Post&#125; from &#39;src&#x2F;entity&#x2F;Post&#39;;</span><br><span class="line">import &#123;User&#125; from &#39;src&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import &#123;Comment&#125; from &#39;src&#x2F;entity&#x2F;Comment&#39;</span><br><span class="line">import config from &#39;ormconfig.json&#39;</span><br><span class="line"></span><br><span class="line">const create &#x3D; async ()&#x3D;&gt;&#123;</span><br><span class="line">  &#x2F;&#x2F; @ts-ignore</span><br><span class="line">  return createConnection(&#123;</span><br><span class="line">    ...config,</span><br><span class="line">    entities: [Post, User, Comment]</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const promise &#x3D; (async function() &#123;</span><br><span class="line">  const manager &#x3D; getConnectionManager()</span><br><span class="line">  if(!manager.has(&#39;default&#39;))&#123;</span><br><span class="line">    return create()</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    console.log(&#39;复用connection.&#39;)</span><br><span class="line">    const current &#x3D; manager.get(&#39;default&#39;);</span><br><span class="line">    if(current.isConnected)&#123;</span><br><span class="line">      return current</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return create()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">export const getDatabaseConnection &#x3D; async ()&#x3D;&gt;&#123;</span><br><span class="line">  return promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>reflect-metadata 库介绍</li>
-</ol>
-<ul>
-<li>作用:给类和方法添加元数据</li>
-<li>ts 通过编译实现，reflect-metadata 通过运行的方式，存到仓库里面，可以理解为 metadata 为一个仓库</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Column(&#39;text&#39;)</span><br><span class="line">content: string;</span><br><span class="line">&#x2F;&#x2F; 就是给content添加某些元数据</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>ts 打包编译之到 js 没有装饰器</li>
-<li>通过强制把 ts 放到 entites 解决</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; getDatabaseConnection.tsx</span><br><span class="line">import &#123;createConnection, getConnectionManager&#125; from &#39;typeorm&#39;</span><br><span class="line">import &#39;reflect-metadata&#39;</span><br><span class="line">import &#123;Post&#125; from &#39;src&#x2F;entity&#x2F;Post&#39;;</span><br><span class="line">import &#123;User&#125; from &#39;src&#x2F;entity&#x2F;User&#39;</span><br><span class="line">import &#123;Comment&#125; from &#39;src&#x2F;entity&#x2F;Comment&#39;</span><br><span class="line">import config from &#39;ormconfig.json&#39;</span><br><span class="line"></span><br><span class="line">const create &#x3D; async ()&#x3D;&gt;&#123;</span><br><span class="line">  &#x2F;&#x2F; @ts-ignore</span><br><span class="line">  return createConnection(&#123;</span><br><span class="line">    ...config,</span><br><span class="line">    entities: [Post, User, Comment]</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const promise &#x3D; (async function() &#123;</span><br><span class="line">  const manager &#x3D; getConnectionManager()</span><br><span class="line">  const current &#x3D; manager.has(&#39;default&#39;) &amp;&amp; manager.get(&#39;default&#39;);</span><br><span class="line">  if(current )&#123;await current.close()&#125;</span><br><span class="line">  return create()</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">export const getDatabaseConnection &#x3D; async ()&#x3D;&gt;&#123;</span><br><span class="line">  return promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>因为 import ‘reflect-metadata’，和 post.tsx 放在一起，post 就可以从 ts 代码中获取元数据</li>
-<li>然后元数据就会传给 createConnection,createConnection 就会把一些元数据告诉给 typeOrm</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2210,20 +2446,20 @@ b) 其中 current 用来 link 到最新的发布</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

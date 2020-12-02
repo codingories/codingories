@@ -158,6 +158,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/11/day16-Easy-Add-day67-Binary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/11/day16-Easy-Add-day67-Binary/" class="post-title-link" itemprop="url">day16_Easy_Add_day67_Binary</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-11 09:15:54 / Modified: 09:50:36" itemprop="dateCreated datePublished" datetime="2019-06-11T09:15:54+08:00">2019-06-11</time>
+            </span>
+
+          
+            <span id="/2019/06/11/day16-Easy-Add-day67-Binary/" class="post-meta-item leancloud_visitors" data-flag-title="day16_Easy_Add_day67_Binary" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/11/day16-Easy-Add-day67-Binary/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/11/day16-Easy-Add-day67-Binary/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>day16_Easy_Add_day67_Binary
+Given two binary strings, return their sum (also a binary string).
+The input strings are both non-empty and contains only characters 1 or 0.
+Example 1:
+Input: a = “11”, b = “1”
+Output: “100”
+Example 2:
+Input: a = “1010”, b = “1011”
+Output: “10101”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def addBinary(self, a: str, b: str) -&gt; str:</span><br><span class="line">        result, carry, val &#x3D; &quot;&quot;, 0, 0</span><br><span class="line">        for i in range(max(len(a),len(b))):</span><br><span class="line">            val &#x3D; carry</span><br><span class="line">            if i &lt; len(a):</span><br><span class="line">                val +&#x3D; int(a[-(i+1)])</span><br><span class="line">                print(&quot;val-a&quot;,val)</span><br><span class="line">            if i &lt; len(b):</span><br><span class="line">                val +&#x3D; int(b[-(i+1)])</span><br><span class="line">                print(&quot;val-b&quot;,val)</span><br><span class="line">            carry, val &#x3D; val &#x2F;&#x2F; 2, val%2</span><br><span class="line">            result +&#x3D; str(val)</span><br><span class="line">            print(result)</span><br><span class="line">        if carry:</span><br><span class="line">            result +&#x3D; str(1)</span><br><span class="line">        return result[::-1]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/11/Solution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1141,109 +1230,6 @@ If you have figured out the O(n) solution, try coding another solution using the
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/07/day12-Easy-38-Count-and-Say/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/07/day12-Easy-38-Count-and-Say/" class="post-title-link" itemprop="url">day12-Easy-38_Count_and_Say</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-07 12:44:07 / Modified: 12:44:50" itemprop="dateCreated datePublished" datetime="2019-06-07T12:44:07+08:00">2019-06-07</time>
-            </span>
-
-          
-            <span id="/2019/06/07/day12-Easy-38-Count-and-Say/" class="post-meta-item leancloud_visitors" data-flag-title="day12-Easy-38_Count_and_Say" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/07/day12-Easy-38-Count-and-Say/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/07/day12-Easy-38-Count-and-Say/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>day12-Easy-38_Count_and_Say
-The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
-<ol>
-<li><pre><code>1</code></pre>
-</li>
-<li><pre><code>11</code></pre>
-</li>
-<li><pre><code>21</code></pre>
-</li>
-<li><pre><code>1211</code></pre>
-</li>
-<li><pre><code>111221</code></pre>
-1 is read off as “one 1” or 11. 11 is read off as “two 1s” or 21. 21 is read off as “one 2, then one 1” or 1211.
-Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence.
-Note: Each term of the sequence of integers will be represented as a string.
- 
-Example 1:
-Input: 1
-Output: “1”
-Example 2:
-Input: 4
-Output: “1211”</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 题目先读懂</span><br><span class="line">class Solution:</span><br><span class="line">    def countAndSay(self, n: int) -&gt; str:</span><br><span class="line">        seq &#x3D; &quot;1&quot;</span><br><span class="line">        for i in range(n-1):</span><br><span class="line">            seq &#x3D; self.getNext(seq)</span><br><span class="line">        return seq</span><br><span class="line">    </span><br><span class="line">    def getNext(self, seq):</span><br><span class="line">        i , next_seq &#x3D; 0, &quot;&quot;</span><br><span class="line">        while i &lt; len(seq):</span><br><span class="line">            count &#x3D; 1</span><br><span class="line">            while i &lt; len(seq) - 1 and seq[i] &#x3D;&#x3D; seq[i+1]:</span><br><span class="line">                count +&#x3D; 1</span><br><span class="line">                i +&#x3D; 1</span><br><span class="line">            next_seq +&#x3D; str(count) + seq[i]</span><br><span class="line">            i +&#x3D; 1</span><br><span class="line">        return next_seq</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1315,20 +1301,20 @@ Output: “1211”</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">245</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
