@@ -158,6 +158,659 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/28/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9012nodeJS%E6%A1%86%E6%9E%B602%E4%B9%8BExpress%E5%85%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9012nodeJS%E6%A1%86%E6%9E%B602%E4%B9%8BExpress%E5%85%A8%E8%A7%A3/" class="post-title-link" itemprop="url">高级前端养成12nodeJS框架02之Express全解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-28 03:43:26" itemprop="dateCreated datePublished" datetime="2020-06-28T03:43:26+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-05 11:18:26" itemprop="dateModified" datetime="2020-07-05T11:18:26+08:00">2020-07-05</time>
+              </span>
+
+          
+            <span id="/2020/06/28/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9012nodeJS%E6%A1%86%E6%9E%B602%E4%B9%8BExpress%E5%85%A8%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成12nodeJS框架02之Express全解" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/28/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9012nodeJS%E6%A1%86%E6%9E%B602%E4%B9%8BExpress%E5%85%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/28/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9012nodeJS%E6%A1%86%E6%9E%B602%E4%B9%8BExpress%E5%85%A8%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>一些概念</li>
+</ol>
+<ul>
+<li>子应用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var app &#x3D; express() &#x2F;&#x2F; 主应用</span><br><span class="line">var admin &#x3D; express() &#x2F;&#x2F; 另一个应用</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>挂在点<ul>
+<li>‘/admin’就是 admin 的挂载点</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>第一部分 api,express.xxx</li>
+</ol>
+<ul>
+<li><p>概况:共 7 个 api</p>
+</li>
+<li><p>需要特别学习的 api</p>
+<ul>
+<li><p>express.json()</p>
+<ul>
+<li>如果请求的对象是 json 就返回 json</li>
+</ul>
+</li>
+<li><p>express.static()</p>
+<ul>
+<li>默认给你做一个静态服务器，只要你访问的路径在 yyy 目录里面有就会在 yyy 里面找，如果没有就走后面的逻辑</li>
+<li>源码逻辑，如果有文件发送，没有走 next()</li>
+</ul>
+</li>
+<li><p>express.Router()</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>第二部分 api,app.xxx</li>
+</ol>
+<ul>
+<li>概况: 共 22 个 api</li>
+<li>需要特别学习的 API<ul>
+<li>app.set(‘views’|’view engine’)</li>
+<li>app.get(‘env’)</li>
+<li>app.get(‘/xxx’,fn)</li>
+<li>app.post / app.put /app.delete…</li>
+<li>app.render()</li>
+<li>app.use() -之前了解过</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><p>app.xxx 的 api</p>
+<ul>
+<li><a href="http://expressjs.com/en/4x/api.html#app.settings.table" target="_blank" rel="noopener">app.settings</a><ul>
+<li>case sensitive routing</li>
+<li>views，渲染的视图目录</li>
+<li>app.get(‘env’)，如果只有一个变量获取 app 的设置</li>
+<li>app.get(‘/xxx’,fn)，如果两个就是路由这个就执行这个中间件</li>
+<li>app.render()</li>
+<li>disable 就是 app.set false,</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>request.xxx 的 api 学习</p>
+</li>
+</ol>
+<ul>
+<li>概况: 共有 28 个 API</li>
+<li>需要特别学习的 API<ul>
+<li>req.get(‘Content-Type’)</li>
+<li>req.param(‘name’)</li>
+<li>req,range()-参考 MDN</li>
+<li>以 Neat 下载 cmder 为例</li>
+</ul>
+</li>
+<li><a href="http://expressjs.com/en/4x/api.html#req.baseUrl" target="_blank" rel="noopener">文档</a><ul>
+<li>req.query 用的比较多</li>
+<li>req.xhr 默认 false 当请求头中设置，{X-Requested-With:XMLHttpRequest}为 true</li>
+<li>req.param 获取所有的参数</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>req.range 的使用</li>
+</ol>
+<ul>
+<li>开多线程下载，需要服务端支持，亚马逊支持</li>
+<li>先发一个 head 请求，看是否支持 accept-range</li>
+</ul>
+<ol start="7">
+<li>response.xxx</li>
+</ol>
+<ul>
+<li>概况: 共 24 个 api</li>
+<li>需要特别学习的 api<ul>
+<li>res.send()/res.sendFile()</li>
+<li>res.render()/res.download()</li>
+<li>res.headersSent，判断之前是否已经发送过 header</li>
+<li>res.status()</li>
+<li>res.set()/res.get()</li>
+<li>res.format()，根据不同的文件返回不同的内容</li>
+<li>write,send 二选一，send 非流 write 流式操作</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>router.xxx</li>
+</ol>
+<ul>
+<li>概况: 共 5 个 API<ul>
+<li>router 式一个阉割版的 app</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>Express API 总结</li>
+</ol>
+<ul>
+<li>五部分<ul>
+<li>express.xxx - 内置中间件</li>
+<li>app.xxx - 应用设置(如模板配置，中间件，挂载路由)</li>
+<li>req.xxx - 操作请求</li>
+<li>res.xxx -操作响应</li>
+<li>router.xxx - 操作路由</li>
+</ul>
+</li>
+</ul>
+<ol start="10">
+<li>基本概念</li>
+</ol>
+<ul>
+<li>中间件，方便添加功能</li>
+<li>Cookie，标识用户</li>
+<li>Session,在服务器上存一些信息</li>
+<li><a href="https://devdocs.io/" target="_blank" rel="noopener">查文档</a></li>
+</ul>
+<ol start="11">
+<li><a href="https://github.com/codingories/12express-demo-api-1" target="_blank" rel="noopener">案例代码</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/27/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9011nodeJS%E6%A1%86%E6%9E%B601%E4%B9%8BExpress%E6%A0%B8%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/27/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9011nodeJS%E6%A1%86%E6%9E%B601%E4%B9%8BExpress%E6%A0%B8%E5%BF%83/" class="post-title-link" itemprop="url">高级前端养成11nodeJS框架01之Express核心</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-27 10:05:15" itemprop="dateCreated datePublished" datetime="2020-06-27T10:05:15+08:00">2020-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-12 15:25:31" itemprop="dateModified" datetime="2020-07-12T15:25:31+08:00">2020-07-12</time>
+              </span>
+
+          
+            <span id="/2020/06/27/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9011nodeJS%E6%A1%86%E6%9E%B601%E4%B9%8BExpress%E6%A0%B8%E5%BF%83/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成11nodeJS框架01之Express核心" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/27/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9011nodeJS%E6%A1%86%E6%9E%B601%E4%B9%8BExpress%E6%A0%B8%E5%BF%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/27/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9011nodeJS%E6%A1%86%E6%9E%B601%E4%B9%8BExpress%E6%A0%B8%E5%BF%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>HTTP 协议</li>
+</ol>
+<ul>
+<li><p>curl -s -v 网址</p>
+<ul>
+<li>-s 是 silent, 用于隐藏进度条</li>
+<li>-v 是 verbose,用于打印全部 header</li>
+<li>*开头是注视</li>
+<li>‘&gt;’ 开头是 HTTP 请求</li>
+<li>‘&lt;’ 开头是 HTTP 响应</li>
+</ul>
+</li>
+<li><p>举例</p>
+<ul>
+<li>curl -s -v <a href="http://xiedaimala.com/" target="_blank" rel="noopener">http://xiedaimala.com</a><ul>
+<li>得到 301 和 Location,于是重新请求(-L 自动重定向)</li>
+<li>curl -s -o nul -v <a href="https://xiedaimala.com/" target="_blank" rel="noopener">https://xiedaimala.com</a></li>
+<li>-o nul 是为了隐藏 HTML 文件，内容太多不方便演示</li>
+<li>Linux 或 mac 要将 nul 改成/dev/null</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>请求和响应,请求分四部分，响应分四部分，背下来</li>
+</ol>
+<ul>
+<li><p><img src="https://i.loli.net/2020/06/27/Qxs9muewPaTKV5h.png" alt="请求和响应.png"></p>
+</li>
+<li><p>请求</p>
+<ul>
+<li>如果请求体的内容为 JSON</li>
+<li>那么请求头就要有 Content-Type:application/json</li>
+<li>这一规范可以在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" target="_blank" rel="noopener">MDN 查看</a></li>
+</ul>
+</li>
+<li><p>响应</p>
+<ul>
+<li>如果响应体的内容为 JSON</li>
+<li>那么响应头就要有 Content-Type: application/json</li>
+</ul>
+</li>
+<li><p>HTTP 的复杂性</p>
+<ul>
+<li>HTTP 复杂就复杂在它有很多请求头和响应头</li>
+<li>每个请求头或响应头功能各不相同</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>Web 框架</li>
+</ol>
+<ul>
+<li>功能<ul>
+<li>更方便地处理 HTTP 请求和响应</li>
+<li>更方便地链接数据库,Redis</li>
+<li>更方便的路由</li>
+<li>其他：HTML 模板</li>
+</ul>
+</li>
+<li>理念<ul>
+<li>Web 框架的主流思路都是 MVC</li>
+<li>Model 处理数据相关逻辑</li>
+<li>View 处理视图相关逻辑，前后端分离之后，View 不重要</li>
+<li>Controller 负责其他逻辑</li>
+</ul>
+</li>
+<li>架构示意<ul>
+<li><img src="https://i.loli.net/2020/06/27/GunvcblmIw4X8z2.png" alt="架构示意图.png"></li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><p>处理 HTTP 请求与响应</p>
+<ul>
+<li>最简单的封装<ul>
+<li>将请求封装为[[‘get’,’/xxx’],{请求头},’请求体’]</li>
+<li>将响应封装[status,{响应头},’响应体’]</li>
+</ul>
+</li>
+<li>Node.js 的封装<ul>
+<li>封装在 http 模块中用了</li>
+<li>使用 request(IncomingMessage 的实例)读取请求</li>
+<li>使用 response(ServerResponse 的实例)设置响应</li>
+</ul>
+</li>
+<li>Express 的封装<ul>
+<li>封装级别高一点点，只需要理解 Express 的编程模型即可</li>
+<li><a href="https://expressjs.com/zh-cn/" target="_blank" rel="noopener">中文文档</a>在此</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>express-demo-1</p>
+<ul>
+<li>创建项目<ul>
+<li>创建目录，用 webStorm 或者 vscode 打开</li>
+<li>yarn init -y;git init;</li>
+<li>添加 .gitignore 文件</li>
+<li>提交到 git，推送至 GitHub</li>
+</ul>
+</li>
+<li>开始学习 express<ul>
+<li>CRM 学习法: Copy-Run-Modify</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hello World</p>
+</li>
+</ol>
+<ul>
+<li>安装 express<ul>
+<li>yarn add express</li>
+<li>或者 npm i express</li>
+<li>以上命令二选一，不要混用</li>
+</ul>
+</li>
+<li>创建 app.js<ul>
+<li>内容 Copy 自文档</li>
+<li>然后 Run 一下 app.js,命令为 node app.js</li>
+<li>打开<code>http://localhost:3000</code>预览</li>
+<li>最好 modify 基础代码，比如改内容，路径和端口</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>用 CRM 学到了什么</li>
+</ol>
+<ul>
+<li>app = express()<ul>
+<li>这个 app 应该是核心</li>
+<li>app.get(‘./xxx’,fn),用于 GET /xxx 请求做出响应</li>
+<li>app.listen(3000,fn)开启端口监听</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>使用 TypeScript</li>
+</ol>
+<ul>
+<li>准备工作<ul>
+<li>yarn global add typescript ts-node 全局安装工具</li>
+<li>yarn add @types/express 安装类型支持</li>
+<li>tsc –init</li>
+<li>修改 tsconfig 的 target 和 nolmplicitAny</li>
+<li>将 require 改为 import</li>
+</ul>
+</li>
+<li>运行<ul>
+<li>ts-node app2.ts</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>app 的类型</li>
+</ol>
+<ul>
+<li><p>使用 IDE 查看类型</p>
+<ul>
+<li>使用 VSCode 或 WebStorm 可以查看 app 对象的类型</li>
+<li>类型为 Express 接口</li>
+<li>Express extends Application</li>
+<li>Application extends EventEmitter,IRouter,…</li>
+<li>其中 IRouter 包含了 get/post/put 等方法</li>
+<li>有了 TypeScript,都不用看文档</li>
+</ul>
+</li>
+<li><p>题外话</p>
+<ul>
+<li>当前项目是一个配置的不错的学习环境</li>
+<li>建议将其单独上传到 <a href="https://github.com/codingories/express-demo-1" target="_blank" rel="noopener">express-starter-1</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git remote add starter git@github.com:codingories&#x2F;express-starter.git</span><br><span class="line">git push starter master</span><br><span class="line">git remote remove starter</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方便以后的项目直接 git clone</li>
+</ul>
+</li>
+</ul>
+<ol start="10">
+<li>node-express 框架的脚手架</li>
+</ol>
+<ul>
+<li>一键搞定项目目录</li>
+<li>express-generator<ul>
+<li>安装，yarn global add express-generator</li>
+<li>使用<ul>
+<li>express -h 查看帮助</li>
+<li>express –view=ejs。注意有一个点</li>
+<li>这句话用于创建文件，点表示当前目录</li>
+<li>由于它会覆盖文件，所以要重新安装@types/express</li>
+</ul>
+</li>
+<li>crm 学习法<ul>
+<li>yarn install;yarn start</li>
+<li>分析 app.js,主要 api 为 app.set 和 app.use</li>
+<li>app.set 用于改配置，app.use 用于中间件</li>
+<li>记得提交可运行的代码，防止后面改出问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>将 express-generator 改写为 TypeScript</li>
+</ol>
+<ul>
+<li>改写<ul>
+<li>把 app.js 复制到 app2.ts</li>
+<li>yarn add @types/node -dev 这样才能使用 require</li>
+<li>也可以使用 import 代替 require</li>
+<li>也可以使用 const 代替 var</li>
+<li>需要将 RequestHandler 和 ErrorRequestHandler 断言</li>
+<li>将 bin/www 中的入口改为 app.ts</li>
+<li>添加 start:ts 脚本,将 node 改为 ts-node</li>
+</ul>
+</li>
+<li>疑问<ul>
+<li>为什么 ts-node 可以运行 js</li>
+<li>本来就可以，只是添加了对 TS 的支持</li>
+<li>注意不要在生产环境这样用</li>
+</ul>
+</li>
+</ul>
+<ol start="12">
+<li>总结</li>
+</ol>
+<ul>
+<li>运行 Hello World<ul>
+<li>了解 app.set 和 app.use</li>
+<li>改为 TypeScript,熟悉了一下 TypeScript</li>
+</ul>
+</li>
+<li>使用脚手架<ul>
+<li>express –view=ejs .</li>
+<li>了解 express 的目录结构，了解 MVC</li>
+<li>改为 TypeScript，理解 TS 的断言</li>
+<li>目前为止所有代码:<a href="https://github.com/codingories/express-demo-1" target="_blank" rel="noopener">链接</a></li>
+</ul>
+</li>
+<li>接下来<ul>
+<li>深入理解 express 的编程模型</li>
+<li>从 app.use 开始</li>
+</ul>
+</li>
+</ul>
+<ol start="13">
+<li>app.use()</li>
+</ol>
+<ul>
+<li>use 是使用，使用什么？</li>
+<li>理解 app.use<ul>
+<li>创建新目录 express-demo-2<ul>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>尝试使用 req.url 和 res.send</li>
+<li>多次使用会报错</li>
+<li>改成 res.write,还记得流吗</li>
+<li>为什么不关闭呢？加上 res.send()试试</li>
+<li>next 什么时候可以省略（自行测试看看）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="14">
+<li>express 的编程模型
+<img src="https://i.loli.net/2020/06/27/L8xzWMmAe9dOFvE.png" alt="express编程模型.png"></li>
+<li>什么是中间件</li>
+</ol>
+<ul>
+<li>fn1,fn2…以及每次 use 后面接的函数就是中间件</li>
+<li>fn 是中间件，因为是被插入到启动和结束中间的物件</li>
+</ul>
+<ol start="16">
+<li>express 的优点</li>
+</ol>
+<ul>
+<li>模块化<ul>
+<li>这种模型使得每个功能都能通过一个函数实现</li>
+<li>然后通过 app.use 将这个函数整合起来</li>
+<li>如果把函数放到文件或 npm 里，就实现了模块化</li>
+</ul>
+</li>
+<li>以 express-demo-1 举例<ul>
+<li>app.use(logger(‘dev’))</li>
+<li>logger(‘dev’)会返回一个函数</li>
+<li>这个函数会在每次请求到达时，打印出信息</li>
+<li>我们根本就不用去了解它是怎么做到的</li>
+<li>我们很快也可以做出一个类似的模块</li>
+</ul>
+</li>
+</ul>
+<ol start="17">
+<li>路由</li>
+</ol>
+<ul>
+<li><p>使用 app.use 如何实现路由</p>
+<ul>
+<li><p>配置 app.use 代码段</p>
+</li>
+<li><p>实现路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use((request, response, next)&#x3D;&gt;&#123;</span><br><span class="line">  if (request.path &#x3D;&#x3D;&#x3D; &#39;&#x2F;&#39; &amp;&amp; request.method &#x3D;&#x3D;&#x3D; &quot;get&quot; )&#123;</span><br><span class="line">    response.send(&#39;根目录&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更方便的写法</p>
+<ul>
+<li>app.use(‘/xxx’,fn)</li>
+<li>app.get(‘/xxx’,fn)</li>
+<li>app.post(‘/xxx’,fn)</li>
+<li>app.route(‘/xxx’,fn).all(f1).get(f2).post(f3)</li>
+<li>这些都是语法糖</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="18">
+<li>express 的错误处理</li>
+</ol>
+<ul>
+<li>next()能传参数</li>
+<li>next(error)会直接进入 errorHandler<ul>
+<li>errorHandler 的默认实现见文档</li>
+</ul>
+</li>
+<li>如何自定义 errorHandler<ul>
+<li>还是看文档</li>
+<li>app.use((err,req,res,next)=&gt;{})</li>
+<li>可以定义多个这样的中间件</li>
+</ul>
+</li>
+</ul>
+<ol start="19">
+<li>特殊参数 next(‘route’)</li>
+</ol>
+<ul>
+<li>这个情景非常少,主要学习看源代码</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/26/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9010nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A009%E4%B9%8Bchild-process/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2061,292 +2714,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">高级前端养成02nodeJS基础学习01之文件模块</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-13 08:22:02" itemprop="dateCreated datePublished" datetime="2020-06-13T08:22:02+08:00">2020-06-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-17 16:26:29" itemprop="dateModified" datetime="2020-06-17T16:26:29+08:00">2020-06-17</time>
-              </span>
-
-          
-            <span id="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成02nodeJS基础学习01之文件模块" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/13/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9002nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A001%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.学习目标
-一个基于文件的 todo 工具</p>
-<ol start="2">
-<li><p>操作概览 按 j 下移动 按 t 选第一个回车 已完成
-t add 买火腿肠
-回车点击删除
-tclear 全部清除</p>
-</li>
-<li><p>详细需求</p>
-<ul>
-<li><p>功能
-可以列出所有的 todo
-可以新增 todo
-可以编辑 todo
-可以删除 todo
-可以标记 todo 为已完成/未完成</p>
-</li>
-<li><p>命令
-t
-t add 任务名
-t clear</p>
-</li>
-</ul>
-</li>
-<li><p>crm 学习法
-copy 抄 Run 运行 Modify 改</p>
-</li>
-<li><p>用到 4 个库</p>
-<ul>
-<li>commander</li>
-<li>inquirer</li>
-<li>winston</li>
-<li>jest</li>
-</ul>
-</li>
-<li><p>打开一个空文件夹，初始化项目
-yarn init -y</p>
-</li>
-<li><p>创建 index.js 并运行，node index
-console.log(‘hi’)</p>
-</li>
-<li><p>直接用 commander.js
-yarn add commander
-开始 crm</p>
-</li>
-<li><p>参数用…args 传过来</p>
-</li>
-<li><p>实现创建功能
-把 index.js 改成 cli.js ，再新建 index.js
-node cli add 更快的方式执行 run nodes js file cli.js add 这样之后直接点运行就可以</p>
-</li>
-<li><p>add 要把 todo 放到数据库，但是现在没有，推荐放到 home 目录的.todo 。搜索 node’s get home const home dir = require(‘’os).homedir()</p>
-</li>
-<li><p>但是这个不是环境变量
-const home = process.env.HOME || homier;</p>
-</li>
-<li><p>devdocs 搜索 readfile</p>
-<ul>
-<li>ax,有 x 的都很奇怪，不推荐用，w 也很少用</li>
-</ul>
-</li>
-<li><p>面向接口编程</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; 读取之前的任务</span><br><span class="line">const list &#x3D;db.read()</span><br><span class="line">&#x2F;&#x2F; 往里面添加一个 title 任务</span><br><span class="line">list.push(&#123;title, done:false&#125;)</span><br><span class="line">&#x2F;&#x2F; 储存任务到文件</span><br><span class="line">db.write(list) &#x2F;&#x2F; 面向接口编程</span><br></pre></td></tr></table></figure>
-
-<ol start="15">
-<li><p>这样子以后我们会发现有以下代码</p>
-<ul>
-<li>index.js</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const homedir &#x3D; require(&#39;os&#39;).homedir();  &#x2F;&#x2F; &#x2F;Users&#x2F;ories</span><br><span class="line">const home &#x3D; process.env.HOME || homedir;  &#x2F;&#x2F; &#x2F;Users&#x2F;ories,process.env.HOME 用户配置过的环境</span><br><span class="line">const p &#x3D; require(&#39;path&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const dbPath &#x3D; p.join(home, &#39;.todo&#39;)</span><br><span class="line">const db &#x3D; require(&#39;.&#x2F;db.js&#39;)</span><br><span class="line">module.exports.add &#x3D; async (title)&#x3D;&gt;&#123;</span><br><span class="line">  &#x2F;&#x2F; 读取之前的任务</span><br><span class="line">  const list &#x3D; await db.read() &#x2F;&#x2F; await 表示异步拿到promise结果 前面必须加async</span><br><span class="line">  &#x2F;&#x2F; 往里面添加一个 title 任务</span><br><span class="line">  list.push(&#123;title, done:false&#125;)</span><br><span class="line">  &#x2F;&#x2F; 储存任务到文件</span><br><span class="line">  await db.write(list) &#x2F;&#x2F; 面向接口编程,这里最好写一下await，因为我们要确保这里的异步等结束</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>db.js</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const homedir &#x3D; require(&#39;os&#39;).homedir();  &#x2F;&#x2F; &#x2F;Users&#x2F;ories</span><br><span class="line">const home &#x3D; process.env.HOME || homedir;  &#x2F;&#x2F; &#x2F;Users&#x2F;ories,process.env.HOME 用户配置过的环境</span><br><span class="line">const p &#x3D; require(&#39;path&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;)</span><br><span class="line">const dbPath &#x3D; p.join(home, &#39;.todo&#39;)</span><br><span class="line"></span><br><span class="line">const db &#x3D; &#123;</span><br><span class="line">  read(path &#x3D; dbPath)&#123;</span><br><span class="line">    return new Promise((resolve, reject)&#x3D;&gt;&#123; &#x2F;&#x2F; promise经典用法，异步不能return,所以成功的时候resolve,错误reject</span><br><span class="line">      fs.readFile(path, &#123;flag: &#39;a+&#39;&#125;, (error,data)&#x3D;&gt;&#123; &#x2F;&#x2F; a+ 读文件不存在则创建</span><br><span class="line">        if (error) return reject(error)</span><br><span class="line">        let list</span><br><span class="line">        try&#123;</span><br><span class="line">          list &#x3D; JSON.parse(data.toString())</span><br><span class="line">        &#125;catch(error2) &#123;</span><br><span class="line">          list &#x3D; []</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(list)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  write(list,path &#x3D; dbPath)&#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">      const string &#x3D; JSON.stringify(list)</span><br><span class="line">      fs.writeFile(dbPath, string +&#39;\n&#39;, (error)&#x3D;&gt;&#123;</span><br><span class="line">        if(error) return reject( error )</span><br><span class="line">        resolve()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports &#x3D; db &#x2F;&#x2F; 这是nodejs的导出</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 不能用export default db ，这是浏览器可以用的</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>cli.js</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const program &#x3D; require(&#39;commander&#39;);</span><br><span class="line">const api &#x3D; require(&#39;.&#x2F;index.js&#39;);</span><br><span class="line"></span><br><span class="line">program.</span><br><span class="line">  option(&#39;-x,--xxx&#39;,&#39;what the x&#39;)</span><br><span class="line">program.</span><br><span class="line">  command(&#39;add&#39;)</span><br><span class="line">  .description(&#39;add a task&#39;)</span><br><span class="line">  .action((...args)&#x3D;&gt;&#123;</span><br><span class="line">     const words &#x3D; args[1].join(&#39; &#39;)</span><br><span class="line">     api.add(words)</span><br><span class="line">     &#x2F;&#x2F; console.log(words);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">program.</span><br><span class="line">command(&#39;clear&#39;)</span><br><span class="line">  .description(&#39;clear all tasks&#39;)</span><br><span class="line">  .action((...args)&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; const words &#x3D; args.slice(0,-1).join(&#39; &#39;)</span><br><span class="line">    &#x2F;&#x2F; console.log(words);</span><br><span class="line">    console.log(&#39;this is clear&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把报错的线去掉</p>
-</li>
-</ol>
-<ul>
-<li>出现线的原因是 webstorm 不知道你是 nodejs，还是 web 的 js 需要配置下</li>
-<li>打开 Languages &amp; Frameworks.Javascript,Libraries,勾选 Node.js Core</li>
-<li>如果没有这个选项则在 Node.js and Npm 中打开配置</li>
-</ul>
-<ol start="17">
-<li><p>void api.showAll() // async 默认返回 promise, 可以用 void 强制去除下划线</p>
-</li>
-<li><p>安装 inquirer 库，实现列表展示</p>
-</li>
-<li><p>如何优化很长的代码，就是起一个名字，放一起</p>
-</li>
-<li><p>webstorm 有一个 structure 功能，可看到代码结构</p>
-</li>
-<li><p>如何把我们的代码发布到 npm</p>
-</li>
-</ol>
-<ul>
-<li>修改 package.json<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;:&#123;</span><br><span class="line">  &quot;t&quot;: &quot;.&#x2F;cli.js&quot; &#x2F;&#x2F; bin表示命令行最后生成的命令</span><br><span class="line">&#125;,</span><br><span class="line">&quot;files&quot;: [ &#x2F;&#x2F; 告诉npm哪些是有用的文件</span><br><span class="line">  &quot;*.js&quot;</span><br><span class="line">],</span><br></pre></td></tr></table></figure></li>
-<li>运行命令<ul>
-<li>yarn login 和 yarn publish</li>
-<li>npm adduser 和 npm publish</li>
-<li>注意要把淘宝源切换为原始源</li>
-<li>如果提示出错，请把出错理解一下</li>
-</ul>
-</li>
-</ul>
-<ol start="22">
-<li><p>加上 nodeJS 的 shebang,告诉命令行用什么执行</p>
-</li>
-<li><p>让 cli.js 编程可执行文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x cli.js</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发布到 npm</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br><span class="line">之后在其他地方yarn global upgrade terminaltodo</span><br><span class="line">就可以实现更新使用t --version</span><br></pre></td></tr></table></figure></code></pre>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/" class="post-title-link" itemprop="url">高级前端养成01nodeJS基础学习00</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-11 19:16:48" itemprop="dateCreated datePublished" datetime="2020-06-11T19:16:48+08:00">2020-06-11</time>
-            </span>
-
-          
-            <span id="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成01nodeJS基础学习00" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9001nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A000/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2418,20 +2785,20 @@ const home = process.env.HOME || homier;</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">246</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

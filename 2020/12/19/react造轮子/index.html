@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codingories.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一. 初始化项目,webpack环境搭建上  创建远程git仓库  git clone 远程ssh地址 .  npm init 创建npm并添加gitignore文件  安装webpack4,yarn add webpack webpack-cli@4.29.6 webpack-cli@3.2.3 --dev  创建第一个文件lib&#x2F;index.tsx  新建webpack.config.js，并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react造轮子">
+<meta property="og:url" content="codingories.github.io/2020/12/19/react%E9%80%A0%E8%BD%AE%E5%AD%90/index.html">
+<meta property="og:site_name" content="OriesノBlog">
+<meta property="og:description" content="一. 初始化项目,webpack环境搭建上  创建远程git仓库  git clone 远程ssh地址 .  npm init 创建npm并添加gitignore文件  安装webpack4,yarn add webpack webpack-cli@4.29.6 webpack-cli@3.2.3 --dev  创建第一个文件lib&#x2F;index.tsx  新建webpack.config.js，并">
+<meta property="article:published_time" content="2020-12-19T08:01:42.000Z">
+<meta property="article:modified_time" content="2020-12-20T13:20:08.957Z">
+<meta property="article:author" content="Ories">
+<meta property="article:tag" content="react造轮子">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="codingories.github.io/2020/12/19/react%E9%80%A0%E8%BD%AE%E5%AD%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>react造轮子 | OriesノBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">OriesノBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">朱骏杰的私人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/12/19/react%E9%80%A0%E8%BD%AE%E5%AD%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          react造轮子
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-19 16:01:42" itemprop="dateCreated datePublished" datetime="2020-12-19T16:01:42+08:00">2020-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-20 21:20:08" itemprop="dateModified" datetime="2020-12-20T21:20:08+08:00">2020-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/12/19/react%E9%80%A0%E8%BD%AE%E5%AD%90/" class="post-meta-item leancloud_visitors" data-flag-title="react造轮子" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/19/react%E9%80%A0%E8%BD%AE%E5%AD%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/19/react%E9%80%A0%E8%BD%AE%E5%AD%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一. 初始化项目,webpack环境搭建上</p>
+<ol>
+<li><p>创建远程git仓库</p>
+</li>
+<li><p>git clone 远程ssh地址 .</p>
+</li>
+<li><p>npm init 创建npm并添加gitignore文件</p>
+</li>
+<li><p>安装webpack4,<code>yarn add webpack webpack-cli@4.29.6 webpack-cli@3.2.3 --dev</code></p>
+</li>
+<li><p>创建第一个文件lib/index.tsx</p>
+</li>
+<li><p>新建webpack.config.js，并安装awesome-typescript-loader,<code>yarn add awesome-typescript-loader --dev</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./lib/index.tsx'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">        loader: <span class="string">'awesome-typescript-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置库格式-umd,项目初步能打包成功</p>
+</li>
+</ol>
+<ul>
+<li>由于历史遗留问题要用umd,其本质就是if-else<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./lib/index.tsx'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist/lib'</span>),</span><br><span class="line">    library: <span class="string">'ZUI'</span>,</span><br><span class="line">    libraryTarget: <span class="string">'umd'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">        loader: <span class="string">'awesome-typescript-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="8">
+<li>什么时候加dev?umd是什么？</li>
+</ol>
+<ul>
+<li>只给程序员用+dev,webpack,TS只有程序员用+dev,umd是兼容性最好的</li>
+</ul>
+<ol start="9">
+<li>webpack-dev-server自动打包</li>
+</ol>
+<ul>
+<li>安装<code>yarn add webpack-dev-server --dev</code></li>
+<li>启动<code>webpack-dev-server</code>,输入<code>http://localhost:8080/index.js</code>,刷新就可以访问随时访问的编译代码</li>
+<li>webpack-dev-server作用是开一个server,比如找1.tsx，翻译成1.js放到内存，用户访问1.js直接抛出，放内存更快</li>
+</ul>
+<ol start="10">
+<li>html-webpack-plugin</li>
+</ol>
+<ul>
+<li>html-webpack-plugin,用来改写html的插件,webpack把最新的script加入index.html</li>
+<li>配置,webpack.config.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./lib/index.tsx'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist/lib'</span>),</span><br><span class="line">    library: <span class="string">'ZUI'</span>,</span><br><span class="line">    libraryTarget: <span class="string">'umd'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">        loader: <span class="string">'awesome-typescript-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: <span class="string">'ZUI'</span>,</span><br><span class="line">      template: <span class="string">'index.html'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>二. webpack环境搭建下</p>
+<ol>
+<li>将代码上传到多个远程仓库</li>
+</ol>
+<ul>
+<li>添加另外一个名字的远程仓库git remote add zui-2 <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:codingories/react-wheel-wepack-2.git</li>
+<li>git push -u zui-2 main</li>
+</ul>
+<ol start="2">
+<li><p>webpack.config.js中增加快捷命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"webpack-dev-server"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>安装react,react-dom以及类型依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-dom react</span><br><span class="line">yarn add @types&#x2F;react --dev</span><br><span class="line">yarn add @types&#x2F;react-dom --dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回头看package.json,发现react版本和@types/react及@types/react-dom不一致</p>
+</li>
+</ol>
+<ul>
+<li>这是需要作为架构师需要关注的，如果哪天有bug可能就是这个原因引起</li>
+<li>面试问yarn.lock是做什么的，yarn.lock就是yarn.lock文件,锁的所有安装的东西的版本号,package.json说的是范围，.lock是具体</li>
+</ul>
+<ol start="5">
+<li>出现报错<code>ERROR in ./lib/index.tsx,Module not found: Error: Can&#39;t resolve &#39;./button&#39; in &#39;/Users/ories/Downloads/jirengu-demo/z-ui-react/lib&#39; @ ./lib/index.tsx 3:0-30 4:36-42</code></li>
+</ol>
+<ul>
+<li>通过配置webpack,resolve<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  extensions: [&#39;.ts&#39;, &#39;.tsx&#39;, &#39;.js&#39;, &#39;.jsx&#39;],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="6">
+<li>又出现<code>TS2686: &#39;React&#39; refers to a UMD global, but the current file is a module. Consider adding an import instead.</code>的错误</li>
+</ol>
+<ul>
+<li>原因是button.tsx中没有import react, 以下代码div其实是一段语法糖，<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      anniu</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>可以把以上代码放到babel online运行就可以得到翻译后的代码<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Button</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="comment">/*#__PURE__*/</span>React.createElement(<span class="string">"div"</span>, <span class="literal">null</span>, <span class="string">"anniu"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="7">
+<li><p>解决控制台warning,WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:index (276 KiB),index.js,因为开发模式下index把react也打包进去了</p>
+<ul>
+<li>解决方法是把 mode改成 ‘development’</li>
+</ul>
+</li>
+<li><p>解决index过大的问题，用externals,也就是外部的库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">externals: &#123;</span><br><span class="line">   react: &#123;</span><br><span class="line">     commonjs: &#39;react&#39;, &#x2F;&#x2F; var react &#x3D; requrire...这种写法</span><br><span class="line">     commonjs2: &#39;react&#39;,</span><br><span class="line">     amd: &#39;react&#39;, </span><br><span class="line">     root: &#39;React&#39;, &#x2F;&#x2F; &lt;script src&#x3D;&#39;xxx&#x2F;react.min.js&#39;&gt;,window.React 这种写法</span><br><span class="line">   &#125;,</span><br><span class="line">   &#39;react-dom&#39;: &#123;</span><br><span class="line">     commonjs: &#39;react-dom&#39;,</span><br><span class="line">     commonjs2: &#39;react-dom&#39;,</span><br><span class="line">     amd: &#39;react-dom&#39;,</span><br><span class="line">     root: &#39;ReactDOM&#39;,</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开发环境生产环境的区别</p>
+</li>
+</ol>
+<ul>
+<li>新建webpack.config.dev.js和webpack.config.prod.js，webpack.config.js作为共有的</li>
+<li>webpack.config.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./lib/index.tsx'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.ts'</span>, <span class="string">'.tsx'</span>, <span class="string">'.js'</span>, <span class="string">'.jsx'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist/lib'</span>),</span><br><span class="line">    library: <span class="string">'ZUI'</span>,</span><br><span class="line">    libraryTarget: <span class="string">'umd'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">        loader: <span class="string">'awesome-typescript-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>webpack.config.dev.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> base = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>)</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Object</span>.assign (&#123;&#125;,base,&#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: <span class="string">'ZUI'</span>,</span><br><span class="line">      template: <span class="string">'index.html'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>webpack.config.prod.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> base = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Object</span>.assign (&#123;&#125;,base,&#123;</span><br><span class="line">    mode: <span class="string">'production'</span>,</span><br><span class="line">    externals: &#123;</span><br><span class="line">      react: &#123;</span><br><span class="line">        commonjs: <span class="string">'react'</span>,</span><br><span class="line">        commonjs2: <span class="string">'react'</span>,</span><br><span class="line">        amd: <span class="string">'react'</span>,</span><br><span class="line">        root: <span class="string">'React'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">'react-dom'</span>: &#123;</span><br><span class="line">        commonjs: <span class="string">'react-dom'</span>,</span><br><span class="line">        commonjs2: <span class="string">'react-dom'</span>,</span><br><span class="line">        amd: <span class="string">'react-dom'</span>,</span><br><span class="line">        root: <span class="string">'ReactDOM'</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li>改package.json的启动配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"webpack-dev-server --config webpack.config.dev.js"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"webpack --config webpack.config.prod.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="10">
+<li>配置TS类型生命文件</li>
+</ol>
+<ul>
+<li>tsconfig.json加入<code>&quot;outDir&quot;: &quot;dist&quot;,</code></li>
+<li>把index.d.ts移到dist/lib/index下面,在package.json加入<code>&quot;types&quot;: &quot;dist/lib/index&quot;,</code></li>
+</ul>
+<ol start="11">
+<li>配置JEST,单元测试用</li>
+</ol>
+<ul>
+<li><code>yarn add --dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer</code></li>
+</ul>
+<ol start="12">
+<li>新建.babelrc<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>: [</span><br><span class="line">    <span class="string">"react-app"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>package.json增加test<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;test&quot;: &quot;cross-env NODE_ENV&#x3D;test jest --config&#x3D;jest.config.js --runInBand&quot;,</span><br><span class="line">  &quot;start&quot;: &quot;cross-env NODE_ENV&#x3D;development webpack-dev-server --config webpack.config.dev.js&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;cross-env NODE_ENV&#x3D;production webpack --config webpack.config.prod.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>配置jest.config.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://jestjs.io/docs/en/configuration.html</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  verbose: <span class="literal">true</span>,</span><br><span class="line">  clearMocks: <span class="literal">false</span>,</span><br><span class="line">  collectCoverage: <span class="literal">false</span>,</span><br><span class="line">  reporters: [<span class="string">"default"</span>],</span><br><span class="line">  moduleFileExtensions: [<span class="string">'js'</span>, <span class="string">'jsx'</span>, <span class="string">'ts'</span>, <span class="string">'tsx'</span>],</span><br><span class="line">  moduleDirectories: [<span class="string">'node_modules'</span>],</span><br><span class="line">  moduleNameMapper: &#123;</span><br><span class="line">    <span class="string">"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$"</span>: <span class="string">"&lt;rootDir&gt;/test/__mocks__/file-mock.js"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  testMatch: [<span class="string">'&lt;rootDir&gt;/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'</span>],</span><br><span class="line">  transform: &#123;</span><br><span class="line">    <span class="string">"^.+unit\\.(js|jsx)$"</span>: <span class="string">"babel-jest"</span>,</span><br><span class="line">    <span class="string">'^.+\\.(ts|tsx)$'</span>: <span class="string">'ts-jest'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  setupFilesAfterEnv: [<span class="string">"&lt;rootDir&gt;test/setupTests.js"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>安装<code>yarn add --dev ts-jest</code></li>
+<li>创建setup/setupTests.js,等用到了在写</li>
+<li>测试一个button按钮, 发现问题，用了jest后要改成import * as React from ‘react’这种形式</li>
+<li>修改tsconfig.json的配置，就可以用default open<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &quot;strictNullChecks&quot;: true,</span><br><span class="line">    &#x2F;&#x2F; &quot;suppressImplicitAnyIndexErrors&quot;: true,</span><br><span class="line">    &#x2F;&#x2F; https:&#x2F;&#x2F;github.com&#x2F;Microsoft&#x2F;TypeScript&#x2F;issues&#x2F;28762#issuecomment-443406607</span><br><span class="line">&#x2F;&#x2F;    &quot;allowSyntheticDefaultImports&quot;: true, &#x2F;&#x2F; 已经被弃用, ts-js不支持</span><br><span class="line">    &quot;esModuleInterop&quot;: true,</span><br></pre></td></tr></table></figure>
+三. 组件1-icon上</li>
+</ul>
+<ol>
+<li>为什么要造轮子</li>
+</ol>
+<ul>
+<li>不要重复造轮子,但是要有造轮子的能力</li>
+<li>为了不求人,假设你使用了某个UI框架，但是发现有bug,于是你反馈给开发者，开发者说两周后修复，而你的项目一周后上线，怎么办？为什么很多大公司不使用其他公司的轮子，要自己造，google不会用Facebook的react而用自己的angular。为了把控自己业务，不被别人牵着走</li>
+<li>为了不流于平庸，大家都是写增删改查，你跟别人比有什么优势？如果能说一句【我公司的人都在用我写的UI框架】是不是很牛逼？造轮子会遇到很多技术层面而非业务层面的知识，比如一些算法。</li>
+<li>为了创造，你为别人做了这么久的事情，有没有为自己做过什么？证明有自驱动力。</li>
+<li>为什么是UI轮子,是风口，每个公司都需要UI框架，写到简历里面容易涨工资</li>
+</ul>
+<ol start="2">
+<li>为什么手机上的UI框架不好用?</li>
+</ol>
+<ul>
+<li>手机上交互少，手机上最复杂最常用的只有下拉更新</li>
+</ul>
+<ol start="3">
+<li>React.FunctionComponent与IconProps</li>
+</ol>
+<ul>
+<li>装插件React develop tools</li>
+<li>ts和react的第一个知识点，如何声明一个函数组件接受props<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">interface IconProps &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; Icon的类型是一个接受IconProps的函数组件FunctionComponent,&lt;&gt;表示类型接受一个参数P,如果不传参数的默认值就是一个空对象</span><br><span class="line">  &#x2F;&#x2F; 空对象表示没有任何限制，当传了就有限制,p会传递到PropsWithChildren</span><br><span class="line">  &#x2F;&#x2F; 最终的意思就是当我们写Function, 这个函数组件Props必须有name还可以有children,此时props的类型就是IconProps外加一个Children</span><br><span class="line">  return (</span><br><span class="line">    &lt;span&gt;&#123; props.name &#125;&lt;&#x2F;span&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>使用并配置svg-sprite-loader</li>
+</ol>
+<ul>
+<li>新建types/custom.d.ts<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> '*.svg' &#123;</span><br><span class="line">  <span class="keyword">const</span> content: <span class="built_in">any</span>;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> content;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>tsconfig.json增加,表示这是源文件,include表示ts需要分析哪些文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;include&quot;: [</span><br><span class="line">    &quot;types&#x2F;**&#x2F;*&quot;,</span><br><span class="line">    &quot;lib&#x2F;**&#x2F;*&quot;</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></li>
+<li>icon.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import wechat from &#39;..&#x2F;icons&#x2F;wechart.svg&#39;</span><br><span class="line">console.log(wechat);</span><br></pre></td></tr></table></figure></li>
+<li>webpack.config.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.svg$&#x2F;,</span><br><span class="line">        loader: &#39;svg-sprite-loader&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure></li>
+<li><code>lib/**/*</code>,中的*<em>,**表示任意的文件或者目录,而</em>只是表示文件,把types放到lib下include就只要写<code>lib/**/*</code></li>
+<li>实现功能主要代码,根据name展示不一样的代码<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> wechat <span class="keyword">from</span> <span class="string">'../icons/wechat.svg'</span></span><br><span class="line"><span class="built_in">console</span>.log(wechat);</span><br><span class="line"><span class="keyword">interface</span> IconProps &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Icon: React.FunctionComponent&lt;IconProps&gt; = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">      &#123; props.name &#125;</span><br><span class="line">      &lt;svg&gt;</span><br><span class="line">        &lt;use xlinkHref=&#123;<span class="string">`#<span class="subst">$&#123;props.name&#125;</span>`</span>&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/svg&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>span&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Icon;</span><br></pre></td></tr></table></figure></li>
+<li>总结:第一件事情+loader,loader会把所有svg放到页面最上面，第二步把所有svg的的源放到icons下面,第三步在icons中下面引入svg，第四部写个svg然后use这个icon，加上id</li>
+</ul>
+<ol start="5">
+<li>declare module这段代码的作用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 是针对import &#39;wechat&#39; from &#39;wechat.svg&#39; 这种情况，如果不写会出问题,因为没有export,写了就表示所有svg都有content:any并且为默认导出</span><br><span class="line">declare module &#39;*.svg&#39; &#123;</span><br><span class="line">  const content: any;</span><br><span class="line">  export default content;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>importAll 实现一下子导入任意多个svg</li>
+</ol>
+<ul>
+<li>importIcons.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> importAll = <span class="function">(<span class="params">requireContext</span>) =&gt;</span> requireContext.keys().forEach(requireContext)</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  importAll(<span class="built_in">require</span>.context(<span class="string">'./icons/'</span>), <span class="literal">true</span>, /\.svg$/)</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>然后在Icon组件中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#39;.&#x2F;importIcons.js&#39;</span><br><span class="line">interface IconProps &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">      &#123; props.name &#125;</span><br><span class="line">      &lt;svg&gt;</span><br><span class="line">        &lt;use xlinkHref&#x3D;&#123;&#96;#$&#123;props.name&#125;&#96;&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;svg&gt;</span><br><span class="line">    &lt;&#x2F;span&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure></li>
+<li>treeShaking<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import wechart from &#39;.&#x2F;icons&#39;一个个引入好还是直接import all好</span><br><span class="line">import wechart from &#39;.&#x2F;icons&#39;这种叫做静态函数，import all是非静态加载</span><br><span class="line">右边方便，左边方便treeshaking，tressShaking的基础是静态引入，import all虽然方便但是后续不能treeShaking</span><br></pre></td></tr></table></figure>
+四. 组件1-icon下</li>
+</ul>
+<ol>
+<li>给icon组件增加样式</li>
+</ol>
+<ul>
+<li>配置 SCSS loader<ul>
+<li>Unexpected token (1:0)错误，理解为不认识的字符串,token理解为string字符串</li>
+<li>对webpack.config.js进行配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.scss$&#x2F;,</span><br><span class="line">        use: [&#39;style-loader&#39;, &#39;css-loader&#39;, &#39;sass-loader&#39;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>从右往左进行理解,’sass-loader’把icon.scss编程icon.css但是不是生成文件只是编程字符串翻译到内存，那么css-loader可以就可以将之后的结果变成对象，对面里面有字符串，style-loader是把整个对象变成style标签,具体伪代码如下,面试要说出来</li>
+<li>一个loader只做一件事情，所以有时候需要很多loader去配合去完成一件事<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.createElement(&#39;style&#39;)</span><br><span class="line">innerHTML &#x3D; &#39;css&#39;</span><br><span class="line">document.head.append(style)</span><br></pre></td></tr></table></figure></li>
+<li>安装<code>yarn add --dev sass-loader css-loader style-loader</code> 以及特殊的安装node-sass方法<code>yarn add node-sass@npm:dart-sass </code></li>
+<li>添加css代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#39;.&#x2F;importIcons.js&#39;</span><br><span class="line">import &#39;.&#x2F;icon.scss&#39;</span><br><span class="line"></span><br><span class="line">interface IconProps &#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">      &lt;svg className&#x3D;&quot;zui-icon&quot;&gt;</span><br><span class="line">        &lt;use xlinkHref&#x3D;&#123;&#96;#$&#123;props.name&#125;&#96;&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;svg&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure></li>
+<li>icon.scss<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.zui-icon</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1.4em</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1.4em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li>给icon组件增加click事件，svg点击事件初步实现</li>
+</ol>
+<ul>
+<li>icon.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#39;.&#x2F;importIcons.js&#39;</span><br><span class="line">import &#39;.&#x2F;icon.scss&#39;</span><br><span class="line"></span><br><span class="line">interface IconProps &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  onClick: () &#x3D;&gt; void;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; onClick: React.MouseEventHandler&lt;SVGElement&gt;</span><br><span class="line">  &#x2F;&#x2F; onClick表示是svg元素鼠标事件的处理函数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">      &lt;svg className&#x3D;&quot;zui-icon&quot; onClick&#x3D;&#123;props.onClick&#125;&gt;</span><br><span class="line">        &lt;use xlinkHref&#x3D;&#123;&#96;#$&#123;props.name&#125;&#96;&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;svg&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure></li>
+<li>index.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import ReactDOM from &#39;react-dom&#39;</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import Icon from &#39;.&#x2F;icon&#39;</span><br><span class="line">const fn &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&#39;fn&#39;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Icon name&#x3D;&quot;QQ&quot; onClick&#x3D;&#123;fn&#125; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;, document.querySelector(&#39;#root&#39;));</span><br></pre></td></tr></table></figure></li>
+<li>如何声明e的类型,完善e的类型</li>
+<li>index.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import ReactDOM from &#39;react-dom&#39;</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import Icon from &#39;.&#x2F;icon&#39;</span><br><span class="line">const fn: React.MouseEventHandler &#x3D; (e)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(e.target);&#x2F;&#x2F; target可能没有属性,MouseEvent接受参数, 断言</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Icon name&#x3D;&quot;QQ&quot; onClick&#x3D;&#123;fn&#125; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;, document.querySelector(&#39;#root&#39;));</span><br></pre></td></tr></table></figure></li>
+<li>icon.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import ReactDOM from &#39;react-dom&#39;</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import Icon from &#39;.&#x2F;icon&#39;</span><br><span class="line">const fn: React.MouseEventHandler &#x3D; (e)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(e.target);&#x2F;&#x2F; target可能没有属性,MouseEvent接受参数, 断言</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Icon name&#x3D;&quot;QQ&quot; onClick&#x3D;&#123;fn&#125; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;, document.querySelector(&#39;#root&#39;));</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li>让Icon响应所有事件，利用react内置的DOM attributes接口</li>
+</ol>
+<ul>
+<li>如果让一个元素完全像svg元素或者html，元素第一步类型继承<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IconProps extends React.SVGAttributes&lt;SVGElement&gt;&#123;</span><br><span class="line">  name: string; <span class="comment">// 增加的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>然后要用展开符把props放到属性后面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#39;.&#x2F;importIcons.js&#39;</span><br><span class="line">import &#39;.&#x2F;icon.scss&#39;</span><br><span class="line"></span><br><span class="line">interface IconProps extends React.SVGAttributes&lt;SVGElement&gt;&#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">      &lt;svg className&#x3D;&quot;zui-icon&quot;</span><br><span class="line">        &#123;...props&#125;&gt;</span><br><span class="line">        &lt;use xlinkHref&#x3D;&#123;&#96;#$&#123;props.name&#125;&#96;&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;svg&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>自己写classes函数解决外部class覆盖内部的的问题，vue会自己合并，react自己解决</li>
+</ol>
+<ul>
+<li><p>解决方式一,icon.tsx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#39;.&#x2F;importIcons.js&#39;</span><br><span class="line">import &#39;.&#x2F;icon.scss&#39;</span><br><span class="line"></span><br><span class="line">interface IconProps extends React.SVGAttributes&lt;SVGElement&gt;&#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;className, ...restProps&#125; &#x3D; props;</span><br><span class="line">  return (</span><br><span class="line">      &lt;svg className&#x3D;&#123;&#96;zui-icon $&#123;className&#125;&#96;&#125;</span><br><span class="line">        &#123;...restProps&#125;&gt;</span><br><span class="line">        &lt;use xlinkHref&#x3D;&#123;&#96;#$&#123;props.name&#125;&#96;&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;svg&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure></li>
+<li><p>index.tsx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import ReactDOM from &#39;react-dom&#39;</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import Icon from &#39;.&#x2F;icon&#39;</span><br><span class="line">const fn: React.MouseEventHandler &#x3D; (e)&#x3D;&gt;&#123;</span><br><span class="line">  console.log(e.target);&#x2F;&#x2F; target可能没有属性,MouseEvent接受参数, 断言</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Icon name&#x3D;&quot;QQ&quot; className&#x3D;&#39;qqqq&#39; onClick&#x3D;&#123;fn&#125;</span><br><span class="line">          onMouseEnter&#x3D;&#123;() &#x3D;&gt; console.log(&#39;enter&#39;)&#125;</span><br><span class="line">          onMouseLeave&#x3D;&#123;() &#x3D;&gt; console.log(&#39;leave&#39;)&#125;</span><br><span class="line">    &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;, document.querySelector(&#39;#root&#39;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果没传会出现undefined,有一个库叫classnames，解决了这个问题</p>
+<ul>
+<li>helpers/classes.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function classes(...names:(string|undefined)[]) &#123;</span><br><span class="line">  return names.filter(Boolean).join(&#39; &#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default classes;</span><br></pre></td></tr></table></figure></li>
+<li>icon.tsx<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#39;.&#x2F;importIcons.js&#39;</span><br><span class="line">import &#39;.&#x2F;icon.scss&#39;</span><br><span class="line">import classes from &#39;.&#x2F;helpers&#x2F;classes&#39;</span><br><span class="line"></span><br><span class="line">interface IconProps extends React.SVGAttributes&lt;SVGElement&gt;&#123;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Icon: React.FunctionComponent&lt;IconProps&gt; &#x3D; (props) &#x3D;&gt; &#123;</span><br><span class="line">  const &#123;className, ...restProps&#125; &#x3D; props; &#x2F;&#x2F; 剩余操作符</span><br><span class="line">  return (</span><br><span class="line">      &lt;svg className&#x3D;&#123;classes(&#39;zui-icon&#39;,className)&#125;</span><br><span class="line">        &#123;...restProps&#125;&gt;</span><br><span class="line">        &lt;use xlinkHref&#x3D;&#123;&#96;#$&#123;props.name&#125;&#96;&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;svg&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Icon;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>进一步用解构的方式优化代码</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./importIcons.js'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./icon.scss'</span></span><br><span class="line"><span class="keyword">import</span> classes <span class="keyword">from</span> <span class="string">'./helpers/classes'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> IconProps <span class="keyword">extends</span> React.SVGAttributes&lt;SVGElement&gt;&#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Icon: React.FunctionComponent&lt;IconProps&gt; = <span class="function">(<span class="params">&#123;className, name, ...restProps&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">      &lt;svg className=&#123;classes(<span class="string">'zui-icon'</span>, className)&#125;</span><br><span class="line">        &#123;...restProps&#125;&gt;</span><br><span class="line">        &lt;use xlinkHref=&#123;<span class="string">`#<span class="subst">$&#123;name&#125;</span>`</span>&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/svg&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Icon;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>react的计算属性</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">  message: <span class="string">'default message'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">  <span class="keyword">super</span>(props);</span><br><span class="line">  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">    n: <span class="number">1</span>,</span><br><span class="line">    firstName : <span class="string">'aaa'</span>,</span><br><span class="line">    lastName : <span class="string">'bbb'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span> name()&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.state.firstName + <span class="keyword">this</span>.state.firstName </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">set</span> name(newName)&#123;</span><br><span class="line">  <span class="keyword">const</span> [firstName, lastName] = newName.split(<span class="string">" "</span>)</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    firstName,</span><br><span class="line">    lastName</span><br><span class="line">  &#125;) <span class="comment">// 搞个input就可以</span></span><br><span class="line">&#125;</span><br><span class="line">componentDidMount()</span><br><span class="line">render()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    &lt;div&gt;&#123;<span class="keyword">this</span>.name&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">ReactDOM.render(&lt;App /</span>&gt;)</span><br><span class="line"></span><br><span class="line">interface props&#123;</span><br><span class="line">  message?: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>函数组件一般写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &#39;prop-types&#39;</span><br><span class="line">const App: React.FunctionComponent&lt;Props&gt; &#x3D; (props)&#x3D;&gt; &#123;</span><br><span class="line">  const [n, setN] &#x3D; useState(1) &#x2F;&#x2F; 函数组件用state</span><br><span class="line">  const x &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    setN(n+1)</span><br><span class="line">  &#125;</span><br><span class="line">  useEffect(()&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;UI更新之后, mounted或者updated&#39;)</span><br><span class="line">  &#125;) &#x2F;&#x2F; 在每次ui更新之后执行</span><br><span class="line"></span><br><span class="line">  useEffect(()&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;UI更新之后, mounted或者updated&#39;)</span><br><span class="line">  &#125;, [n]) &#x2F;&#x2F; 这里表示n变化了之后变化n为依赖,删完[]只在第一次执行就是mounted,和unmount，最常用就是在[]的地方ajax操作</span><br><span class="line">  props.message!.split(&#39; &#39;) &#x2F;&#x2F; ！表示强制为空</span><br><span class="line">  return (</span><br><span class="line">    &lt;div onClick &#x3D; &#123;x&#125;&gt;&#123;props.message&#125;&lt;&#x2F;div&gt; &#x2F;&#x2F; 函数组件用props</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">App.defaultProps &#x3D; &#123;</span><br><span class="line">  message: &#39;getDefaultMessage&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">React.render(&lt;App message &#x3D; &#39;hi function&#39;&#x2F;&gt;, rootElement)</span><br><span class="line">App.protoTypes &#x3D; &#123;</span><br><span class="line">  message: PropTypes.number,</span><br><span class="line">&#125; &#x2F;&#x2F; 函数组件检查js类型</span><br></pre></td></tr></table></figure></li>
+<li><p>总共要七个:useState, useEffect,useContext组件通信,userReducer是代替redux的方案,useRef代替类里面的Ref,useCallback,useMemo</p>
+</li>
+<li><p>函数式的本质式不能第二次赋值，无状态，函数的好处是可以用数学知识，类的好处是适合人类</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/react%E9%80%A0%E8%BD%AE%E5%AD%90/" rel="tag"># react造轮子</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/02/react%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%AD%A6%E4%B9%A0/" rel="prev" title="react状态管理学习">
+      <i class="fa fa-chevron-left"></i> react状态管理学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/20/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B00%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="next" title="程序员的算法课之00时间复杂度">
+      程序员的算法课之00时间复杂度 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ories"
+      src="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+  <p class="site-author-name" itemprop="name">Ories</p>
+  <div class="site-description" itemprop="description">这个博客用来记录自己的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ories</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'HHvArpMYcwuYjNb3703JgvvS-gzGzoHsz',
+      appKey     : '5lSamU58UyScrMIQcUygcD2I',
+      placeholder: "欢迎畅所欲言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'true'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

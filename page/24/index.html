@@ -158,6 +158,260 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/" class="post-title-link" itemprop="url">reactNative学习分享五</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-21 13:58:36" itemprop="dateCreated datePublished" datetime="2019-01-21T13:58:36+08:00">2019-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-02-01 15:40:15" itemprop="dateModified" datetime="2019-02-01T15:40:15+08:00">2019-02-01</time>
+              </span>
+
+          
+            <span id="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/" class="post-meta-item leancloud_visitors" data-flag-title="reactNative学习分享五" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/21/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%BA%94/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.Functions are not valid as a React child. This may happen if you return a Component instead of <Component> from render 的错误,写函数的时候不要忘记加()</Component></p>
+<p>二.scrollView 当一帧滚动完之后的属性,onMomentumScrollEnd </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 当一帧滚动结束的时候调用</span><br><span class="line">onScrollAnimationEnd(e)&#123;</span><br><span class="line">    &#x2F;&#x2F; 求出当前的页码</span><br><span class="line">    let currentPage &#x3D; Math.floor(e.nativeEvent.contentOffset.x &#x2F; width);</span><br><span class="line">    &#x2F;&#x2F; 更新状态机</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">       activePage: currentPage</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会自动将scrollView事件传进去，需要一个e作为接受</p>
+<p>三.this.setState is not a function错误
+需要再constructor 加上 this.onScrollAnimationEnd = this.onScrollAnimationEnd.bind(this)</p>
+<p>四.js开发中能写成局部的就写成局部的</p>
+<p>五. 查找url里面是否含有w.h,如果找到了返回任意正数，否则返回负一。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (url.search(&#39;w.h&#39;))</span><br></pre></td></tr></table></figure>
+
+<p>六. Image的resizeMode 用contain 完全展示出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image source&#x3D;&#123;&#123;uri: this.props.rightIcon&#125;&#125;</span><br><span class="line">   style&#x3D;&#123;&#123;width:64,height:43,resizeMode:&#39;contain&#39;&#125;&#125;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>七.navigator传递参数问题
+首先这个借口已经不在维护，其实用新的接口更好，建议大家迁移到新的react-navigation库,但是由于教程
+是老的所以我还是用的这个，传递参数的时候有问题，找了好久发现了传递的参数的位置: 
+相关文档可以参考：<a href="http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B</a> 
+以及自己的收藏夹内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.props.navigator.state.routeStack[1].passProps.url</span><br></pre></td></tr></table></figure>
+
+<p>八.WebView的使用犯的低级错误，需要把WebView属性写到 /&gt; 内</p>
+<p>九.instance.render is not a function error in reactjs 错误，语法问题 改成es6写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        &#x2F;&#x2F; 初始化数据源</span><br><span class="line">        this.state &#x3D; &#123;</span><br><span class="line">            dataSource: new ListView.DataSource(</span><br><span class="line">                &#123;rowHasChanged: (row1, row2) &#x3D;&gt; row1 !&#x3D;&#x3D; row2&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-title-link" itemprop="url">reactNative学习分享四</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-02 17:16:36" itemprop="dateCreated datePublished" datetime="2019-01-02T17:16:36+08:00">2019-01-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-01-21 09:40:49" itemprop="dateModified" datetime="2019-01-21T09:40:49+08:00">2019-01-21</time>
+              </span>
+
+          
+            <span id="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" class="post-meta-item leancloud_visitors" data-flag-title="reactNative学习分享四" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/02/reactNative%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E5%9B%9B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一 初始化操作
+    1. 改app 的图标和载入页面 点Xcode 标题 然后在App Icons and Launch Images中进行修改。特别要注意Source里面填了之后，launch Screen File 不需要填写，否则无法看到载入图片。
+    2. 改app的名称，在info.plist里面改，Bundle display name小码电商
+    3.把二级目录里面的Main导出，并且把Text的内容改成,以此其它模块修改类名，导出组件名，和Text中内容
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 输出组件类</span><br><span class="line">module.exports &#x3D; Main;</span><br></pre></td></tr></table></figure>
+    4. 在app.js中删除不要的内容，引入Main
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let Main &#x3D; require(&#39;.&#x2F;Component&#x2F;Main&#x2F;XMGMain&#39;);</span><br><span class="line">export default class App extends Component&lt;Props&gt; &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">      return (</span><br><span class="line">          &lt;Main &#x2F;&gt;</span><br><span class="line">      );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+二 设置主要框架,底部图标选定切换
+    1. 在控制台输入命令安装，react-native-tab-navigator 适用于安卓和ios的tabbar。propTypes规定了属性的类型。
+    <figure class="highlight plain"><figcaption><span>i react-native-tab-navigator --save```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. 引入底部图片的时候注意:这里有个坑，因为需要安卓和ios同时能够找到图片，需要把图片位置放到外面。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;renderIcon&#x3D;&#123;() &#x3D;&gt; &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;imgicon_tabbar_merchant_normal.png&#39;)&#125;style&#x3D;&#123;styles.iconstyle&#125;&#x2F;&gt;&#125; &#x2F;&#x2F; 图标</span><br></pre></td></tr></table></figure></p>
+<p>三 包装Navigator
+    1. 把组件导入到main中</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let Home &#x3D; require(&#39;..&#x2F;home&#x2F;XMGhome&#39;);</span><br><span class="line">let Shop &#x3D; require(&#39;..&#x2F;shop&#x2F;XMGShop&#39;);</span><br><span class="line">let Mine &#x3D; require(&#39;..&#x2F;mine&#x2F;XMGMine&#39;);</span><br><span class="line">let More &#x3D; require(&#39;..&#x2F;more&#x2F;XMGMore&#39;);</span><br></pre></td></tr></table></figure>
+
+2. 初始化变量设置,用到constructor,类似python init
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Main extends Component &#123;</span><br><span class="line">&#x2F;&#x2F; 初始化函数(变量是可以改变的，充当状态机的角色)</span><br><span class="line">constructor()&#123;</span><br><span class="line">    super();</span><br><span class="line">    this.state &#x3D; &#123;</span><br><span class="line">        selectedTab: &#39;home&#39; &#x2F;&#x2F; 默认是第一个</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+3. 在不同的平台 图标的大小显示不同 用到Platform 实现
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;Platform &#x2F;&#x2F; 判断当前运行的系统</span><br><span class="line">, StyleSheet, Text, View,Image&#125; from &#39;react-native&#39;;</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">iconStyle:&#123;</span><br><span class="line">    width: Platform.OS &#x3D;&#x3D;&#x3D; &#39;30&#39; ? 30 : 25,</span><br><span class="line">    height: Platform.OS &#x3D;&#x3D;&#x3D; &#39;30&#39; ? 30 : 25,</span><br><span class="line">    backgroundColor:&#39;yellow&#39;</span><br><span class="line">&#125;&#125;);</span><br></pre></td></tr></table></figure>
+
+4. navigator的两个核心要素
+    navigator : 一个用来管理所有界面对象的栈，人称之 “路由栈”, 学名 “导航”。
+    route : 路由栈里的每一个对象，称之为“路由”，用来存储每一个页面组件以及一些需要传递给对应界面的props参数。
+
+5. 用navigator替换之前的&lt;Home /&gt;,这里有个坑,导入Navigator的时候:
+第一.由于组件被移除了所以必须先npm
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-native-deprecated-custom-components --save</span><br></pre></td></tr></table></figure>
+第二.导入的时候，需要加花括号
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;Navigator&#125; from &#39;react-native-deprecated-custom-components&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Navigator</span><br><span class="line">initialRoute&#x3D;&#123;&#123;</span><br><span class="line">    name: &#39;首页&#39;, &#x2F;&#x2F; 可选</span><br><span class="line">    component: Home</span><br><span class="line">&#125;&#125;</span><br><span class="line">configureScene&#x3D;&#123;() &#x3D;&gt; &#123;</span><br><span class="line">    return Navigator.SceneConfigs.PushFromRight;</span><br><span class="line">&#125;&#125;</span><br><span class="line">renderScene &#x3D;&#123;(route, navigator) &#x3D;&gt; &#123;</span><br><span class="line">    let Component &#x3D; route.component;</span><br><span class="line">    return &lt;Component &#123;...route.passProps&#125; navigator&#x3D;&#123;navigator&#125;&#x2F;&gt;</span><br><span class="line">&#125;&#125;&#x2F;&gt;</span><br></pre></td></tr></table></figure></code></pre>
+<p>四 设置头部样式
+    1. 修改ios顶部状态栏的样式，在AppDelegate.m中修改
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">      NSURL *jsCodeLocation;</span><br><span class="line">        &#x2F;&#x2F; 设置状态栏</span><br><span class="line">      [[UIApplication sharedApplication] setStatusBarStyle:</span><br><span class="line">       UIStatusBarStyleLightContent];</span><br><span class="line">    &#96;&#96;&#96;  </span><br><span class="line">五 设置安卓中的启动图片</span><br><span class="line">    1. 利用Dimensions模块找到设备尺寸，导入图片，设置大小合适的图片</span><br><span class="line"></span><br><span class="line">    &#96;&#96;&#96;let &#123;width, height&#125; &#x3D; Dimensions.get(&#39;window&#39;);</span><br><span class="line">        return (</span><br><span class="line">            &lt;Image source&#x3D;&#123;require(&#39;.&#x2F;img&#x2F;launchimage.png&#39;)&#125; style&#x3D;&#123;styles.launchImageStyle&#125;&#x2F;&gt;</span><br><span class="line">        );</span><br><span class="line">        const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">            launchImageStyle:&#123;</span><br><span class="line">                flex:1,</span><br><span class="line">                width:width</span><br><span class="line">            &#125;&#125;);</span><br></pre></td></tr></table></figure></p>
+<pre><code>2. 让图片自动跳转到页面
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 复杂的一些操作:定时器\网络请求</span><br><span class="line">componentDidMount()&#123;</span><br><span class="line">    &#x2F;&#x2F; 定时: 隔2s切换到Main</span><br><span class="line">    setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F; 页面的切换</span><br><span class="line">        this.props.navigator.replace(&#123;</span><br><span class="line">            component: Main, &#x2F;&#x2F; 具体路由的板块</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,2000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<p>六 &lt;更多&gt;页面开发
+    1. 莫名其妙爆了一个require unknown module “610”的错误，重新写了代码之后好了。</p>
+<p>七 &lt;我的&gt;页面开发
+    1. 从前面传递参数的时候需要注意
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyCell</span><br><span class="line">    leftIconName&#x3D;&#123;require(&#39;..&#x2F;img&#x2F;draft.png&#39;)&#125;</span><br><span class="line">    leftTitle&#x3D;&#39;小码哥钱包&#39;</span><br><span class="line">    rightTitle&#x3D;&#39;账号余额:¥100&#39;</span><br><span class="line">    &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+    后面这么写取到的时候这么写
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class MyCell extends Component&lt;Props&gt; &#123;</span><br><span class="line">static defaultProps &#x3D; &#123;</span><br><span class="line">    leftIconName:&#39;&#39;,</span><br><span class="line">    leftTitle:&#39;&#39;,</span><br><span class="line">    rightIconName: &#39;&#39;,</span><br><span class="line">    rightTitle:&#39;&#39;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;Image source&#x3D;&#123;this.props.leftIconName&#125; style&#x3D;&#123;styles.leftImgStyle&#125;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+    2.scrollView背景设置问题
+这样写的话背景只有单行.</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">return (</span><br><span class="line">    &lt;ScrollView</span><br><span class="line">        contentContainerStyle&#x3D;&#123;styles.scrollViewStyle&#125;</span><br><span class="line">    &gt;</span><br><span class="line">        &lt;View style&#x3D;&#123;&#123;marginTop:20&#125;&#125;&gt;</span><br><span class="line">            &lt;MyCell</span><br><span class="line">                leftIconName&#x3D;&#123;require(&#39;..&#x2F;img&#x2F;draft.png&#39;)&#125;</span><br><span class="line">                leftTitle&#x3D;&#39;小码哥钱包&#39;</span><br><span class="line">                rightTitle&#x3D;&#39;账号余额:¥100&#39;</span><br><span class="line">            &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    &lt;&#x2F;ScrollView&gt;</span><br><span class="line">);</span><br><span class="line">const styles &#x3D; StyleSheet.create(&#123;</span><br><span class="line">scrollViewStyle:&#123;</span><br><span class="line">    backgroundColor:&#39;#e8e8e8&#39;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></code></pre>
+<p>要改成，就整个都会变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ScrollView</span><br><span class="line">    style&#x3D;&#123;styles.scrollViewStyle&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<pre><code>3. json 数据里面如果包含require 图片 ，要放到内部，不能抽到外面否则会报错。</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let MiddleData &#x3D; [</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order1.png&#39;),title:&quot;待付款&quot;&#125;,</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order2.png&#39;),title:&quot;待使用&quot;&#125;,</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order3.png&#39;),title:&quot;待评价&quot;&#125;,</span><br><span class="line">    &#123;iconName:require(&#39;..&#x2F;img&#x2F;order4.png&#39;),title:&quot;退款&#x2F;售后&quot;&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/24/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%9B%AE%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1164,184 +1418,6 @@ path.win32
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">npm知识分享</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-12-05 16:36:34 / Modified: 16:43:48" itemprop="dateCreated datePublished" datetime="2018-12-05T16:36:34+08:00">2018-12-05</time>
-            </span>
-
-          
-            <span id="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" class="post-meta-item leancloud_visitors" data-flag-title="npm知识分享" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/npm%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="nrm-的使用"><a href="#nrm-的使用" class="headerlink" title="nrm 的使用"></a>nrm 的使用</h3><p>npm intall -g nrm 安装nrm 用于 切换镜像点
-nrm ls 查看镜像点
-nrm test 测试速度
-nrm use taboo 选择镜像点</p>
-<h3 id="npm常用命令"><a href="#npm常用命令" class="headerlink" title="npm常用命令"></a>npm常用命令</h3><p>npm config 配置 
-npm init 初始化package.json文件
-npm search 
-npm info + 包名 列出信息
-npm install
-npm uninstall
-npm list 显示依赖项
-npm outdated 判断有没有更新
-npm update
-npm run 运行定义的脚本
-npm cache [clean|ls] 清除缓存
-文档:<a href="https://docs.npmjs.com/" target="_blank" rel="noopener">https://docs.npmjs.com/</a> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">Django Channels的坑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-12-05 14:04:53 / Modified: 15:03:59" itemprop="dateCreated datePublished" datetime="2018-12-05T14:04:53+08:00">2018-12-05</time>
-            </span>
-
-          
-            <span id="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/" class="post-meta-item leancloud_visitors" data-flag-title="Django Channels的坑" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/Django%20Channels%E7%9A%84%E5%9D%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近老板希望实现一个功能，用浏览器打开同一页面，在一个页面上操作另一个页面收到响应，研究发现需要使用到websocket的技术。
-参考的是<a href="https://segmentfault.com/q/1010000008105826%EF%BC%8C" target="_blank" rel="noopener">https://segmentfault.com/q/1010000008105826，</a> 最后实现是通过django的channels。实现过程中碰到的坑是报’_UnixSelectorEventLoop’ object has no attribute ‘create future’的错误，最后通过查github发现不是channels的问题，说是python本身的问题。
-于是，把3.5.1改成3.6.4的虚拟环境，实现通过channels实现websocket，完成老板的需求。
-总结:如果遇到莫名其妙的错误，什么方法都试过没办法解决，那么很有可能是环境的问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1413,20 +1489,20 @@ npm cache [clean|ls] 清除缓存
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">246</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

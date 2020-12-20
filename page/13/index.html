@@ -158,6 +158,217 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/" class="post-title-link" itemprop="url">浅析两种vue版本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-14 20:37:28 / Modified: 21:01:15" itemprop="dateCreated datePublished" datetime="2019-12-14T20:37:28+08:00">2019-12-14</time>
+            </span>
+
+          
+            <span id="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/" class="post-meta-item leancloud_visitors" data-flag-title="浅析两种vue版本" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/14/%E6%B5%85%E6%9E%90%E4%B8%A4%E7%A7%8Dvue%E7%89%88%E6%9C%AC/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>两个版本对应的文件名<ul>
+<li>完整版的名字是vue.js</li>
+<li>非完整版的名字是vue.runtime.js  </li>
+</ul>
+</li>
+<li>两个版本的区别<ul>
+<li>vue 有两个版本一个,完整版的视图没有写在js里面，可以直接写在页面里面。而不完整版不支持，也不支持写在template中，必须要用render函数去写，如果强行写template会有一个警告出现。</li>
+</ul>
+</li>
+<li>template 和 render 怎么用<ul>
+<li>完整版的写法可以用template<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">el: &quot;#app&quot;,</span><br><span class="line">template: &#96;&lt;div&gt;&#123;&#123;n&#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line">data: &#123;</span><br><span class="line">    n: 0</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    add() &#123;</span><br><span class="line">    this.n +&#x3D; 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>非完整版的写法只能用render
+new Vue({<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">el: &quot;#app&quot;,</span><br><span class="line">render(createElement) &#123;</span><br><span class="line">    let h &#x3D; createElement;</span><br><span class="line">    return h(&quot;div&quot;, [this.n, h(&quot;button&quot;, &#123; on: &#123; click: this.add &#125; &#125;, &quot;+1&quot;)]);</span><br><span class="line">&#125;,</span><br><span class="line">data: &#123;</span><br><span class="line">    n: 0</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    add() &#123;</span><br><span class="line">    this.n +&#x3D; 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>非完整版本的好处在于它更加独立，相对于完整版没有了compiler，因此体积更小，通过webpack的vue-loader转化成h(‘div’,this.n),也就是在打包的时候把我们写的html翻译成h的形式</li>
+</ul>
+</li>
+<li>用codesandebox.io预览<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;nifty-ride-g0m2d</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/12/07/MVC%E6%B5%85%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" class="post-title-link" itemprop="url">MVC浅析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-07 10:20:32 / Modified: 10:48:54" itemprop="dateCreated datePublished" datetime="2019-12-07T10:20:32+08:00">2019-12-07</time>
+            </span>
+
+          
+            <span id="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="MVC浅析" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/12/07/MVC%E6%B5%85%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/MVC%E6%B5%85%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>MVC 三个对象分别做什么，给出伪代码示例</p>
+<ul>
+<li><p>M 是 Model 的意思，指的所有数据放一块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const m &#x3D; &#123;</span><br><span class="line">    data : &#123;</span><br><span class="line">        n : parseInt(localStorage.getItem(&quot;n&quot;))||100</span><br><span class="line">    &#125;,</span><br><span class="line">    create()&#123;&#125;,</span><br><span class="line">    delete()&#123;&#125;,</span><br><span class="line">    update(data)&#123;</span><br><span class="line">        Object.assign(m.data,data) &#x2F;&#x2F; 把data的所有属性赋值给m.data</span><br><span class="line">        &#x2F;&#x2F; m更新了就会触发，我更新了这句话</span><br><span class="line">        eventBus.trigger(&#39;m:updated&#39;)</span><br><span class="line">        localStorage.setItem(&#39;n&#39;,m.data.n)</span><br><span class="line">    &#125;,</span><br><span class="line">    get()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>V 是 View 的意思，是指所有的看的见的视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">   const view &#x3D; &#123;</span><br><span class="line">   el:null,</span><br><span class="line">   html : &#96;</span><br><span class="line">   &lt;div&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;output&quot;&gt;</span><br><span class="line">       &lt;span id&#x3D;&quot;number&quot;&gt;&#123;&#123;n&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">       &lt;div class&#x3D;&quot;actions&quot;&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;add1&quot;&gt;+1&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;minus1&quot;&gt;-1&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;mul2&quot;&gt;*2&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;button id&#x3D;&quot;divide2&quot;&gt;÷2&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">&#96;,</span><br><span class="line">   init(container)&#123;</span><br><span class="line">       view.el &#x3D; $(container)</span><br><span class="line">       view.render(m.data.n) &#x2F;&#x2F; view &#x3D; render(data)</span><br><span class="line">       view.autoBindEvents()</span><br><span class="line">       eventBus.on(&#39;m:updated&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">           view.render(m.data.n)</span><br><span class="line">       &#125;)</span><br><span class="line">   &#125;,</span><br><span class="line">   render(n)&#123;</span><br><span class="line">       if (view.el.children.length !&#x3D;&#x3D; 0) view.el.empty();</span><br><span class="line">       $(view.html.replace(&#39;&#123;&#123;n&#125;&#125;&#39;,n)).appendTo(view.el)</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- C 是Controller 的意思，是其他剩余的部分。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EventBus 有哪些 API，是做什么用的，给出伪代码示例</p>
+<ul>
+<li><p>当一个事件执行，eventBus 触发 m:updated
+<code>eventBus.trigger(&#39;m:updated&#39;)</code></p>
+</li>
+<li><p>eventBus 监听 m:updated，当 m:updated 触发时，执行一些内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eventBus.on(&#39;m:updated&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">     v.render(m.data.n)</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>表驱动编程是做什么的</p>
+<ul>
+<li>表驱动法是一种编程模式,可以简化复杂的 if,else,也可以将复杂的赋值操作进行简化，比如:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">c &#x3D; &#123;</span><br><span class="line">     events:&#123;</span><br><span class="line">     &#39;click #add1&#39;:&#39;add&#39;,</span><br><span class="line">         &#39;click #minus1&#39;:&#39;minus&#39;,</span><br><span class="line">         &#39;click #mul2&#39;:&#39;mul&#39;,</span><br><span class="line">         &#39;click #divide2&#39;:&#39;div&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     autoBindEvents()&#123;</span><br><span class="line">         for(let key in c.events)&#123;</span><br><span class="line">             const value &#x3D; c[c.events[key]]</span><br><span class="line">             const spaceIndex &#x3D; key.indexOf(&#39; &#39;)</span><br><span class="line">             const part1 &#x3D; key.slice(0, spaceIndex)</span><br><span class="line">             const part2 &#x3D; key.slice(spaceIndex + 1)</span><br><span class="line">             v.el.on(part1,part2,value)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>我是如何理解模块化的</p>
+<ul>
+<li>简单理解就是：模块化就是将功能相似的代码分为一个个模块，有序的组织起来，能够使得代码的耦合度降低，更好的管理代码。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/11/21/%E7%94%A8reduce%E8%BF%9B%E8%A1%8C%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -982,197 +1193,6 @@ command+shift+p,Emmet Wrap,然后div*</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/29/%E6%B5%85%E6%9E%90URL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/29/%E6%B5%85%E6%9E%90URL/" class="post-title-link" itemprop="url">浅析URL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-08-29 15:20:16 / Modified: 17:16:09" itemprop="dateCreated datePublished" datetime="2019-08-29T15:20:16+08:00">2019-08-29</time>
-            </span>
-
-          
-            <span id="/2019/08/29/%E6%B5%85%E6%9E%90URL/" class="post-meta-item leancloud_visitors" data-flag-title="浅析URL" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/08/29/%E6%B5%85%E6%9E%90URL/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/29/%E6%B5%85%E6%9E%90URL/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="URL-包含哪几部分，每部分分别有什么作用"><a href="#URL-包含哪几部分，每部分分别有什么作用" class="headerlink" title="URL 包含哪几部分，每部分分别有什么作用"></a>URL 包含哪几部分，每部分分别有什么作用</h1><ul>
-<li>URL:包含协议+域名或IP+端口号+路径+查询字符串+锚点。</li>
-<li>协议:说明用什么协议</li>
-<li>域名:代表一台机器</li>
-<li>路径:使用不同路径请求不同页面。</li>
-<li>查询字符串:通过查询字符串，实现同一个页面，不同的内容。</li>
-<li>锚点:锚点定位查询结果的第几个，或者是某一块内容</li>
-</ul>
-<h1 id="DNS-的作用是什么，nslookup-命令怎么用"><a href="#DNS-的作用是什么，nslookup-命令怎么用" class="headerlink" title="DNS 的作用是什么，nslookup 命令怎么用"></a>DNS 的作用是什么，nslookup 命令怎么用</h1><ul>
-<li>DNS:把域名和IP联系起来的系统就称为DNS。当你在浏览器中输入一个网址，浏览器首先会向DNS服务商（比如电信）询问此网址对应什么IP,之后电信会回答一个ip。</li>
-<li>nslookup: +一个域名，返回一个ip地址</li>
-</ul>
-<h1 id="IP-的作用是什么，ping-命令怎么用"><a href="#IP-的作用是什么，ping-命令怎么用" class="headerlink" title="IP 的作用是什么，ping 命令怎么用"></a>IP 的作用是什么，ping 命令怎么用</h1><ul>
-<li>IP的作用:一.如何定位一台设备。二.如何封装数据报文，以跟其他设备交流。</li>
-</ul>
-<h1 id="域名是什么，分别哪几类域名"><a href="#域名是什么，分别哪几类域名" class="headerlink" title="域名是什么，分别哪几类域名"></a>域名是什么，分别哪几类域名</h1><ul>
-<li>com是顶级域名，xxx.com是二级域名，俗称一级域名。<code>www.xxx.com</code>是三级域名（俗称二级域名），他们是父子关系。有可能是同一家，也有可能不是。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">HTML常用标签</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-08-28 13:55:54 / Modified: 16:18:14" itemprop="dateCreated datePublished" datetime="2019-08-28T13:55:54+08:00">2019-08-28</time>
-            </span>
-
-          
-            <span id="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="post-meta-item leancloud_visitors" data-flag-title="HTML常用标签" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/28/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>#a标签的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&quot; target&#x3D;&quot;&quot;&gt;&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
-<p>一.href后面可以加
-    1.网址 //google.com
-    2.路径 /a/b/c
-    3.伪协议 如tel:手机号</p>
-<p>二.target 有以下四个属性,target指向iframe的name,window的name
-    1._blank 新页面
-    2._top 最顶层
-    3._parent 当前链接所在上一层打开
-    4._self 当前页</p>
-<p>三.table标签的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">      &lt;thead&gt; </span><br><span class="line">        &lt;tr&gt; &#x2F;&#x2F; 一行</span><br><span class="line">          &lt;th&gt;日期&lt;&#x2F;th&gt;  &#x2F;&#x2F; 表头</span><br><span class="line">          &lt;td&gt;周一&lt;&#x2F;td&gt;  &#x2F;&#x2F; 表数据</span><br><span class="line">        &lt;&#x2F;tr&gt;</span><br><span class="line">      &lt;&#x2F;thead&gt;</span><br><span class="line">      &lt;tbody&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;th&gt;类型&lt;&#x2F;th&gt;</span><br><span class="line">          &lt;td&gt;金属&lt;&#x2F;td&gt;</span><br><span class="line">        &lt;&#x2F;tr&gt;</span><br><span class="line">      &lt;&#x2F;tbody&gt;</span><br><span class="line">      &lt;tfoot&gt;&lt;&#x2F;tfoot&gt;</span><br><span class="line">&lt;&#x2F;table&gt;</span><br></pre></td></tr></table></figure>
-<p>其它:
-image的图片，img标签加上max-width:100%,可以使图片在手机上自适应</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1244,20 +1264,20 @@ image的图片，img标签加上max-width:100%,可以使图片在手机上自适
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">246</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -158,6 +158,372 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">Django REST framework+Vue 打造生鲜超市（一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-21 09:13:10 / Modified: 09:46:16" itemprop="dateCreated datePublished" datetime="2020-04-21T09:13:10+08:00">2020-04-21</time>
+            </span>
+
+          
+            <span id="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="Django REST framework+Vue 打造生鲜超市（一）" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/Django-REST-framework-Vue-%E6%89%93%E9%80%A0%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-掌握的技术"><a href="#1-掌握的技术" class="headerlink" title="1. 掌握的技术"></a>1. 掌握的技术</h4><ol>
+<li>Vue + Django Rest Framework 前后端分离技术</li>
+<li>彻底玩转 restful api 开发流程</li>
+<li>Django Rest Framework 的功能实现和核心源码分析</li>
+<li>Sentry 完成线上系统的错误日志的监控和告警</li>
+<li>第三方登录和支付宝支付的集成</li>
+<li>本地调试远程服务器代码的技巧</li>
+</ol>
+<h4 id="2-系统构成"><a href="#2-系统构成" class="headerlink" title="2. 系统构成"></a>2. 系统构成</h4><ol>
+<li><p> vue 前端项目</p>
+</li>
+<li><p> django rest framework 系统实现前台功能</p>
+</li>
+<li><p> xadmin 后台管理系统</p>
+</li>
+<li><p>vue 部分:</p>
+<ul>
+<li>API 接口</li>
+<li>Vue 组件 与 api 的交互</li>
+<li>vue 的项目组织结构分析</li>
+</ul>
+</li>
+<li><p>Django Rest Framework 技能</p>
+<ul>
+<li>通用 view 实现 rest api 接口<ul>
+<li>Apiview 方式实现 api</li>
+<li>genericView 方式实现 api 接口</li>
+<li>Viewset 和 router 方式实现 api 接口和 url 配置</li>
+<li>Django_filter searchFilter - OrderFilter 分页</li>
+<li>通用 mixin</li>
+</ul>
+</li>
+<li>权限和认证；<ul>
+<li>Authentication 用户认证设置</li>
+<li>动态设置 permission、authentication</li>
+<li>Validators 实现字段验证</li>
+</ul>
+</li>
+<li>序列化和表单验证<ul>
+<li>Serializer</li>
+<li>ModelSerializer</li>
+<li>动态设置 Serializer</li>
+</ul>
+</li>
+<li>支付登录注册<ul>
+<li>json web token 实现登录</li>
+<li>手机注册</li>
+<li>支付宝支付</li>
+<li>第三方登录</li>
+</ul>
+</li>
+<li>进阶开发<ul>
+<li>Django rest framework 部分核心源码解读</li>
+<li>文档自动化管理</li>
+<li>django rest framework 的缓存</li>
+<li>throttling 对用户和 ip 进行限速</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-开发中常见的问题"><a href="#3-开发中常见的问题" class="headerlink" title="3. 开发中常见的问题"></a>3. 开发中常见的问题</h4><ol>
+<li>本地系统不能重现的 bug</li>
+<li>api 接口出错不能及时的发现或难以找到错误栈</li>
+<li>api 文档管理问题，html markdown</li>
+<li>大量的 url 配置造成 url 配置越来越多难以维护</li>
+<li>接口不及时去更新文档，对方不知道如何去测试接口，但写文档会花费大量的时间去维护.</li>
+<li>为了防止爬虫，我们需要针对 api 的访问频率进行限制，比如一分钟，一小时，或者一天用户的访问频率限制问题。</li>
+<li>某些页面将数据放入缓存，加速某些 api 的访问速度</li>
+</ol>
+<h4 id="4-开发中常见问题解决方案"><a href="#4-开发中常见问题解决方案" class="headerlink" title="4. 开发中常见问题解决方案"></a>4. 开发中常见问题解决方案</h4><ol>
+<li>通过介绍 pycharm 的远程服务器代码调试技巧让大家不仅可以调试支付，第三方登录，还可以远程服务器代码来重现服务器上的 bug</li>
+<li>通过 docker 搭建 sentry 来体验错误日志监控系统，让我们不仅可以得到线上的错误栈还能及时在发生系统错误时收到邮件通知。</li>
+<li>通过 drf 的文档自动化管理以及 url 的注册管理功能会让我们省去写文档的时间</li>
+<li>django rest framework 的文档管理功能不仅可以让我们省去写文档的时间，还能直接在文档里面测试接口，自动生成 js 接口代码，shell 测试代码和 python 测试代码</li>
+<li>django rest framework 提供的 throttle 对于 api 进行访问频率的限制</li>
+<li>引入第三方框架来设置某些 api 的缓存</li>
+</ol>
+<h4 id="5-django-进阶知识点"><a href="#5-django-进阶知识点" class="headerlink" title="5. django 进阶知识点"></a>5. django 进阶知识点</h4><ol>
+<li> django mirgrations 原理</li>
+<li> django 信号量</li>
+<li> django 从请求到响应的完整过程</li>
+<li> 独立使用 django 的 model</li>
+</ol>
+<h4 id="6-vue-知识点"><a href="#6-vue-知识点" class="headerlink" title="6.vue 知识点"></a>6.vue 知识点</h4><ol>
+<li>vue 技术选型分析</li>
+<li>API 后端数据填充到 Vue 组件模板</li>
+<li>Vue 代码结构分析</li>
+</ol>
+<h4 id="7-章节安排"><a href="#7-章节安排" class="headerlink" title="7.章节安排"></a>7.章节安排</h4><ol>
+<li>项目介绍以及开发环境的搭建</li>
+<li>设计数据库以及导入原始数据</li>
+<li>restful api 基础以及 vue 项目结构介绍</li>
+<li>商品列表页功能</li>
+<li>商品类别功能</li>
+<li>手机注册和用户登录</li>
+<li>商品详情页和收藏功能</li>
+<li>个人中心功能</li>
+<li>购物车、订单和支付宝支付功能</li>
+<li>首页，商品相关数量，缓存，访问限速功能</li>
+<li>第三方登录(微博 qq 微信)</li>
+<li>sentry 系统错误日志监控</li>
+</ol>
+<h4 id="8-技术储备要求"><a href="#8-技术储备要求" class="headerlink" title="8.技术储备要求"></a>8.技术储备要求</h4><ol>
+<li>django 基础知识</li>
+<li>熟练掌握 python 语法</li>
+<li>了解 vue &amp; mysql 基础</li>
+</ol>
+<h4 id="9-系统功能"><a href="#9-系统功能" class="headerlink" title="9.系统功能"></a>9.系统功能</h4><ol>
+<li>分类 - 子分类 搜索 热搜词 购物车简要展示</li>
+<li>新品 分类展示， 大类的推荐商品。</li>
+<li>账户密码登录(json web token)。微博登录，输入账户跳转回首页。</li>
+<li>注册，手机号码注册，错误提示。倒计时功能，服务器端手机号码发送频次限制。</li>
+<li>商品大类，导航栏。筛选，排序。富文本。</li>
+<li>商品 收藏 加入购物车 结算，移出购物车</li>
+<li>留言 支付宝支付，扫码支付。跳回商户页面。</li>
+<li>订单详情，收货地址</li>
+<li>个人信息，收藏商品，我的收藏。</li>
+<li>留言，上传文件。提交，删除留言</li>
+<li>快速浏览。页面的缓存</li>
+<li>访问速度限制 &amp; 接口文档 测试交互</li>
+<li>出错处理: sentry 基于 drf。打印错误栈，当前请求用户。邮件通知</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/04/02/django3%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/02/django3%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">django3学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-02 15:58:21" itemprop="dateCreated datePublished" datetime="2020-04-02T15:58:21+08:00">2020-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-03 14:28:17" itemprop="dateModified" datetime="2020-04-03T14:28:17+08:00">2020-04-03</time>
+              </span>
+
+          
+            <span id="/2020/04/02/django3%E5%AD%A6%E4%B9%A0/" class="post-meta-item leancloud_visitors" data-flag-title="django3学习" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/04/02/django3%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/02/django3%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>确认一下你的 Django 项目是否真的创建成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<p>更改端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py runserver 8080</span><br><span class="line">$ python manage.py runserver 0:8000 &#x2F;&#x2F; 需要设置下hosts</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建投票应用 app ,一个 django 项目中可以有很多 app</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py startapp polls</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建 polls/views.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from django.http import HttpResponse</span><br><span class="line">def index(request):</span><br><span class="line">    return HttpResponse(&quot;Hello, world. You&#39;re at the polls index.&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 polls/urls.py，将其映射到 polls/views</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from django.urls import path</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line">urlpatterns &#x3D; [</span><br><span class="line">    path(&#39;&#39;, views.index, name&#x3D;&#39;index&#39;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 mysite/urls.py 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from django.contrib import admin</span><br><span class="line">from django.urls import include, path</span><br><span class="line"></span><br><span class="line">urlpatterns &#x3D; [</span><br><span class="line"># 函数 include() 允许引用其它 URLconfs。每当 Django 遇到 include() 时，它会截断与此项匹配的 URL 的部分，并将剩余的字符串发送到 URLconf 以供进一步处理。</span><br><span class="line">path(&#39;polls&#x2F;&#39;, include(&#39;polls.urls&#39;)),</span><br><span class="line">path(&#39;admin&#x2F;&#39;, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证目前为止是否正常工作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br><span class="line">&lt;!-- http:&#x2F;&#x2F;localhost:8000&#x2F;polls&#x2F; --&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写在 urlpatterns 中的 patterns 函数</p>
+</li>
+</ol>
+<ul>
+<li>函数 path() 具有四个参数，两个必须参数：route 和 view，两个可选参数：kwargs 和 name。<ol>
+<li>path() 参数： route
+route 是一个匹配 URL 的准则（类似正则表达式）。当 Django 响应一个请求时，它会从 urlpatterns 的第一项开始，按顺序依次匹配列表中的项，直到找到匹配的项。</li>
+<li>path() 参数： view
+当 Django 找到了一个匹配的准则，就会调用这个特定的视图函数，并传入一个 HttpRequest 对象作为第一个参数，被“捕获”的参数以关键字参数的形式传入。稍后，我们会给出一个例子。</li>
+<li>path() 参数： kwargs
+任意个关键字参数可以作为一个字典传递给目标视图函数。本教程中不会使用这一特性。</li>
+<li>path() 参数： name
+为你的 URL 取名能使你在 Django 的任意地方唯一地引用它，尤其是在模板中。这个有用的特性允许你只改一个文件就能全局地修改某个 URL 模式。</li>
+</ol>
+</li>
+</ul>
+<ol start="8">
+<li><p>配置数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ENGINE -- 可选值有 &#39;django.db.backends.sqlite3&#39;，&#39;django.db.backends.postgresql&#39;，&#39;django.db.backends.mysql&#39;，或 &#39;django.db.backends.oracle&#39;</span><br><span class="line">编辑 mysite&#x2F;settings.py 文件前，先设置 TIME_ZONE 为你自己时区。</span><br><span class="line">INSTALLED_APPS 默认包括了以下 Django 的自带应用：</span><br><span class="line">django.contrib.admin -- 管理员站点， 你很快就会使用它。</span><br><span class="line">django.contrib.auth -- 认证授权系统。</span><br><span class="line">django.contrib.contenttypes -- 内容类型框架。</span><br><span class="line">django.contrib.sessions -- 会话框架。</span><br><span class="line">django.contrib.messages -- 消息框架。</span><br><span class="line">django.contrib.staticfiles -- 管理静态文件的框架。</span><br><span class="line">默认开启的某些应用需要至少一个数据表，所以，在使用他们之前需要在数据库中创建一些表。请执行以下命令：</span><br><span class="line">$ python manage.py migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写模型 polls/models.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Question(models.Model):</span><br><span class="line">  question_text &#x3D; models.CharField(max_length&#x3D;200)</span><br><span class="line">  pub_date &#x3D; models.DateTimeField(&#39;date published&#39;) # 定义字段别名</span><br><span class="line"></span><br><span class="line">class Choice(models.Model):</span><br><span class="line">  question &#x3D; models.ForeignKey(Question, on_delete&#x3D;models.CASCADE)</span><br><span class="line">  choice_text &#x3D; models.CharField(max_length&#x3D;200)</span><br><span class="line">  votes &#x3D; models.IntegerField(default&#x3D;0)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加 polls app</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS &#x3D; [</span><br><span class="line">    &#39;polls.apps.PollsConfig&#39;,</span><br><span class="line">    &#39;django.contrib.admin&#39;,</span><br><span class="line">    &#39;django.contrib.auth&#39;,</span><br><span class="line">    &#39;django.contrib.contenttypes&#39;,</span><br><span class="line">    &#39;django.contrib.sessions&#39;,</span><br><span class="line">    &#39;django.contrib.messages&#39;,</span><br><span class="line">    &#39;django.contrib.staticfiles&#39;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>激活模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations polls</span><br><span class="line"># 通过运行 makemigrations 命令，Django 会检测你对模型文件的修改（在这种情况下，你已经取得了新的），并且把修改的部分储存为一次 迁移。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Django 有一个自动执行数据库迁移并同步管理你的数据库结构的命令 - 这个命令是 migrate，之后会使用到。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># sqlmigrate 命令接收一个迁移的名称，然后返回对应的 SQL：</span><br><span class="line">python manage.py sqlmigrate polls 0001</span><br><span class="line">再次运行 migrate 命令，在数据库里创建新定义的模型的数据表：</span><br><span class="line">python manage.py migrate</span><br><span class="line">总结:</span><br><span class="line">编辑 models.py 文件，改变模型。</span><br><span class="line">运行 python manage.py makemigrations 为模型的改变生成迁移文件。</span><br><span class="line">运行 python manage.py migrate 来应用数据库迁移。</span><br><span class="line"></span><br><span class="line"># 检测项目问题</span><br><span class="line">python manage.py check</span><br><span class="line"></span><br><span class="line"># 再次迁移数据</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结:改变模型需要这 3 步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">编辑 models.py 文件，改变模型。</span><br><span class="line">运行 python manage.py makemigrations 为模型的改变生成迁移文件。</span><br><span class="line">运行 python manage.py migrate 来应用数据库迁移。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初试 API</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">from polls.models import Choice, Question # 引入写的模型类</span><br><span class="line">Question.objects.all()</span><br><span class="line">from django.utils import timezone</span><br><span class="line">q &#x3D; Question(question_text&#x3D;&quot;What&#39;s new?&quot;, pub_date&#x3D;timezone.now())</span><br><span class="line">q.save()</span><br><span class="line">q.id</span><br><span class="line">q.question_text</span><br><span class="line">q.pub_date</span><br><span class="line">q.question_text &#x3D; &quot;What&#39;s up?&quot;</span><br><span class="line">q.save()</span><br><span class="line">Question.objects.all()</span><br><span class="line"># &lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑 Question 模型的代码,给 Question 和 Choice 增加 <strong>str</strong> () 方法和自定义方法，方便显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">class Question(models.Model):</span><br><span class="line">    question_text &#x3D; models.CharField(max_length&#x3D;200)</span><br><span class="line">    pub_date &#x3D; models.DateTimeField(&#39;date published&#39;)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.question_text</span><br><span class="line"></span><br><span class="line">    def was_published_recently(self):</span><br><span class="line">        return self.pub_date &gt;&#x3D; timezone.now() - datetime.timedelta(days&#x3D;1)</span><br><span class="line">class Choice(models.Model):</span><br><span class="line">    question &#x3D; models.ForeignKey(Question, on_delete&#x3D;models.CASCADE)</span><br><span class="line">    choice_text &#x3D; models.CharField(max_length&#x3D;200)</span><br><span class="line">    votes &#x3D; models.IntegerField(default&#x3D;0)</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.choice_text</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再次通过 python manage.py shell 命令行来查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">from polls.models import Choice, Question</span><br><span class="line">Question.objects.all()</span><br><span class="line">Question.objects.filter(id&#x3D;1)</span><br><span class="line">from django.utils import timezone</span><br><span class="line">current_year &#x3D; timezone.now().year</span><br><span class="line">Question.objects.get(pub_date__year&#x3D;current_year)</span><br><span class="line">Question.objects.get(id&#x3D;2) # 会报错</span><br><span class="line">Question.objects.get(pk&#x3D;1)</span><br><span class="line">q &#x3D; Question.objects.get(pk&#x3D;1)</span><br><span class="line">q.was_published_recently()</span><br><span class="line">q &#x3D; Question.objects.get(pk&#x3D;1)</span><br><span class="line">q.choice_set.all()</span><br><span class="line"></span><br><span class="line">q.choice_set.create(choice_text&#x3D;&#39;Not much&#39;, votes&#x3D;0)</span><br><span class="line">q.choice_set.create(choice_text&#x3D;&#39;The sky&#39;, votes&#x3D;0)</span><br><span class="line">c &#x3D; q.choice_set.create(choice_text&#x3D;&#39;Just hacking again&#39;, votes&#x3D;0)</span><br><span class="line">c.question</span><br><span class="line">q.choice_set.all()</span><br><span class="line">q.choice_set.count()</span><br><span class="line">Choice.objects.filter(question__pub_date__year&#x3D;current_year)</span><br><span class="line">c &#x3D; q.choice_set.filter(choice_text__startswith&#x3D;&#39;Just hacking&#39;)</span><br><span class="line">c.delete()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始 Django 管理页面，创建管理员账号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py createsuperuser</span><br><span class="line">Username: admin</span><br><span class="line">Email address: admin@example.com</span><br><span class="line">Password: \***\*\*\*\*\***</span><br><span class="line">Password (again): \***\*\*\*\***</span><br><span class="line">Superuser created successfully.</span><br><span class="line">python3 manage.py runserver</span><br><span class="line">http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;admin&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向管理页面中加入投票应用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># polls&#x2F;admin.py</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">from .models import Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">问题索引页——展示最近的几个投票问题。</span><br><span class="line">问题详情页——展示某个投票的问题和不带结果的选项列表。</span><br><span class="line">问题结果页——展示某个投票的结果。</span><br><span class="line">投票处理器——用于响应用户为某个问题的特定选项投票的操作。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># polls&#x2F;urls.py</span><br><span class="line">from django.urls import path</span><br><span class="line"></span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line">urlpatterns &#x3D; [</span><br><span class="line">    # ex: &#x2F;polls&#x2F;</span><br><span class="line">    path(&#39;&#39;, views.index, name&#x3D;&#39;index&#39;),</span><br><span class="line">    # ex: &#x2F;polls&#x2F;5&#x2F;</span><br><span class="line">    path(&#39;&lt;int:question_id&gt;&#x2F;&#39;, views.detail, name&#x3D;&#39;detail&#39;),</span><br><span class="line">    # ex: &#x2F;polls&#x2F;5&#x2F;results&#x2F;</span><br><span class="line">    path(&#39;&lt;int:question_id&gt;&#x2F;results&#x2F;&#39;, views.results, name&#x3D;&#39;results&#39;),</span><br><span class="line">    # ex: &#x2F;polls&#x2F;5&#x2F;vote&#x2F;</span><br><span class="line">    path(&#39;&lt;int:question_id&gt;&#x2F;vote&#x2F;&#39;, views.vote, name&#x3D;&#39;vote&#39;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/03/27/vue%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1999,205 +2365,6 @@ entertaining, you forget to parent them. (我知道你爱他们, 但有时你看
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/27/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/27/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA/" class="post-title-link" itemprop="url">(旺财记账项目)-列表展示</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-02-27 10:46:25 / Modified: 10:59:26" itemprop="dateCreated datePublished" datetime="2020-02-27T10:46:25+08:00">2020-02-27</time>
-            </span>
-
-          
-            <span id="/2020/02/27/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA/" class="post-meta-item leancloud_visitors" data-flag-title="(旺财记账项目)-列表展示" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/02/27/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/27/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-Vue的-v-deep用法"><a href="#1-Vue的-v-deep用法" class="headerlink" title="1. Vue的::v-deep用法"></a>1. Vue的::v-deep用法</h4><ul>
-<li>目的是为了在scoped的情况下，编辑组件样式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Layout&gt;</span><br><span class="line">      &lt;Types class&#x3D;&quot;x&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">  .x ::v-deep li &#123;</span><br><span class="line">    border: 1px solid red;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="2-ES6-Key有变量时的语法及精确控制css的最佳实践"><a href="#2-ES6-Key有变量时的语法及精确控制css的最佳实践" class="headerlink" title="2. ES6 Key有变量时的语法及精确控制css的最佳实践"></a>2. ES6 Key有变量时的语法及精确控制css的最佳实践</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;li :class&#x3D;&quot;&#123;[classPrefix+&#39;-item&#39;]: classPrefix, selected: value &#x3D;&#x3D;&#x3D; &#39;-&#39;&#125;&quot;</span><br><span class="line">    @click&#x3D;&quot;selectType(&#39;-&#39;)&quot;&gt;支出</span><br><span class="line">&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/23/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Vue-%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89%E4%B9%8BVuex/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/23/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Vue-%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89%E4%B9%8BVuex/" class="post-title-link" itemprop="url">(旺财记账项目)Vue 全局数据管理（下）之Vuex</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-23 13:30:56" itemprop="dateCreated datePublished" datetime="2020-02-23T13:30:56+08:00">2020-02-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-26 13:10:04" itemprop="dateModified" datetime="2020-02-26T13:10:04+08:00">2020-02-26</time>
-              </span>
-
-          
-            <span id="/2020/02/23/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Vue-%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89%E4%B9%8BVuex/" class="post-meta-item leancloud_visitors" data-flag-title="(旺财记账项目)Vue 全局数据管理（下）之Vuex" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/02/23/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Vue-%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89%E4%B9%8BVuex/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/23/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-Vue-%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89%E4%B9%8BVuex/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-Vuex-就是一个数据读写工具"><a href="#1-Vuex-就是一个数据读写工具" class="headerlink" title="1. Vuex 就是一个数据读写工具"></a>1. Vuex 就是一个数据读写工具</h4><h4 id="2-引用了之后就可以读"><a href="#2-引用了之后就可以读" class="headerlink" title="2. 引用了之后就可以读"></a>2. 引用了之后就可以读</h4><h4 id="3-大概使用方法"><a href="#3-大概使用方法" class="headerlink" title="3. 大概使用方法"></a>3. 大概使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">  state: &#123; &#x2F;&#x2F; data,也就是数据</span><br><span class="line">    count: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment(state, n: number) &#123; &#x2F;&#x2F; methods,也就是对数据的改动</span><br><span class="line">      state.count +&#x3D; n</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(store.state.count) &#x2F;&#x2F; 0</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; store.mutations.increment(store.state),这个封装成了commit</span><br><span class="line">store.commit(&#39;increment&#39;,10) &#x2F;&#x2F; +1 commit 就是调用api</span><br><span class="line">&#x2F;&#x2F; 函数名叫type, 参数叫payload</span><br><span class="line">console.log(store.state.count) &#x2F;&#x2F; 1</span><br><span class="line"></span><br><span class="line">export default store;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-单一状态树的意思"><a href="#4-单一状态树的意思" class="headerlink" title="4. 单一状态树的意思"></a>4. 单一状态树的意思</h4><ul>
-<li>就是一个对象,应用层级状态就是所有组件的数据</li>
-</ul>
-<h4 id="5-Vue-use-Vuex-做了一些什么"><a href="#5-Vue-use-Vuex-做了一些什么" class="headerlink" title="5. Vue.use(Vuex)做了一些什么"></a>5. Vue.use(Vuex)做了一些什么</h4><ul>
-<li>把 store 绑到 Vue.prototype.$store上，也就是初始化的时候 Vue.prototype.$store = store</li>
-</ul>
-<h4 id="6-Vuex-在-vue-文件中实现-1-的两种方法"><a href="#6-Vuex-在-vue-文件中实现-1-的两种方法" class="headerlink" title="6. Vuex,在.vue 文件中实现+1 的两种方法"></a>6. Vuex,在.vue 文件中实现+1 的两种方法</h4><ul>
-<li>方法一</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click &#x3D; &quot;add&quot;&gt;+1&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">add()&#123;</span><br><span class="line">  store.commit(&#39;increment&#39;,1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方法二</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click &#x3D; &quot;$store.commit(&#39;increment&#39;,2)&quot;&gt;+1&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-Vuex-如何进行读和写"><a href="#7-Vuex-如何进行读和写" class="headerlink" title="7. Vuex 如何进行读和写"></a>7. Vuex 如何进行读和写</h4><ul>
-<li>读的时候用 computed</li>
-<li>写的时候配合 commit</li>
-</ul>
-<h4 id="8-action-就是异步的调用-method"><a href="#8-action-就是异步的调用-method" class="headerlink" title="8. action 就是异步的调用 method"></a>8. action 就是异步的调用 method</h4><p><img src="https://i.loli.net/2020/02/23/IsgXDUCJE7kTip9.png" alt="Vuex.png"></p>
-<h4 id="9-在-ts-中使用-mixin"><a href="#9-在-ts-中使用-mixin" class="headerlink" title="9. 在 ts 中使用 mixin"></a>9. 在 ts 中使用 mixin</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;class-component.vuejs.org&#x2F;guide&#x2F;extend-and-mixins.html#mixins</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-重构-EditLabel-vue"><a href="#10-重构-EditLabel-vue" class="headerlink" title="10. 重构 EditLabel.vue"></a>10. 重构 EditLabel.vue</h4><ul>
-<li>store.commit 没有返回值</li>
-</ul>
-<h4 id="11-Vuex使用套路"><a href="#11-Vuex使用套路" class="headerlink" title="11. Vuex使用套路"></a>11. Vuex使用套路</h4><p><img src="https://i.loli.net/2020/02/26/z8noeqSLpE9GMmQ.png" alt="Vuex使用.png"></p>
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2269,20 +2436,20 @@ entertaining, you forget to parent them. (我知道你爱他们, 但有时你看
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">246</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
