@@ -158,6 +158,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/29/Mac%E7%B3%BB%E7%BB%9Fwow%E8%87%AA%E5%8A%A8%E9%92%93%E9%B1%BCpython%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/29/Mac%E7%B3%BB%E7%BB%9Fwow%E8%87%AA%E5%8A%A8%E9%92%93%E9%B1%BCpython%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">Mac系统下wow自动钓鱼python实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-29 09:40:32" itemprop="dateCreated datePublished" datetime="2020-02-29T09:40:32+08:00">2020-02-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-18 10:18:39" itemprop="dateModified" datetime="2020-03-18T10:18:39+08:00">2020-03-18</time>
+              </span>
+
+          
+            <span id="/2020/02/29/Mac%E7%B3%BB%E7%BB%9Fwow%E8%87%AA%E5%8A%A8%E9%92%93%E9%B1%BCpython%E5%AE%9E%E7%8E%B0/" class="post-meta-item leancloud_visitors" data-flag-title="Mac系统下wow自动钓鱼python实现" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/29/Mac%E7%B3%BB%E7%BB%9Fwow%E8%87%AA%E5%8A%A8%E9%92%93%E9%B1%BCpython%E5%AE%9E%E7%8E%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/29/Mac%E7%B3%BB%E7%BB%9Fwow%E8%87%AA%E5%8A%A8%E9%92%93%E9%B1%BCpython%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="一-缘起"><a href="#一-缘起" class="headerlink" title="一. 缘起"></a>一. 缘起</h4><p>因为最近疫情的原因，待在家里实在无聊就又玩起了 wow 怀旧服，wow 是一款非常经典的游戏，里面有一个专业技能叫做钓鱼。因为钓鱼本身比较枯燥，且重复度很高，所以作为一名资深程序员，我决定用代码的方式来解决这个问题。</p>
+<h4 id="二-历程"><a href="#二-历程" class="headerlink" title="二. 历程"></a>二. 历程</h4><p>最开始的时候，在 b 站上找了一个 wow 钓鱼的介绍视频，看了一下大概思路，但是没什么用，里面用的是按键精灵且系统为 windows.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av90618144?t&#x3D;426</span><br></pre></td></tr></table></figure>
+
+<p>于是我决定用 python 实现，因为我比较熟悉 python 和 javascript，而明显这种需求 python 会更合适,google 找代码，最后参考了 github 上的 python2 实现的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;kioltk&#x2F;wow-fishipy</span><br></pre></td></tr></table></figure>
+
+<p>进行改造成 python3</p>
+<h4 id="三-困难"><a href="#三-困难" class="headerlink" title="三. 困难"></a>三. 困难</h4><ol>
+<li>觉得大多数的代码都是在 windows 上的实现的，mac 上比较少，但是找到以上跨平台的这段代码就比较容易了。</li>
+<li>安装环境也有一点麻烦，安装 pyaudio 的时候需要先 brew 安装一个环境</li>
+<li>之前用 autopy 进行的一部分交互，改成了用 pyUserInterface</li>
+<li>匹配钓鱼坐标的时候，遇到了问题，cv2.matchTemplate 参数进行了改造和调试，这部分还需要优化</li>
+<li>当地点和钓鱼时间切换的石斛，可以用以下代码进行调试</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在原图上画矩形</span><br><span class="line">cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)</span><br><span class="line"># 显示原图和处理后的图像,</span><br><span class="line">cv2.imshow(&quot;template&quot;, template)</span><br><span class="line">cv2.imshow(&quot;processed&quot;, img_rgb)</span><br><span class="line">cv2.waitKey()</span><br></pre></td></tr></table></figure>
+
+<h4 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h4><p>目前，需要换地点的时候，包括白天黑夜环境的切换会影响找到鱼漂的坐标的问题，需要进行截图替换，重新调试，但是总体可以实现，以下是我的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;codingories&#x2F;mywowfishing</span><br></pre></td></tr></table></figure>
+
+<p>这里感谢微信名称嘉的网友给到的反馈，进行下补充。
+如果需要实现不外放监听浮标声音的话，win 系统下可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.cnblogs.com&#x2F;meelo&#x2F;p&#x2F;6540003.html</span><br></pre></td></tr></table></figure>
+
+<p>Mac 环境下请使用 soundflower,但是目前我使用 soundflower 就听不到游戏的声音了，不过问题不大，因为也不再电脑的前面。
+另外，发现通过把液体细节调到最好可以显著增加识别正确度。</p>
+<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/27/%E6%97%BA%E8%B4%A2%E8%AE%B0%E8%B4%A6%E9%A1%B9%E7%9B%AE-%E5%88%97%E8%A1%A8%E5%B1%95%E7%A4%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1233,182 +1345,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/" class="post-title-link" itemprop="url">旺财记事本(标签页 + 标签编辑页)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-08 16:13:57" itemprop="dateCreated datePublished" datetime="2020-02-08T16:13:57+08:00">2020-02-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-09 20:58:28" itemprop="dateModified" datetime="2020-02-09T20:58:28+08:00">2020-02-09</time>
-              </span>
-
-          
-            <span id="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/" class="post-meta-item leancloud_visitors" data-flag-title="旺财记事本(标签页 + 标签编辑页)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/08/%E6%97%BA%E8%B4%A2%E8%AE%B0%E4%BA%8B%E6%9C%AC-%E6%A0%87%E7%AD%BE%E9%A1%B5-%E6%A0%87%E7%AD%BE%E7%BC%96%E8%BE%91%E9%A1%B5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="一-知识点总览"><a href="#一-知识点总览" class="headerlink" title="一. 知识点总览"></a>一. 知识点总览</h4><ol>
-<li>iconfont 小技巧，编辑 SVG</li>
-<li>custom.d.ts 怎么用</li>
-<li>Vue Router 怎么用</li>
-<li>props 怎么用</li>
-</ol>
-<h4 id="二-利用-MVC-思想对现有代码进行封装"><a href="#二-利用-MVC-思想对现有代码进行封装" class="headerlink" title="二. 利用 MVC 思想对现有代码进行封装"></a>二. 利用 MVC 思想对现有代码进行封装</h4><ul>
-<li>TS 如何使用 js，</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 万不得以才用, Money.vue</span><br><span class="line">const model &#x3D; require(&#39;@&#x2F;model.js&#39;).model</span><br><span class="line">&#x2F;&#x2F; model.js</span><br><span class="line">const localStorageKeyName &#x3D; &#39;recordList&#39;</span><br><span class="line">const model &#x3D; &#123;</span><br><span class="line">  fetch()&#123;</span><br><span class="line">    return JSON.parse(window.localStorage.getItem(localStorageKeyName) || &quot;[]&quot;)</span><br><span class="line">  &#125;,</span><br><span class="line">  save(data)&#123;</span><br><span class="line">    window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.recordList))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export &#123;model&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如何将 model.js 改写成 model.ts<ol>
-<li>Record 是本身就有的类型，改成 RecordItem</li>
-<li>在根目录新建一个 custom.d.ts, 全局声明文件</li>
-<li>在里面添加类型</li>
-</ol>
-</li>
-</ul>
-<h4 id="三-在最开始的地方定义好类型"><a href="#三-在最开始的地方定义好类型" class="headerlink" title="三. 在最开始的地方定义好类型"></a>三. 在最开始的地方定义好类型</h4><ul>
-<li>之后就不需要再写了</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return JSON.parse(window.localStorage.getItem(localStorageKeyName) || &#39;[]&#39;) as RecordItem[]</span><br></pre></td></tr></table></figure>
-
-<h4 id="四-开始做-Labels-vue"><a href="#四-开始做-Labels-vue" class="headerlink" title="四. 开始做 Labels.vue"></a>四. 开始做 Labels.vue</h4><ol>
-<li>写 html 结构,在 icon 同行的文字上包一个 span,这个是经验</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;</span><br><span class="line">  &lt;span&gt;衣&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;Icon name&#x3D;&quot;right&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>写 scss 样式</li>
-</ol>
-<ul>
-<li>能写 padding 就尽量写 padding, margin 会有合并的问题</li>
-</ul>
-<h4 id="五-开始做-Labels-vue-的新增标签功能"><a href="#五-开始做-Labels-vue-的新增标签功能" class="headerlink" title="五. 开始做 Labels.vue 的新增标签功能"></a>五. 开始做 Labels.vue 的新增标签功能</h4><ul>
-<li>tags 的数据是 labels 不管的, 所有数据操作都有 m 自己去控制</li>
-<li>创建新的 tags，会调用 model 去创建</li>
-</ul>
-<h4 id="六-创建时的错误处理问题"><a href="#六-创建时的错误处理问题" class="headerlink" title="六. 创建时的错误处理问题"></a>六. 创建时的错误处理问题</h4><ul>
-<li>一开始想返回 boolean,但是发现错误有很多种</li>
-<li>于是想通过返回数字，来表示错误</li>
-<li>最后，数字没有字符串好</li>
-</ul>
-<h4 id="七-返回的字符串只有固定几个值的写法"><a href="#七-返回的字符串只有固定几个值的写法" class="headerlink" title="七. 返回的字符串只有固定几个值的写法"></a>七. 返回的字符串只有固定几个值的写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 联合类型</span><br><span class="line">create:(name: string) &#x3D;&gt; &#39;success&#39; | &#39;duplicated&#39;</span><br></pre></td></tr></table></figure>
-
-<h4 id="八-开始做编辑标签"><a href="#八-开始做编辑标签" class="headerlink" title="八. 开始做编辑标签"></a>八. 开始做编辑标签</h4><ul>
-<li>首先新建路由</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: &#39;&#x2F;labels&#x2F;edit&#39;,</span><br><span class="line">  component: EditLabel</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改储存数据 tag 的类型,将数据的 name 做为 id,为以后做服务器端做准备</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type Tag &#x3D; &#123;</span><br><span class="line">  id: string;</span><br><span class="line">  name: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type TagListModel &#x3D; &#123;</span><br><span class="line">  data: Tag[]</span><br><span class="line">  fetch: () &#x3D;&gt; Tag[]</span><br><span class="line">  create:(name: string) &#x3D;&gt; &#39;success&#39; | &#39;duplicated&#39;</span><br><span class="line">  save:()&#x3D;&gt;void</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>改写路由为后面加一个字符串</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: &#39;&#x2F;labels&#x2F;edit&#x2F;:id&#39;, &#x2F;&#x2F; 这个id表示为一个名字</span><br><span class="line">  component: EditLabel</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>route 和 router 的区别</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route是路由，储存了路由的信息。</span><br><span class="line">router是路由器，用于跳转等等。</span><br></pre></td></tr></table></figure>
-
-<h4 id="九-如何封装通用组件"><a href="#九-如何封装通用组件" class="headerlink" title="九. 如何封装通用组件"></a>九. 如何封装通用组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; notes.vue</span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;value&quot; :placeholder&#x3D;&quot;this.placeholder&quot;&gt;</span><br><span class="line"></span><br><span class="line">@Prop(&#123;required:true&#125;) fieldName!: string;</span><br><span class="line">@Prop() placeholder?: string;</span><br></pre></td></tr></table></figure>
-
-<h4 id="十-解决组件没有事件的问题"><a href="#十-解决组件没有事件的问题" class="headerlink" title="十. 解决组件没有事件的问题"></a>十. 解决组件没有事件的问题</h4><ol>
-<li>方式一,建议用方式一,因为别人不一定知道 native 的方式</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Button.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;Button&quot; @click&#x3D;&quot;$emit(&#39;click&#39;, $event)&quot;&gt;</span><br><span class="line">    &lt;slot&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>方式二</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;createTag&quot; @click.native&#x3D;&quot;createTag&quot;&gt;新建标签&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="十一-为-EditLabel-vue-写-css"><a href="#十一-为-EditLabel-vue-写-css" class="headerlink" title="十一. 为 EditLabel.vue 写 css"></a>十一. 为 EditLabel.vue 写 css</h4><ul>
-<li>改了通用组件的高度，相关用到的地方就会影响，在外面加 wrapper 解决</li>
-</ul>
-<h4 id="十二-开始实现-EditLabel-vue-的功能"><a href="#十二-开始实现-EditLabel-vue-的功能" class="headerlink" title="十二. 开始实现 EditLabel.vue 的功能"></a>十二. 开始实现 EditLabel.vue 的功能</h4><ul>
-<li>解决 FromItem 的 bug<ul>
-<li>能不用 v-model 就不要用，因为 v-model 会造成理解上的困难<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;text&quot; :value&#x3D;&quot;value&quot; @input&#x3D;&quot;onValueChanged($event.target.value)&quot;</span><br><span class="line">:placeholder&#x3D;&quot;this.placeholder&quot;&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>展示 tag 的 name</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export default class EditLabel extends Vue &#123;</span><br><span class="line">    tag?: &#123; id: string, name: string &#125;&#x3D; undefined</span><br><span class="line">    created()&#123;</span><br><span class="line">      const id &#x3D; this.$route.params.id;</span><br><span class="line">      &#x2F;&#x2F; 通过url获取tag,把tag放到data</span><br><span class="line">      tagListModel.fetch();</span><br><span class="line">      const tags &#x3D; tagListModel.data;</span><br><span class="line">      const tag &#x3D; tags.filter(t &#x3D;&gt; t.id &#x3D;&#x3D;&#x3D; id)[0];</span><br><span class="line">      if(tag)&#123;</span><br><span class="line">        this.tag &#x3D; tag;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.$router.replace(&#39;&#x2F;404&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1480,7 +1416,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">249</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

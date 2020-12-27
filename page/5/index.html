@@ -158,6 +158,367 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="post-title-link" itemprop="url">41JS编程接口-DOM事件与事件委托</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-02 13:54:43 / Modified: 13:55:44" itemprop="dateCreated datePublished" datetime="2020-08-02T13:54:43+08:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%9D%E7%BA%A7%E5%89%8D%E7%AB%AF-%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">初级前端 前端基础</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="post-meta-item leancloud_visitors" data-flag-title="41JS编程接口-DOM事件与事件委托" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>从点击事件开始</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;爷爷&quot;&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;爸爸&quot;&gt;</span><br><span class="line">     &lt;div class&#x3D;&quot;儿子&quot;&gt;</span><br><span class="line">       文字</span><br><span class="line">     &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line"> &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>即.爷爷&gt;.爸爸&gt;.儿子</p>
+</li>
+<li><p>给三个 div 分别添加事件监听 fnYe/fnBa/fnEr</p>
+</li>
+<li><p>提问 1: 点击了谁</p>
+<ul>
+<li>点击文字，算不算点击儿子？</li>
+<li>点击文字，算不算点击爸爸？</li>
+<li>点击文字，算不算点击爷爷？</li>
+<li>答案: 都算</li>
+</ul>
+</li>
+<li><p>提问 2: 调用顺序</p>
+<ul>
+<li>点击文字，最先调用 fnYe/fnBa/fnEr 中的哪一个函数?</li>
+<li>答案: 都行。</li>
+<li>IE 5 认为先调 fnEr,网景认为先调用 fnYe,最后闹到 w3c</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>和事佬 W3C</li>
+</ol>
+<ul>
+<li><p>2002 年, W3C 发布标砖</p>
+<ul>
+<li>文档名为 DOM Level2 Events Specification</li>
+<li>规定浏览器应该同时支持两种调用顺序</li>
+<li>首先按<label style="color:red">爷爷-&gt;爸爸-&gt;儿子</label>顺序看有没有函数监听</li>
+<li>然后按<label style="color:blue">儿子-&gt;爸爸-&gt;爷爷</label>顺序看有没有函数监听</li>
+<li>有监听函数就调用，并提供事件信息，没有就跳过</li>
+</ul>
+</li>
+<li><p>术语</p>
+<ul>
+<li><label style="color:red">从外向内</label>找监听函数，叫<label style="color:red">事件捕获</label></li>
+<li><label style="color:blue">从内向外</label>找监听函数，叫<label style="color:blue">事件冒泡</label></li>
+</ul>
+</li>
+<li><p>疑问</p>
+<ul>
+<li>那岂不是 fnYe/fnBa/fnEr 都调用两次？</li>
+<li>并不是，开发者<label style="color:green">自己选择</label>把 fnYe 放在<label style="color:red">捕获阶段</label>还是放在<label style="color:blue">冒泡阶段</label></li>
+</ul>
+</li>
+<li><p>示意图
+<img src="https://i.loli.net/2020/08/02/Ed1KGNiZafLMTCe.png" alt="事件示意图.png"></p>
+</li>
+</ul>
+<ol start="3">
+<li>addEventListener</li>
+</ol>
+<ul>
+<li>事件绑定 API<ul>
+<li>IE5* baba.attachEvent(‘onclick’, fn) // 冒泡</li>
+<li>网景: baba.addEventListener(‘click’,fn) //捕获</li>
+<li>W3C: baba.addEventListener(‘click’, fn, bool)</li>
+</ul>
+</li>
+<li>如果 bool 不传或为 falsy<ul>
+<li>就让 fn 走冒泡，即当浏览器在冒泡阶段发现 baba 有 fn 监听函数，就会调用 fn,并提供事件信息</li>
+</ul>
+</li>
+<li>如果 bool 为 true<ul>
+<li>就让 fn 走捕获，即当浏览器在捕获阶段发现 baba 有 fn 监听函数，就会调用 fn,并提供事件信息</li>
+</ul>
+</li>
+<li><a href="http://js.jirengu.com/rakunusixu/1/edit?html,js,console,output" target="_blank" rel="noopener">相关代码</a></li>
+</ul>
+<ol start="4">
+<li>小结</li>
+</ol>
+<ul>
+<li>两个疑问<ul>
+<li>儿子被点击了，算不算点击老子？</li>
+<li>那么先调用老子的函数还是先调用儿子的函数？</li>
+</ul>
+</li>
+<li>捕获与冒泡<ul>
+<li>捕获说先调用爸爸的监听函数</li>
+<li>冒泡说先调用儿子的监听函数</li>
+</ul>
+</li>
+<li>W3C 事件模型<ul>
+<li>先捕获(先爸爸=&gt;儿子)再冒泡(再儿子=&gt;爸爸)</li>
+<li>注意 e 对象被传给所有监听函数</li>
+<li>事件结束后，e 对象就不存在了</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>target v.s. currentTarget</li>
+</ol>
+<ul>
+<li>区别<ul>
+<li>e.target - 用户操作的元素</li>
+<li>e.currentTarget - 程序员监听的元素</li>
+<li>this 是 e.currentTarget, 不推荐使用它</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>div&gt;span{文字},用户点击文字,@click 放在 div 里面</li>
+<li>e.target 就是 span</li>
+<li>e.currentTarget 就是 div</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>如果只有一个对象那么谁先放事件，谁先执行</li>
+</ol>
+<ul>
+<li>背景<ul>
+<li>只有一个 div 被监听(不考虑父子同时被监听)</li>
+<li>fn 分别在捕获阶段和冒泡阶段监听 click 事件</li>
+<li>用户点击的元素就是开发者监听的</li>
+<li>谁先监听谁先执行</li>
+</ul>
+</li>
+<li><a href="http://js.jirengu.com/zajezogixu/1/edit?html,js,console,output" target="_blank" rel="noopener">相关代码</a></li>
+</ul>
+<ol start="7">
+<li>取消冒泡</li>
+</ol>
+<ul>
+<li>捕获不可取消，但是冒泡可以<ul>
+<li>e.stopPropagation()可中断冒泡，浏览器不再向上走</li>
+<li>通俗来说：有人打我，我自己解决，别告诉我老子</li>
+<li>一般永远封装某些独立的组件</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li><p>不可取消冒泡</p>
+<ol>
+<li>有些事件不可取消冒泡</li>
+<li>MDN 搜索 scroll event, 看到 Bubbles 和 Cancelable</li>
+<li>Cancelable 就是开发者是否可以取消冒泡</li>
+<li>推荐看英文版，中文版内容不全</li>
+</ol>
+</li>
+<li><p>如何组织滚动</p>
+</li>
+</ol>
+<ul>
+<li>scroll 事件不可取消冒泡<ul>
+<li>阻止 scroll 默认动作没用，因为先有滚动才有滚动事件</li>
+<li>要阻止滚动，可阻止 wheel 和 touchstart 的默认动作</li>
+<li>注意你需要找准滚动条所在的元素，<a href="http://js.jirengu.com/zubowilode/1/edit?html,js,console,output" target="_blank" rel="noopener">示例</a></li>
+<li>但是滚动条还能用，可用 CSS 让滚动条 display:none，或者 width:0</li>
+</ul>
+</li>
+<li>CSS 也行<ul>
+<li>使用 overflow:hidden 可以直接取消滚动条</li>
+<li>但此时 JS 依然可以修改 scrollTop</li>
+</ul>
+</li>
+</ul>
+<ol start="10">
+<li>小结</li>
+</ol>
+<ul>
+<li>target 和 currentTarget<ul>
+<li>一个是用户点击的，一个是开发者监听的</li>
+</ul>
+</li>
+<li>取消冒泡<ul>
+<li>e.stopPropagation()</li>
+</ul>
+</li>
+<li>事件的特性<ul>
+<li>Bubbles 表示是否冒泡</li>
+<li>Cancelable 表示是否支持开发者取消冒泡</li>
+<li>如 scroll 不支持取消冒泡</li>
+</ul>
+</li>
+<li>如何禁用滚动<ul>
+<li>取消特定元素的 wheel 和 touchstart 的默认动作</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>自定义事件</li>
+</ol>
+<ul>
+<li>浏览器自带事件<ul>
+<li>一共 100 多种事件，列表在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Events" target="_blank" rel="noopener">MDN</a> 上</li>
+</ul>
+</li>
+<li>开发者如何在自带事件之外，自定义一个事件<ul>
+<li>见<a href="http://js.jirengu.com/xexoxudeci/1/edit?html,js,output" target="_blank" rel="noopener">示例</a></li>
+</ul>
+</li>
+</ul>
+<ol start="12">
+<li>事件委托</li>
+</ol>
+<ul>
+<li><p>场景一</p>
+<ul>
+<li>你要给 100 个按钮添加点击事件，咋办？</li>
+<li>答: 监听这 100 个按钮的祖先，等冒泡的时候判断 target 是不是这 100 个按钮中的一个</li>
+<li><a href="http://js.jirengu.com/xafovapiwa/2/edit" target="_blank" rel="noopener">查看案例</a>，<code>div&gt;button{click $}*100</code></li>
+</ul>
+</li>
+<li><p>场景二</p>
+<ul>
+<li>你要监听目前不存在的元素的点击事件，咋办？</li>
+<li>答:监听祖先，等点击的时候看看是不是我想要监听的元素即可</li>
+<li><a href="http://js.jirengu.com/cuzewuxuye/1/edit?html,css,js,output" target="_blank" rel="noopener">案例二</a></li>
+</ul>
+</li>
+<li><p>有点</p>
+<ul>
+<li>省监听数（内存）</li>
+<li>可以监听动态元素</li>
+</ul>
+</li>
+</ul>
+<ol start="13">
+<li>封装事件委托</li>
+</ol>
+<ul>
+<li><p>要求</p>
+<ul>
+<li>写出这样一个函数 on(‘click’,’#testDiv’,’li’,fn)</li>
+<li>当用户点击#testDiv 里的 li 元素时，调用 fn 函数</li>
+<li>要求用到事件委托</li>
+</ul>
+</li>
+<li><p>答案一</p>
+<ul>
+<li>判断 target 是否匹配’li’</li>
+</ul>
+</li>
+<li><p>答案二</p>
+<ul>
+<li>(递归判断)[<a href="https://github.com/FrankFang/wheels/blob/master/lib/dom/index.js]" target="_blank" rel="noopener">https://github.com/FrankFang/wheels/blob/master/lib/dom/index.js]</a> target/target 的爸爸/target 的爷爷</li>
+</ul>
+</li>
+<li><p>整合进 jQuery</p>
+<ul>
+<li>可以自己实现$(‘#xxx’).on(‘click’,’li’,fn)</li>
+</ul>
+</li>
+<li><p><a href="http://js.jirengu.com/lazunaxoxe/1/edit?html,css,js,output" target="_blank" rel="noopener">链接地址</a></p>
+</li>
+<li><p>面试直接甩以下代码，但是实际是有问题的,比如 button 里面是 span 的情况</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function on(eventType, element, selector, fn)&#123;</span><br><span class="line">  if(!(element instanceof Element))&#123;</span><br><span class="line">    element &#x3D; document.querySelector(element)</span><br><span class="line">  &#125;</span><br><span class="line">  element.addEventListener(eventType, (e)&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; 给当前元素添加一个监听</span><br><span class="line">    const t &#x3D; e.target</span><br><span class="line">    if(t.matches(selector))&#123;</span><br><span class="line">&#x2F;&#x2F;       看当前元素是否满足selector，满足就调用函数</span><br><span class="line">      fn(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正确的方式,见<a href="http://js.jirengu.com/hinovuwawu/2/edit" target="_blank" rel="noopener">代码</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">  const button &#x3D; document.createElement(&#39;button&#39;)</span><br><span class="line">  const span &#x3D; document.createElement(&#39;span&#39;)</span><br><span class="line">  span.textContent &#x3D; &#39;click1&#39;</span><br><span class="line">  button.appendChild(span)</span><br><span class="line">  div1.appendChild(button)</span><br><span class="line">&#125;,1000)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">on(&#39;click&#39;,&#39;#div1&#39;,&#39;button&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&#39;button 被点击了&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">function on(eventType, element, selector, fn)&#123;</span><br><span class="line">  if(!(element instanceof Element))&#123;</span><br><span class="line">    element &#x3D; document.querySelector(element)</span><br><span class="line">  &#125;</span><br><span class="line">    element.addEventListener(eventType, e &#x3D;&gt; &#123;</span><br><span class="line">      let el &#x3D; e.target</span><br><span class="line">      while (!el.matches(selector)) &#123;</span><br><span class="line">&#x2F;&#x2F;         看一下被操作的元素是否符合button</span><br><span class="line">        if (element &#x3D;&#x3D;&#x3D; el) &#123;</span><br><span class="line">          &#x2F;&#x2F; 如果当前元素已经是传进来的div1,就认为是找不到了</span><br><span class="line">          el &#x3D; null</span><br><span class="line">          &#x2F;&#x2F; 超过了就找不到</span><br><span class="line">          break</span><br><span class="line">        &#125;</span><br><span class="line">        el &#x3D; el.parentNode</span><br><span class="line">        &#x2F;&#x2F; 不符合就让元素等于爸爸</span><br><span class="line">      &#125;</span><br><span class="line">      el &amp;&amp; fn.call(el, e, el)</span><br><span class="line">      &#x2F;&#x2F; 这是找到的情况下</span><br><span class="line">    &#125;)</span><br><span class="line">    return element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>JS 支持事件吗</li>
+</ol>
+<ul>
+<li>支持也不支持。DOM 事件不属于 JS 的功能，属于浏览器提供的 DOM 的功能</li>
+<li>JS 只是调用了 DOM 提供的 addEventListener 而已</li>
+<li>追问<ul>
+<li>如何当 JS 支持事件？手写一个事件系统。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/01/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9022%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E4%B9%8B04%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2-session/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2504,296 +2865,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" class="post-title-link" itemprop="url">高级前端养成13nodeJS框架03之Koa全解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-05 11:38:28 / Modified: 23:11:17" itemprop="dateCreated datePublished" datetime="2020-07-05T11:38:28+08:00">2020-07-05</time>
-            </span>
-
-          
-            <span id="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成13nodeJS框架03之Koa全解" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9013nodeJS%E6%A1%86%E6%9E%B603%E4%B9%8BKoa%E5%85%A8%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>Koa 的时间线</li>
-</ol>
-<ul>
-<li><p>Express</p>
-<ul>
-<li>2010 年 6 月,TJ 开始编写 Exporess</li>
-<li>2014 年发展到 v0.12,基本成熟，移交 StrongLoop</li>
-</ul>
-</li>
-<li><p>Koa</p>
-<ul>
-<li>2013 年 8 月,TJ 开始编写 Koa</li>
-<li>2015 年 8 月，Koa 发布 v1.0.0 版本</li>
-</ul>
-</li>
-<li><p>Node.js</p>
-<ul>
-<li>2013 年 3 月，Node.js v0.10 发布</li>
-<li>2014 年 12 月，io.js 不满 Node.js 的管理发起分裂</li>
-<li>2015 年 2 月，Node.js v0.12 发布</li>
-<li>2015 年 9 月，Node.js 与 io.js 合并成为 Node.js v4.0</li>
-</ul>
-</li>
-<li><p>koa 对 Node.js 的支持</p>
-<ul>
-<li>2015 年 2 月，Koa 放弃对 Node v0.11 以下的支持，并开始支持 io,js</li>
-<li>2015 年 10 月，Koa 放弃对 Node v4.0 以下的支持，并用 ES6 重写所有代码，发布 v2.0.0 内测版</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>Koa 对比 Express</li>
-</ol>
-<ul>
-<li>编程模型不同<ul>
-<li>Express 的中间件是线型的</li>
-<li>Koa 的中间件是 U 型的</li>
-</ul>
-</li>
-<li>对语言特性的使用不同<ul>
-<li>Express 使用回调函数 next()</li>
-<li>Koa v1.x 使用 generator 语法</li>
-<li>Koa v2.x 使用 async/await 语法</li>
-</ul>
-</li>
-<li>总结<ul>
-<li>2011 ～ 2016 年，大概率使用 Express</li>
-<li>2017 年之后，可能会使用 Koa</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>Koa 的中间件的模型</li>
-</ol>
-<ul>
-<li><img src="https://i.loli.net/2020/07/05/CpeNvzrWQA9toaG.png" alt="koa模型.png"></li>
-</ul>
-<ol start="4">
-<li>工具安装</li>
-</ol>
-<ul>
-<li>node-dev</li>
-<li>ts-node-dev</li>
-<li>注意<ul>
-<li>如果用 ts,需要运行 tsc –init 初始化 tsconfig.json</li>
-<li>还需要安装@types/koa</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>koa 的 hello world</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add koa</span><br><span class="line">yarn add @types&#x2F;koa</span><br><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>await next() 是什么意思</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; 空</span><br><span class="line">  await next(); &#x2F;&#x2F; 等待 下一个中间件</span><br><span class="line">  const time &#x3D; ctx.response.get(&#39;X-Response-Time&#39;);</span><br><span class="line">  console.log(&#96;$&#123;ctx.url&#125; - $&#123;time&#125;&#96;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>next() 表示进入下一个函数</li>
-<li>下一个函数会返回一个 Promise 对象，称为 p</li>
-<li>下一个函数所有代码执行完毕后，将 p 置为成功</li>
-<li>await 会等待 p 成功后，再回头执行剩余代码</li>
-</ul>
-<ol start="7">
-<li>await next()改写成 promise 的写法</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) &#x3D;&gt; &#123;</span><br><span class="line">  const start &#x3D; Date.now();</span><br><span class="line">  return next().then(()&#x3D;&gt;&#123;</span><br><span class="line">    const time &#x3D; ctx.response.get(&#39;X-Response-Time&#39;);</span><br><span class="line">    console.log(&#96;$&#123;ctx.url&#125; - $&#123;time&#125;&#96;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>一定要写 return ,因为中间件必须返回 Promise 对象</li>
-<li>错误处理再这里有点反模式，因为你不知道下一个中间件会产生什么错误，这么写就耦合了，用 app.on(‘error 更方便点’)</li>
-</ul>
-<ol start="8">
-<li>思考</li>
-</ol>
-<ul>
-<li>Express 里如何计算 response time<ul>
-<li>思路一: 用两个 app.use 加 res.locals</li>
-<li>思路二: 搜业界方案，看源码</li>
-<li>推荐带着问题看源码,tj 做了两件事情，1.记录开始时间 process.hrtime(startAt)，2.调用 onHeader 库知道用户什么时候写 header,</li>
-</ul>
-</li>
-</ul>
-<ol start="9">
-<li><p>koa 的 api</p>
-<ul>
-<li><p>app.xxx // application</p>
-<ul>
-<li><a href="https://koajs.com/#application" target="_blank" rel="noopener">文档</a></li>
-<li>API<ul>
-<li>app.env</li>
-<li>app.proxy</li>
-<li>app.subdomainOffset</li>
-<li>app.listen()</li>
-<li>app.callback()</li>
-<li><strong>app.use(fn)–插入中间件</strong></li>
-<li>app.keys</li>
-<li>app.context 见 ctx</li>
-<li><strong>app.on(‘error’,fn)–错误处理</strong></li>
-<li><strong>app.emit–触发时间</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>ctx.xxx // context</p>
-<ul>
-<li><p><a href="https://koajs.com/#context" target="_blank" rel="noopener">文档</a></p>
-</li>
-<li><p>API</p>
-<ul>
-<li><p>ctx.req // Node.js 封装的请求</p>
-</li>
-<li><p>ctx.res</p>
-</li>
-<li><p>ctx.request // KOA 封装的 js 请求</p>
-</li>
-<li><p>crx.response</p>
-</li>
-<li><p>crx.state–跨中间件分享数据</p>
-</li>
-<li><p>ctx.app</p>
-</li>
-<li><p>ctx.cookies.get/set</p>
-</li>
-<li><p>ctx.throw</p>
-</li>
-<li><p>ctx.assert</p>
-</li>
-<li><p>ctx.respond 不推荐使用</p>
-</li>
-<li><p>request 委托，response 委托</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; ctx.body &#x3D; &#39;hi&#39;</span><br><span class="line"> &#x2F;&#x2F; ctx.response.body &#x3D; &#39;hi&#39;</span><br><span class="line"> &#x2F;&#x2F; 称ctx是response的委托</span><br><span class="line"> &#x2F;&#x2F; 委托模式的源代码实现</span><br><span class="line">Object.defineProperty(ctx, &#39;body&#39;, &#123;</span><br><span class="line">  get()&#123;</span><br><span class="line">    return ctx.response.body</span><br><span class="line">  &#125;,</span><br><span class="line">  set(v)&#123;</span><br><span class="line">    ctx.response.body &#x3D; v</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建议直接用真实的方法，因为容易混</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>ctx.request.xxx</p>
-</li>
-</ol>
-<ul>
-<li>request.method</li>
-<li>request.path</li>
-<li>request.query</li>
-<li>request.idempotent,幂等，多次操作是否会有一样的影响。get 有，get 获取几次都一样。post,一遍两遍是不一样的。幂等不管多少次都一样，http 中常用只有 get 是幂等的，还有 option</li>
-<li>request.get(field)</li>
-</ul>
-<ol start="11">
-<li><p>ctx.response.xxx
--response.status
--response.body*5,string 字符串，buffer 文件读到内存里就是 Buffer,也就是没有文件编码的内容,Stream 流，json 化的 Object,null
--response.set()*2 key value 和对象
--response.append()，添加响应头</p>
-</li>
-<li><p>总结</p>
-</li>
-</ol>
-<ul>
-<li>Koa 原理<ul>
-<li>封装请求和响应</li>
-<li>通过 U 型模型</li>
-</ul>
-</li>
-<li>跟 Express 的区别<ul>
-<li>模型不同</li>
-<li>语法特性不同 7.6.0 版本之后完全支持</li>
-<li>没有内置中间件</li>
-</ul>
-</li>
-<li>Koa API<ul>
-<li>平平无奇，几乎和 Express 一样</li>
-</ul>
-</li>
-</ul>
-<ol start="13">
-<li>谁在用 Koa</li>
-</ol>
-<ul>
-<li>egg.js</li>
-<li>next.js(推荐)/NUXT/Nest</li>
-</ul>
-<ol start="14">
-<li><a href="https://github.com/codingories/13koa-demo-1" target="_blank" rel="noopener">案例代码</a></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2865,7 +2936,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">249</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,239 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">flask_RESTful_API开发</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-04 14:13:18" itemprop="dateCreated datePublished" datetime="2019-03-04T14:13:18+08:00">2019-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-03-07 09:46:08" itemprop="dateModified" datetime="2019-03-07T09:46:08+08:00">2019-03-07</time>
+              </span>
+
+          
+            <span id="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/" class="post-meta-item leancloud_visitors" data-flag-title="flask_RESTful_API开发" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/04/flask-RESTful-API%E5%BC%80%E5%8F%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>flask 简单开始</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">详细见app.py</span><br><span class="line">from flask import Flask, request</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;index&#x2F;&lt;user&gt;&#39;, methods&#x3D;[&#39;POST&#39;])</span><br><span class="line">def hello_world(user):</span><br><span class="line">    print(request.headers)</span><br><span class="line">    return &#39;hello %s&#39; % user</span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)  # debug模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">详细见requests_t.py 简单测试下</span><br><span class="line">import requests</span><br><span class="line">headers &#x3D; &#123;&quot;User-Agent&quot;:&quot;Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;72.0.3626.119 Safari&#x2F;537.36&quot;&#125;</span><br><span class="line">r &#x3D; requests.post(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;index&#x2F;432&#39;,headers &#x3D; headers)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>tocken登陆验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">import random</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">from flask import Flask, request</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">users &#x3D; &#123;</span><br><span class="line">    &quot;magigo&quot;: [&quot;123456&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def gen_token(uid):</span><br><span class="line">    temp &#x3D; &#39;:&#39;.join([str(uid), str(random.random()), str(time.time() + 7200)])</span><br><span class="line">    token &#x3D; base64.b64encode(bytes(temp, encoding&#x3D;&quot;utf-8&quot;))  # 放在用户真正密码的后面,现在是二进制的</span><br><span class="line">    token &#x3D; str(token, encoding&#x3D;&quot;utf-8&quot;)  # 将二进制转成字符串</span><br><span class="line">    users[uid].append(token)</span><br><span class="line">    return token</span><br><span class="line"></span><br><span class="line">def verify_token(token):</span><br><span class="line">    temp &#x3D; bytes(token, encoding&#x3D;&quot;utf-8&quot;)  # 先把token 转成二进制</span><br><span class="line">    _token &#x3D; base64.b64decode(temp)  # 将传进来的token 进行64解密,返回一个字节类型</span><br><span class="line">    _token &#x3D; str(_token, encoding&#x3D;&quot;utf-8&quot;)  # 将字节类型转成字符串</span><br><span class="line">    print(&quot;users.get(_token.split(&#39;:&#39;)[0])[-1]&quot;, users.get(_token.split(&#39;:&#39;)[0])[-1])</span><br><span class="line">    print(&quot;token&quot;, token)</span><br><span class="line"></span><br><span class="line">    if not users.get(_token.split(&#39;:&#39;)[0])[-1] &#x3D;&#x3D; token:  # 验证时间是否过期</span><br><span class="line">        return -1</span><br><span class="line">    if float(_token.split(&#39;:&#39;)[-1]) &gt;&#x3D; time.time():</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;index&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def hello_world(user):</span><br><span class="line">    print(request.headers)</span><br><span class="line">    return &#39;hello&#39;</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;login&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def login():</span><br><span class="line">    temp &#x3D; base64.b64decode(request.headers[&#39;Authorization&#39;].split(&#39; &#39;)[-1])  # 将传进来的解密</span><br><span class="line">    uid, pw &#x3D; str(temp, encoding&#x3D;&#39;utf-8&#39;).split(&#39;:&#39;)  # 将解密出来的并赋值</span><br><span class="line">    if users.get(uid)[0] &#x3D;&#x3D; pw:  # 判断密码是否符合后台存的账号密码,如果是则生成token</span><br><span class="line">        return gen_token(uid)</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;test&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def test():</span><br><span class="line">    token &#x3D; request.args.get(&#39;token&#39;)</span><br><span class="line">    if verify_token(token) &#x3D;&#x3D; 1:</span><br><span class="line">        return &#39;data&#39;</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)  # debug模式</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试上面写的token登陆</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"># headers &#x3D; &#123;&quot;User-Agent&quot;:&quot;Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;72.0.3626.119 Safari&#x2F;537.36&quot;&#125;</span><br><span class="line"></span><br><span class="line"># r &#x3D; requests.get(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;login&#39;, auth&#x3D;(&#39;magigo&#39;, &#39;123456&#39;))</span><br><span class="line"># print(r.text)</span><br><span class="line"></span><br><span class="line"># print(r.text)</span><br><span class="line">token &#x3D; &quot;bWFnaWdvOjAuNjQyNjk3NTMzNjI5MzAyODoxNTUxNjg1NzQzLjA1Njg3NA&#x3D;&#x3D;&quot;</span><br><span class="line">r &#x3D; requests.post(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;test&#39;, params&#x3D;&#123;&#39;token&#39;: token&#125;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>OAuth 2.0的原理介绍-OAuth概述</p>
+</li>
+<li><p>OAuth授权模式
+授权码模式Authorization code</p>
+</li>
+</ul>
+<p>特点是通过第三方服务器和认证服务器互动，获得Token和验证Token，不通过用户的浏览器。是最安全的一种模式。</p>
+<p>简化模式implicit</p>
+<p>特点是没有OAuth流程中的C和D步骤，而是用户浏览器通过资源服务器发送的代码提取Token，并直接发送给第三方服务器。</p>
+<p>密码模式resource owner password credentials</p>
+<p>特点是用户提供用户名和密码给第三方服务器，但是第三方服务器不能存储用户名和密码。通常只有在用户对第三方服务器高度信任的情况下采用。</p>
+<p>客户端模式client credentials</p>
+<p>特点是需要用户在第三方服务器上注册，第三方服务器以自己的名义请求“服务提供商”进行认证。</p>
+<ul>
+<li>OAuth 2.0介绍和实现上<ul>
+<li>清楚OAuth 2.0协议的内容</li>
+<li>掌握Flask的重定向操作</li>
+<li>掌握OAuth 2.0协议中的授权模式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"># 服务端代码</span><br><span class="line">import base64</span><br><span class="line">import random</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">from flask import Flask, request, redirect</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line"></span><br><span class="line">users &#x3D; &#123;</span><br><span class="line">    &quot;magigo&quot;: [&quot;123456&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">redirect_uri &#x3D; &#39;http:&#x2F;&#x2F;localhost:5000&#x2F;client&#x2F;passport&#39;</span><br><span class="line">client_id &#x3D; &#39;123456&#39;</span><br><span class="line">users[client_id] &#x3D; []</span><br><span class="line">auth_code &#x3D; &#123;&#125;</span><br><span class="line">oauth_redirect_uri &#x3D; []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def gen_token(uid):</span><br><span class="line">    temp &#x3D; &#39;:&#39;.join([str(uid), str(random.random()), str(time.time() + 7200)])</span><br><span class="line">    token &#x3D; base64.b64encode(bytes(temp, encoding&#x3D;&quot;utf-8&quot;))  # 放在用户真正密码的后面,现在是二进制的</span><br><span class="line">    token &#x3D; str(token, encoding&#x3D;&quot;utf-8&quot;)  # 将二进制转成字符串</span><br><span class="line">    users[uid].append(token)</span><br><span class="line">    return token</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def verify_token(token):</span><br><span class="line">    temp &#x3D; bytes(token, encoding&#x3D;&quot;utf-8&quot;)  # 先把token 转成二进制</span><br><span class="line">    _token &#x3D; base64.b64decode(temp)  # 将传进来的token 进行64解密,返回一个字节类型</span><br><span class="line">    _token &#x3D; str(_token, encoding&#x3D;&quot;utf-8&quot;)  # 将字节类型转成字符串</span><br><span class="line">    print(&quot;users.get(_token.split(&#39;:&#39;)[0])[-1]&quot;, users.get(_token.split(&#39;:&#39;)[0])[-1])</span><br><span class="line">    print(&quot;token&quot;, token)</span><br><span class="line"></span><br><span class="line">    if not users.get(_token.split(&#39;:&#39;)[0])[-1] &#x3D;&#x3D; token:  # 验证时间是否过期</span><br><span class="line">        return -1</span><br><span class="line">    if float(_token.split(&#39;:&#39;)[-1]) &gt;&#x3D; time.time():</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;index&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def hello_world(user):</span><br><span class="line">    print(request.headers)</span><br><span class="line">    return &#39;hello&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;login&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def login():</span><br><span class="line">    temp &#x3D; base64.b64decode(request.headers[&#39;Authorization&#39;].split(&#39; &#39;)[-1])  # 将传进来的解密</span><br><span class="line">    uid, pw &#x3D; str(temp, encoding&#x3D;&#39;utf-8&#39;).split(&#39;:&#39;)  # 将解密出来的并赋值</span><br><span class="line">    if users.get(uid)[0] &#x3D;&#x3D; pw:  # 判断密码是否符合后台存的账号密码,如果是则生成token</span><br><span class="line">        return gen_token(uid)</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;test&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def test():</span><br><span class="line">    token &#x3D; request.args.get(&#39;token&#39;)</span><br><span class="line">    if verify_token(token) &#x3D;&#x3D; 1:</span><br><span class="line">        return &#39;data&#39;</span><br><span class="line">    else:</span><br><span class="line">        return &#39;error&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 授权服务器要求客户给予授权</span><br><span class="line">@app.route(&#39;&#x2F;oauth&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def oauth():</span><br><span class="line">    if request.args.get(&#39;user&#39;):</span><br><span class="line">        if users.get(request.args.get(&#39;user&#39;))[0] &#x3D;&#x3D; request.args.get(&#39;pw&#39;) and oauth_redirect_uri:</span><br><span class="line">            # 用户将提供用户名和密码的方式提供授权,步骤B,授权服务器在获得用户授权之后，将用户重定向至</span><br><span class="line">            # 客户端提供的uri并附上授权码</span><br><span class="line">            uri &#x3D; oauth_redirect_uri[0] + &#39;?code&#x3D;%s&#39; % gen_auth_code(oauth_redirect_uri[0])</span><br><span class="line">            return redirect(uri)</span><br><span class="line">    if request.args.get(&#39;code&#39;):  # 先验证请求中是否携带了授权码</span><br><span class="line">        # 步骤D验证授权码以及重定向uri的正确性,如果验证成功将为客户端发放token</span><br><span class="line">        if auth_code.get(int(request.args.get(&#39;code&#39;))) &#x3D;&#x3D; request.args.get(&#39;redirect_uri&#39;):</span><br><span class="line">            # 将在生成授权码时将保存进来的授权码以及uri和请求的uri进行比对,如果正确则响应token,为客户端发放一个token</span><br><span class="line">            return gen_token(request.args.get(&#39;client_id&#39;))</span><br><span class="line">    if request.args.get(&#39;redirect_uri&#39;):</span><br><span class="line">        oauth_redirect_uri.append(request.args.get(&#39;redirect_uri&#39;))</span><br><span class="line">    return &#39;please login&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 由于客户端需要使用授权码,像授权服务器请求token,所以让我们为客户端添加passport路径</span><br><span class="line">@app.route(&#39;&#x2F;client&#x2F;passport&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line"># 步骤C客户端passport路径使用授权码,以及之前所提供的重定向uri向授权服务器请求token</span><br><span class="line">def client_passport():</span><br><span class="line">    code &#x3D; request.args.get(&#39;code&#39;)</span><br><span class="line">    uri &#x3D; &#39;http:&#x2F;&#x2F;localhost:5000&#x2F;oauth?grant_type&#x3D;authorization_code&amp;code&#x3D;%s&amp;redirect_uri&#x3D;%s&amp;client_id&#x3D;%s&#39; % (</span><br><span class="line">        code, redirect_uri, client_id)</span><br><span class="line">    return redirect(uri)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 步骤A 用户访问客户端的login路由</span><br><span class="line">@app.route(&#39;&#x2F;client&#x2F;login&#39;, methods&#x3D;[&#39;POST&#39;, &#39;GET&#39;])</span><br><span class="line">def client_Login():</span><br><span class="line">    uri &#x3D; &#39;http:&#x2F;&#x2F;localhost:5000&#x2F;oauth?response_type&#x3D;code&amp;client_id&#x3D;%s&amp;redirect_uri&#x3D;%s&#39; % (client_id, redirect_uri)</span><br><span class="line">    return redirect(uri)  # 客户端将客户重定向至授权服务器oauth路径,并附上客户端代码以及重定向uri</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 授权码生成器</span><br><span class="line">def gen_auth_code(uri):</span><br><span class="line">    code &#x3D; random.randint(0, 10000)</span><br><span class="line">    auth_code[code] &#x3D; uri</span><br><span class="line">    return code</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)  # debug模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#requests 验证代码</span><br><span class="line">import requests</span><br><span class="line">r &#x3D; requests.get(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;client&#x2F;login&#39;)</span><br><span class="line">print(r.text)  # 获得授权服务器发来的please login</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">print(r.history)  # 查看重定向的情况</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">print(r.url)  # 我们需要将授权码发送到服务器,因此我们通过url的属性取得授权服务器的地址</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">uri_login &#x3D; r.url.split(&#39;?&#39;)[0] + &#39;?user&#x3D;magigo&amp;pw&#x3D;123456&#39;  # 并且将用户名密码发送到授权服务器</span><br><span class="line"># 授权服务器会在授权成功后，将客户重定向至服务端,并附上授权码</span><br><span class="line">r2 &#x3D; requests.get(uri_login)</span><br><span class="line">print(r2.text)</span><br><span class="line">print(r2.history)</span><br><span class="line">print(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;)</span><br><span class="line">r &#x3D; requests.post(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;test&#39;, params&#x3D;&#123;&#39;token&#39;: r2.text&#125;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>OAuth 2.0介绍和实现（下）</p>
+<ul>
+<li><p>Flask渲染页面及Cookies
+  Flask中的表单
+            提交表单时，使用POST方法</p>
+<pre><code>  http://dormousehole.readthedocs.org/en/latest/quickstart.html#sessions</code></pre>
+</li>
+<li><p>Flask响应对象
+        ResponseHeaders – 浏览器的响应头
+            <a href="http://dormousehole.readthedocs.org/en/latest/quickstart.html#about-responses" target="_blank" rel="noopener">http://dormousehole.readthedocs.org/en/latest/quickstart.html#about-responses</a></p>
+</li>
+<li><p>Cookies简介 – 小型文本文件
+  1）分类：Cookies总是存在客户端中，按在客户端中的存储位置，可分为内存Cookies和硬盘Cookies
+    2）用途：Cookies可以用于购物车，以及免登陆
+    3）缺陷：Cookies增加了网络流量，造成安全问题，无法存储大量数据
+    <a href="http://dormousehole.readthedocs.org/en/latest/quickstart.html#id11" target="_blank" rel="noopener">http://dormousehole.readthedocs.org/en/latest/quickstart.html#id11</a></p>
+</li>
+<li><p>Token的设计以及加密方法
+  知识点：
+      1.无需核对用户名密码的token验证机制 – 无法被伪造的token
+      2.hmac（哈希运算消息认证码）简介
+  Token的基本设计原则：</p>
+<pre><code>  Token不携带用户敏感信息
+  无需查询数据库，Token可以进行自我验证</code></pre>
+</li>
+<li><p>hmac简介:
+  作用：验证消息是否被篡改</p>
+<pre><code>  公式：
+  使用Python的hmac模块直接计算：hmac.new(‘secret123’,value).digest()
+  缺陷：无法抵御重放攻击</code></pre>
+</li>
+<li><p>验证token的有效性：真的，没过期，合法请求
+        验证验证码是否一致
+        验证是否过期 – 生存期10分钟左右
+        验证这个token是否属于被请求数据的用户</p>
+</li>
+</ul>
+</li>
+<li><p>最终的编码
+  总结：
+    掌握Flask渲染页面和处理响应对象
+    了解hmac加密验证的内容
+  安全建议：使用HTTPS传输，使用请求头而不是参数传递Token
+  实战：制作一个基于OAuth 2.0的验证登录服务
+  在Chrome开发者工具中，resources-&gt; Cookies-&gt;localhost中，可以看到用户名和密码</p>
+</li>
+</ul>
+<ul>
+<li>Flask-RESTful插件介绍及应用<ul>
+<li>5-1 Flask-RESTful插件介绍</li>
+<li>Flask-RESTful概述
+  Flask-RESTful 是一个Flask扩展，它添加了快速构建REST APIs的支持。它当然也是一个能够跟你现有的ORM/库协同工作的轻量级的扩展。Flask-RESTful鼓励以最小设置的最佳实践。如果你熟悉 Flask 的话，Flask-RESTful 应该很容易上手。
+  安装：&gt;pip install flask-restful</li>
+<li>资源路由
+  Flask-restful不在使用装饰器作为路由，处理请求的部分是类，而不是flask的函数</li>
+<li>可插拔视图：
+  <a href="http://dormousehole.readthedocs.org/en/latest/views.html" target="_blank" rel="noopener">http://dormousehole.readthedocs.org/en/latest/views.html</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">import flask_restful as flask</span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line">api &#x3D; flask.Api(app)</span><br><span class="line"></span><br><span class="line">class HelloWorld(flask.Resource):</span><br><span class="line">    def get(self):</span><br><span class="line">        return &#123;&#39;hello&#39;: &#39;world&#39;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">api.add_resource(HelloWorld, &#39;&#x2F;&#39;)</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关于Flask插件FLask_RESTful的使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask_restful import reqparse, Api, Resource, fields, marshal_with</span><br><span class="line"></span><br><span class="line"># 1. 关于参数解析的部分</span><br><span class="line"># 制造一组虚拟的数据</span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line">api &#x3D; Api(app)</span><br><span class="line"></span><br><span class="line">TODOS &#x3D; &#123;</span><br><span class="line">    &#39;todo1&#39;: &#123;&#39;task&#39;: 1&#125;,</span><br><span class="line">    &#39;todo2&#39;: &#123;&#39;task&#39;: 2&#125;,</span><br><span class="line">    &#39;todo3&#39;: &#123;&#39;task&#39;: 3&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 定义允许的参数为task，类型为int，以及错误时的提示</span><br><span class="line">parser &#x3D; reqparse.RequestParser()  # 实例化一个参数解析器</span><br><span class="line">parser.add_argument(&#39;task&#39;, type&#x3D;int, help&#x3D;&#39;Please set a int task content!&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 指定参数的类型,设定task为必选参数，类型为int型,最后给一个帮助，当使用者出现问题时给予提示</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 真正处理请求的地方</span><br><span class="line">class TodoList(Resource):</span><br><span class="line">    def get(self):</span><br><span class="line">        return TODOS, 200, &#123;&#39;Etag&#39;: &#39;some-opaque-string&#39;&#125;</span><br><span class="line"></span><br><span class="line">    def post(self):</span><br><span class="line">        args &#x3D; parser.parse_args()  # 获取post的参数</span><br><span class="line">        todo_id &#x3D; int(max(TODOS.keys()).lstrip(&#39;todo&#39;)) + 1  # 获取最大的todo个数</span><br><span class="line">        todo_id &#x3D; &#39;todo%i&#39; % todo_id  # 格式化作为键,todo4</span><br><span class="line">        TODOS[todo_id] &#x3D; &#123;&#39;task&#39;: args[&#39;task&#39;]&#125;</span><br><span class="line">        return TODOS[todo_id], 201</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 2. 关于响应域的部分</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ORM的数据模型</span><br><span class="line">class TodoDao(object):</span><br><span class="line">    def __init__(self, todo_id, task):</span><br><span class="line">        self.todo_id &#x3D; todo_id</span><br><span class="line">        self.task &#x3D; task</span><br><span class="line"></span><br><span class="line">        # 这个域不会被返回</span><br><span class="line">        self.status &#x3D; &#39;active&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># marshal-蒙版</span><br><span class="line">resource_fields &#x3D; &#123;</span><br><span class="line">    &#39;task&#39;:     fields.String,</span><br><span class="line">    &#39;uri&#39;:      fields.Url(&#39;todo_ep&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 真正处理请求的地方</span><br><span class="line">class Todo(Resource):</span><br><span class="line">    # 蒙版</span><br><span class="line">    @marshal_with(resource_fields)</span><br><span class="line">    def get(self, todo_id):</span><br><span class="line">        return TodoDao(todo_id&#x3D;todo_id, task&#x3D;&#39;Remember the milk&#39;), 200</span><br><span class="line"># 用marshal_with装饰器修饰get方法,一点来一个请求，我们就将前面来的数据类型定义一个实例</span><br><span class="line"></span><br><span class="line"># 实际定义路由的地方</span><br><span class="line">api.add_resource(Todo, &#39;&#x2F;todos&#x2F;&lt;todo_id&gt;&#39;, endpoint&#x3D;&#39;todo_ep&#39;)</span><br><span class="line"></span><br><span class="line"># 实际定义路由的地方</span><br><span class="line">api.add_resource(TodoList, &#39;&#x2F;todos&#39;, &#39;&#x2F;all_tasks&#39;)</span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(debug&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/03/03/%E6%97%A5%E8%AF%ADn3%E8%93%9D%E5%AE%9D%E4%B9%A6p6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1805,293 +2038,6 @@ Tween公式 4个参数</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-title-link" itemprop="url">vue学习分享一</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-29 10:48:22" itemprop="dateCreated datePublished" datetime="2019-01-29T10:48:22+08:00">2019-01-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-02-01 15:49:37" itemprop="dateModified" datetime="2019-02-01T15:49:37+08:00">2019-02-01</time>
-              </span>
-
-          
-            <span id="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" class="post-meta-item leancloud_visitors" data-flag-title="vue学习分享一" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/29/vue%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB%E4%B8%80/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一.webpack属性配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">module.exports&#x3D; &#123;</span><br><span class="line">    entry: &#123; main是默认入口，也可以是多入口</span><br><span class="line">        main:&#39;.&#x2F;src&#x2F;main.js&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    出口</span><br><span class="line">    output:&#123;</span><br><span class="line">        filename:&#39;.&#x2F;build.js&#39;, 指定js文件</span><br><span class="line">        path: path.join(__dirname,&#39;..&#39;,&#39;dist&#39;)   最好是绝对路径 </span><br><span class="line">        &#x2F;&#x2F; 代表当前目录的上一级的dist</span><br><span class="line">    &#125;,</span><br><span class="line">    module:&#123;</span><br><span class="line">        一样的功能rules: webpack2.x之后新加的</span><br><span class="line">        loaders:[  require(&#39;.&#x2F;a.css||.&#x2F;a.js&#39;)</span><br><span class="line">            &#123;test: &#x2F;\.css$&#x2F;,</span><br><span class="line">            loader:&#39;style-loader!css-loader&#39;,</span><br><span class="line">            顺序是反过来的2!1</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;test: &#x2F;\.(jpg|svg))$&#x2F;,</span><br><span class="line">            loader:&#39;style-loader?limit&#x3D;4096&amp;name&#x3D;[name].[ext]&#39;,</span><br><span class="line">            顺序是反过来的2!1</span><br><span class="line">            [name].[ext]内置提供的，因为本身是先读这个文件</span><br><span class="line">            options:&#123;</span><br><span class="line">                limit:4096,</span><br><span class="line">                name:&#39;[name].[ext]&#39;</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        插件的执行顺序是依次执行的</span><br><span class="line">        new htnlWebpackPlugin(&#123;</span><br><span class="line">            template:&#39;.&#x2F;src&#x2F;index.html&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">        将src下的template属性描述的文件根据当前配置的output.path</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="今日重点"><a href="#今日重点" class="headerlink" title="今日重点"></a>今日重点</h4><ul>
-<li>运行起来Vue</li>
-<li>vue常用指令</li>
-<li>组件的使用</li>
-</ul>
-<h3 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h3><hr>
-<h4 id="webpack-ES6的处理"><a href="#webpack-ES6的处理" class="headerlink" title="webpack-ES6的处理"></a>webpack-ES6的处理</h4><ul>
-<li>ES6的模块，vue本身默认支持es6的模块导入导出</li>
-<li>babel<ul>
-<li>babel-loader(内部依赖babel-core)<ul>
-<li>关键字(presets es2015)</li>
-<li>函数(plugins babel-plugin-transform-runtime)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="ES6中模块"><a href="#ES6中模块" class="headerlink" title="ES6中模块"></a>ES6中模块</h4><p>一.坑的地方，教程里面的webpack版本是<a href="mailto:&#x77;&#x65;&#x62;&#x70;&#x61;&#99;&#x6b;&#64;&#x33;&#x2e;&#x34;&#x2e;&#x31;">&#x77;&#x65;&#x62;&#x70;&#x61;&#99;&#x6b;&#64;&#x33;&#x2e;&#x34;&#x2e;&#x31;</a>,而最新版本已经到了<a href="mailto:&#119;&#x65;&#98;&#112;&#x61;&#99;&#107;&#x40;&#52;&#46;&#x32;&#x37;&#46;&#x31;">&#119;&#x65;&#98;&#112;&#x61;&#99;&#107;&#x40;&#52;&#46;&#x32;&#x37;&#46;&#x31;</a>,新版本不想下兼容老版本，各种错误需要谷歌解决，主要是版本问题。因为版本问题，所以决定重新来过。最终参考了文章解决:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5ad1ef5d518825556534f137#heading-20</span><br></pre></td></tr></table></figure>
-
-<p>二.ES6两种不一样的导出模块的方式</p>
-<ul>
-<li>默认<ul>
-<li>导入<code>import [,..xxx] [,..from] &#39;./xxx.ext&#39;</code></li>
-<li>导出 <code>export default obj;</code></li>
-</ul>
-</li>
-<li>声明式<ul>
-<li>1导出 <code>export var obj = xxx;</code></li>
-<li>2导出 <code>export var obj2 = {};</code></li>
-<li>3单独导出 <code> export {stu};</code></li>
-<li>导入 <code>import {obj,obj2,stu} from &#39;./xxx.js&#39;;  直接使用obj</code></li>
-</ul>
-</li>
-<li>全体</li>
-<li>默认导出和声明式导入在使用上的区别<ul>
-<li>要注意，声明式导入的时候，必须{名称} 名称要一致（按需导入)</li>
-<li>默认导入，可以随意的使用变量名</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认导出</span><br><span class="line">var temp1 &#x3D; &#39;我是默认导出的结果&#39;;</span><br><span class="line">export default temp1;</span><br><span class="line">&#x2F;&#x2F; 导入方式是  import xxx from &#39;.&#x2F;cal.js&#39;，这种名称可以随便写</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明式导出</span><br><span class="line">export var obj1 &#x3D; &#39;我是声明式导出1&#39;;</span><br><span class="line">export var obj2 &#x3D; &#39;我是声明式导出2&#39;;</span><br><span class="line">export var obj3 &#x3D; &#39;我是声明式导出3&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入方式是</span><br><span class="line">&#x2F;&#x2F; 声明式导入必须写对名字</span><br><span class="line">&#x2F;&#x2F; import &#123;obj1,obj2&#125; from &#39;.&#x2F;cal.js&#39;; </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;另一种方式声明导出</span><br><span class="line">var obj4 &#x3D; &#39;我是声明式导出4&#39;</span><br><span class="line">export &#123;obj4&#125;;</span><br><span class="line">&#x2F;&#x2F; 导入方式是</span><br><span class="line">&#x2F;&#x2F; import &#123;obj1,obj2,obj4&#125; from &#39;.&#x2F;cal.js&#39;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;默认导入</span><br><span class="line">&#x2F;&#x2F; import defaultObj from &#39;.&#x2F;cal.js&#39;;</span><br><span class="line">&#x2F;&#x2F; console.log(defaultObj);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明式导入(按需加载)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; function test()&#123;&#x2F;&#x2F;不能包含在函数内部，只能在最外层作用域import和export</span><br><span class="line">&#x2F;&#x2F;     import &#123;obj1,obj2,obj4&#125; from &#39;.&#x2F;cal.js&#39;</span><br><span class="line">&#x2F;&#x2F;     console.log(obj1,obj2,obj4);</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line">&#x2F;&#x2F; test();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; import &#123;obj1,obj2,obj4&#125; from &#39;.&#x2F;cal.js&#39;</span><br><span class="line">&#x2F;&#x2F; console.log(obj1,obj2,obj4);</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;全体导入</span><br><span class="line">import * as obj from &#39;.&#x2F;cal.js&#39;;</span><br><span class="line">console.log(obj)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">default:&quot;我是默认导出的结果&quot;    </span><br><span class="line">        import xxx from &#39;.&#x2F;cal.js&#39;会获取到整个对象的default属性</span><br><span class="line">obj1:&quot;我是声明式导出1&quot;</span><br><span class="line">obj2:&quot;我是声明式导出2&quot; </span><br><span class="line">obj3:&quot;我是声明式导出3&quot;     import &#123;obj1,obj2&#125;</span><br><span class="line">obj4:&quot;我是声明式导出4&quot;</span><br><span class="line">&#125;</span><br><span class="line">    import * as allObj from &#39;.&#x2F;cal.js&#39;;  获取的就是一整个对象</span><br></pre></td></tr></table></figure>
-<ul>
-<li>import 和export一定写在顶级，不要包含在{}内</li>
-</ul>
-<h4 id="ES6中的代码变化"><a href="#ES6中的代码变化" class="headerlink" title="ES6中的代码变化"></a>ES6中的代码变化</h4><ul>
-<li>对象属性的声明 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &#39;abc&#39;;</span><br><span class="line">var person &#x3D; &#123;name&#125;; 简写-&gt; var person &#x3D; &#123;name:name&#125;;</span><br><span class="line"></span><br><span class="line">声明函数 </span><br><span class="line">var cal &#x3D; &#123;</span><br><span class="line">    add:function()&#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;,</span><br><span class="line">    add2()&#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;,</span><br><span class="line">    add3:funtion(n1,n2)&#123;</span><br><span class="line">        return n1 + n2;</span><br><span class="line">    &#125;,</span><br><span class="line">    add4(n1,n2)&#123;  干掉了function</span><br><span class="line">        return n1 + n2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>当属性的key和变量的名相同,而要使用变量的值做value,</li>
-<li>就可以简写{name}-&gt;{name:name}</li>
-<li>es6中的函数声明<ul>
-<li>就是干掉了:function   只需要写成add(){ }</li>
-</ul>
-</li>
-</ul>
-<h4 id="vue单文件方式"><a href="#vue单文件方式" class="headerlink" title="vue单文件方式"></a>vue单文件方式</h4><ul>
-<li>单文件就是以*.vue结尾的文件。最终通过webpack也会编译成*.js在浏览器运行</li>
-<li>内容： <template></template> + <script></script> + <style></style><ul>
-<li>1:template中只能有一个根节点 2.x</li>
-<li>2:script中  按照 export default {配置} 来写</li>
-<li>3:style中 可以设置scoped属性，让其只在template中生效</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">第一步:</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;01_第一个vue程序启动&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;!--1:在index.html中写上div id&#x3D;&quot;app&quot; app可以随意--&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!--以上内容是一个坑，未来vue编译好代码，往里面插入--&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line">第二步:</span><br><span class="line">&#x2F;&#x2F;2:引入 Vue</span><br><span class="line">import Vue from &#39;Vue&#39;;</span><br><span class="line"></span><br><span class="line">安装:npm i vue -S ; npm i vue-loader vue-template-compiler -D</span><br><span class="line">&#x2F;&#x2F;3:创建一个Vue的实例,一般一个项目,大多就是一个vue实例来完成显示</span><br><span class="line">new Vue(&#123;</span><br><span class="line">   el: &#39;#app&#39;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">碰到报错:vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config.</span><br><span class="line"></span><br><span class="line">通过 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cominglately&#x2F;article&#x2F;details&#x2F;80555210 解决</span><br></pre></td></tr></table></figure>
-
-<p>npm i 和 npm –production区别
-npm i 是全部恢复
-npm –production 只有 dependencies</p>
-<p>webpack-dev-server 的配置，教程上是老版本新版本的话要重新安装插件，详情参考以下地址解决:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5ad1ef5d518825556534f137</span><br></pre></td></tr></table></figure>
-
-<p>用package.json文件实现命令的简化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;npx webpack --config webpack.config.js&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;npx webpack-dev-server --config webpack.config.js --color --progress --hot&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>之后通过:npm run start 来实现快速命令</p>
-<h4 id="vue介绍"><a href="#vue介绍" class="headerlink" title="vue介绍"></a>vue介绍</h4><ul>
-<li>2014年诞生,2013年react,09年angularjs</li>
-<li>作者 尤雨溪</li>
-<li>核心概念:     组件化  双向数据流 (基于ES5中的defineProperty来实现的),IE9才支持</li>
-<li>angular核心： 模块化 双向数据绑定(脏检测:一个数组（$watch）)<ul>
-<li>开发一个登陆的模块，登陆需要显示的头部、底部、中部</li>
-<li>组件:组合起来的一个部件（头部、底部、中部）</li>
-<li><strong>细分代码</strong><ul>
-<li>头部: 页面、样式、动态效果</li>
-<li>代码: template style script</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>框架对比，建议学完vue再看</li>
-<li><a href="https://cn.vuejs.org/v2/guide/comparison.html#Reacts" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/comparison.html#Reacts</a></li>
-</ul>
-<h4 id="双向数据流"><a href="#双向数据流" class="headerlink" title="双向数据流"></a>双向数据流</h4><ul>
-<li>1向：js内存属性发生改变，影响页面的变化</li>
-<li>1向：页面的改变影响js内存属性的改变</li>
-</ul>
-<h4 id="vue中常用的v-指令演示"><a href="#vue中常用的v-指令演示" class="headerlink" title="vue中常用的v-指令演示"></a>vue中常用的v-指令演示</h4><ul>
-<li>常用指令 </li>
-<li>v-text 是元素的innerText只能在双标签中使用</li>
-<li>v-html 是元素的innerHTML，不能包含<!-- –&gt;</li>
-<li>v-if 元素是否移除或者插入</li>
-<li>v-show 元素是否显示或隐藏</li>
-<li>v-model 双向数据绑定，v-bind是单向数据绑定(内存js改变影响页面)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">1.先在src创建index.html,声明div id&#x3D;app</span><br><span class="line">2.写main.js</span><br><span class="line">    &#x2F;&#x2F; 1:引入vue</span><br><span class="line">    import Vue from &#39;vue&#39;;</span><br><span class="line">    &#x2F;&#x2F; 2:引入app.vue 用他的内容来替换div id &#x3D; app</span><br><span class="line">    import App from &#39;.&#x2F;app.vue&#39;</span><br><span class="line">    &#x2F;&#x2F; 3:构建vue实例</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        &#x2F;&#x2F; 渲染内容的目的地</span><br><span class="line">        el:&#39;#app&#39;,</span><br><span class="line">        &#x2F;&#x2F; 渲染内容</span><br><span class="line">        render:function(c)&#123; &#x2F;&#x2F; c只是一个形参,叫什么都可以</span><br><span class="line">            return c(App);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F; 一般来说,key是固定的,值是你设定(可变的)</span><br><span class="line">3.写app.vue</span><br><span class="line">    &lt;template&gt;</span><br><span class="line">        &lt;!--只能有一个根结点--&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;!--pre原样输出--&gt;</span><br><span class="line">            &lt;pre&gt;</span><br><span class="line">                * v-text 是元素的innerText只能在双标签中使用</span><br><span class="line">                * v-html 是元素的innerHTML,不能包含&lt;!--&#123;&#123;xxx&#125;&#125;--&gt;</span><br><span class="line">                * v-if 元素是否移除或者插入</span><br><span class="line">                * v-show 元素是否显示或隐藏</span><br><span class="line">                * v-model 双向数据绑定,v-bind是单向数据绑定(内存js改变影响页面)</span><br><span class="line">            &lt;&#x2F;pre&gt;</span><br><span class="line">            v-text :</span><br><span class="line">            &lt;!--一般而言v-xxx可以写变量--&gt;</span><br><span class="line">            &lt;span v-text&#x3D;&quot;text&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-text&#x3D;&quot;text&quot;&gt;</span><br><span class="line">            &lt;hr&#x2F;&gt;</span><br><span class="line">            v-html :</span><br><span class="line">            &lt;span v-html&#x3D;&quot;html&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;hr&#x2F;&gt;</span><br><span class="line">            v-if:</span><br><span class="line">            &lt;div v-if&#x3D;&quot;isShow&quot; style&#x3D;&quot;height:100px;background-color:red&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">            v-show:</span><br><span class="line">            &lt;div v-show&#x3D;&quot;isShow&quot; style&#x3D;&quot;height:100px;background-color:green&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">            v-model:</span><br><span class="line">            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-model&#x3D;&quot;mTest&quot;&gt;</span><br><span class="line">            &#123;&#123;mTest&#125;&#125;</span><br><span class="line">            &lt;br&#x2F;&gt;&lt;!--给下面的input的value复制用v-bind:value&#x3D;&quot;mTest&quot;--&gt;</span><br><span class="line">            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-bind:value&#x3D;&quot;mTest&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        export default &#123;</span><br><span class="line">            data()&#123;</span><br><span class="line">                return&#123;</span><br><span class="line">                    text:&#39;我是v-text玩的东西&#39;,</span><br><span class="line">                    html:&#96;</span><br><span class="line">                        &lt;ul&gt;</span><br><span class="line">                            &lt;li&gt;哈哈&lt;&#x2F;li&gt;</span><br><span class="line">                            &lt;li&gt;呵呵&lt;&#x2F;li&gt;</span><br><span class="line">                        &lt;&#x2F;ul&gt;</span><br><span class="line">                        &#96;,</span><br><span class="line">                    isShow:false,</span><br><span class="line">                    mTest:&#39;haha&#39;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="class结合v-bind使用"><a href="#class结合v-bind使用" class="headerlink" title="class结合v-bind使用"></a>class结合v-bind使用</h4><ul>
-<li>需要根据可变的表达式的结果来给class赋值，就需要用到v-bind:class=”xxx”</li>
-<li>v-bind:属性名=”表达式”，最终表达式运算结束的结果赋值给该属性名<ul>
-<li>简化的写法是: <code>:属性名=&quot;表达式&quot;</code></li>
-</ul>
-</li>
-<li>class:结果的分类<ul>
-<li>一个样式: 返回字符串(三元表达式和key和样式的清单对象)</li>
-<li>多个样式：返回对象(样式做key，true或false做值)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">vue css You may need an appropriate loader to handle this file type.报错</span><br><span class="line">解决方法参考:https:&#x2F;&#x2F;github.com&#x2F;webpack&#x2F;webpack&#x2F;issues&#x2F;1470</span><br><span class="line">https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;5ba253651c3b</span><br><span class="line">加完要重启下服务器</span><br><span class="line">#案例#</span><br><span class="line">    &lt;template&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;div v-bind:class&#x3D;&quot;isRed?&#39;red&#39;:&#39;green&#39;&quot;&gt;1111111111&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div :class&#x3D;&quot;&#123;&#39;red&#39;:true,&#39;big&#39;:true&#125;&quot;&gt;多个class&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;!--复杂情况，通过遍历，根据当前对象的成绩,匹配key和样式的清单对象，用成绩做key,取对象的value,最终返回字符串做样式名--&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li v-for&#x3D;&quot;stu in stus&quot; :class&#x3D;&quot;&#123;&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;green&#39;&#125;[stu.score]&quot;&gt;</span><br><span class="line">                    &#123;&#123;stu.name&#125;&#125;</span><br><span class="line">                &lt;&#x2F;li&gt;</span><br><span class="line">            &lt;&#x2F;ul&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    &#x2F;&#x2F; class 取一个 返回一个字符串</span><br><span class="line">    &#x2F;&#x2F; 取多个 返回一个对象</span><br><span class="line">    &#x2F;&#x2F; 一个学生列表 每个人都有成绩 AB,根据当前学生的成绩匹配显示不同的颜色</span><br><span class="line">    &#x2F;&#x2F; A-red B-green</span><br><span class="line">        export default &#123;</span><br><span class="line">            data()&#123;</span><br><span class="line">                return &#123;</span><br><span class="line">                    isRed:false,</span><br><span class="line">                    stus:[&#123;name:&#39;jack&#39;,score:&#39;A&#39;&#125;,&#123;name:&#39;rose&#39;,score:&#39;B&#39;&#125;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .red&#123;</span><br><span class="line">            background-color: red;</span><br><span class="line">        &#125;</span><br><span class="line">        .green&#123;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line">        .big&#123;</span><br><span class="line">            font-size: 30px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="methods和v-on的使用"><a href="#methods和v-on的使用" class="headerlink" title="methods和v-on的使用"></a>methods和v-on的使用</h4><ul>
-<li>绑定事件的方法<ul>
-<li><code>v-on:事件名=&quot;表达式||函数名&quot;</code></li>
-<li>简写: <code>@事件名=&quot;表达式||函数名&quot;</code></li>
-</ul>
-</li>
-<li>函数名如果没有参数，可以省略()  只给一个函数名称</li>
-<li>声明组件内函数，在export default这个对象的根属性加上methods属性，其是一个对象<ul>
-<li>key 是函数名 值是函数体</li>
-</ul>
-</li>
-<li>在export default这个对象的根属性加上data属性，其是一个函数，返回一个对象<ul>
-<li>对象的属性是我们初始化的变量的名称</li>
-</ul>
-</li>
-<li>凡是在template中使用变量或者函数，不需要加this</li>
-<li>在script中使用就需要加上this</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div v-bind:class&#x3D;&quot;isRed?&#39;red&#39;:&#39;green&#39;&quot;&gt;1111111111&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div :class&#x3D;&quot;&#123;&#39;red&#39;:true,&#39;big&#39;:true&#125;&quot;&gt;多个class&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;!--复杂情况，通过遍历，根据当前对象的成绩,匹配成绩和样式的清单对象，用成绩做key,取对象的value,最终返回字符串做样式名--&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li v-for&#x3D;&quot;stu in stus&quot; :class&#x3D;&quot;&#123;&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;green&#39;&#125;[stu.score]&quot;&gt;</span><br><span class="line">                &#123;&#123;stu.name&#125;&#125;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--&lt;button v-on:click&#x3D;&quot;isRed &#x3D; !isRed&quot;&gt;点我大变化&lt;&#x2F;button&gt;--&gt;</span><br><span class="line">        &lt;button @click&#x3D;&quot;change&quot;&gt;点我大变化&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isRed:false,</span><br><span class="line">                stus:[&#123;name:&#39;jack&#39;,score:&#39;A&#39;&#125;,&#123;name:&#39;rose&#39;,score:&#39;B&#39;&#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; 声明函数,属于组件对象的</span><br><span class="line">        methods:&#123;</span><br><span class="line">            &#x2F;&#x2F;包含多个函数名做key,函数体做value</span><br><span class="line">            change()&#123;</span><br><span class="line">                &#x2F;&#x2F; 在script中能使用的对象，基本template中也能使用,但是</span><br><span class="line">                &#x2F;&#x2F; 在script中加this,template中不需要this</span><br><span class="line">                this.isRed &#x3D; !this.isRed;</span><br><span class="line">                this.stus.push(&#123;</span><br><span class="line">                    name:&#39;mick&#39;,score:&#39;A&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .red&#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .green&#123;</span><br><span class="line">        background-color: green;</span><br><span class="line">    &#125;</span><br><span class="line">    .big&#123;</span><br><span class="line">        font-size: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="v-for的使用"><a href="#v-for的使用" class="headerlink" title="v-for的使用"></a>v-for的使用</h4><ul>
-<li><p>可以使用操作数组 (item,index)</p>
-</li>
-<li><p>可以使用操作对象 (value,key,index)</p>
-</li>
-<li><p>key 是类似trank by 的一个属性</p>
-</li>
-<li><p>为的是告诉vue，js中的元素，与页面之间的关联，当识图删除元素的时候，是单个元素的删除而不是正版替换，所以需要关联其关系，设置(必须,性能)  </p>
-</li>
-<li><p>2.2.0+ 的版本里，当在组件中使用 v-for 时，key 现在是必须的。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li v-for&#x3D;&quot;(stu,index) in stus&quot; v-bind:key&#x3D;index&gt;</span><br><span class="line">            index:&#123;&#123;index&#125;&#125;,stu:&#123;&#123;stu&#125;&#125;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line"></span><br><span class="line">        使用对象的方式 &lt;hr&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;li v-for&#x3D;&quot;(value,key,i) in person&quot; v-bind:key&#x3D;&quot;i+&#39;-label&#39;&quot;&gt; </span><br><span class="line">                value:&#123;&#123;value&#125;&#125;</span><br><span class="line">                key:&#123;&#123;key&#125;&#125;</span><br><span class="line">                i:&#123;&#123;i&#125;&#125;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                stus:[&#123;name:&#39;jack&#39;,score:&#39;A&#39;&#125;,&#123;name:&#39;rose&#39;,score:&#39;B&#39;&#125;],</span><br><span class="line">                person:&#123;name:&#39;mick&#39;,alise:&#39;麦克&#39;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .red&#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .green&#123;</span><br><span class="line">        background-color: green;</span><br><span class="line">    &#125;</span><br><span class="line">    .big&#123;</span><br><span class="line">        font-size: 30px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">[Vue warn]: Duplicate keys detected: &#39;0&#39;. This may cause an update error. -b 警告解决方案:https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;4bc3c6688e09</span><br></pre></td></tr></table></figure>
-<h4 id="漂亮的列表"><a href="#漂亮的列表" class="headerlink" title="漂亮的列表"></a>漂亮的列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li v-for&#x3D;&quot;(hero,index) in heros&quot; :key&#x3D;&quot;index&quot;</span><br><span class="line">                :class&#x3D;&quot;&#123;&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;blue&#39;,&#39;C&#39;:&#39;green&#39;,&#39;D&#39;:&#39;pink&#39;&#125;[hero.score]</span><br><span class="line">&quot;&gt;</span><br><span class="line">                &#123;&#123;hero.name&#125;&#125;,&#123;&#123;hero.score&#125;&#125;</span><br><span class="line">                &lt;button @click&#x3D;&quot;del(index)&quot;&gt;删除英雄&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">        英雄姓名:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-model&#x3D;&quot;name&quot;&gt;&lt;br&#x2F;&gt;</span><br><span class="line">        英雄成绩:&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;&quot; v-model&#x3D;&quot;score&quot;&gt;</span><br><span class="line">        &lt;button @click&#x3D;&quot;addHero&quot;&gt;添加英雄&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                name:&#39;&#39;,</span><br><span class="line">                score:&#39;&#39;,</span><br><span class="line">                heros: [&#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    name: &#39;奥利安娜&#39;,</span><br><span class="line">                    score: &#39;A&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 2,</span><br><span class="line">                    name: &#39;崔斯特&#39;,</span><br><span class="line">                    score: &#39;B&#39;</span><br><span class="line">                &#125;,&#123;</span><br><span class="line">                    id: 3,</span><br><span class="line">                    name: &#39;妲己&#39;,</span><br><span class="line">                    score: &#39;C&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 4,</span><br><span class="line">                    name: &#39;阿拉斯加&#39;,</span><br><span class="line">                    score: &#39;D&#39;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            addHero()&#123;</span><br><span class="line">                &#x2F;&#x2F; 获取页面输入的值的时候,你用什么?v-model</span><br><span class="line">                this.heros.push(&#123;</span><br><span class="line">                    name:this.name,</span><br><span class="line">                    score:this.score</span><br><span class="line">                &#125;);</span><br><span class="line">                this.name&#x3D;&#39;&#39;;</span><br><span class="line">                this.score&#x3D;&#39;&#39;</span><br><span class="line">            &#125;,</span><br><span class="line">            del(index)&#123;</span><br><span class="line">                this.heros.splice(index,1)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .red &#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .green &#123;</span><br><span class="line">        background-color: yellowgreen;</span><br><span class="line">    &#125;</span><br><span class="line">    .blue &#123;</span><br><span class="line">        background-color: skyblue;</span><br><span class="line">    &#125;</span><br><span class="line">    .pink &#123;</span><br><span class="line">        background-color: hotpink;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">splice的使用 查看文档:http:&#x2F;&#x2F;www.w3school.com.cn&#x2F;jsref&#x2F;jsref_splice.asp</span><br></pre></td></tr></table></figure>
-
-<h4 id="父子组件的使用"><a href="#父子组件的使用" class="headerlink" title="父子组件的使用"></a>父子组件的使用</h4><ul>
-<li>父和子，使用的是父，被用的是子</li>
-<li>父需要声明子组件，引入子组件对象，声明方式如下</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import 子组件对象 from &#39;.&#x2F;xxx.vue&#39;;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        components:&#123;</span><br><span class="line">            组件名:子组件对象</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>案例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;headerVue&gt;&lt;&#x2F;headerVue&gt;</span><br><span class="line">        &lt;bodyVue&gt;&lt;&#x2F;bodyVue&gt;</span><br><span class="line">        &lt;footerVue&gt;&lt;&#x2F;footerVue&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F;引入子组件对象</span><br><span class="line">以下为父组件</span><br><span class="line">import headerVue from &#39;.&#x2F;components&#x2F;header.vue&#39;</span><br><span class="line">import bodyVue from &#39;.&#x2F;components&#x2F;body.vue&#39;</span><br><span class="line">import footerVue from &#39;.&#x2F;components&#x2F;footer.vue&#39;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;&#125;,</span><br><span class="line">        &#x2F;&#x2F;必须声明</span><br><span class="line">        components:&#123;</span><br><span class="line">            &#x2F;&#x2F;组件名(在模板中使用) :组件对象</span><br><span class="line">            headerVue:headerVue,</span><br><span class="line">            bodyVue, &#x2F;&#x2F;简写</span><br><span class="line">            footerVue,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">以下为子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        我是头</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    div&#123;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellowgreen;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>全局组件，使用更为方便，不需要声明，直接用</li>
-<li>在main.js中引入一次，在main.js中使用 <code>vue.component(&#39;组件名&#39;,组件对象);</code></li>
-<li>所有的组件就可以直接通过组件名，使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">main.js中组件全局声明</span><br><span class="line">&#x2F;&#x2F; 1:引入vue</span><br><span class="line">import Vue from &#39;vue&#39;;</span><br><span class="line">import App from &#39;.&#x2F;app.vue&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;引入子组件对象</span><br><span class="line">import headerVue from &#39;.&#x2F;components&#x2F;header.vue&#39;</span><br><span class="line">import bodyVue from &#39;.&#x2F;components&#x2F;body.vue&#39;</span><br><span class="line">import footerVue from &#39;.&#x2F;components&#x2F;footer.vue&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明全局组件</span><br><span class="line">Vue.component(&#39;headerVue&#39;,headerVue);</span><br><span class="line">Vue.component(&#39;bodyVue&#39;,bodyVue);</span><br><span class="line">Vue.component(&#39;footerVue&#39;,footerVue);</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el:&#39;.app&#39;,</span><br><span class="line">    render:c &#x3D;&gt; c(App)</span><br><span class="line">    &#x2F;&#x2F; 1: 当参数是一个的时候，小括号可以省略</span><br><span class="line">    &#x2F;&#x2F; 2: 当代码只有一行且是返回值的时候，可以省略打括号</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="父传子"><a href="#父传子" class="headerlink" title="父传子"></a>父传子</h4><ul>
-<li>父组件通过子组件的属性将值进行传递<ul>
-<li>方式有2:<ul>
-<li>常量:  prop1=”常量值”</li>
-<li>变量:  :prop2=”变量名”</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>子组件需要声明<ul>
-<li>根属性props:[‘prop1’,’prop2’]</li>
-<li>在页面中直接使用</li>
-<li>在js中应该如何使用prop1？   this.prop1获取<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;headerVue textone&#x3D;&quot;大&quot;&gt;&lt;&#x2F;headerVue&gt;</span><br><span class="line">        &lt;bodyVue :texttwo&#x3D;&quot;text2&quot;&gt;&lt;&#x2F;bodyVue&gt;</span><br><span class="line">        &lt;footerVue&gt;&lt;&#x2F;footerVue&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F;引入子组件对象</span><br><span class="line">import headerVue from &#39;.&#x2F;components&#x2F;header.vue&#39;</span><br><span class="line">import bodyVue from &#39;.&#x2F;components&#x2F;body.vue&#39;</span><br><span class="line">import footerVue from &#39;.&#x2F;components&#x2F;footer.vue&#39;</span><br><span class="line"></span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                text2:&#39;哈哈呵呵&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;&#125;,</span><br><span class="line">        &#x2F;&#x2F;必须声明</span><br><span class="line">        components:&#123;</span><br><span class="line">            &#x2F;&#x2F;组件名(在模板中使用) :组件对象</span><br><span class="line">            headerVue:headerVue,</span><br><span class="line">            bodyVue, &#x2F;&#x2F;简写</span><br><span class="line">            footerVue,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        我是&#123;&#123;textone&#125;&#125;头</span><br><span class="line">        &lt;button @click&#x3D;&quot;show&quot;&gt;从js中获取父组件值&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F;接受父组件值参数的设置</span><br><span class="line">        props:[&#39;textone&#39;],</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                alert(this.textone)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    div&#123;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellowgreen;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="看文档的对象分类"><a href="#看文档的对象分类" class="headerlink" title="看文档的对象分类"></a>看文档的对象分类</h4></li>
-</ul>
-</li>
-<li>1:全局的代表Vue.的</li>
-<li>2:实例的代表this.或者new Vue().</li>
-<li>3:选项代表 new Vue() 的参数</li>
-<li>或者 export default里边的属性</li>
-</ul>
-<h4 id="子向父组件通信（vuebus）-扩展"><a href="#子向父组件通信（vuebus）-扩展" class="headerlink" title="子向父组件通信（vuebus）(扩展)"></a>子向父组件通信（vuebus）(扩展)</h4><ul>
-<li>通过new Vue()这样的一个对象，来$on(‘事件名’,fn(prop1,pro2))</li>
-<li>另一个组件引入同一个vuebus,  来$emit(‘事件名’,prop1,pro2)</li>
-</ul>
---></li></ul>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2163,7 +2109,7 @@ npm –production 只有 dependencies</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">249</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

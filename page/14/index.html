@@ -158,6 +158,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" class="post-title-link" itemprop="url">移动端适配</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-09-08 08:01:42 / Modified: 08:03:58" itemprop="dateCreated datePublished" datetime="2019-09-08T08:01:42+08:00">2019-09-08</time>
+            </span>
+
+          
+            <span id="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" class="post-meta-item leancloud_visitors" data-flag-title="移动端适配" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="viewport适配方案"><a href="#viewport适配方案" class="headerlink" title="viewport适配方案"></a>viewport适配方案</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 放在页面头部</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    const WIDTH &#x3D; 750   &#x2F;&#x2F; 设计稿宽度</span><br><span class="line">    const mobileAdapter &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      let scale &#x3D; screen.width&#x2F;WIDTH  &#x2F;&#x2F; 缩放比</span><br><span class="line">      let content &#x3D; &#96;width&#x3D;$&#123;WIDTH&#125;, initial-scale&#x3D;$&#123;scale&#125;, maximum-scale&#x3D;$&#123;scale&#125;, minimum-scale&#x3D;$&#123;scale&#125;&#96;</span><br><span class="line">      let meta &#x3D; document.querySelector(&#39;meta[name&#x3D;viewport]&#39;)</span><br><span class="line">      if(!meta) &#123;</span><br><span class="line">        meta &#x3D; document.createElement(&#39;meta&#39;)</span><br><span class="line">        meta.setAttribute(&#39;name&#39;, &#39;viewport&#39;)</span><br><span class="line">        document.head.appendChild(meta)</span><br><span class="line">      &#125; </span><br><span class="line">      meta.setAttribute(&#39;content&#39;, content)</span><br><span class="line">    &#125;</span><br><span class="line">    mobileAdapter()</span><br><span class="line">    window.onorientationchange &#x3D; mobileAdapter  &#x2F;&#x2F; 监听屏幕旋转</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案二-vw写法"><a href="#方案二-vw写法" class="headerlink" title="方案二 vw写法"></a>方案二 vw写法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    const WIDTH &#x3D; 750</span><br><span class="line">    document.documentElement.style.setProperty(&#39;--width&#39;, (WIDTH&#x2F;100));</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">html &#123;</span><br><span class="line">font-size:00*window.innerWidth  &#x2F; 750</span><br><span class="line">&#125;</span><br><span class="line">const WIDTH &#x3D; 750 </span><br><span class="line">const setView &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    document.documentElement.style.fontSize &#x3D; (1–*screen.width&#x2F;WIDTH) + ‘px’</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如果使用了sass</span><br><span class="line">@function px2rem($px)&#123;</span><br><span class="line">    @return $px * 1rem &#x2F;100;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方案四"><a href="#方案四" class="headerlink" title="方案四"></a>方案四</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">弹性盒子适配</span><br><span class="line">VH REM高度 适配大屏幕电视机</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么时候使用</span><br><span class="line"></span><br><span class="line">fastclick是2017年之前的移动端延迟解决方案</span><br><span class="line">1. 当移动端因为一些原因未使用 &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width&quot;&gt;的时候使用。</span><br><span class="line">2. 2017年以前使用，现在一般不用。但为了应付面试仍然学习它，因为不少面试官还生活在2017年以前。</span><br><span class="line">如何使用</span><br><span class="line">document.addEventListener(&#39;DOMContentLoaded&#39;, function() &#123;</span><br><span class="line">    FastClick.attach(document.body)</span><br><span class="line">&#125;, false)</span><br><span class="line"></span><br><span class="line">onst FastClick &#x3D; (function()&#123;</span><br><span class="line"></span><br><span class="line">      function attach(root) &#123;</span><br><span class="line">        let targetElement &#x3D; null</span><br><span class="line">        root.addEventListener(&#39;touchstart&#39;, function () &#123;</span><br><span class="line">          targetElement &#x3D; event.target</span><br><span class="line">        &#125;)</span><br><span class="line">        root.addEventListener(&#39;touchend&#39;, function (event) &#123;</span><br><span class="line">          event.preventDefault()</span><br><span class="line">          let touch &#x3D; event.changedTouches[0]</span><br><span class="line">          let clickEvent &#x3D; document.createEvent(&#39;MouseEvents&#39;)</span><br><span class="line">          clickEvent.initMouseEvent(&#39;click&#39;, true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null)</span><br><span class="line">          clickEvent.forwardedTouchEvent &#x3D; true </span><br><span class="line">          targetElement.dispatchEvent(clickEvent)</span><br><span class="line">        &#125;)        </span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return &#123; attach &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line"></span><br><span class="line">    FastClick.attach(document.body)</span><br></pre></td></tr></table></figure>
+
+<h2 id="other-vscode快捷使用"><a href="#other-vscode快捷使用" class="headerlink" title="other vscode快捷使用"></a>other vscode快捷使用</h2><pre><code>div下写50个p
+div&gt;p[$]*50
+
+选中四行
+command+shift+p,Emmet Wrap,然后div*</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/08/29/%E6%B5%85%E6%9E%90URL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1253,222 +1345,6 @@ Vます＋つける　</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/23/2019-6-23-morning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/23/2019-6-23-morning/" class="post-title-link" itemprop="url">2019_6_23_morning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-23 22:49:25 / Modified: 22:56:50" itemprop="dateCreated datePublished" datetime="2019-06-23T22:49:25+08:00">2019-06-23</time>
-            </span>
-
-          
-            <span id="/2019/06/23/2019-6-23-morning/" class="post-meta-item leancloud_visitors" data-flag-title="2019_6_23_morning" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/23/2019-6-23-morning/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/23/2019-6-23-morning/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <iframe src="https://quizlet.com/412891047/write/embed?i=1po46r&x=1jj1" height="500" width="100%" style="border:0"></iframe>
-
-<p>敏捷，快速（两个）
-手早い（てばやい）　素早い（すばやい）</p>
-<p>1.得分2.重点
-ポイント</p>
-<p>不由自主，不小心。举例：看美女，坐过站
-つい</p>
-<p>动不动（一般用于不好）
-がち</p>
-<p>三类动词特殊否定（４个） Vない-&gt;1.ず2.ぬ3.ん4.ざる</p>
-<p>真实的自己，自己的心情
-自分らしい</p>
-<p>纠结，不满
-葛藤（かっとう）</p>
-<p>噂（うわさ）をすれば影（かげ）がさす
-说曹操，曹操就到。</p>
-<p>在背地里说坏话
-陰(かげ)で悪口（わるぐち）を言う</p>
-<p>表达方式
-表現（ひょうげん）</p>
-<p>心情
-気持ち（きもち）</p>
-<p>踏踏实实，端正（强调态度，两个）
-1.きちんと2.ちゃんと</p>
-<p>踏实（强调行动）
-しっかり</p>
-<p>请教（两个，重点考）
-1.教わる（おそわる）2.ならう</p>
-<p>认真，仔细
-丁寧（ていねい）</p>
-<p>1.事例，案例2.小盒子，化妆盒
-ケース</p>
-<p>1.丈二和尚摸不着头2.云里雾里
-チンプンカンプン</p>
-<p>～を必要とする
-把～当作必要</p>
-<p>不是~吗？（一辈子不用翻译）
-~ではないか</p>
-<p>羽生善治（はぶ　よしはる）
-日本将棋大师</p>
-<p>してしまう（两个意思）
-1.坏的意思居多2.完成</p>
-<p>种类
-種（しゅ）</p>
-<p>工匠的招数
-職人（しょくにん）技（わざ）</p>
-<p>思念
-思い</p>
-<p>用…来玩（自动词）；举例玩智能手机
-～で遊ぶ;スマートホンで遊ぶ</p>
-<p>1.完全具备2.完善
-完備（かんび）</p>
-<p>car navigation ;汽车导航（系统）
-カーナビ</p>
-<p>充电【名・自他・サ变/三类】
-充電（じゅうでん）</p>
-<p>电波，信号 
-電波[でんぱ]</p>
-<p>成立【自动词・五段/一类】
-成り立つ（なりたつ）</p>
-<p>众口一词
-口を揃える（そろえる）</p>
-<p>强加
-押し付ける（おしつける）</p>
-<p>忍不住~
-〜ずにはいられない</p>
-<p>态度
-姿勢（しせい）</p>
-<p>根深蒂固【形容词/イ形容词】
-根強い[ねづよい]</p>
-<p>已经，早就
-もはや
- 早就已经
-片付ける（かたづける）</p>
-<p>并非…
-わけではない</p>
-<p>劝告
-お勧め（おすすめ）</p>
-<p>注意到，发现到
-気付き（きづき）</p>
-<p>便签
-メモ</p>
-<p>重新审视
-見直す</p>
-<p>按照日期顺序
-日付（ひづけ）の順（じゅん）で</p>
-<p>钻牛角尖（贬义）
-思い込み</p>
-<p>溺水；沉迷
-溺れる（おぼれる）</p>
-<p>问，打听【他动词・一段/二类】
-問いかける</p>
-<p>把~分开
-〜を別(べつ)にする</p>
-<p>1.回顾<del>2.照顾</del>
-顧みる（かえりみる）</p>
-<p>尝试
-試みる（こころみる）</p>
-<p>回顾
-振り返る</p>
-<p>不在乎
-問わず（とわず）</p>
-<p>不停的
-どんどん</p>
-<p>平均一点
-ずつ</p>
-<p>长到身上，引申为（知识，习惯，技术等）成为自己的东西。
-身に付く （みにつく）</p>
-<p>畅销书
-ベストセラー</p>
-<p>急急忙忙
-せっせと</p>
-<p>不管，姑且先。举例：不管怎么样，先向社长报道
-とりあえず</p>
-<p>显眼
-目立つ （めたつ）</p>
-<p>心情舒服（两个）
-1.心地（ここち）がよい　2.きもちがいい</p>
-<p>~起来很舒服,举例：摸起来舒服
-Vます＋ごこちよい，触り心地良い（ごこちよい）</p>
-<p>居心地[いごこち] 
-心情，感觉。</p>
-<p>作法
-作法[さほう]</p>
-<p>引起大家兴趣，讨论
-話題作（わだいさく）</p>
-<p>抓住
-掴む（つかむ）</p>
-<p>方便
-都合（つごう）</p>
-<p>【英】pendant ;坠，耳坠，挂件
-ペンダント</p>
-<p>【英】key holder ;钥匙（挂）圈。
-キーホルダー</p>
-<p>家长
-保護者（ほごしゃ） </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1540,7 +1416,7 @@ Vます＋ごこちよい，触り心地良い（ごこちよい）</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">249</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
