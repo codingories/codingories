@@ -158,6 +158,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/" class="post-title-link" itemprop="url">高级前端养成32js专精01之手写EventHub</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-05 14:07:34" itemprop="dateCreated datePublished" datetime="2020-08-05T14:07:34+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-06 10:05:37" itemprop="dateModified" datetime="2020-08-06T10:05:37+08:00">2020-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js%E4%B8%93%E7%B2%BE/" itemprop="url" rel="index"><span itemprop="name">js专精</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成32js专精01之手写EventHub" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/05/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9032js%E4%B8%93%E7%B2%BE01%E4%B9%8B%E6%89%8B%E5%86%99EventHub/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一. 解题思路</p>
+<ol>
+<li>确定 API</li>
+<li>添加测试用例</li>
+<li>让测试用例通过</li>
+<li>重构代码</li>
+</ol>
+<p>二. 确定 API</p>
+<ol>
+<li>EventHub#on</li>
+<li>EventHub#off</li>
+<li>EventHub#emit</li>
+</ol>
+<p>三. 第一个知识点使用 ts-node 创建项目</p>
+<ol>
+<li> 创建 EVENTHUB 文件夹</li>
+<li> 创建 src/index.ts</li>
+<li> 创建 ts-node 支持</li>
+<li> 安装 ts-node</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">如果有的话先卸载 确定安装最新版</span><br><span class="line">ts-node -v</span><br><span class="line">which ts-node</span><br><span class="line">yarn global add</span><br><span class="line"></span><br><span class="line">开始安装</span><br><span class="line">yarn global add ts-node</span><br><span class="line">(如果有bug @8.3.0)</span><br><span class="line"></span><br><span class="line">index.ts</span><br><span class="line">const a &#x3D; ‘hi’</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
+
+5. 运行 ts-node src/index.ts
+6. 新建test/index.ts 用来做测试用例
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">src&#x2F;index.ts</span><br><span class="line">class EventHub &#123;&#125;</span><br><span class="line">export default EventHub;</span><br><span class="line"></span><br><span class="line">test&#x2F;index.ts</span><br><span class="line">import EventHub from ‘..&#x2F;src&#x2F;index’;</span><br><span class="line">console.log(EventHub)</span><br><span class="line">尝试运行有没有打印出来</span><br><span class="line">console.log(EventHub);</span><br></pre></td></tr></table></figure></code></pre>
+<p>四. 第二个知识点使用断言 console.assert</p>
+<ol>
+<li>第一个测试用例，断言测试 eventHub 是一个对象是真的</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test&#x2F;index.ts</span><br><span class="line">import EventHub from ‘..&#x2F;src&#x2F;index’;</span><br><span class="line">console.log(EventHub)</span><br><span class="line">const eventHub &#x3D; new EventHub();</span><br><span class="line">console.log(assert(eventHub instance Object &#x3D;&#x3D;&#x3D; true， “eventHub是一个对象”))</span><br><span class="line">console.assert(eventHub instance Object &#x3D;&#x3D;&#x3D; true， “eventHub是一个对象”))</span><br><span class="line">ts-node test&#x2F;index.ts 如果运行什么东西都没就是对的，否则报错</span><br></pre></td></tr></table></figure>
+
+<p>五. 实现on</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class EventHub &#123;</span><br><span class="line">  cache &#x3D; &#123;&#125;;</span><br><span class="line">  &#x2F;&#x2F; &#123;</span><br><span class="line">  &#x2F;&#x2F;  &#39;楚天都市报&#39;: [fn1, fn2, fn3],</span><br><span class="line">  &#x2F;&#x2F;  &#39;羊城晚报&#39; : [fn1, fn2, fn3]</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">  &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName &#x3D; 楚天, fn</span><br><span class="line">    if(this.cache[eventName] &#x3D;&#x3D;&#x3D; undefined)&#123;</span><br><span class="line">      this.cache[eventName] &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    const array &#x3D; this.cache[eventName];</span><br><span class="line">    array.push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>六. 实现emit，并测试成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">emit(eventName)&#123;</span><br><span class="line">    let array &#x3D; this.cache[eventName];</span><br><span class="line">    if(array&#x3D;&#x3D;&#x3D; undefined)&#123;</span><br><span class="line">      array &#x3D; []</span><br><span class="line">    &#125;</span><br><span class="line">    array.forEach(fn &#x3D;&gt; &#123;</span><br><span class="line">      fn();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 测试代码</span><br><span class="line">let called &#x3D; false;</span><br><span class="line">eventHub.on(&quot;xxx&quot;, ()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&quot;被调用&quot;)</span><br><span class="line">  called &#x3D; true;</span><br><span class="line">  console.log(&#39;called:&#39;+ called);</span><br><span class="line">&#125;);</span><br><span class="line">eventHub.emit(&quot;xxx&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>七. 优化代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">emit(eventName)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 this.cache[eventName] 数组里面的 fn 全部依次调用</span><br><span class="line">    (this.cache[eventName] || []).forEach(fn &#x3D;&gt; fn());</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>八. 完成参数传递</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;indext.ts</span><br><span class="line">class EventHub &#123;</span><br><span class="line">  cache &#x3D; &#123;&#125;;</span><br><span class="line">  &#x2F;&#x2F; &#123;</span><br><span class="line">  &#x2F;&#x2F;  &#39;楚天都市报&#39;: [fn1, fn2, fn3],</span><br><span class="line">  &#x2F;&#x2F;  &#39;羊城晚报&#39; : [fn1, fn2, fn3]</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 推进 this.cache[eventName] 数组</span><br><span class="line">    &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName &#x3D; 楚天, fn</span><br><span class="line">    this.cache[eventName] &#x3D; this.cache[eventName] || []</span><br><span class="line">    this.cache[eventName].push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName, data)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 this.cache[eventName] 数组里面的 fn 全部依次调用</span><br><span class="line">    (this.cache[eventName] || []).forEach(fn &#x3D;&gt; fn(data));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default EventHub;</span><br><span class="line">&#x2F;&#x2F; test&#x2F;index.ts</span><br><span class="line">import EventHub from &#39;..&#x2F;src&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 尝试运行有没有打印出来</span><br><span class="line">const eventHub &#x3D; new EventHub();</span><br><span class="line">console.assert(eventHub instanceof Object, &#39;eventHub是一个对象&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; on emit</span><br><span class="line">let called &#x3D; false;</span><br><span class="line">eventHub.on(&quot;xxx&quot;, (y)&#x3D;&gt;&#123;</span><br><span class="line">  called &#x3D; true;</span><br><span class="line">  console.log(&#39;called:&#39;+ called);</span><br><span class="line">  console.log(y);</span><br><span class="line">  console.assert(y &#x3D;&#x3D;&#x3D; &quot;今天天气不错&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">eventHub.emit(&quot;xxx&quot;, &quot;今天天气不错&quot;);</span><br></pre></td></tr></table></figure>
+<p>九. 初步实现off</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">off(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 从 this.cache[eventName] 数组删除</span><br><span class="line">    this.cache[eventName] &#x3D; this.cache[eventName] || [];</span><br><span class="line">    let index &#x3D; undefined;</span><br><span class="line">    for (let i &#x3D; 0; i &lt; this.cache[eventName].length; i++)&#123;</span><br><span class="line">      if(this.cache[eventName][i] &#x3D;&#x3D;&#x3D; fn)&#123;</span><br><span class="line">        index &#x3D; i;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(index &#x3D;&#x3D;&#x3D; undefined)&#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      this.cache[eventName].splice(index,1)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>十. 优化off代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class EventHub &#123;</span><br><span class="line">  cache &#x3D; &#123;&#125;;</span><br><span class="line">  &#x2F;&#x2F; &#123;</span><br><span class="line">  &#x2F;&#x2F;  &#39;楚天都市报&#39;: [fn1, fn2, fn3],</span><br><span class="line">  &#x2F;&#x2F;  &#39;羊城晚报&#39; : [fn1, fn2, fn3]</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line">  on(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 推进 this.cache[eventName] 数组</span><br><span class="line">    &#x2F;&#x2F; eventName订报纸,fn报纸放到邮箱</span><br><span class="line">    &#x2F;&#x2F; eventName &#x3D; 楚天, fn</span><br><span class="line">    this.cache[eventName] &#x3D; this.cache[eventName] || [];</span><br><span class="line">    this.cache[eventName].push(fn);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(eventName, data?)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 this.cache[eventName] 数组里面的 fn 全部依次调用</span><br><span class="line">    (this.cache[eventName] || []).forEach(fn &#x3D;&gt; fn(data));</span><br><span class="line">  &#125;</span><br><span class="line">  off(eventName, fn)&#123;</span><br><span class="line">    &#x2F;&#x2F; 把 fn 从 this.cache[eventName] 数组删除</span><br><span class="line">    let index &#x3D; indexOf(this.cache[eventName], fn);</span><br><span class="line">    if(index &#x3D;&#x3D;&#x3D; -1)return;</span><br><span class="line">    this.cache[eventName].splice(index,1)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default EventHub;</span><br><span class="line"></span><br><span class="line">function indexOf(array, item) &#123;</span><br><span class="line">  if(array &#x3D;&#x3D;&#x3D; undefined) return -1;</span><br><span class="line">  let index &#x3D; -1;</span><br><span class="line">  for (let i &#x3D; 0; i &lt; array.length; i++)&#123;</span><br><span class="line">    if(array[i] &#x3D;&#x3D;&#x3D; item)&#123;</span><br><span class="line">      index &#x3D; i;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>十一. 优化测试代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import EventHub from &#39;..&#x2F;src&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const test1 &#x3D; (message)&#x3D;&gt;&#123;</span><br><span class="line">  const eventHub &#x3D; new EventHub();</span><br><span class="line">  console.assert(eventHub instanceof Object, &#39;eventHub是一个对象&#39;);</span><br><span class="line">  console.log(message)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const test2 &#x3D; (message)&#x3D;&gt;&#123;</span><br><span class="line">  const eventHub &#x3D; new EventHub();</span><br><span class="line">  &#x2F;&#x2F; on emit</span><br><span class="line">  let called &#x3D; false;</span><br><span class="line">  eventHub.on(&quot;xxx&quot;, (y)&#x3D;&gt;&#123;</span><br><span class="line">    called &#x3D; true;</span><br><span class="line">    console.assert(y &#x3D;&#x3D;&#x3D; &quot;今天天气不错&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">  eventHub.emit(&quot;xxx&quot;, &quot;今天天气不错&quot;);</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    console.assert(called &#x3D;&#x3D;&#x3D; true)</span><br><span class="line">    console.log(message)</span><br><span class="line">  &#125;,1000)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const test3 &#x3D; (message)&#x3D;&gt;&#123;</span><br><span class="line">  const eventHub &#x3D; new EventHub();</span><br><span class="line">  &#x2F;&#x2F; 另一个完全不同的送报纸公司</span><br><span class="line">  let called &#x3D; false;</span><br><span class="line">  const fn1 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    called &#x3D; true;</span><br><span class="line">  &#125;;</span><br><span class="line">  eventHub.on(&quot;yyy&quot;, fn1);</span><br><span class="line">  eventHub.off(&quot;yyy&quot;, fn1);</span><br><span class="line">  eventHub.emit(&quot;yyy&quot;);</span><br><span class="line">  setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    console.assert(called &#x3D;&#x3D;&#x3D; false);</span><br><span class="line">    console.log(message)</span><br><span class="line">  &#125;,1000);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test1(&quot;EventHub 可以创建对象&quot;);</span><br><span class="line">test2(&quot;.on 了之后 .emit, 会触发 .on的函数&quot;);</span><br><span class="line">test3(&quot;.off 有用&quot;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/08/02/41JS%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3-DOM%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2668,203 +2812,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">高级前端养成14nodeJS框架04之Cypress-自动化测试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-10 17:46:27 / Modified: 17:47:59" itemprop="dateCreated datePublished" datetime="2020-07-10T17:46:27+08:00">2020-07-10</time>
-            </span>
-
-          
-            <span id="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成14nodeJS框架04之Cypress-自动化测试" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>Cypress 介绍</li>
-</ol>
-<ul>
-<li>v1.0.0 - 2017 年 10 月，基于 Electron (Chromium + Node.js), 多平台支持，但不支持 IE</li>
-<li>v2.0.0 - 2018 年 2 月，升级至 Chromium 59</li>
-<li>v3.0.0 - 2018 年 5 月，支持 Node 任务，可以用来连接数据库，读文件等</li>
-<li>v4.0.0 - 2020 年 2 月，支持 Firefox 和基于 Chromium 的 Edge 浏览器</li>
-</ul>
-<ol start="2">
-<li>Cypress 优点</li>
-</ol>
-<ul>
-<li>界面美观友好</li>
-<li>支持模拟手机</li>
-<li>每一步操作截图</li>
-<li>全程录屏</li>
-<li>支持 debug,随时暂停</li>
-<li>自动等待 UI 更新，减少异步代码</li>
-</ul>
-<ol start="3">
-<li>使用 Cypress</li>
-</ol>
-<ul>
-<li><p>步骤</p>
-<ul>
-<li>创建目录 cypress-demo-1</li>
-<li>使用 VSCode 或 WS 打开目录</li>
-<li>局部安装 cypress，方法请看安装方法 2</li>
-<li>输入./node_modules/.bin/cypress open</li>
-<li>如果你是局部安装，就输入./node_modules/.bin/cypress open</li>
-<li>然后你就看到了 Cypress 界面</li>
-<li>同时 Cypress 会提示你是否要安装案例，选择是</li>
-<li>示例文件可随时删除，不用心疼</li>
-<li>同时 Cypress 会创建</li>
-</ul>
-</li>
-<li><p>安装方式一</p>
-<ul>
-<li>可以用浏览器<a href="https://www.cypress.io/" target="_blank" rel="noopener">下载</a>，解压，然后双击 exe 运行</li>
-<li>最好解压的时候就选好安装目录，否则移动目录很耗时</li>
-<li>但是这个解压过程比较考验 cpu 硬盘性能，且耗时长</li>
-<li>这种方式不支持局部安装，只能把目录拖到界面里使用</li>
-</ul>
-</li>
-<li><p>安装方式二</p>
-<ul>
-<li>用 npm 或 yarn 安装</li>
-<li>安装命令: yarn add –dev cypress 或 npm i -D cypress</li>
-<li>但这样也不安装成功，因为有墙</li>
-<li>破墙办法 1，使用神奇教程,将*.cypress.io 加入白名单，然后运行安装命令</li>
-<li>破墙办法 2，下载 cypress.zip,然后在安装命令前面加上 CYPRESS_INSTALL_BINARY=/绝对路径/cypress.zip</li>
-<li>比如我的命令就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CYPRESS_INSTALL_BINARY&#x3D;&#x2F;Users&#x2F;ories&#x2F;Desktop&#x2F;cypress.zip yarn add --dev cypress</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="4">
-<li>运行 example</li>
-</ol>
-<ul>
-<li>界面<ul>
-<li>直接在 GUI 界面单机 acions.spec.js</li>
-<li>然后你就会看到自动化测试过程</li>
-</ul>
-</li>
-<li>命令<ul>
-<li>cypress run –spec “cypress/integration/examples/actions.spec.js”</li>
-<li>在上面命令后面加上 –headed 有惊喜</li>
-</ul>
-</li>
-<li>用 WebStorm 更惊喜<ul>
-<li>先安装 cypress 插件(装完后会提示你安装 reporter)</li>
-<li>然后打开 cypress-demo-1,找到 actions.spec.js,按照视频操作</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>不运行 examples</li>
-</ol>
-<ul>
-<li>方法一<ul>
-<li>直接删掉 examples 目录</li>
-</ul>
-</li>
-<li>方法二<ul>
-<li>将 example/从 integration/目录移走即可</li>
-</ul>
-</li>
-<li>方法三<ul>
-<li>在 cypress.json 里面加上”ignoreTestFiles”:[“<em>.hot-update.js”,”**/examples/</em>.*”]</li>
-</ul>
-</li>
-<li>这样就不会运行 examples 里<ul>
-<li>./node_modules/.bin/cypress run</li>
-</ul>
-</li>
-</ul>
-<ol start="6">
-<li>开始写自己的测试</li>
-</ol>
-<ul>
-<li>./node_modules/.bin/cypress open</li>
-<li>如果 open 比较麻烦可以./node_modules/.bin/cypress run</li>
-</ul>
-<ol start="7">
-<li>只测试重要的页面</li>
-</ol>
-<ul>
-<li>比如登录，加入购物车，下单</li>
-<li>不要测样式，只测功能</li>
-</ul>
-<ol start="8">
-<li>如何写测试api</li>
-</ol>
-<ul>
-<li>webstorm 自动提示和看文档</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2936,7 +2883,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">249</span>
+          <span class="site-state-item-count">250</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2981,7 +2928,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
