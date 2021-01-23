@@ -158,6 +158,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/" class="post-title-link" itemprop="url">程序员的算法课之03链表00</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-23 15:54:09 / Modified: 15:56:17" itemprop="dateCreated datePublished" datetime="2021-01-23T15:54:09+08:00">2021-01-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/" class="post-meta-item leancloud_visitors" data-flag-title="程序员的算法课之03链表00" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="什么是链表"><a href="#什么是链表" class="headerlink" title="什么是链表"></a>什么是链表</h4><ul>
+<li>链表(Linked list)是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下
+一个节点的指针(Pointer)</li>
+<li>链表的分类<ul>
+<li>单向链表，不做特殊声明默认为单向链表，面试考察中最常考的</li>
+<li>双向链表
+<img src="/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8.png" alt="单向链表"></li>
+<li>循环链表
+<img src="/2021/01/23/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B03%E9%93%BE%E8%A1%A800/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8.png" alt="双向链表"></li>
+</ul>
+</li>
+</ul>
+<h4 id="链表特性"><a href="#链表特性" class="headerlink" title="链表特性"></a>链表特性</h4><ul>
+<li>每个节点都知道它下一个节点的地址</li>
+<li>链表的第一个节点可以代表整个链表</li>
+<li>查找一个节点或者访问特定编号的节点则需要O(n)的时间</li>
+</ul>
+<h4 id="链表定义"><a href="#链表定义" class="headerlink" title="链表定义"></a>链表定义</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">this</span>.head = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.length = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="为啥要用链表"><a href="#为啥要用链表" class="headerlink" title="为啥要用链表?"></a>为啥要用链表?</h4><ul>
+<li>不确定数据结构的容量时
+(1) 数组大小调整的成本非常大，所以我们需要提前设置容量
+(2)通常我们不知道我们需要多少空间花费</li>
+<li>常用于组织<font color="skyblue">删除、检索较少，而添加、遍历较多的数据</font></li>
+</ul>
+<h4 id="如何实现链表以及基础操作"><a href="#如何实现链表以及基础操作" class="headerlink" title="如何实现链表以及基础操作"></a>如何实现链表以及基础操作</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ListNode = <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.val = element;</span><br><span class="line">  <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(node)&#123;</span><br><span class="line">    <span class="keyword">this</span>.head = node?node:<span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span>(index)&#123;</span><br><span class="line">    <span class="keyword">this</span>.preCheck(index)</span><br><span class="line">    <span class="comment">// 分解成得到当前node</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.getNode(index).val;</span><br><span class="line">  &#125;</span><br><span class="line">  getNode(index)&#123;</span><br><span class="line">    <span class="keyword">let</span> cur = <span class="keyword">this</span>.head;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>; i&lt; index;i++)&#123;</span><br><span class="line">      cur = cur.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span>(index, value)&#123;</span><br><span class="line">    <span class="keyword">this</span>.preCheck(index);</span><br><span class="line">    <span class="keyword">let</span> currentNode = <span class="keyword">this</span>.getNode(index);</span><br><span class="line">    currentNode.val = value</span><br><span class="line">  &#125;</span><br><span class="line">  add(index, value)&#123;</span><br><span class="line">    <span class="comment">// 不要直接改变某个next值</span></span><br><span class="line">    <span class="comment">// 这里的边界判断需要注意</span></span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt; <span class="keyword">this</span>.getLength())&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'index is invalid'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> ListNode(value);</span><br><span class="line">    <span class="comment">// 头节点特殊情况</span></span><br><span class="line">    <span class="keyword">if</span>(index === <span class="number">0</span>)&#123;</span><br><span class="line">      newNode.next = <span class="keyword">this</span>.head</span><br><span class="line">      <span class="keyword">this</span>.head = newNode</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> preNode = <span class="keyword">this</span>.getNode(index - <span class="number">1</span>)</span><br><span class="line">    newNode.next = preNode.next</span><br><span class="line">    preNode.next = newNode</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 利用dummyNode取消特殊头节点</span></span><br><span class="line">  addWithDummyNode(index, value)&#123;</span><br><span class="line">    <span class="comment">// 不要直接改变某个next值</span></span><br><span class="line">    <span class="comment">// 这里的边界判断需要注意</span></span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt; <span class="keyword">this</span>.getLength())&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'index is invalid'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> dummy = <span class="keyword">new</span> ListNode(<span class="string">'dummy'</span>);</span><br><span class="line">    dummy.next = <span class="keyword">this</span>.head;</span><br><span class="line">    <span class="keyword">let</span> preNode = dummy;</span><br><span class="line">    <span class="keyword">while</span>(index !== <span class="number">0</span>)&#123;</span><br><span class="line">      preNode = preNode.next;</span><br><span class="line">      index = index - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> ListNode(value);</span><br><span class="line">    newNode.next = preNode.next</span><br><span class="line">    preNode.next = newNode</span><br><span class="line">    <span class="keyword">this</span>.head = dummy.next</span><br><span class="line">  &#125;</span><br><span class="line">  remove(index)&#123;</span><br><span class="line">    <span class="keyword">this</span>.preCheck(index);</span><br><span class="line">    <span class="keyword">let</span> preNode = <span class="keyword">this</span>.getNode(index - <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 头节点特殊情况</span></span><br><span class="line">    <span class="keyword">if</span>(index === <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>.head = <span class="keyword">this</span>.head.next;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    preNode.next = preNode.next.next</span><br><span class="line">  &#125;</span><br><span class="line">  removeWithDummyNode(index)&#123;</span><br><span class="line">    <span class="keyword">this</span>.preCheck(index)</span><br><span class="line">    <span class="keyword">let</span> dummy = <span class="keyword">new</span> ListNode(<span class="string">'dummy'</span>);</span><br><span class="line">    dummy.next = <span class="keyword">this</span>.head;</span><br><span class="line">    <span class="keyword">let</span> preNode = dummy;</span><br><span class="line">    <span class="keyword">while</span>(index !== <span class="number">0</span>)&#123;</span><br><span class="line">      preNode = preNode.next;</span><br><span class="line">      index = index - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    preNode.next = preNode.next.next</span><br><span class="line">    <span class="keyword">this</span>.head = dummy.next;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getLength()&#123;</span><br><span class="line">    <span class="comment">// 这里需要注意细节，用cur拷贝head指针</span></span><br><span class="line">    <span class="keyword">let</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> cur = <span class="keyword">this</span>.head;</span><br><span class="line">    <span class="keyword">while</span> (cur !== <span class="literal">null</span>)&#123;</span><br><span class="line">      length = length + <span class="number">1</span></span><br><span class="line">      cur = cur.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> length</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 检查边界函数</span></span><br><span class="line">  preCheck(index)&#123;</span><br><span class="line">    <span class="comment">// 链表通过指针去传递</span></span><br><span class="line">    <span class="comment">// 如果链表长度是5 传入 index 10 就是不合法的</span></span><br><span class="line">    <span class="comment">// 如果链表长度是0，传入负数也是不合法, 需要做边界处理</span></span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt; <span class="keyword">this</span>.getLength() - <span class="number">1</span> )&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'index is invalid'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="链表基本操作总结"><a href="#链表基本操作总结" class="headerlink" title="链表基本操作总结"></a>链表基本操作总结</h4><ul>
+<li>如果链表的数据结构发生变化，则需要考虑使用dummy node， 例如add和remove的操作</li>
+<li>链表节点只能通过前一个节点的指针访问 在将当前节点分配给新节点之前，请不要更改上一个节点的next 指针，这样会丢失当前节点</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2021/01/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%AE%97%E6%B3%95%E8%AF%BE%E4%B9%8B02%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -950,7 +1068,7 @@ Output:{1,2,3,4,5,6}
 <li>将代码上传到多个远程仓库</li>
 </ol>
 <ul>
-<li>添加另外一个名字的远程仓库git remote add zui-2 <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#111;&#109;">&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#111;&#109;</a>:codingories/react-wheel-wepack-2.git</li>
+<li>添加另外一个名字的远程仓库git remote add zui-2 <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>:codingories/react-wheel-wepack-2.git</li>
 <li>git push -u zui-2 main</li>
 </ul>
 <ol start="2">
@@ -1925,7 +2043,7 @@ Entrypoints:index (276 KiB),index.js,因为开发模式下index把react也打包
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-29 22:32:54" itemprop="dateModified" datetime="2020-12-29T22:32:54+08:00">2020-12-29</time>
+                <time title="Modified: 2021-01-05 22:27:54" itemprop="dateModified" datetime="2021-01-05T22:27:54+08:00">2021-01-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3178,217 +3296,95 @@ Entrypoints:index (276 KiB),index.js,因为开发模式下index把react也打包
 <li>下行（E到D.A到G）</li>
 <li>为什么D到C不好，bDdim7=省略了根音的C7b9,注意:C7类型的和弦解决到Cmaj7的听觉效果是不好的</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/" class="post-title-link" itemprop="url">63虚拟DOM与DOMdiff</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-19 22:05:28" itemprop="dateCreated datePublished" datetime="2020-10-19T22:05:28+08:00">2020-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-23 21:27:23" itemprop="dateModified" datetime="2020-10-23T21:27:23+08:00">2020-10-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">前端基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/" class="post-meta-item leancloud_visitors" data-flag-title="63虚拟DOM与DOMdiff" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/19/63%E8%99%9A%E6%8B%9FDOM%E4%B8%8EDOMdiff/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-虚拟DOM"><a href="#1-虚拟DOM" class="headerlink" title="1. 虚拟DOM"></a>1. 虚拟DOM</h3><ul>
-<li>DOM操作慢?<ul>
-<li>这句话类似于:刘翔矮(对比姚明) </li>
-<li>DOM操作慢是对比JS原生API,比如数组操作</li>
-<li>任何基于DOM的库(Vue/React)都不可能在操作DOM时比DOM快</li>
+<ol start="29">
+<li>修饰减七和弦</li>
+</ol>
+<ul>
+<li>它既不上行也不下行，老老实实原地进行改变
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb29-1.png"></li>
+<li>延后解决，增加结尾戏剧性
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb29-2.png"></li>
+<li>这个修饰减七和弦能不能当作延后解决的和弦，运用在除结尾主音和弦之外的地方？
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb29-3.png">
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb29-4.png"></li>
+<li>实际运用比较多
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb29-5.png"></li>
 </ul>
-</li>
-<li>为什么网上有这样的耀眼？<ul>
-<li>因为在某些情况下，虚拟DOM快</li>
+<ol start="30">
+<li>经过减七之替换进行与特殊半减七</li>
+</ol>
+<ul>
+<li>C-G-AM -&gt; C-G/B-Am
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb30-1.png">
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb30-2.png">
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb30-3.png"></li>
+<li>特殊半减7，C的莉迪亚调音阶,原本F到G加入#F7-5
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb30-4.png">
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb30-5.png"></li>
 </ul>
-</li>
-<li>例子1.减少DOM操作<ul>
-<li>虚拟DOM可以将多次操作合并为一次操作，如果你添加1000个节点，却是一个接一个操作的,减少dom操作的次数。</li>
-<li>虚拟DOM借助DOM diff可以把多余的操作省略，页面上有990个节点，添加10个节点，把之前的990个和现在的10个全部都放入innerHTML中，那么就多渲染了很多东西，实际上只有10个是新增的,但是vue/react可以通过对比只增加10个，减少dom操作的范围。</li>
+<ol start="31">
+<li>C和弦开头后的新鲜和弦</li>
+</ol>
+<ul>
+<li>1645,1364,1232…
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb31-1.png"></li>
+<li>1级后2级的属7降5
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb31-2.png"></li>
+<li>对称式全音阶，从主音开始，不断往上以大二度的距离叠加音阶，音阶的推断口诀是全全全全全全
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb31-3.png"></li>
+<li>C 调全音阶的是C D E #F #G #A,C-D7-5 </li>
+<li>从主和弦Cmaj7进行到B7</li>
+<li>大小调的根因借用，降2，降3</li>
+<li>Cmaj7-bE,原本应该是大调的三级Em,这里借用了小调的3级做变换即,bE</li>
+<li>Cmaj7-&gt;Fm7循环,借用和弦的原理</li>
+<li>一半-薛之谦,Cadd9-&gt;Gm7b13和弦用法</li>
 </ul>
-</li>
-<li>跨平台<ul>
-<li>虚拟DOM不仅可以变成DOM，还可以变成小程序，IOS应用，安卓应用，因为虚拟DOM本质是一个JS对象</li>
+<ol start="32">
+<li>你的和弦够虚伪么</li>
+</ol>
+<ul>
+<li>251,1还可以用C6,C加6度音A,</li>
+<li>虚伪解决,好像已经结尾又感觉很新鲜</li>
+<li>Em7 Am7,Em7就等同于省略了根音的Cmaj7,而Am7和弦则相当于是1级6和弦的转位和弦，以假乱真替换主和弦</li>
+<li>Dm7-G7-Em7;Dm7-G7-Am7</li>
+<li>No2.调式互换，结尾的1级直接改成#Fm7-5，运用了C莉迪亚调式</li>
+<li>Dm7 G7 #Fm7-5</li>
+<li>No.3 1级改成周边小三度范围内的任意大7和弦均可</li>
+<li>G7-bDmaj7;G7-bAmaj7;G7-bEmaj7;G7-bBmaj7</li>
 </ul>
-</li>
+<ol start="33">
+<li>高逼格的五度以及下行结尾</li>
+</ol>
+<ul>
+<li>G7-Fmaj7-Em7-Dm7-Cmaj7,大和弦的听觉效果都一样,4321, 32充当过度，时间不能太久
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb33-1.png"></li>
+<li>重点G7不回到主和弦，而是直接进行降2，降3，降6，降7级的大7和弦里去，形成惊喜的感觉，再进行到一级解决或者停留在虚伪解决
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb33-2.png"></li>
+<li>G7-bAmaj7(降2的5级大七)-bDmaj7（降A）</li>
+<li>除了C和弦外，其他都是五度相生，但每个都是大气和弦bBmaj7-bEmaj7-bAmajj7-bDmaj7-Cmaj7</li>
+<li>bDmaj7-bBmaj7-Cmaj7,bBmaj7趋近和弦</li>
 </ul>
-<h3 id="2-虚拟DOM长什么样子"><a href="#2-虚拟DOM长什么样子" class="headerlink" title="2. 虚拟DOM长什么样子"></a>2. 虚拟DOM长什么样子</h3><ul>
-<li>React,以下代码表示一个标签为div，子元素为span,classname为red,点击事件调用一个函数的dom<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vNode = &#123;</span><br><span class="line">  key: <span class="literal">null</span>,</span><br><span class="line">  props: &#123; </span><br><span class="line">    children: [ <span class="comment">// 子元素们</span></span><br><span class="line">      &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;,</span><br><span class="line">      &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;</span><br><span class="line">    ],</span><br><span class="line">    className: <span class="string">"red"</span>, <span class="comment">// 标签上的属性</span></span><br><span class="line">    onClick: <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125; <span class="comment">//事件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ref: <span class="literal">null</span>,</span><br><span class="line">  type: <span class="string">"div"</span>, <span class="comment">// 标签名 or 组件名</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>Vue<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vNode = &#123;</span><br><span class="line">  tag: <span class="string">"div"</span>, <span class="comment">// 标签名 or 组件名</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    class: "red",// 标签上的属性</span><br><span class="line">    on: &#123;</span><br><span class="line">      click: <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125; <span class="comment">// 事件</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  children: [ <span class="comment">// 子元素们</span></span><br><span class="line">    &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;,</span><br><span class="line">    &#123;<span class="attr">type</span>: <span class="string">'span'</span>,...&#125;</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<ol start="34">
+<li> 和弦中妙用灵感和弦</li>
+</ol>
+<ul>
+<li>灵感和弦，特色和
+<img src="/2020/10/28/%E5%AD%A6%E9%9F%B3%E4%B9%90/bjb34-1.png"></li>
+<li>F/G省略3音和5音的G11和弦，属于G的变体，E/F和弦，模式的进行模仿前面的和弦，</li>
+<li>X/(X+2个半音)</li>
+<li>E7当成临时五级。后面的Am7当作临时1级，E7则变为5级属7</li>
+<li>bAdim减和弦解决</li>
+<li>#F用作F到G的底音侨界，再考虑哪个和弦里又#F,即可配什么和弦</li>
+<li>Gsus4,E7衔接Fmaj7,临近解决的方案</li>
 </ul>
-<h3 id="3-如何创建虚拟dom"><a href="#3-如何创建虚拟dom" class="headerlink" title="3. 如何创建虚拟dom"></a>3. 如何创建虚拟dom</h3><ul>
-<li>React.createElement<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">createElement(<span class="string">'div'</span>,&#123;<span class="attr">className</span>: <span class="string">'red'</span>,<span class="attr">onClick</span>:<span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;&#125;,</span><br><span class="line">  [</span><br><span class="line">    createElement(<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span1'</span>),</span><br><span class="line">    createElement(<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span2'</span>)</span><br><span class="line">  ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-<li>Vue(只能在render函数里得到h)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">h(<span class="string">'div'</span>,&#123;</span><br><span class="line">  class: 'red',</span><br><span class="line">  on: &#123;</span><br><span class="line">    click:<span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,[h[<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span1'</span>,h(<span class="string">'span'</span>,&#123;&#125;,<span class="string">'span2'</span>)])</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="4-创建虚拟dom简写"><a href="#4-创建虚拟dom简写" class="headerlink" title="4. 创建虚拟dom简写"></a>4. 创建虚拟dom简写</h3><ul>
-<li>React<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">"red"</span> onCLick=&#123;fn&#125;&gt;</span><br><span class="line">  &lt;span&gt;span1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span&gt;span2&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 通过babel 转为createElement形式</span></span><br></pre></td></tr></table></figure></li>
-<li>Vue</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className&#x3D;&quot;red&quot; @click&#x3D;&quot;fn&quot;&gt;</span><br><span class="line">  &lt;span&gt;span1&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;span&gt;span2&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 通过vue-loader 转为h形式</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-第一部分总结"><a href="#5-第一部分总结" class="headerlink" title="5. 第一部分总结"></a>5. 第一部分总结</h3><ul>
-<li>虚拟DOM是什么<ul>
-<li>一个能代表DOM树的对象，通常含有标签名，标签上的属性，事件监听和子元素们，以及其他属性</li>
-</ul>
-</li>
-<li>虚拟DOM有什么优点<ul>
-<li>能减少不必要的DOM操作(两个例子背下来)</li>
-<li>能跨平台渲染</li>
-</ul>
-</li>
-<li>虚拟DOM有什么缺点<ul>
-<li>需要额外的创建函数，如createElement或h，但可以通过JSX来简化成XML语法</li>
-</ul>
-</li>
-</ul>
-<h3 id="6-操作原生dom和react对比"><a href="#6-操作原生dom和react对比" class="headerlink" title="6. 操作原生dom和react对比"></a>6. 操作原生dom和react对比</h3><ul>
-<li>插入1000个节点，react快，插入100000个节点，原生dom快</li>
-</ul>
-<h3 id="7-DomDiff"><a href="#7-DomDiff" class="headerlink" title="7. DomDiff"></a>7. DomDiff</h3><ul>
-<li>把虚拟DOM想像成树形<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"x"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"y"</span>&gt;</span>&#123;string1&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;string2&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="https://i.loli.net/2020/10/20/VrknIs6WJEmpMHd.png" alt="图片 1.png"></li>
-<li>当数据变化时<ul>
-<li>当x从red变成green
-<img src="https://i.loli.net/2020/10/20/pzuaQ1NeUVm4sGj.png" alt="图片 2.png"></li>
-</ul>
-</li>
-<li>DOM diff 发现<ul>
-<li>div 标签类型没变，只需要更新 div 对应的 DOM 的属性  </li>
-<li>子元素没变，不更新</li>
-</ul>
-</li>
-<li>当y从true变成false
-<img src="https://i.loli.net/2020/10/20/8179AjZ3EzlHCbq.png" alt="图片 3.png"></li>
-<li>DOM diff 发现<ul>
-<li>div 没变，不用更新</li>
-<li>子元素1标签没变，但是children变了，更新 DOM 内容</li>
-<li>子元素2不见了，删除对应的 DOM</li>
-</ul>
-</li>
-</ul>
-<h3 id="8-DomDiff小结"><a href="#8-DomDiff小结" class="headerlink" title="8. DomDiff小结"></a>8. DomDiff小结</h3><ul>
-<li>什么是 DOM diff<ul>
-<li>就是一个函数，我们称之为 patch</li>
-<li>patches = patch(oldVNode, newVNode)</li>
-<li>patches 就是要运行的 DOM 操作，可能长这样：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;<span class="attr">type</span>: <span class="string">'INSERT'</span>, <span class="attr">vNode</span>: ... &#125;,</span><br><span class="line">  &#123;<span class="attr">type</span>: <span class="string">'TEXT'</span>,  <span class="attr">vNode</span>: ... &#125;,</span><br><span class="line">  &#123;<span class="attr">type</span>: <span class="string">'PROPS'</span>, <span class="attr">propsPatch</span>: [...]&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="9-DOM-diff大概逻辑"><a href="#9-DOM-diff大概逻辑" class="headerlink" title="9. DOM diff大概逻辑"></a>9. DOM diff大概逻辑</h3><ul>
-<li>Tree diff<ul>
-<li>将新旧两棵树逐层对比，找出哪些节点需要更新</li>
-<li>如果节点是组件就看Component diff</li>
-<li>如果节点是标签就看Element diff</li>
-</ul>
-</li>
-<li>Component diff<ul>
-<li>如果节点是组件，就先看组件类型</li>
-<li>类型不同直接替换（删除旧的）</li>
-<li>类型相同则只更新属性</li>
-<li>然后深入组件做Tree diff(递归)</li>
-</ul>
-</li>
-<li>Element diff<ul>
-<li>如果节点是原生标签，则看标签名</li>
-<li>标签名不同直接替换，相同则只更新属性</li>
-<li>然后进入标签后代做Tree diff(递归)</li>
-</ul>
-</li>
-</ul>
-<h3 id="10-Dom-diff的缺点"><a href="#10-Dom-diff的缺点" class="headerlink" title="10. Dom diff的缺点"></a>10. Dom diff的缺点</h3><ul>
-<li>同级节点对比存在bug<ul>
-<li>会出现识别错误</li>
-<li>举例，砍掉左腿右腿变成左腿</li>
-<li>解决方案，命名，给id,绑定key,注意永远不要以数组的index绑定key</li>
-</ul>
-</li>
+<ol start="35">
+<li> 超级难的次级属七之一</li>
+</ol>
+<ul>
+<li>次级属七和弦，也称为副属和弦，意思是副和弦的属和弦，例如C大调中2级，3级，6级这三个和弦的属7和弦，即D7,E7,A7。这三个即为副属和弦。</li>
+<li>No.1模仿调性属7虚伪解决的各种动作,Cmaj7-Em7-5-A7-Dm7-G7-C;Cmaj7-Em7-5-A7-#Fm7-5-&gt;B7-C;模仿前面的2-5结构，B7临近C</li>
+<li>Cmaj7-Em7-A7-bEmaj7-bDmaj7-Cmaj7,结尾也是取消25，用模仿解决,还有bAmaj7-bBmaj7-Cmaj9</li>
+<li>Cmaj7-Fm7-5-A7-Bm7-5-E7-Am7</li>
 </ul>
 
       
@@ -3408,7 +3404,7 @@ Entrypoints:index (276 KiB),index.js,因为开发模式下index把react也打包
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3476,7 +3472,7 @@ Entrypoints:index (276 KiB),index.js,因为开发模式下index把react也打包
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

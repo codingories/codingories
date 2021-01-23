@@ -158,6 +158,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-17%E6%95%B4%E4%B8%AA%E8%8A%82%E7%82%B9%E4%BD%9C%E4%B8%BAsource%E6%88%96%E8%80%85target/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/04/LearnJsplumb-17%E6%95%B4%E4%B8%AA%E8%8A%82%E7%82%B9%E4%BD%9C%E4%B8%BAsource%E6%88%96%E8%80%85target/" class="post-title-link" itemprop="url">LearnJsplumb_17整个节点作为source或者target</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-06-04 16:34:49 / Modified: 16:40:16" itemprop="dateCreated datePublished" datetime="2019-06-04T16:34:49+08:00">2019-06-04</time>
+            </span>
+
+          
+            <span id="/2019/06/04/LearnJsplumb-17%E6%95%B4%E4%B8%AA%E8%8A%82%E7%82%B9%E4%BD%9C%E4%B8%BAsource%E6%88%96%E8%80%85target/" class="post-meta-item leancloud_visitors" data-flag-title="LearnJsplumb_17整个节点作为source或者target" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/04/LearnJsplumb-17%E6%95%B4%E4%B8%AA%E8%8A%82%E7%82%B9%E4%BD%9C%E4%B8%BAsource%E6%88%96%E8%80%85target/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/04/LearnJsplumb-17%E6%95%B4%E4%B8%AA%E8%8A%82%E7%82%B9%E4%BD%9C%E4%B8%BAsource%E6%88%96%E8%80%85target/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>整个节点作为source或者target， 并且将锚点设置成Continuous，那么锚点就会随着节点的位置改变而改变自己的位置。</p>
+<ul>
+<li>jsPlumb的锚点分为四类<ul>
+<li>Static 静态 固定位置的锚点</li>
+<li>Dynamic jsPlumb自动选择合适的锚点，动态锚点</li>
+<li>Perimeter 边缘锚点，会根据节点形状去改变位置</li>
+<li>Continuous 根据节点位置，自动调整位置的锚点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;整个节点作为source或者target&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #diagramContainer &#123;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            width: 80%;</span><br><span class="line">            height: 200px;</span><br><span class="line">            border: 1px solid gray;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .item &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            height: 100px;</span><br><span class="line">            width: 100px;</span><br><span class="line">            border: 1px solid blue;</span><br><span class="line">            float: left;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;diagramContainer&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;A&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;top:50px;left:50px&quot;&gt;A&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;B&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;top:50px;left:450px&quot;&gt;B&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jquery-ui.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jquery.jsplumb.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    window.jsPlumb.ready(function () &#123;</span><br><span class="line">        var jsPlumb &#x3D; window.jsPlumb;</span><br><span class="line"></span><br><span class="line">        jsPlumb.makeSource(&#39;A&#39;, &#123;</span><br><span class="line">            endpoint:&quot;Dot&quot;,</span><br><span class="line">            anchor: &quot;Perimeter&quot;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        jsPlumb.makeTarget(&#39;B&#39;, &#123;</span><br><span class="line">            endpoint:&quot;Dot&quot;,</span><br><span class="line">            anchor: &quot;Continuous&quot;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        jsPlumb.draggable(&#39;A&#39;);</span><br><span class="line">        jsPlumb.draggable(&#39;B&#39;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-16%E4%B8%80%E4%B8%AA%E7%AB%AF%E7%82%B9%E5%A6%82%E4%BD%95%E6%8B%96%E6%8B%BD%E5%87%BA%E5%A4%9A%E6%9D%A1%E8%BF%9E%E7%BA%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -919,89 +1008,10 @@ for (int i = 0; i &lt; len; i++) {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/" class="post-title-link" itemprop="url">LearnJsplumb_09节点改变尺寸</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-06-04 09:33:16 / Modified: 09:34:57" itemprop="dateCreated datePublished" datetime="2019-06-04T09:33:16+08:00">2019-06-04</time>
-            </span>
-
-          
-            <span id="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/" class="post-meta-item leancloud_visitors" data-flag-title="LearnJsplumb_09节点改变尺寸" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/04/LearnJsplumb-09%E8%8A%82%E7%82%B9%E6%94%B9%E5%8F%98%E5%B0%BA%E5%AF%B8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.11.1&#x2F;themes&#x2F;smoothness&#x2F;jquery-ui.css&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #diagramContainer &#123;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            width: 80%;</span><br><span class="line">            height: 400px;</span><br><span class="line">            border: 1px solid gray;</span><br><span class="line">        &#125;</span><br><span class="line">        .item &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            height: 80px;</span><br><span class="line">            width: 80px;</span><br><span class="line">            border: 1px solid blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;diagramContainer&quot;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_left&quot; class&#x3D;&quot;item&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;item_right&quot; class&#x3D;&quot;item&quot; style&#x3D;&quot;left:150px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.3.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;ui&#x2F;1.12.1&#x2F;jquery-ui.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;lib&#x2F;jsplumb.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    &#x2F;* global jsPlumb, $ *&#x2F;</span><br><span class="line">    $(&#39;.item&#39;).resizable(&#123;</span><br><span class="line">        resize: function (event, ui) &#123;</span><br><span class="line">            jsPlumb.repaint(ui.helper)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)&#x2F;&#x2F; jsplumb实际上不支持改变节点大小，实际上只能通过jquery ui resizable 方法去改变</span><br><span class="line">    jsPlumb.ready(function () &#123;</span><br><span class="line">        jsPlumb.connect(&#123;</span><br><span class="line">            source: &#39;item_left&#39;,</span><br><span class="line">            target: &#39;item_right&#39;,</span><br><span class="line">            endpoint: &#39;Rectangle&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        jsPlumb.draggable(&#39;item_left&#39;);</span><br><span class="line">        jsPlumb.draggable(&#39;item_right&#39;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1069,7 +1079,7 @@ for (int i = 0; i &lt; len; i++) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

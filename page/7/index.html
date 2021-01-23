@@ -158,6 +158,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">高级前端养成03nodeJS基础学习02之单元测试之文件模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-18 10:25:58 / Modified: 10:30:49" itemprop="dateCreated datePublished" datetime="2020-06-18T10:25:58+08:00">2020-06-18</time>
+            </span>
+
+          
+            <span id="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成03nodeJS基础学习02之单元测试之文件模块" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>如何测试</li>
+</ol>
+<pre><code>- 步骤
+    1. 选择测试工具: jest
+    2. 设计测试用例
+    3. 写测试，运行测试，该代码
+    4. 单元测试，功能测试，继承测试
+- 重点
+    1. 单元测试不应该与外界打交道（那是集成测试要做的）
+    2. 单元测试的对象是函数
+    3. 功能测试的对象是模块
+    4. 继承测试的对象是系统
+    5. 只掌握单元测试</code></pre>
+<ol start="2">
+<li>jest 会自动找到.test.js 结尾的文件并进行测试</li>
+<li>解决不提示和黄线的问题，添加 jest 的库</li>
+<li>出现 error while fetching list of libraries 的错误,未解决</li>
+<li>正常的流程<ol>
+<li>新建目录__tests__，这个约定</li>
+<li>db.spec.js // spec 是单元测试</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const db &#x3D; require(&#39;..&#x2F;db.js&#39;)</span><br><span class="line">describe(&#39;db&#39;,()&#x3D;&gt;&#123; &#x2F;&#x2F; describe 描述一个东西</span><br><span class="line">  it(&#39;can read&#39;, ()&#x3D;&gt;&#123; &#x2F;&#x2F; it 它能做什么</span><br><span class="line">    expect(db.read instanceof Function).toBe(true) &#x2F;&#x2F; expect 也要非常熟悉</span><br><span class="line">  &#125;)</span><br><span class="line">  it(&#39;can write&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line">    expect(db.read instanceof Function).toBe(true)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>没全局安装 jest，可以用 npx jest</p>
+</li>
+<li><p>单元测试一般是白盒测试，白盒测试的意思是我知道代码怎么写的，按照代码来测试</p>
+</li>
+<li><p>不要用外界环境，需要用 mock</p>
+</li>
+<li><p>总结:</p>
+<ul>
+<li>功能测试 测试模块 同时测试很多模块</li>
+<li>集成测试 测试一个系统 比如能否抵御 100 个用户</li>
+<li>只讲单元测试是因为前端水平太低了</li>
+</ul>
+<ol>
+<li>新建 mock，</li>
+<li>文件名叫 fs.js</li>
+<li>旧的 assign</li>
+<li>要做 mock</li>
+<li>测试习惯测试习惯，清除 mock，要保证测试模块的正确性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs.js</span><br><span class="line">fs.clearMocks &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  readMocks &#x3D; &#123;&#125;</span><br><span class="line">  writeMocks &#x3D; &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用清除 mock</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; fdb.spec.js</span><br><span class="line"></span><br><span class="line">afterEach(()&#x3D;&gt;&#123;</span><br><span class="line">  fs.clearMocks()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/17/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9005nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A004%E4%B9%8B%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1655,99 +1788,10 @@ class Meta:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/05/09/%E8%A7%A3%E5%86%B3babel-polyfill%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/09/%E8%A7%A3%E5%86%B3babel-polyfill%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决babel-polyfill重复问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-09 15:58:04 / Modified: 16:04:03" itemprop="dateCreated datePublished" datetime="2020-05-09T15:58:04+08:00">2020-05-09</time>
-            </span>
-
-          
-            <span id="/2020/05/09/%E8%A7%A3%E5%86%B3babel-polyfill%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="解决babel-polyfill重复问题" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/05/09/%E8%A7%A3%E5%86%B3babel-polyfill%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/09/%E8%A7%A3%E5%86%B3babel-polyfill%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>最近换了新公司，老板直接丢过来一套前端 vue 代码，由于后台没接好，我就尝试把后台代码进行注释以及 debug。</li>
-<li>发现问题 Uncaught Error: only one instance of babel-polyfill is allowed。尝试了很多方法都没解决，由于是 vue 多页面的问题，很多方案都不是用。</li>
-<li>经过了反复的尝试，最后在 github 上找到了解决方案</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;babel&#x2F;babel-loader&#x2F;issues&#x2F;401</span><br><span class="line">You should replace every &quot;babel-polyfill&quot; (either in imports, or in your webpack config&#39;s entry option) with &quot;idempotent-babel-polyfill&quot;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>解决成功。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1815,7 +1859,7 @@ class Meta:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

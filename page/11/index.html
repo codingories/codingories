@@ -158,6 +158,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/" class="post-title-link" itemprop="url">番茄闹钟二(引入react-router)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-12 17:04:58" itemprop="dateCreated datePublished" datetime="2020-02-12T17:04:58+08:00">2020-02-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-13 18:15:46" itemprop="dateModified" datetime="2020-02-13T18:15:46+08:00">2020-02-13</time>
+              </span>
+
+          
+            <span id="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/" class="post-meta-item leancloud_visitors" data-flag-title="番茄闹钟二(引入react-router)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/12/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%BA%8C-%E5%BC%95%E5%85%A5react-router/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-安装-react-router"><a href="#1-安装-react-router" class="headerlink" title="1. 安装 react-router"></a>1. 安装 react-router</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br><span class="line">yarn add @types&#x2F;react-router-dom &#x2F;&#x2F; 引入声明类型文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-引入-react-router"><a href="#2-引入-react-router" class="headerlink" title="2. 引入 react-router"></a>2. 引入 react-router</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import &#123;BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function Home() &#123;</span><br><span class="line">  return &lt;h2&gt;Home&lt;&#x2F;h2&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function About() &#123;</span><br><span class="line">  return &lt;h2&gt;About&lt;&#x2F;h2&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Topics() &#123;</span><br><span class="line">  let match &#x3D; useRouteMatch()</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;Topics&lt;&#x2F;h2&gt;</span><br><span class="line"></span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;components&#96;&#125;&gt;Components&lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">          &lt;Link to&#x3D;&#123;&#96;$&#123;match.url&#125;&#x2F;props-v-state&#96;&#125;&gt;</span><br><span class="line">            Props v. State</span><br><span class="line">          &lt;&#x2F;Link&gt;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">      &#123;&#x2F;* The Topics page has its own &lt;Switch&gt; with more routes</span><br><span class="line">          that build on the &#x2F;topics URL path. You can think of the</span><br><span class="line">          2nd &lt;Route&gt; here as an &quot;index&quot; page for all topics, or</span><br><span class="line">          the page that is shown when no topic is selected *&#x2F;&#125;</span><br><span class="line">      &lt;Switch&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;&#96;$&#123;match.path&#125;&#x2F;:topicId&#96;&#125;&gt;</span><br><span class="line">          &lt;Topic&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;Route&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;match.path&#125;&gt;</span><br><span class="line">          &lt;h3&gt;Please select a topic.&lt;&#x2F;h3&gt;</span><br><span class="line">        &lt;&#x2F;Route&gt;</span><br><span class="line">      &lt;&#x2F;Switch&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Topic() &#123;</span><br><span class="line">  let &#123;topicId&#125; &#x3D; useParams()</span><br><span class="line">  return &lt;h3&gt;Requested topic ID: &#123;topicId&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to&#x3D;&quot;&#x2F;&quot;&gt;Home&lt;&#x2F;Link&gt;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to&#x3D;&quot;&#x2F;about&quot;&gt;About&lt;&#x2F;Link&gt;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;Link to&#x3D;&quot;&#x2F;topics&quot;&gt;Topics&lt;&#x2F;Link&gt;</span><br><span class="line">          &lt;&#x2F;li&gt;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;about&quot;&gt;</span><br><span class="line">            &lt;About&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;topics&quot;&gt;</span><br><span class="line">            &lt;Topics&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;&quot;&gt;</span><br><span class="line">            &lt;Home&#x2F;&gt;</span><br><span class="line">          &lt;&#x2F;Route&gt;</span><br><span class="line">        &lt;&#x2F;Switch&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;Router&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h4 id="3-路由的基本引入"><a href="#3-路由的基本引入" class="headerlink" title="3. 路由的基本引入"></a>3. 路由的基本引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; App.tsx</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;</span><br><span class="line">import &#123;BrowserRouter as Router, Route&#125; from &#39;react-router-dom&#39;</span><br><span class="line">import Login from &quot;.&#x2F;components&#x2F;Login&#x2F;Login&quot;</span><br><span class="line">import SignUp from &quot;.&#x2F;components&#x2F;SignUp&#x2F;SignUp&quot;</span><br><span class="line">import Index from &#39;.&#x2F;components&#x2F;Index&#x2F;Index&#39;</span><br><span class="line"></span><br><span class="line">class Component extends React.Component  &#123;</span><br><span class="line">  public render()&#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Router&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Route exact&#x3D;&#123;true&#125; path&#x3D;&quot;&#x2F;&quot; component&#x3D;&#123;Index&#125;&#x2F;&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;login&quot; component&#x3D;&#123;Login&#125; &#x2F;&gt;</span><br><span class="line">          &lt;Route path&#x3D;&quot;&#x2F;signUp&quot; component&#x3D;&#123;SignUp&#125; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;&#x2F;Router&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default Component</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; index.tsx</span><br><span class="line">import * as React from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">class Component extends React.Component &#123;</span><br><span class="line">  public render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className&#x3D;&quot;Component&quot;&gt;</span><br><span class="line">        Index</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Component</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Index-页面跳转到登录页面"><a href="#4-Index-页面跳转到登录页面" class="headerlink" title="4. Index 页面跳转到登录页面"></a>4. Index 页面跳转到登录页面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import * as React from &#39;react&#39;;</span><br><span class="line">import &#123; Button &#125; from &#39;antd&#39;;</span><br><span class="line"></span><br><span class="line">interface Irouter &#123;</span><br><span class="line">  history: any</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; router 给 Index 传 props 属性, 要声明 props 的类型,也可以直接声明一个接口</span><br><span class="line">class Component extends React.Component&lt;Irouter&gt; &#123;</span><br><span class="line"></span><br><span class="line">  login &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    this.props.history.push(&#39;&#x2F;login&#39;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className&#x3D;&quot;Component&quot;&gt;</span><br><span class="line">      &lt;Button onClick&#x3D;&#123;this.login&#125;&gt;登录&lt;&#x2F;Button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Component</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-withRouter-的用法"><a href="#5-withRouter-的用法" class="headerlink" title="5. withRouter 的用法"></a>5. withRouter 的用法</h4><ul>
+<li>index 是直接通过 Router 组件传过来的值，所以会带有 props.history,如果不是通过 Router 渲染出来的路由,也想知道当前的路由信息，那么必须要用到 withRouter 的组件，</li>
+</ul>
+<h4 id="6-BrowserRouter-和-HashRouter-的区别"><a href="#6-BrowserRouter-和-HashRouter-的区别" class="headerlink" title="6. BrowserRouter 和 HashRouter 的区别"></a>6. BrowserRouter 和 HashRouter 的区别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 后面相当于就是个 hash</span><br><span class="line"></span><br><span class="line">browser 的坏处是，如果用 BrowerRouter,部署到服务器上输入</span><br><span class="line">http:&#x2F;&#x2F;localhost:3000&#x2F;login可能会找不到,只能找到http:&#x2F;&#x2F;localhost:3000&#x2F;,</span><br><span class="line">因为这个是个单页面应用，单页应用只是映射到 index 上面，login 的话可能会返回 404,如果使用 browserrouter,</span><br><span class="line">必须要配置服务器把http:&#x2F;&#x2F;localhost:3000&#x2F;下的所有路径指向index这个入口文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/02/10/%E7%95%AA%E8%8C%84%E9%97%B9%E9%92%9F%E4%B8%80-React-Antd-Typescript-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1404,107 +1502,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="post-title-link" itemprop="url">popover组件测试用例</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-31 12:37:51 / Modified: 16:28:27" itemprop="dateCreated datePublished" datetime="2020-01-31T12:37:51+08:00">2020-01-31</time>
-            </span>
-
-          
-            <span id="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="post-meta-item leancloud_visitors" data-flag-title="popover组件测试用例" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-解决小三角形引起的抖动问题。"><a href="#1-解决小三角形引起的抖动问题。" class="headerlink" title="1. 解决小三角形引起的抖动问题。"></a>1. 解决小三角形引起的抖动问题。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 以一个为例</span><br><span class="line">  &amp;.position-bottom &#123;</span><br><span class="line">  margin-top: 10px;</span><br><span class="line">  &amp;::before, &amp;::after&#123;</span><br><span class="line">    left: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::before &#123;</span><br><span class="line">    border-top: none;</span><br><span class="line">    border-bottom-color: black;</span><br><span class="line">    &#x2F;*border-color: black;*&#x2F;</span><br><span class="line">    bottom: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::after &#123;</span><br><span class="line">    border-top: none;</span><br><span class="line">    border-bottom-color: white;</span><br><span class="line">    &#x2F;*border-color: black;*&#x2F;</span><br><span class="line">    bottom: calc(100% - 1px);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-实现关闭功能，用-slot-scope-把-close-传给插槽"><a href="#2-实现关闭功能，用-slot-scope-把-close-传给插槽" class="headerlink" title="2. 实现关闭功能，用 slot-scope,把 close 传给插槽"></a>2. 实现关闭功能，用 slot-scope,把 close 传给插槽</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; popover.vue</span><br><span class="line">&#x2F;&#x2F; 第一步在slot上传一个属性</span><br><span class="line">&lt;slot name&#x3D;&quot;content&quot; :close&#x3D;&quot;close&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 第二步结构一下close，然后用就可以了</span><br><span class="line">&#x2F;&#x2F; index.html</span><br><span class="line">&lt;g-popover position&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;template slot&#x3D;&quot;content&quot; slot-scope&#x3D;&quot;&#123;close&#125;&quot;&gt;</span><br><span class="line">    &lt;div&gt;&lt;g-button @click&#x3D;&quot;close&quot;&gt;关闭&lt;&#x2F;g-button&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;g-button&gt;点我1&lt;&#x2F;g-button&gt;</span><br><span class="line">&lt;&#x2F;g-popover&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-popover-的第一个测试用例-position"><a href="#3-popover-的第一个测试用例-position" class="headerlink" title="3. popover 的第一个测试用例-position"></a>3. popover 的第一个测试用例-position</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">it(&#39;可以设置position.&#39;, (done) &#x3D;&gt; &#123;</span><br><span class="line">    Vue.component(&#39;g-popover&#39;, Popover)</span><br><span class="line">    const div &#x3D; document.createElement(&#39;div&#39;)</span><br><span class="line">    document.body.appendChild(div)</span><br><span class="line">    div.innerHTML &#x3D; &#96;</span><br><span class="line">    &lt;g-popover position&#x3D;&quot;bottom&quot; ref&#x3D;&quot;a&quot;&gt;</span><br><span class="line">      &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">        弹出内容</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">      &lt;button&gt;点我&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;g-popover&gt;</span><br><span class="line">    &#96;</span><br><span class="line">    const vm &#x3D; new Vue(&#123; &#x2F;&#x2F; 这个vm不是组件，这个vm是一个div对应的实例,div里面才是popover组件</span><br><span class="line">      el: div</span><br><span class="line">    &#125;)</span><br><span class="line">    vm.$el.querySelector(&#39;button&#39;).click()</span><br><span class="line">    vm.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">      const &#123;contentWrapper&#125; &#x3D; vm.$refs.a.$refs</span><br><span class="line">      expect(contentWrapper.classList.contains(&#39;position-top&#39;)).to.be.false</span><br><span class="line">      done()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-测试-mouseEnter-事件"><a href="#4-测试-mouseEnter-事件" class="headerlink" title="4. 测试 mouseEnter 事件"></a>4. 测试 mouseEnter 事件</h4><ul>
-<li>先确认用 dispatchEvent 的方式是可以触发 hover 事件的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;xxx&gt;</span><br><span class="line">    hihihi</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;button style&#x3D;&quot;marin-top:20px;&quot; id&#x3D;button&gt;click me&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">xxx.addEventListener(&#39;mouseenter&#39;,function()&#123;</span><br><span class="line">  console.log(&#39;hi&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">button.onclick&#x3D;function()&#123;</span><br><span class="line">  let event &#x3D; new Event(&#39;mouseenter&#39;);</span><br><span class="line">  xxx.dispatchEvent(event)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>可以设置 trigger 的测试用例有问题，先跳过,it 前面+一个 x 可以跳过</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">xit(&#39;可以设置 trigger.&#39;, (done) &#x3D;&gt; &#123;</span><br><span class="line">  Vue.component(&#39;g-popover&#39;, Popover)</span><br><span class="line">  const div &#x3D; document.createElement(&#39;div&#39;)</span><br><span class="line">  document.body.appendChild(div)</span><br><span class="line">  div.innerHTML &#x3D; &#96;</span><br><span class="line">  &lt;g-popover trigger&#x3D;&quot;hover&quot; ref&#x3D;&quot;a&quot;&gt;</span><br><span class="line">    &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">      弹出内容</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;button&gt;点我&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;g-popover&gt;</span><br><span class="line">  &#96;</span><br><span class="line">  const vm &#x3D; new Vue(&#123; &#x2F;&#x2F; 这个vm不是组件，这个vm是一个div对应的实例,div里面才是popover组件</span><br><span class="line">    el: div</span><br><span class="line">  &#125;)</span><br><span class="line">  let event &#x3D; new Event(&#39;mouseenter&#39;);</span><br><span class="line">  vm.$el.dispatchEvent(event)</span><br><span class="line">  vm.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">    const &#123;contentWrapper&#125; &#x3D; vm.$refs.a.$refs</span><br><span class="line">    expect(contentWrapper).to.be.exist</span><br><span class="line">    done()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1572,7 +1573,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,184 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" class="post-title-link" itemprop="url">高级前端养成15数据可视化之01Echarts使用指北</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-11 07:54:33" itemprop="dateCreated datePublished" datetime="2020-07-11T07:54:33+08:00">2020-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-12 22:15:34" itemprop="dateModified" datetime="2020-07-12T22:15:34+08:00">2020-07-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">数据可视化</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成15数据可视化之01Echarts使用指北" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9015%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B01Echarts%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一. 引入echarts</p>
+<ul>
+<li>无webpack/parcel<ul>
+<li>直接在html引入script src=path/to/echarts.min.js</li>
+<li>然后使用全局变量window.echarts</li>
+</ul>
+</li>
+<li>有webpack/parcel<ul>
+<li>yarn add echarts</li>
+<li>import echarts from ‘echarts’ 或者 var echarts = require(‘charts’)</li>
+<li>然后使用echarts即可</li>
+<li>小技巧安装echarts的类型 yarn add @types/echarts</li>
+</ul>
+</li>
+</ul>
+<p>二. 如何学习echarts</p>
+<ul>
+<li>使用crm学习</li>
+</ul>
+<p>三. webstorm很牛的一个功能</p>
+<ul>
+<li>右键local history,show history，给你显示所有的变更</li>
+</ul>
+<p>四. 功能</p>
+<ul>
+<li>换主题<ul>
+<li>echarts.init(xxx,’dart’)</li>
+</ul>
+</li>
+<li>webStorm/VSCode技巧<ul>
+<li>安装@types/echarts加强代码提示</li>
+</ul>
+</li>
+<li>细节配置<ul>
+<li>如何修改线，提示等</li>
+<li>如何查看<a href="https://echarts.apache.org/zh/cheat-sheet.html" target="_blank" rel="noopener">术语表</a></li>
+</ul>
+</li>
+</ul>
+<p>五.更新数据</p>
+<ul>
+<li>再次setOption即可<ul>
+<li>echarts会自动找出差异，并更新图表</li>
+<li>使用showLoading()/hideLoading()</li>
+</ul>
+</li>
+</ul>
+<p>六. 点击时间</p>
+<ul>
+<li>使用 on 即可<ul>
+<li>获取dataIndex 和 seriesIndex</li>
+</ul>
+</li>
+</ul>
+<p>七. 移动端适配</p>
+<ul>
+<li>常规技巧<ul>
+<li>meta:vp 抄淘宝手机版</li>
+<li>用JS获取屏幕宽度设置在div上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取屏幕宽度，背下来</span><br><span class="line">const width &#x3D; document.documentElement.clientWidth</span><br></pre></td></tr></table></figure></li>
+<li>设定款高比</li>
+</ul>
+</li>
+<li>echarts提供的功能<ul>
+<li>baseOption + media</li>
+</ul>
+</li>
+</ul>
+<p>八. 前端最好有3个电脑</p>
+<ul>
+<li>左边一个放文档，中间放代码，右边放浏览器</li>
+</ul>
+<p>九. 如何在Vue中使用echarts</p>
+<ul>
+<li>自己封装一个组件即可<ul>
+<li>看视频演示</li>
+</ul>
+</li>
+<li>也可以搜别人的封装<ul>
+<li><a href="https://github.com/ecomfe/vue-echarts" target="_blank" rel="noopener">https://github.com/ecomfe/vue-echarts</a></li>
+</ul>
+</li>
+</ul>
+<p>十. react用useEffect就是vue的mounted在其中渲染
+十一. <a href="https://github.com/codingories/15echarts-demo-1" target="_blank" rel="noopener">相关代码</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/07/10/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9014nodeJS%E6%A1%86%E6%9E%B604%E4%B9%8BCypress-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1195,7 +1373,7 @@
 <li>use 是使用，使用什么？</li>
 <li>理解 app.use<ul>
 <li>创建新目录 express-demo-2<ul>
-<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
+<li>使用 express-starter-1,要删掉 idea,因为这个为自动创建，然后因为进入目录了，所以 git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#x6d;</a>:codingories/express-starter.git . ,加点表示就在当前目录</li>
 <li>尝试使用 req.url 和 res.send</li>
 <li>多次使用会报错</li>
 <li>改成 res.write,还记得流吗</li>
@@ -2650,143 +2828,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">高级前端养成03nodeJS基础学习02之单元测试之文件模块</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-18 10:25:58 / Modified: 10:30:49" itemprop="dateCreated datePublished" datetime="2020-06-18T10:25:58+08:00">2020-06-18</time>
-            </span>
-
-          
-            <span id="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" class="post-meta-item leancloud_visitors" data-flag-title="高级前端养成03nodeJS基础学习02之单元测试之文件模块" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/18/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%85%BB%E6%88%9003nodeJS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A002%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>如何测试</li>
-</ol>
-<pre><code>- 步骤
-    1. 选择测试工具: jest
-    2. 设计测试用例
-    3. 写测试，运行测试，该代码
-    4. 单元测试，功能测试，继承测试
-- 重点
-    1. 单元测试不应该与外界打交道（那是集成测试要做的）
-    2. 单元测试的对象是函数
-    3. 功能测试的对象是模块
-    4. 继承测试的对象是系统
-    5. 只掌握单元测试</code></pre>
-<ol start="2">
-<li>jest 会自动找到.test.js 结尾的文件并进行测试</li>
-<li>解决不提示和黄线的问题，添加 jest 的库</li>
-<li>出现 error while fetching list of libraries 的错误,未解决</li>
-<li>正常的流程<ol>
-<li>新建目录__tests__，这个约定</li>
-<li>db.spec.js // spec 是单元测试</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const db &#x3D; require(&#39;..&#x2F;db.js&#39;)</span><br><span class="line">describe(&#39;db&#39;,()&#x3D;&gt;&#123; &#x2F;&#x2F; describe 描述一个东西</span><br><span class="line">  it(&#39;can read&#39;, ()&#x3D;&gt;&#123; &#x2F;&#x2F; it 它能做什么</span><br><span class="line">    expect(db.read instanceof Function).toBe(true) &#x2F;&#x2F; expect 也要非常熟悉</span><br><span class="line">  &#125;)</span><br><span class="line">  it(&#39;can write&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line">    expect(db.read instanceof Function).toBe(true)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li><p>没全局安装 jest，可以用 npx jest</p>
-</li>
-<li><p>单元测试一般是白盒测试，白盒测试的意思是我知道代码怎么写的，按照代码来测试</p>
-</li>
-<li><p>不要用外界环境，需要用 mock</p>
-</li>
-<li><p>总结:</p>
-<ul>
-<li>功能测试 测试模块 同时测试很多模块</li>
-<li>集成测试 测试一个系统 比如能否抵御 100 个用户</li>
-<li>只讲单元测试是因为前端水平太低了</li>
-</ul>
-<ol>
-<li>新建 mock，</li>
-<li>文件名叫 fs.js</li>
-<li>旧的 assign</li>
-<li>要做 mock</li>
-<li>测试习惯测试习惯，清除 mock，要保证测试模块的正确性</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs.js</span><br><span class="line">fs.clearMocks &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  readMocks &#x3D; &#123;&#125;</span><br><span class="line">  writeMocks &#x3D; &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用清除 mock</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; fdb.spec.js</span><br><span class="line"></span><br><span class="line">afterEach(()&#x3D;&gt;&#123;</span><br><span class="line">  fs.clearMocks()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2854,7 +2899,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
+      <meta itemprop="name" content="Ories">
+      <meta itemprop="description" content="这个博客用来记录自己的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OriesノBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="post-title-link" itemprop="url">popover组件测试用例</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-31 12:37:51 / Modified: 16:28:27" itemprop="dateCreated datePublished" datetime="2020-01-31T12:37:51+08:00">2020-01-31</time>
+            </span>
+
+          
+            <span id="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="post-meta-item leancloud_visitors" data-flag-title="popover组件测试用例" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/31/popover%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-解决小三角形引起的抖动问题。"><a href="#1-解决小三角形引起的抖动问题。" class="headerlink" title="1. 解决小三角形引起的抖动问题。"></a>1. 解决小三角形引起的抖动问题。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 以一个为例</span><br><span class="line">  &amp;.position-bottom &#123;</span><br><span class="line">  margin-top: 10px;</span><br><span class="line">  &amp;::before, &amp;::after&#123;</span><br><span class="line">    left: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::before &#123;</span><br><span class="line">    border-top: none;</span><br><span class="line">    border-bottom-color: black;</span><br><span class="line">    &#x2F;*border-color: black;*&#x2F;</span><br><span class="line">    bottom: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::after &#123;</span><br><span class="line">    border-top: none;</span><br><span class="line">    border-bottom-color: white;</span><br><span class="line">    &#x2F;*border-color: black;*&#x2F;</span><br><span class="line">    bottom: calc(100% - 1px);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-实现关闭功能，用-slot-scope-把-close-传给插槽"><a href="#2-实现关闭功能，用-slot-scope-把-close-传给插槽" class="headerlink" title="2. 实现关闭功能，用 slot-scope,把 close 传给插槽"></a>2. 实现关闭功能，用 slot-scope,把 close 传给插槽</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; popover.vue</span><br><span class="line">&#x2F;&#x2F; 第一步在slot上传一个属性</span><br><span class="line">&lt;slot name&#x3D;&quot;content&quot; :close&#x3D;&quot;close&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 第二步结构一下close，然后用就可以了</span><br><span class="line">&#x2F;&#x2F; index.html</span><br><span class="line">&lt;g-popover position&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;template slot&#x3D;&quot;content&quot; slot-scope&#x3D;&quot;&#123;close&#125;&quot;&gt;</span><br><span class="line">    &lt;div&gt;&lt;g-button @click&#x3D;&quot;close&quot;&gt;关闭&lt;&#x2F;g-button&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;g-button&gt;点我1&lt;&#x2F;g-button&gt;</span><br><span class="line">&lt;&#x2F;g-popover&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-popover-的第一个测试用例-position"><a href="#3-popover-的第一个测试用例-position" class="headerlink" title="3. popover 的第一个测试用例-position"></a>3. popover 的第一个测试用例-position</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">it(&#39;可以设置position.&#39;, (done) &#x3D;&gt; &#123;</span><br><span class="line">    Vue.component(&#39;g-popover&#39;, Popover)</span><br><span class="line">    const div &#x3D; document.createElement(&#39;div&#39;)</span><br><span class="line">    document.body.appendChild(div)</span><br><span class="line">    div.innerHTML &#x3D; &#96;</span><br><span class="line">    &lt;g-popover position&#x3D;&quot;bottom&quot; ref&#x3D;&quot;a&quot;&gt;</span><br><span class="line">      &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">        弹出内容</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">      &lt;button&gt;点我&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;g-popover&gt;</span><br><span class="line">    &#96;</span><br><span class="line">    const vm &#x3D; new Vue(&#123; &#x2F;&#x2F; 这个vm不是组件，这个vm是一个div对应的实例,div里面才是popover组件</span><br><span class="line">      el: div</span><br><span class="line">    &#125;)</span><br><span class="line">    vm.$el.querySelector(&#39;button&#39;).click()</span><br><span class="line">    vm.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">      const &#123;contentWrapper&#125; &#x3D; vm.$refs.a.$refs</span><br><span class="line">      expect(contentWrapper.classList.contains(&#39;position-top&#39;)).to.be.false</span><br><span class="line">      done()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-测试-mouseEnter-事件"><a href="#4-测试-mouseEnter-事件" class="headerlink" title="4. 测试 mouseEnter 事件"></a>4. 测试 mouseEnter 事件</h4><ul>
+<li>先确认用 dispatchEvent 的方式是可以触发 hover 事件的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;xxx&gt;</span><br><span class="line">    hihihi</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;button style&#x3D;&quot;marin-top:20px;&quot; id&#x3D;button&gt;click me&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">xxx.addEventListener(&#39;mouseenter&#39;,function()&#123;</span><br><span class="line">  console.log(&#39;hi&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">button.onclick&#x3D;function()&#123;</span><br><span class="line">  let event &#x3D; new Event(&#39;mouseenter&#39;);</span><br><span class="line">  xxx.dispatchEvent(event)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>可以设置 trigger 的测试用例有问题，先跳过,it 前面+一个 x 可以跳过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">xit(&#39;可以设置 trigger.&#39;, (done) &#x3D;&gt; &#123;</span><br><span class="line">  Vue.component(&#39;g-popover&#39;, Popover)</span><br><span class="line">  const div &#x3D; document.createElement(&#39;div&#39;)</span><br><span class="line">  document.body.appendChild(div)</span><br><span class="line">  div.innerHTML &#x3D; &#96;</span><br><span class="line">  &lt;g-popover trigger&#x3D;&quot;hover&quot; ref&#x3D;&quot;a&quot;&gt;</span><br><span class="line">    &lt;template slot&#x3D;&quot;content&quot;&gt;</span><br><span class="line">      弹出内容</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;button&gt;点我&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;g-popover&gt;</span><br><span class="line">  &#96;</span><br><span class="line">  const vm &#x3D; new Vue(&#123; &#x2F;&#x2F; 这个vm不是组件，这个vm是一个div对应的实例,div里面才是popover组件</span><br><span class="line">    el: div</span><br><span class="line">  &#125;)</span><br><span class="line">  let event &#x3D; new Event(&#39;mouseenter&#39;);</span><br><span class="line">  vm.$el.dispatchEvent(event)</span><br><span class="line">  vm.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">    const &#123;contentWrapper&#125; &#x3D; vm.$refs.a.$refs</span><br><span class="line">    expect(contentWrapper).to.be.exist</span><br><span class="line">    done()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="最后-个人微信-欢迎交流！"><a href="#最后-个人微信-欢迎交流！" class="headerlink" title="最后,个人微信,欢迎交流！"></a>最后,个人微信,欢迎交流！</h4><p><img src="https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg" alt="wechat0.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/29/Vue%E9%80%A0%E8%BD%AE%E5%AD%90-popover%E7%BB%84%E4%BB%B6-%E4%B8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1037,131 +1134,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="codingories.github.io/2020/01/26/%E9%80%A0%E8%BD%AE%E5%AD%90-toast%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.loli.net/2020/07/12/RPjkZxei6agC49U.jpg">
-      <meta itemprop="name" content="Ories">
-      <meta itemprop="description" content="这个博客用来记录自己的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="OriesノBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/26/%E9%80%A0%E8%BD%AE%E5%AD%90-toast%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">造轮子-toast组件的实现(下)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-26 16:09:42 / Modified: 21:47:07" itemprop="dateCreated datePublished" datetime="2020-01-26T16:09:42+08:00">2020-01-26</time>
-            </span>
-
-          
-            <span id="/2020/01/26/%E9%80%A0%E8%BD%AE%E5%AD%90-toast%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="post-meta-item leancloud_visitors" data-flag-title="造轮子-toast组件的实现(下)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/01/26/%E9%80%A0%E8%BD%AE%E5%AD%90-toast%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AE%9E%E7%8E%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/26/%E9%80%A0%E8%BD%AE%E5%AD%90-toast%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.解决 toast 中传入 html 的问题，通过假的 slot 来实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; plugins.js</span><br><span class="line">toast.$slots.default &#x3D; [message]</span><br><span class="line">&#x2F;&#x2F; toast.vue</span><br><span class="line"> &lt;div v-html&#x3D;&quot;$slots.default[0]&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 使用</span><br><span class="line">created() &#123;</span><br><span class="line">    this.$toast(&#39;&lt;p&gt;我是&lt;strong&gt;hi&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;&#39;,&#123;&#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>2.在 toast 中加 html 是比较危险的一个动作，所以要加一个选项默认不开启。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; toast.vue</span><br><span class="line">&lt;slot v-if&#x3D;&quot;!enableHtml&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">&lt;div v-else v-html&#x3D;&quot;$slots.default[0]&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; plugin.js，进行传递参数的改写</span><br><span class="line">propsData:toastOptions</span><br><span class="line">&#x2F;&#x2F; 使用</span><br><span class="line">created() &#123;</span><br><span class="line">  this.$toast(&#39;&lt;p&gt;我是&lt;strong&gt;hi&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;&lt;a href&#x3D;&quot;http:&#x2F;&#x2F;qq.com&quot;&gt;qq&lt;&#x2F;a&gt;&#39;,&#123;</span><br><span class="line">    enableHtml: false</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>3.flex-shrink的使用,flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;</span><br><span class="line">  flex-shrink: &lt;number&gt;; &#x2F;* default 1 *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。如果数值越大，缩小比例越大。</p>
-<p>4.line的高度问题，如果高度写了最小高度，那么子元素的height%就不生效了。用js去操作line的高度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; toast.vue</span><br><span class="line">&lt;div class&#x3D;&quot;toast&quot; ref&#x3D;&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;line&quot; ref&#x3D;&quot;line&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">mounted() &#123;</span><br><span class="line">  this.$nextTick(()&#x3D;&gt;&#123;</span><br><span class="line">    this.$refs.line.style.height &#x3D; &#96;$&#123;this.$refs.wrapper.getBoundingClientRect().height&#125;px&#96;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;, &#x2F;&#x2F; 这个计较太trick</span><br></pre></td></tr></table></figure>
-<p>debugger的技巧，如果眼睛观察到的是0，但是打印出来不是0，可能就是异步的问题。</p>
-<p>5.增加toast的位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; toast.vue</span><br><span class="line">props: &#123;</span><br><span class="line">  position: &#123;</span><br><span class="line">    type: String,</span><br><span class="line">    default: &#39;top&#39;,</span><br><span class="line">    validator(value)&#123;</span><br><span class="line">      return [&#39;top&#39;, &#39;bottom&#39;, &#39;middle&#39;].indexOf(value) &gt;&#x3D; 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">computed:&#123;</span><br><span class="line">  toastClasses()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      [&#96;position-$&#123;this.position&#125;&#96;]:true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 使用</span><br><span class="line">this.$toast(&#39;你的智商需要充值&#39;, &#123;</span><br><span class="line">  position: &#39;bottom&#39;</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; plugin.js</span><br><span class="line">export default &#123;</span><br><span class="line">  install(Vue, options)&#123;</span><br><span class="line">    Vue.prototype.$toast &#x3D; function (message, toastOptions) &#123;</span><br><span class="line">      let Constructor &#x3D; Vue.extend(Toast)</span><br><span class="line">      let toast &#x3D; new Constructor(&#123;</span><br><span class="line">        propsData:toastOptions &#x2F;&#x2F; 在这里将position传进去</span><br><span class="line">      &#125;)</span><br><span class="line">      toast.$slots.default &#x3D; [message]</span><br><span class="line">      toast.$mount()</span><br><span class="line">      document.body.appendChild(toast.$el)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6.开始做如果已经有一个toast就把之前那个干掉，再出现。</p>
-<ol>
-<li>先写一个函数</li>
-<li>给函数取一个名字</li>
-<li>把参数提出来<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; plugin.js</span><br><span class="line">import Toast from &#39;.&#x2F;toast&#39;</span><br><span class="line"></span><br><span class="line">let currentToast</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  install(Vue, options)&#123;</span><br><span class="line">    Vue.prototype.$toast &#x3D; function (message, toastOptions) &#123;</span><br><span class="line">      if(currentToast)&#123;</span><br><span class="line">        currentToast.close()</span><br><span class="line">      &#125;</span><br><span class="line">      currentToast &#x3D; createToast(&#123;Vue,message, propsData: toastOptions&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* helpers *&#x2F;</span><br><span class="line">function createToast (&#123;Vue,message,propsData&#125;)&#123;</span><br><span class="line">  let Constructor &#x3D; Vue.extend(Toast)</span><br><span class="line">  let toast &#x3D; new Constructor(&#123;propsData&#125;)</span><br><span class="line">  toast.$slots.default &#x3D; [message]</span><br><span class="line">  toast.$mount()</span><br><span class="line">  document.body.appendChild(toast.$el)</span><br><span class="line">  return toast</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>7.实现动画</p>
-<ol>
-<li><p>声明一个动画，然后写到类上面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@keyframes fade &#123;</span><br><span class="line">  0% &#123;opacity: 0; transform: translateY(100%);&#125;</span><br><span class="line">  100% &#123;opacity: 1;transform: translateY(0);&#125;</span><br><span class="line">&#125; </span><br><span class="line">.toast &#123;</span><br><span class="line">  animation: fade 1s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>这里有个bug,我们在实现一次的时候是有问题的,如果toast被关闭了，我们不需要重复关闭，而我们写的是不管你之前的toast有没有关闭，只要有值的我们就关闭，那这样就会出现一个问题，点了关闭currentToast还是一个Toast并没有把它变成null，所以要加上一个回调告诉外面，我被关了不要重复关我，代码会多调一次close。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; toast.vue</span><br><span class="line">close() &#123;</span><br><span class="line">  this.$el.remove()</span><br><span class="line">  this.$emit(&#39;close&#39;)</span><br><span class="line">  this.$destroy()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; plugin.js</span><br><span class="line">export default &#123;</span><br><span class="line">  install(Vue, options)&#123;</span><br><span class="line">    Vue.prototype.$toast &#x3D; function (message, toastOptions) &#123;</span><br><span class="line">      if(currentToast)&#123;</span><br><span class="line">        currentToast.close()</span><br><span class="line">      &#125;</span><br><span class="line">      currentToast &#x3D; createToast(&#123;Vue,message, propsData: toastOptions,onclose: ()&#x3D;&gt;&#123;</span><br><span class="line">          currentToast &#x3D; null</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;) &#x2F;&#x2F; 加了这句话</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* helpers *&#x2F;</span><br><span class="line">function createToast (&#123;Vue,message,propsData,onclose&#125;)&#123;</span><br><span class="line">  let Constructor &#x3D; Vue.extend(Toast)</span><br><span class="line">  let toast &#x3D; new Constructor(&#123;propsData&#125;)</span><br><span class="line">  toast.$slots.default &#x3D; [message]</span><br><span class="line">  toast.$mount()</span><br><span class="line">  toast.$on(&#39;close&#39;,onclose) &#x2F;&#x2F; 加了这句话</span><br><span class="line">  document.body.appendChild(toast.$el)</span><br><span class="line">  return toast</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>git相关的钩上，不想管的不用钩上</p>
-</li>
-<li><p>回忆bug是如何产生的，默认样式是:transform:translateX(-50%),进入0%时候transform:translateY(100%),它们两会覆盖。有三个方案，解决。</p>
-<ul>
-<li>换一种方式去做居中，但是这种方法是最好的，很难想</li>
-<li>不要用css做动画</li>
-<li>做两个div外面一个居中，里面一个做动画</li>
-</ul>
-</li>
-<li><p>为什么不写两个动画帧来控制居中，如果一段代码要背下来，那么一定是有问题的。</p>
-<ol start="8">
-<li>优化三种动画，上下中是不一样的，通过css进行优化。</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1229,7 +1205,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
